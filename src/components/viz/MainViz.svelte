@@ -38,22 +38,25 @@
 		// clear the canvas
 		context.clearRect(0, 0, canvas.width, canvas.height);
 
-		// Set the circle's properties
-		const centerX = canvas.width / 2;
-		const centerY = canvas.height / 2;
-		const radius = 20;
+		// Draw the circles
+		const radius = 1;
 		const fillColor = "blue";
 
-		// Draw the circle
-		context.beginPath();
-		context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-		context.fillStyle = fillColor;
-		context.fill();
+		const YEAR_MAX = 2022;
+		const YEAR_MIN = 1958;
+		const DOMAIN = YEAR_MAX - YEAR_MIN;
+
+		data.forEach((song) => {
+			const xPercentage =
+				(song[DATA_COLUMNS_ENUM.date_as_decimal] - YEAR_MIN) / DOMAIN;
+			const centerX = xPercentage * canvas.width;
+			const centerY = (100 * Math.random() + canvas.height) / 2;
+			context.beginPath();
+			context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+			context.fillStyle = fillColor;
+			context.fill();
+		});
 	}
 </script>
-
-<!-- <p>
-	The first performer in the dataset: {data[0][DATA_COLUMNS_ENUM.performer]}
-</p> -->
 
 <canvas id="myCanvas" style="border: 0.5px solid black;" />
