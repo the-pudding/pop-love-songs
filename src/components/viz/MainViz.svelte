@@ -1,8 +1,7 @@
 <script>
+	import viewport from "$stores/viewport.js";
 	import data from "$data/16-EXPORT-viz-ready-data.json";
-	// console.log(data);
 
-	// (key, probably doesn't live her ultimatley)
 	const DATA_COLUMNS_ENUM = {
 		performer: 0,
 		song: 1,
@@ -15,12 +14,29 @@
 
 	let canvas;
 	let context;
+	let width = 0;
+	let height = 0;
 
 	onMount(() => {
-		// Get a reference to the canvas element and its 2D drawing context
 		canvas = document.getElementById("myCanvas");
-
 		context = canvas.getContext("2d");
+
+		const unsubscribe = viewport.subscribe(({ width: w, height: h }) => {
+			width = w;
+			height = h;
+			canvas.width = width;
+			canvas.height = height;
+			updateCanvas();
+		});
+
+		updateCanvas();
+
+		return unsubscribe; // return the unsubscribe function to cleanup on component unmount
+	});
+
+	function updateCanvas() {
+		// clear the canvas
+		context.clearRect(0, 0, canvas.width, canvas.height);
 
 		// Set the circle's properties
 		const centerX = canvas.width / 2;
@@ -33,18 +49,11 @@
 		context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
 		context.fillStyle = fillColor;
 		context.fill();
-	});
+	}
 </script>
 
-<h2>(This will become the main viz)</h2>
-
-<p>
+<!-- <p>
 	The first performer in the dataset: {data[0][DATA_COLUMNS_ENUM.performer]}
-</p>
+</p> -->
 
-<canvas
-	id="myCanvas"
-	width="200"
-	height="200"
-	style="border: 1px solid black;"
-/>
+<canvas id="myCanvas" style="border: 0.5px solid black;" />
