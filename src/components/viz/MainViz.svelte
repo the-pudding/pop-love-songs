@@ -2,39 +2,11 @@
 	import { onMount } from "svelte";
 	import viewport from "$stores/viewport.js";
 	import data from "$data/16-EXPORT-viz-ready-data.json";
-
-	// TODO: Move these to a constants file
-	const DATA_COLUMNS_ENUM = {
-		performer: 0,
-		song: 1,
-		generic_genre: 2,
-		gender: 3,
-		date_as_decimal: 4,
-		love_song_sub_type: 5
-	};
-	const LOVE_SONG_TYPE_COLOR_MAP = {
-		"": "gray",
-		Serenade: "pink",
-		"Heartbreak & Longing": "blue",
-		"Sexual Conquest": "red",
-		"It's Complicated": "brown",
-		"Good Riddance": "purple",
-		Unrequited: "green",
-		"Love Songs for the Self": "orange",
-		"Platonic Love": "yellow"
-	};
-
-	const LOVE_SONG_TYPE_BAND_LEVEL_MAP = {
-		"": 0,
-		Serenade: 1,
-		"Heartbreak & Longing": 2,
-		"Sexual Conquest": 3,
-		"It's Complicated": 4,
-		"Good Riddance": 5,
-		Unrequited: 6,
-		"Love Songs for the Self": 7,
-		"Platonic Love": 8
-	};
+	import {
+		DATA_COLUMNS_ENUM,
+		LOVE_SONG_TYPE_BAND_LEVEL_MAP,
+		LOVE_SONG_TYPE_COLOR_MAP
+	} from "$data/data-constants.js";
 
 	let canvas;
 	let context;
@@ -80,7 +52,7 @@
 					song[DATA_COLUMNS_ENUM.love_song_sub_type]
 				] / Object.keys(LOVE_SONG_TYPE_BAND_LEVEL_MAP).length;
 			const yMargin = 50;
-			const centerY = yMargin + yPercentage * (canvas.height - yMargin);
+			const centerY = 2 * yMargin + yPercentage * (canvas.height - 2 * yMargin);
 
 			context.beginPath();
 			context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
