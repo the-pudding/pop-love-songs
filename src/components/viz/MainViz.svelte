@@ -1,7 +1,9 @@
 <script>
+	import { onMount } from "svelte";
 	import viewport from "$stores/viewport.js";
 	import data from "$data/16-EXPORT-viz-ready-data.json";
 
+	// TODO: Move these to a constants file
 	const DATA_COLUMNS_ENUM = {
 		performer: 0,
 		song: 1,
@@ -10,7 +12,17 @@
 		date_as_decimal: 4,
 		love_song_sub_type: 5
 	};
-	import { onMount } from "svelte";
+	const LOVE_SONG_TYPE_COLOR_MAP = {
+		"": "gray",
+		Serenade: "pink",
+		"Heartbreak & Longing": "blue",
+		"Sexual Conquest": "red",
+		"It's Complicated": "brown",
+		"Good Riddance": "purple",
+		Unrequited: "green",
+		"Love Songs for the Self": "orange",
+		"Platonic Love": "yellow"
+	};
 
 	let canvas;
 	let context;
@@ -53,7 +65,8 @@
 			const centerY = (100 * Math.random() + canvas.height) / 2;
 			context.beginPath();
 			context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-			context.fillStyle = fillColor;
+			context.fillStyle =
+				LOVE_SONG_TYPE_COLOR_MAP[song[DATA_COLUMNS_ENUM.love_song_sub_type]];
 			context.fill();
 		});
 	}
