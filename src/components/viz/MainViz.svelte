@@ -24,6 +24,18 @@
 		"Platonic Love": "yellow"
 	};
 
+	const LOVE_SONG_TYPE_BAND_LEVEL_MAP = {
+		"": 0,
+		Serenade: 1,
+		"Heartbreak & Longing": 2,
+		"Sexual Conquest": 3,
+		"It's Complicated": 4,
+		"Good Riddance": 5,
+		Unrequited: 6,
+		"Love Songs for the Self": 7,
+		"Platonic Love": 8
+	};
+
 	let canvas;
 	let context;
 	let width = 0;
@@ -52,7 +64,6 @@
 
 		// Draw the circles
 		const radius = 1;
-		const fillColor = "blue";
 
 		const YEAR_MAX = 2022;
 		const YEAR_MIN = 1958;
@@ -62,7 +73,15 @@
 			const xPercentage =
 				(song[DATA_COLUMNS_ENUM.date_as_decimal] - YEAR_MIN) / DOMAIN;
 			const centerX = xPercentage * canvas.width;
-			const centerY = (100 * Math.random() + canvas.height) / 2;
+
+			// TODO: use d3 scale to determine band
+			const yPercentage =
+				LOVE_SONG_TYPE_BAND_LEVEL_MAP[
+					song[DATA_COLUMNS_ENUM.love_song_sub_type]
+				] / Object.keys(LOVE_SONG_TYPE_BAND_LEVEL_MAP).length;
+			const yMargin = 50;
+			const centerY = yMargin + yPercentage * (canvas.height - yMargin);
+
 			context.beginPath();
 			context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
 			context.fillStyle =
