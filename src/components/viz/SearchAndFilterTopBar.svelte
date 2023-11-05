@@ -1,9 +1,16 @@
 <script>
+	import { LOVE_SONG_TYPE_COLOR_MAP } from "$data/data-constants";
 	import Select from "../helpers/Select.svelte";
+
+	const loveSongTypes = Object.keys(LOVE_SONG_TYPE_COLOR_MAP);
+	const loveSongOptions = loveSongTypes.map((type) => ({
+		label: type || "(not a love song)",
+		value: type
+	}));
 </script>
 
 <div>
-	<Select options={[{ label: "bye", value: "bye" }]} />
+	<Select options={loveSongOptions} />
 </div>
 
 <style>
