@@ -13,13 +13,10 @@
 
 	$: {
 		console.log(userSelectedLoveSongTypes);
-		if (userSelectedLoveSongTypes.length !== 0) {
-			searchAndFilter.update((state) => ({
-				...state,
-				seletedLovesSongTypes: userSelectedLoveSongTypes.map(({value}) => value)
-			}));	
-		}
-		
+		searchAndFilter.update((state) => ({
+			...state,
+			selectedLoveSongTypes: userSelectedLoveSongTypes.map(({value}) => value)
+		}));	
 	}
 </script>
 

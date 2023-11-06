@@ -31,10 +31,6 @@
 		return unsubscribe; // return the unsubscribe function to cleanup on component unmount
 	});
 
-	$: {
-		console.log($searchAndFilter.seletedLovesSongTypes);
-	}
-
 	function updateCanvas() {
 		// clear the canvas
 		context.clearRect(0, 0, canvas.width, canvas.height);
@@ -52,19 +48,29 @@
 			const centerX = xPercentage * canvas.width;
 
 			// TODO: use d3 scale to determine band
+			const loveSongType = song[DATA_COLUMNS_ENUM.love_song_sub_type]
 			const yPercentage =
 				LOVE_SONG_TYPE_BAND_LEVEL_MAP[
-					song[DATA_COLUMNS_ENUM.love_song_sub_type]
+					loveSongType
 				] / Object.keys(LOVE_SONG_TYPE_BAND_LEVEL_MAP).length;
 			const yMargin = 50;
 			const centerY = 2 * yMargin + yPercentage * (canvas.height - 2 * yMargin);
 
 			context.beginPath();
 			context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-			context.fillStyle =
-				LOVE_SONG_TYPE_COLOR_MAP[song[DATA_COLUMNS_ENUM.love_song_sub_type]];
+			const loveSongTypeSelected = $searchAndFilter.selectedLoveSongTypes.includes(loveSongType) || $searchAndFilter.selectedLoveSongTypes.length === 0;
+			context.fillStyle = loveSongTypeSelected
+				? LOVE_SONG_TYPE_COLOR_MAP[loveSongType] 
+				: "rgb(0, 0, 0, 0.05)";
 			context.fill();
 		});
+	}
+
+	$: {
+		if (context) {
+			console.log('Gonna update:', $searchAndFilter.selectedLoveSongTypes);
+			updateCanvas();
+		}
 	}
 </script>
 

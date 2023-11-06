@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 
 const DEFAULT_STATE = {
-	seletedLovesSongTypes: [],
+	selectedLoveSongTypes: [],
 	performerSearchString: "",
 	songSearchString: ""
 };
