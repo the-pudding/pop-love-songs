@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 	import viewport from "$stores/viewport.js";
+	import searchAndFilter from "$stores/searchAndFilter.js";
 	import data from "$data/16-EXPORT-viz-ready-data.json";
 	import {
 		DATA_COLUMNS_ENUM,
@@ -29,6 +30,10 @@
 
 		return unsubscribe; // return the unsubscribe function to cleanup on component unmount
 	});
+
+	$: {
+		console.log($searchAndFilter.seletedLovesSongTypes);
+	}
 
 	function updateCanvas() {
 		// clear the canvas
