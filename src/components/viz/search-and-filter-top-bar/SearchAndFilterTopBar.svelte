@@ -1,14 +1,23 @@
 <script>
 	import LoveSongTypeFilter from "./LoveSongTypeFilter.svelte";
-
+	import PerformerSearch from "./PerformerSearch.svelte";
+	import SongNameSearch from "./SongNameSearch.svelte";
 </script>
 
-<div>
-	<LoveSongTypeFilter />
-</div>
+<fieldset>
+	<div>
+		<LoveSongTypeFilter />
+		<PerformerSearch />
+		<SongNameSearch />
+	</div>
+</fieldset>
 
 <style>
 	div {
+		display: flex;
+		justify-content: space-between;
+	}
+	fieldset {
 		position: fixed;
 		z-index: 999999999;
 		top: 0;
@@ -17,9 +26,9 @@
 		text-align: center;
 		padding: 1.25em;
 		height: 50px;
-		/* background: var(--color-fg);
-		color: var(--color-bg);
-		font-family: monospace;
-		font-size: 16px; */
+		/* background: var(--color-fg); */
+
+		/* override default fieldset stying */
+		padding: 1px;
 	}
 </style>

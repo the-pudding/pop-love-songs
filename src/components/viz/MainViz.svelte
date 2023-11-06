@@ -48,27 +48,44 @@
 			const centerX = xPercentage * canvas.width;
 
 			// TODO: use d3 scale to determine band
-			const loveSongType = song[DATA_COLUMNS_ENUM.love_song_sub_type]
+			const loveSongType = song[DATA_COLUMNS_ENUM.love_song_sub_type];
 			const yPercentage =
-				LOVE_SONG_TYPE_BAND_LEVEL_MAP[
-					loveSongType
-				] / Object.keys(LOVE_SONG_TYPE_BAND_LEVEL_MAP).length;
+				LOVE_SONG_TYPE_BAND_LEVEL_MAP[loveSongType] /
+				Object.keys(LOVE_SONG_TYPE_BAND_LEVEL_MAP).length;
 			const yMargin = 50;
 			const centerY = 2 * yMargin + yPercentage * (canvas.height - 2 * yMargin);
 
 			context.beginPath();
 			context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-			const loveSongTypeSelected = $searchAndFilter.selectedLoveSongTypes.includes(loveSongType) || $searchAndFilter.selectedLoveSongTypes.length === 0;
-			context.fillStyle = loveSongTypeSelected
-				? LOVE_SONG_TYPE_COLOR_MAP[loveSongType] 
-				: "rgb(0, 0, 0, 0.05)";
+
+			// TODO: this can probably be moved to it's own file concerning color & filter logic
+			const getSongFill = (song) => {
+				const loveSongTypeSelected =
+					$searchAndFilter.selectedLoveSongTypes.includes(loveSongType) ||
+					$searchAndFilter.selectedLoveSongTypes.length === 0;
+				const performerSelected =
+					$searchAndFilter.performerSearchString.length === 0 ||
+					song[DATA_COLUMNS_ENUM.performer]
+						.toLowerCase()
+						.includes($searchAndFilter.performerSearchString.toLowerCase());
+				const songSelected =
+					$searchAndFilter.songSearchString.length === 0 ||
+					song[DATA_COLUMNS_ENUM.song]
+						.toLowerCase()
+						.includes($searchAndFilter.songSearchString.toLowerCase());
+				return loveSongTypeSelected && performerSelected && songSelected
+					? LOVE_SONG_TYPE_COLOR_MAP[loveSongType]
+					: "rgb(0, 0, 0, 0.05)";
+			};
+
+			context.fillStyle = getSongFill(song);
 			context.fill();
 		});
 	}
 
 	$: {
 		if (context) {
-			console.log('Gonna update:', $searchAndFilter.selectedLoveSongTypes);
+			console.log("Gonna update:", $searchAndFilter);
 			updateCanvas();
 		}
 	}
