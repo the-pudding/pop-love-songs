@@ -11,26 +11,13 @@
 
 	let canvas;
 	let context;
-	let width = 0;
-	let height = 0;
 
 	onMount(() => {
 		canvas = document.getElementById("myCanvas");
 		context = canvas.getContext("2d");
-
-		const unsubscribe = viewport.subscribe(({ width: w, height: h }) => {
-			width = w;
-			height = h;
-			canvas.width = width;
-			canvas.height = height;
-			updateCanvas();
-		});
-
-		updateCanvas();
-
-		return unsubscribe; // return the unsubscribe function to cleanup on component unmount
 	});
 
+	// TODO: have it take all reactive variables as args, move to another file
 	function updateCanvas() {
 		// clear the canvas
 		context.clearRect(0, 0, canvas.width, canvas.height);
@@ -83,7 +70,13 @@
 		});
 	}
 
+	// Reactive updates
 	$: {
+		if (canvas) {
+			canvas.width = $viewport.width;
+			canvas.height = $viewport.height;
+		}
+
 		if (context) {
 			console.log("Gonna update:", $searchAndFilter);
 			updateCanvas();
