@@ -1,5 +1,6 @@
 <script>
 	import LoveSongTypeFilter from "./LoveSongTypeFilter.svelte";
+	import GenreFilter from "./GenreFilter.svelte";
 	import PerformerSearch from "./PerformerSearch.svelte";
 	import SongNameSearch from "./SongNameSearch.svelte";
 </script>
@@ -7,6 +8,7 @@
 <fieldset>
 	<div>
 		<LoveSongTypeFilter />
+		<GenreFilter />
 		<PerformerSearch />
 		<SongNameSearch />
 	</div>

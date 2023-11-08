@@ -47,6 +47,10 @@
 
 			// TODO: this can probably be moved to it's own file concerning color & filter logic
 			const getSongFill = (song) => {
+				const genreSelected =
+					$searchAndFilter.selectedGenres.includes(
+						song[DATA_COLUMNS_ENUM.generic_genre]
+					) || $searchAndFilter.selectedGenres.length === 0;
 				const loveSongTypeSelected =
 					$searchAndFilter.selectedLoveSongTypes.includes(loveSongType) ||
 					$searchAndFilter.selectedLoveSongTypes.length === 0;
@@ -60,7 +64,10 @@
 					song[DATA_COLUMNS_ENUM.song]
 						.toLowerCase()
 						.includes($searchAndFilter.songSearchString.toLowerCase());
-				return loveSongTypeSelected && performerSelected && songSelected
+				return genreSelected &&
+					loveSongTypeSelected &&
+					performerSelected &&
+					songSelected
 					? LOVE_SONG_TYPE_COLOR_MAP[loveSongType]
 					: "rgb(0, 0, 0, 0.05)";
 			};
