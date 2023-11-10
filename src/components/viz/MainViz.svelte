@@ -5,9 +5,9 @@
 	import data from "$data/16-EXPORT-viz-ready-data.json";
 	import {
 		DATA_COLUMNS_ENUM,
-		LOVE_SONG_TYPE_BAND_LEVEL_MAP,
-		LOVE_SONG_TYPE_COLOR_MAP
+		LOVE_SONG_TYPE_BAND_LEVEL_MAP
 	} from "$data/data-constants.js";
+	import { getSongFill } from "./viz-utils";
 
 	let canvas;
 	let context;
@@ -45,34 +45,7 @@
 			context.beginPath();
 			context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
 
-			// TODO: this can probably be moved to it's own file concerning color & filter logic
-			const getSongFill = (song) => {
-				const genreSelected =
-					$searchAndFilter.selectedGenres.includes(
-						song[DATA_COLUMNS_ENUM.generic_genre]
-					) || $searchAndFilter.selectedGenres.length === 0;
-				const loveSongTypeSelected =
-					$searchAndFilter.selectedLoveSongTypes.includes(loveSongType) ||
-					$searchAndFilter.selectedLoveSongTypes.length === 0;
-				const performerSelected =
-					$searchAndFilter.performerSearchString.length === 0 ||
-					song[DATA_COLUMNS_ENUM.performer]
-						.toLowerCase()
-						.includes($searchAndFilter.performerSearchString.toLowerCase());
-				const songSelected =
-					$searchAndFilter.songSearchString.length === 0 ||
-					song[DATA_COLUMNS_ENUM.song]
-						.toLowerCase()
-						.includes($searchAndFilter.songSearchString.toLowerCase());
-				return genreSelected &&
-					loveSongTypeSelected &&
-					performerSelected &&
-					songSelected
-					? LOVE_SONG_TYPE_COLOR_MAP[loveSongType]
-					: "rgb(0, 0, 0, 0.05)";
-			};
-
-			context.fillStyle = getSongFill(song);
+			context.fillStyle = getSongFill(song, $searchAndFilter);
 			context.fill();
 		});
 	}
