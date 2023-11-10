@@ -7,7 +7,7 @@
 		DATA_COLUMNS_ENUM,
 		LOVE_SONG_TYPE_BAND_LEVEL_MAP
 	} from "$data/data-constants.js";
-	import { getSongFill } from "./viz-utils";
+	import { getSongFill, getXPosition, getYPosition } from "./viz-utils";
 
 	let canvas;
 	let context;
@@ -25,25 +25,11 @@
 		// Draw the circles
 		const radius = 1;
 
-		const YEAR_MAX = 2022;
-		const YEAR_MIN = 1958;
-		const DOMAIN = YEAR_MAX - YEAR_MIN;
-
 		data.forEach((song) => {
-			const xPercentage =
-				(song[DATA_COLUMNS_ENUM.date_as_decimal] - YEAR_MIN) / DOMAIN;
-			const centerX = xPercentage * canvas.width;
-
-			// TODO: use d3 scale to determine band
-			const loveSongType = song[DATA_COLUMNS_ENUM.love_song_sub_type];
-			const yPercentage =
-				LOVE_SONG_TYPE_BAND_LEVEL_MAP[loveSongType] /
-				Object.keys(LOVE_SONG_TYPE_BAND_LEVEL_MAP).length;
-			const yMargin = 50;
-			const centerY = 2 * yMargin + yPercentage * (canvas.height - 2 * yMargin);
-
+			const x = getXPosition(song, canvas.width);
+			const y = getYPosition(song, canvas.height);
 			context.beginPath();
-			context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+			context.arc(x, y, radius, 0, 2 * Math.PI);
 
 			context.fillStyle = getSongFill(song, $searchAndFilter);
 			context.fill();
