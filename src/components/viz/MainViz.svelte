@@ -3,17 +3,17 @@
 	import viewport from "$stores/viewport.js";
 	import searchAndFilter from "$stores/searchAndFilter.js";
 	import data from "$data/16-EXPORT-viz-ready-data.json";
-	import {
-		DATA_COLUMNS_ENUM,
-		LOVE_SONG_TYPE_BAND_LEVEL_MAP
-	} from "$data/data-constants.js";
 	import { getSongFill, getXPosition, getYPosition } from "./viz-utils";
 
+	const VISIBLE_CANVAS_ID = "visible-canvas";
+	const INVISIBLE_CANVAS_ID = "invisible-canvas";
 	let canvas;
 	let context;
+	let invisibleCanvas;
+	let invisibleContext;
 
 	onMount(() => {
-		canvas = document.getElementById("myCanvas");
+		canvas = document.getElementById(VISIBLE_CANVAS_ID);
 		context = canvas.getContext("2d");
 	});
 
@@ -23,16 +23,16 @@
 		context.clearRect(0, 0, canvas.width, canvas.height);
 
 		// Draw the circles
-		const radius = 1;
-
 		data.forEach((song) => {
+			const circle = new Path2D();
 			const x = getXPosition(song, canvas.width);
 			const y = getYPosition(song, canvas.height);
-			context.beginPath();
-			context.arc(x, y, radius, 0, 2 * Math.PI);
+			const radius = 1;
+			circle.arc(x, y, radius, 0, 2 * Math.PI);
 
+			// TODO: Add visible & invisible (hover) circles
 			context.fillStyle = getSongFill(song, $searchAndFilter);
-			context.fill();
+			context.fill(circle);
 		});
 	}
 
@@ -50,4 +50,5 @@
 	}
 </script>
 
-<canvas id="myCanvas" style="border: 0.5px solid black;" />
+<canvas id={INVISIBLE_CANVAS_ID} style="border: 10px solid red;" />
+<canvas id={VISIBLE_CANVAS_ID} style="border: 0.5px solid black;" />
