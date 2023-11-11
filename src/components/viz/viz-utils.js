@@ -34,7 +34,7 @@ export const getInvisibleFillFromSongIndex = (songIndex) => {
     if (uniqueColorOffset > MAX_COLOR) {
         console.error(`Too many songs to assign unique colors with a step size ${NEXT_COLOR_STEP}`);
     }
-    
+
     const rgb = [];
     rgb.push(uniqueColorOffset & 0xff); // R.
     rgb.push((uniqueColorOffset >> 8) & 0xff); // G.
@@ -58,7 +58,14 @@ export const getSongIndexFromInvisibleFill = (invisibleContext, offsetX, offsetY
     return songIndex < 0 ? null : songIndex;
 }
 
-export const getSongFill = (song, searchAndFilter) => {
+export const getSongFill = (song, songIsSelected) => {
+    const loveSongType = song[DATA_COLUMNS_ENUM.love_song_sub_type];
+    return songIsSelected
+        ? LOVE_SONG_TYPE_COLOR_MAP[loveSongType]
+        : "rgb(0, 0, 0, 0.05)";
+}
+
+export const songIsSelected = (song, searchAndFilter) => {
     const loveSongType = song[DATA_COLUMNS_ENUM.love_song_sub_type];
 
     const genreSelected =
@@ -83,6 +90,4 @@ export const getSongFill = (song, searchAndFilter) => {
         loveSongTypeSelected &&
         performerSelected &&
         songSelected
-        ? LOVE_SONG_TYPE_COLOR_MAP[loveSongType]
-        : "rgb(0, 0, 0, 0.05)";
 };

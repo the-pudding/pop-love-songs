@@ -8,7 +8,8 @@
 		getSongFill,
 		getSongIndexFromInvisibleFill,
 		getXPosition,
-		getYPosition
+		getYPosition,
+		songIsSelected
 	} from "./viz-utils";
 
 	const VISIBLE_CANVAS_ID = "visible-canvas";
@@ -38,12 +39,17 @@
 			const radius = 5;
 			circle.arc(x, y, radius, 0, 2 * Math.PI);
 
-			// Invisible (top)
-			invisibleContext.fillStyle = getInvisibleFillFromSongIndex(songIndex);
-			invisibleContext.fill(circle);
+			const isSelected = songIsSelected(song, $searchAndFilter);
 
-			// Visible (bottom)
-			context.fillStyle = getSongFill(song, $searchAndFilter);
+			// Invisible
+			if (isSelected) {
+				// prevent hover events on non-selected songs
+				invisibleContext.fillStyle = getInvisibleFillFromSongIndex(songIndex);
+				invisibleContext.fill(circle);
+			}
+
+			// Visible
+			context.fillStyle = getSongFill(song, isSelected);
 			context.fill(circle);
 		});
 	}
@@ -70,7 +76,7 @@
 		}
 
 		if (context) {
-			console.log("Gonna update:", $searchAndFilter);
+			$searchAndFilter; // trigger reactive update
 			updateVisibleAndInvisibleCanvases();
 		}
 	}
