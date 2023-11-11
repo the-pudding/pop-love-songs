@@ -25,31 +25,37 @@ export const getYPosition = (song, canvasHeight) => {
     return 2 * Y_MARGIN + yPercentage * (canvasHeight - 2 * Y_MARGIN);
 };
 
-const NEXT_COLOR_STEP = 50; // somewhat arbitrary, just big enough to avoid anti-alias collisions
+const NEXT_COLOR_STEP = 1; // keep this as 1
+const BASE_OFFSET = 10;
 
 export const getInvisibleFillFromSongIndex = (songIndex) => {
-    
-    const uniqueColorOffset = songIndex * NEXT_COLOR_STEP;
-    const MAX_COLOR = 16777216; // 256^3
+    const uniqueColorOffset = BASE_OFFSET + songIndex * NEXT_COLOR_STEP;
+    const MAX_COLOR = 16777215; // 256^3 - 1, as RGB color max value is 255 for each channel
     if (uniqueColorOffset > MAX_COLOR) {
         console.error(`Too many songs to assign unique colors with a step size ${NEXT_COLOR_STEP}`);
     }
+    
     const rgb = [];
-
     rgb.push(uniqueColorOffset & 0xff); // R.
-    rgb.push((uniqueColorOffset & 0xff00) >> 8); // G.
-    rgb.push((uniqueColorOffset & 0xff0000) >> 16); // B.
+    rgb.push((uniqueColorOffset >> 8) & 0xff); // G.
+    rgb.push((uniqueColorOffset >> 16) & 0xff); // B.
     return `rgb(${rgb.join(",")})`;
 }
 
-export const getSongIndexFromInvisibleFill = (invisibleFill) => {
-    const rgb = invisibleFill;
-    const rgbArray = rgb.substring(4, rgb.length - 1).split(",");
-    const r = parseInt(rgbArray[0]);
-    const g = parseInt(rgbArray[1]);
-    const b = parseInt(rgbArray[2]);
-    const uniqueColorOffset = (r) + (g << 8) + (b << 16);
-    return uniqueColorOffset / NEXT_COLOR_STEP;
+export const getSongIndexFromInvisibleFill = (invisibleContext, offsetX, offsetY) => {
+    const { data } = invisibleContext.getImageData(offsetX, offsetY, 1, 1);
+    const r = data[0];
+    const g = data[1] << 8; // shift to correct position
+    const b = data[2] << 16; // shift to correct position
+    // If all the values are zero, it's the background, so return null
+    if (r === 0 && g === 0 && b === 0) {
+        return null;
+    }
+    // Reconstruct the rgb hex value
+    const rgbHex = r | g | b;
+    // Convert to a song index
+    const songIndex = (rgbHex - BASE_OFFSET) / NEXT_COLOR_STEP;
+    return songIndex < 0 ? null : songIndex;
 }
 
 export const getSongFill = (song, searchAndFilter) => {

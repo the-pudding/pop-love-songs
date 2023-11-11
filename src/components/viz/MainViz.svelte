@@ -2,10 +2,11 @@
 	import { onMount } from "svelte";
 	import viewport from "$stores/viewport.js";
 	import searchAndFilter from "$stores/searchAndFilter.js";
-	import data from "$data/16-EXPORT-viz-ready-data.json";
+	import songsData from "$data/16-EXPORT-viz-ready-data.json";
 	import {
 		getInvisibleFillFromSongIndex,
 		getSongFill,
+		getSongIndexFromInvisibleFill,
 		getXPosition,
 		getYPosition
 	} from "./viz-utils";
@@ -30,11 +31,11 @@
 		context.clearRect(0, 0, canvas.width, canvas.height);
 
 		// Draw the circles
-		data.forEach((song, songIndex) => {
+		songsData.forEach((song, songIndex) => {
 			const circle = new Path2D();
 			const x = getXPosition(song, canvas.width);
 			const y = getYPosition(song, canvas.height);
-			const radius = 1;
+			const radius = 5;
 			circle.arc(x, y, radius, 0, 2 * Math.PI);
 
 			// Invisible (top)
@@ -46,6 +47,18 @@
 			context.fill(circle);
 		});
 	}
+
+	const handleMouseMove = (e) => {
+		const { offsetX, offsetY } = e;
+		const songIndex = getSongIndexFromInvisibleFill(
+			invisibleContext,
+			offsetX,
+			offsetY
+		);
+		if (songIndex !== null) {
+			console.log(songIndex, songsData[songIndex]);
+		}
+	};
 
 	// Reactive updates
 	$: {
@@ -63,7 +76,7 @@
 	}
 </script>
 
-<canvas id={VISIBLE_CANVAS_ID} />
+<canvas id={VISIBLE_CANVAS_ID} on:mousemove={handleMouseMove} />
 <canvas id={INVISIBLE_CANVAS_ID} />
 
 <style>
