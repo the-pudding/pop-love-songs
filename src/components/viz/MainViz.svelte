@@ -2,6 +2,7 @@
 	import { onMount } from "svelte";
 	import viewport from "$stores/viewport.js";
 	import searchAndFilter from "$stores/searchAndFilter.js";
+	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
 	import songsData from "$data/16-EXPORT-viz-ready-data.json";
 	import {
 		getInvisibleFillFromSongIndex,
@@ -64,18 +65,18 @@
 		const selectedSong = songsData[songIndex];
 		if (selectedSong) {
 			console.log("mouse move!");
-			searchAndFilter.update((state) => ({
-				...state,
-				selectedSongInfo: {
-					position: {
-						x: offsetX,
-						y: offsetY
-					},
-					song: selectedSong
-				}
-			}));
-		} else {
-			// clear
+			$hoveredSongInfo = {
+				song: selectedSong,
+				x: offsetX,
+				y: offsetY
+			};
+		} else if ($hoveredSongInfo.song) {
+			// no need to trigger reactive update by writing to the store unless there is a song to overwrite
+			$hoveredSongInfo = {
+				song: null,
+				x: null,
+				y: null
+			};
 		}
 	};
 

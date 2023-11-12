@@ -1,19 +1,11 @@
 <script>
 	import { DATA_COLUMNS_ENUM } from "$data/data-constants.js";
-	import searchAndFilter from "$stores/searchAndFilter.js";
-	let x;
-	let y;
-	let song;
+	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
 
-	$: {
-		const position = $searchAndFilter.selectedSongInfo.position || {};
-		x = position.x;
-		y = position.y;
-
-		song = $searchAndFilter.selectedSongInfo.song || [];
-	}
-
-	const isVisible = true;
+	$: song = $hoveredSongInfo.song || [];
+	$: x = $hoveredSongInfo.x;
+	$: y = $hoveredSongInfo.y;
+	$: isVisible = x !== undefined && y !== undefined && song.length > 0;
 </script>
 
 <div
