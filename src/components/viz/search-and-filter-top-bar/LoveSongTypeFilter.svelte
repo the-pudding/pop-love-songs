@@ -12,7 +12,6 @@
 	let userSelectedLoveSongTypes = [];
 
 	$: {
-		console.log(userSelectedLoveSongTypes);
 		searchAndFilter.update((state) => ({
 			...state,
 			selectedLoveSongTypes: userSelectedLoveSongTypes.map(({ value }) => value)

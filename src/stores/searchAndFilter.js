@@ -4,6 +4,10 @@ const DEFAULT_STATE = {
 	selectedLoveSongTypes: [],
 	selectedGenres: [],
 	performerSearchString: "",
-	songSearchString: ""
+	songSearchString: "",
+	selectedSongInfo: {
+		song: undefined,
+		position: {x: undefined, y: undefined},
+	}
 };
 export default writable(DEFAULT_STATE);

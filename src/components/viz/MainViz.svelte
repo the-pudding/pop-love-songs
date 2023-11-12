@@ -61,8 +61,21 @@
 			offsetX,
 			offsetY
 		);
-		if (songIndex !== null) {
-			console.log(songIndex, songsData[songIndex]);
+		const selectedSong = songsData[songIndex];
+		if (selectedSong) {
+			console.log("mouse move!");
+			searchAndFilter.update((state) => ({
+				...state,
+				selectedSongInfo: {
+					position: {
+						x: offsetX,
+						y: offsetY
+					},
+					song: selectedSong
+				}
+			}));
+		} else {
+			// clear
 		}
 	};
 
