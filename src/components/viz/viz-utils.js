@@ -62,7 +62,7 @@ export const getSongFill = (song, songIsSelected) => {
     const loveSongType = song[DATA_COLUMNS_ENUM.love_song_sub_type];
     return songIsSelected
         ? LOVE_SONG_TYPE_COLOR_MAP[loveSongType]
-        : "rgb(0, 0, 0, 0.05)";
+        : "rgb(0, 0, 0, 0.005)";
 }
 
 export const songIsSelected = (song, searchAndFilter) => {
