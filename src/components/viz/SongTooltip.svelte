@@ -23,7 +23,11 @@
 	style={`top: ${y + tooltipYOffset}px; left: ${x + tooltipXOffset}px`}
 >
 	<ul>
-		<strong>{song[DATA_COLUMNS_ENUM.song]}</strong>
+		<div>
+			<strong>{song[DATA_COLUMNS_ENUM.song]}</strong> ({Math.round(
+				song[DATA_COLUMNS_ENUM.date_as_decimal]
+			)})
+		</div>
 		<div class="performer">by {song[DATA_COLUMNS_ENUM.performer]}</div>
 		<div
 			style:color={LOVE_SONG_TYPE_COLOR_MAP[
