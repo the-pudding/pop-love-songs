@@ -1,5 +1,5 @@
 import {
-    DATA_COLUMNS_ENUM,
+    SONG_DATA_COLUMNS_ENUM,
     LOVE_SONG_TYPE_COLOR_MAP,
     LOVE_SONG_TYPE_BAND_LEVEL_MAP
 } from "$data/data-constants.js";
@@ -12,13 +12,13 @@ const DOMAIN = YEAR_MAX - YEAR_MIN;
 const Y_MARGIN =  50
 
 export const getXPosition = (song, canvasWidth) => {
-    const xPercentage = (song[DATA_COLUMNS_ENUM.date_as_decimal] - YEAR_MIN) / DOMAIN;
+    const xPercentage = (song[SONG_DATA_COLUMNS_ENUM.date_as_decimal] - YEAR_MIN) / DOMAIN;
     return xPercentage * canvasWidth;
 };
 
 // TODO: use d3 scale to determine band
 export const getYPosition = (song, canvasHeight) => {
-    const loveSongType = song[DATA_COLUMNS_ENUM.love_song_sub_type];
+    const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
     const yPercentage =
         LOVE_SONG_TYPE_BAND_LEVEL_MAP[loveSongType] /
         Object.keys(LOVE_SONG_TYPE_BAND_LEVEL_MAP).length;
@@ -59,30 +59,30 @@ export const getSongIndexFromInvisibleFill = (invisibleContext, offsetX, offsetY
 }
 
 export const getSongFill = (song, songIsSelected) => {
-    const loveSongType = song[DATA_COLUMNS_ENUM.love_song_sub_type];
+    const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
     return songIsSelected
         ? LOVE_SONG_TYPE_COLOR_MAP[loveSongType]
         : "rgb(0, 0, 0, 0.005)";
 }
 
 export const songIsSelected = (song, searchAndFilter) => {
-    const loveSongType = song[DATA_COLUMNS_ENUM.love_song_sub_type];
+    const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 
     const genreSelected =
         searchAndFilter.selectedGenres.includes(
-            song[DATA_COLUMNS_ENUM.generic_genre]
+            song[SONG_DATA_COLUMNS_ENUM.generic_genre]
         ) || searchAndFilter.selectedGenres.length === 0;
     const loveSongTypeSelected =
         searchAndFilter.selectedLoveSongTypes.includes(loveSongType) ||
         searchAndFilter.selectedLoveSongTypes.length === 0;
     const performerSelected =
         searchAndFilter.performerSearchString.length === 0 ||
-        song[DATA_COLUMNS_ENUM.performer]
+        song[SONG_DATA_COLUMNS_ENUM.performer]
             .toLowerCase()
             .includes(searchAndFilter.performerSearchString.toLowerCase());
     const songSelected =
         searchAndFilter.songSearchString.length === 0 ||
-        song[DATA_COLUMNS_ENUM.song]
+        song[SONG_DATA_COLUMNS_ENUM.song]
             .toLowerCase()
             .includes(searchAndFilter.songSearchString.toLowerCase());
     
@@ -96,7 +96,7 @@ export const songIsSelected = (song, searchAndFilter) => {
 
 export const searchSongOnYouTube = (song) => {
   const youtubeSearchURL =
-    `https://www.youtube.com/results?search_query=${song[DATA_COLUMNS_ENUM.song]}+by+${song[DATA_COLUMNS_ENUM.performer]}`.replace(
+    `https://www.youtube.com/results?search_query=${song[SONG_DATA_COLUMNS_ENUM.song]}+by+${song[SONG_DATA_COLUMNS_ENUM.performer]}`.replace(
       " ",
       "+"
     );

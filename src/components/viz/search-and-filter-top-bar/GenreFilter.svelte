@@ -1,11 +1,11 @@
 <script>
 	import MultiSelect from "svelte-multiselect"; // (eventually we'll replace this with our own Select component likely)
 	import data from "$data/16-EXPORT-viz-ready-data.json";
-	import { DATA_COLUMNS_ENUM } from "$data/data-constants.js";
+	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 	import searchAndFilter from "$stores/searchAndFilter.js";
 
 	const genres = [
-		...new Set(data.map((song) => song[DATA_COLUMNS_ENUM.generic_genre]))
+		...new Set(data.map((song) => song[SONG_DATA_COLUMNS_ENUM.generic_genre]))
 	];
 	const genreOptions = genres.map((genre) => ({
 		label: genre,

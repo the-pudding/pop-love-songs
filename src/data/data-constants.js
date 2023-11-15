@@ -1,4 +1,4 @@
-export const DATA_COLUMNS_ENUM = {
+export const SONG_DATA_COLUMNS_ENUM = {
 		performer: 0,
 		song: 1,
 		generic_genre: 2,

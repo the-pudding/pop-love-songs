@@ -1,5 +1,5 @@
 <script>
-	import { afterUpdate, onMount } from "svelte";
+	import { onMount } from "svelte";
 	import viewport from "$stores/viewport.js";
 	import searchAndFilter from "$stores/searchAndFilter.js";
 	import songsData from "$data/16-EXPORT-viz-ready-data.json";
