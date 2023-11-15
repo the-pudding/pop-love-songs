@@ -10,6 +10,7 @@
 		getSongIndexFromInvisibleFill,
 		getXPosition,
 		getYPosition,
+		searchSongOnYouTube,
 		songIsSelected
 	} from "./viz-utils";
 
@@ -80,6 +81,20 @@
 		}
 	};
 
+	const handleSongClicked = (e) => {
+		const { offsetX, offsetY } = e;
+		const songIndex = getSongIndexFromInvisibleFill(
+			invisibleContext,
+			offsetX,
+			offsetY
+		);
+		const selectedSong = songsData[songIndex];
+		if (selectedSong) {
+			// This is just to make it easier to pull up a song on YouTube
+			searchSongOnYouTube(selectedSong);
+		}
+	};
+
 	// Reactive updates
 	$: {
 		if (canvas) {
@@ -96,7 +111,11 @@
 	}
 </script>
 
-<canvas id={VISIBLE_CANVAS_ID} on:mousemove={handleMouseMove} />
+<canvas
+	id={VISIBLE_CANVAS_ID}
+	on:mousemove={handleMouseMove}
+	on:mousedown={handleSongClicked}
+/>
 <canvas id={INVISIBLE_CANVAS_ID} />
 
 <style>

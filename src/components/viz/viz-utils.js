@@ -91,3 +91,15 @@ export const songIsSelected = (song, searchAndFilter) => {
         performerSelected &&
         songSelected
 };
+
+// TEMP for research
+
+export const searchSongOnYouTube = (song) => {
+  const youtubeSearchURL =
+    `https://www.youtube.com/results?search_query=${song[DATA_COLUMNS_ENUM.song]}+by+${song[DATA_COLUMNS_ENUM.performer]}`.replace(
+      " ",
+      "+"
+    );
+  
+  window.open(youtubeSearchURL, "_blank");
+};
