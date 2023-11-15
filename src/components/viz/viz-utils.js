@@ -9,11 +9,12 @@ const YEAR_MAX = 2022;
 const YEAR_MIN = 1958;
 const DOMAIN = YEAR_MAX - YEAR_MIN;
 
-const Y_MARGIN =  50
+const Y_MARGIN = 50
+export const X_RIGHT_MARGIN = 280 // TODO: probably a better way to do this *shrug*
 
 export const getXPosition = (song, canvasWidth) => {
     const xPercentage = (song[SONG_DATA_COLUMNS_ENUM.date_as_decimal] - YEAR_MIN) / DOMAIN;
-    return xPercentage * canvasWidth;
+    return xPercentage * (canvasWidth - X_RIGHT_MARGIN);
 };
 
 // TODO: use d3 scale to determine band
