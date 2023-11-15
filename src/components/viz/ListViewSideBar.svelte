@@ -12,7 +12,7 @@
 </script>
 
 <section style:width={`${X_RIGHT_MARGIN}px`}>
-	<h2>Selected Songs</h2>
+	<h4>{selectedSongs.length} selected</h4>
 
 	<ul>
 		{#each selectedSongs as song}

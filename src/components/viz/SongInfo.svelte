@@ -20,10 +20,10 @@
 		song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]
 	)})
 </div>
-<div class="performer">by {song[SONG_DATA_COLUMNS_ENUM.performer]}</div>
 <div class="love-song-type" style:color={loveSongColor}>
 	{loveSongSubType}
 </div>
+<div class="performer">by {song[SONG_DATA_COLUMNS_ENUM.performer]}</div>
 
 <style>
 	.love-song-type {
