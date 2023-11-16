@@ -6,28 +6,23 @@
 	$: song = $hoveredSongInfo.song || [];
 	$: x = $hoveredSongInfo.x;
 	$: y = $hoveredSongInfo.y;
-	$: isVisible = x !== undefined && y !== undefined && song.length > 0;
+	$: visible = x !== undefined && y !== undefined && song.length > 0;
 
-	$: tooltipXOffset = $viewport.width / 2 > x ? 20 : -310;
-	$: tooltipYOffset = $viewport.height / 2 > y ? 30 : -130;
+	$: xOffset = $viewport.width / 2 > x ? 20 : -310;
+	$: yOffset = $viewport.height / 2 > y ? 30 : -130;
 </script>
 
 <div
-	id="song-tooltip"
 	role="tooltip"
-	aria-hidden={!isVisible}
-	style:display={isVisible ? "block" : "none"}
-	style={`top: ${y + tooltipYOffset}px; left: ${x + tooltipXOffset}px`}
+	aria-hidden={!visible}
+	class:visible
+	style={`top: ${y + yOffset}px; left: ${x + xOffset}px`}
 >
 	<SongInfo {song} />
 </div>
 
 <style>
-	.performer {
-		font-style: italic;
-	}
-
-	#song-tooltip {
+	div {
 		z-index: 10000;
 		position: absolute;
 		width: 280px;
@@ -35,5 +30,9 @@
 		background-color: white;
 		border: 1px solid black;
 		padding: 0.5rem;
+		display: none;
+	}
+	.visible {
+		display: block;
 	}
 </style>
