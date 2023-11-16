@@ -15,21 +15,14 @@
 
 	export let handleSongHovered;
 
-	const VISIBLE_CANVAS_ID = "visible-canvas";
-	const INVISIBLE_CANVAS_ID = "invisible-canvas";
 	let canvas;
 	let context;
 	let invisibleCanvas;
 	let invisibleContext;
 
-	onMount(() => {
-		invisibleCanvas = document.getElementById(INVISIBLE_CANVAS_ID);
-		invisibleContext = invisibleCanvas.getContext("2d");
-		canvas = document.getElementById(VISIBLE_CANVAS_ID);
-		context = canvas.getContext("2d");
-	});
+	const updateVisibleAndInvisibleCanvases = () => {
+		if (!context) return;
 
-	function updateVisibleAndInvisibleCanvases() {
 		// clear the canvas
 		invisibleContext.clearRect(0, 0, canvas.width, canvas.height);
 		context.clearRect(0, 0, canvas.width, canvas.height);
@@ -55,7 +48,7 @@
 			context.fillStyle = getSongFill(song, isSelected);
 			context.fill(circle);
 		});
-	}
+	};
 
 	const handleMouseMove = (e) => {
 		const { offsetX, offsetY } = e;
@@ -82,36 +75,44 @@
 		}
 	};
 
-	// Reactive updates
-	$: {
-		if (canvas) {
-			canvas.width = $viewport.width;
-			canvas.height = $viewport.height;
-			invisibleCanvas.width = $viewport.width;
-			invisibleCanvas.height = $viewport.height;
-		}
+	const resizeCanvases = () => {
+		if (!canvas) return;
+		canvas.width = $viewport.width;
+		canvas.height = $viewport.height;
+		invisibleCanvas.width = $viewport.width;
+		invisibleCanvas.height = $viewport.height;
+	};
 
-		if (context) {
-			$searchAndFilter; // trigger reactive update
-			updateVisibleAndInvisibleCanvases();
-		}
-	}
+	$: $searchAndFilter, $viewport.width, $viewport.height, updateViz();
+	const updateViz = () => {
+		resizeCanvases();
+		updateVisibleAndInvisibleCanvases();
+	};
+
+	onMount(() => {
+		invisibleContext = invisibleCanvas.getContext("2d");
+		context = canvas.getContext("2d");
+
+		resizeCanvases();
+		updateVisibleAndInvisibleCanvases();
+	});
 </script>
 
 <canvas
-	id={VISIBLE_CANVAS_ID}
+	id="visible"
+	bind:this={canvas}
 	on:mousemove={handleMouseMove}
 	on:mousedown={handleSongClicked}
 />
-<canvas id={INVISIBLE_CANVAS_ID} />
+<canvas id="invisible" bind:this={invisibleCanvas} />
 
 <style>
-	#invisible-canvas {
-		visibility: hidden;
-	}
 	canvas {
 		position: absolute;
 		top: 0;
 		left: 0;
+	}
+	#invisible {
+		visibility: hidden;
 	}
 </style>
