@@ -15,7 +15,8 @@
 	<h4>{selectedSongs.length} selected</h4>
 
 	<ul>
-		{#each selectedSongs as song}
+		<!-- TEMP: only render a susbet to improve perf until we use a virtualized list -->
+		{#each selectedSongs.slice(0, 100) as song}
 			<div>
 				<SongInfo {song} />
 			</div>
