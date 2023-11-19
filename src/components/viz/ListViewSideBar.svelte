@@ -1,6 +1,5 @@
 <script>
 	import songsData from "$data/16-EXPORT-viz-ready-data.json";
-	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 	import searchAndFilter from "$stores/searchAndFilter.js";
 	import SongInfo from "./SongInfo.svelte";
 	import { songIsSelected, X_RIGHT_MARGIN } from "./viz-utils";
