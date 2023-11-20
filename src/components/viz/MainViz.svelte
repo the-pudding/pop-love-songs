@@ -1,7 +1,10 @@
 <script>
 	import { onMount } from "svelte";
+
 	import viewport from "$stores/viewport.js";
 	import searchAndFilter from "$stores/searchAndFilter.js";
+	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
+
 	import songsData from "$data/16-EXPORT-viz-ready-data.json";
 	import {
 		getInvisibleFillFromSongIndex,
@@ -12,8 +15,6 @@
 		searchSongOnYouTube,
 		songIsSelected
 	} from "./viz-utils";
-
-	export let handleSongHovered;
 
 	let canvas;
 	let context;
@@ -48,6 +49,23 @@
 			context.fillStyle = getSongFill(song, isSelected);
 			context.fill(circle);
 		});
+	};
+
+	export const handleSongHovered = (selectedSong, offsetX, offsetY) => {
+		if (selectedSong) {
+			$hoveredSongInfo = {
+				song: selectedSong,
+				x: offsetX,
+				y: offsetY
+			};
+		} else if ($hoveredSongInfo.song) {
+			// no need to trigger reactive update by writing to the store unless there is a song to overwrite
+			$hoveredSongInfo = {
+				song: null,
+				x: null,
+				y: null
+			};
+		}
 	};
 
 	const handleMouseMove = (e) => {
