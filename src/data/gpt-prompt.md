@@ -39,119 +39,57 @@ Here's the sample corresponding output:
 ```json
 {
    "output": [
-       // Serenade
-       [ "'N Sync", "This I Promise You", "promising to always love someone", "Serenade"],
-       [ "John Legend", "All of Me", "praises lover, who's affection makes any struggle worth it, promises to give all of them", "Serenade"],
+       ["'N Sync", "This I Promise You", "promising to always love someone", "Serenade"],
+       ["John Legend", "All of Me", "praises lover, who's affection makes any struggle worth it, promises to give all of them", "Serenade"],
        ["Beyonce", "Halo", "celebrates the angelic quality of a lover and testifies to the positive changes as a result of this love", "Serenade"],
-       ["T-Pain Featuring Lil Wayne", "Can't Believe It", "praises love interest, telling her of all the things he'll do for her", "Serenade"]
-       // Longing & Heartbreak
+       ["T-Pain Featuring Lil Wayne", "Can't Believe It", "praises love interest, telling her of all the things he'll do for her", "Serenade"],
        ["Adele", "Someone Like You", "bemoans that a lover has moved on to a happy life with another partner while the speaker struggles to move on", "Longing & Heartbreak"],
        ["Mariah Carey", "Without You", "at the moment of a breakup, she expresses despair over everything she will lose", "Longing & Heartbreak"],
        ["Dolly Parton", "Jolene", "her heart is breaking because she fears her male lover will be easily stolen by another woman", "Longing & Heartbreak"],
        ["Bill Withers", "Ain't No Sunshine", "when a lover is away, he expresses that his world seems to become darker", "Longing & Heartbreak"],
        ["The Rolling Stones", "Miss You", "expresses how deeply he misses the lover, and wishes he didn't have to wait", "Longing & Heartbreak"],
-       [ "Whitney Houston", "I Will Always Love You", "wishes her now gone lover well, reminisces, will never forget", "Longing & Heartbreak"],
+       ["Whitney Houston", "I Will Always Love You", "wishes her now gone lover well, reminisces, will never forget", "Longing & Heartbreak"],
        ["Taylor Swift", "Teardrops on My Guitar", "she's in love with a friend who's in love with someone else, she has to pretend she doesn't love him but secretly she's suffering", "Longing & Heartbreak"],
        ["Lesley Gore", "She's A Fool", "her love is with another woman who doesn't appreciate his virtues, longs to some day be noticed by him", "Longing & Heartbreak"],
-       // Courtship & Anticipation: hope, making an argument for yourself
        ["Taylor Swift", "You Belong With Me", "she's making an empassioned argument that her love object should be with her instead of who he's currently with", "Courtship & Anticipation"],
        ["Justin Timberlake", "Suit & Tie", "looking forward to a night of dancing with his beloved", "Courtship & Anticipation"],
        ["T-Pain Featuring Mike Jones", "I'm N Luv (Wit A Stripper)", "he has strong romantic and sexual feelings for a stripper who doesn't yet know him personally", "Courtship & Anticipation"],
-        ["Rihanna", "Only Girl (In the World)", "telling her new love how she wants him to make her feel"],
-        ["Britney Spears", "Hold It Against Me", "she's interested in a stragner and approaches them hoping to see if they might get together"],
-        ["T-Pain", "Buy U A Drank (Shawty Snappin')", "he spots a woman at the bar and offers to buy her a drink as a prelude to potentially getting together", "Courtship & Anticipation"],
-       // Platonic Love
+       ["Rihanna", "Only Girl (In the World)", "telling her new love how she wants him to make her feel"],
+       ["Britney Spears", "Hold It Against Me", "she's interested in a stragner and approaches them hoping to see if they might get together"],
+       ["T-Pain", "Buy U A Drank (Shawty Snappin')", "he spots a woman at the bar and offers to buy her a drink as a prelude to potentially getting together", "Courtship & Anticipation"],
        ["2Pac", "Dear Mama", "love and appreciation for his mother", "Platonic Love"],
        ["Saweetie", "Best Friend (feat. Doja Cat)", "boasts about a close friend who is succesful and strong", "Platonic Love"],
        ["James Taylor", "You've Got a Friend", "promises a close friend they'll be there thick and thin", "Platonic Love"],
-       ["Bill Withers", "Lean On Me", "invites a friend to rely on him when they are struggling, as everyone needs platonic support at times", "Platonic Love"]
-       // It's complicated
+       ["Bill Withers", "Lean On Me", "invites a friend to rely on him when they are struggling, as everyone needs platonic support at times", "Platonic Love"],
        ["Little Mix and Jason Derulo", "Secret Love Song", "the speakers long to be united with their lover in public, but must remain in secret", "It's Complicated"],
-       [ "Katy Perry", "Hot N Cold", "about navigating a lover who cannot make up their mind and is inconsistent", "It's Complicated"],
+       ["Katy Perry", "Hot N Cold", "about navigating a lover who cannot make up their mind and is inconsistent", "It's Complicated"],
        ["Pat Benatar", "Love Is a Battlefield", "the relationship she is in alternates between being loving and painful and she doesn't feel like she can leave", "It's Complicated"],
        ["Lauryn Hill", "Ex-Factor", "she feels trapped in a relationship where she feels she's giving more than she's recieving, but whenever she tries to leave, she can't", "It's Complicated"],
        ["24kGoldn", "Mood", "bemoans why his female love interest is always difficult, moody, and inconsistent", "It's Complicated"],
-       [
-           "T-Pain",
-           "I'm Sprung",
-           "knows his love interest doesn't deserve him, yet he can't stay away, he vascilates between feelings of deep love and wanting to get away as fast as possible",
-           "It's Complicated"
-       ],
-       // Good riddance
+       ["T-Pain", "I'm Sprung", "knows his love interest doesn't deserve him, yet he can't stay away, he vascilates between feelings of deep love and wanting to get away as fast as possible", "It's Complicated"],
        ["Kelly Clarkson", "Since U Been Gone", "ending a bad relationship leaves her feeling better and more in control", "Good Riddance"],
        ["Blu Cantrell", "Hit 'Em Up Style (Oops!)", "reacts to being cheated on by gleefully spending her ex-lover's money, as an act or revents", "Good Riddance"],
-       ["Selena Gomez", "Look at Her Now", "after being cheated on, she has now moved on and is better than ever", "Good Riddance"]
+       ["Selena Gomez", "Look at Her Now", "after being cheated on, she has now moved on and is better than ever", "Good Riddance"],
        ["Taylor Swift", "Picture To Burn", "after realizing how self-centered and unsuitable her ex-lover is, she vents about all of his negative qualities", "Good Riddance"],
        ["Christina Aguilera", "Fighter", "she thanks the lover because his abuse actually ended up making her stronger and wiser", "Love Song for the Self"],
-       // Sexual Conquest
        ["Jamie Foxx Featuring T-Pain", "Blame It", "speaker brags about his sexual power & alure, confident his love interest will want to hook up with him", "Sexual Conquest"],
-       [
-           "6ix9ine Featuring Nicki Minaj & Murda Beatz",
-           "FEFE",
-           "about sexual prowess with many sexual references",
-           "Sexual Conquest"
-       ],
-       [
-           "The Beach Boys",
-           "I Get Around",
-           "brag about constantly seeking out new women and never being rejected",
-           "Sexual Conquest"
-       ],
-       [
-           "Robin Thicke ft. Pharrell & T.I.",
-           "Blurred Lines",
-           "speaker brags about being about to 'get nasty' with a good girl who he claims wants sex",
-           "Sexual Conquest"
-       ],
-
-       [
-           "112",
-           "Peaches & Cream",
-           "about sex & being addicted to a tasty woman",
-           "Sexual Conquest"
-       ],
-       [
-           "Lady Gaga",
-           "Poker Face",
-           "brags about a male sex partner who does not know she is sleeping with a women as well",
-           "Sexual Conquest"
-       ],
-       // Love song for the self
+       ["6ix9ine Featuring Nicki Minaj & Murda Beatz", "FEFE", "about sexual prowess with many sexual references", "Sexual Conquest"],
+       ["The Beach Boys", "I Get Around", "brag about constantly seeking out new women and never being rejected", "Sexual Conquest"],
+       ["Robin Thicke ft. Pharrell & T.I.", "Blurred Lines", "speaker brags about being about to 'get nasty' with a good girl who he claims wants sex", "Sexual Conquest"],
+       ["112", "Peaches & Cream", "about sex & being addicted to a tasty woman", "Sexual Conquest"],
+       ["Lady Gaga", "Poker Face", "brags about a male sex partner who does not know she is sleeping with a women as well", "Sexual Conquest"],
        ["Ariana Grande", "Thank U, Next", "brags about being unfased and even improved by past relationships ending, and in fact is now thriving in life", "Love Song for the Self"],
        ["Lizzo", "Good As Hell", "an anthem for leaving behidn negativity or men who don't love you anymore, and instead enjoying who you are with pride", "Love Song for the Self"],
        ["Christina Aguilera", "Beautiful", "an anthem proclaiming ones beauty, even in the face of deragatory words or spiteful ex-lovers", "Love Song for the Self"],
-        // No thank you
-        [
-           "Britney Spears",
-           "Womanizer",
-           "in her prowess, she recognizes a womanizer and rejects his advances",
-           "No Thank You"
-       ],
+       ["Britney Spears", "Womanizer", "in her prowess, she recognizes a womanizer and rejects his advances", "No Thank You"],
        ["TLC", "No Scrubs", "speakers asserts that they will reject so-called scrubs because she wants a higher quality man", "No Thank You"],
        ["Meghan Trainor", "NO", "an anthem for women to confidently reject unwanted male advances, because the men aren't needed for the women to be in the zone", "No Thank You"],
-       // Uncategorized Love Song
-       [
-           "10cc",
-           "I'm Not In Love",
-           "the speaker claims he does not love her, but the subtext is that he actually really does, which does not cleanly fit as a Serenade, Longing & Hearbreak, or even It's Complicated",
-           "Uncategorized Love Song"
-       ],
+       ["10cc", "I'm Not In Love", "the speaker claims he does not love her, but the subtext is that he actually really does, which does not cleanly fit as a Serenade, Longing & Hearbreak, or even It's Complicated", "Uncategorized Love Song"],
        ["Radiohead", "Creep", "in contrast to his love interest's angelic nature, he feels ugly and invisible, and hates on himself, which does not fit in Longing & Hearbreak or even Good Riddance", "Uncategorized Love Song"],
        ["Rick Springfield", "Jessie's Girl", "praises his friends lover and expresses he's confused she isn't into him too, and he's jealous: themes to unusual to fit into the given love song subtypes.", "Uncategorized Love Song"],
-       // NA
        ["21 Savage & Metro Boomin", "Runnin", "a gangster rap, not romance", "NA"],
-       [
-           "twenty one pilots",
-           "Heathens",
-           "about social outcasts, not romance",
-           "NA"
-       ],
-       [
-           "will.i.am & Britney Spears",
-           "Scream & Shout",
-           "about dancing in the club, with no real elements of romance directed toward a specific love interest",
-           "NA"
-       ],
+       ["twenty one pilots", "Heathens", "about social outcasts, not romance", "NA"],
+       ["will.i.am & Britney Spears", "Scream & Shout", "about dancing in the club, with no real elements of romance directed toward a specific love interest", "NA"]
    ]
 }
 ```
