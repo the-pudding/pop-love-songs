@@ -71,7 +71,7 @@ Here's the sample corresponding output:
        ["Blu Cantrell", "Hit 'Em Up Style (Oops!)", "reacts to being cheated on by gleefully spending her ex-lover's money, as an act or revents", "Good Riddance"],
        ["Selena Gomez", "Look at Her Now", "after being cheated on, she has now moved on and is better than ever", "Good Riddance"],
        ["Taylor Swift", "Picture To Burn", "after realizing how self-centered and unsuitable her ex-lover is, she vents about all of his negative qualities", "Good Riddance"],
-       ["Christina Aguilera", "Fighter", "she thanks the lover because his abuse actually ended up making her stronger and wiser", "Love Song for the Self"],
+       ["Christina Aguilera", "Fighter", "she thanks the lover because his abuse actually ended up making her stronger and wiser", "Good Riddance"],
        ["Jamie Foxx Featuring T-Pain", "Blame It", "speaker brags about his sexual power & alure, confident his love interest will want to hook up with him", "Sexual Conquest"],
        ["6ix9ine Featuring Nicki Minaj & Murda Beatz", "FEFE", "about sexual prowess with many sexual references", "Sexual Conquest"],
        ["The Beach Boys", "I Get Around", "brag about constantly seeking out new women and never being rejected", "Sexual Conquest"],
