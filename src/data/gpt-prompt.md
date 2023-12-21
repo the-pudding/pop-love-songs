@@ -4,7 +4,9 @@ For each Billboard Top 10 hit in the form [song, performer] in the larger input 
 
 [performer, song, justification, love_song_subtype_label]
 
-love_song_subtype_label labels comes from these love song subtype definitions:
+The justification is a short snippet explaining why the song best fits in the chosen category.
+
+love_song_subtype_label labels comes from these love song subtype definitions (if it fits multiple definitions, choose the most suitable one):
 
 "Serenade": A song directed at someone the singer loves, expressing their deep affection, undying love, infatuation, or praising someone as a soulmate.
 
@@ -26,7 +28,7 @@ love_song_subtype_label labels comes from these love song subtype definitions:
 
 "Uncategorized Love Song": clearly a love song, but does not fit well with any of the definitions
 
-"NA": song is not a love song at all
+"NA": song is not a love song at all. This would include any non-love song, but also instrumentals, for example.
 
 Here's an example input:
 
