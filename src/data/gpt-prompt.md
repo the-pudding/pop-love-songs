@@ -12,7 +12,7 @@ love_song_subtype_label labels comes from these love song subtype definitions (i
 
 "Sexual Conquest": Songs that are less about the object of affection and more about the singer's own prowess or success in romantic pursuits.
 
-"Love Songs for the Self": Songs that express self-love and affirmation, whether for one's character or physical qualities, sometimes following a period of growth or learning from past relationships.
+"Love Song for the Self": Songs that express self-love and affirmation, whether for one's character or physical qualities, sometimes following a period of growth or learning from past relationships.
 
 "Good Riddance": typically after a breakup with someone who now seems unsuitable. songs about having had someone's love, but being glad now you've moved on (or realizing you should), often involving self-empowerment, anger, revenge, relief, or bitterness, often because of betrayal or potentially cheating.
 
