@@ -1,6 +1,6 @@
 <script>
 	import MultiSelect from "svelte-multiselect"; // (eventually we'll replace this with our own Select component likely)
-	import data from "$data/16-EXPORT-viz-ready-data.json";
+	import data from "$data/20-EXPORT-viz-ready-data.json";
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 	import searchAndFilter from "$stores/searchAndFilter.js";
 
