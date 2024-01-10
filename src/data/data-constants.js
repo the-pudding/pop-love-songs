@@ -18,7 +18,7 @@ export const LOVE_SONG_TYPE_COLOR_MAP = {
     'Platonic Love': 'yellow',   
     // New categories:
     'Courtship & Anticipation': 'green',
-    'Uncategorized Love Song': 'black',
+    'Uncategorized Love Song': 'lightgray',
     'No Thank You': 'cyan', 
 };
 

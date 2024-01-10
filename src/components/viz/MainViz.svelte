@@ -1,6 +1,8 @@
 <script>
 	import { onMount } from "svelte";
 
+	import { forceSimulation, forceX, forceY, forceCollide } from "d3";
+
 	import viewport from "$stores/viewport.js";
 	import searchAndFilter from "$stores/searchAndFilter.js";
 	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
@@ -15,11 +17,23 @@
 		searchSongOnYouTube,
 		songIsSelected
 	} from "./viz-utils";
+	import { get } from "svelte/store";
+
+	const SONG_RADIUS = 5;
+
+	// Probably move to seperate file:
+	const forceSimulationData = songsData.map((song) => ({
+		song,
+		x: getXPosition(song, $viewport.width),
+		y: getYPosition(song, $viewport.height)
+	}));
 
 	let canvas;
 	let context;
 	let invisibleCanvas;
 	let invisibleContext;
+
+	let simulation;
 
 	const updateVisibleAndInvisibleCanvases = () => {
 		if (!context) return;
@@ -29,12 +43,9 @@
 		context.clearRect(0, 0, canvas.width, canvas.height);
 
 		// Draw the circles
-		songsData.forEach((song, songIndex) => {
+		forceSimulationData.forEach(({song, x, y}, songIndex) => {
 			const circle = new Path2D();
-			const x = getXPosition(song, canvas.width);
-			const y = getYPosition(song, canvas.height);
-			const radius = 5;
-			circle.arc(x, y, radius, 0, 2 * Math.PI);
+			circle.arc(x, y, SONG_RADIUS, 0, 2 * Math.PI);
 
 			const isSelected = songIsSelected(song, $searchAndFilter);
 
@@ -101,18 +112,40 @@
 		invisibleCanvas.height = $viewport.height;
 	};
 
+	const updateSimulation = () => {
+		if (!simulation) return;
+		simulation.nodes(forceSimulationData)
+	};
+
+	const updateSimulationProperties = () => {
+		if (!simulation) return;
+		simulation
+			.force("x", forceX().x((d) => getXPosition(d.song, canvas.width)))
+			.force("y", forceY().y((d) => getYPosition(d.song, canvas.height)))
+			.force("collide", forceCollide().radius(SONG_RADIUS))
+			.alpha(1)
+			.restart();
+	};
+
 	$: $searchAndFilter, $viewport.width, $viewport.height, updateViz();
 	const updateViz = () => {
 		resizeCanvases();
 		updateVisibleAndInvisibleCanvases();
+		updateSimulationProperties();
 	};
 
 	onMount(() => {
 		invisibleContext = invisibleCanvas.getContext("2d");
 		context = canvas.getContext("2d");
 
+		simulation = forceSimulation(forceSimulationData).on("tick", () => {
+			console.log('updating viz with simulation')
+			updateVisibleAndInvisibleCanvases();
+		});
+
 		resizeCanvases();
 		updateVisibleAndInvisibleCanvases();
+		updateSimulationProperties();
 	});
 </script>
 
