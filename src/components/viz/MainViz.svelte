@@ -17,7 +17,6 @@
 		searchSongOnYouTube,
 		songIsSelected
 	} from "./viz-utils";
-	import { get } from "svelte/store";
 
 	const SONG_RADIUS = 5;
 
@@ -110,11 +109,6 @@
 		canvas.height = $viewport.height;
 		invisibleCanvas.width = $viewport.width;
 		invisibleCanvas.height = $viewport.height;
-	};
-
-	const updateSimulation = () => {
-		if (!simulation) return;
-		simulation.nodes(forceSimulationData)
 	};
 
 	const updateSimulationProperties = () => {
