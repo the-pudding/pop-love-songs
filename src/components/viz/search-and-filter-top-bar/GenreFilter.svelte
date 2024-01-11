@@ -5,7 +5,7 @@
 	import searchAndFilter from "$stores/searchAndFilter.js";
 
 	const genres = [
-		...new Set(songsData.map((song) => song[SONG_DATA_COLUMNS_ENUM.generic_genre]))
+		...new Set(songsData.map(({song}) => song[SONG_DATA_COLUMNS_ENUM.generic_genre]))
 	];
 	const genreOptions = genres.map((genre) => ({
 		label: genre,

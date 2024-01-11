@@ -20,8 +20,8 @@
 
 	const SONG_RADIUS = 5;
 
-	// Probably move to seperate file:
-	const forceSimulationData = songsData.map((song) => ({
+	// Give it an initial position
+	const forceSimulationData = songsData.map(({song}) => ({
 		song,
 		x: getXPosition(song, $viewport.width),
 		y: getYPosition(song, $viewport.height)
@@ -85,7 +85,7 @@
 			offsetX,
 			offsetY
 		);
-		const selectedSong = songsData[songIndex];
+		const selectedSong = forceSimulationData[songIndex]?.song;
 		handleSongHovered(selectedSong, offsetX, offsetY);
 	};
 
@@ -96,7 +96,7 @@
 			offsetX,
 			offsetY
 		);
-		const selectedSong = songsData[songIndex];
+		const selectedSong = forceSimulationData[songIndex]?.song;
 		if (selectedSong) {
 			// This is just to make it easier to pull up a song on YouTube
 			searchSongOnYouTube(selectedSong);

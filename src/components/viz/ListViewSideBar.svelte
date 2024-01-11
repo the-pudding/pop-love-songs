@@ -5,7 +5,7 @@
 	import { songIsSelected, X_RIGHT_MARGIN } from "./viz-utils";
 
 	// Filter to a list of all songs, after applying all the filters from searchAndFilter
-	$: selectedSongs = songsData.filter((song) =>
+	$: selectedSongs = songsData.filter(({song}) =>
 		songIsSelected(song, $searchAndFilter)
 	);
 </script>
@@ -15,9 +15,9 @@
 
 	<ul>
 		<!-- TEMP: only render a susbet to improve perf until we use a virtualized list -->
-		{#each selectedSongs.slice(0, 100) as song}
+		{#each selectedSongs.slice(0, 100) as s}
 			<div>
-				<SongInfo {song} />
+				<SongInfo song={s.song} />
 			</div>
 		{/each}
 	</ul>
