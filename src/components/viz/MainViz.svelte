@@ -7,7 +7,7 @@
 	import searchAndFilter from "$stores/searchAndFilter.js";
 	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
 
-	import songsData from "$data/20-EXPORT-viz-ready-data.json";
+	import songsData from "$data/songs-data.js";
 	import {
 		getInvisibleFillFromSongIndex,
 		getSongFill,
