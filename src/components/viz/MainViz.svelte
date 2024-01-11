@@ -18,13 +18,11 @@
 		songIsSelected
 	} from "./viz-utils";
 
-	const SONG_RADIUS = 5;
-
 	// Give it an initial position
-	const forceSimulationData = songsData.map(({song}) => ({
-		song,
-		x: getXPosition(song, $viewport.width),
-		y: getYPosition(song, $viewport.height)
+	const forceSimulationData = songsData.map(songObject => ({
+		...songObject,
+		x: getXPosition(songObject.song, $viewport.width),
+		y: getYPosition(songObject.song, $viewport.height)
 	}));
 
 	let canvas;
@@ -42,9 +40,9 @@
 		context.clearRect(0, 0, canvas.width, canvas.height);
 
 		// Draw the circles
-		forceSimulationData.forEach(({song, x, y}, songIndex) => {
+		forceSimulationData.forEach(({song, radius, x, y}, songIndex) => {
 			const circle = new Path2D();
-			circle.arc(x, y, SONG_RADIUS, 0, 2 * Math.PI);
+			circle.arc(x, y, radius, 0, 2 * Math.PI);
 
 			const isSelected = songIsSelected(song, $searchAndFilter);
 
@@ -116,7 +114,7 @@
 		simulation
 			.force("x", forceX().x((d) => getXPosition(d.song, canvas.width)))
 			.force("y", forceY().y((d) => getYPosition(d.song, canvas.height)))
-			.force("collide", forceCollide().radius(SONG_RADIUS))
+			.force("collide", forceCollide().radius(({radius}) => radius))
 			.alpha(1)
 			.restart();
 	};
