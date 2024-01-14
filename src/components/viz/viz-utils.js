@@ -17,17 +17,10 @@ export const getXPositionFromTime = (song, canvasWidth) => {
 	return xPercentage * (canvasWidth - X_RIGHT_MARGIN);
 };
 
-// TODO: use d3 scale to determine band
 export const getYTargetPosition = (
-	{ song, yPositionTargetPercentage },
+	{ yPositionTargetPercentage },
 	canvasHeight
-) => {
-	const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
-	const marginOffsets = 2 * Y_MARGIN;
-	return (
-		marginOffsets + yPositionTargetPercentage * (canvasHeight - marginOffsets)
-	);
-};
+) => Y_MARGIN + yPositionTargetPercentage * (canvasHeight - 2 * Y_MARGIN);
 
 const RADIUS_SCALING_FACTOR = 2;
 export const calculateRadiusFromPopularityScore = (
