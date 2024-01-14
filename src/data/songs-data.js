@@ -42,8 +42,10 @@ const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
 	// 1. aggregate
 	const aggregateCount = songsInTimeRegion.reduce((acc, song) => {
 		const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
-		acc[loveSongType] = acc[loveSongType] + 1 || 1;
-		return acc;
+		return {
+			...acc,
+			[loveSongType]: acc[loveSongType] + 1 || 1
+		};
 	}, {});
 
 	const loveSongTypesSortedGreatestToLeast = Object.keys(aggregateCount).sort(
@@ -56,7 +58,7 @@ const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
 		(acc, loveSongType) => acc + aggregateCount[loveSongType],
 		0
 	);
-	const percentageByLoveSongType = loveSongTypesSortedGreatestToLeast.reduce(
+	return loveSongTypesSortedGreatestToLeast.reduce(
 		(acc, loveSongType, index, a) => {
 			const previousLoveSongType =
 				a[index - 1] === undefined ? loveSongType : a[index - 1];
@@ -65,12 +67,13 @@ const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
 
 			const loveSongPercentage =
 				aggregateCount[loveSongType] / totalSongsInTimeRegion;
-			acc[loveSongType] = loveSongPercentage + previousPercentage;
-			return acc;
+			return {
+				...acc,
+				[loveSongType]: previousPercentage + loveSongPercentage
+			};
 		},
 		{}
 	);
-	return percentageByLoveSongType;
 };
 
 const loveSongsLabeledByTimeRegionPercentageForPosition =
