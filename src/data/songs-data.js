@@ -36,25 +36,59 @@ let aggregationTimeRegions = [
 	}
 ];
 
-// 2. ... aggregate the total songs for each time region, append that to the object with total counts ie { ..., rankedCategories: { "Serenade": 200, etc}}
-const aggregateByLoveSongType = (loveSongs) =>
-	loveSongs.reduce((acc, song) => {
+// 2. ... aggregate the total songs for each time region, then label each with a sumative percentage, append that to the object
+
+const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
+	// 1. aggregate
+	const aggregateCount = songsInTimeRegion.reduce((acc, song) => {
 		const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 		acc[loveSongType] = acc[loveSongType] + 1 || 1;
 		return acc;
 	}, {});
 
-const rankedCategories = aggregationTimeRegions.map((timeRegion) => {
-	const songsInTimeRegion = rawSongsData.filter((song) => {
-		const songYear = +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
-		return songYear >= timeRegion.start && songYear <= timeRegion.stop;
+	const loveSongTypesSortedGreatestToLeast = Object.keys(aggregateCount).sort(
+		(a, b) => aggregateCount[b] - aggregateCount[a]
+	);
+
+	// // 2. Sort in descending order (biggest to smallest), then convert to percentages.
+	// // Note, the percentages are summative, meaning that if the largest (first) value is "Serenade" at 50%, then the next value will be "Serenade" + "Longing & Heartbreak" at 75%.
+	const totalSongsInTimeRegion = Object.keys(aggregateCount).reduce(
+		(acc, loveSongType) => acc + aggregateCount[loveSongType],
+		0
+	);
+	const percentageByLoveSongType = loveSongTypesSortedGreatestToLeast.reduce(
+		(acc, loveSongType, index, a) => {
+			const previousLoveSongType =
+				a[index - 1] === undefined ? loveSongType : a[index - 1];
+			const previousPercentage =
+				acc[previousLoveSongType] === undefined ? 0 : acc[previousLoveSongType];
+
+			const loveSongPercentage =
+				aggregateCount[loveSongType] / totalSongsInTimeRegion;
+			acc[loveSongType] = loveSongPercentage + previousPercentage;
+			return acc;
+		},
+		{}
+	);
+	return percentageByLoveSongType;
+};
+
+const loveSongsLabeledByTimeRegionPercentageForPosition =
+	aggregationTimeRegions.map((timeRegion) => {
+		const songsInTimeRegion = rawSongsData.filter((song) => {
+			const songYear = +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
+			return songYear >= timeRegion.start && songYear <= timeRegion.stop;
+		});
+
+		return {
+			...timeRegion,
+			totalSongsInTimeRegion:
+				getAggregatePercentageByLoveSongType(songsInTimeRegion)
+		};
 	});
 
-	return {
-		...timeRegion,
-		totalSongsInTimeRegion: aggregateByLoveSongType(songsInTimeRegion)
-	};
-});
+let r = loveSongsLabeledByTimeRegionPercentageForPosition;
+debugger;
 
 // 3. Translate the sorted stack into a function that can return WHERE on the y-axis the "gravity x-axis" should sit for each category
 // 4. (feed that function to the y-force method)
