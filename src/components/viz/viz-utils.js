@@ -11,14 +11,14 @@ const DOMAIN = YEAR_MAX - YEAR_MIN;
 const Y_MARGIN = 50;
 export const X_RIGHT_MARGIN = 280; // TODO: probably a better way to do this *shrug*
 
-export const getXPosition = (song, canvasWidth) => {
+export const getXPositionFromTime = (song, canvasWidth) => {
 	const xPercentage =
 		(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal] - YEAR_MIN) / DOMAIN;
 	return xPercentage * (canvasWidth - X_RIGHT_MARGIN);
 };
 
 // TODO: use d3 scale to determine band
-export const getYPosition = (song, canvasHeight) => {
+export const getYTargetPosition = (song, canvasHeight) => {
 	const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 	const yPercentage =
 		LOVE_SONG_TYPE_BAND_LEVEL_MAP[loveSongType] /
