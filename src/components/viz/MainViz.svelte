@@ -22,7 +22,7 @@
 	const forceSimulationData = songsData.map(songObject => ({
 		...songObject,
 		x: getXPositionFromTime(songObject.song, $viewport.width),
-		y: getYTargetPosition(songObject.song, $viewport.height)
+		y: getYTargetPosition(songObject, $viewport.height)
 	}));
 
 	let canvas;
@@ -113,7 +113,7 @@
 		if (!simulation) return;
 		simulation
 			.force("x", forceX().x((d) => getXPositionFromTime(d.song, canvas.width)))
-			.force("y", forceY().y((d) => getYTargetPosition(d.song, canvas.height)))
+			.force("y", forceY().y((d) => getYTargetPosition(d, canvas.height)))
 			.force("collide", forceCollide().radius(({radius}) => radius))
 			.alpha(1)
 			.restart();

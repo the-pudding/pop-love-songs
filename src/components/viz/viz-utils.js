@@ -18,12 +18,15 @@ export const getXPositionFromTime = (song, canvasWidth) => {
 };
 
 // TODO: use d3 scale to determine band
-export const getYTargetPosition = (song, canvasHeight) => {
+export const getYTargetPosition = (
+	{ song, yPositionTargetPercentage },
+	canvasHeight
+) => {
 	const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
-	const yPercentage =
-		LOVE_SONG_TYPE_BAND_LEVEL_MAP[loveSongType] /
-		Object.keys(LOVE_SONG_TYPE_BAND_LEVEL_MAP).length;
-	return 2 * Y_MARGIN + yPercentage * (canvasHeight - 2 * Y_MARGIN);
+	const marginOffsets = 2 * Y_MARGIN;
+	return (
+		marginOffsets + yPositionTargetPercentage * (canvasHeight - marginOffsets)
+	);
 };
 
 const RADIUS_SCALING_FACTOR = 2;
