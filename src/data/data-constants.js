@@ -23,6 +23,8 @@ export const LOVE_SONG_TYPE_COLOR_MAP = {
 	"No Thank You": "cyan"
 };
 
+export const LOVE_SONG_TYPES = Object.keys(LOVE_SONG_TYPE_COLOR_MAP);
+
 export const LOVE_SONG_TYPE_BAND_LEVEL_MAP = {
 	"": 0,
 	Serenade: 1,

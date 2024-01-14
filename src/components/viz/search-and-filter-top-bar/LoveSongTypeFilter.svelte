@@ -1,10 +1,9 @@
 <script>
-	import { LOVE_SONG_TYPE_COLOR_MAP } from "$data/data-constants";
+	import { LOVE_SONG_TYPES } from "$data/data-constants";
 	import searchAndFilter from "$stores/searchAndFilter.js";
 	import MultiSelect from "svelte-multiselect"; // (eventually we'll replace this with our own Select component likely)
 
-	const loveSongTypes = Object.keys(LOVE_SONG_TYPE_COLOR_MAP);
-	const loveSongOptions = loveSongTypes.map((type) => ({
+	const loveSongOptions = LOVE_SONG_TYPES.map((type) => ({
 		label: type || "(not a love song)",
 		value: type
 	}));
