@@ -90,16 +90,32 @@ const loveSongsLabeledByTimeRegionPercentageForPosition =
 				getAggregatePercentageByLoveSongType(songsInTimeRegion)
 		};
 	});
-console.log(loveSongsLabeledByTimeRegionPercentageForPosition);
-// 3. Translate the sorted stack into a function that can return WHERE on the y-axis the "gravity x-axis" should sit for each category
-// 4. (feed that function to the y-force method)
 
-// Wrap each array in an object (so force simulation can attach properties)
+const getPercentageForSong = (song) => {
+	const songYear = Math.round(+song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]);
+	const timeRegion = loveSongsLabeledByTimeRegionPercentageForPosition.find(
+		(timeRegion) => songYear >= timeRegion.start && songYear <= timeRegion.stop
+	);
+	if (!timeRegion) {
+		console.warn(
+			"Song falls outside set time regions:",
+			song,
+			loveSongsLabeledByTimeRegionPercentageForPosition
+		);
+		return 0.5;
+	}
+
+	const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
+	return timeRegion.totalSongsInTimeRegion[loveSongType];
+};
+
+// Wrap each array in an object (to which force simulation will attach properties)
 const wrappedData = rawSongsData.map((song) => ({
 	song,
 	radius: calculateRadiusFromPopularityScore(
 		+song[SONG_DATA_COLUMNS_ENUM.popularity_score]
-	)
+	),
+	yPositionTargetPercentage: getPercentageForSong(song)
 }));
 
 export default wrappedData;
