@@ -58,22 +58,23 @@ const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
 		(acc, loveSongType) => acc + aggregateCount[loveSongType],
 		0
 	);
-	return loveSongTypesSortedGreatestToLeast.reduce(
-		(acc, loveSongType, index, a) => {
-			const previousLoveSongType =
-				a[index - 1] === undefined ? loveSongType : a[index - 1];
-			const previousPercentage =
-				acc[previousLoveSongType] === undefined ? 0 : acc[previousLoveSongType];
 
-			const loveSongPercentage =
-				aggregateCount[loveSongType] / totalSongsInTimeRegion;
-			return {
-				...acc,
-				[loveSongType]: previousPercentage + loveSongPercentage
-			};
-		},
-		{}
-	);
+	return loveSongTypesSortedGreatestToLeast.reduce((acc, loveSongType) => {
+		const totalPercentageThatHasBeenAccountedFor = Object.keys(acc).reduce(
+			(sum, accountedForLoveSongType) =>
+				sum + aggregateCount[accountedForLoveSongType] / totalSongsInTimeRegion,
+			0
+		);
+		const loveSongPercentage =
+			aggregateCount[loveSongType] / totalSongsInTimeRegion;
+
+		return {
+			...acc,
+			// Note: want to place the dots in the middle of the band, so divide by 2
+			[loveSongType]:
+				totalPercentageThatHasBeenAccountedFor + loveSongPercentage / 2
+		};
+	}, {});
 };
 
 const loveSongsLabeledByTimeRegionPercentageForPosition =
@@ -89,10 +90,7 @@ const loveSongsLabeledByTimeRegionPercentageForPosition =
 				getAggregatePercentageByLoveSongType(songsInTimeRegion)
 		};
 	});
-
-let r = loveSongsLabeledByTimeRegionPercentageForPosition;
-debugger;
-
+console.log(loveSongsLabeledByTimeRegionPercentageForPosition);
 // 3. Translate the sorted stack into a function that can return WHERE on the y-axis the "gravity x-axis" should sit for each category
 // 4. (feed that function to the y-force method)
 
