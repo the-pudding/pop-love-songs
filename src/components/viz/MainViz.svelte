@@ -113,17 +113,18 @@
 		if (!simulation) return;
 		simulation
 			.force("x", forceX().x((d) => getXPositionFromTime(d.song, canvas.width)))
-			.force("y", forceY().y((d) => getYTargetPosition(d, canvas.height)))
+			.force("y", forceY().y((d) => getYTargetPosition(d, canvas.height)).strength(0.5))
 			.force("collide", forceCollide().radius(({radius}) => radius))
-			.alpha(1)
+			.alpha(0.2)
 			.restart();
 	};
 
 	$: $searchAndFilter, $viewport.width, $viewport.height, updateViz();
+	// note: currently, simulation need only change (ie forces are updated) when viewport changes
+	$: $viewport.width, $viewport.height, updateSimulationProperties(); 
 	const updateViz = () => {
 		resizeCanvases();
 		updateVisibleAndInvisibleCanvases();
-		updateSimulationProperties();
 	};
 
 	onMount(() => {
