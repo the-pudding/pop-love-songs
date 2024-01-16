@@ -386,3 +386,5 @@ Here's the sample corresponding output:
 	]
 }
 ```
+
+Ok, now generate the output for this input:
