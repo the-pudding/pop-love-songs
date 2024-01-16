@@ -18,9 +18,7 @@ export const LOVE_SONG_TYPE_COLOR_MAP = {
 	"Love Song for the Self": "orange",
 	"Platonic Love": "yellow",
 	// New categories:
-	"Courtship & Anticipation": "green",
-	"Uncategorized Love Song": "lightgray",
-	"No Thank You": "cyan"
+	"Courtship & Anticipation": "green"
 };
 
 export const LOVE_SONG_TYPES = Object.keys(LOVE_SONG_TYPE_COLOR_MAP);
@@ -34,7 +32,5 @@ export const LOVE_SONG_TYPE_BAND_LEVEL_MAP = {
 	"Good Riddance": 5,
 	"Courtship & Anticipation": 6,
 	"Love Song for the Self": 7,
-	"Platonic Love": 8,
-	"Uncategorized Love Song": 9,
-	"No Thank You": 10
+	"Platonic Love": 8
 };
