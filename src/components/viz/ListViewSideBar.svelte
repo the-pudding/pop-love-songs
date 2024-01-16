@@ -2,7 +2,7 @@
 	import songsData from "$data/songs-data.js";
 	import searchAndFilter from "$stores/searchAndFilter.js";
 	import SongInfo from "./SongInfo.svelte";
-	import { songIsSelected, X_RIGHT_MARGIN } from "./viz-utils";
+	import { songIsSelected, RIGHT_TOOLBAR_WIDTH } from "./viz-utils";
 
 	// Filter to a list of all songs, after applying all the filters from searchAndFilter
 	$: selectedSongs = songsData.filter(({song}) =>
@@ -10,7 +10,7 @@
 	);
 </script>
 
-<section style:width={`${X_RIGHT_MARGIN}px`}>
+<section style:width={`${RIGHT_TOOLBAR_WIDTH}px`}>
 	<h4>{selectedSongs.length} selected</h4>
 
 	<ul>

@@ -9,12 +9,15 @@ const YEAR_MIN = 1958;
 const DOMAIN = YEAR_MAX - YEAR_MIN;
 
 const Y_MARGIN = 50;
-export const X_RIGHT_MARGIN = 280; // TODO: probably a better way to do this *shrug*
 
+export const RIGHT_TOOLBAR_WIDTH = 280; // TODO: probably a better way to do this *shrug*
+const X_MARGIN = 80;
 export const getXPositionFromTime = (song, canvasWidth) => {
 	const xPercentage =
 		(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal] - YEAR_MIN) / DOMAIN;
-	return xPercentage * (canvasWidth - X_RIGHT_MARGIN);
+	return (
+		X_MARGIN + xPercentage * (canvasWidth - RIGHT_TOOLBAR_WIDTH - 2 * X_MARGIN)
+	);
 };
 
 export const getYTargetPosition = (
