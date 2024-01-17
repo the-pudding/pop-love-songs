@@ -36,13 +36,16 @@
         justify-content: center;
         align-items: center;
         padding: 10px;
-        border-radius: 10px;
-        border: 1px solid black;
+        
+        pointer-events: none;
+    }
+
+    button {
+        pointer-events: all;
     }
 
     .title {
         text-align: center;
-                background-color: gray;
-
+        background-color: gray;
     }
 </style>
