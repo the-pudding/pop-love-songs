@@ -12,9 +12,16 @@ const steps = {
 			...SEARCH_AND_FILTER_DEFAULT_STATE,
 			performerSearchString: "Beyonce"
 		}
+	},
+	filterToRock: {
+		text: "This is just the genre of Rock",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_DEFAULT_STATE,
+			selectedGenres: ["ROCK"]
+		}
 	}
 };
 
-export const storySteps = [steps.opening, steps.beyonce];
+export const storySteps = [steps.opening, steps.beyonce, steps.filterToRock];
 
 export const currentStoryStepIndex = writable(0);

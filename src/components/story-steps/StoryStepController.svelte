@@ -1,4 +1,5 @@
 <script>
+    import searchAndFilter from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
 
@@ -8,6 +9,13 @@
     const onNextButtonClick = () => {
         $currentStoryStepIndex++;
     }
+
+    const updateFilterFilterState = () => {
+        searchAndFilter.set({...storySteps[$currentStoryStepIndex].searchAndFilterState})
+        console.log("searchAndFilter", $searchAndFilter)
+    }
+
+    $: $currentStoryStepIndex, updateFilterFilterState()
 </script>
 
 <div class="container" style:height={`${STORY_STEP_CONTROLLER_BOTTOM_PADDING}px`}>
