@@ -1,39 +1,40 @@
 <script>
-	import { onDestroy } from "svelte";
-	import { LOVE_SONG_TYPES } from "$data/data-constants";
-	import searchAndFilter from "$stores/searchAndFilter.js";
+    import {onDestroy} from "svelte";
 	import MultiSelect from "svelte-multiselect"; // (eventually we'll replace this with our own Select component likely)
+	import songsData from "$data/songs-data.js";
+	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
+	import searchAndFilter from "$stores/searchAndFilter.js";
 
-	const loveSongOptions = LOVE_SONG_TYPES.map((type) => ({
-		label: type || "(not a love song)",
-		value: type
-	}));
+    const loveSongTypes = [
+        ...new Set(songsData.map(({song}) => song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]))
+    ];
+    const loveSongTypeOptions = loveSongTypes.map((type) => ({
+        label: type,
+        value: type
+    }));
 
-	let userSelectedLoveSongTypes = [];
+    let userSelectedLoveSongTypes = [];
 
-	// Subscribe to the searchAndFilter store, update the local variable when it changes
-	const unsubscribe = searchAndFilter.subscribe(($searchAndFilter) => {
-		// if ($searchAndFilter.selectedLoveSongTypes.length === userSelectedLoveSongTypes.length) return
-		// setting userSelectedLoveSongTypes instead of "t" causes an infinite loop... @michelle how do I fix this?
-		const t = loveSongOptions.filter(option =>
-			$searchAndFilter.selectedLoveSongTypes.includes(option.value)
-		);
-		console.log(t)
-	});
+    const unsubscribe = searchAndFilter.subscribe(($searchAndFilter) => {
+        userSelectedLoveSongTypes = loveSongTypeOptions.filter(option =>
+            $searchAndFilter.selectedLoveSongTypes.includes(option.value)
+        );
+    });
 
-	$: {
-		searchAndFilter.update((state) => ({
-			...state,
-			selectedLoveSongTypes: userSelectedLoveSongTypes.map(({ value }) => value)
-		}));
-	}
-	onDestroy(unsubscribe);
+    $: if (userSelectedLoveSongTypes) {
+        searchAndFilter.update((state) => ({
+            ...state,
+            selectedLoveSongTypes: userSelectedLoveSongTypes.map(({ value }) => value)
+        }));
+    }
+
+    onDestroy(unsubscribe);
 </script>
 
 <MultiSelect
-	placeholder="Select love song type(s)"
-	bind:selected={userSelectedLoveSongTypes}
-	options={loveSongOptions}
+    placeholder="Select love song type(s)"
+    bind:selected={userSelectedLoveSongTypes}
+    options={loveSongTypeOptions}
 />
 
 <style>
