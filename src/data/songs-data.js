@@ -40,33 +40,35 @@ let aggregationTimeRegions = [
 
 const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
 	// 1. aggregate
-	const aggregateCount = songsInTimeRegion.reduce((acc, song) => {
+	const popularitySumByType = songsInTimeRegion.reduce((acc, song) => {
 		const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
+		const popularity = song[SONG_DATA_COLUMNS_ENUM.popularity_score];
 		return {
 			...acc,
-			[loveSongType]: acc[loveSongType] + 1 || 1
+			[loveSongType]: (acc[loveSongType] || 0) + popularity
 		};
 	}, {});
 
-	const loveSongTypesSortedGreatestToLeast = Object.keys(aggregateCount).sort(
-		(a, b) => aggregateCount[b] - aggregateCount[a]
-	);
+	const loveSongTypesSortedGreatestToLeast = Object.keys(
+		popularitySumByType
+	).sort((a, b) => popularitySumByType[b] - popularitySumByType[a]);
 
 	// // 2. Sort in descending order (biggest to smallest), then convert to percentages.
 	// // Note, the percentages are summative, meaning that if the largest (first) value is "Serenade" at 50%, then the next value will be "Serenade" + "Longing & Heartbreak" at 75%.
-	const totalSongsInTimeRegion = Object.keys(aggregateCount).reduce(
-		(acc, loveSongType) => acc + aggregateCount[loveSongType],
-		0
-	);
+	const popularityScoreSumsInTimeRegion = Object.keys(
+		popularitySumByType
+	).reduce((acc, loveSongType) => acc + popularitySumByType[loveSongType], 0);
 
 	return loveSongTypesSortedGreatestToLeast.reduce((acc, loveSongType) => {
 		const totalPercentageThatHasBeenAccountedFor = Object.keys(acc).reduce(
 			(sum, accountedForLoveSongType) =>
-				sum + aggregateCount[accountedForLoveSongType] / totalSongsInTimeRegion,
+				sum +
+				popularitySumByType[accountedForLoveSongType] /
+					popularityScoreSumsInTimeRegion,
 			0
 		);
 		const loveSongPercentage =
-			aggregateCount[loveSongType] / totalSongsInTimeRegion;
+			popularitySumByType[loveSongType] / popularityScoreSumsInTimeRegion;
 
 		return {
 			...acc,
@@ -86,7 +88,7 @@ const loveSongsLabeledByTimeRegionPercentageForPosition =
 
 		return {
 			...timeRegion,
-			totalSongsInTimeRegion:
+			popularityScoreSumsInTimeRegion:
 				getAggregatePercentageByLoveSongType(songsInTimeRegion)
 		};
 	});
@@ -106,7 +108,7 @@ const getPercentageForSong = (song) => {
 	}
 
 	const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
-	return timeRegion.totalSongsInTimeRegion[loveSongType];
+	return timeRegion.popularityScoreSumsInTimeRegion[loveSongType];
 };
 
 // Wrap each array in an object (to which force simulation will attach properties)
