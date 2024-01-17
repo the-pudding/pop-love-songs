@@ -1,5 +1,19 @@
 <script>
-	import searchAndFilter from "$stores/searchAndFilter.js";
+    import { onDestroy } from "svelte";
+    import searchAndFilter from "$stores/searchAndFilter.js";
+
+    let performerSearchString = "";
+
+    const unsubscribe = searchAndFilter.subscribe(($searchAndFilter) => {
+        performerSearchString = $searchAndFilter.performerSearchString;
+    });
+
+    $: searchAndFilter.update((state) => ({
+            ...state,
+            performerSearchString: performerSearchString
+        }));
+
+    onDestroy(unsubscribe);
 </script>
 
 <div>
@@ -8,6 +22,6 @@
         id="input--performer-searc"
         type="search"
         placeholder="Search peferformers"
-        bind:value={$searchAndFilter.performerSearchString}
+        bind:value={performerSearchString}
     />
 </div>

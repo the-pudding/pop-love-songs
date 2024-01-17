@@ -1,5 +1,21 @@
 <script>
-	import searchAndFilter from "$stores/searchAndFilter.js";
+    import { onDestroy } from "svelte";
+    import searchAndFilter from "$stores/searchAndFilter.js";
+
+    let songSearchString = "";
+
+    const unsubscribe = searchAndFilter.subscribe(($searchAndFilter) => {
+        songSearchString = $searchAndFilter.songSearchString;
+    });
+
+    $: if (songSearchString) {
+        searchAndFilter.update((state) => ({
+            ...state,
+            songSearchString: songSearchString
+        }));
+    }
+
+    onDestroy(unsubscribe);
 </script>
 
 <div>
@@ -8,6 +24,6 @@
         id="input--song-search"
         type="search"
         placeholder="Search songs"
-        bind:value={$searchAndFilter.songSearchString}
+        bind:value={songSearchString}
     />
 </div>
