@@ -19,9 +19,21 @@ const steps = {
 			...SEARCH_AND_FILTER_DEFAULT_STATE,
 			selectedGenres: ["ROCK"]
 		}
+	},
+	filterToSerenade: {
+		text: "This is just the love song type Serenade",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_DEFAULT_STATE,
+			selectedLoveSongTypes: ["Serenade"]
+		}
 	}
 };
 
-export const storySteps = [steps.opening, steps.beyonce, steps.filterToRock];
+export const storySteps = [
+	steps.opening,
+	steps.beyonce,
+	steps.filterToRock,
+	steps.filterToSerenade
+];
 
 export const currentStoryStepIndex = writable(0);
