@@ -112,8 +112,9 @@
 	const updateSimulationProperties = () => {
 		if (!simulation) return;
 		simulation
-			.force("x", forceX().x((d) => getXPositionFromTime(d.song, canvas.width)))
-			.force("y", forceY().y((d) => getYTargetPosition(d, canvas.height)).strength(0.5))
+			.force("x", forceX().x((d) => getXPositionFromTime(d.song, canvas.width)).strength(2))
+			.force("y", forceY().y((d) => getYTargetPosition(d, canvas.height)).strength(0.1))
+			// .force("y", forceY().y(canvas.height / 2).strength(0.5))
 			.force("collide", forceCollide().radius(({radius}) => radius))
 			.alpha(0.2)
 			.restart();
