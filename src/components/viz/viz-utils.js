@@ -8,7 +8,8 @@ const YEAR_MAX = 2022;
 const YEAR_MIN = 1958;
 const DOMAIN = YEAR_MAX - YEAR_MIN;
 
-const Y_MARGIN = 50;
+const Y_MARGIN = 24;
+export const STORY_STEP_CONTROLLER_BOTTOM_PADDING = 100; // TODO: export this & use it in viz layout
 
 export const RIGHT_TOOLBAR_WIDTH = 280; // TODO: probably a better way to do this *shrug*
 const X_MARGIN = 80;
@@ -23,7 +24,10 @@ export const getXPositionFromTime = (song, canvasWidth) => {
 export const getYTargetPosition = (
 	{ yPositionTargetPercentage },
 	canvasHeight
-) => Y_MARGIN + yPositionTargetPercentage * (canvasHeight - 2 * Y_MARGIN);
+) =>
+	Y_MARGIN +
+	yPositionTargetPercentage *
+		(canvasHeight - (2 * Y_MARGIN + STORY_STEP_CONTROLLER_BOTTOM_PADDING));
 
 const RADIUS_SCALING_FACTOR = 2;
 export const calculateRadiusFromPopularityScore = (

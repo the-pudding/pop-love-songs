@@ -1,6 +1,6 @@
 <script>
     import {storySteps, currentStoryStepIndex} from "$stores/storySteps.js"
-    const STORY_STEP_CONTROLLER_BOTTOM_PADDING = 100; // TODO: export this & use it in viz layout
+    import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
 
     const onPreviousButtonClick = () => {
         $currentStoryStepIndex--;
