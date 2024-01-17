@@ -1,4 +1,4 @@
-import rawSongsData from "$data/20-EXPORT-viz-ready-data.json";
+import rawSongsData from "$data/23-EXPORT-viz-ready-data.json";
 import { SONG_DATA_COLUMNS_ENUM } from "./data-constants";
 import { calculateRadiusFromPopularityScore } from "$components/viz/viz-utils.js";
 
