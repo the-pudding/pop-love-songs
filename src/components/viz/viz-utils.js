@@ -82,32 +82,6 @@ export const getSongFill = (song, songIsSelected) => {
 		: "rgb(0, 0, 0, 0.05)";
 };
 
-export const songIsSelected = (song, searchAndFilter) => {
-	const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
-
-	// TODO: will fix this when I redesign these calculations around derived stores
-	const genreSelected = true;
-	// selectedGenres.includes(song[SONG_DATA_COLUMNS_ENUM.generic_genre]) ||
-	// 	searchAndFilter.selectedGenres.length === 0;
-	const loveSongTypeSelected =
-		searchAndFilter.selectedLoveSongTypes.includes(loveSongType) ||
-		searchAndFilter.selectedLoveSongTypes.length === 0;
-	const performerSelected =
-		searchAndFilter.performerSearchString.length === 0 ||
-		song[SONG_DATA_COLUMNS_ENUM.performer]
-			.toLowerCase()
-			.includes(searchAndFilter.performerSearchString.toLowerCase());
-	const songSelected =
-		searchAndFilter.songSearchString.length === 0 ||
-		song[SONG_DATA_COLUMNS_ENUM.song]
-			.toLowerCase()
-			.includes(searchAndFilter.songSearchString.toLowerCase());
-
-	return (
-		genreSelected && loveSongTypeSelected && performerSelected && songSelected
-	);
-};
-
 // TEMP for research
 
 export const searchSongOnYouTube = (song) => {

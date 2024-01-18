@@ -1,21 +1,24 @@
 <script>
+	import {derived} from "svelte/store";
 	import songsData from "$data/songs-data.js";
-	import searchAndFilter from "$stores/searchAndFilter.js";
+	import { songIsSelected } from "$stores/dataProperties";
 	import SongInfo from "./SongInfo.svelte";
-	import { songIsSelected, RIGHT_TOOLBAR_WIDTH } from "./viz-utils";
+	import { RIGHT_TOOLBAR_WIDTH } from "./viz-utils";
 
-	// Filter to a list of all songs, after applying all the filters from searchAndFilter
-	$: selectedSongs = songsData.filter(({song}) =>
-		songIsSelected(song, $searchAndFilter)
+	const selectedSongs = derived(
+		songIsSelected,
+		($songIsSelected) => songsData.filter((song, index) =>
+			$songIsSelected[index]
+		)
 	);
 </script>
 
 <section style:width={`${RIGHT_TOOLBAR_WIDTH}px`}>
-	<h4>{selectedSongs.length} selected</h4>
+	<h4>{$selectedSongs.length} selected</h4>
 
 	<ul>
 		<!-- TEMP: only render a susbet to improve perf until we use a virtualized list -->
-		{#each selectedSongs.slice(0, 100) as s}
+		{#each ($selectedSongs).slice(0, 100) as s}
 			<div>
 				<SongInfo song={s.song} />
 			</div>

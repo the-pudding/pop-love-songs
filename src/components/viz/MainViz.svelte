@@ -5,6 +5,7 @@
 
 	import viewport from "$stores/viewport.js";
 	import searchAndFilter from "$stores/searchAndFilter.js";
+	import { songIsSelected } from "$stores/dataProperties";
 	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
 
 	import songsData from "$data/songs-data.js";
@@ -14,8 +15,7 @@
 		getSongIndexFromInvisibleFill,
 		getXPositionFromTime,
 		getYTargetPosition,
-		searchSongOnYouTube,
-		songIsSelected
+		searchSongOnYouTube
 	} from "./viz-utils";
 
 	// Give it an initial position
@@ -44,7 +44,7 @@
 			const circle = new Path2D();
 			circle.arc(x, y, radius, 0, 2 * Math.PI);
 
-			const isSelected = songIsSelected(song, $searchAndFilter);
+			const isSelected = $songIsSelected[songIndex];
 
 			// Invisible
 			if (isSelected) {
