@@ -1,7 +1,6 @@
 import {
 	SONG_DATA_COLUMNS_ENUM,
-	LOVE_SONG_TYPE_COLOR_MAP,
-	LOVE_SONG_TYPE_BAND_LEVEL_MAP
+	LOVE_SONG_TYPE_COLOR_MAP
 } from "$data/data-constants.js";
 
 const YEAR_MAX = 2022;
@@ -86,10 +85,10 @@ export const getSongFill = (song, songIsSelected) => {
 export const songIsSelected = (song, searchAndFilter) => {
 	const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 
-	const genreSelected =
-		searchAndFilter.selectedGenres.includes(
-			song[SONG_DATA_COLUMNS_ENUM.generic_genre]
-		) || searchAndFilter.selectedGenres.length === 0;
+	// TODO: will fix this when I redesign these calculations around derived stores
+	const genreSelected = true;
+	// selectedGenres.includes(song[SONG_DATA_COLUMNS_ENUM.generic_genre]) ||
+	// 	searchAndFilter.selectedGenres.length === 0;
 	const loveSongTypeSelected =
 		searchAndFilter.selectedLoveSongTypes.includes(loveSongType) ||
 		searchAndFilter.selectedLoveSongTypes.length === 0;
