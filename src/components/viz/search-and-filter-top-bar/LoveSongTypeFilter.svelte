@@ -16,12 +16,14 @@
     let userSelectedLoveSongTypes = [];
 
     const unsubscribe = searchAndFilter.subscribe(($searchAndFilter) => {
+        console.log('SONG TYPE: searchAndFilter changed, updating UI', $searchAndFilter.selectedGenres)
         userSelectedLoveSongTypes = loveSongTypeOptions.filter(option =>
             $searchAndFilter.selectedLoveSongTypes.includes(option.value)
         );
     });
 
-    $: if (userSelectedLoveSongTypes) {
+    $: if (userSelectedLoveSongTypes) { // TODO: is this if-clause necessary to check?
+        console.log('SONG TYPE: UI changed, updating searchAndFIlter', userSelectedLoveSongTypes)
         searchAndFilter.update((state) => ({
             ...state,
             selectedLoveSongTypes: userSelectedLoveSongTypes.map(({ value }) => value)

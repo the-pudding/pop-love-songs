@@ -17,6 +17,7 @@
 
 	// Subscribe to the searchAndFilter store, update the local variable when it changes
 	const unsubscribe = searchAndFilter.subscribe(($searchAndFilter) => {
+		console.log('GENRE: searchAndFilter changed, updating UI', $searchAndFilter.selectedGenres)
 		userSelectedGenres = genreOptions.filter(option =>
 			$searchAndFilter.selectedGenres.includes(option.value)
 		);
@@ -24,6 +25,7 @@
 
 	// Watch for changes in the userSelectedGenres and update the store
 	$: if (userSelectedGenres) {
+		console.log('GENRE: UI changed, updating searchAndFilter', userSelectedGenres)
 		searchAndFilter.update((state) => ({
 			...state,
 			selectedGenres: userSelectedGenres.map(({ value }) => value)
