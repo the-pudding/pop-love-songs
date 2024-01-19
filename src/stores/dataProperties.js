@@ -3,12 +3,13 @@ import songsData from "$data/songs-data.js";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 import searchAndFilter, {
 	selectedGenres,
-	selectedGenders
+	selectedGenders,
+	selectedSongs
 } from "./searchAndFilter";
 
 export const songIsSelected = derived(
-	[searchAndFilter, selectedGenres, selectedGenders],
-	([$searchAndFilter, $selectedGenres, $selectedGenders]) =>
+	[searchAndFilter, selectedGenres, selectedGenders, selectedSongs],
+	([$searchAndFilter, $selectedGenres, $selectedGenders, $selectedSongs]) =>
 		songsData.map(({ song }) => {
 			const genderSelected =
 				$selectedGenders.includes(song[SONG_DATA_COLUMNS_ENUM.gender]) ||
@@ -30,10 +31,8 @@ export const songIsSelected = derived(
 					.includes($searchAndFilter.performerSearchString.toLowerCase());
 
 			const songSelected =
-				$searchAndFilter.songSearchString.length === 0 ||
-				song[SONG_DATA_COLUMNS_ENUM.song]
-					.toLowerCase()
-					.includes($searchAndFilter.songSearchString.toLowerCase());
+				$selectedSongs.includes(song[SONG_DATA_COLUMNS_ENUM.song]) ||
+				$selectedSongs.length === 0;
 
 			return (
 				genderSelected &&

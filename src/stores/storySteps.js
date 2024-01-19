@@ -3,18 +3,22 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
 	selectedGenders: [],
 	selectedGenres: [],
-	performerSearchString: "",
-	songSearchString: "",
-	selectedSongInfo: {
-		song: undefined,
-		position: { x: undefined, y: undefined }
-	}
+	selectedSongs: [],
+
+	performerSearchString: ""
 };
 
 const steps = {
 	opening: {
 		text: "Welcome to the viz! This is a story step.",
 		searchAndFilterState: SEARCH_AND_FILTER_BLANK_STATE
+	},
+	highlightingSpecificSongs: {
+		text: "Here are some songs",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedSongs: ["Single Ladies (Put A Ring On It)"]
+		}
 	},
 	beyonce: {
 		text: "... more importantly, Beyonce!",
@@ -42,6 +46,7 @@ const steps = {
 export const storySteps = [
 	steps.opening,
 	steps.beyonce,
+	steps.highlightingSpecificSongs,
 	steps.filterToRock,
 	steps.filterToSerenade
 ];
