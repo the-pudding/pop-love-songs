@@ -1,12 +1,19 @@
 import { derived } from "svelte/store";
 import songsData from "$data/songs-data.js";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
-import searchAndFilter, { selectedGenres } from "./searchAndFilter";
+import searchAndFilter, {
+	selectedGenres,
+	selectedGenders
+} from "./searchAndFilter";
 
 export const songIsSelected = derived(
-	[searchAndFilter, selectedGenres],
-	([$searchAndFilter, $selectedGenres]) =>
+	[searchAndFilter, selectedGenres, selectedGenders],
+	([$searchAndFilter, $selectedGenres, $selectedGenders]) =>
 		songsData.map(({ song }) => {
+			const genderSelected =
+				$selectedGenders.includes(song[SONG_DATA_COLUMNS_ENUM.gender]) ||
+				$selectedGenders.length === 0;
+
 			const genreSelected =
 				$selectedGenres.includes(song[SONG_DATA_COLUMNS_ENUM.generic_genre]) ||
 				$selectedGenres.length === 0;
@@ -29,6 +36,7 @@ export const songIsSelected = derived(
 					.includes($searchAndFilter.songSearchString.toLowerCase());
 
 			return (
+				genderSelected &&
 				genreSelected &&
 				loveSongTypeSelected &&
 				performerSelected &&

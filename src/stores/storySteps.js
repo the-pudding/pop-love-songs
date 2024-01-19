@@ -1,6 +1,7 @@
 import { writable } from "svelte/store";
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
+	selectedGenders: [],
 	selectedGenres: [],
 	performerSearchString: "",
 	songSearchString: "",
