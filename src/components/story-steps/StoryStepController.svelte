@@ -11,10 +11,8 @@
     }
 
     const updateFilterFilterState = () => {
-        console.log("genre updates:", storySteps[$currentStoryStepIndex].searchAndFilterState.selectedGenres)
         selectedGenres.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.selectedGenres])
         searchAndFilter.set({...storySteps[$currentStoryStepIndex].searchAndFilterState})
-        console.log("searchAndFilter", $searchAndFilter)
     }
 
     $: $currentStoryStepIndex, updateFilterFilterState()
