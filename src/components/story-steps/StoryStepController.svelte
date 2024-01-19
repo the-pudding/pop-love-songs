@@ -1,5 +1,5 @@
 <script>
-    import searchAndFilter from "$stores/searchAndFilter.js"
+    import searchAndFilter, {selectedGenres} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
 
@@ -11,6 +11,8 @@
     }
 
     const updateFilterFilterState = () => {
+        console.log("genre updates:", storySteps[$currentStoryStepIndex].searchAndFilterState.selectedGenres)
+        selectedGenres.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.selectedGenres])
         searchAndFilter.set({...storySteps[$currentStoryStepIndex].searchAndFilterState})
         console.log("searchAndFilter", $searchAndFilter)
     }

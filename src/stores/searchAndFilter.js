@@ -1,6 +1,9 @@
 import { writable } from "svelte/store";
 
-export const SEARCH_AND_FILTER_DEFAULT_STATE = {
+export const selectedGenres = writable([]);
+
+// TODO: break into smaller stores
+export default writable({
 	selectedLoveSongTypes: [],
 	performerSearchString: "",
 	songSearchString: "",
@@ -8,8 +11,4 @@ export const SEARCH_AND_FILTER_DEFAULT_STATE = {
 		song: undefined,
 		position: { x: undefined, y: undefined }
 	}
-};
-
-export const selectedGenres = writable([]);
-
-export default writable(SEARCH_AND_FILTER_DEFAULT_STATE);
+});
