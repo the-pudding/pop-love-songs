@@ -4,7 +4,6 @@
 	import { forceSimulation, forceX, forceY, forceCollide } from "d3";
 
 	import viewport from "$stores/viewport.js";
-	import searchAndFilter from "$stores/searchAndFilter.js";
 	import { songIsSelected } from "$stores/dataProperties";
 	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
 
@@ -122,7 +121,7 @@
 
 	// @michelle: I'm noticing a growing list of reactive elements here, and I'm wondering if we should be using a derived store for the data, and just make it one thing? 
 	// Or is this granularity normal / good for control?
-	$: $songIsSelected, $searchAndFilter, $viewport.width, $viewport.height, updateViz();
+	$: $songIsSelected, $viewport.width, $viewport.height, updateViz();
 	// note: currently, simulation need only change (ie forces are updated) when viewport changes
 	$: $viewport.width, $viewport.height, updateSimulationProperties(); 
 	const updateViz = () => {

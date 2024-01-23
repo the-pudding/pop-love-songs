@@ -2,7 +2,7 @@
 	import LoveSongTypeFilter from "./LoveSongTypeFilter.svelte";
 	import GenderFilter from "./GenderFilter.svelte";
 	import GenreFilter from "./GenreFilter.svelte";
-	import PerformerSearch from "./PerformerSearch.svelte";
+	import PerformerFilter from "./PerformerFilter.svelte";
 	import SongFilter from "./SongFilter.svelte";
 </script>
 
@@ -11,7 +11,7 @@
 		<LoveSongTypeFilter />
 		<GenderFilter />
 		<GenreFilter />
-		<PerformerSearch />
+		<PerformerFilter />
 		<SongFilter />
 	</div>
 </fieldset>

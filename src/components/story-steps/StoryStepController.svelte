@@ -1,5 +1,5 @@
 <script>
-    import searchAndFilter, {selectedGenres, selectedGenders, selectedSongs, timeRange} from "$stores/searchAndFilter.js"
+    import {selectedGenres, selectedGenders, selectedSongs, selectedLoveSongTypes, selectedPerformers, timeRange} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
 
@@ -14,8 +14,9 @@
         selectedSongs.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.selectedSongs])
         selectedGenders.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.selectedGenders])
         selectedGenres.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.selectedGenres])
+        selectedLoveSongTypes.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.selectedLoveSongTypes])
+        selectedPerformers.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.selectedPerformers])
         timeRange.set({...storySteps[$currentStoryStepIndex].searchAndFilterState.timeRange})
-        searchAndFilter.set({...storySteps[$currentStoryStepIndex].searchAndFilterState})
     }
 
     $: $currentStoryStepIndex, updateFilterFilterState()

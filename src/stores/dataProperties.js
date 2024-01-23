@@ -1,17 +1,27 @@
 import { derived } from "svelte/store";
 import songsData from "$data/songs-data.js";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
-import searchAndFilter, {
+import {
 	selectedGenres,
 	selectedGenders,
 	selectedSongs,
+	selectedLoveSongTypes,
+	selectedPerformers,
 	timeRange
-} from "./searchAndFilter";
+} from "./searchAndFilter.js";
 
 export const songIsSelected = derived(
-	[searchAndFilter, selectedGenres, selectedGenders, selectedSongs, timeRange],
+	[
+		selectedPerformers,
+		selectedLoveSongTypes,
+		selectedGenres,
+		selectedGenders,
+		selectedSongs,
+		timeRange
+	],
 	([
-		$searchAndFilter,
+		$selectedPerformers,
+		$selectedLoveSongTypes,
 		$selectedGenres,
 		$selectedGenders,
 		$selectedSongs,
@@ -28,15 +38,12 @@ export const songIsSelected = derived(
 
 			const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 			const loveSongTypeSelected =
-				$searchAndFilter.selectedLoveSongTypes.includes(loveSongType) ||
-				$searchAndFilter.selectedLoveSongTypes.length === 0;
+				$selectedLoveSongTypes.includes(loveSongType) ||
+				$selectedLoveSongTypes.length === 0;
 
 			const performerSelected =
-				$searchAndFilter.performerSearchString.length === 0 ||
-				song[SONG_DATA_COLUMNS_ENUM.performer]
-					.toLowerCase()
-					.includes($searchAndFilter.performerSearchString.toLowerCase());
-
+				$selectedPerformers.length === 0 ||
+				$selectedPerformers.includes(song[SONG_DATA_COLUMNS_ENUM.performer]);
 			const songSelected =
 				$selectedSongs.includes(song[SONG_DATA_COLUMNS_ENUM.song]) ||
 				$selectedSongs.length === 0;

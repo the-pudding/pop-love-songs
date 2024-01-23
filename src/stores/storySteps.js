@@ -1,6 +1,7 @@
 import { writable } from "svelte/store";
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
+	selectedPerformers: [],
 	selectedGenders: [],
 	selectedGenres: [],
 	selectedSongs: [],
@@ -8,9 +9,7 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 	timeRange: {
 		startYear: null,
 		endYear: null
-	},
-
-	performerSearchString: ""
+	}
 };
 
 const steps = {
@@ -39,7 +38,7 @@ const steps = {
 		text: "... more importantly, Beyonce!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			performerSearchString: "Beyonce"
+			selectedPerformers: ["Beyonce"]
 		}
 	},
 	filterToRock: {
