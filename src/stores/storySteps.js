@@ -14,20 +14,39 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 };
 
 const steps = {
+	// INTRO TODOS: we need the ability to NOT show love song type colors
+	// This gets into adding a  branch of specification properties focused on
+	// (not so much filtering as) encoding (x/y pos, color).
 	opening: {
-		text: "Welcome to the viz! This is a story step.",
+		text: "This is all 5k Billboard Top 10 hits from 1958-2022.",
 		searchAndFilterState: SEARCH_AND_FILTER_BLANK_STATE
 	},
-	justThe70s: {
-		text: "This is just the 70s",
+	someThingsHaveChangedLittle: {
+		text: "Some things have changed little -- artists still sing the same sort of poppy love songs",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			timeRange: {
-				startYear: 1970,
-				endYear: 1979
-			}
+			// TODO: fill in
+			selectedSongs: ["Single Ladies (Put A Ring On It)"]
 		}
 	},
+	someThingsHaveChangedALot: {
+		text: "... but, in other ways, things have changed a ton.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			// TODO: fill in
+			selectedSongs: ["WAP"]
+		}
+	},
+	isTheLoveSongDying: {
+		text: "It raises a question: Is the love song dying?",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE
+		}
+	},
+
+	// BODY
+
+	/// blah
 	highlightingSpecificSongs: {
 		text: "Here are some songs",
 		searchAndFilterState: {
@@ -59,12 +78,13 @@ const steps = {
 };
 
 export const storySteps = [
+	// Intro: is the love song dying?
 	steps.opening,
-	steps.justThe70s,
-	steps.beyonce,
-	steps.highlightingSpecificSongs,
-	steps.filterToRock,
-	steps.filterToSerenade
+	steps.someThingsHaveChangedLittle,
+	steps.someThingsHaveChangedALot,
+	steps.isTheLoveSongDying
+	// Body: moving chronilogically through time, highlighting specific songs, artists, types of love songs
+	// Conclusion
 ];
 
 export const currentStoryStepIndex = writable(0);
