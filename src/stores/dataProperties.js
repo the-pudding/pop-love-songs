@@ -4,12 +4,19 @@ import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 import searchAndFilter, {
 	selectedGenres,
 	selectedGenders,
-	selectedSongs
+	selectedSongs,
+	timeRange
 } from "./searchAndFilter";
 
 export const songIsSelected = derived(
-	[searchAndFilter, selectedGenres, selectedGenders, selectedSongs],
-	([$searchAndFilter, $selectedGenres, $selectedGenders, $selectedSongs]) =>
+	[searchAndFilter, selectedGenres, selectedGenders, selectedSongs, timeRange],
+	([
+		$searchAndFilter,
+		$selectedGenres,
+		$selectedGenders,
+		$selectedSongs,
+		$timeRange
+	]) =>
 		songsData.map(({ song }) => {
 			const genderSelected =
 				$selectedGenders.includes(song[SONG_DATA_COLUMNS_ENUM.gender]) ||
@@ -34,12 +41,19 @@ export const songIsSelected = derived(
 				$selectedSongs.includes(song[SONG_DATA_COLUMNS_ENUM.song]) ||
 				$selectedSongs.length === 0;
 
+			const withinTimeRange =
+				!$timeRange.startYear ||
+				!$timeRange.endYear ||
+				($timeRange.startYear <= song[SONG_DATA_COLUMNS_ENUM.date_as_decimal] &&
+					$timeRange.endYear >= song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]);
+
 			return (
 				genderSelected &&
 				genreSelected &&
 				loveSongTypeSelected &&
 				performerSelected &&
-				songSelected
+				songSelected &&
+				withinTimeRange
 			);
 		}),
 	[]
