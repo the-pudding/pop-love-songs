@@ -7,12 +7,14 @@ import {
 	selectedSongs,
 	selectedLoveSongTypes,
 	selectedPerformers,
+	performerSearchStrings,
 	timeRange
 } from "./searchAndFilter.js";
 
 export const songIsSelected = derived(
 	[
 		selectedPerformers,
+		performerSearchStrings,
 		selectedLoveSongTypes,
 		selectedGenres,
 		selectedGenders,
@@ -21,6 +23,7 @@ export const songIsSelected = derived(
 	],
 	([
 		$selectedPerformers,
+		$performerSearchStrings,
 		$selectedLoveSongTypes,
 		$selectedGenres,
 		$selectedGenders,
@@ -44,6 +47,15 @@ export const songIsSelected = derived(
 			const performerSelected =
 				$selectedPerformers.length === 0 ||
 				$selectedPerformers.includes(song[SONG_DATA_COLUMNS_ENUM.performer]);
+
+			const includesAPerformerSearchString =
+				$performerSearchStrings.length === 0 ||
+				$performerSearchStrings.some((performerSearchString) =>
+					song[SONG_DATA_COLUMNS_ENUM.performer]
+						.toLowerCase()
+						.includes(performerSearchString.toLowerCase())
+				);
+
 			const songSelected =
 				$selectedSongs.includes(song[SONG_DATA_COLUMNS_ENUM.song]) ||
 				$selectedSongs.length === 0;
@@ -59,6 +71,7 @@ export const songIsSelected = derived(
 				genreSelected &&
 				loveSongTypeSelected &&
 				performerSelected &&
+				includesAPerformerSearchString &&
 				songSelected &&
 				withinTimeRange
 			);

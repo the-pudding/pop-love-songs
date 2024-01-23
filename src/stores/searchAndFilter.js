@@ -5,6 +5,7 @@ export const selectedGenders = writable([]);
 export const selectedSongs = writable([]);
 export const selectedLoveSongTypes = writable([]);
 export const selectedPerformers = writable([]);
+export const performerSearchStrings = writable([]);
 
 export const timeRange = writable({
 	startYear: null,
