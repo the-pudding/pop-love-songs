@@ -18,15 +18,24 @@ const steps = {
 	// This gets into adding a  branch of specification properties focused on
 	// (not so much filtering as) encoding (x/y pos, color).
 	opening: {
-		text: "This is all 5k Billboard Top 10 hits from 1958-2022.",
+		text: "These are the 5k songs from the last 60 years of Billboard Top 10",
 		searchAndFilterState: SEARCH_AND_FILTER_BLANK_STATE
 	},
 	someThingsHaveChangedLittle: {
-		text: "Some things have changed little -- artists still sing the same sort of poppy love songs",
+		text: "Some things have changed little -- artists still sing the same sort of pop-y love songs",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			// TODO: fill in
-			selectedSongs: ["Single Ladies (Put A Ring On It)"]
+			selectedSongs: [
+				"Roses Are Red (My Love)",
+				"Perfect",
+				"All Of Me",
+				"Hold Me, Thrill Me, Kiss Me",
+				"Kiss Me",
+				"Kiss Me More",
+				"('til) I Kissed You",
+				"Then He Kissed Me"
+			]
 		}
 	},
 	someThingsHaveChangedALot: {
@@ -34,7 +43,7 @@ const steps = {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			// TODO: fill in
-			selectedSongs: ["WAP"]
+			selectedSongs: ["Come Softly To Me", "WAP"]
 		}
 	},
 	isTheLoveSongDying: {
@@ -45,36 +54,42 @@ const steps = {
 	},
 
 	// BODY
-
-	/// blah
-	highlightingSpecificSongs: {
-		text: "Here are some songs",
+	//
+	welcomeToThe60s: {
+		text: "Welcome to the late 50s and 60s, with artists like Elvis Presley, The Beatles, and The Supremes.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedSongs: ["Single Ladies (Put A Ring On It)"]
+			performerSearchStrings: ["Elvis Presley", "The Beatles", "The Supremes"],
+			timeRange: {
+				startYear: 1958,
+				endYear: 1969
+			}
 		}
 	},
-	beyonce: {
-		text: "... more importantly, Beyonce! And Gaga",
+	loveSongsAndSerenades: {
+		text: `These artist thrived on songs that answered a simple question: "I love you, do you love me?": For example, "Serenades" (yes) and "Longing & Heartbreak" (no)`,
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			performerSearchStrings: ["Beyonce", "Lady Gaga"]
+			selectedLoveSongTypes: ["Serenade", "Longing & Heartbreak"],
+			timeRange: {
+				startYear: 1958,
+				endYear: 1969
+			}
 		}
 	},
-	filterToRock: {
-		text: "This is just the genre of Rock",
+	courtshipAndAntisipation: {
+		text: `... and also songs about the early stages of that question: "Courtship & Anticipation" (let's find out!)`,
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedGenres: ["ROCK"]
-		}
-	},
-	filterToSerenade: {
-		text: "This is just the love song type Serenade",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: ["Serenade"]
+			selectedLoveSongTypes: ["Courtship & Anticipation"],
+			timeRange: {
+				startYear: 1958,
+				endYear: 1969
+			}
 		}
 	}
+
+	// CONCLUSION
 };
 
 export const storySteps = [
@@ -82,8 +97,13 @@ export const storySteps = [
 	steps.opening,
 	steps.someThingsHaveChangedLittle,
 	steps.someThingsHaveChangedALot,
-	steps.isTheLoveSongDying
+	steps.isTheLoveSongDying,
 	// Body: moving chronilogically through time, highlighting specific songs, artists, types of love songs
+	// 60s
+	steps.welcomeToThe60s,
+	steps.loveSongsAndSerenades,
+	steps.courtshipAndAntisipation
+
 	// Conclusion
 ];
 
