@@ -28,7 +28,7 @@ export const getYTargetPosition = (
 	yPositionTargetPercentage *
 		(canvasHeight - (2 * Y_MARGIN + STORY_STEP_CONTROLLER_BOTTOM_PADDING));
 
-const RADIUS_SCALING_FACTOR = 2;
+const RADIUS_SCALING_FACTOR = 1.2; // TODO: this should probably be responsive to available screen area
 export const calculateRadiusFromPopularityScore = (
 	popularityScore,
 	radiusScalingFactor = RADIUS_SCALING_FACTOR

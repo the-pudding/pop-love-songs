@@ -9,7 +9,7 @@
         ...new Set(songsData.map(({song}) => song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]))
     ];
     const loveSongTypeOptions = loveSongTypes.map((type) => ({
-        label: type,
+        label: type || '(Not a love song)',
         value: type
     }));
 
@@ -21,9 +21,7 @@
         );
     });
 
-    $: if (userSelectedLoveSongTypes) { // TODO: is this if-clause necessary to check?
-        selectedLoveSongTypes.set(userSelectedLoveSongTypes.map(({ value }) => value))
-    }
+    $: selectedLoveSongTypes.set(userSelectedLoveSongTypes.map(({ value }) => value))
 
     onDestroy(unsubscribe);
 </script>
