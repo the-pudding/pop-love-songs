@@ -2,6 +2,18 @@ import rawSongsData from "$data/23-EXPORT-viz-ready-data.json";
 import { SONG_DATA_COLUMNS_ENUM } from "./data-constants";
 import { calculateRadiusFromPopularityScore } from "$components/viz/viz-utils.js";
 
+// export CAPS constants MIN_YEAR and MAX_YEAR
+export const MIN_YEAR = rawSongsData.reduce(
+	(acc, song) =>
+		Math.min(acc, +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]),
+	Infinity
+);
+export const MAX_YEAR = rawSongsData.reduce(
+	(acc, song) =>
+		Math.max(acc, +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]),
+	-Infinity
+);
+
 // algo:
 // 1. given an array of non-overlapping, contiguous time regions (an array with a start & stop year)...
 // Use 1968-1969, then do decades from there on out (1970-1979, 1980-1989, etc.)

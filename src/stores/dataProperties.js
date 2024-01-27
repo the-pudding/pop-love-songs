@@ -61,11 +61,8 @@ export const songIsSelected = derived(
 				$selectedSongs.length === 0;
 
 			const withinTimeRange =
-				!$timeRange.startYear ||
-				!$timeRange.endYear ||
-				($timeRange.startYear <= song[SONG_DATA_COLUMNS_ENUM.date_as_decimal] &&
-					$timeRange.endYear >= song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]);
-
+				(!$timeRange.startYear || $timeRange.startYear <= song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]) &&
+				(!$timeRange.endYear || $timeRange.endYear >= song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]);
 			return (
 				genderSelected &&
 				genreSelected &&

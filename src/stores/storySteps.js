@@ -1,3 +1,4 @@
+import { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
 import { writable } from "svelte/store";
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
@@ -8,8 +9,8 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedSongs: [],
 
 	timeRange: {
-		startYear: null,
-		endYear: null
+		startYear: MIN_YEAR,
+		endYear: MAX_YEAR
 	}
 };
 
