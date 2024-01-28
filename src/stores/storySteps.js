@@ -1,6 +1,7 @@
 import { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
-import { writable } from "svelte/store";
+import { derived, writable } from "svelte/store";
 const SEARCH_AND_FILTER_BLANK_STATE = {
+	// searchAndFilter stores
 	selectedLoveSongTypes: [],
 	selectedPerformers: [],
 	performerSearchStrings: [],
@@ -12,6 +13,9 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 		startYear: MIN_YEAR,
 		endYear: MAX_YEAR
 	}
+
+	// visualEncoding stores
+	
 };
 
 const steps = {
@@ -109,3 +113,8 @@ export const storySteps = [
 ];
 
 export const currentStoryStepIndex = writable(0);
+
+export const currentStoryStep = derived(
+	[currentStoryStepIndex],
+	([$currentStoryStepIndex]) => storySteps[$currentStoryStepIndex]
+);

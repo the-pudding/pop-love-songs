@@ -12,15 +12,15 @@
 		getInvisibleFillFromSongIndex,
 		getSongFill,
 		getSongIndexFromInvisibleFill,
-		getXPositionFromTime,
 		getYTargetPosition,
 		searchSongOnYouTube
 	} from "./viz-utils";
+	import { xForcePosition } from "$stores/visualEncodings";
 
 	// Give it an initial position
-	const forceSimulationData = songsData.map(songObject => ({
+	const forceSimulationData = songsData.map((songObject, songIndex) => ({
 		...songObject,
-		x: getXPositionFromTime(songObject.song, $viewport.width),
+		x: $xForcePosition[songIndex],
 		y: getYTargetPosition(songObject, $viewport.height)
 	}));
 
@@ -111,7 +111,7 @@
 	const updateSimulationProperties = () => {
 		if (!simulation) return;
 		simulation
-			.force("x", forceX().x((d) => getXPositionFromTime(d.song, canvas.width)).strength(2))
+			.force("x", forceX().x((_, songIndex) => $xForcePosition[songIndex]).strength(2))
 			.force("y", forceY().y((d) => getYTargetPosition(d, canvas.height)).strength(0.1))
 			// .force("y", forceY().y(canvas.height / 2).strength(0.5))
 			.force("collide", forceCollide().radius(({radius}) => radius))
