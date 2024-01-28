@@ -3,22 +3,11 @@ import {
 	LOVE_SONG_TYPE_COLOR_MAP
 } from "$data/data-constants.js";
 
-const YEAR_MAX = 2022;
-const YEAR_MIN = 1958;
-const DOMAIN = YEAR_MAX - YEAR_MIN;
+
+
 
 const Y_MARGIN = 24;
-export const STORY_STEP_CONTROLLER_BOTTOM_PADDING = 100; // TODO: export this & use it in viz layout
-
-export const RIGHT_TOOLBAR_WIDTH = 280; // TODO: probably a better way to do this *shrug*
-const X_MARGIN = 80;
-export const getXPositionFromTime = (song, canvasWidth) => {
-	const xPercentage =
-		(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal] - YEAR_MIN) / DOMAIN;
-	return (
-		X_MARGIN + xPercentage * (canvasWidth - RIGHT_TOOLBAR_WIDTH - 2 * X_MARGIN)
-	);
-};
+export const STORY_STEP_CONTROLLER_BOTTOM_PADDING = 100;
 
 export const getYTargetPosition = (
 	{ yPositionTargetPercentage },

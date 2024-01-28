@@ -1,7 +1,8 @@
-import { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
 import { derived, writable } from "svelte/store";
+import { MAX_YEAR, MIN_YEAR } from "$data/songs-data.js";
+import { getXPositionFromTime } from "./forcePositionOptions-helper.js";
+
 const SEARCH_AND_FILTER_BLANK_STATE = {
-	// searchAndFilter stores
 	selectedLoveSongTypes: [],
 	selectedPerformers: [],
 	performerSearchStrings: [],
@@ -13,9 +14,11 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 		startYear: MIN_YEAR,
 		endYear: MAX_YEAR
 	}
+};
 
-	// visualEncoding stores
-	
+const VISUAL_ENCODING_BLANK_STATE = {
+	calculateXForcePosition: getXPositionFromTime,
+	calculateYForcePosition: () => {}
 };
 
 const steps = {
@@ -24,7 +27,10 @@ const steps = {
 	// (not so much filtering as) encoding (x/y pos, color).
 	opening: {
 		text: "These are the 5k songs from the last 60 years of Billboard Top 10",
-		searchAndFilterState: SEARCH_AND_FILTER_BLANK_STATE
+		searchAndFilterState: SEARCH_AND_FILTER_BLANK_STATE,
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
+		}
 	},
 	someThingsHaveChangedLittle: {
 		text: "Some things have changed little -- artists still sing the same sort of pop-y love songs",
@@ -41,6 +47,9 @@ const steps = {
 				"('til) I Kissed You",
 				"Then He Kissed Me"
 			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
 		}
 	},
 	someThingsHaveChangedALot: {
@@ -49,12 +58,18 @@ const steps = {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			// TODO: fill in
 			selectedSongs: ["Come Softly To Me", "WAP"]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
 		}
 	},
 	isTheLoveSongDying: {
 		text: "It raises a question: Is the love song dying?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
 		}
 	},
 
@@ -69,6 +84,9 @@ const steps = {
 				startYear: 1958,
 				endYear: 1969
 			}
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
 		}
 	},
 	loveSongsAndSerenades: {
@@ -80,6 +98,9 @@ const steps = {
 				startYear: 1958,
 				endYear: 1969
 			}
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
 		}
 	},
 	courtshipAndAntisipation: {
@@ -91,6 +112,9 @@ const steps = {
 				startYear: 1958,
 				endYear: 1969
 			}
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
 		}
 	}
 

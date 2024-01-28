@@ -3,7 +3,7 @@
 	import songsData from "$data/songs-data.js";
 	import { songIsSelected } from "$stores/dataProperties";
 	import SongInfo from "./SongInfo.svelte";
-	import { RIGHT_TOOLBAR_WIDTH } from "./viz-utils";
+	import { RIGHT_TOOLBAR_WIDTH } from "$stores/forcePositionOptions-helper";
 
 	const selectedSongs = derived(
 		songIsSelected,
