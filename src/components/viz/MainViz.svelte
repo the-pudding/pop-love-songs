@@ -15,13 +15,13 @@
 		getYTargetPosition,
 		searchSongOnYouTube
 	} from "./viz-utils";
-	import { xForcePosition } from "$stores/visualEncodings";
+	import { xForcePosition, yForcePosition } from "$stores/visualEncodings";
 
 	// Give it an initial position
 	const forceSimulationData = songsData.map((songObject, songIndex) => ({
 		...songObject,
 		x: $xForcePosition[songIndex],
-		y: getYTargetPosition(songObject, $viewport.height)
+		y: $yForcePosition[songIndex]
 	}));
 
 	let canvas;
@@ -112,8 +112,7 @@
 		if (!simulation) return;
 		simulation
 			.force("x", forceX().x((_, songIndex) => $xForcePosition[songIndex]).strength(2))
-			.force("y", forceY().y((d) => getYTargetPosition(d, canvas.height)).strength(0.1))
-			// .force("y", forceY().y(canvas.height / 2).strength(0.5))
+			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex]).strength(1))
 			.force("collide", forceCollide().radius(({radius}) => radius))
 			.alpha(0.2)
 			.restart();
@@ -122,8 +121,8 @@
 	// @michelle: I'm noticing a growing list of reactive elements here, and I'm wondering if we should be using a derived store for the data, and just make it one thing? 
 	// Or is this granularity normal / good for control?
 	$: $songIsSelected, $viewport.width, $viewport.height, updateViz();
-	// note: currently, simulation need only change (ie forces are updated) when viewport changes, or when xForcePosition changes (ie to update the forces)
-	$: $xForcePosition, $viewport.width, $viewport.height, updateSimulationProperties(); 
+	// simulation force layout properties need to be update when viewport or target x/yForcePosition changes
+	$: $xForcePosition, $yForcePosition, $viewport.width, $viewport.height, updateSimulationProperties(); 
 	const updateViz = () => {
 		resizeCanvases();
 		updateVisibleAndInvisibleCanvases();

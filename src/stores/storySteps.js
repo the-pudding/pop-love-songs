@@ -21,7 +21,7 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 
 const VISUAL_ENCODING_BLANK_STATE = {
 	calculateXForcePosition: getXPositionFromTime,
-	calculateYForcePosition: () => {}
+	calculateYForcePosition: fractionOfScreenFactory(0.2) // TODO: udpate to be snake chart by default
 };
 
 const steps = {

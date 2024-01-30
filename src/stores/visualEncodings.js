@@ -14,7 +14,14 @@ export const xForcePosition = derived(
 	}
 );
 
-// NA: yForcePositionAsAPercentOfScreen
+export const yForcePosition = derived(
+	[viewport, currentStoryStep],
+	([$viewport, $currentStoryStep]) => {
+		const { height } = $viewport;
+		const { calculateYForcePosition } = $currentStoryStep.visualEncodings;
+		return songsData.map(({ song }) => calculateYForcePosition(song, height));
+	}
+);
 
 // Size
 
