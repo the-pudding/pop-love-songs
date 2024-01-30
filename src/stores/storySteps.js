@@ -1,6 +1,9 @@
 import { derived, writable } from "svelte/store";
 import { MAX_YEAR, MIN_YEAR } from "$data/songs-data.js";
-import { getXPositionFromTime } from "./forcePositionOptions-helper.js";
+import {
+	fractionOfScreenFactory,
+	getXPositionFromTime
+} from "./forcePositionOptions-helper.js";
 
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
@@ -29,7 +32,8 @@ const steps = {
 		text: "These are the 5k songs from the last 60 years of Billboard Top 10",
 		searchAndFilterState: SEARCH_AND_FILTER_BLANK_STATE,
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
+			calculateXForcePosition: fractionOfScreenFactory(0.5),
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
 		}
 	},
 	someThingsHaveChangedLittle: {

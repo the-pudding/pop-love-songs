@@ -1,6 +1,10 @@
 // TODO: move the existing x & y functinos, as well as the snake chart calculation (which maybe is a store? maybe ignore for now to get something working)
-import {SONG_DATA_COLUMNS_ENUM} from "$data/data-constants.js";
+import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
+
+/*
+ * All functions take in song and a canvas width and returns a position
+ */
 
 // --- xForcePosition options ---
 
@@ -15,3 +19,10 @@ export const getXPositionFromTime = (song, canvasWidth) => {
 		X_MARGIN + xPercentage * (canvasWidth - RIGHT_TOOLBAR_WIDTH - 2 * X_MARGIN)
 	);
 };
+
+// x and y
+
+export const fractionOfScreenFactory =
+	(fraction = 0.5) =>
+	(song, canvasWidthOrHeight) =>
+		X_MARGIN + fraction * (canvasWidthOrHeight - 2 * X_MARGIN);

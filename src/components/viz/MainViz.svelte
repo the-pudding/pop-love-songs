@@ -122,8 +122,8 @@
 	// @michelle: I'm noticing a growing list of reactive elements here, and I'm wondering if we should be using a derived store for the data, and just make it one thing? 
 	// Or is this granularity normal / good for control?
 	$: $songIsSelected, $viewport.width, $viewport.height, updateViz();
-	// note: currently, simulation need only change (ie forces are updated) when viewport changes
-	$: $viewport.width, $viewport.height, updateSimulationProperties(); 
+	// note: currently, simulation need only change (ie forces are updated) when viewport changes, or when xForcePosition changes (ie to update the forces)
+	$: $xForcePosition, $viewport.width, $viewport.height, updateSimulationProperties(); 
 	const updateViz = () => {
 		resizeCanvases();
 		updateVisibleAndInvisibleCanvases();
