@@ -4,6 +4,7 @@
 	import { songIsSelected } from "$stores/dataProperties";
 	import SongInfo from "./SongInfo.svelte";
 	import { RIGHT_TOOLBAR_WIDTH } from "$stores/forcePositionOptions-helper";
+	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 
 	const selectedSongs = derived(
 		songIsSelected,
@@ -11,11 +12,34 @@
 			$songIsSelected[index]
 		)
 	);
+
+	const performerSongCount = derived(
+		selectedSongs,
+		($selectedSongs) => {
+			const performers = $selectedSongs.reduce((performers, {song}) => {
+				const performer = song[SONG_DATA_COLUMNS_ENUM.performer];
+				if (performers[performer]) {
+					performers[performer]++;
+				} else {
+					performers[performer] = 1;
+				}
+				return performers;
+			}, {});
+			const MIN_HITS = 2;
+			return Object.entries(performers).filter(([, count]) => count >= MIN_HITS).sort(([, countA], [, countB]) => countB - countA);
+		}
+	);
 </script>
 
 <section style:width={`${RIGHT_TOOLBAR_WIDTH}px`}>
-	<h4>{$selectedSongs.length} selected</h4>
+	<h4>Top 20 artists for selection</h4>
+	<ul>
+		{#each ($performerSongCount).slice(0, 20) as [performer, count]}
+			<li>{performer} ({count})</li>
+		{/each}
+	</ul>
 
+	<h4>{$selectedSongs.length} songs selected</h4>
 	<ul>
 		<!-- TEMP: only render a susbet to improve perf until we use a virtualized list -->
 		{#each ($selectedSongs).slice(0, 100) as s}
