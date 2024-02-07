@@ -2,7 +2,8 @@ import { derived, writable } from "svelte/store";
 import { MAX_YEAR, MIN_YEAR } from "$data/songs-data.js";
 import {
 	fractionOfScreenFactory,
-	getXPositionFromTime
+	getXPositionFromTime,
+	getYPositionInSnakeChart
 } from "./forcePositionOptions-helper.js";
 
 const SEARCH_AND_FILTER_BLANK_STATE = {
@@ -21,7 +22,7 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 
 const VISUAL_ENCODING_BLANK_STATE = {
 	calculateXForcePosition: getXPositionFromTime,
-	calculateYForcePosition: fractionOfScreenFactory(0.2) // TODO: udpate to be snake chart by default
+	calculateYForcePosition: getYPositionInSnakeChart // TODO: udpate to be snake chart by default
 };
 
 const steps = {

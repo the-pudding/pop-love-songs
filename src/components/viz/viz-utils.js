@@ -3,19 +3,7 @@ import {
 	LOVE_SONG_TYPE_COLOR_MAP
 } from "$data/data-constants.js";
 
-
-
-
-const Y_MARGIN = 24;
 export const STORY_STEP_CONTROLLER_BOTTOM_PADDING = 100;
-
-export const getYTargetPosition = (
-	{ yPositionTargetPercentage },
-	canvasHeight
-) =>
-	Y_MARGIN +
-	yPositionTargetPercentage *
-		(canvasHeight - (2 * Y_MARGIN + STORY_STEP_CONTROLLER_BOTTOM_PADDING));
 
 const RADIUS_SCALING_FACTOR = 1.2; // TODO: this should probably be responsive to available screen area
 export const calculateRadiusFromPopularityScore = (

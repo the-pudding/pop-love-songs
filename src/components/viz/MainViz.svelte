@@ -12,7 +12,6 @@
 		getInvisibleFillFromSongIndex,
 		getSongFill,
 		getSongIndexFromInvisibleFill,
-		getYTargetPosition,
 		searchSongOnYouTube
 	} from "./viz-utils";
 	import { xForcePosition, yForcePosition } from "$stores/visualEncodings";
