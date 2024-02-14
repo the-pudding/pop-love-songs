@@ -1,5 +1,5 @@
 <script>
-    import {selectedGenres, selectedGenders, selectedSongs, selectedLoveSongTypes, selectedPerformers, performerSearchStrings, timeRange} from "$stores/searchAndFilter.js"
+    import {selectedGenres, selectedGenders, selectedSongs, selectedLoveSongTypes, selectedPerformers, timeRange} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
 
@@ -16,7 +16,6 @@
         selectedGenres.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.selectedGenres])
         selectedLoveSongTypes.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.selectedLoveSongTypes])
         selectedPerformers.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.selectedPerformers])
-        performerSearchStrings.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.performerSearchStrings])
         timeRange.set({...storySteps[$currentStoryStepIndex].searchAndFilterState.timeRange})
     }
 

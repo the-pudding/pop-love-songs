@@ -8,14 +8,12 @@ import {
 	selectedSongs,
 	selectedLoveSongTypes,
 	selectedPerformers,
-	performerSearchStrings,
 	timeRange
 } from "./searchAndFilter.js";
 
 export const songIsSelected = derived(
 	[
 		selectedPerformers,
-		performerSearchStrings,
 		selectedLoveSongTypes,
 		selectedGenres,
 		selectedGenders,
@@ -24,7 +22,6 @@ export const songIsSelected = derived(
 	],
 	([
 		$selectedPerformers,
-		$performerSearchStrings,
 		$selectedLoveSongTypes,
 		$selectedGenres,
 		$selectedGenders,

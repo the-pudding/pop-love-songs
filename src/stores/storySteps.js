@@ -9,7 +9,6 @@ import {
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
 	selectedPerformers: [],
-	performerSearchStrings: [],
 	selectedGenders: [],
 	selectedGenres: [],
 	selectedSongs: [],
@@ -84,7 +83,7 @@ const steps = {
 		text: "Welcome to the late 50s and 60s, with artists like Elvis Presley, The Beatles, and The Supremes.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			performerSearchStrings: ["Elvis Presley", "The Beatles", "The Supremes"],
+			selectedPerformers: ["Elvis Presley", "The Beatles", "The Supremes"],
 			timeRange: {
 				startYear: 1958,
 				endYear: 1969
