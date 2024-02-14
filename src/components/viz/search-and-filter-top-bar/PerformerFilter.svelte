@@ -17,7 +17,6 @@
         label: performer,
         value: performer
     }));
-    debugger
 
     let userSelectedPerformers = [];
 
