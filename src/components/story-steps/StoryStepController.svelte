@@ -4,10 +4,18 @@
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
 
     const onPreviousButtonClick = () => {
-        $currentStoryStepIndex--;
+        if ($currentStoryStepIndex > 0) $currentStoryStepIndex--;
     }
     const onNextButtonClick = () => {
-        $currentStoryStepIndex++;
+        if ($currentStoryStepIndex < storySteps.length - 1) $currentStoryStepIndex++;
+    }
+
+    const handleKeyDown = (e) => {
+        if (e.key === "ArrowLeft") {
+            onPreviousButtonClick()
+        } else if (e.key === "ArrowRight") {
+            onNextButtonClick()
+        }
     }
 
     const updateFilterFilterState = () => {
@@ -21,6 +29,8 @@
 
     $: $currentStoryStepIndex, updateFilterFilterState()
 </script>
+
+<svelte:window on:keydown={handleKeyDown} />
 
 <div class="container" style:height={`${STORY_STEP_CONTROLLER_BOTTOM_PADDING}px`}>
     <h3 class="title">{storySteps[$currentStoryStepIndex].text}</h3>
