@@ -3,6 +3,8 @@
 		SONG_DATA_COLUMNS_ENUM,
 		LOVE_SONG_TYPE_COLOR_MAP
 	} from "$data/data-constants.js";
+	import PerformerNames from "./PerformerNames.svelte";
+	
 	export let song;
 
 	$: loveSongSubType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
@@ -23,7 +25,9 @@
 <div class="love-song-type" style:color={loveSongColor}>
 	{loveSongSubType}
 </div>
-<div class="performer">by {song[SONG_DATA_COLUMNS_ENUM.performer]}</div>
+<div class="performer">
+	<PerformerNames {song} />
+</div>
 
 <style>
 	.love-song-type {

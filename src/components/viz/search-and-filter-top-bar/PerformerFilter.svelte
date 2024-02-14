@@ -3,15 +3,21 @@
     import MultiSelect from "svelte-multiselect"; // (eventually we'll replace this with our own Select component likely)
     import {selectedPerformers} from "$stores/searchAndFilter.js";
     import songsData from "$data/songs-data.js";
-    import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
+	import { getArrayOfPerformers } from "$data/data-utils";
+
+    const nonUniqueListOfPerformers = songsData.reduce((accum, {song}) => ([
+        ...accum,
+        ...getArrayOfPerformers(song)
+    ]), []);
 
     const performers = [
-        ...new Set(songsData.map(({song}) => song[SONG_DATA_COLUMNS_ENUM.performer]))
+        ...new Set([...nonUniqueListOfPerformers])
     ];
     const performerOptions = performers.map((performer) => ({
         label: performer,
         value: performer
     }));
+    debugger
 
     let userSelectedPerformers = [];
 

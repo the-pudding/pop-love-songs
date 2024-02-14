@@ -1,5 +1,5 @@
 export const SONG_DATA_COLUMNS_ENUM = {
-	performer: 0,
+	performers_list_str: 0,
 	song: 1,
 	generic_genre: 2,
 	gender: 3,

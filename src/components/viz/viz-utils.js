@@ -64,7 +64,9 @@ export const getSongFill = (song, songIsSelected) => {
 export const searchSongOnYouTube = (song) => {
 	const youtubeSearchURL = `https://www.youtube.com/results?search_query=${
 		song[SONG_DATA_COLUMNS_ENUM.song]
-	}+by+${song[SONG_DATA_COLUMNS_ENUM.performer]}`.replace(" ", "+");
+	}+by+${song[SONG_DATA_COLUMNS_ENUM.performers_list_str]}`
+		.replace("|", ",")
+		.replace(" ", "+");
 
 	window.open(youtubeSearchURL, "_blank");
 };

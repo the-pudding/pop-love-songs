@@ -4,7 +4,7 @@
 	import { songIsSelected } from "$stores/dataProperties";
 	import SongInfo from "./SongInfo.svelte";
 	import { RIGHT_TOOLBAR_WIDTH } from "$stores/forcePositionOptions-helper";
-	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
+	import { getArrayOfPerformers } from "$data/data-utils";
 
 	const selectedSongs = derived(
 		songIsSelected,
@@ -17,12 +17,13 @@
 		selectedSongs,
 		($selectedSongs) => {
 			const performers = $selectedSongs.reduce((performers, {song}) => {
-				const performer = song[SONG_DATA_COLUMNS_ENUM.performer];
-				if (performers[performer]) {
-					performers[performer]++;
-				} else {
-					performers[performer] = 1;
-				}
+				getArrayOfPerformers(song).forEach(performer => {
+					if (performers[performer]) {
+						performers[performer]++;
+					} else {
+						performers[performer] = 1;
+					}
+				});
 				return performers;
 			}, {});
 			const MIN_HITS = 2;

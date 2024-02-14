@@ -1,6 +1,7 @@
 import { derived } from "svelte/store";
 import songsData from "$data/songs-data.js";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
+import { getArrayOfPerformers } from "$data/data-utils.js";
 import {
 	selectedGenres,
 	selectedGenders,
@@ -44,16 +45,12 @@ export const songIsSelected = derived(
 				$selectedLoveSongTypes.includes(loveSongType) ||
 				$selectedLoveSongTypes.length === 0;
 
+			const performers = getArrayOfPerformers(song);
 			const performerSelected =
 				$selectedPerformers.length === 0 ||
-				$selectedPerformers.includes(song[SONG_DATA_COLUMNS_ENUM.performer]);
-
-			const includesAPerformerSearchString =
-				$performerSearchStrings.length === 0 ||
-				$performerSearchStrings.some((performerSearchString) =>
-					song[SONG_DATA_COLUMNS_ENUM.performer]
-						.toLowerCase()
-						.includes(performerSearchString.toLowerCase())
+				// See if there is any overlap between the selected performers and the song's performers
+				$selectedPerformers.some((selectedPerformer) =>
+					performers.includes(selectedPerformer)
 				);
 
 			const songSelected =
@@ -61,14 +58,16 @@ export const songIsSelected = derived(
 				$selectedSongs.length === 0;
 
 			const withinTimeRange =
-				(!$timeRange.startYear || $timeRange.startYear <= song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]) &&
-				(!$timeRange.endYear || $timeRange.endYear >= song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]);
+				(!$timeRange.startYear ||
+					$timeRange.startYear <=
+						song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]) &&
+				(!$timeRange.endYear ||
+					$timeRange.endYear >= song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]);
 			return (
 				genderSelected &&
 				genreSelected &&
 				loveSongTypeSelected &&
 				performerSelected &&
-				includesAPerformerSearchString &&
 				songSelected &&
 				withinTimeRange
 			);
