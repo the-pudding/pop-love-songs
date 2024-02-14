@@ -2,10 +2,10 @@
     import {onDestroy} from "svelte";
     import MultiSelect from "svelte-multiselect"; // (eventually we'll replace this with our own Select component likely)
     import {selectedPerformers} from "$stores/searchAndFilter.js";
-    import songsData from "$data/songs-data.js";
+    import {selectedSongsData} from "$stores/dataProperties.js";
 	import { getArrayOfPerformers } from "$data/data-utils";
 
-    const nonUniqueListOfPerformers = songsData.reduce((accum, {song}) => ([
+    const nonUniqueListOfPerformers = $selectedSongsData.reduce((accum, {song}) => ([
         ...accum,
         ...getArrayOfPerformers(song)
     ]), []);

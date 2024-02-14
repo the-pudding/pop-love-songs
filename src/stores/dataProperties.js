@@ -71,3 +71,7 @@ export const songIsSelected = derived(
 		}),
 	[]
 );
+
+export const selectedSongsData = derived(songIsSelected, ($songIsSelected) =>
+	songsData.filter((song, index) => $songIsSelected[index])
+);

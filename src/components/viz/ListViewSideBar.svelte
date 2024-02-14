@@ -1,22 +1,14 @@
 <script>
 	import {derived} from "svelte/store";
-	import songsData from "$data/songs-data.js";
-	import { songIsSelected } from "$stores/dataProperties";
+	import { selectedSongsData } from "$stores/dataProperties.js";
 	import SongInfo from "./SongInfo.svelte";
 	import { RIGHT_TOOLBAR_WIDTH } from "$stores/forcePositionOptions-helper";
 	import { getArrayOfPerformers } from "$data/data-utils";
 
-	const selectedSongs = derived(
-		songIsSelected,
-		($songIsSelected) => songsData.filter((song, index) =>
-			$songIsSelected[index]
-		)
-	);
-
 	const performerSongCount = derived(
-		selectedSongs,
-		($selectedSongs) => {
-			const performers = $selectedSongs.reduce((performers, {song}) => {
+		selectedSongsData,
+		($selectedSongsData) => {
+			const performers = $selectedSongsData.reduce((performers, {song}) => {
 				getArrayOfPerformers(song).forEach(performer => {
 					if (performers[performer]) {
 						performers[performer]++;
@@ -40,10 +32,10 @@
 		{/each}
 	</ul>
 
-	<h4>{$selectedSongs.length} songs selected</h4>
+	<h4>{$selectedSongsData.length} songs selected</h4>
 	<ul>
 		<!-- TEMP: only render a susbet to improve perf until we use a virtualized list -->
-		{#each ($selectedSongs).slice(0, 100) as s}
+		{#each ($selectedSongsData).slice(0, 100) as s}
 			<div>
 				<SongInfo song={s.song} />
 			</div>
