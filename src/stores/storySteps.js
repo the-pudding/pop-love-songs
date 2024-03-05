@@ -135,7 +135,7 @@ const steps = {
 		}
 	},
 	isTheLoveSongDyingTitleStep: {
-		text: "... is the love song dying?",
+		text: "... is the love song dying? (some people think so) [show Boomber Bob screenshots]",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
