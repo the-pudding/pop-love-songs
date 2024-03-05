@@ -1,4 +1,5 @@
 import { derived, writable } from "svelte/store";
+import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { MAX_YEAR, MIN_YEAR } from "$data/songs-data.js";
 import {
 	fractionOfScreenFactory,
@@ -12,6 +13,8 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedGenders: [],
 	selectedGenres: [],
 	selectedSongs: [],
+
+	columnsToFilterVisibilityOn: [],
 
 	timeRange: {
 		startYear: MIN_YEAR,
@@ -87,7 +90,8 @@ const steps = {
 			timeRange: {
 				startYear: 1958,
 				endYear: 1969
-			}
+			},
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.performers_list_str]
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE
