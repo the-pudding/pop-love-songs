@@ -167,7 +167,7 @@ const steps = {
 		}
 	},
 	aFewArtistsKeepThemAliveToday: {
-		text: "Only a few artists like Biebs & T-Swiftie keep them alive today [see side panel]",
+		text: "Only a few artists like Biebs & T-Swift keep them alive today [see side panel]",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -181,6 +181,112 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: fractionOfScreenFactory(0.5)
+		}
+	},
+	introducingLongingAndHeartbreak: {
+		text: "But there are also songs where love isn't so easy: Heartbreak & Longing...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+	introducingCourtship: {
+		text: "... or where love is still sprouting: Courtship & Antisipation...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+	introducingItsComplicated: {
+		text: "... or where love has become complicated: It's Complicated...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+	introducingSexualConquest: {
+		text: "... or, as the younger generations pioneered, where it gets steamy: Sexual Conquest...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.sexualConquest
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+	introducingGoodRiddance: {
+		text: "... sometimes, its just a Good Riddance (ask Kelly Clarkson)...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				// LOVE_SONG_TYPE_CONSTANTS.serenade,
+				// LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				// LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				// LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				// LOVE_SONG_TYPE_CONSTANTS.sexualConquest,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+	introducingPlatonicAndLoveSongForTheSelf: {
+		text: "... arguably the least love song-y, Platonic & Love Song for the Self ...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		selectedLoveSongTypes: [
+			LOVE_SONG_TYPE_CONSTANTS.platonicLove,
+			LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
+		],
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
 		}
 	}
 };
@@ -198,7 +304,13 @@ export const storySteps = [
 
 	// Body:
 	steps.serenadesPeakedInThe90s,
-	steps.aFewArtistsKeepThemAliveToday
+	steps.aFewArtistsKeepThemAliveToday,
+	steps.introducingLongingAndHeartbreak,
+	steps.introducingCourtship,
+	steps.introducingItsComplicated,
+	steps.introducingGoodRiddance,
+	steps.introducingSexualConquest,
+	steps.introducingPlatonicAndLoveSongForTheSelf
 
 	// Conclusion:
 ];
