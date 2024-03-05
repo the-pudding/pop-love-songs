@@ -6,9 +6,9 @@ export const selectedGenders = writable([]);
 export const selectedSongs = writable([]);
 export const selectedLoveSongTypes = writable([]);
 export const selectedPerformers = writable([]);
-
-// TODO: either finalize or make this programatically generated
 export const timeRange = writable({
 	startYear: MIN_YEAR,
 	endYear: MAX_YEAR
 });
+
+export const columnsToFilterVisibilityOn = writable([]);

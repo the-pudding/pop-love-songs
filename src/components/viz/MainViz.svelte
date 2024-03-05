@@ -4,7 +4,7 @@
 	import { forceSimulation, forceX, forceY, forceCollide } from "d3";
 
 	import viewport from "$stores/viewport.js";
-	import { songIsSelected } from "$stores/dataProperties";
+	import { songIsSelected, songIsVisible } from "$stores/dataProperties";
 	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
 
 	import songsData from "$data/songs-data.js";
@@ -40,9 +40,9 @@
 		// Draw the circles
 		forceSimulationData.forEach(({song, radius, x, y}, songIndex) => {
 			const isSelected = $songIsSelected[songIndex];
-			const isHidden = !isSelected; // TODO: eventually we'll have a specific way to check this
+			const isVisible = $songIsVisible[songIndex];
 			const circle = new Path2D();
-			const displayRadius = isHidden ? 0 : radius;
+			const displayRadius = isVisible ? radius : 0;
 			circle.arc(x, y, displayRadius, 0, 2 * Math.PI);
 
 			// Only selected elements can be hovered
@@ -110,8 +110,7 @@
 		simulation
 			.force("x", forceX().x((_, songIndex) => $xForcePosition[songIndex]).strength(2))
 			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex]).strength(1))
-			// TODO: eventually we'll have a specific way to check this
-			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsSelected[songIndex] ? radius : 0))
+			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsVisible[songIndex] ? radius : 0))
 			.alpha(0.2)
 			.restart();
 	};

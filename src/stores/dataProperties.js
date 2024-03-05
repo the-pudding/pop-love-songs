@@ -8,7 +8,8 @@ import {
 	selectedSongs,
 	selectedLoveSongTypes,
 	selectedPerformers,
-	timeRange
+	timeRange,
+	columnsToFilterVisibilityOn
 } from "./searchAndFilter.js";
 
 export const genderSelected = derived(
@@ -100,6 +101,70 @@ export const songIsSelected = derived(
 		songsData.map((song, index) =>
 			subStores.every((subStore) => subStore[index])
 		),
+	[]
+);
+
+export const songIsVisible = derived(
+	[
+		genderSelected,
+		genreSelected,
+		loveSongTypeSelected,
+		performerSelected,
+		songSelected,
+		withinTimeRange,
+		columnsToFilterVisibilityOn
+	],
+	([
+		$genderSelected,
+		$genreSelected,
+		$loveSongTypeSelected,
+		$performerSelected,
+		$songSelected,
+		$withinTimeRange,
+		$columnsToFilterVisibilityOn
+	]) =>
+		songsData.map((song, index) => {
+			// If we're filtering visibility based on a given column, then it must be selected to be visible.
+			const genderVisible = $columnsToFilterVisibilityOn.includes(
+				SONG_DATA_COLUMNS_ENUM.gender
+			)
+				? $genderSelected[index]
+				: true;
+			const genreVisible = $columnsToFilterVisibilityOn.includes(
+				SONG_DATA_COLUMNS_ENUM.generic_genre
+			)
+				? $genreSelected[index]
+				: true;
+			const loveSongTypeVisible = $columnsToFilterVisibilityOn.includes(
+				SONG_DATA_COLUMNS_ENUM.love_song_sub_type
+			)
+				? $loveSongTypeSelected[index]
+				: true;
+			const performerVisible = $columnsToFilterVisibilityOn.includes(
+				SONG_DATA_COLUMNS_ENUM.performers_list_str
+			)
+				? $performerSelected[index]
+				: true;
+			const songVisible = $columnsToFilterVisibilityOn.includes(
+				SONG_DATA_COLUMNS_ENUM.song
+			)
+				? $songSelected[index]
+				: true;
+			const timeRangeVisible = $columnsToFilterVisibilityOn.includes(
+				SONG_DATA_COLUMNS_ENUM.date_as_decimal
+			)
+				? $withinTimeRange[index]
+				: true;
+
+			return (
+				genderVisible &&
+				genreVisible &&
+				loveSongTypeVisible &&
+				performerVisible &&
+				songVisible &&
+				timeRangeVisible
+			);
+		}),
 	[]
 );
 
