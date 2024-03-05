@@ -11,64 +11,95 @@ import {
 	timeRange
 } from "./searchAndFilter.js";
 
-export const songIsSelected = derived(
-	[
-		selectedPerformers,
-		selectedLoveSongTypes,
-		selectedGenres,
-		selectedGenders,
-		selectedSongs,
-		timeRange
-	],
-	([
-		$selectedPerformers,
-		$selectedLoveSongTypes,
-		$selectedGenres,
-		$selectedGenders,
-		$selectedSongs,
-		$timeRange
-	]) =>
-		songsData.map(({ song }) => {
-			const genderSelected =
+export const genderSelected = derived(
+	[selectedGenders],
+	([$selectedGenders]) =>
+		songsData.map(
+			({ song }) =>
 				$selectedGenders.includes(song[SONG_DATA_COLUMNS_ENUM.gender]) ||
-				$selectedGenders.length === 0;
+				$selectedGenders.length === 0
+		),
+	[]
+);
 
-			const genreSelected =
+export const genreSelected = derived(
+	[selectedGenres],
+	([$selectedGenres]) =>
+		songsData.map(
+			({ song }) =>
 				$selectedGenres.includes(song[SONG_DATA_COLUMNS_ENUM.generic_genre]) ||
-				$selectedGenres.length === 0;
+				$selectedGenres.length === 0
+		),
+	[]
+);
 
+export const loveSongTypeSelected = derived(
+	[selectedLoveSongTypes],
+	([$selectedLoveSongTypes]) =>
+		songsData.map(({ song }) => {
 			const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
-			const loveSongTypeSelected =
-				$selectedLoveSongTypes.includes(loveSongType) ||
-				$selectedLoveSongTypes.length === 0;
-
-			const performers = getArrayOfPerformers(song);
-			const performerSelected =
-				$selectedPerformers.length === 0 ||
-				// See if there is any overlap between the selected performers and the song's performers
-				$selectedPerformers.some((selectedPerformer) =>
-					performers.includes(selectedPerformer)
-				);
-
-			const songSelected =
-				$selectedSongs.includes(song[SONG_DATA_COLUMNS_ENUM.song]) ||
-				$selectedSongs.length === 0;
-
-			const withinTimeRange =
-				(!$timeRange.startYear ||
-					$timeRange.startYear <=
-						song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]) &&
-				(!$timeRange.endYear ||
-					$timeRange.endYear >= song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]);
 			return (
-				genderSelected &&
-				genreSelected &&
-				loveSongTypeSelected &&
-				performerSelected &&
-				songSelected &&
-				withinTimeRange
+				$selectedLoveSongTypes.includes(loveSongType) ||
+				$selectedLoveSongTypes.length === 0
 			);
 		}),
+	[]
+);
+
+export const performerSelected = derived(
+	[selectedPerformers],
+	([$selectedPerformers]) =>
+		songsData.map(({ song }) => {
+			const performers = getArrayOfPerformers(song);
+			return (
+				$selectedPerformers.length === 0 ||
+				$selectedPerformers.some((selectedPerformer) =>
+					performers.includes(selectedPerformer)
+				)
+			);
+		}),
+	[]
+);
+
+export const songSelected = derived(
+	[selectedSongs],
+	([$selectedSongs]) =>
+		songsData.map(
+			({ song }) =>
+				$selectedSongs.includes(song[SONG_DATA_COLUMNS_ENUM.song]) ||
+				$selectedSongs.length === 0
+		),
+	[]
+);
+
+export const withinTimeRange = derived(
+	[timeRange],
+	([$timeRange]) =>
+		songsData.map(({ song }) => {
+			const startYear = $timeRange.startYear;
+			const endYear = $timeRange.endYear;
+			const dateAsDecimal = song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
+			return (
+				(!startYear || startYear <= dateAsDecimal) &&
+				(!endYear || endYear >= dateAsDecimal)
+			);
+		}),
+	[]
+);
+
+export const songIsSelected = derived(
+	[
+		genderSelected,
+		genreSelected,
+		loveSongTypeSelected,
+		performerSelected,
+		songSelected,
+		withinTimeRange
+	],
+	(subStores) =>
+		songsData.map((song, index) =>
+			subStores.every((subStore) => subStore[index])
+		),
 	[]
 );
 
