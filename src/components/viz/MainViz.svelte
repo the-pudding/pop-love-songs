@@ -39,19 +39,17 @@
 
 		// Draw the circles
 		forceSimulationData.forEach(({song, radius, x, y}, songIndex) => {
-			const circle = new Path2D();
-			circle.arc(x, y, radius, 0, 2 * Math.PI);
-
 			const isSelected = $songIsSelected[songIndex];
+			const isHidden = !isSelected; // TODO: eventually we'll have a specific way to check this
+			const circle = new Path2D();
+			const displayRadius = isHidden ? 0 : radius;
+			circle.arc(x, y, displayRadius, 0, 2 * Math.PI);
 
-			// Invisible
+			// Only selected elements can be hovered
 			if (isSelected) {
-				// prevent hover events on non-selected songs
 				invisibleContext.fillStyle = getInvisibleFillFromSongIndex(songIndex);
 				invisibleContext.fill(circle);
 			}
-
-			// Visible
 			context.fillStyle = getSongFill(song, isSelected);
 			context.fill(circle);
 		});
@@ -112,7 +110,8 @@
 		simulation
 			.force("x", forceX().x((_, songIndex) => $xForcePosition[songIndex]).strength(2))
 			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex]).strength(1))
-			.force("collide", forceCollide().radius(({radius}) => radius))
+			// TODO: eventually we'll have a specific way to check this
+			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsSelected[songIndex] ? radius : 0))
 			.alpha(0.2)
 			.restart();
 	};
