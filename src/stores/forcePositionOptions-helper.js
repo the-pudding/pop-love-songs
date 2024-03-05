@@ -141,6 +141,9 @@ export const getYPositionInSnakeChart = (song, canvasHeight) =>
 // x and y
 
 export const fractionOfScreenFactory =
-	(fraction = 0.5) =>
-	(song, canvasWidthOrHeight) =>
-		X_MARGIN + fraction * (canvasWidthOrHeight - 2 * X_MARGIN);
+	(fraction = 0.5, randomVariance = 0.05) =>
+		(song, canvasWidthOrHeight) => {
+			const range = canvasWidthOrHeight - 2 * X_MARGIN;
+			const randomOffset = range * randomVariance * (Math.random() - 1)
+			return randomOffset + X_MARGIN + (fraction) * range
+		};

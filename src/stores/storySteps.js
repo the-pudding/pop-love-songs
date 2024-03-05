@@ -28,22 +28,76 @@ const VISUAL_ENCODING_BLANK_STATE = {
 };
 
 const steps = {
-	// INTRO TODOS: we need the ability to NOT show love song type colors
-	// This gets into adding a  branch of specification properties focused on
-	// (not so much filtering as) encoding (x/y pos, color).
-	opening: {
-		text: "These are the 5k songs from the last 60 years of Billboard Top 10",
-		searchAndFilterState: SEARCH_AND_FILTER_BLANK_STATE,
+	thisIsAHitSong: {
+		text: "This is a hit song. [11 weeks on the Billboard Top 10]",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedSongs: ["Let It Be"],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.song]
+		},
 		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: fractionOfScreenFactory(0.5),
 			calculateYForcePosition: fractionOfScreenFactory(0.5)
 		}
 	},
-	someThingsHaveChangedLittle: {
-		text: "Some things have changed little -- artists still sing the same sort of pop-y love songs",
+	thisSongWasRankedForEvenLonger: {
+		text: "This is a song that was listed on Billboard Top 10 for even longer. [57 weeks]",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			// TODO: fill in
+			selectedSongs: ["Let It Be", "Blinding Lights"],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.song]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: fractionOfScreenFactory(0.5),
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
+		}
+	},
+	thisSongIsASerenade: {
+		text: "This Top 10 hit is a love song -- specifically a Serenade...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedSongs: ["Let It Be", "Blinding Lights", "Bubbly"],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.song]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: fractionOfScreenFactory(0.5),
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
+		}
+	},
+	allTheSerenadesInAClutser: {
+		text: "We've been singing Serenades for a long time...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: ["Serenade"],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: fractionOfScreenFactory(0.5),
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
+		}
+	},
+	allTheSerenadesInOverTime: {
+		text: "... here are all the Billboard Top 10 Serenades spread from 1959 to through 2022",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: ["Serenade"],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
+		}
+	},
+	callingOutAFewSerenades: {
+		text: "You probably recognize quite a few...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: ["Serenade"],
 			selectedSongs: [
 				"Roses Are Red (My Love)",
 				"Perfect",
@@ -52,96 +106,60 @@ const steps = {
 				"Kiss Me",
 				"Kiss Me More",
 				"('til) I Kissed You",
-				"Then He Kissed Me"
-			]
+				"Then He Kissed Me",
+				"Bubbly",
+				"Like A Virgin"
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
 		}
 	},
-	someThingsHaveChangedALot: {
-		text: "... but, in other ways, things have changed a ton.",
+	butSerenadesAreDeclining: {
+		text: "But as a whole, Serenades are declining, which begs the question...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			// TODO: fill in
-			selectedSongs: ["Come Softly To Me", "WAP"]
+			selectedLoveSongTypes: ["Serenade"],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
 		}
 	},
-	isTheLoveSongDying: {
-		text: "It raises a question: Is the love song dying?",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
-		}
-	},
-
-	// BODY
-	//
-	welcomeToThe60s: {
-		text: "Welcome to the late 50s and 60s, with artists like Elvis Presley, The Beatles, and The Supremes.",
+	isTheLoveSongDyingTitleStep: {
+		text: "... is the love song dying?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedPerformers: ["Elvis Presley", "The Beatles", "The Supremes"],
-			timeRange: {
-				startYear: 1958,
-				endYear: 1969
-			},
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.performers_list_str]
+			selectedLoveSongTypes: ["Serenade"],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
-		}
-	},
-	loveSongsAndSerenades: {
-		text: `These artist thrived on songs that answered a simple question: "I love you, do you love me?": For example, "Serenades" (yes) and "Longing & Heartbreak" (no)`,
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: ["Serenade", "Longing & Heartbreak"],
-			timeRange: {
-				startYear: 1958,
-				endYear: 1969
-			}
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
-		}
-	},
-	courtshipAndAntisipation: {
-		text: `... and also songs about the early stages of that question: "Courtship & Anticipation" (let's find out!)`,
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: ["Courtship & Anticipation"],
-			timeRange: {
-				startYear: 1958,
-				endYear: 1969
-			}
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
 		}
 	}
-
-	// CONCLUSION
 };
 
 export const storySteps = [
-	// Intro: is the love song dying?
-	steps.opening,
-	steps.someThingsHaveChangedLittle,
-	steps.someThingsHaveChangedALot,
-	steps.isTheLoveSongDying,
-	// Body: moving chronilogically through time, highlighting specific songs, artists, types of love songs
-	// 60s
-	steps.welcomeToThe60s,
-	steps.loveSongsAndSerenades,
-	steps.courtshipAndAntisipation
+	// Intro:
+	steps.thisIsAHitSong,
+	steps.thisSongWasRankedForEvenLonger,
+	steps.thisSongIsASerenade,
+	steps.allTheSerenadesInAClutser,
+	steps.allTheSerenadesInOverTime,
+	steps.callingOutAFewSerenades,
+	steps.butSerenadesAreDeclining,
+	steps.isTheLoveSongDyingTitleStep
 
-	// Conclusion
+	// Body:
+
+	// Conclusion:
 ];
 
 export const currentStoryStepIndex = writable(0);
