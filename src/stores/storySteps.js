@@ -146,6 +146,42 @@ const steps = {
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: fractionOfScreenFactory(0.5)
 		}
+	},
+
+	// Body:
+	serenadesPeakedInThe90s: {
+		text: "Serenades: songs where both parties love each other. They peaked in popularity the 90s with [see side panel]",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
+			timeRange: {
+				startYear: MIN_YEAR,
+				endYear: 2000
+			},
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
+		}
+	},
+	aFewArtistsKeepThemAliveToday: {
+		text: "Only a few artists like Biebs & T-Swiftie keep them alive today [see side panel]",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
+			timeRange: {
+				startYear: 2001,
+				endYear: MAX_YEAR
+			},
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
+		}
 	}
 };
 
@@ -158,9 +194,11 @@ export const storySteps = [
 	steps.allTheSerenadesInOverTime,
 	steps.callingOutAFewSerenades,
 	steps.butSerenadesAreDeclining,
-	steps.isTheLoveSongDyingTitleStep
+	steps.isTheLoveSongDyingTitleStep,
 
 	// Body:
+	steps.serenadesPeakedInThe90s,
+	steps.aFewArtistsKeepThemAliveToday
 
 	// Conclusion:
 ];
