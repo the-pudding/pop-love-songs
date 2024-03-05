@@ -1,5 +1,8 @@
 import { derived, writable } from "svelte/store";
-import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
+import {
+	SONG_DATA_COLUMNS_ENUM,
+	LOVE_SONG_TYPE_CONSTANTS
+} from "$data/data-constants.js";
 import { MAX_YEAR, MIN_YEAR } from "$data/songs-data.js";
 import {
 	fractionOfScreenFactory,
@@ -71,7 +74,7 @@ const steps = {
 		text: "We've been singing Serenades for a long time...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: ["Serenade"],
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
@@ -84,7 +87,7 @@ const steps = {
 		text: "... here are all the Billboard Top 10 Serenades spread from 1959 to through 2022",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: ["Serenade"],
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
@@ -97,7 +100,7 @@ const steps = {
 		text: "You probably recognize quite a few...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: ["Serenade"],
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
 			selectedSongs: [
 				"Roses Are Red (My Love)",
 				"Perfect",
@@ -122,7 +125,7 @@ const steps = {
 		text: "But as a whole, Serenades are declining, which begs the question...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: ["Serenade"],
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
@@ -135,7 +138,7 @@ const steps = {
 		text: "... is the love song dying?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: ["Serenade"],
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {

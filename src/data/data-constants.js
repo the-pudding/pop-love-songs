@@ -8,17 +8,27 @@ export const SONG_DATA_COLUMNS_ENUM = {
 	popularity_score: 6
 };
 
+export const LOVE_SONG_TYPE_CONSTANTS = {
+	serenade: "Serenade",
+	longingAndHeartbreak: "Longing & Heartbreak",
+	sexualConquest: "Sexual Conquest",
+	itsComplicated: "It's Complicated",
+	goodRiddance: "Good Riddance",
+	loveSongForTheSelf: "Love Song for the Self",
+	platonicLove: "Platonic Love",
+	courtshipAndAnticipation: "Courtship & Anticipation"
+};
+
 export const LOVE_SONG_TYPE_COLOR_MAP = {
 	"": "gray",
-	Serenade: "pink",
-	"Longing & Heartbreak": "blue",
-	"Sexual Conquest": "red",
-	"It's Complicated": "brown",
-	"Good Riddance": "purple",
-	"Love Song for the Self": "orange",
-	"Platonic Love": "yellow",
-	// New categories:
-	"Courtship & Anticipation": "green"
+	[LOVE_SONG_TYPE_CONSTANTS.serenade]: "pink",
+	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: "blue",
+	[LOVE_SONG_TYPE_CONSTANTS.sexualConquest]: "red",
+	[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: "brown",
+	[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: "purple",
+	[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: "orange",
+	[LOVE_SONG_TYPE_CONSTANTS.platonicLove]: "yellow",
+	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: "green"
 };
 
 export const LOVE_SONG_TYPES = Object.keys(LOVE_SONG_TYPE_COLOR_MAP);
