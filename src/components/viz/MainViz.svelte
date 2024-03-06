@@ -14,6 +14,7 @@
 		getSongIndexFromInvisibleFill,
 		searchSongOnYouTube
 	} from "./viz-utils";
+	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
 	import { xForcePosition, yForcePosition } from "$stores/visualEncodings";
 
 	// Give it an initial position
@@ -109,7 +110,7 @@
 		if (!simulation) return;
 		simulation
 			.force("x", forceX().x((_, songIndex) => $xForcePosition[songIndex]).strength(2))
-			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex]).strength(1))
+			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex] || DEFAULT_Y_ENTRANCE_POSITION).strength(1))
 			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsVisible[songIndex] ? radius : 0))
 			.alpha(0.2)
 			.restart();

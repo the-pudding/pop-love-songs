@@ -1,5 +1,7 @@
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
-import songsData, { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
+import { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
+
+export const DEFAULT_Y_ENTRANCE_POSITION = -100;
 
 /*
  * All functions take in song and a canvas width and returns a position
