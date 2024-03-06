@@ -9,7 +9,8 @@ import {
 	selectedLoveSongTypes,
 	selectedPerformers,
 	timeRange,
-	columnsToFilterVisibilityOn
+	columnsToFilterVisibilityOn,
+	visibleButNotSelectedLoveSongTypes
 } from "./searchAndFilter.js";
 
 export const genderSelected = derived(
@@ -35,13 +36,17 @@ export const genreSelected = derived(
 );
 
 export const loveSongTypeSelected = derived(
-	[selectedLoveSongTypes],
-	([$selectedLoveSongTypes]) =>
+	[selectedLoveSongTypes, visibleButNotSelectedLoveSongTypes],
+	([$selectedLoveSongTypes, $visibleButNotSelectedLoveSongTypes]) =>
 		songsData.map(({ song }) => {
 			const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
+			const passesSpecialCase =
+				!$visibleButNotSelectedLoveSongTypes.includes(loveSongType) ||
+				$visibleButNotSelectedLoveSongTypes.length === 0;
 			return (
-				$selectedLoveSongTypes.includes(loveSongType) ||
-				$selectedLoveSongTypes.length === 0
+				passesSpecialCase &&
+				($selectedLoveSongTypes.includes(loveSongType) ||
+					$selectedLoveSongTypes.length === 0)
 			);
 		}),
 	[]
@@ -112,7 +117,8 @@ export const songIsVisible = derived(
 		performerSelected,
 		songSelected,
 		withinTimeRange,
-		columnsToFilterVisibilityOn
+		columnsToFilterVisibilityOn,
+		visibleButNotSelectedLoveSongTypes
 	],
 	([
 		$genderSelected,
@@ -121,7 +127,8 @@ export const songIsVisible = derived(
 		$performerSelected,
 		$songSelected,
 		$withinTimeRange,
-		$columnsToFilterVisibilityOn
+		$columnsToFilterVisibilityOn,
+		$visibleButNotSelectedLoveSongTypes
 	]) =>
 		songsData.map((song, index) => {
 			// If we're filtering visibility based on a given column, then it must be selected to be visible.
@@ -138,7 +145,10 @@ export const songIsVisible = derived(
 			const loveSongTypeVisible = $columnsToFilterVisibilityOn.includes(
 				SONG_DATA_COLUMNS_ENUM.love_song_sub_type
 			)
-				? $loveSongTypeSelected[index]
+				? $loveSongTypeSelected[index] ||
+					$visibleButNotSelectedLoveSongTypes.includes(
+						songsData[index].song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+					)
 				: true;
 			const performerVisible = $columnsToFilterVisibilityOn.includes(
 				SONG_DATA_COLUMNS_ENUM.performers_list_str

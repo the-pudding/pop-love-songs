@@ -18,6 +18,7 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedSongs: [],
 
 	columnsToFilterVisibilityOn: [],
+	visibleButNotSelectedLoveSongTypes: [],
 
 	timeRange: {
 		startYear: MIN_YEAR,
@@ -199,6 +200,23 @@ const steps = {
 			calculateYForcePosition: getYPositionInSnakeChart
 		}
 	},
+	longingAndHeartbreakDetails: {
+		text: "Looking at just Heartbreak & Longing, Mariah Care and Taylor Swift reign this type...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
 	introducingCourtship: {
 		text: "... or where love is still sprouting: Courtship & Antisipation...",
 		searchAndFilterState: {
@@ -209,6 +227,27 @@ const steps = {
 				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
 			],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+	courtshipDetail: {
+		text: "The top artists are [see side panel]",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+			]
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
@@ -310,8 +349,13 @@ export const storySteps = [
 	// Body:
 	steps.serenadesPeakedInThe90s,
 	steps.aFewArtistsKeepThemAliveToday,
+
 	steps.introducingLongingAndHeartbreak,
+	steps.longingAndHeartbreakDetails,
+
 	steps.introducingCourtship,
+	steps.courtshipDetail,
+
 	steps.introducingItsComplicated,
 	steps.introducingGoodRiddance,
 	steps.introducingSexualConquest,
