@@ -171,3 +171,7 @@ export const songIsVisible = derived(
 export const selectedSongsData = derived(songIsSelected, ($songIsSelected) =>
 	songsData.filter((song, index) => $songIsSelected[index])
 );
+
+export const visibleSongsData = derived(songIsVisible, ($songIsVisible) =>
+	songsData.filter((song, index) => $songIsVisible[index])
+);
