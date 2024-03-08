@@ -185,3 +185,23 @@ export const selectedSongsData = derived(songIsSelected, ($songIsSelected) =>
 export const visibleSongsData = derived(songIsVisible, ($songIsVisible) =>
 	songsData.filter((song, index) => $songIsVisible[index])
 );
+
+export const percentageOfLoveSongsCurrentlySelected = derived(
+	[selectedSongsData, selectedLoveSongTypes],
+	([$selectedSongsData, $selectedLoveSongTypes]) => {
+		const loveSongTypes = $selectedLoveSongTypes.length
+			? $selectedLoveSongTypes
+			: [""];
+		const loveSongCount = $selectedSongsData.filter(({ song }) => {
+			const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
+			if ($selectedLoveSongTypes.length === 0) {
+				return loveSongType !== "";
+			} else {
+				return loveSongTypes.includes(
+					song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+				);
+			}
+		});
+		return Math.round((100 * loveSongCount.length) / songsData.length);
+	}
+);

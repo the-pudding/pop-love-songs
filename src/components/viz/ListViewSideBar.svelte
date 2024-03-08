@@ -1,6 +1,7 @@
 <script>
 	import {derived} from "svelte/store";
 	import { selectedSongsData } from "$stores/dataProperties.js";
+	import LoveSongDeathMeter from "./LoveSongDeathMeter.svelte";
 	import SongInfo from "./SongInfo.svelte";
 	import { RIGHT_TOOLBAR_WIDTH } from "$stores/forcePositionOptions-helper";
 	import { getArrayOfPerformers } from "$data/data-utils";
@@ -25,6 +26,10 @@
 </script>
 
 <section style:width={`${RIGHT_TOOLBAR_WIDTH}px`}>
+	<h4>Love Song Death Meter</h4>
+	<ul>
+		<LoveSongDeathMeter/>
+	</ul>
 	<h4>Top 20 artists for selection</h4>
 	<ul>
 		{#each ($performerSongCount).slice(0, 20) as [performer, count]}
