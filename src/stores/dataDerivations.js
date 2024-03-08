@@ -190,24 +190,34 @@ const onlyShowOneDecimalPlaceIfLessThan10 = (number) => {
 	return number < 10 ? number.toFixed(1) : number.toFixed(0);
 };
 
+export function getLoveSongPercentage(
+	selectedSongsData,
+	selectedLoveSongTypes
+) {
+	const loveSongTypes = selectedLoveSongTypes.length
+		? selectedLoveSongTypes
+		: [""];
+	const loveSongCount = selectedSongsData.filter(({ song }) => {
+		const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
+		if (selectedLoveSongTypes.length === 0) {
+			return loveSongType !== "";
+		} else {
+			return loveSongTypes.includes(
+				song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+			);
+		}
+	});
+	return onlyShowOneDecimalPlaceIfLessThan10(
+		(100 * loveSongCount.length) / songsData.length
+	);
+}
+
 export const percentageOfLoveSongsCurrentlySelected = derived(
 	[selectedSongsData, selectedLoveSongTypes],
 	([$selectedSongsData, $selectedLoveSongTypes]) => {
-		const loveSongTypes = $selectedLoveSongTypes.length
-			? $selectedLoveSongTypes
-			: [""];
-		const loveSongCount = $selectedSongsData.filter(({ song }) => {
-			const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
-			if ($selectedLoveSongTypes.length === 0) {
-				return loveSongType !== "";
-			} else {
-				return loveSongTypes.includes(
-					song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-				);
-			}
-		});
-		return onlyShowOneDecimalPlaceIfLessThan10(
-			(100 * loveSongCount.length) / songsData.length
-		);
+		return getLoveSongPercentage($selectedSongsData, $selectedLoveSongTypes);
 	}
 );
+
+export const percentageOfLoveSongsDuring1959To1969 = ""; // todo
+export const percentageOfLoveSongsDuringLatest10yearsOfSelectedSongs = ""; // todo
