@@ -56,7 +56,7 @@
 		});
 	};
 
-	export const handleSongHovered = (selectedSong, offsetX, offsetY) => {
+	const handleSongHovered = (selectedSong, offsetX, offsetY) => {
 		if (selectedSong) {
 			$hoveredSongInfo = {
 				song: selectedSong,

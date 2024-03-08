@@ -1,6 +1,7 @@
 import {
 	SONG_DATA_COLUMNS_ENUM,
-	LOVE_SONG_TYPE_COLOR_MAP
+	LOVE_SONG_TYPE_COLOR_MAP,
+	UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP
 } from "$data/data-constants.js";
 
 export const STORY_STEP_CONTROLLER_BOTTOM_PADDING = 100;
@@ -56,7 +57,7 @@ export const getSongFill = (song, songIsSelected) => {
 	const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 	return songIsSelected
 		? LOVE_SONG_TYPE_COLOR_MAP[loveSongType]
-		: "rgb(0, 0, 0, 0.05)";
+		: UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP[loveSongType];
 };
 
 // TEMP for research

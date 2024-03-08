@@ -31,6 +31,19 @@ export const LOVE_SONG_TYPE_COLOR_MAP = {
 	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: "green"
 };
 
+const UNSELECTED_OPACITY = 0.2;
+export const UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP = {
+	"": `rgba(0, 0, 0, ${UNSELECTED_OPACITY})`,
+	[LOVE_SONG_TYPE_CONSTANTS.serenade]: `rgba(255, 192, 203, ${UNSELECTED_OPACITY})`,
+	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: `rgba(0, 0, 255, ${UNSELECTED_OPACITY})`,
+	[LOVE_SONG_TYPE_COLOR_MAP.sexualConquest]: `rgba(255, 0, 0, ${UNSELECTED_OPACITY})`,
+	[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: `rgba(165, 42, 42, ${UNSELECTED_OPACITY})`,
+	[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: `rgba(128, 0, 128, ${UNSELECTED_OPACITY})`,
+	[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: `rgba(255, 165, 0, ${UNSELECTED_OPACITY})`,
+	[LOVE_SONG_TYPE_CONSTANTS.platonicLove]: `rgba(255, 255, 0, ${UNSELECTED_OPACITY})`,
+	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: `rgba(0, 128, 0, ${UNSELECTED_OPACITY})`
+};
+
 export const LOVE_SONG_TYPES = Object.keys(LOVE_SONG_TYPE_COLOR_MAP);
 
 export const LOVE_SONG_TYPE_BAND_LEVEL_MAP = {
