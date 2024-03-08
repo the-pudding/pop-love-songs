@@ -186,6 +186,10 @@ export const visibleSongsData = derived(songIsVisible, ($songIsVisible) =>
 	songsData.filter((song, index) => $songIsVisible[index])
 );
 
+const onlyShowOneDecimalPlaceIfLessThan10 = (number) => {
+	return number < 10 ? number.toFixed(1) : number.toFixed(0);
+};
+
 export const percentageOfLoveSongsCurrentlySelected = derived(
 	[selectedSongsData, selectedLoveSongTypes],
 	([$selectedSongsData, $selectedLoveSongTypes]) => {
@@ -202,6 +206,8 @@ export const percentageOfLoveSongsCurrentlySelected = derived(
 				);
 			}
 		});
-		return Math.round((100 * loveSongCount.length) / songsData.length);
+		return onlyShowOneDecimalPlaceIfLessThan10(
+			(100 * loveSongCount.length) / songsData.length
+		);
 	}
 );
