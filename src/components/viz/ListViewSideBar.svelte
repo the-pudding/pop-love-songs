@@ -1,6 +1,6 @@
 <script>
 	import {derived} from "svelte/store";
-	import { selectedSongsData } from "$stores/dataProperties.js";
+	import { selectedSongsData } from "$stores/dataDerivations.js";
 	import LoveSongDeathMeter from "./LoveSongDeathMeter.svelte";
 	import SongInfo from "./SongInfo.svelte";
 	import { RIGHT_TOOLBAR_WIDTH } from "$stores/forcePositionOptions-helper";

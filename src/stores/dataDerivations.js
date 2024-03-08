@@ -13,7 +13,7 @@ import {
 	visibleButNotSelectedLoveSongTypes
 } from "./searchAndFilter.js";
 
-export const genderSelected = derived(
+const genderSelected = derived(
 	[selectedGenders],
 	([$selectedGenders]) =>
 		songsData.map(
@@ -24,7 +24,7 @@ export const genderSelected = derived(
 	[]
 );
 
-export const genreSelected = derived(
+const genreSelected = derived(
 	[selectedGenres],
 	([$selectedGenres]) =>
 		songsData.map(
@@ -35,7 +35,7 @@ export const genreSelected = derived(
 	[]
 );
 
-export const loveSongTypeSelected = derived(
+const loveSongTypeSelected = derived(
 	[selectedLoveSongTypes, visibleButNotSelectedLoveSongTypes],
 	([$selectedLoveSongTypes, $visibleButNotSelectedLoveSongTypes]) =>
 		songsData.map(({ song }) => {
@@ -52,7 +52,7 @@ export const loveSongTypeSelected = derived(
 	[]
 );
 
-export const performerSelected = derived(
+const performerSelected = derived(
 	[selectedPerformers],
 	([$selectedPerformers]) =>
 		songsData.map(({ song }) => {
@@ -67,7 +67,7 @@ export const performerSelected = derived(
 	[]
 );
 
-export const songSelected = derived(
+const songSelected = derived(
 	[selectedSongs],
 	([$selectedSongs]) =>
 		songsData.map(
@@ -78,7 +78,7 @@ export const songSelected = derived(
 	[]
 );
 
-export const withinTimeRange = derived(
+const withinTimeRange = derived(
 	[timeRange],
 	([$timeRange]) =>
 		songsData.map(({ song }) => {

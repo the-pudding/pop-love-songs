@@ -4,7 +4,7 @@
 	import { forceSimulation, forceX, forceY, forceCollide } from "d3";
 
 	import viewport from "$stores/viewport.js";
-	import { songIsSelected, songIsVisible } from "$stores/dataProperties";
+	import { songIsSelected, songIsVisible } from "$stores/dataDerivations";
 	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
 
 	import songsData from "$data/songs-data.js";

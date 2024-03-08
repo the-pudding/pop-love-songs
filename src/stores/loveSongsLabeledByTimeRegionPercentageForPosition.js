@@ -1,7 +1,6 @@
 import { derived } from "svelte/store";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
-import { visibleSongsData } from "./dataProperties";
-import { currentStoryStep } from "./storySteps";
+import { visibleSongsData } from "./dataDerivations";
 
 export const RIGHT_TOOLBAR_WIDTH = 280; // TODO: probably a better way to do this *shrug*
 

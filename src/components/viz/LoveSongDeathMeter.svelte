@@ -1,5 +1,5 @@
 <script>
-    import {percentageOfLoveSongsCurrentlySelected} from '$stores/dataProperties'
+    import {percentageOfLoveSongsCurrentlySelected} from '$stores/dataDerivations'
     
 </script>
 
