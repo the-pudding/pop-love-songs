@@ -109,6 +109,23 @@ export const songIsSelected = derived(
 	[]
 );
 
+// Note: this is just so we can compare to the 60s percentage no matter what time range we're selecting at
+export const selectedSongsDataIgnoringTime = derived(
+	[
+		genderSelected,
+		genreSelected,
+		loveSongTypeSelected,
+		performerSelected,
+		songSelected
+		// withinTimeRange
+	],
+	(subStores) =>
+		songsData.filter((song, index) =>
+			subStores.every((subStore) => subStore[index])
+		),
+	[]
+);
+
 export const songIsVisible = derived(
 	[
 		genderSelected,
@@ -243,10 +260,12 @@ export const percentageOfLoveSongsCurrentlySelected = derived(
 );
 
 export const percentageOfLoveSongsDuring1959To1969 = derived(
-	[selectedSongsData, selectedLoveSongTypes],
-	([$selectedSongsData, $selectedLoveSongTypes]) => {
+	[selectedSongsDataIgnoringTime, selectedLoveSongTypes],
+	([$selectedSongsDataIgnoringTime, $selectedLoveSongTypes]) => {
 		return getLoveSongPercentage(
-			$selectedSongsData,
+			// Note: we want to be able to *reliably* compare to the 60s and not have it accidentally filtered out
+			// if we happen to look at a selection that doesn't include the 60s.
+			$selectedSongsDataIgnoringTime,
 			$selectedLoveSongTypes,
 			1959,
 			1969
