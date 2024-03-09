@@ -30,10 +30,6 @@ export const yForcePosition = derived(
 	]) => {
 		const { height } = $viewport;
 		const { calculateYForcePosition } = $currentStoryStep.visualEncodings;
-		console.log(
-			$loveSongsLabeledByTimeRegionPercentageForPosition[6]
-				.popularityScoreSumsInTimeRegion
-		);
 		return songsData.map(({ song }) =>
 			calculateYForcePosition(
 				song,

@@ -1,5 +1,5 @@
 import { derived } from "svelte/store";
-import songsData from "$data/songs-data.js";
+import songsData, { MAX_YEAR, MIN_YEAR } from "$data/songs-data.js";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 import { getArrayOfPerformers } from "$data/data-utils.js";
 import {
@@ -190,25 +190,49 @@ const onlyShowOneDecimalPlaceIfLessThan10 = (number) => {
 	return number < 10 ? number.toFixed(1) : number.toFixed(0);
 };
 
+function isWithinYearRange(dateAsDecimal, minYear, maxYear) {
+	if (minYear && dateAsDecimal < minYear) {
+		return false;
+	}
+	if (maxYear && dateAsDecimal > maxYear) {
+		return false;
+	}
+	return true;
+}
+
 export function getLoveSongPercentage(
 	selectedSongsData,
-	selectedLoveSongTypes
+	selectedLoveSongTypes,
+	minYear = MIN_YEAR,
+	maxYear = MAX_YEAR
 ) {
 	const loveSongTypes = selectedLoveSongTypes.length
 		? selectedLoveSongTypes
 		: [""];
-	const loveSongCount = selectedSongsData.filter(({ song }) => {
+	const selectedLoveSongs = selectedSongsData.filter(({ song }) => {
 		const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
+		const dateAsDecimal = song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
 		if (selectedLoveSongTypes.length === 0) {
-			return loveSongType !== "";
+			return (
+				loveSongType !== "" &&
+				isWithinYearRange(dateAsDecimal, minYear, maxYear)
+			);
 		} else {
-			return loveSongTypes.includes(
-				song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+			return (
+				loveSongTypes.includes(loveSongType) &&
+				isWithinYearRange(dateAsDecimal, minYear, maxYear)
 			);
 		}
 	});
+	const songsDataWithinRange = songsData.filter(({ song }) =>
+		isWithinYearRange(
+			song[SONG_DATA_COLUMNS_ENUM.date_as_decimal],
+			minYear,
+			maxYear
+		)
+	);
 	return onlyShowOneDecimalPlaceIfLessThan10(
-		(100 * loveSongCount.length) / songsData.length
+		(100 * selectedLoveSongs.length) / songsDataWithinRange.length
 	);
 }
 
@@ -219,5 +243,33 @@ export const percentageOfLoveSongsCurrentlySelected = derived(
 	}
 );
 
-export const percentageOfLoveSongsDuring1959To1969 = ""; // todo
-export const percentageOfLoveSongsDuringLatest10yearsOfSelectedSongs = ""; // todo
+export const percentageOfLoveSongsDuring1959To1969 = derived(
+	[selectedSongsData, selectedLoveSongTypes],
+	([$selectedSongsData, $selectedLoveSongTypes]) => {
+		return getLoveSongPercentage(
+			$selectedSongsData,
+			$selectedLoveSongTypes,
+			1959,
+			1969
+		);
+	}
+);
+
+export const percentageOfLoveSongsDuringLast10YearsOfSelection = derived(
+	[selectedSongsData, selectedLoveSongTypes],
+	([$selectedSongsData, $selectedLoveSongTypes]) => {
+		const maxYear = Math.max(
+			...$selectedSongsData.map(
+				({ song }) => song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]
+			)
+		);
+		const tenYearsBefore = Math.max(MIN_YEAR, maxYear - 10);
+
+		return getLoveSongPercentage(
+			$selectedSongsData,
+			$selectedLoveSongTypes,
+			tenYearsBefore,
+			maxYear
+		);
+	}
+);
