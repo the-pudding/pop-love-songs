@@ -1,6 +1,6 @@
 <script>
     import { derived } from 'svelte/store';
-    import {percentageOfLoveSongsCurrentlySelected, percentageOfLoveSongsDuring1959To1969, percentageOfLoveSongsDuringLast10YearsOfSelection} from '$stores/dataDerivations'   
+    import {percentageOfLoveSongsCurrentlySelected, percentageOfLoveSongsDuring1959To1969, percentageOfLoveSongsDuringLast10YearsOfSelection, maxYearFromSelectedSongs} from '$stores/dataDerivations'   
 	import { onlyShowOneDecimalPlaceIfLessThan10 } from '$data/data-utils';
 
     const changeFrom60sToLast10Years = derived(
@@ -20,12 +20,12 @@
 </script>
 
 <div>
-    <p style="font-style: italic">Love song popularity during the last 10 years of the current selection VS during 60s:</p>
+    <p style="font-style: italic">Love song popularity from <b>{Math.round($maxYearFromSelectedSongs) - 10} to {Math.round($maxYearFromSelectedSongs)}</b> VS during the 60s:</p>
 
-    <p>{onlyShowOneDecimalPlaceIfLessThan10($percentageOfLoveSongsDuringLast10YearsOfSelection)}% - {onlyShowOneDecimalPlaceIfLessThan10($percentageOfLoveSongsDuring1959To1969)}% =</p>
-    <h2 style:color={textColor}>{$formattedChange}</h2>
+    <p><b>{onlyShowOneDecimalPlaceIfLessThan10($percentageOfLoveSongsDuringLast10YearsOfSelection)}%</b> - {onlyShowOneDecimalPlaceIfLessThan10($percentageOfLoveSongsDuring1959To1969)}% =</p>
+    <h2 style:color={textColor}>{$formattedChange}% change</h2>
     
-    <p style="font-size: 10px;">(For context: {onlyShowOneDecimalPlaceIfLessThan10($percentageOfLoveSongsCurrentlySelected)}% of current selection are love songs)</p>
+    <p style="font-size: 10px;">(For context: on avg love songs are {onlyShowOneDecimalPlaceIfLessThan10($percentageOfLoveSongsCurrentlySelected)}% accross entire current selection)</p>
 </div>
 
 <!-- Give the p-tags less margin/padding bottom -->

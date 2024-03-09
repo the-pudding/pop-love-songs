@@ -273,21 +273,28 @@ export const percentageOfLoveSongsDuring1959To1969 = derived(
 	}
 );
 
-export const percentageOfLoveSongsDuringLast10YearsOfSelection = derived(
-	[selectedSongsData, selectedLoveSongTypes],
-	([$selectedSongsData, $selectedLoveSongTypes]) => {
-		const maxYear = Math.max(
+export const maxYearFromSelectedSongs = derived(
+	[selectedSongsData],
+	([$selectedSongsData]) => {
+		return Math.max(
 			...$selectedSongsData.map(
 				({ song }) => song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]
 			)
 		);
-		const tenYearsBefore = Math.max(MIN_YEAR, maxYear - 10);
+	},
+	0
+);
+
+export const percentageOfLoveSongsDuringLast10YearsOfSelection = derived(
+	[selectedSongsData, selectedLoveSongTypes, maxYearFromSelectedSongs],
+	([$selectedSongsData, $selectedLoveSongTypes, $maxYearFromSelectedSongs]) => {
+		const tenYearsBefore = Math.max(MIN_YEAR, $maxYearFromSelectedSongs - 10);
 
 		return getLoveSongPercentage(
 			$selectedSongsData,
 			$selectedLoveSongTypes,
 			tenYearsBefore,
-			maxYear
+			$maxYearFromSelectedSongs
 		);
 	}
 );
