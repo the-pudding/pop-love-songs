@@ -209,30 +209,41 @@ export function getLoveSongPercentage(
 	const loveSongTypes = selectedLoveSongTypes.length
 		? selectedLoveSongTypes
 		: [""];
-	const selectedLoveSongs = selectedSongsData.filter(({ song }) => {
-		const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
-		const dateAsDecimal = song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
-		if (selectedLoveSongTypes.length === 0) {
-			return (
-				loveSongType !== "" &&
-				isWithinYearRange(dateAsDecimal, minYear, maxYear)
-			);
-		} else {
-			return (
-				loveSongTypes.includes(loveSongType) &&
-				isWithinYearRange(dateAsDecimal, minYear, maxYear)
-			);
-		}
-	});
-	const songsDataWithinRange = songsData.filter(({ song }) =>
-		isWithinYearRange(
-			song[SONG_DATA_COLUMNS_ENUM.date_as_decimal],
-			minYear,
-			maxYear
+	const selectedLoveSongsPopularityScore = selectedSongsData
+		.filter(({ song }) => {
+			const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
+			const dateAsDecimal = song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
+			if (selectedLoveSongTypes.length === 0) {
+				return (
+					loveSongType !== "" &&
+					isWithinYearRange(dateAsDecimal, minYear, maxYear)
+				);
+			} else {
+				return (
+					loveSongTypes.includes(loveSongType) &&
+					isWithinYearRange(dateAsDecimal, minYear, maxYear)
+				);
+			}
+		})
+		.reduce(
+			(acc, { song }) => acc + song[SONG_DATA_COLUMNS_ENUM.popularity_score],
+			0
+		);
+	const allSongsWithinRangePopularityScore = songsData
+		.filter(({ song }) =>
+			isWithinYearRange(
+				song[SONG_DATA_COLUMNS_ENUM.date_as_decimal],
+				minYear,
+				maxYear
+			)
 		)
-	);
+		.reduce(
+			(acc, { song }) => acc + song[SONG_DATA_COLUMNS_ENUM.popularity_score],
+			0
+		);
 	return onlyShowOneDecimalPlaceIfLessThan10(
-		(100 * selectedLoveSongs.length) / songsDataWithinRange.length
+		(100 * selectedLoveSongsPopularityScore) /
+			allSongsWithinRangePopularityScore
 	);
 }
 
