@@ -9,3 +9,7 @@ export const getArrayOfPerformers = (song) => {
 				.filter((p) => p !== "")
 		: [];
 };
+
+export const onlyShowOneDecimalPlaceIfLessThan10 = (number) => {
+	return number < 10 ? number.toFixed(1) : number.toFixed(0);
+};

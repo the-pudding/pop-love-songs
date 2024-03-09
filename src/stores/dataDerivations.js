@@ -186,10 +186,6 @@ export const visibleSongsData = derived(songIsVisible, ($songIsVisible) =>
 	songsData.filter((song, index) => $songIsVisible[index])
 );
 
-const onlyShowOneDecimalPlaceIfLessThan10 = (number) => {
-	return number < 10 ? number.toFixed(1) : number.toFixed(0);
-};
-
 function isWithinYearRange(dateAsDecimal, minYear, maxYear) {
 	if (minYear && dateAsDecimal < minYear) {
 		return false;
@@ -233,9 +229,9 @@ export function getLoveSongPercentage(
 		},
 		0
 	);
-	return onlyShowOneDecimalPlaceIfLessThan10(
+	return (
 		(100 * selectedLoveSongsPopularityScore) /
-			allSongsWithinRangePopularityScore
+		allSongsWithinRangePopularityScore
 	);
 }
 
