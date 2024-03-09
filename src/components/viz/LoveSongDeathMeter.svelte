@@ -6,7 +6,7 @@
     const changeFrom60sToLast10Years = derived(
         [percentageOfLoveSongsDuring1959To1969, percentageOfLoveSongsDuringLast10YearsOfSelection],
         ([$percentageOfLoveSongsDuring1959To1969, $percentageOfLoveSongsDuringLast10YearsOfSelection]) => {
-            return $percentageOfLoveSongsDuring1959To1969 - $percentageOfLoveSongsDuringLast10YearsOfSelection;
+            return  $percentageOfLoveSongsDuringLast10YearsOfSelection - $percentageOfLoveSongsDuring1959To1969;
         }
     );
     const formattedChange = derived(
@@ -20,6 +20,21 @@
 </script>
 
 <div>
-    <p>Love song <b>popularity change</b>, 60s vs last 10 of selection:</p>
-    <h3 style="color: {textColor}">{$formattedChange}</h3>
+    <p style="font-style: italic">Love song popularity during the last 10 years of the current selection VS during 60s:</p>
+
+    <p>{onlyShowOneDecimalPlaceIfLessThan10($percentageOfLoveSongsDuringLast10YearsOfSelection)}% - {onlyShowOneDecimalPlaceIfLessThan10($percentageOfLoveSongsDuring1959To1969)}% =</p>
+    <h2 style:color={textColor}>{$formattedChange}</h2>
+    
+    <p style="font-size: 10px;">(For context: {onlyShowOneDecimalPlaceIfLessThan10($percentageOfLoveSongsCurrentlySelected)}% of current selection are love songs)</p>
 </div>
+
+<!-- Give the p-tags less margin/padding bottom -->
+<style>
+    p {
+        margin: 2px;
+    }
+
+    h2 {
+        margin-top: 0;
+    }
+</style>

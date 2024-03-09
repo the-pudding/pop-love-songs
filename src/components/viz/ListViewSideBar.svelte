@@ -26,7 +26,7 @@
 </script>
 
 <section style:width={`${RIGHT_TOOLBAR_WIDTH}px`}>
-	<h4>Love Song Death Meter</h4>
+	<h4>Love song <b>popularity % change</b></h4>
 	<ul>
 		<LoveSongDeathMeter/>
 	</ul>
