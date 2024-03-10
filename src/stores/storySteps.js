@@ -537,20 +537,96 @@ const steps = {
 		}
 	},
 
-	introducingPlatonicAndLoveSongForTheSelf: {
-		text: "... and finally Love Song for the Self and Platonic Love...",
+	introducingPlatonic: {
+		text: "(We might expand love songs to include Platonic love, but this category is quite small in the top 10...)",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
-				// LOVE_SONG_TYPE_CONSTANTS.serenade,
-				// LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				// LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				// LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
-				// LOVE_SONG_TYPE_CONSTANTS.sexualConquest,
-				LOVE_SONG_TYPE_CONSTANTS.platonicLove,
-				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf,
+				LOVE_SONG_TYPE_CONSTANTS.platonicLove
 			],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+
+	introducingSexualConquest: {
+		text: "Finally, the rising star & likely primary target of Boomer hate: Sexual Conquest, which went so far as to dethrone Serenades in the  2000s.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf,
+				LOVE_SONG_TYPE_CONSTANTS.platonicLove,
+				LOVE_SONG_TYPE_CONSTANTS.sexualConquest
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf,
+				LOVE_SONG_TYPE_CONSTANTS.platonicLove
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+
+	addInNonLoveSongsInGray: {
+		text: "Ok, it's time to zoom out and answer our original question: is the love song dying? (But first, lets add in non-love songs to complete the picture...)",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+
+	theLoveSongIsActuallyRising: {
+		text: "Ok: so, if you accept this broader view of love songs, we have our answer: the love song is just as strong as it ever was, and in fact stretches to encompass more of the comlexity of romance!",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+
+	youDecide: {
+		text: "... that is, *if* you accept this definition. But you don't need to! You decide: use the filters to tell *us* how the love song is doing... Enjoy!",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
@@ -599,10 +675,12 @@ export const storySteps = [
 	steps.whenLoveSongForTheSelfCameIntoItsOwn,
 
 	steps.introducingSexualConquest,
-	steps.introducingPlatonicAndLoveSongForTheSelf,
-	steps.introducingPlatonicAndLoveSongForTheSelf
 
 	// Conclusion:
+	steps.addInNonLoveSongsInGray,
+	steps.theLoveSongIsActuallyRising,
+
+	steps.youDecide
 ];
 
 export const currentStoryStepIndex = writable(0);
