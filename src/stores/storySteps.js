@@ -1,7 +1,8 @@
 import { derived, writable } from "svelte/store";
 import {
 	SONG_DATA_COLUMNS_ENUM,
-	LOVE_SONG_TYPE_CONSTANTS
+	LOVE_SONG_TYPE_CONSTANTS,
+	GENDDER_CONSTANTS
 } from "$data/data-constants.js";
 import { MAX_YEAR, MIN_YEAR } from "$data/songs-data.js";
 import {
@@ -360,7 +361,7 @@ const steps = {
 			calculateYForcePosition: getYPositionInSnakeChart
 		}
 	},
-	kikDoYouLoveMe: {
+	kikiDoYouLoveMe: {
 		text: "Drake alone has 11 top 10 hits. Kiki may not love him, but *he's* definitely riding It's Complicated hard.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
@@ -404,15 +405,14 @@ const steps = {
 		}
 	},
 	introducingGoodRiddance: {
-		text: "... sometimes, its just a Good Riddance (ask Kelly Clarkson)...",
+		text: "Good Riddance builds out the angsty side of love",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
-				// LOVE_SONG_TYPE_CONSTANTS.serenade,
-				// LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				// LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				// LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
-				// LOVE_SONG_TYPE_CONSTANTS.sexualConquest,
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
 				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
 			],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
@@ -423,6 +423,63 @@ const steps = {
 			calculateYForcePosition: getYPositionInSnakeChart
 		}
 	},
+	goodRiddanceDetail: {
+		text: "Women are hugely dominant here (compared to the rest of pop hits)...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedGenders: [GENDDER_CONSTANTS.female],
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+	goodRiddanceArtists: {
+		text: "... with Barbra Streisand well ahead her time: she beat Kelly Clarksen and Mariah Carey by decades.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedPerformers: [
+				"Barbra Streisand",
+				"Kelly Clarkson",
+				"Mariah Carey"
+			],
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+
 	introducingPlatonicAndLoveSongForTheSelf: {
 		text: "... and finally Love Song for the Self and Platonic Love...",
 		searchAndFilterState: {
@@ -475,8 +532,12 @@ export const storySteps = [
 	steps.transitionIntoBroaderLoveSongTypes,
 	steps.introducingItsComplicated,
 	steps.itsComplicatedDetail,
-	steps.kikDoYouLoveMe,
+	steps.kikiDoYouLoveMe,
+
 	steps.introducingGoodRiddance,
+	steps.goodRiddanceDetail,
+	steps.goodRiddanceArtists,
+
 	steps.introducingSexualConquest,
 	steps.introducingPlatonicAndLoveSongForTheSelf,
 	steps.introducingPlatonicAndLoveSongForTheSelf

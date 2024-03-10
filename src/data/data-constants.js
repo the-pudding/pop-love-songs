@@ -57,3 +57,9 @@ export const LOVE_SONG_TYPE_BAND_LEVEL_MAP = {
 	"Love Song for the Self": 7,
 	"Platonic Love": 8
 };
+
+export const GENDDER_CONSTANTS = {
+	female: "f",
+	male: "m",
+	otherOrMixed: "x"
+};
