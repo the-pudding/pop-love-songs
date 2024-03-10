@@ -339,7 +339,7 @@ const steps = {
 		}
 	},
 	itsComplicatedDetail: {
-		text: "It's Complicated start from the bottom, now it's here. Really here: it domainted 00-10s, reshaping the love song landscape.",
+		text: "It's Complicated started from the bottom, now it's here. Really here: it domainted 00-10s, reshaping the love song landscape.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -481,7 +481,7 @@ const steps = {
 	},
 
 	womenDominateLoveSongForTheSelf: {
-		text: "Even more of a female-led type, Love Song for the Self reacts to struggle or rejecting with self-affirmation",
+		text: "Even more of a female-led type, Love Song for the Self is typified by reacting to struggle or rejection with self-affirmation",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedGenders: [GENDER_CONSTANTS.female],
@@ -612,7 +612,7 @@ const steps = {
 	},
 
 	theLoveSongIsActuallyRising: {
-		text: "Ok: so, if you accept this broader view of love songs, we have our answer: the love song is just as strong as it ever was, and in fact stretches to encompass more of the comlexity of romance!",
+		text: "Ok: so, if you accept this broader view of love songs, we have our answer: the love song is just as strong as it ever was, and in fact stretches to encompass more of the complexity of romance than it ever has before!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE
 		},
