@@ -228,7 +228,7 @@ const steps = {
 		}
 	},
 	introducingLongingAndHeartbreak: {
-		text: "... so lets expand to relationships where love isn't so easy: the Heartbreak & Longing type. Egads! Adding this new song type, love songs have now dropped 22% since hte 60s!",
+		text: "... so lets expand to relationships where love isn't so clearly reciprocated: the Heartbreak & Longing type. Egads! If these are the only love songs, then love songs have now dropped 22% since the 60s!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -244,7 +244,7 @@ const steps = {
 		}
 	},
 	longingAndHeartbreakDetails: {
-		text: "Looking at just Heartbreak & Longing, Mariah Care and Taylor Swift reign this type...",
+		text: "This makes sense when you look at top artists [see side panel]: Taylor Swift is the only active (or sometimes, even, living!) artist!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -261,7 +261,7 @@ const steps = {
 		}
 	},
 	introducingCourtship: {
-		text: "... or where love is still sprouting: Courtship & Antisipation...",
+		text: "Will adding the 'You love them, they *might* love you' type -- Courtship & Anticipation -- help keep the love song alive? Nope!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -278,7 +278,7 @@ const steps = {
 		}
 	},
 	courtshipDetail: {
-		text: "The top artists are [see side panel]",
+		text: "Courtship & Anticipation have remained steady over the years [see side panel], neither bolstering nor hurting the broader love song category as a whole.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -298,8 +298,10 @@ const steps = {
 			calculateYForcePosition: getYPositionInSnakeChart
 		}
 	},
-	introducingItsComplicated: {
-		text: "... or where love has become complicated: It's Complicated...",
+
+	// Transition into broader love song types:
+	transitionIntoBroaderLoveSongTypes: {
+		text: "Now shift into the less Boomer-ish love song types... love song types that often blur the lines...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -309,6 +311,72 @@ const steps = {
 				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
 			],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		},
+		showDefinitionImage: true
+	},
+	introducingItsComplicated: {
+		text: "Sometimes a romantic relatinoship isn't squarely thriving or over. Sometimes... It's Complicated.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+	itsComplicatedDetail: {
+		text: "It's Complicated start from the bottom, now it's here. Really here: it domainted 00-10s, reshaping the love song landscape.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+	kikDoYouLoveMe: {
+		text: "Drake alone has 11 top 10 hits. Kiki may not love him, but *he's* definitely riding It's Complicated hard.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedPerformers: ["Drake"],
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+			]
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
@@ -393,7 +461,7 @@ export const storySteps = [
 	steps.definingLoveSong,
 	steps.letsAnswerThisByAssessingLoveSongTypes,
 
-	// Body:
+	// Body: classic love song types
 	steps.serenadesPeakedInThe90s,
 	steps.aFewArtistsKeepThemAliveToday,
 
@@ -403,7 +471,11 @@ export const storySteps = [
 	steps.introducingCourtship,
 	steps.courtshipDetail,
 
+	// Transition into broader love song types:
+	steps.transitionIntoBroaderLoveSongTypes,
 	steps.introducingItsComplicated,
+	steps.itsComplicatedDetail,
+	steps.kikDoYouLoveMe,
 	steps.introducingGoodRiddance,
 	steps.introducingSexualConquest,
 	steps.introducingPlatonicAndLoveSongForTheSelf,
