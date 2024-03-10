@@ -1,6 +1,7 @@
 <script>
 	import {derived} from "svelte/store";
 	import { selectedSongsData } from "$stores/dataDerivations.js";
+	import {currentStoryStepIndex} from "$stores/storySteps.js";
 	import LoveSongDeathMeter from "./LoveSongDeathMeter.svelte";
 	import SongInfo from "./SongInfo.svelte";
 	import { RIGHT_TOOLBAR_WIDTH } from "$stores/forcePositionOptions-helper";
@@ -23,30 +24,34 @@
 			return Object.entries(performers).filter(([, count]) => count >= MIN_HITS).sort(([, countA], [, countB]) => countB - countA);
 		}
 	);
+
+	const firstRelevantStep = 6; // TEMP, hardcoded for the demo
 </script>
 
-<section style:width={`${RIGHT_TOOLBAR_WIDTH}px`}>
-	<h4>Love song <b>popularity % change</b></h4>
-	<ul>
-		<LoveSongDeathMeter/>
-	</ul>
-	<h4>Top 20 artists for selection</h4>
-	<ul>
-		{#each ($performerSongCount).slice(0, 20) as [performer, count]}
-			<li>{performer} ({count})</li>
-		{/each}
-	</ul>
+{#if $currentStoryStepIndex >= firstRelevantStep}
+	<section style:width={`${RIGHT_TOOLBAR_WIDTH}px`}>
+		<h4>Love song <b>popularity % change</b></h4>
+		<ul>
+			<LoveSongDeathMeter/>
+		</ul>
+		<h4>Top 20 artists for selection</h4>
+		<ul>
+			{#each ($performerSongCount).slice(0, 20) as [performer, count]}
+				<li>{performer} ({count})</li>
+			{/each}
+		</ul>
 
-	<h4>{$selectedSongsData.length} songs selected</h4>
-	<ul>
-		<!-- TEMP: only render a susbet to improve perf until we use a virtualized list -->
-		{#each ($selectedSongsData).slice(0, 100) as s}
-			<div>
-				<SongInfo song={s.song} />
-			</div>
-		{/each}
-	</ul>
-</section>
+		<h4>{$selectedSongsData.length} songs selected</h4>
+		<ul>
+			<!-- TEMP: only render a susbet to improve perf until we use a virtualized list -->
+			{#each ($selectedSongsData).slice(0, 100) as s}
+				<div>
+					<SongInfo song={s.song} />
+				</div>
+			{/each}
+		</ul>
+	</section>
+{/if}
 
 <style>
 	section {

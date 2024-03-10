@@ -36,7 +36,7 @@
 <svelte:window on:keydown={handleKeyDown} />
 
 <div class="container" style:height={`${STORY_STEP_CONTROLLER_BOTTOM_PADDING}px`}>
-    <h3 class="title">{storySteps[$currentStoryStepIndex].text}</h3>
+    <h4 class="title">{storySteps[$currentStoryStepIndex].text}</h4>
     <div>
         <button on:click={onPreviousButtonClick} disabled={$currentStoryStepIndex <= 0}>previous</button>
         <button on:click={onNextButtonClick} disabled={$currentStoryStepIndex >= storySteps.length - 1}>...next!</button>
@@ -63,6 +63,6 @@
 
     .title {
         text-align: center;
-        background-color: gray;
+        background-color: var(--color-gray-300);
     }
 </style>

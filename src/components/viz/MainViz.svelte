@@ -112,7 +112,7 @@
 			.force("x", forceX().x((_, songIndex) => $xForcePosition[songIndex]).strength(2))
 			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex] || DEFAULT_Y_ENTRANCE_POSITION).strength(1))
 			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsVisible[songIndex] ? radius : 0))
-			.alpha(0.2)
+			.alpha(0.07)
 			.restart();
 	};
 
