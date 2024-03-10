@@ -253,9 +253,14 @@ export function getLoveSongPercentage(
 }
 
 export const percentageOfLoveSongsCurrentlySelected = derived(
-	[selectedSongsData, selectedLoveSongTypes],
-	([$selectedSongsData, $selectedLoveSongTypes]) => {
-		return getLoveSongPercentage($selectedSongsData, $selectedLoveSongTypes);
+	[selectedSongsData, selectedLoveSongTypes, timeRange],
+	([$selectedSongsData, $selectedLoveSongTypes, $timeRange]) => {
+		return getLoveSongPercentage(
+			$selectedSongsData,
+			$selectedLoveSongTypes,
+			$timeRange.startYear,
+			$timeRange.endYear
+		);
 	}
 );
 

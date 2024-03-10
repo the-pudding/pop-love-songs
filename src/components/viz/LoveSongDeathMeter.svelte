@@ -22,10 +22,10 @@
 <div>
     <p style="font-style: italic">Love song popularity from <b>{Math.round($maxYearFromSelectedSongs) - 10} to {Math.round($maxYearFromSelectedSongs)}</b> VS during the 60s:</p>
 
-    <p><b>{onlyShowOneDecimalPlaceIfLessThan10($percentageOfLoveSongsDuringLast10YearsOfSelection)}%</b> - {onlyShowOneDecimalPlaceIfLessThan10($percentageOfLoveSongsDuring1959To1969)}% =</p>
+    <p><b>{$percentageOfLoveSongsDuringLast10YearsOfSelection.toFixed(1)}%</b> - {$percentageOfLoveSongsDuring1959To1969.toFixed(1)}% =</p>
     <h2 style:color={textColor}>{$formattedChange}% change</h2>
     
-    <p style="font-size: 10px;">(For context: on avg love songs are {onlyShowOneDecimalPlaceIfLessThan10($percentageOfLoveSongsCurrentlySelected)}% accross entire current selection)</p>
+    <p style="font-size: 10px;">(For context: on avg love songs are {$percentageOfLoveSongsCurrentlySelected.toFixed(1)}% accross entire current selection)</p>
 </div>
 
 <!-- Give the p-tags less margin/padding bottom -->
