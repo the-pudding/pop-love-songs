@@ -1,8 +1,27 @@
 <script>
+    import {afterUpdate, onMount} from "svelte";
+    import { goto } from "$app/navigation";
+    import { page } from "$app/stores";
     import {selectedGenres, selectedGenders, selectedSongs, selectedLoveSongTypes, selectedPerformers, timeRange, columnsToFilterVisibilityOn, visibleButNotSelectedLoveSongTypes} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
+    
+    // Story index synced to query params:
+    const searchParams = new URLSearchParams("currentStoryStepIndex=0");
 
+    onMount(() => {
+       const urlIndex = parseInt($page.url.searchParams.get("currentStoryStepIndex")?.toString() || "0");
+       $currentStoryStepIndex = urlIndex;
+    });
+
+    function updateQueryParams() {
+        searchParams.set("currentStoryStepIndex", $currentStoryStepIndex);
+        goto(`?${searchParams.toString()}`);
+    }
+
+    afterUpdate(updateQueryParams);
+
+    // Buttons
     const onPreviousButtonClick = () => {
         if ($currentStoryStepIndex > 0) $currentStoryStepIndex--;
     }
