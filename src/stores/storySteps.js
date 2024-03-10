@@ -152,6 +152,27 @@ const steps = {
 		}
 	},
 
+	// Transition:
+	letsAnswerThisByAssessingLoveSongTypes: {
+		text: "To answer this, we have to define a 'love song'. Love is about relationships, so we'll use that [see image]",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
+			timeRange: {
+				startYear: MIN_YEAR,
+				endYear: 2000
+			},
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
+		},
+		// TEMP: for demo
+		showDefinitionImage: true
+	},
+
 	// Body:
 	serenadesPeakedInThe90s: {
 		text: "Serenades: songs where both parties love each other. They peaked in popularity the 90s with [see side panel]",
@@ -350,6 +371,7 @@ export const storySteps = [
 	steps.isTheLoveSongDyingTitleStep,
 
 	// Body:
+	steps.letsAnswerThisByAssessingLoveSongTypes,
 	steps.serenadesPeakedInThe90s,
 	steps.aFewArtistsKeepThemAliveToday,
 

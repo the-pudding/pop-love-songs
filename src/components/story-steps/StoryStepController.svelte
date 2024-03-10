@@ -1,6 +1,6 @@
 <script>
     import {selectedGenres, selectedGenders, selectedSongs, selectedLoveSongTypes, selectedPerformers, timeRange, columnsToFilterVisibilityOn, visibleButNotSelectedLoveSongTypes} from "$stores/searchAndFilter.js"
-    import {storySteps, currentStoryStepIndex} from "$stores/storySteps.js"
+    import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
 
     const onPreviousButtonClick = () => {
@@ -19,15 +19,15 @@
     }
 
     const updateFilterFilterState = () => {
-        selectedSongs.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.selectedSongs])
-        selectedGenders.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.selectedGenders])
-        selectedGenres.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.selectedGenres])
-        selectedLoveSongTypes.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.selectedLoveSongTypes])
-        selectedPerformers.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.selectedPerformers])
-        timeRange.set({...storySteps[$currentStoryStepIndex].searchAndFilterState.timeRange})
+        selectedSongs.set([...$currentStoryStep.searchAndFilterState.selectedSongs])
+        selectedGenders.set([...$currentStoryStep.searchAndFilterState.selectedGenders])
+        selectedGenres.set([...$currentStoryStep.searchAndFilterState.selectedGenres])
+        selectedLoveSongTypes.set([...$currentStoryStep.searchAndFilterState.selectedLoveSongTypes])
+        selectedPerformers.set([...$currentStoryStep.searchAndFilterState.selectedPerformers])
+        timeRange.set({...$currentStoryStep.searchAndFilterState.timeRange})
         
-        columnsToFilterVisibilityOn.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.columnsToFilterVisibilityOn])
-        visibleButNotSelectedLoveSongTypes.set([...storySteps[$currentStoryStepIndex].searchAndFilterState.visibleButNotSelectedLoveSongTypes])
+        columnsToFilterVisibilityOn.set([...$currentStoryStep.searchAndFilterState.columnsToFilterVisibilityOn])
+        visibleButNotSelectedLoveSongTypes.set([...$currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes])
     }
 
     $: $currentStoryStepIndex, updateFilterFilterState()
@@ -35,8 +35,12 @@
 
 <svelte:window on:keydown={handleKeyDown} />
 
+{#if $currentStoryStep.showDefinitionImage}
+    <img style:position={'fixed'} style:top={0} style:left={0} src="assets/love-song-definition-table-for-demo.png" alt="love song definition table" />
+{/if}
+
 <div class="container" style:height={`${STORY_STEP_CONTROLLER_BOTTOM_PADDING}px`}>
-    <h4 class="title">{storySteps[$currentStoryStepIndex].text}</h4>
+    <h4 class="title">{$currentStoryStep.text}</h4>
     <div>
         <button on:click={onPreviousButtonClick} disabled={$currentStoryStepIndex <= 0}>previous</button>
         <button on:click={onNextButtonClick} disabled={$currentStoryStepIndex >= storySteps.length - 1}>...next!</button>
