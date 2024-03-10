@@ -173,7 +173,7 @@ const steps = {
 		showDefinitionImage: true
 	},
 	letsAnswerThisByAssessingLoveSongTypes: {
-		text: "We'll build out the full landscape of love songs type by type, from the most obviously about love (Serenade), to those Boomers might not not see as love songs. All to reveal if love song is, in the end, dying or not!",
+		text: "We'll build out the full landscape of love songs type by type, from the most obviously about love (Serenade), to those Boomers might not not see as love songs. All to reveal if the love song is, in the end, dying or not!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -194,7 +194,7 @@ const steps = {
 
 	// Body:
 	serenadesPeakedInThe90s: {
-		text: "Serenades: songs where both parties love each other. They peaked in popularity the 90s with [see side panel]",
+		text: "Let's start with Serenades: where both parties love each other. They peaked in popularity the 90s with hits like 'I'll make love to you' by Boyz II Men",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -211,7 +211,7 @@ const steps = {
 		}
 	},
 	aFewArtistsKeepThemAliveToday: {
-		text: "Only a few artists like Biebs & T-Swift keep them alive today [see side panel]",
+		text: "Only a few artists like Biebs & T-Swift keep them alive today [see side panel]. With the Seranade dropping from 1 in 4 songs in 60s to just 1 in 10 today, love songs seem on their death bed...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -228,7 +228,7 @@ const steps = {
 		}
 	},
 	introducingLongingAndHeartbreak: {
-		text: "But there are also songs where love isn't so easy: Heartbreak & Longing...",
+		text: "... so lets expand to relationships where love isn't so easy: the Heartbreak & Longing type. Egads! Adding this new song type, love songs have now dropped 22% since hte 60s!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
