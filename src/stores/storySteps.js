@@ -211,7 +211,7 @@ const steps = {
 		}
 	},
 	aFewArtistsKeepThemAliveToday: {
-		text: "Only a few artists like Biebs & T-Swift keep them alive today [see side panel]. With the Seranade dropping from 1 in 4 songs in 60s to just 1 in 10 today, love songs seem on their death bed...",
+		text: "Only a few artists like Biebs & T-Swift keep them alive today [see side panel]. With the Seranade dropping from almost 1 in 4 songs in 60s to just 1 in 10 today, love songs seem on their death bed...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
