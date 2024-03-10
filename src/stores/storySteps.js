@@ -480,6 +480,63 @@ const steps = {
 		}
 	},
 
+	womenDominateLoveSongForTheSelf: {
+		text: "Even more of a female-led type, Love Song for the Self reacts to struggle or rejecting with self-affirmation",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedGenders: [GENDER_CONSTANTS.female],
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+	whenLoveSongForTheSelfCameIntoItsOwn: {
+		text: "This type arguably came into its own at the turn of the mellinium, with mega hits by TLC and Destiny's Child",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedPerformers: ["TLC", "Destiny's Child"],
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+
 	introducingPlatonicAndLoveSongForTheSelf: {
 		text: "... and finally Love Song for the Self and Platonic Love...",
 		searchAndFilterState: {
@@ -537,6 +594,9 @@ export const storySteps = [
 	steps.introducingGoodRiddance,
 	steps.goodRiddanceDetail,
 	steps.goodRiddanceArtists,
+
+	steps.womenDominateLoveSongForTheSelf,
+	steps.whenLoveSongForTheSelfCameIntoItsOwn,
 
 	steps.introducingSexualConquest,
 	steps.introducingPlatonicAndLoveSongForTheSelf,
