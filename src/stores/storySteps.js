@@ -2,7 +2,7 @@ import { derived, writable } from "svelte/store";
 import {
 	SONG_DATA_COLUMNS_ENUM,
 	LOVE_SONG_TYPE_CONSTANTS,
-	GENDDER_CONSTANTS
+	GENDER_CONSTANTS
 } from "$data/data-constants.js";
 import { MAX_YEAR, MIN_YEAR } from "$data/songs-data.js";
 import {
@@ -427,7 +427,7 @@ const steps = {
 		text: "Women are hugely dominant here (compared to the rest of pop hits)...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedGenders: [GENDDER_CONSTANTS.female],
+			selectedGenders: [GENDER_CONSTANTS.female],
 			selectedLoveSongTypes: [
 				LOVE_SONG_TYPE_CONSTANTS.serenade,
 				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,

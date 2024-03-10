@@ -58,7 +58,7 @@ export const LOVE_SONG_TYPE_BAND_LEVEL_MAP = {
 	"Platonic Love": 8
 };
 
-export const GENDDER_CONSTANTS = {
+export const GENDER_CONSTANTS = {
 	female: "f",
 	male: "m",
 	otherOrMixed: "x"
