@@ -153,8 +153,27 @@ const steps = {
 	},
 
 	// Transition:
+	definingLoveSong: {
+		text: "To answer this, we have to define a 'love song'. When it comes to romantic relationshps, there are roughly 3 relational states [see image] in which we found 8 love song types persistent accross time.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
+			timeRange: {
+				startYear: MIN_YEAR,
+				endYear: 2000
+			},
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
+		},
+		// TEMP: for demo
+		showDefinitionImage: true
+	},
 	letsAnswerThisByAssessingLoveSongTypes: {
-		text: "To answer this, we have to define a 'love song'. Love is about relationships, so we'll use that [see image]",
+		text: "We'll build out the full landscape of love songs type by type, from the most obviously about love (Serenade), to those Boomers might not not see as love songs. All to reveal if love song is, in the end, dying or not!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -370,8 +389,11 @@ export const storySteps = [
 	steps.butSerenadesAreDeclining,
 	steps.isTheLoveSongDyingTitleStep,
 
-	// Body:
+	// Transition & definition:
+	steps.definingLoveSong,
 	steps.letsAnswerThisByAssessingLoveSongTypes,
+
+	// Body:
 	steps.serenadesPeakedInThe90s,
 	steps.aFewArtistsKeepThemAliveToday,
 
