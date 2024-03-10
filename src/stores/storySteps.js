@@ -71,34 +71,8 @@ const steps = {
 			calculateYForcePosition: fractionOfScreenFactory(0.5)
 		}
 	},
-	allTheSerenadesInAClutser: {
-		text: "We've been singing Serenades for a long time...",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: fractionOfScreenFactory(0.5),
-			calculateYForcePosition: fractionOfScreenFactory(0.5)
-		}
-	},
-	allTheSerenadesInOverTime: {
-		text: "... here are all the Billboard Top 10 Serenades spread from 1959 to through 2022",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: fractionOfScreenFactory(0.5)
-		}
-	},
 	callingOutAFewSerenades: {
-		text: "You probably recognize quite a few...",
+		text: "Pop artists love these feel-goody, love-drenched tunes...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -114,6 +88,35 @@ const steps = {
 				"Bubbly",
 				"Like A Virgin"
 			],
+			columnsToFilterVisibilityOn: [
+				SONG_DATA_COLUMNS_ENUM.love_song_sub_type,
+				SONG_DATA_COLUMNS_ENUM.song
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: fractionOfScreenFactory(0.5),
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
+		}
+	},
+	allTheSerenadesInAClutser: {
+		text: "... like *really* love them...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: fractionOfScreenFactory(0.5),
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
+		}
+	},
+	allTheSerenadesInOverTime: {
+		text: "... just look at all the sheer spread of Serenades in the Billboard Top 10 from 1959-2023",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
@@ -123,7 +126,7 @@ const steps = {
 		}
 	},
 	butSerenadesAreDeclining: {
-		text: "But as a whole, Serenades are declining, which begs the question...",
+		text: "But Serenades are declining: they're down 11% from the 60s vs the last 10 years [see side panel], which begs the question...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -136,7 +139,7 @@ const steps = {
 		}
 	},
 	isTheLoveSongDyingTitleStep: {
-		text: "... is the love song dying? (some people think so) [show Boomber Bob screenshots]",
+		text: "... is the love song dying? (some people think so) [show screenshots of Boombers bemoaning the death of love songs]",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -340,9 +343,9 @@ export const storySteps = [
 	steps.thisIsAHitSong,
 	steps.thisSongWasRankedForEvenLonger,
 	steps.thisSongIsASerenade,
+	steps.callingOutAFewSerenades,
 	steps.allTheSerenadesInAClutser,
 	steps.allTheSerenadesInOverTime,
-	steps.callingOutAFewSerenades,
 	steps.butSerenadesAreDeclining,
 	steps.isTheLoveSongDyingTitleStep,
 
