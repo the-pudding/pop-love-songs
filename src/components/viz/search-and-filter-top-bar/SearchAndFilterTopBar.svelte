@@ -4,6 +4,11 @@
 	import PerformerFilter from "./PerformerFilter.svelte";
 	import SongFilter from "./SongFilter.svelte";
 	import TimeRangeFilter from "./TimeRangeFilter.svelte";
+	// Purely for authorship visibility/ease:
+	import ColumnsToFilterVisibilityOn from './ColumnsToFilterVisibilityOn.svelte'
+	import VisibleButNotSelectedLoveSongTypes from './VisibleButNotSelectedLoveSongTypes.svelte'
+
+
 </script>
 
 <fieldset>
@@ -13,6 +18,9 @@
 		<PerformerFilter />
 		<SongFilter />
 		<TimeRangeFilter />
+		<!-- For authoring -->
+		<ColumnsToFilterVisibilityOn />
+		<VisibleButNotSelectedLoveSongTypes />
 	</div>
 </fieldset>
 
