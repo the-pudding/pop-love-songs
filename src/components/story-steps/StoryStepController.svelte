@@ -54,7 +54,7 @@
 <svelte:window on:keydown={handleKeyDown} />
 
 {#if $currentStoryStep.loveSongTypeDefinitionImage}
-    <img style:position={'fixed'} style:top={0} style:left={0} src={`assets/${$currentStoryStep.loveSongTypeDefinitionImage}.png`} alt="love song definition table" />
+    <img src={`assets/${$currentStoryStep.loveSongTypeDefinitionImage}.png`} alt="love song definition table" />
 {/if}
 
 <div class="container" style:height={`${STORY_STEP_CONTROLLER_BOTTOM_PADDING}px`}>
@@ -66,6 +66,12 @@
 </div>
 
 <style>
+    img {
+        position: fixed; 
+        max-height: 80%;
+        top: 0; 
+        left: 0;
+    }
     .container {
         position: fixed;
         bottom: 0px;

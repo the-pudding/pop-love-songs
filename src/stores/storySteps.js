@@ -281,8 +281,26 @@ const steps = {
 		showLoveSongChangeOverTime: true
 	},
 
+	definingCourtship: {
+		text: "But maybe we're missing songs? How about when you love someone, and it might become something more? Let's call these Courtship & Anticipation.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		},
+		loveSongTypeDefinitionImage: "courtship-&-anticipation"
+	},
 	introducingCourtship: {
-		text: "Will adding the 'You love them, they *might* love you' type -- Courtship & Anticipation -- help keep the love song alive? Nope!",
+		text: "These songs stretch from The Beatles 'I Want to Hold Your Hand' to Carly Rae Jepsen's 'Call Me Maybe'...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -300,7 +318,7 @@ const steps = {
 		showLoveSongChangeOverTime: true
 	},
 	courtshipDetail: {
-		text: "Courtship & Anticipation have remained steady over the years [see side panel], neither bolstering nor hurting the broader love song category as a whole.",
+		text: "But the popularity of Courtship & Anticipation songs has remained steady over the years, neither bolstering nor hurting the broader love song category as a whole.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -651,6 +669,7 @@ export const storySteps = [
 	steps.longingAndHeartbreakTopArtists,
 	steps.longingAndHeartbreakMakeItWorse,
 
+	steps.definingCourtship,
 	steps.introducingCourtship,
 	steps.courtshipDetail,
 
