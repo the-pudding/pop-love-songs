@@ -429,8 +429,9 @@ const steps = {
 			calculateYForcePosition: getYPositionInSnakeChart
 		}
 	},
-	introducingSexualConquest: {
-		text: "... or, as the younger generations pioneered, where it gets steamy: Sexual Conquest...",
+
+	definingGoodRiddance: {
+		text: "Good Riddance is Longing & Heartbreak, but with a bite. It's the angsty side of love.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -438,7 +439,7 @@ const steps = {
 				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
 				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
 				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
-				LOVE_SONG_TYPE_CONSTANTS.sexualConquest
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
 			],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
@@ -446,10 +447,11 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart
-		}
+		},
+		loveSongTypeDefinitionImage: "good-riddance"
 	},
 	introducingGoodRiddance: {
-		text: "Good Riddance builds out the angsty side of love",
+		text: "The message is the same, but it's gotten bolder: Dion's 'Runaround Sue' (1962) ran a good distance to bring us to Olivia Rodrigo's 2021 'Good 4 U'.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -524,8 +526,36 @@ const steps = {
 		}
 	},
 
+	definingLoveSongForTheSelf: {
+		text: "Even more of a female-led type, Love Song for the Self is Serenade... pointed back at you. It's typified by reacting to struggle or rejection with self-affirmation",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		},
+		loveSongTypeDefinitionImage: "love-song-for-the-self"
+	},
 	womenDominateLoveSongForTheSelf: {
-		text: "Even more of a female-led type, Love Song for the Self is typified by reacting to struggle or rejection with self-affirmation",
+		text: "Woman almost single-handedly created Love Song for the Self [toggle the gender filter to see!]. Think 'Born This Way' or 'thank u, next'.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedGenders: [GENDER_CONSTANTS.female],
@@ -553,7 +583,7 @@ const steps = {
 		}
 	},
 	whenLoveSongForTheSelfCameIntoItsOwn: {
-		text: "This type arguably came into its own at the turn of the mellinium, with mega hits by TLC and Destiny's Child",
+		text: "This type arguably came into its own at the turn of the millennium, with mega hits by TLC and Destiny's Child",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedPerformers: ["TLC", "Destiny's Child"],
@@ -581,8 +611,39 @@ const steps = {
 		}
 	},
 
+	definingSexualConquest: {
+		text: "Finally, blurring the lines between courtship and romance (and perhaps love and lust), we have Sexual Conquest.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf,
+				LOVE_SONG_TYPE_CONSTANTS.sexualConquest
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		},
+		loveSongTypeDefinitionImage: "sexual-conquest"
+	},
+
 	introducingSexualConquest: {
-		text: "Finally, the rising star & likely primary target of Boomer hate: Sexual Conquest, which went so far as to dethrone Serenades in the  2000s.",
+		text: "It won't surprise anyone Sexual Conquest has risen in popularity in recent decades, lead by artists like Nicki Minaj and Drake. It went so far as to dethrone Serenades in the 2000s.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -612,7 +673,7 @@ const steps = {
 	},
 
 	addInNonLoveSongsInGray: {
-		text: "Ok, it's time to zoom out and answer our original question: is the love song dying? (But first, lets add in non-love songs to complete the picture...)",
+		text: "Ok, it's time to zoom out and answer our original question: is the love song dying? (But first, lets add in non-love songs to complete the picture. This is every Top 10 hit from 1959-2023...)",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE
 		},
@@ -684,13 +745,16 @@ export const storySteps = [
 	steps.itsComplicatedDetail,
 	steps.kikiDoYouLoveMe,
 
+	steps.definingGoodRiddance,
 	steps.introducingGoodRiddance,
 	steps.goodRiddanceDetail,
 	steps.goodRiddanceArtists,
 
+	steps.definingLoveSongForTheSelf,
 	steps.womenDominateLoveSongForTheSelf,
 	steps.whenLoveSongForTheSelfCameIntoItsOwn,
 
+	steps.definingSexualConquest,
 	steps.introducingSexualConquest,
 
 	// Conclusion:
