@@ -342,26 +342,29 @@ const steps = {
 
 	// Transition into broader love song types:
 	transitionIntoBroaderLoveSongTypes: {
-		text: "Now shift into the less Boomer-ish love song types... love song types that often blur the lines...",
+		text: "The Boomers seem right: the love song is dying. Except... perhaps we can explore a broader definition of love? Perhaps there are love song types that often blur the lines?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
 				LOVE_SONG_TYPE_CONSTANTS.serenade,
 				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
 			],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+			]
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart
 		},
-		loveSongTypeDefinitionImage: "serenade"
+		showLoveSongChangeOverTime: true
 	},
-	introducingItsComplicated: {
-		text: "Sometimes a romantic relatinoship isn't squarely thriving or over. Sometimes... It's Complicated.",
+	definingItsComplicated: {
+		text: "Sometimes a romantic relationship isn't squarely thriving or over. Sometimes... It's Complicated.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -376,10 +379,11 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart
-		}
+		},
+		loveSongTypeDefinitionImage: "its-complicated"
 	},
 	itsComplicatedDetail: {
-		text: "It's Complicated started from the bottom, now it's here. Really here: it domainted 00-10s, reshaping the love song landscape.",
+		text: "It's Complicated started from the bottom, now it's here. Really here: it dominated the 00s and 10s, reshaping the love song landscape.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -675,7 +679,8 @@ export const storySteps = [
 
 	// Transition into broader love song types:
 	steps.transitionIntoBroaderLoveSongTypes,
-	steps.introducingItsComplicated,
+
+	steps.definingItsComplicated,
 	steps.itsComplicatedDetail,
 	steps.kikiDoYouLoveMe,
 
