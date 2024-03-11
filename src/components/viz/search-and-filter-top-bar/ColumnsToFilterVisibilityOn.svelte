@@ -1,33 +1,29 @@
 <script>
     import {onDestroy} from "svelte";
 	import MultiSelect from "svelte-multiselect"; // (eventually we'll replace this with our own Select component likely)
-	import songsData from "$data/songs-data.js";
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
-	import {selectedLoveSongTypes} from "$stores/searchAndFilter.js";
+	import {columnsToFilterVisibilityOn} from "$stores/searchAndFilter.js";
 
-    const loveSongTypes = [
-        ...new Set(songsData.map(({song}) => song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]))
-    ];
-    const loveSongTypeOptions = loveSongTypes.map((type) => ({
-        label: type || '(Not a love song)',
-        value: type
+    const loveSongTypeOptions = Object.keys(SONG_DATA_COLUMNS_ENUM).map((type) => ({
+        label: type,
+        value: SONG_DATA_COLUMNS_ENUM[type]
     }));
 
-    let userSelectedLoveSongTypes = [];
+    let userSelectedColumnsToFilterVisibilityOn = [];
 
-    const unsubscribe = selectedLoveSongTypes.subscribe(($selectedLoveSongTypes) => {
-        userSelectedLoveSongTypes = loveSongTypeOptions.filter(option =>
-            $selectedLoveSongTypes.includes(option.value)
+    const unsubscribe = columnsToFilterVisibilityOn.subscribe(($columnsToFilterVisibilityOn) => {
+        userSelectedColumnsToFilterVisibilityOn = loveSongTypeOptions.filter(option =>
+            $columnsToFilterVisibilityOn.includes(option.value)
         );
     });
 
-    $: selectedLoveSongTypes.set(userSelectedLoveSongTypes.map(({ value }) => value))
+    $: columnsToFilterVisibilityOn.set(userSelectedColumnsToFilterVisibilityOn.map(({ value }) => value))
 
     onDestroy(unsubscribe);
 </script>
 
 <MultiSelect
-    placeholder="Select love song type(s)"
-    bind:selected={userSelectedLoveSongTypes}
+    placeholder="Base visibility on:"
+    bind:selected={userSelectedColumnsToFilterVisibilityOn}
     options={loveSongTypeOptions}
 />

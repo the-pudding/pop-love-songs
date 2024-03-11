@@ -19,8 +19,10 @@
 		<SongFilter />
 		<TimeRangeFilter />
 		<!-- For authoring -->
+		<span>Slide-controls:</span>
 		<ColumnsToFilterVisibilityOn />
 		<VisibleButNotSelectedLoveSongTypes />
+		<span>)</span>
 	</div>
 </fieldset>
 
@@ -28,6 +30,8 @@
 	div {
 		display: flex;
 		justify-content: space-between;
+		/* To save space: */
+		font-size: 12px; 
 	}
 	fieldset {
 		position: fixed;

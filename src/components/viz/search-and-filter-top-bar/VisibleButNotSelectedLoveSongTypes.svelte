@@ -27,7 +27,7 @@
 </script>
 
 <MultiSelect
-    placeholder="Select love song type(s)"
+    placeholder="Visible but not selected:"
     bind:selected={userSelectedLoveSongTypes}
     options={loveSongTypeOptions}
 />
