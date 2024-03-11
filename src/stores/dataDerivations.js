@@ -3,7 +3,6 @@ import songsData, { MAX_YEAR, MIN_YEAR } from "$data/songs-data.js";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 import { getArrayOfPerformers } from "$data/data-utils.js";
 import {
-	selectedGenres,
 	selectedGenders,
 	selectedSongs,
 	selectedLoveSongTypes,
@@ -20,17 +19,6 @@ const genderSelected = derived(
 			({ song }) =>
 				$selectedGenders.includes(song[SONG_DATA_COLUMNS_ENUM.gender]) ||
 				$selectedGenders.length === 0
-		),
-	[]
-);
-
-const genreSelected = derived(
-	[selectedGenres],
-	([$selectedGenres]) =>
-		songsData.map(
-			({ song }) =>
-				$selectedGenres.includes(song[SONG_DATA_COLUMNS_ENUM.generic_genre]) ||
-				$selectedGenres.length === 0
 		),
 	[]
 );
@@ -96,7 +84,6 @@ const withinTimeRange = derived(
 export const songIsSelected = derived(
 	[
 		genderSelected,
-		genreSelected,
 		loveSongTypeSelected,
 		performerSelected,
 		songSelected,
@@ -113,7 +100,6 @@ export const songIsSelected = derived(
 export const selectedSongsDataIgnoringTime = derived(
 	[
 		genderSelected,
-		genreSelected,
 		loveSongTypeSelected,
 		performerSelected,
 		songSelected
@@ -129,7 +115,6 @@ export const selectedSongsDataIgnoringTime = derived(
 export const songIsVisible = derived(
 	[
 		genderSelected,
-		genreSelected,
 		loveSongTypeSelected,
 		performerSelected,
 		songSelected,
@@ -139,7 +124,6 @@ export const songIsVisible = derived(
 	],
 	([
 		$genderSelected,
-		$genreSelected,
 		$loveSongTypeSelected,
 		$performerSelected,
 		$songSelected,
@@ -153,11 +137,6 @@ export const songIsVisible = derived(
 				SONG_DATA_COLUMNS_ENUM.gender
 			)
 				? $genderSelected[index]
-				: true;
-			const genreVisible = $columnsToFilterVisibilityOn.includes(
-				SONG_DATA_COLUMNS_ENUM.generic_genre
-			)
-				? $genreSelected[index]
 				: true;
 			const loveSongTypeVisible = $columnsToFilterVisibilityOn.includes(
 				SONG_DATA_COLUMNS_ENUM.love_song_sub_type
@@ -185,7 +164,6 @@ export const songIsVisible = derived(
 
 			return (
 				genderVisible &&
-				genreVisible &&
 				loveSongTypeVisible &&
 				performerVisible &&
 				songVisible &&

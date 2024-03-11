@@ -15,7 +15,6 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
 	selectedPerformers: [],
 	selectedGenders: [],
-	selectedGenres: [],
 	selectedSongs: [],
 
 	columnsToFilterVisibilityOn: [],
@@ -537,36 +536,6 @@ const steps = {
 		}
 	},
 
-	introducingPlatonic: {
-		text: "(We might expand love songs to include Platonic love, but this category is quite small in the top 10...)",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
-				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
-				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf,
-				LOVE_SONG_TYPE_CONSTANTS.platonicLove
-			],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
-			visibleButNotSelectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
-				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
-				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
-			]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: getYPositionInSnakeChart
-		}
-	},
-
 	introducingSexualConquest: {
 		text: "Finally, the rising star & likely primary target of Boomer hate: Sexual Conquest, which went so far as to dethrone Serenades in the  2000s.",
 		searchAndFilterState: {
@@ -578,7 +547,6 @@ const steps = {
 				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
 				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
 				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf,
-				LOVE_SONG_TYPE_CONSTANTS.platonicLove,
 				LOVE_SONG_TYPE_CONSTANTS.sexualConquest
 			],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
@@ -588,8 +556,7 @@ const steps = {
 				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
 				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
 				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
-				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf,
-				LOVE_SONG_TYPE_CONSTANTS.platonicLove
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
 			]
 		},
 		visualEncodings: {

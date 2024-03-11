@@ -1,7 +1,6 @@
 <script>
 	import LoveSongTypeFilter from "./LoveSongTypeFilter.svelte";
 	import GenderFilter from "./GenderFilter.svelte";
-	import GenreFilter from "./GenreFilter.svelte";
 	import PerformerFilter from "./PerformerFilter.svelte";
 	import SongFilter from "./SongFilter.svelte";
 	import TimeRangeFilter from "./TimeRangeFilter.svelte";
@@ -11,7 +10,6 @@
 	<div>
 		<LoveSongTypeFilter />
 		<GenderFilter />
-		<GenreFilter />
 		<PerformerFilter />
 		<SongFilter />
 		<TimeRangeFilter />

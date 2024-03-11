@@ -2,7 +2,7 @@
     import {afterUpdate, onMount} from "svelte";
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";
-    import {selectedGenres, selectedGenders, selectedSongs, selectedLoveSongTypes, selectedPerformers, timeRange, columnsToFilterVisibilityOn, visibleButNotSelectedLoveSongTypes} from "$stores/searchAndFilter.js"
+    import {selectedGenders, selectedSongs, selectedLoveSongTypes, selectedPerformers, timeRange, columnsToFilterVisibilityOn, visibleButNotSelectedLoveSongTypes} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
     
@@ -40,7 +40,6 @@
     const updateFilterFilterState = () => {
         selectedSongs.set([...$currentStoryStep.searchAndFilterState.selectedSongs])
         selectedGenders.set([...$currentStoryStep.searchAndFilterState.selectedGenders])
-        selectedGenres.set([...$currentStoryStep.searchAndFilterState.selectedGenres])
         selectedLoveSongTypes.set([...$currentStoryStep.searchAndFilterState.selectedLoveSongTypes])
         selectedPerformers.set([...$currentStoryStep.searchAndFilterState.selectedPerformers])
         timeRange.set({...$currentStoryStep.searchAndFilterState.timeRange})
