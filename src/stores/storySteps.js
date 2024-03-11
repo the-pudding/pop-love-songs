@@ -136,7 +136,8 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: fractionOfScreenFactory(0.5)
-		}
+		},
+		showLoveSongChangeOverTime: true
 	},
 	isTheLoveSongDyingTitleStep: {
 		text: "... is the love song dying? (some people think so) [show screenshots of Boombers bemoaning the death of love songs]",
@@ -208,7 +209,8 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: fractionOfScreenFactory(0.5)
-		}
+		},
+		showLoveSongChangeOverTime: true
 	},
 	aFewArtistsKeepThemAliveToday: {
 		text: "Only a few artists like Biebs & T-Swift keep them alive today [see side panel]. With the Seranade dropping from almost 1 in 4 songs in 60s to just 1 in 10 today, love songs seem on their death bed...",
@@ -225,7 +227,8 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: fractionOfScreenFactory(0.5)
-		}
+		},
+		showLoveSongChangeOverTime: true
 	},
 	introducingLongingAndHeartbreak: {
 		text: "... so lets expand to relationships where love isn't so clearly reciprocated: the Heartbreak & Longing type. Egads! If these are the only love songs, then love songs have now dropped 22% since the 60s!",
@@ -241,7 +244,8 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart
-		}
+		},
+		showLoveSongChangeOverTime: true
 	},
 	longingAndHeartbreakDetails: {
 		text: "This makes sense when you look at top artists [see side panel]: Taylor Swift is the only active (or sometimes, even, living!) artist!",
@@ -275,7 +279,8 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart
-		}
+		},
+		showLoveSongChangeOverTime: true
 	},
 	courtshipDetail: {
 		text: "Courtship & Anticipation have remained steady over the years [see side panel], neither bolstering nor hurting the broader love song category as a whole.",
@@ -296,7 +301,8 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart
-		}
+		},
+		showLoveSongChangeOverTime: true
 	},
 
 	// Transition into broader love song types:
@@ -587,7 +593,8 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart
-		}
+		},
+		showLoveSongChangeOverTime: true
 	},
 
 	youDecide: {
@@ -599,7 +606,8 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart
-		}
+		},
+		showLoveSongChangeOverTime: true
 	}
 };
 

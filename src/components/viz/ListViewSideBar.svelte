@@ -1,7 +1,7 @@
 <script>
 	import {derived} from "svelte/store";
 	import { selectedSongsData } from "$stores/dataDerivations.js";
-	import {currentStoryStepIndex} from "$stores/storySteps.js";
+	import {currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js";
 	import LoveSongDeathMeter from "./LoveSongDeathMeter.svelte";
 	import SongInfo from "./SongInfo.svelte";
 	import { RIGHT_TOOLBAR_WIDTH } from "$stores/forcePositionOptions-helper";
@@ -30,10 +30,12 @@
 
 {#if $currentStoryStepIndex >= firstRelevantStep}
 	<section style:width={`${RIGHT_TOOLBAR_WIDTH}px`}>
-		<h4>Love song <b>popularity % change</b></h4>
-		<ul>
-			<LoveSongDeathMeter/>
-		</ul>
+		{#if $currentStoryStep.showLoveSongChangeOverTime}
+			<h4>Love song <b>popularity % change</b></h4>
+			<ul>
+				<LoveSongDeathMeter/>
+			</ul>
+		{/if}
 		<h4>Top 20 artists for selection</h4>
 		<ul>
 			{#each ($performerSongCount).slice(0, 20) as [performer, count]}
