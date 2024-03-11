@@ -154,8 +154,8 @@ const steps = {
 	},
 
 	// Transition:
-	definingLoveSong: {
-		text: "To answer this, we have to define a 'love song'. When it comes to romantic relationshps, there are roughly 3 relational states [see image] in which we found 8 love song types persistent accross time.",
+	definingSerenade: {
+		text: "But first, what counts as a love song? The simplest definition: you love someone, and they love you back. This is what we called a Serenade.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -171,26 +171,7 @@ const steps = {
 			calculateYForcePosition: fractionOfScreenFactory(0.5)
 		},
 		// TEMP: for demo
-		showDefinitionImage: true
-	},
-	letsAnswerThisByAssessingLoveSongTypes: {
-		text: "We'll build out the full landscape of love songs type by type, from the most obviously about love (Serenade), to those Boomers might not not see as love songs. All to reveal if the love song is, in the end, dying or not!",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
-			timeRange: {
-				startYear: MIN_YEAR,
-				endYear: 2000
-			},
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: fractionOfScreenFactory(0.5)
-		},
-		// TEMP: for demo
-		showDefinitionImage: true
+		loveSongTypeDefinitionImage: "serenade"
 	},
 
 	// Body:
@@ -323,7 +304,7 @@ const steps = {
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart
 		},
-		showDefinitionImage: true
+		loveSongTypeDefinitionImage: "serenade"
 	},
 	introducingItsComplicated: {
 		text: "Sometimes a romantic relatinoship isn't squarely thriving or over. Sometimes... It's Complicated.",
@@ -623,8 +604,7 @@ export const storySteps = [
 	steps.isTheLoveSongDyingTitleStep,
 
 	// Transition & definition:
-	steps.definingLoveSong,
-	steps.letsAnswerThisByAssessingLoveSongTypes,
+	steps.definingSerenade,
 
 	// Body: classic love song types
 	steps.serenadesPeakedInThe90s,
