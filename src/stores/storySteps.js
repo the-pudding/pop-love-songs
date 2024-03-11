@@ -33,7 +33,7 @@ const VISUAL_ENCODING_BLANK_STATE = {
 
 const steps = {
 	thisIsAHitSong: {
-		text: "This is a hit song. [11 weeks on the Billboard Top 10]",
+		text: "This is a hit song. It spent 11 weeks on the Billboard Top 10 [you can use arrow keys to advance]",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedSongs: ["Let It Be"],
@@ -46,7 +46,7 @@ const steps = {
 		}
 	},
 	thisSongWasRankedForEvenLonger: {
-		text: "This is a song that was listed on Billboard Top 10 for even longer. [57 weeks]",
+		text: "This is a song that was listed on Billboard Top 10 for even longer: 57 weeks",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedSongs: ["Let It Be", "Blinding Lights"],
@@ -194,7 +194,7 @@ const steps = {
 		showLoveSongChangeOverTime: true
 	},
 	aFewArtistsKeepThemAliveToday: {
-		text: "But a few artists like Biebs & T-Swift keep them alive today [see side panel]. With the Seranade dropping from almost 1 in 4 songs in 60s to just 1 in 10 today, love songs seem on their death bed...",
+		text: "But a few artists like Biebs & T-Swift keep them alive today [see side panel]. With the Serenade dropping from almost 1 in 4 songs in the 60s to just 1 in 10 today, love songs seem *do* on their death bed...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -217,8 +217,8 @@ const steps = {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+				LOVE_SONG_TYPE_CONSTANTS.serenade
+				// LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
 			],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
@@ -243,11 +243,10 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart
-		},
-		showLoveSongChangeOverTime: true
+		}
 	},
 	longingAndHeartbreakTopArtists: {
-		text: "But top artists skew old-school [see side panel]: Taylor Swift artists still making hits (or, in some cases, still breathing!)",
+		text: "But top artists skew old-school [see side panel]: Taylor Swift is virtually the only top artist still making hits (or, in some cases, still alive!)",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -264,7 +263,7 @@ const steps = {
 		}
 	},
 	longingAndHeartbreakMakeItWorse: {
-		text: "Do they help keep love songs alive? Au contraire! Added to Serenades, love songs have now dropped 22% since the 60s!",
+		text: "Does expanding to include Heartbreak & Longing songs reveal a love song less in decline? Au contraire! Added to Serenades, love songs have now dropped 22% since the 60s!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -287,8 +286,8 @@ const steps = {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
 				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+				// LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
 			],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
@@ -350,11 +349,7 @@ const steps = {
 				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
 				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
 			],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
-			visibleButNotSelectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
-			]
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
@@ -370,8 +365,8 @@ const steps = {
 			selectedLoveSongTypes: [
 				LOVE_SONG_TYPE_CONSTANTS.serenade,
 				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+				// LOVE_SONG_TYPE_CONSTANTS.itsComplicated
 			],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
@@ -438,8 +433,8 @@ const steps = {
 				LOVE_SONG_TYPE_CONSTANTS.serenade,
 				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
 				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
-				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+				// LOVE_SONG_TYPE_CONSTANTS.goodRiddance
 			],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
@@ -451,7 +446,7 @@ const steps = {
 		loveSongTypeDefinitionImage: "good-riddance"
 	},
 	introducingGoodRiddance: {
-		text: "The message is the same, but it's gotten bolder: Dion's 'Runaround Sue' (1962) ran a good distance to bring us to Olivia Rodrigo's 2021 'Good 4 U'.",
+		text: "Good Riddance has gotten bolder: Dion's 'Runaround Sue' (1962) ran a good distance to bring us to Olivia Rodrigo's 2021 'Good 4 U'.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -470,7 +465,7 @@ const steps = {
 		}
 	},
 	goodRiddanceDetail: {
-		text: "Women are hugely dominant here (compared to the rest of pop hits)...",
+		text: "Women are hugely dominant here (especially compared to the rest of pop hits, where they are often underrepresented)...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedGenders: [GENDER_CONSTANTS.female],
@@ -527,7 +522,7 @@ const steps = {
 	},
 
 	definingLoveSongForTheSelf: {
-		text: "Even more of a female-led type, Love Song for the Self is Serenade... pointed back at you. It's typified by reacting to struggle or rejection with self-affirmation",
+		text: "Even more of a female-led type, Love Song for the Self is like a Serenade... but directed back at the speaker themselves. Though it's not typically written *to* a lover, it's almost always written *in reaction* to romantic rejection.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -535,8 +530,8 @@ const steps = {
 				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
 				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
 				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
-				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
-				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+				// LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
 			],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
 			visibleButNotSelectedLoveSongTypes: [
@@ -621,8 +616,8 @@ const steps = {
 				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
 				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
 				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
-				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf,
-				LOVE_SONG_TYPE_CONSTANTS.sexualConquest
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
+				// LOVE_SONG_TYPE_CONSTANTS.sexualConquest
 			],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
 			visibleButNotSelectedLoveSongTypes: [
@@ -673,7 +668,7 @@ const steps = {
 	},
 
 	addInNonLoveSongsInGray: {
-		text: "Ok, it's time to zoom out and answer our original question: is the love song dying? (But first, lets add in non-love songs to complete the picture. This is every Top 10 hit from 1959-2023...)",
+		text: "Ok, it's time to zoom out and answer our original question: is the love song dying? (But first, lets add non-love songs (in gray) to get the complete picture of where love songs stand within every single Top 10 hit from 1959-2023...)",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE
 		},
@@ -685,7 +680,7 @@ const steps = {
 	},
 
 	theLoveSongIsActuallyRising: {
-		text: "Ok: so, if you accept this broader view of love songs, we have our answer: the love song is just as strong as it ever was, and in fact stretches to encompass more of the complexity of romance than it ever has before!",
+		text: "Ok: so, if you accept this broader view of love songs, we have our answer: the love song is just as strong as it ever was (>1% change from the 60s!) In fact, love songs today are arguably more alive, encompassing more of the complexity of romance.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE
 		},
@@ -698,7 +693,7 @@ const steps = {
 	},
 
 	youDecide: {
-		text: "... that is, *if* you accept this definition. But you don't need to! You decide: use the filters to tell *us* how the love song is doing... Enjoy!",
+		text: "... that is, *if* you accept these love song definitions. But you don't need to! You decide: use the filters to tell *us* how the love song is doing [the % change score will update with filters]... Enjoy!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE
 		},
