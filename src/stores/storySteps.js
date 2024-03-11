@@ -299,7 +299,7 @@ const steps = {
 		loveSongTypeDefinitionImage: "courtship-&-anticipation"
 	},
 	introducingCourtship: {
-		text: "These songs stretch from The Beatles 'I Want to Hold Your Hand' to Carly Rae Jepsen's 'Call Me Maybe'...",
+		text: "These songs stretch from The Beatles' 'I Want to Hold Your Hand' to Carly Rae Jepsen's 'Call Me Maybe'...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
