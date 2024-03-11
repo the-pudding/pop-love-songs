@@ -176,7 +176,7 @@ const steps = {
 
 	// Body:
 	serenadesPeakedInThe90s: {
-		text: "Let's start with Serenades: where both parties love each other. They peaked in popularity the 90s with hits like 'I'll make love to you' by Boyz II Men",
+		text: "Serenades peaked in popularity the 90s with hits like 'I'll make love to you' by Boyz II Men",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -194,7 +194,7 @@ const steps = {
 		showLoveSongChangeOverTime: true
 	},
 	aFewArtistsKeepThemAliveToday: {
-		text: "Only a few artists like Biebs & T-Swift keep them alive today [see side panel]. With the Seranade dropping from almost 1 in 4 songs in 60s to just 1 in 10 today, love songs seem on their death bed...",
+		text: "But a few artists like Biebs & T-Swift keep them alive today [see side panel]. With the Seranade dropping from almost 1 in 4 songs in 60s to just 1 in 10 today, love songs seem on their death bed...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -211,8 +211,26 @@ const steps = {
 		},
 		showLoveSongChangeOverTime: true
 	},
-	introducingLongingAndHeartbreak: {
-		text: "... so lets expand to relationships where love isn't so clearly reciprocated: the Heartbreak & Longing type. Egads! If these are the only love songs, then love songs have now dropped 22% since the 60s!",
+
+	definingLongingAndHeartbreak: {
+		text: "But there must be more forms of love songs. For example, what if you love someone... and they *don't* love you back? Let's name these songs Longing & Heartbreak.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		},
+		loveSongTypeDefinitionImage: "longing-&-heartbreak"
+	},
+	longingAndHeartbreakOverview: {
+		text: "Longing & Heartbreak is almost as popular as the Serenade, and even has surpassed it in the 2020s, thanks in large part to Blinding Lights by The Weeknd.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -228,8 +246,8 @@ const steps = {
 		},
 		showLoveSongChangeOverTime: true
 	},
-	longingAndHeartbreakDetails: {
-		text: "This makes sense when you look at top artists [see side panel]: Taylor Swift is the only active (or sometimes, even, living!) artist!",
+	longingAndHeartbreakTopArtists: {
+		text: "But top artists skew old-school [see side panel]: Taylor Swift artists still making hits (or, in some cases, still breathing!)",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -245,6 +263,24 @@ const steps = {
 			calculateYForcePosition: getYPositionInSnakeChart
 		}
 	},
+	longingAndHeartbreakMakeItWorse: {
+		text: "Do they help keep love songs alive? Au contraire! Added to Serenades, love songs have now dropped 22% since the 60s!",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		},
+		showLoveSongChangeOverTime: true
+	},
+
 	introducingCourtship: {
 		text: "Will adding the 'You love them, they *might* love you' type -- Courtship & Anticipation -- help keep the love song alive? Nope!",
 		searchAndFilterState: {
@@ -610,8 +646,10 @@ export const storySteps = [
 	steps.serenadesPeakedInThe90s,
 	steps.aFewArtistsKeepThemAliveToday,
 
-	steps.introducingLongingAndHeartbreak,
-	steps.longingAndHeartbreakDetails,
+	steps.definingLongingAndHeartbreak,
+	steps.longingAndHeartbreakOverview,
+	steps.longingAndHeartbreakTopArtists,
+	steps.longingAndHeartbreakMakeItWorse,
 
 	steps.introducingCourtship,
 	steps.courtshipDetail,
