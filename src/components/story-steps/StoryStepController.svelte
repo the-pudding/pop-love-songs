@@ -71,6 +71,7 @@
         max-height: 80%;
         top: 0; 
         left: 0;
+        z-index: 100000000000;
     }
     .container {
         position: fixed;
