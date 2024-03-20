@@ -28,7 +28,7 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 
 const VISUAL_ENCODING_BLANK_STATE = {
 	calculateXForcePosition: getXPositionFromTime,
-	calculateYForcePosition: getYPositionInSnakeChart // TODO: udpate to be snake chart by default
+	calculateYForcePosition: getYPositionInSnakeChart
 };
 
 const steps = {
@@ -46,7 +46,7 @@ const steps = {
 		}
 	},
 	thisSongWasRankedForEvenLonger: {
-		text: "This is a song that was listed on Billboard Top 10 for even longer: 57 weeks",
+		text: "This is a song that was listed on Billboard Top 10 for even longer: 57 weeks.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedSongs: ["Let It Be", "Blinding Lights"],
@@ -72,7 +72,7 @@ const steps = {
 		}
 	},
 	callingOutAFewSerenades: {
-		text: "Pop artists love these feel-goody, love-drenched tunes...",
+		text: "Pop artists love these heartfelt tributes to their loved ones...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -113,7 +113,7 @@ const steps = {
 		}
 	},
 	allTheSerenadesInOverTime: {
-		text: "... just look at all the sheer spread of Serenades in the Billboard Top 10 from 1959-2023",
+		text: "... just look at the sheer spread of Serenades in the Billboard Top 10 from 1959-2023!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -154,15 +154,28 @@ const steps = {
 	},
 
 	// Transition:
+	whatCountsAsAloveSong: {
+		text: "But first, what counts as a love song?",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedSongs: ["Love Song"],
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
+			columnsToFilterVisibilityOn: [
+				SONG_DATA_COLUMNS_ENUM.song,
+				SONG_DATA_COLUMNS_ENUM.love_song_sub_type
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
+		}
+	},
 	definingSerenade: {
-		text: "But first, what counts as a love song? The simplest definition: you love someone, and they love you back. This is what we called a Serenade.",
+		text: "Let's start with the simplest definition: the singer loves someone, and they're loved back. This is a Serenade.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
-			timeRange: {
-				startYear: MIN_YEAR,
-				endYear: 2000
-			},
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
@@ -176,7 +189,7 @@ const steps = {
 
 	// Body:
 	serenadesPeakedInThe90s: {
-		text: "Serenades peaked in popularity the 90s with hits like 'I'll make love to you' by Boyz II Men",
+		text: "Serenades peaked in popularity in the 90s with hits like 'I'll make love to you' by Boyz II Men...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -194,7 +207,7 @@ const steps = {
 		showLoveSongChangeOverTime: true
 	},
 	aFewArtistsKeepThemAliveToday: {
-		text: "But a few artists like Biebs & T-Swift keep them alive today [see side panel]. With the Serenade dropping from almost 1 in 4 songs in the 60s to just 1 in 10 today, love songs seem *do* on their death bed...",
+		text: "But a few artists like Biebs & T-Swift keep them alive today [see side panel]. With the Serenade dropping from almost 1 in 4 songs in the 60s to just 1 in 10 today, love songs *do* seem to be on their death bed...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -213,7 +226,7 @@ const steps = {
 	},
 
 	definingLongingAndHeartbreak: {
-		text: "But there must be more forms of love songs. For example, what if you love someone... and they *don't* love you back? Let's name these songs Longing & Heartbreak.",
+		text: "But is the Serenade the only form of love song? For example, what if you love someone... and they *don't* love you back? Let's name these songs Longing & Heartbreak.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -246,7 +259,7 @@ const steps = {
 		}
 	},
 	longingAndHeartbreakTopArtists: {
-		text: "But top artists skew old-school [see side panel]: Taylor Swift is virtually the only top artist still making hits (or, in some cases, still alive!)",
+		text: "But top artists skew old-school [see side panel]: Taylor Swift & Mariah Carey are virtually the only top artist still making these tearful hits (or, in some cases, still alive!)",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -718,6 +731,7 @@ export const storySteps = [
 	steps.isTheLoveSongDyingTitleStep,
 
 	// Transition & definition:
+	steps.whatCountsAsAloveSong,
 	steps.definingSerenade,
 
 	// Body: classic love song types
