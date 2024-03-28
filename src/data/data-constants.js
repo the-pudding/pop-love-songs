@@ -15,7 +15,7 @@ export const PERFORMER_TYPE_ABBREVIATIONS = {
 export const GENDER_ABBREVIATIONS = {
 	f: "female",
 	m: "male",
-	n: "non-binary",
+	n: "gender non-conforming",
 	x: "mixed gender group" // OPTIMIZATION: technically this is redundant, so we could drop "g" for this in the original data
 };
 
