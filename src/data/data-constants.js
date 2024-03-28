@@ -19,6 +19,10 @@ export const GENDER_ABBREVIATIONS = {
 	x: "mixed gender group" // OPTIMIZATION: technically this is redundant, so we could drop "g" for this in the original data
 };
 
+export const GENDER_CONSTANTS = Object.fromEntries(
+	Object.entries(GENDER_ABBREVIATIONS).map(([key, value]) => [value, key])
+);
+
 export const LOVE_SONG_TYPE_CONSTANTS = {
 	serenade: "Serenade",
 	longingAndHeartbreak: "Longing & Heartbreak",
@@ -53,9 +57,3 @@ export const UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP = {
 };
 
 export const LOVE_SONG_TYPES = Object.keys(LOVE_SONG_TYPE_COLOR_MAP);
-
-export const GENDER_CONSTANTS = {
-	female: "f",
-	male: "m",
-	otherOrMixed: "x"
-};
