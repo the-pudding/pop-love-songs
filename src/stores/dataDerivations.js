@@ -17,8 +17,11 @@ const genderSelected = derived(
 	([$selectedGenders]) =>
 		songsData.map(
 			({ song }) =>
-				$selectedGenders.includes(song[SONG_DATA_COLUMNS_ENUM.gender]) ||
-				$selectedGenders.length === 0
+				$selectedGenders.some((selectedGender) =>
+					song[SONG_DATA_COLUMNS_ENUM.type_and_gender_list_str].includes(
+						`${selectedGender}|`
+					)
+				) || $selectedGenders.length === 0
 		),
 	[]
 );
@@ -134,7 +137,7 @@ export const songIsVisible = derived(
 		songsData.map((song, index) => {
 			// If we're filtering visibility based on a given column, then it must be selected to be visible.
 			const genderVisible = $columnsToFilterVisibilityOn.includes(
-				SONG_DATA_COLUMNS_ENUM.gender
+				SONG_DATA_COLUMNS_ENUM.type_and_gender_list_str
 			)
 				? $genderSelected[index]
 				: true;

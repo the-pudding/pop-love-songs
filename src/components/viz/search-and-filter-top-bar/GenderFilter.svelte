@@ -2,14 +2,11 @@
 	import {onDestroy} from "svelte";
 	import MultiSelect from "svelte-multiselect"; // (eventually we'll replace this with our own Select component likely)
 	import {selectedGenders} from "$stores/searchAndFilter.js";
-	import songsData from "$data/songs-data.js";
-	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
+	import { GENDER_ABBREVIATIONS } from "$data/data-constants.js";
 
-	const genders = [
-		...new Set(songsData.map(({song}) => song[SONG_DATA_COLUMNS_ENUM.gender]))
-	];
+	const genders = Object.keys(GENDER_ABBREVIATIONS)
 	const genderOptions = genders.map((gender) => ({
-		label: gender,
+		label: GENDER_ABBREVIATIONS[gender],
 		value: gender
 	}));
 
