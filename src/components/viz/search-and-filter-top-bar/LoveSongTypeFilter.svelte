@@ -1,16 +1,13 @@
 <script>
     import {onDestroy} from "svelte";
 	import MultiSelect from "svelte-multiselect"; // (eventually we'll replace this with our own Select component likely)
-	import songsData from "$data/songs-data.js";
-	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
+
+	import { LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants.js";
 	import {selectedLoveSongTypes} from "$stores/searchAndFilter.js";
 
-    const loveSongTypes = [
-        ...new Set(songsData.map(({song}) => song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]))
-    ];
-    const loveSongTypeOptions = loveSongTypes.map((type) => ({
-        label: type || '(Not a love song)',
-        value: type
+    const loveSongTypeOptions = Object.keys(LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP).map((loveSongTypeInt) => ({
+        label: LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongTypeInt],
+        value: +loveSongTypeInt
     }));
 
     let userSelectedLoveSongTypes = [];
@@ -21,7 +18,7 @@
         );
     });
 
-    $: selectedLoveSongTypes.set(userSelectedLoveSongTypes.map(({ value }) => value))
+    $: selectedLoveSongTypes.set(userSelectedLoveSongTypes.map(({ value }) => +value))
 
     onDestroy(unsubscribe);
 </script>

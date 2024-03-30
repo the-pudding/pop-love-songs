@@ -23,18 +23,31 @@ export const GENDER_CONSTANTS = Object.fromEntries(
 	Object.entries(GENDER_ABBREVIATIONS).map(([key, value]) => [value, key])
 );
 
+// TODO: choose better name
+export const LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP = {
+	0: "(not a love song)",
+	1: "Serenade",
+	2: "Good Riddance",
+	3: "Courtship & Anticipation",
+	4: "It's Complicated",
+	5: "Sexual Conquest",
+	6: "Longing & Heartbreak",
+	7: "Love Song for the Self"
+};
+
 export const LOVE_SONG_TYPE_CONSTANTS = {
-	serenade: "Serenade",
-	longingAndHeartbreak: "Longing & Heartbreak",
-	sexualConquest: "Sexual Conquest",
-	itsComplicated: "It's Complicated",
-	goodRiddance: "Good Riddance",
-	loveSongForTheSelf: "Love Song for the Self",
-	courtshipAndAnticipation: "Courtship & Anticipation"
+	notALoveSong: 0,
+	serenade: 1,
+	longingAndHeartbreak: 6,
+	sexualConquest: 5,
+	itsComplicated: 4,
+	goodRiddance: 2,
+	loveSongForTheSelf: 7,
+	courtshipAndAnticipation: 3
 };
 
 export const LOVE_SONG_TYPE_COLOR_MAP = {
-	"": "gray",
+	[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]: "gray",
 	[LOVE_SONG_TYPE_CONSTANTS.serenade]: "pink",
 	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: "blue",
 	[LOVE_SONG_TYPE_CONSTANTS.sexualConquest]: "red",
@@ -46,7 +59,7 @@ export const LOVE_SONG_TYPE_COLOR_MAP = {
 
 const UNSELECTED_OPACITY = 0.2;
 export const UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP = {
-	"": `rgba(0, 0, 0, ${UNSELECTED_OPACITY})`,
+	[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]: `rgba(0, 0, 0, ${UNSELECTED_OPACITY})`,
 	[LOVE_SONG_TYPE_CONSTANTS.serenade]: `rgba(255, 192, 203, ${UNSELECTED_OPACITY})`,
 	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: `rgba(0, 0, 255, ${UNSELECTED_OPACITY})`,
 	[LOVE_SONG_TYPE_CONSTANTS.sexualConquest]: `rgba(255, 0, 0, ${UNSELECTED_OPACITY})`,

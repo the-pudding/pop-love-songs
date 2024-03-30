@@ -14,7 +14,9 @@ export const MAX_YEAR = rawSongsData.reduce(
 
 // Wrap each array in an object (to which force simulation will attach properties)
 const wrappedData = rawSongsData.map((song) => ({
-	song,
+	song: song.map((column, columnIndex) =>
+		columnIndex === SONG_DATA_COLUMNS_ENUM.love_song_sub_type ? +column : column
+	),
 	radius: calculateRadiusFromPopularityScore(
 		+song[SONG_DATA_COLUMNS_ENUM.popularity_score]
 	)

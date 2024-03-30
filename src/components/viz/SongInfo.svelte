@@ -1,7 +1,10 @@
 <script>
 	import {
 		SONG_DATA_COLUMNS_ENUM,
-		LOVE_SONG_TYPE_COLOR_MAP
+		LOVE_SONG_TYPE_COLOR_MAP,
+LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP,
+		LOVE_SONG_TYPE_CONSTANTS
+
 	} from "$data/data-constants.js";
 	import PerformerNames from "./PerformerNames.svelte";
 	
@@ -9,12 +12,13 @@
 
 	$: loveSongSubType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 	$: loveSongColor = LOVE_SONG_TYPE_COLOR_MAP[loveSongSubType];
+	$: console.log(LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongSubType], loveSongSubType, loveSongColor);
 </script>
 
 <div
 	style={`background-color: ${loveSongColor}; color: ${
-		loveSongColor === LOVE_SONG_TYPE_COLOR_MAP["Heartbreak & Longing"]
-			? "white"
+		loveSongSubType === LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+			? "lightgray"
 			: "black"
 	}`}
 >
@@ -23,7 +27,7 @@
 	)})
 </div>
 <div class="love-song-type" style:color={loveSongColor}>
-	{loveSongSubType}
+	{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongSubType]}
 </div>
 <div class="performer">
 	<PerformerNames {song} />
