@@ -12,7 +12,6 @@ LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP,
 
 	$: loveSongSubType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 	$: loveSongColor = LOVE_SONG_TYPE_COLOR_MAP[loveSongSubType];
-	$: console.log(LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongSubType], loveSongSubType, loveSongColor);
 </script>
 
 <div
