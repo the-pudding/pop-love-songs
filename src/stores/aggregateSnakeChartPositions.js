@@ -2,41 +2,10 @@ import { derived } from "svelte/store";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { visibleSongsData } from "./dataDerivations";
 
-export const RIGHT_TOOLBAR_WIDTH = 280; // TODO: probably a better way to do this *shrug*
-
 // algo:
 // 1. given an array of non-overlapping, contiguous time regions (an array with a start & stop year)...
 // Use 1968-1969, then do decades from there on out (1970-1979, 1980-1989, etc.)
-export const aggregationTimeRegions = [
-	{
-		start: 1958,
-		stop: 1969
-	},
-	{
-		start: 1970,
-		stop: 1979
-	},
-	{
-		start: 1980,
-		stop: 1989
-	},
-	{
-		start: 1990,
-		stop: 1999
-	},
-	{
-		start: 2000,
-		stop: 2009
-	},
-	{
-		start: 2010,
-		stop: 2019
-	},
-	{
-		start: 2020,
-		stop: 2029
-	}
-];
+import { aggregationTimeRegions } from "./loveSongsLabeledByTimeRegionPercentageForPosition";
 
 // 2. ... aggregate the total songs for each time region, then label each with a sumative percentage, append that to the object
 
@@ -81,7 +50,7 @@ const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
 	}, {});
 };
 
-export const loveSongsLabeledByTimeRegionPercentageForPosition = derived(
+export const aggregateSnakeChartPositions = derived(
 	[visibleSongsData],
 	([$visibleSongsData]) => {
 		return aggregationTimeRegions.map((timeRegion) => {

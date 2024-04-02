@@ -16,6 +16,7 @@
 	} from "./viz-utils";
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
 	import { xForcePosition, yForcePosition } from "$stores/visualEncodings";
+	import { aggregateSnakeChartPositions } from "$stores/aggregateSnakeChartPositions";
 
 	// Give it an initial position
 	const forceSimulationData = songsData.map((songObject, songIndex) => ({
@@ -138,6 +139,9 @@
 		resizeCanvases();
 		updateVisibleAndInvisibleCanvases();
 		updateSimulationProperties();
+
+		// TEMP for development
+		console.log($aggregateSnakeChartPositions)
 	});
 </script>
 
