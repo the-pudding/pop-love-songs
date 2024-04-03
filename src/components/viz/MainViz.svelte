@@ -145,7 +145,24 @@
 	});
 
 	afterNavigate(() => // TEMP for development
-		console.log($aggregateSnakeChartPositions))
+		{
+			let loveSongType = 1
+			const PADDING_BETWEEN_TIME_REGIONS = 0 // TODO: regions are arleady a year apart, but should be in most sensible unit
+			let vizData = $aggregateSnakeChartPositions.reduce(
+				(accum, timeRegion) => {
+		
+					const {y0, y1} = timeRegion.popularityScoreSumsInTimeRegion[loveSongType] || {}
+					return {...accum, 
+						x: [...accum.x, timeRegion.start, timeRegion.stop - PADDING_BETWEEN_TIME_REGIONS],
+						y0: [...accum.y0, y0, y0],
+						y1: [...accum.y1, y1, y1]
+					}
+				}, 
+				{x: [], y0: [], y1: []}
+				)
+			console.log(vizData)
+		})
+
 </script>
 
 <canvas

@@ -44,8 +44,8 @@ const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
 		return {
 			...acc,
 			[loveSongType]: {
-				yBottom: totalPercentageThatHasBeenAccountedFor + loveSongPercentage,
-				yTop: totalPercentageThatHasBeenAccountedFor
+				y0: totalPercentageThatHasBeenAccountedFor + loveSongPercentage,
+				y1: totalPercentageThatHasBeenAccountedFor
 			}
 		};
 	}, {});
