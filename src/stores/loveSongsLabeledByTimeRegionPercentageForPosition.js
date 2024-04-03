@@ -1,6 +1,7 @@
 import { derived } from "svelte/store";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { visibleSongsData } from "./dataDerivations";
+import { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
 
 export const RIGHT_TOOLBAR_WIDTH = 280; // TODO: probably a better way to do this *shrug*
 
@@ -9,7 +10,7 @@ export const RIGHT_TOOLBAR_WIDTH = 280; // TODO: probably a better way to do thi
 // Use 1968-1969, then do decades from there on out (1970-1979, 1980-1989, etc.)
 export const aggregationTimeRegions = [
 	{
-		start: 1958,
+		start: MIN_YEAR,
 		stop: 1969
 	},
 	{
@@ -34,7 +35,7 @@ export const aggregationTimeRegions = [
 	},
 	{
 		start: 2020,
-		stop: 2029
+		stop: MAX_YEAR
 	}
 ];
 

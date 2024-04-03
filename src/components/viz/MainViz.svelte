@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from "svelte";
+	import { afterNavigate } from "$app/navigation"; // TEMP, for development
 
 	import { forceSimulation, forceX, forceY, forceCollide } from "d3";
 
@@ -140,9 +141,11 @@
 		updateVisibleAndInvisibleCanvases();
 		updateSimulationProperties();
 
-		// TEMP for development
-		console.log($aggregateSnakeChartPositions)
+		
 	});
+
+	afterNavigate(() => // TEMP for development
+		console.log($aggregateSnakeChartPositions))
 </script>
 
 <canvas

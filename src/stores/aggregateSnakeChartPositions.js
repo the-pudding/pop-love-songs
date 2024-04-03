@@ -43,9 +43,10 @@ const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
 
 		return {
 			...acc,
-			// Note: want to place the dots in the middle of the band, so divide by 2
-			[loveSongType]:
-				totalPercentageThatHasBeenAccountedFor + loveSongPercentage / 2
+			[loveSongType]: {
+				yBottom: totalPercentageThatHasBeenAccountedFor + loveSongPercentage,
+				yTop: totalPercentageThatHasBeenAccountedFor
+			}
 		};
 	}, {});
 };
