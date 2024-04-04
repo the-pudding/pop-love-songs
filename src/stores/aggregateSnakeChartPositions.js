@@ -1,4 +1,6 @@
 import { derived } from "svelte/store";
+import { area as d3area } from "d3";
+import viewport from "./viewport";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { visibleSongsData } from "./dataDerivations";
 
@@ -66,5 +68,43 @@ export const aggregateSnakeChartPositions = derived(
 					getAggregatePercentageByLoveSongType(songsInTimeRegion)
 			};
 		});
+	}
+);
+
+export const aggregateSnakeChartSVGPaths = derived(
+	[aggregateSnakeChartPositions, viewport],
+	([$aggregateSnakeChartPositions, $viewport]) => {
+		// For now, just hard code one love song type
+		let loveSongType = 1;
+		const PADDING_BETWEEN_TIME_REGIONS = -0.7; // TODO: regions are arleady a year apart, but should be in most sensible unit
+		let svgCoordsForLoveSongType = $aggregateSnakeChartPositions.reduce(
+			(accum, timeRegion) => {
+				const { y0, y1 } =
+					timeRegion.popularityScoreSumsInTimeRegion[loveSongType] || {};
+				return [
+					...accum,
+					{
+						x: timeRegion.start,
+						y0,
+						y1
+					},
+					{
+						x: timeRegion.stop - PADDING_BETWEEN_TIME_REGIONS,
+						y0,
+						y1
+					}
+				];
+			},
+			[]
+		);
+		console.log(svgCoordsForLoveSongType);
+		return {
+			[loveSongType]: d3area()
+				// .curve(curveCatmullRomClosed.alpha(0.1)) // seems to produce a bizarre result
+				// TODO: use actually correct scaling
+				.x(({ x }) => ((x - 1958) * $viewport.width) / (2023 - 1958))
+				.y0(({ y0 }) => y0 * $viewport.height)
+				.y1(({ y1 }) => y1 * $viewport.height)(svgCoordsForLoveSongType)
+		};
 	}
 );

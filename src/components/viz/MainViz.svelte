@@ -1,6 +1,5 @@
 <script>
 	import { onMount } from "svelte";
-	import { afterNavigate } from "$app/navigation"; // TEMP, for development
 
 	import { forceSimulation, forceX, forceY, forceCollide } from "d3";
 
@@ -17,7 +16,7 @@
 	} from "./viz-utils";
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
 	import { xForcePosition, yForcePosition } from "$stores/visualEncodings";
-	import { aggregateSnakeChartPositions } from "$stores/aggregateSnakeChartPositions";
+	import { aggregateSnakeChartSVGPaths } from "$stores/aggregateSnakeChartPositions";
 
 	// Give it an initial position
 	const forceSimulationData = songsData.map((songObject, songIndex) => ({
@@ -143,27 +142,11 @@
 
 		
 	});
-
-	afterNavigate(() => // TEMP for development
-		{
-			let loveSongType = 1
-			const PADDING_BETWEEN_TIME_REGIONS = 0 // TODO: regions are arleady a year apart, but should be in most sensible unit
-			let vizData = $aggregateSnakeChartPositions.reduce(
-				(accum, timeRegion) => {
-		
-					const {y0, y1} = timeRegion.popularityScoreSumsInTimeRegion[loveSongType] || {}
-					return {...accum, 
-						x: [...accum.x, timeRegion.start, timeRegion.stop - PADDING_BETWEEN_TIME_REGIONS],
-						y0: [...accum.y0, y0, y0],
-						y1: [...accum.y1, y1, y1]
-					}
-				}, 
-				{x: [], y0: [], y1: []}
-				)
-			console.log(vizData)
-		})
-
 </script>
+
+<svg height={$viewport.height} width={$viewport.width}>
+	<path d={$aggregateSnakeChartSVGPaths[1]} fill="blanchedalmond">hello</path>
+</svg>
 
 <canvas
 	id="visible"
