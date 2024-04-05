@@ -1,6 +1,11 @@
 import { derived } from "svelte/store";
 import { area as d3area } from "d3";
 import viewport from "./viewport";
+
+import {
+	getXPosForYear,
+	getYPosForPercentage
+} from "./forcePositionOptions-helper";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { visibleSongsData } from "./dataDerivations";
 
@@ -97,14 +102,16 @@ export const aggregateSnakeChartSVGPaths = derived(
 			},
 			[]
 		);
-		console.log(svgCoordsForLoveSongType);
+
 		return {
 			[loveSongType]: d3area()
 				// .curve(curveCatmullRomClosed.alpha(0.1)) // seems to produce a bizarre result
 				// TODO: use actually correct scaling
-				.x(({ x }) => ((x - 1958) * $viewport.width) / (2023 - 1958))
-				.y0(({ y0 }) => y0 * $viewport.height)
-				.y1(({ y1 }) => y1 * $viewport.height)(svgCoordsForLoveSongType)
+				.x(({ x }) => getXPosForYear(x, $viewport.width))
+				.y0(({ y0 }) => getYPosForPercentage(y0, $viewport.height))
+				.y1(({ y1 }) => getYPosForPercentage(y1, $viewport.height))(
+				svgCoordsForLoveSongType
+			)
 		};
 	}
 );
