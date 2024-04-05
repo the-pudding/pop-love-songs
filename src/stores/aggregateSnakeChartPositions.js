@@ -30,6 +30,14 @@ const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
 		};
 	}, {});
 
+	// HANDLE EDGE CASE: if there are no songs in a love song type in the time region, insert it with a value of 0
+	const DEFAULT_VALUE_IF_NO_SONGS = 0.1; // TODO: handle this better, flag it, do things like hide the snake (even if it still exists for transition purposes)
+	LOVE_SONG_TYPES.forEach((loveSongType) => {
+		if (!popularitySumByType[loveSongType]) {
+			popularitySumByType[loveSongType] = DEFAULT_VALUE_IF_NO_SONGS; // TODO: make it functional, not mutative
+		}
+	});
+
 	const loveSongTypesSortedGreatestToLeast = Object.keys(
 		popularitySumByType
 	).sort((a, b) => popularitySumByType[b] - popularitySumByType[a]);
