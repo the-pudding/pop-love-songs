@@ -56,14 +56,18 @@ const getYPosForPercentage = (percentage, canvasHeight) =>
 	percentage *
 		(canvasHeight - (2 * Y_MARGIN + STORY_STEP_CONTROLLER_BOTTOM_PADDING));
 
-const TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE = 0.003;
+const TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE = 0.008;
 export const getYPosInAggregateSnakeChart = ({
 	percentage,
+	percentageChange,
 	canvasHeight,
 	isY0
 }) =>
 	getYPosForPercentage(
-		percentage + (isY0 ? 0 : TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE),
+		percentage +
+			(isY0 || percentageChange < 2 * TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE
+				? 0
+				: TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE),
 		canvasHeight
 	);
 

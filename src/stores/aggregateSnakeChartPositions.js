@@ -79,63 +79,63 @@ export const aggregateSnakeChartPositions = derived(
 	}
 );
 
-// abstract out the lgoic for creating the SVG path for one love song type, so I can re-use it on each love song type easily
-const createSVGPathForLoveSongType = (
-	loveSongType,
-	aggregateSnakeChartPositions,
-	$viewport
-) => {
-	const PADDING_BETWEEN_TIME_REGIONS = 1.8; // in years. NOTE: regions are arleady a year apart, accounted for below
-	let svgCoordsForLoveSongType = aggregateSnakeChartPositions.reduce(
-		(accum, timeRegion) => {
-			const { y0, y1 } =
-				timeRegion.popularityScoreSumsInTimeRegion[loveSongType] || {};
-			return [
-				...accum,
-				{
-					x: timeRegion.start,
-					y0,
-					y1
-				},
-				{
-					x: timeRegion.stop - (PADDING_BETWEEN_TIME_REGIONS - 1),
-					y0,
-					y1
-				}
-			];
-		},
-		[]
-	);
-
-	return (
-		d3area()
-			// .curve(curveCatmullRomClosed.alpha(0.1)) // seems to produce a bizarre result
-			.x(({ x }) => getXPosForYear(x, $viewport.width))
-			.y0(({ y0 }) =>
-				getYPosInAggregateSnakeChart({
-					percentage: y0,
-					canvasHeight: $viewport.height,
-					isY0: true
-				})
-			)
-			.y1(({ y1 }) =>
-				getYPosInAggregateSnakeChart({
-					percentage: y1,
-					canvasHeight: $viewport.height
-				})
-			)(svgCoordsForLoveSongType)
-	);
+const createSVGPathGenerator = ($viewport) => {
+	return d3area()
+		.x(({ x }) => getXPosForYear(x, $viewport.width))
+		.y0(({ y0, y1 }) =>
+			getYPosInAggregateSnakeChart({
+				percentage: y0,
+				percentageChange: y0 - y1,
+				canvasHeight: $viewport.height,
+				isY0: true
+			})
+		)
+		.y1(({ y0, y1 }) =>
+			getYPosInAggregateSnakeChart({
+				percentage: y1,
+				canvasHeight: $viewport.height,
+				percentageChange: y0 - y1
+			})
+		);
 };
+
+const TRANSITION_WIDTH_BETWEEN_TIME_REGIONS = 1.8; // in years. NOTE: regions are already a year apart, accounted for below
+const getSvgCoordsForLoveSongType = (
+	loveSongType,
+	aggregateSnakeChartPositions
+) =>
+	aggregateSnakeChartPositions.reduce((accum, timeRegion) => {
+		const { y0, y1 } =
+			timeRegion.popularityScoreSumsInTimeRegion[loveSongType] || {};
+		return [
+			...accum,
+			{
+				x: timeRegion.start,
+				y0,
+				y1
+			},
+			{
+				x: timeRegion.stop - (TRANSITION_WIDTH_BETWEEN_TIME_REGIONS - 1),
+				y0,
+				y1
+			}
+		];
+	}, []);
 
 export const aggregateSnakeChartSVGPaths = derived(
 	[aggregateSnakeChartPositions, viewport],
 	([$aggregateSnakeChartPositions, $viewport]) =>
-		LOVE_SONG_TYPES.map((loveSongType) => ({
-			loveSongType,
-			svgPath: createSVGPathForLoveSongType(
+		LOVE_SONG_TYPES.map((loveSongType) => {
+			const pathGenerator = createSVGPathGenerator($viewport);
+			const svgCoordsForLoveSongType = getSvgCoordsForLoveSongType(
 				loveSongType,
-				$aggregateSnakeChartPositions,
-				$viewport
-			)
-		}))
+				$aggregateSnakeChartPositions
+			);
+			return {
+				loveSongType,
+				svgPath: pathGenerator(svgCoordsForLoveSongType),
+				y0Border: pathGenerator.lineY0()(svgCoordsForLoveSongType),
+				y1Border: pathGenerator.lineY1()(svgCoordsForLoveSongType)
+			};
+		})
 );
