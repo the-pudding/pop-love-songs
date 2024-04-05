@@ -4,7 +4,7 @@ import viewport from "./viewport";
 
 import {
 	getXPosForYear,
-	getYPosInAggregateChart
+	getYPosInAggregateSnakeChart
 } from "./forcePositionOptions-helper";
 import {
 	LOVE_SONG_TYPES,
@@ -112,14 +112,14 @@ const createSVGPathForLoveSongType = (
 			// .curve(curveCatmullRomClosed.alpha(0.1)) // seems to produce a bizarre result
 			.x(({ x }) => getXPosForYear(x, $viewport.width))
 			.y0(({ y0 }) =>
-				getYPosInAggregateChart({
+				getYPosInAggregateSnakeChart({
 					percentage: y0,
 					canvasHeight: $viewport.height,
 					isY0: true
 				})
 			)
 			.y1(({ y1 }) =>
-				getYPosInAggregateChart({
+				getYPosInAggregateSnakeChart({
 					percentage: y1,
 					canvasHeight: $viewport.height
 				})
