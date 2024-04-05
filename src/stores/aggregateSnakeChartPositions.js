@@ -4,7 +4,7 @@ import viewport from "./viewport";
 
 import {
 	getXPosForYear,
-	getYPosForPercentage
+	getYPosInAggregateChart
 } from "./forcePositionOptions-helper";
 import {
 	LOVE_SONG_TYPES,
@@ -111,10 +111,19 @@ const createSVGPathForLoveSongType = (
 		d3area()
 			// .curve(curveCatmullRomClosed.alpha(0.1)) // seems to produce a bizarre result
 			.x(({ x }) => getXPosForYear(x, $viewport.width))
-			.y0(({ y0 }) => getYPosForPercentage(y0, $viewport.height))
-			.y1(({ y1 }) => getYPosForPercentage(y1, $viewport.height))(
-			svgCoordsForLoveSongType
-		)
+			.y0(({ y0 }) =>
+				getYPosInAggregateChart({
+					percentage: y0,
+					canvasHeight: $viewport.height,
+					isY0: true
+				})
+			)
+			.y1(({ y1 }) =>
+				getYPosInAggregateChart({
+					percentage: y1,
+					canvasHeight: $viewport.height
+				})
+			)(svgCoordsForLoveSongType)
 	);
 };
 

@@ -51,10 +51,17 @@ const getPercentageForSong = (
 const Y_MARGIN = 24;
 export const STORY_STEP_CONTROLLER_BOTTOM_PADDING = 100;
 // TODO: could be abstracted to a file of shared functions/constants
-export const getYPosForPercentage = (percentage, canvasHeight) =>
+const getYPosForPercentage = (percentage, canvasHeight) =>
 	Y_MARGIN +
 	percentage *
 		(canvasHeight - (2 * Y_MARGIN + STORY_STEP_CONTROLLER_BOTTOM_PADDING));
+
+const TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE = 0.003;
+export const getYPosInAggregateChart = ({ percentage, canvasHeight, isY0 }) =>
+	getYPosForPercentage(
+		percentage + (isY0 ? 0 : TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE),
+		canvasHeight
+	);
 
 export const getYPositionInSnakeChart = (
 	song,
