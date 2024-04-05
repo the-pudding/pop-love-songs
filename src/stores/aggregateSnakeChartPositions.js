@@ -85,7 +85,7 @@ const createSVGPathForLoveSongType = (
 	aggregateSnakeChartPositions,
 	$viewport
 ) => {
-	const PADDING_BETWEEN_TIME_REGIONS = -0.7; // TODO: regions are arleady a year apart, but should be in most sensible unit
+	const PADDING_BETWEEN_TIME_REGIONS = 1.8; // in years. NOTE: regions are arleady a year apart, accounted for below
 	let svgCoordsForLoveSongType = aggregateSnakeChartPositions.reduce(
 		(accum, timeRegion) => {
 			const { y0, y1 } =
@@ -98,7 +98,7 @@ const createSVGPathForLoveSongType = (
 					y1
 				},
 				{
-					x: timeRegion.stop - PADDING_BETWEEN_TIME_REGIONS,
+					x: timeRegion.stop - (PADDING_BETWEEN_TIME_REGIONS - 1),
 					y0,
 					y1
 				}
