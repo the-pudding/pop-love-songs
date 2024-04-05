@@ -10,6 +10,7 @@
 	import songsData from "$data/songs-data.js";
 	import {
 		getInvisibleFillFromSongIndex,
+		getSnakeFill,
 		getSongFill,
 		getSongIndexFromInvisibleFill,
 		searchSongOnYouTube
@@ -145,7 +146,9 @@
 </script>
 
 <svg height={$viewport.height} width={$viewport.width}>
-	<path d={$aggregateSnakeChartSVGPaths[1]} fill="blanchedalmond">hello</path>
+	{#each $aggregateSnakeChartSVGPaths as { svgPath, loveSongType }}
+		<path d={svgPath} fill={getSnakeFill(loveSongType)} />
+	{/each}
 </svg>
 
 <canvas

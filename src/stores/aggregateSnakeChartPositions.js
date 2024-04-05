@@ -6,7 +6,10 @@ import {
 	getXPosForYear,
 	getYPosForPercentage
 } from "./forcePositionOptions-helper";
-import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
+import {
+	LOVE_SONG_TYPES,
+	SONG_DATA_COLUMNS_ENUM
+} from "$data/data-constants.js";
 import { visibleSongsData } from "./dataDerivations";
 
 // algo:
@@ -76,42 +79,54 @@ export const aggregateSnakeChartPositions = derived(
 	}
 );
 
+// abstract out the lgoic for creating the SVG path for one love song type, so I can re-use it on each love song type easily
+const createSVGPathForLoveSongType = (
+	loveSongType,
+	aggregateSnakeChartPositions,
+	$viewport
+) => {
+	const PADDING_BETWEEN_TIME_REGIONS = -0.7; // TODO: regions are arleady a year apart, but should be in most sensible unit
+	let svgCoordsForLoveSongType = aggregateSnakeChartPositions.reduce(
+		(accum, timeRegion) => {
+			const { y0, y1 } =
+				timeRegion.popularityScoreSumsInTimeRegion[loveSongType] || {};
+			return [
+				...accum,
+				{
+					x: timeRegion.start,
+					y0,
+					y1
+				},
+				{
+					x: timeRegion.stop - PADDING_BETWEEN_TIME_REGIONS,
+					y0,
+					y1
+				}
+			];
+		},
+		[]
+	);
+
+	return (
+		d3area()
+			// .curve(curveCatmullRomClosed.alpha(0.1)) // seems to produce a bizarre result
+			.x(({ x }) => getXPosForYear(x, $viewport.width))
+			.y0(({ y0 }) => getYPosForPercentage(y0, $viewport.height))
+			.y1(({ y1 }) => getYPosForPercentage(y1, $viewport.height))(
+			svgCoordsForLoveSongType
+		)
+	);
+};
+
 export const aggregateSnakeChartSVGPaths = derived(
 	[aggregateSnakeChartPositions, viewport],
-	([$aggregateSnakeChartPositions, $viewport]) => {
-		// For now, just hard code one love song type
-		let loveSongType = 1;
-		const PADDING_BETWEEN_TIME_REGIONS = -0.7; // TODO: regions are arleady a year apart, but should be in most sensible unit
-		let svgCoordsForLoveSongType = $aggregateSnakeChartPositions.reduce(
-			(accum, timeRegion) => {
-				const { y0, y1 } =
-					timeRegion.popularityScoreSumsInTimeRegion[loveSongType] || {};
-				return [
-					...accum,
-					{
-						x: timeRegion.start,
-						y0,
-						y1
-					},
-					{
-						x: timeRegion.stop - PADDING_BETWEEN_TIME_REGIONS,
-						y0,
-						y1
-					}
-				];
-			},
-			[]
-		);
-
-		return {
-			[loveSongType]: d3area()
-				// .curve(curveCatmullRomClosed.alpha(0.1)) // seems to produce a bizarre result
-				// TODO: use actually correct scaling
-				.x(({ x }) => getXPosForYear(x, $viewport.width))
-				.y0(({ y0 }) => getYPosForPercentage(y0, $viewport.height))
-				.y1(({ y1 }) => getYPosForPercentage(y1, $viewport.height))(
-				svgCoordsForLoveSongType
+	([$aggregateSnakeChartPositions, $viewport]) =>
+		LOVE_SONG_TYPES.map((loveSongType) => ({
+			loveSongType,
+			svgPath: createSVGPathForLoveSongType(
+				loveSongType,
+				$aggregateSnakeChartPositions,
+				$viewport
 			)
-		};
-	}
+		}))
 );
