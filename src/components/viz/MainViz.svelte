@@ -18,6 +18,7 @@
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
 	import { xForcePosition, yForcePosition } from "$stores/visualEncodings";
 	import { aggregateSnakeChartSVGPaths } from "$stores/aggregateSnakeChartPositions";
+	import { currentStoryStep } from "$stores/storySteps";
 
 	// Give it an initial position
 	const forceSimulationData = songsData.map((songObject, songIndex) => ({
@@ -145,18 +146,23 @@
 	});
 </script>
 
-<svg height={$viewport.height} width={$viewport.width}>
-	{#each $aggregateSnakeChartSVGPaths as { svgPath, y0Border, y1Border, loveSongType }}
-		<path d={svgPath} fill={getSnakeFill(loveSongType)} />
-		<g fill="none" stroke-width="1" stroke-miterlimit="1">
-			<path d={y1Border} stroke="#000"></path>
-			<path d={y0Border} stroke="#000"></path>
-		</g>
-	{/each}
-</svg>
 
+{#if $currentStoryStep.visualEncodings.showAggregateSnakeChart}
+	<svg height={$viewport.height} width={$viewport.width}>
+		{#each $aggregateSnakeChartSVGPaths as { svgPath, y0Border, y1Border, loveSongType }}
+			<path d={svgPath} fill={getSnakeFill(loveSongType)} />
+			<g fill="none" stroke-width="1" stroke-miterlimit="1">
+				<path d={y1Border} stroke="#000"></path>
+				<path d={y0Border} stroke="#000"></path>
+			</g>
+		{/each}
+	</svg>
+{/if}
+
+<!-- TODO: if not shown, don't run the simulation (ie for performance) -->
 <canvas
 	id="visible"
+	style:display={$currentStoryStep.visualEncodings.showBubbleChart ? "block" : "none"}
 	bind:this={canvas}
 	on:mousemove={handleMouseMove}
 	on:mousedown={handleSongClicked}

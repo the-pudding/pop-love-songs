@@ -1,4 +1,4 @@
-import { derived, writable } from "svelte/store";
+import { derived, get, writable } from "svelte/store";
 import {
 	SONG_DATA_COLUMNS_ENUM,
 	LOVE_SONG_TYPE_CONSTANTS,
@@ -28,7 +28,10 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 
 const VISUAL_ENCODING_BLANK_STATE = {
 	calculateXForcePosition: getXPositionFromTime,
-	calculateYForcePosition: getYPositionInSnakeChart
+	calculateYForcePosition: getYPositionInSnakeChart,
+	// TODO: just to get to a prototype, their may be more clever ways to derive these:
+	showAggregateSnakeChart: false,
+	showBubbleChart: true
 };
 
 const steps = {
@@ -716,6 +719,19 @@ const steps = {
 			calculateYForcePosition: getYPositionInSnakeChart
 		},
 		showLoveSongChangeOverTime: true
+	},
+
+	youDecideAggregateSnakeChart: {
+		text: "(this is the aggregate snake chart)",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			showAggregateSnakeChart: true,
+			showBubbleChart: false
+		},
+		showLoveSongChangeOverTime: true
 	}
 };
 
@@ -770,7 +786,8 @@ export const storySteps = [
 	steps.addInNonLoveSongsInGray,
 	steps.theLoveSongIsActuallyRising,
 
-	steps.youDecide
+	steps.youDecide,
+	steps.youDecideAggregateSnakeChart
 ];
 
 export const currentStoryStepIndex = writable(0);
