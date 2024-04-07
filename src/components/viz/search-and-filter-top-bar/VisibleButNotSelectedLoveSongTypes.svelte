@@ -1,7 +1,6 @@
 <script>
     import {onDestroy} from "svelte";
 	import MultiSelect from "svelte-multiselect"; // (eventually we'll replace this with our own Select component likely)
-	import songsData from "$data/songs-data.js";
 	import { LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants.js";
 	import {visibleButNotSelectedLoveSongTypes} from "$stores/searchAndFilter.js";
 
@@ -14,7 +13,7 @@
 
     const unsubscribe = visibleButNotSelectedLoveSongTypes.subscribe(($visibleButNotSelectedLoveSongTypes) => {
         userSelectedLoveSongTypes = loveSongTypeOptions.filter(option =>
-            $visibleButNotSelectedLoveSongTypes.includes(option.value)
+            $visibleButNotSelectedLoveSongTypes.includes(+option.value)
         );
     });
 
