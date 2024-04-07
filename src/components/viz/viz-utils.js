@@ -60,8 +60,10 @@ export const getSongFill = (song, songIsSelected) => {
 		: UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP[loveSongType];
 };
 
-export const getSnakeFill = (loveSongType) =>
-	LOVE_SONG_TYPE_COLOR_MAP[loveSongType];
+export const getSnakeFill = (loveSongType, visibleButNotSelected) =>
+	visibleButNotSelected
+		? UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP[loveSongType]
+		: LOVE_SONG_TYPE_COLOR_MAP[loveSongType];
 
 // TEMP for research
 

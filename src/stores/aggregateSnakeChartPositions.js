@@ -16,6 +16,7 @@ import { visibleSongsData } from "./dataDerivations";
 // 1. given an array of non-overlapping, contiguous time regions (an array with a start & stop year)...
 // Use 1968-1969, then do decades from there on out (1970-1979, 1980-1989, etc.)
 import { aggregationTimeRegions } from "./loveSongsLabeledByTimeRegionPercentageForPosition";
+import { visibleButNotSelectedLoveSongTypes } from "./searchAndFilter";
 
 // 2. ... aggregate the total songs for each time region, then label each with a sumative percentage, append that to the object
 
@@ -131,16 +132,23 @@ const getSvgCoordsForLoveSongType = (
 	}, []);
 
 export const aggregateSnakeChartSVGPaths = derived(
-	[aggregateSnakeChartPositions, viewport],
-	([$aggregateSnakeChartPositions, $viewport]) =>
+	[aggregateSnakeChartPositions, viewport, visibleButNotSelectedLoveSongTypes],
+	([
+		$aggregateSnakeChartPositions,
+		$viewport,
+		$visibleButNotSelectedLoveSongTypes
+	]) =>
 		LOVE_SONG_TYPES.map((loveSongType) => {
 			const pathGenerator = createSVGPathGenerator($viewport);
 			const svgCoordsForLoveSongType = getSvgCoordsForLoveSongType(
 				loveSongType,
 				$aggregateSnakeChartPositions
 			);
+			const visibleButNotSelected =
+				$visibleButNotSelectedLoveSongTypes.includes(loveSongType);
 			return {
 				loveSongType,
+				visibleButNotSelected,
 				svgPath: pathGenerator(svgCoordsForLoveSongType),
 				y0Border: pathGenerator.lineY0()(svgCoordsForLoveSongType),
 				y1Border: pathGenerator.lineY1()(svgCoordsForLoveSongType)

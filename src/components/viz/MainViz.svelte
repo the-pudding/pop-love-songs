@@ -149,8 +149,8 @@
 
 {#if $currentStoryStep.visualEncodings.showAggregateSnakeChart}
 	<svg height={$viewport.height} width={$viewport.width}>
-		{#each $aggregateSnakeChartSVGPaths as { svgPath, y0Border, y1Border, loveSongType }}
-			<path d={svgPath} fill={getSnakeFill(loveSongType)} />
+		{#each $aggregateSnakeChartSVGPaths as { svgPath, y0Border, y1Border, loveSongType, visibleButNotSelected }}
+			<path d={svgPath} fill={getSnakeFill(loveSongType, visibleButNotSelected)} />
 			<g fill="none" stroke-width="1" stroke-miterlimit="1">
 				<path d={y1Border} stroke="#000"></path>
 				<path d={y0Border} stroke="#000"></path>
