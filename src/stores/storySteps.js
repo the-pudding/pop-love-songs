@@ -2,7 +2,8 @@ import { derived, get, writable } from "svelte/store";
 import {
 	SONG_DATA_COLUMNS_ENUM,
 	LOVE_SONG_TYPE_CONSTANTS,
-	GENDER_CONSTANTS
+	GENDER_CONSTANTS,
+	LOVE_SONG_TYPES
 } from "$data/data-constants.js";
 import { MAX_YEAR, MIN_YEAR } from "$data/songs-data.js";
 import {
@@ -16,14 +17,15 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedPerformers: [],
 	selectedGenders: [],
 	selectedSongs: [],
+	timeRange: {
+		startYear: MIN_YEAR,
+		endYear: MAX_YEAR
+	},
 
 	columnsToFilterVisibilityOn: [],
 	visibleButNotSelectedLoveSongTypes: [],
 
-	timeRange: {
-		startYear: MIN_YEAR,
-		endYear: MAX_YEAR
-	}
+	typesTreatedAsNonLoveSongs: []
 };
 
 const VISUAL_ENCODING_BLANK_STATE = {
@@ -732,6 +734,24 @@ const steps = {
 			showBubbleChart: false
 		},
 		showLoveSongChangeOverTime: true
+	},
+
+	onlySerenadesAreTreatedAsLoveSongs: {
+		text: "(treat all non-serenade types as non love songs)",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: [
+				...LOVE_SONG_TYPES.filter(
+					(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
+				)
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			showAggregateSnakeChart: true,
+			showBubbleChart: true
+		},
+		showLoveSongChangeOverTime: true
 	}
 };
 
@@ -787,7 +807,8 @@ export const storySteps = [
 	steps.theLoveSongIsActuallyRising,
 
 	steps.youDecide,
-	steps.youDecideAggregateSnakeChart
+	steps.youDecideAggregateSnakeChart,
+	steps.onlySerenadesAreTreatedAsLoveSongs
 ];
 
 export const currentStoryStepIndex = writable(0);

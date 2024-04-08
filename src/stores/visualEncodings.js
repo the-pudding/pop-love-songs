@@ -3,6 +3,11 @@ import viewport from "./viewport.js";
 import songsData from "$data/songs-data.js";
 import { currentStoryStep } from "./storySteps.js";
 import { loveSongsLabeledByTimeRegionPercentageForPosition } from "./loveSongsLabeledByTimeRegionPercentageForPosition.js";
+import {
+	LOVE_SONG_TYPE_COLOR_MAP,
+	LOVE_SONG_TYPE_CONSTANTS,
+	UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP
+} from "$data/data-constants.js";
 
 // Position (or the force layout that guides it)
 
@@ -43,3 +48,32 @@ export const yForcePosition = derived(
 // Size
 
 // Color
+
+const updateColorMap = (typesTreatedAsNonLoveSongs, colorMap) =>
+	Object.keys(colorMap).reduce(
+		(updatedColors, loveSongType) => ({
+			...updatedColors,
+			[loveSongType]: typesTreatedAsNonLoveSongs.includes(+loveSongType)
+				? colorMap[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]
+				: colorMap[loveSongType]
+		}),
+		{}
+	);
+
+export const loveSongTypeColorMap = derived(
+	[currentStoryStep],
+	([$currentStoryStep]) =>
+		updateColorMap(
+			$currentStoryStep.searchAndFilterState.typesTreatedAsNonLoveSongs,
+			LOVE_SONG_TYPE_COLOR_MAP
+		)
+);
+
+export const unselectedLoveSongTypeColorMap = derived(
+	[currentStoryStep],
+	([$currentStoryStep]) =>
+		updateColorMap(
+			$currentStoryStep.searchAndFilterState.typesTreatedAsNonLoveSongs,
+			UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP
+		)
+);

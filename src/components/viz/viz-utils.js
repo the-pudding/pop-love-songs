@@ -1,8 +1,4 @@
-import {
-	SONG_DATA_COLUMNS_ENUM,
-	LOVE_SONG_TYPE_COLOR_MAP,
-	UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP
-} from "$data/data-constants.js";
+import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 
 export const STORY_STEP_CONTROLLER_BOTTOM_PADDING = 100;
 
@@ -53,17 +49,27 @@ export const getSongIndexFromInvisibleFill = (
 	return songIndex < 0 ? null : songIndex;
 };
 
-export const getSongFill = (song, songIsSelected) => {
+export const getSongFill = (
+	song,
+	songIsSelected,
+	loveSongTypeColorMap,
+	unselectedLoveSongTypeColorMap
+) => {
 	const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 	return songIsSelected
-		? LOVE_SONG_TYPE_COLOR_MAP[loveSongType]
-		: UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP[loveSongType];
+		? loveSongTypeColorMap[loveSongType]
+		: unselectedLoveSongTypeColorMap[loveSongType];
 };
 
-export const getSnakeFill = (loveSongType, visibleButNotSelected) =>
+export const getSnakeFill = (
+	loveSongType,
+	visibleButNotSelected,
+	loveSongTypeColorMap,
+	unselectedLoveSongTypeColorMap
+) =>
 	visibleButNotSelected
-		? UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP[loveSongType]
-		: LOVE_SONG_TYPE_COLOR_MAP[loveSongType];
+		? unselectedLoveSongTypeColorMap[loveSongType]
+		: loveSongTypeColorMap[loveSongType];
 
 // TEMP for research
 

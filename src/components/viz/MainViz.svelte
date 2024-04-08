@@ -16,7 +16,7 @@
 		searchSongOnYouTube
 	} from "./viz-utils";
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
-	import { xForcePosition, yForcePosition } from "$stores/visualEncodings";
+	import { loveSongTypeColorMap, unselectedLoveSongTypeColorMap, xForcePosition, yForcePosition } from "$stores/visualEncodings";
 	import { aggregateSnakeChartSVGPaths } from "$stores/aggregateSnakeChartPositions";
 	import { currentStoryStep } from "$stores/storySteps";
 
@@ -54,7 +54,7 @@
 				invisibleContext.fillStyle = getInvisibleFillFromSongIndex(songIndex);
 				invisibleContext.fill(circle);
 			}
-			context.fillStyle = getSongFill(song, isSelected);
+			context.fillStyle = getSongFill(song, isSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap);
 			context.fill(circle);
 		});
 	};
@@ -150,7 +150,7 @@
 {#if $currentStoryStep.visualEncodings.showAggregateSnakeChart}
 	<svg height={$viewport.height} width={$viewport.width}>
 		{#each $aggregateSnakeChartSVGPaths as { svgPath, y0Border, y1Border, loveSongType, visibleButNotSelected }}
-			<path d={svgPath} fill={getSnakeFill(loveSongType, visibleButNotSelected)} />
+			<path d={svgPath} fill={getSnakeFill(loveSongType, visibleButNotSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap)} />
 			<g fill="none" stroke-width="1" stroke-miterlimit="1">
 				<path d={y1Border} stroke="#000"></path>
 				<path d={y0Border} stroke="#000"></path>
