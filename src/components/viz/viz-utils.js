@@ -52,24 +52,24 @@ export const getSongIndexFromInvisibleFill = (
 export const getSongFill = (
 	song,
 	songIsSelected,
-	loveSongTypeColorMap,
-	unselectedLoveSongTypeColorMap
+	$loveSongTypeColorMap,
+	$unselectedLoveSongTypeColorMap
 ) => {
 	const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 	return songIsSelected
-		? loveSongTypeColorMap[loveSongType]
-		: unselectedLoveSongTypeColorMap[loveSongType];
+		? $loveSongTypeColorMap[loveSongType]
+		: $unselectedLoveSongTypeColorMap[loveSongType];
 };
 
 export const getSnakeFill = (
 	loveSongType,
 	visibleButNotSelected,
-	loveSongTypeColorMap,
-	unselectedLoveSongTypeColorMap
+	$loveSongTypeColorMap,
+	$unselectedLoveSongTypeColorMap
 ) =>
 	visibleButNotSelected
-		? unselectedLoveSongTypeColorMap[loveSongType]
-		: loveSongTypeColorMap[loveSongType];
+		? $unselectedLoveSongTypeColorMap[loveSongType]
+		: $loveSongTypeColorMap[loveSongType];
 
 // TEMP for research
 
