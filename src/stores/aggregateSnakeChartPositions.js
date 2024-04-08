@@ -20,12 +20,19 @@ import {
 	getPopularitySumByType
 } from "./loveSongsLabeledByTimeRegionPercentageForPosition";
 import { visibleButNotSelectedLoveSongTypes } from "./searchAndFilter";
+import { currentStoryStep } from "./storySteps";
 
 // 2. ... aggregate the total songs for each time region, then label each with a sumative percentage, append that to the object
 
-const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
+const getAggregatePercentageByLoveSongType = (
+	songsInTimeRegion,
+	typesTreatedAsNonLoveSongs
+) => {
 	// 1. aggregate
-	const popularitySumByType = getPopularitySumByType(songsInTimeRegion);
+	const popularitySumByType = getPopularitySumByType(
+		songsInTimeRegion,
+		typesTreatedAsNonLoveSongs
+	);
 
 	// HANDLE EDGE CASE: if there are no songs in a love song type in the time region, insert it with a value of 0
 	const DEFAULT_VALUE_IF_NO_SONGS = 0.1; // TODO: handle this better, flag it, do things like hide the snake (even if it still exists for transition purposes)
@@ -67,8 +74,10 @@ const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
 };
 
 export const aggregateSnakeChartPositions = derived(
-	[visibleSongsData],
-	([$visibleSongsData]) => {
+	[visibleSongsData, currentStoryStep],
+	([$visibleSongsData, $currentStoryStep]) => {
+		const { typesTreatedAsNonLoveSongs } =
+			$currentStoryStep.searchAndFilterState;
 		return aggregationTimeRegions.map((timeRegion) => {
 			const songsInTimeRegion = $visibleSongsData.filter(({ song }) => {
 				const songYear = +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
@@ -77,8 +86,10 @@ export const aggregateSnakeChartPositions = derived(
 
 			return {
 				...timeRegion,
-				popularityScoreSumsInTimeRegion:
-					getAggregatePercentageByLoveSongType(songsInTimeRegion)
+				popularityScoreSumsInTimeRegion: getAggregatePercentageByLoveSongType(
+					songsInTimeRegion,
+					typesTreatedAsNonLoveSongs
+				)
 			};
 		});
 	}

@@ -1,7 +1,11 @@
 import { derived } from "svelte/store";
-import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
+import {
+	LOVE_SONG_TYPE_CONSTANTS,
+	SONG_DATA_COLUMNS_ENUM
+} from "$data/data-constants.js";
 import { visibleSongsData } from "./dataDerivations";
 import { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
+import { currentStoryStep } from "./storySteps";
 
 export const RIGHT_TOOLBAR_WIDTH = 280; // TODO: probably a better way to do this *shrug*
 
@@ -40,9 +44,16 @@ export const aggregationTimeRegions = [
 ];
 
 // 2. ... aggregate the total songs for each time region, then label each with a sumative percentage, append that to the object
-export const getPopularitySumByType = (songsInTimeRegion) =>
+export const getPopularitySumByType = (
+	songsInTimeRegion,
+	typesTreatedAsNonLoveSongs
+) =>
 	songsInTimeRegion.reduce((acc, { song }) => {
-		const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
+		const loveSongType = typesTreatedAsNonLoveSongs.includes(
+			song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		)
+			? LOVE_SONG_TYPE_CONSTANTS.notALoveSong
+			: song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 		const popularity = song[SONG_DATA_COLUMNS_ENUM.popularity_score];
 		return {
 			...acc,
@@ -50,9 +61,15 @@ export const getPopularitySumByType = (songsInTimeRegion) =>
 		};
 	}, {});
 
-const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
+const getAggregatePercentageByLoveSongType = (
+	songsInTimeRegion,
+	typesTreatedAsNonLoveSongs
+) => {
 	// 1. aggregate
-	const popularitySumByType = getPopularitySumByType(songsInTimeRegion);
+	const popularitySumByType = getPopularitySumByType(
+		songsInTimeRegion,
+		typesTreatedAsNonLoveSongs
+	);
 
 	const loveSongTypesSortedGreatestToLeast = Object.keys(
 		popularitySumByType
@@ -64,29 +81,51 @@ const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
 		popularitySumByType
 	).reduce((acc, loveSongType) => acc + popularitySumByType[loveSongType], 0);
 
-	return loveSongTypesSortedGreatestToLeast.reduce((acc, loveSongType) => {
-		const totalPercentageThatHasBeenAccountedFor = Object.keys(acc).reduce(
-			(sum, accountedForLoveSongType) =>
-				sum +
-				popularitySumByType[accountedForLoveSongType] /
-					popularityScoreSumsInTimeRegion,
-			0
-		);
-		const loveSongPercentage =
-			popularitySumByType[loveSongType] / popularityScoreSumsInTimeRegion;
+	const nonZeroResult = loveSongTypesSortedGreatestToLeast.reduce(
+		(acc, loveSongType) => {
+			const totalPercentageThatHasBeenAccountedFor = Object.keys(acc).reduce(
+				(sum, accountedForLoveSongType) =>
+					sum +
+					popularitySumByType[accountedForLoveSongType] /
+						popularityScoreSumsInTimeRegion,
+				0
+			);
+			const loveSongPercentage =
+				popularitySumByType[loveSongType] / popularityScoreSumsInTimeRegion;
 
-		return {
-			...acc,
-			// Note: want to place the dots in the middle of the band, so divide by 2
-			[loveSongType]:
-				totalPercentageThatHasBeenAccountedFor + loveSongPercentage / 2
-		};
-	}, {});
+			return {
+				...acc,
+				// Note: want to place the dots in the middle of the band, so divide by 2
+				[loveSongType]:
+					totalPercentageThatHasBeenAccountedFor + loveSongPercentage / 2
+			};
+		},
+		{}
+	);
+
+	// SPECIAL CASE: if we treated some love songs as non-love songs, they didn't show up in the count, so we add them explicitely
+	const loveSongsCountedAsNonLoveSongs = typesTreatedAsNonLoveSongs.reduce(
+		(acc, loveSongType) => {
+			return {
+				...acc,
+				// Position these secret love songs same as non-love songs
+				[loveSongType]: nonZeroResult[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]
+			};
+		},
+		{}
+	);
+
+	return {
+		...nonZeroResult,
+		...loveSongsCountedAsNonLoveSongs
+	};
 };
 
 export const loveSongsLabeledByTimeRegionPercentageForPosition = derived(
-	[visibleSongsData],
-	([$visibleSongsData]) => {
+	[visibleSongsData, currentStoryStep],
+	([$visibleSongsData, $currentStoryStep]) => {
+		const { typesTreatedAsNonLoveSongs } =
+			$currentStoryStep.searchAndFilterState;
 		return aggregationTimeRegions.map((timeRegion) => {
 			const songsInTimeRegion = $visibleSongsData.filter(({ song }) => {
 				const songYear = +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
@@ -95,8 +134,10 @@ export const loveSongsLabeledByTimeRegionPercentageForPosition = derived(
 
 			return {
 				...timeRegion,
-				popularityScoreSumsInTimeRegion:
-					getAggregatePercentageByLoveSongType(songsInTimeRegion)
+				popularityScoreSumsInTimeRegion: getAggregatePercentageByLoveSongType(
+					songsInTimeRegion,
+					typesTreatedAsNonLoveSongs
+				)
 			};
 		});
 	}
