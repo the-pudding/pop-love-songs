@@ -1,6 +1,9 @@
 import { derived } from "svelte/store";
 import songsData, { MAX_YEAR, MIN_YEAR } from "$data/songs-data.js";
-import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
+import {
+	LOVE_SONG_TYPE_CONSTANTS,
+	SONG_DATA_COLUMNS_ENUM
+} from "$data/data-constants";
 import { getArrayOfPerformers } from "$data/data-utils.js";
 import {
 	selectedGenders,
@@ -205,7 +208,8 @@ export function getLoveSongPercentage(
 			const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 			const dateAsDecimal = song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
 			if (
-				(selectedLoveSongTypes.length === 0 && loveSongType !== "") ||
+				(selectedLoveSongTypes.length === 0 &&
+					loveSongType !== LOVE_SONG_TYPE_CONSTANTS.notALoveSong) ||
 				selectedLoveSongTypes.includes(loveSongType)
 			) {
 				if (isWithinYearRange(dateAsDecimal, minYear, maxYear)) {
