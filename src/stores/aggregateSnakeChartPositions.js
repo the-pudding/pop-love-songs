@@ -15,21 +15,17 @@ import { visibleSongsData } from "./dataDerivations";
 // algo:
 // 1. given an array of non-overlapping, contiguous time regions (an array with a start & stop year)...
 // Use 1968-1969, then do decades from there on out (1970-1979, 1980-1989, etc.)
-import { aggregationTimeRegions } from "./loveSongsLabeledByTimeRegionPercentageForPosition";
+import {
+	aggregationTimeRegions,
+	getPopularitySumByType
+} from "./loveSongsLabeledByTimeRegionPercentageForPosition";
 import { visibleButNotSelectedLoveSongTypes } from "./searchAndFilter";
 
 // 2. ... aggregate the total songs for each time region, then label each with a sumative percentage, append that to the object
 
 const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
 	// 1. aggregate
-	const popularitySumByType = songsInTimeRegion.reduce((acc, { song }) => {
-		const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
-		const popularity = song[SONG_DATA_COLUMNS_ENUM.popularity_score];
-		return {
-			...acc,
-			[loveSongType]: (acc[loveSongType] || 0) + popularity
-		};
-	}, {});
+	const popularitySumByType = getPopularitySumByType(songsInTimeRegion);
 
 	// HANDLE EDGE CASE: if there are no songs in a love song type in the time region, insert it with a value of 0
 	const DEFAULT_VALUE_IF_NO_SONGS = 0.1; // TODO: handle this better, flag it, do things like hide the snake (even if it still exists for transition purposes)

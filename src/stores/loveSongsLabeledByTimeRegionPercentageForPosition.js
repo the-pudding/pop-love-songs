@@ -40,10 +40,8 @@ export const aggregationTimeRegions = [
 ];
 
 // 2. ... aggregate the total songs for each time region, then label each with a sumative percentage, append that to the object
-
-const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
-	// 1. aggregate
-	const popularitySumByType = songsInTimeRegion.reduce((acc, { song }) => {
+export const getPopularitySumByType = (songsInTimeRegion) =>
+	songsInTimeRegion.reduce((acc, { song }) => {
 		const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 		const popularity = song[SONG_DATA_COLUMNS_ENUM.popularity_score];
 		return {
@@ -51,6 +49,10 @@ const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
 			[loveSongType]: (acc[loveSongType] || 0) + popularity
 		};
 	}, {});
+
+const getAggregatePercentageByLoveSongType = (songsInTimeRegion) => {
+	// 1. aggregate
+	const popularitySumByType = getPopularitySumByType(songsInTimeRegion);
 
 	const loveSongTypesSortedGreatestToLeast = Object.keys(
 		popularitySumByType
