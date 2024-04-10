@@ -145,6 +145,18 @@ const newSteps = {
 			showBubbleChart: false
 		},
 		showLoveSongChangeOverTime: true
+	},
+	exploreAggSnake: {
+		text: "[DEMO OF AGG SNAKE CHART]",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			showAggregateSnakeChart: true,
+			showBubbleChart: false
+		},
+		showLoveSongChangeOverTime: true
 	}
 	// What counts as love song?
 	// Remaining Boomer-Bob-friendly types:
@@ -851,6 +863,8 @@ export const storySteps = [
 	newSteps.serenadesPeakedInThe90s,
 	newSteps.aFewArtistsKeepThemAliveToday,
 	newSteps.anAggSnakeChartMakesBoomerBobSeemRight,
+
+	newSteps.exploreAggSnake,
 
 	// What counts as love song?
 	// Remaining Boomer-Bob-friendly types:
