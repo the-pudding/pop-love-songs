@@ -5,7 +5,7 @@ import {
 } from "$data/data-constants.js";
 import { visibleSongsData } from "./dataDerivations";
 import { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
-import { currentStoryStep } from "./storySteps";
+import { typesTreatedAsNonLoveSongs } from "./storySteps";
 
 export const RIGHT_TOOLBAR_WIDTH = 280; // TODO: probably a better way to do this *shrug*
 
@@ -122,10 +122,8 @@ const getAggregatePercentageByLoveSongType = (
 };
 
 export const loveSongsLabeledByTimeRegionPercentageForPosition = derived(
-	[visibleSongsData, currentStoryStep],
-	([$visibleSongsData, $currentStoryStep]) => {
-		const { typesTreatedAsNonLoveSongs } =
-			$currentStoryStep.searchAndFilterState;
+	[visibleSongsData, typesTreatedAsNonLoveSongs],
+	([$visibleSongsData, $typesTreatedAsNonLoveSongs]) => {
 		return aggregationTimeRegions.map((timeRegion) => {
 			const songsInTimeRegion = $visibleSongsData.filter(({ song }) => {
 				const songYear = +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
@@ -136,7 +134,7 @@ export const loveSongsLabeledByTimeRegionPercentageForPosition = derived(
 				...timeRegion,
 				popularityScoreSumsInTimeRegion: getAggregatePercentageByLoveSongType(
 					songsInTimeRegion,
-					typesTreatedAsNonLoveSongs
+					$typesTreatedAsNonLoveSongs
 				)
 			};
 		});

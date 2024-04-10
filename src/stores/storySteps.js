@@ -817,3 +817,9 @@ export const currentStoryStep = derived(
 	[currentStoryStepIndex],
 	([$currentStoryStepIndex]) => storySteps[$currentStoryStepIndex]
 );
+
+export const typesTreatedAsNonLoveSongs = derived(
+	[currentStoryStep],
+	([$currentStoryStep]) =>
+		$currentStoryStep.searchAndFilterState.typesTreatedAsNonLoveSongs
+);

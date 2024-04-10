@@ -1,7 +1,7 @@
 import { derived } from "svelte/store";
 import viewport from "./viewport.js";
 import songsData from "$data/songs-data.js";
-import { currentStoryStep } from "./storySteps.js";
+import { currentStoryStep, typesTreatedAsNonLoveSongs } from "./storySteps.js";
 import { loveSongsLabeledByTimeRegionPercentageForPosition } from "./loveSongsLabeledByTimeRegionPercentageForPosition.js";
 import {
 	LOVE_SONG_TYPE_COLOR_MAP,
@@ -61,19 +61,16 @@ const updateColorMap = (typesTreatedAsNonLoveSongs, colorMap) =>
 	);
 
 export const loveSongTypeColorMap = derived(
-	[currentStoryStep],
-	([$currentStoryStep]) =>
-		updateColorMap(
-			$currentStoryStep.searchAndFilterState.typesTreatedAsNonLoveSongs,
-			LOVE_SONG_TYPE_COLOR_MAP
-		)
+	[typesTreatedAsNonLoveSongs],
+	([$typesTreatedAsNonLoveSongs]) =>
+		updateColorMap($typesTreatedAsNonLoveSongs, LOVE_SONG_TYPE_COLOR_MAP)
 );
 
 export const unselectedLoveSongTypeColorMap = derived(
-	[currentStoryStep],
-	([$currentStoryStep]) =>
+	[typesTreatedAsNonLoveSongs],
+	([$typesTreatedAsNonLoveSongs]) =>
 		updateColorMap(
-			$currentStoryStep.searchAndFilterState.typesTreatedAsNonLoveSongs,
+			$typesTreatedAsNonLoveSongs,
 			UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP
 		)
 );

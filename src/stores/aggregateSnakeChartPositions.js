@@ -20,7 +20,7 @@ import {
 	getPopularitySumByType
 } from "./loveSongsLabeledByTimeRegionPercentageForPosition";
 import { visibleButNotSelectedLoveSongTypes } from "./searchAndFilter";
-import { currentStoryStep } from "./storySteps";
+import { typesTreatedAsNonLoveSongs } from "./storySteps";
 
 // 2. ... aggregate the total songs for each time region, then label each with a sumative percentage, append that to the object
 
@@ -74,10 +74,8 @@ const getAggregatePercentageByLoveSongType = (
 };
 
 export const aggregateSnakeChartPositions = derived(
-	[visibleSongsData, currentStoryStep],
-	([$visibleSongsData, $currentStoryStep]) => {
-		const { typesTreatedAsNonLoveSongs } =
-			$currentStoryStep.searchAndFilterState;
+	[visibleSongsData, typesTreatedAsNonLoveSongs],
+	([$visibleSongsData, $typesTreatedAsNonLoveSongs]) => {
 		return aggregationTimeRegions.map((timeRegion) => {
 			const songsInTimeRegion = $visibleSongsData.filter(({ song }) => {
 				const songYear = +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
@@ -88,7 +86,7 @@ export const aggregateSnakeChartPositions = derived(
 				...timeRegion,
 				popularityScoreSumsInTimeRegion: getAggregatePercentageByLoveSongType(
 					songsInTimeRegion,
-					typesTreatedAsNonLoveSongs
+					$typesTreatedAsNonLoveSongs
 				)
 			};
 		});
