@@ -130,6 +130,21 @@ const newSteps = {
 			calculateYForcePosition: fractionOfScreenFactory(0.5)
 		},
 		showLoveSongChangeOverTime: true
+	},
+	anAggSnakeChartMakesBoomerBobSeemRight: {
+		text: "Is Boomer Bob right about love songs dying? Looking at the aggregate proportions, you can see love songs go from 1/4 songs in the 60s, to 1/10 today...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
+			)
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			showAggregateSnakeChart: true,
+			showBubbleChart: false
+		},
+		showLoveSongChangeOverTime: true
 	}
 	// What counts as love song?
 	// Remaining Boomer-Bob-friendly types:
@@ -835,6 +850,7 @@ export const storySteps = [
 	newSteps.serenadesAreIndeedDying,
 	newSteps.serenadesPeakedInThe90s,
 	newSteps.aFewArtistsKeepThemAliveToday,
+	newSteps.anAggSnakeChartMakesBoomerBobSeemRight,
 
 	// What counts as love song?
 	// Remaining Boomer-Bob-friendly types:
