@@ -14,6 +14,7 @@ import {
 	columnsToFilterVisibilityOn,
 	visibleButNotSelectedLoveSongTypes
 } from "./searchAndFilter.js";
+import { typesTreatedAsNonLoveSongs } from "./storySteps.js";
 
 const genderSelected = derived(
 	[selectedGenders],
@@ -198,6 +199,7 @@ function isWithinYearRange(dateAsDecimal, minYear, maxYear) {
 }
 
 export function getLoveSongPercentage(
+	typesTreatedAsNonLoveSongs,
 	selectedSongsData,
 	selectedLoveSongTypes,
 	minYear = MIN_YEAR,
@@ -207,9 +209,12 @@ export function getLoveSongPercentage(
 		(acc, { song }) => {
 			const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 			const dateAsDecimal = song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
+
+			const isALoveSong =
+				!typesTreatedAsNonLoveSongs.includes(loveSongType) &&
+				loveSongType !== LOVE_SONG_TYPE_CONSTANTS.notALoveSong;
 			if (
-				(selectedLoveSongTypes.length === 0 &&
-					loveSongType !== LOVE_SONG_TYPE_CONSTANTS.notALoveSong) ||
+				(selectedLoveSongTypes.length === 0 && isALoveSong) ||
 				selectedLoveSongTypes.includes(loveSongType)
 			) {
 				if (isWithinYearRange(dateAsDecimal, minYear, maxYear)) {
@@ -238,9 +243,20 @@ export function getLoveSongPercentage(
 }
 
 export const percentageOfLoveSongsCurrentlySelected = derived(
-	[selectedSongsData, selectedLoveSongTypes, timeRange],
-	([$selectedSongsData, $selectedLoveSongTypes, $timeRange]) => {
+	[
+		selectedSongsData,
+		selectedLoveSongTypes,
+		timeRange,
+		typesTreatedAsNonLoveSongs
+	],
+	([
+		$selectedSongsData,
+		$selectedLoveSongTypes,
+		$timeRange,
+		$typesTreatedAsNonLoveSongs
+	]) => {
 		return getLoveSongPercentage(
+			$typesTreatedAsNonLoveSongs,
 			$selectedSongsData,
 			$selectedLoveSongTypes,
 			$timeRange.startYear,
@@ -250,9 +266,18 @@ export const percentageOfLoveSongsCurrentlySelected = derived(
 );
 
 export const percentageOfLoveSongsDuring1959To1969 = derived(
-	[selectedSongsDataIgnoringTime, selectedLoveSongTypes],
-	([$selectedSongsDataIgnoringTime, $selectedLoveSongTypes]) => {
+	[
+		selectedSongsDataIgnoringTime,
+		selectedLoveSongTypes,
+		typesTreatedAsNonLoveSongs
+	],
+	([
+		$selectedSongsDataIgnoringTime,
+		$selectedLoveSongTypes,
+		$typesTreatedAsNonLoveSongs
+	]) => {
 		return getLoveSongPercentage(
+			$typesTreatedAsNonLoveSongs,
 			// Note: we want to be able to *reliably* compare to the 60s and not have it accidentally filtered out
 			// if we happen to look at a selection that doesn't include the 60s.
 			$selectedSongsDataIgnoringTime,
@@ -276,11 +301,22 @@ export const maxYearFromSelectedSongs = derived(
 );
 
 export const percentageOfLoveSongsDuringLast10YearsOfSelection = derived(
-	[selectedSongsData, selectedLoveSongTypes, maxYearFromSelectedSongs],
-	([$selectedSongsData, $selectedLoveSongTypes, $maxYearFromSelectedSongs]) => {
+	[
+		selectedSongsData,
+		selectedLoveSongTypes,
+		maxYearFromSelectedSongs,
+		typesTreatedAsNonLoveSongs
+	],
+	([
+		$selectedSongsData,
+		$selectedLoveSongTypes,
+		$maxYearFromSelectedSongs,
+		$typesTreatedAsNonLoveSongs
+	]) => {
 		const tenYearsBefore = Math.max(MIN_YEAR, $maxYearFromSelectedSongs - 10);
 
 		return getLoveSongPercentage(
+			$typesTreatedAsNonLoveSongs,
 			$selectedSongsData,
 			$selectedLoveSongTypes,
 			tenYearsBefore,
