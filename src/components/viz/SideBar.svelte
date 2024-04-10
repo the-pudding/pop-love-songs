@@ -1,7 +1,7 @@
 <script>
 	import {derived} from "svelte/store";
 	import { selectedSongsData } from "$stores/dataDerivations.js";
-	import {currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js";
+	import {currentStoryStepIndex, currentStoryStep, FIRST_STEP_TO_SHOW_SIDE_BAR} from "$stores/storySteps.js";
 	import LoveSongDeathMeter from "./LoveSongDeathMeter.svelte";
 	import SongInfo from "./SongInfo.svelte";
 	import { RIGHT_TOOLBAR_WIDTH } from "$stores/forcePositionOptions-helper";
@@ -24,11 +24,9 @@
 			return Object.entries(performers).filter(([, count]) => count >= MIN_HITS).sort(([, countA], [, countB]) => countB - countA);
 		}
 	);
-
-	const firstRelevantStep = 6; // TEMP, hardcoded for the demo
 </script>
 
-{#if $currentStoryStepIndex >= firstRelevantStep}
+{#if $currentStoryStepIndex >= FIRST_STEP_TO_SHOW_SIDE_BAR}
 	<section style:width={`${RIGHT_TOOLBAR_WIDTH}px`}>
 		{#if $currentStoryStep.showLoveSongChangeOverTime}
 			<h4>Love song <b>popularity % change</b></h4>
