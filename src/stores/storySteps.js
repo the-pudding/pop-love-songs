@@ -13,7 +13,7 @@ import {
 } from "./forcePositionOptions-helper.js";
 
 // TODO: probably we'll overwrite this whole thing for the final. TEMP, just hardcoded for the demo
-export const FIRST_STEP_TO_SHOW_SIDE_BAR = 6;
+export const FIRST_STEP_TO_SHOW_SIDE_BAR = 3;
 
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
@@ -37,6 +37,104 @@ const VISUAL_ENCODING_BLANK_STATE = {
 	// TODO: just to get to a prototype, their may be more clever ways to derive these:
 	showAggregateSnakeChart: false,
 	showBubbleChart: true
+};
+
+const newSteps = {
+	// Intro: Is Boomer Bob right that the love song is dying?
+
+	allTheBillboardHitsInAMonoChromeCluster: {
+		text: "If you look at the Billboard Top 10 from 1959-2023 (each buble is a song, sized by its popularity & tenure on the top 10)...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: fractionOfScreenFactory(0.7, 0.3),
+			calculateYForcePosition: fractionOfScreenFactory(0.7, 0.3)
+		}
+	},
+	highlightSerenadesWithinCluster: {
+		text: "... you'll see tons of what you might call Serenades: your classic, unambiguous love songs.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
+			)
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: fractionOfScreenFactory(0.7, 0.3),
+			calculateYForcePosition: fractionOfScreenFactory(0.7, 0.3)
+		}
+	},
+	showJustSerenadeCluster: {
+		text: "But, despite their total prevelence, a lot of people, especially Boomers, think that these days the love song is dying.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: fractionOfScreenFactory(0.7, 0.3),
+			calculateYForcePosition: fractionOfScreenFactory(0.7, 0.3)
+		}
+	},
+	serenadesAreIndeedDying: {
+		text: "And, if you spread Serenades from 1959-2023, they are indeed declining...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
+		},
+		showLoveSongChangeOverTime: true
+	},
+	serenadesPeakedInThe90s: {
+		text: "Serenades peaked in popularity in the 90s with hits like 'I'll make love to you' by Boyz II Men...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
+			timeRange: {
+				startYear: MIN_YEAR,
+				endYear: 2000
+			},
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
+		},
+		showLoveSongChangeOverTime: true
+	},
+	aFewArtistsKeepThemAliveToday: {
+		text: "But a few artists like Biebs & T-Swift keep them alive today [see side panel]. With the Serenade dropping from almost 1 in 4 songs in the 60s to just 1 in 10 today, love songs *do* seem to be on their death bed...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
+			timeRange: {
+				startYear: 2001,
+				endYear: MAX_YEAR
+			},
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: fractionOfScreenFactory(0.5)
+		},
+		showLoveSongChangeOverTime: true
+	}
+	// What counts as love song?
+	// Remaining Boomer-Bob-friendly types:
+	// Expansive-mode
+	// Explore mode
 };
 
 const steps = {
@@ -724,41 +822,26 @@ const steps = {
 			calculateYForcePosition: getYPositionInSnakeChart
 		},
 		showLoveSongChangeOverTime: true
-	},
-
-	youDecideAggregateSnakeChart: {
-		text: "(this is the aggregate snake chart)",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true,
-			showBubbleChart: false
-		},
-		showLoveSongChangeOverTime: true
-	},
-
-	onlySerenadesAreTreatedAsLoveSongs: {
-		text: "(treat all non-serenade types as non love songs)",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			typesTreatedAsNonLoveSongs: [
-				...LOVE_SONG_TYPES.filter(
-					(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
-				)
-			]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true,
-			showBubbleChart: true
-		},
-		showLoveSongChangeOverTime: true
 	}
 };
 
 export const storySteps = [
+	// LATEST STORY:
+
+	// Intro: Is Boomer Bob right that the love song is dying?
+	newSteps.allTheBillboardHitsInAMonoChromeCluster,
+	newSteps.highlightSerenadesWithinCluster,
+	newSteps.showJustSerenadeCluster,
+	newSteps.serenadesAreIndeedDying,
+	newSteps.serenadesPeakedInThe90s,
+	newSteps.aFewArtistsKeepThemAliveToday,
+
+	// What counts as love song?
+	// Remaining Boomer-Bob-friendly types:
+	// Expansive-mode
+	// Explore mode
+
+	// OLD STORY (JUST KEPT AROUND FOR REFERENCE:)
 	// Intro:
 	steps.thisIsAHitSong,
 	steps.thisSongWasRankedForEvenLonger,
@@ -809,9 +892,7 @@ export const storySteps = [
 	steps.addInNonLoveSongsInGray,
 	steps.theLoveSongIsActuallyRising,
 
-	steps.youDecide,
-	steps.youDecideAggregateSnakeChart,
-	steps.onlySerenadesAreTreatedAsLoveSongs
+	steps.youDecide
 ];
 
 export const currentStoryStepIndex = writable(0);
