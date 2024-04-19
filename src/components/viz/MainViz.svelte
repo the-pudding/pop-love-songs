@@ -56,6 +56,12 @@
 			}
 			context.fillStyle = getSongFill(song, isSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap);
 			context.fill(circle);
+			// Add a border if we're layinger charts
+			if ($currentStoryStep.visualEncodings.showAggregateSnakeChart && $currentStoryStep.visualEncodings.showBubbleChart) {
+				context.strokeStyle = "black";
+				context.lineWidth = 0.01;
+				context.stroke(circle);
+			}
 		});
 	};
 
@@ -115,7 +121,7 @@
 			.force("x", forceX().x((_, songIndex) => $xForcePosition[songIndex]).strength(2))
 			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex] || DEFAULT_Y_ENTRANCE_POSITION).strength(1))
 			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsVisible[songIndex] ? radius : 0))
-			.alpha(0.07)
+			.alpha(0.06)
 			.restart();
 	};
 

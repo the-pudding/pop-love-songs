@@ -142,24 +142,149 @@ const newSteps = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true,
-			showBubbleChart: false
+			showBubbleChart: true
 		},
 		showLoveSongChangeOverTime: true
 	},
-	exploreAggSnake: {
-		text: "[DEMO OF AGG SNAKE CHART]",
+
+	// What counts as love song?
+	butWeWillTakeAMoreExpansiveView: {
+		text: "Boomer Bob has a narrow view. Sure, Serenades are dying. But what about other types? Is 'Buy U A Drank' by T-Pain a love song? What about 'I Will Always Love You' by Whitney Houston? WAP? We'll take a more expansive view.",
 		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
+			)
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			showAggregateSnakeChart: true,
+			showBubbleChart: true
+		},
+		showLoveSongChangeOverTime: true
+	},
+	whyWeCare: {
+		text: "[Why MJia & Dmo care about countering Boomer Bob's view]",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
+			)
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			showAggregateSnakeChart: true,
+			showBubbleChart: true
+		},
+		showLoveSongChangeOverTime: true
+	},
+	introTheTypeGrid: {
+		text: "[here's how we'll classify love song types. here's Serenade, here's Longing & Heartbreak]",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
+			)
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true,
 			showBubbleChart: false
 		},
+		loveSongTypeDefinitionImage: "longing-&-heartbreak"
+	},
+
+	// Remaining Boomer-Bob-friendly types:
+	longingAndHeartbreakOverview: {
+		text: "Longing & Heartbreak is almost as popular as the Serenade, and even has surpassed it in the 2020s, thanks in large part to Blinding Lights by The Weeknd.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			showAggregateSnakeChart: false,
+			showBubbleChart: true
+		}
+	},
+	longingAndHeartbreakDoNotTipTheScales: {
+		text: "Does expanding to include Heartbreak & Longing songs reveal a love song less in decline? Au contraire! Added to Serenades, love songs have now dropped 22% since the 60s!",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) =>
+					![
+						LOVE_SONG_TYPE_CONSTANTS.serenade,
+						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+					].includes(t)
+			)
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			showAggregateSnakeChart: true,
+			showBubbleChart: true
+		},
+		showLoveSongChangeOverTime: true
+	},
+	// Courtship
+	definingCourtship: {
+		text: "But maybe we're missing songs? How about when you love someone, and it might become something more? Let's call these Courtship & Anticipation.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+				// LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		},
+		loveSongTypeDefinitionImage: "courtship-&-anticipation"
+	},
+	introducingCourtship: {
+		text: "These songs stretch from The Beatles' 'I Want to Hold Your Hand' to Carly Rae Jepsen's 'Call Me Maybe'...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
+		}
+	},
+	courtshipHasNoEffect: {
+		text: "But the popularity of Courtship & Anticipation songs has remained steady over the years, neither bolstering nor hurting the broader love song category as a whole.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) =>
+					![
+						LOVE_SONG_TYPE_CONSTANTS.serenade,
+						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+					].includes(t)
+			)
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			showAggregateSnakeChart: true,
+			showBubbleChart: true
+		},
 		showLoveSongChangeOverTime: true
 	}
-	// What counts as love song?
-	// Remaining Boomer-Bob-friendly types:
+
 	// Expansive-mode
 	// Explore mode
 };
@@ -864,10 +989,19 @@ export const storySteps = [
 	newSteps.aFewArtistsKeepThemAliveToday,
 	newSteps.anAggSnakeChartMakesBoomerBobSeemRight,
 
-	newSteps.exploreAggSnake,
-
 	// What counts as love song?
+	newSteps.butWeWillTakeAMoreExpansiveView,
+	newSteps.whyWeCare,
+	newSteps.introTheTypeGrid,
+
 	// Remaining Boomer-Bob-friendly types:
+	newSteps.longingAndHeartbreakOverview,
+	newSteps.longingAndHeartbreakDoNotTipTheScales,
+
+	newSteps.definingCourtship,
+	newSteps.introducingCourtship,
+	newSteps.courtshipHasNoEffect,
+
 	// Expansive-mode
 	// Explore mode
 
