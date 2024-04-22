@@ -57,9 +57,9 @@
 			context.fillStyle = getSongFill(song, isSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap);
 			context.fill(circle);
 			// Add a border if we're layinger charts
-			if ($currentStoryStep.visualEncodings.showAggregateSnakeChart && $currentStoryStep.visualEncodings.showBubbleChart) {
+			if (isSelected && $currentStoryStep.visualEncodings.showAggregateSnakeChart && $currentStoryStep.visualEncodings.showBubbleChart) {
 				context.strokeStyle = "black";
-				context.lineWidth = 0.01;
+				context.lineWidth = 0.7;
 				context.stroke(circle);
 			}
 		});

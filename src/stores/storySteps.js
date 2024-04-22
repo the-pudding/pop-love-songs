@@ -132,7 +132,7 @@ const newSteps = {
 		showLoveSongChangeOverTime: true
 	},
 	anAggSnakeChartMakesBoomerBobSeemRight: {
-		text: "Is Boomer Bob right about love songs dying? Looking at the aggregate proportions, you can see love songs go from 1/4 songs in the 60s, to 1/10 today...",
+		text: "Comparing Serenades in aggregate against all other songs, we have to ask: is Boomer Bob right about love songs dying?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -283,10 +283,428 @@ const newSteps = {
 			showBubbleChart: true
 		},
 		showLoveSongChangeOverTime: true
-	}
+	},
 
 	// Expansive-mode
+
+	// its complicated
+	letsGoBeyondBoomerBob: {
+		text: "But we think love songs go beyond Boomer Bob's narrow view. Let's explore love songs that pull in more of romance's complexity, starting with: It's Complicated.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) =>
+					![
+						LOVE_SONG_TYPE_CONSTANTS.serenade,
+						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+					].includes(t)
+			)
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			showAggregateSnakeChart: true,
+			showBubbleChart: true
+		},
+		loveSongTypeDefinitionImage: "its-complicated"
+	},
+
+	introducingItsComplicated: {
+		text: "But the popularity of Courtship & Anticipation songs has remained steady over the years, neither bolstering nor hurting the broader love song category as a whole.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) =>
+					![
+						LOVE_SONG_TYPE_CONSTANTS.serenade,
+						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+						LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+					].includes(t)
+			)
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			showAggregateSnakeChart: false,
+			showBubbleChart: true
+		}
+	},
+	definingItsComplicated: {
+		text: "Sometimes a romantic relationship isn't squarely thriving or over. Sometimes... It's Complicated. It straddles stable & painful relationships.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+				// LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		},
+		loveSongTypeDefinitionImage: "its-complicated"
+	},
+	itsComplicatedDetail: {
+		text: "It's Complicated started from the bottom, now it's here. Really here: it dominated the 00s and 10s, reshaping the love song landscape.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+	kikiDoYouLoveMe: {
+		text: "Drake alone has 11 top 10 hits. Kiki may not love him, but *he's* definitely riding It's Complicated hard.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedPerformers: ["Drake"],
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart,
+			showAggregateSnakeChart: true,
+			showBubbleChart: true
+		}
+	},
+	itsComplicatedDoesNotTipTheScales: {
+		text: "But even with It's Complicated, love songs are still in decline",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) =>
+					![
+						LOVE_SONG_TYPE_CONSTANTS.serenade,
+						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+						LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+					].includes(t)
+			)
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			showAggregateSnakeChart: true,
+			showBubbleChart: false
+		},
+		showLoveSongChangeOverTime: true
+	},
+
+	definingGoodRiddance: {
+		text: "Good Riddance is like Longing & Heartbreak, but with a bite. It's the angsty side of love.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+				// LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		},
+		loveSongTypeDefinitionImage: "good-riddance"
+	},
+	introducingGoodRiddance: {
+		text: "Good Riddance, from Dion's 'Runaround Sue' (1962) to Olivia Rodrigo's 2021 'Good 4 U', really established itself starting in the 2000s with Cher's 'Believe'...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart,
+			showAggregateSnakeChart: true,
+			showBubbleChart: false
+		}
+	},
+	goodRiddanceDetail: {
+		text: "It's a love song pioneered largely by female artists",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedGenders: [GENDER_CONSTANTS.female],
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart,
+			showAggregateSnakeChart: true,
+			showBubbleChart: true
+		}
+	},
+	goodRiddanceArtists: {
+		text: "... with Barbra Streisand well ahead her time: she beat Kelly Clarksen and Mariah Carey by decades.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedPerformers: [
+				"Barbra Streisand",
+				"Kelly Clarkson",
+				"Mariah Carey"
+			],
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart,
+			showAggregateSnakeChart: true,
+			showBubbleChart: true
+		}
+	},
+
+	definingLoveSongForTheSelf: {
+		text: "Even more of a female-led type, Love Song for the Self is like a Serenade... but directed back at the speaker themselves. Though it's not typically written *to* a lover, it's almost always written *in reaction* to romantic rejection.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+				// LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		},
+		loveSongTypeDefinitionImage: "love-song-for-the-self"
+	},
+	womenDominateLoveSongForTheSelf: {
+		text: "Woman almost single-handedly created Love Song for the Self [toggle the gender filter to see!]. Think 'Born This Way' or 'thank u, next'.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedGenders: [GENDER_CONSTANTS.female],
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+	whenLoveSongForTheSelfCameIntoItsOwn: {
+		text: "This type arguably came into its own at the turn of the millennium, with mega hits by TLC and Destiny's Child",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedPerformers: ["TLC", "Destiny's Child"],
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+
+	definingSexualConquest: {
+		text: "Finally, blurring the lines between courtship and romance (and perhaps love and lust), we have Sexual Conquest.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
+				// LOVE_SONG_TYPE_CONSTANTS.sexualConquest
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		},
+		loveSongTypeDefinitionImage: "sexual-conquest"
+	},
+
+	introducingSexualConquest: {
+		text: "It won't surprise anyone Sexual Conquest has risen in popularity in recent decades, lead by artists like Nicki Minaj and Drake. It went so far as to dethrone Serenades in the 2000s.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf,
+				LOVE_SONG_TYPE_CONSTANTS.sexualConquest
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+			visibleButNotSelectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+
+	addInNonLoveSongsInGray: {
+		text: "Ok, it's time to zoom out and answer our original question: is the love song dying? (But first, lets add non-love songs (in gray) to get the complete picture of where love songs stand within every single Top 10 hit from 1959-2023...)",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		}
+	},
+
+	theLoveSongIsActuallyRising: {
+		text: "Ok: so, if you accept this broader view of love songs, we have our answer: the love song is just as strong as it ever was (>1% change from the 60s!) In fact, love songs today are arguably more alive, encompassing more of the complexity of romance.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		},
+		showLoveSongChangeOverTime: true
+	},
+
 	// Explore mode
+	youDecide: {
+		text: "... that is, *if* you accept these love song definitions. But you don't need to! You decide: use the filters to tell *us* how the love song is doing [the % change score will update with filters]... Enjoy!",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: getYPositionInSnakeChart
+		},
+		showLoveSongChangeOverTime: true
+	}
 };
 
 const steps = {
@@ -1003,9 +1421,33 @@ export const storySteps = [
 	newSteps.courtshipHasNoEffect,
 
 	// Expansive-mode
+	newSteps.letsGoBeyondBoomerBob,
+
+	newSteps.itsComplicatedDetail,
+	newSteps.kikiDoYouLoveMe,
+	newSteps.itsComplicatedDoesNotTipTheScales,
+
+	newSteps.definingGoodRiddance,
+	newSteps.introducingGoodRiddance,
+	newSteps.goodRiddanceDetail,
+	newSteps.goodRiddanceArtists,
+
+	newSteps.definingLoveSongForTheSelf,
+	newSteps.womenDominateLoveSongForTheSelf,
+	newSteps.whenLoveSongForTheSelfCameIntoItsOwn,
+
+	newSteps.definingSexualConquest,
+	newSteps.introducingSexualConquest,
+
+	// Conclusion:
+	newSteps.addInNonLoveSongsInGray,
+	newSteps.theLoveSongIsActuallyRising,
+
+	newSteps.youDecide,
+
 	// Explore mode
 
-	// OLD STORY (JUST KEPT AROUND FOR REFERENCE:)
+	// OLD STORY (JUST KEPT AROUND FOR REFERENCE:) -----------------
 	// Intro:
 	steps.thisIsAHitSong,
 	steps.thisSongWasRankedForEvenLonger,
