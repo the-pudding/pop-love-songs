@@ -7,8 +7,6 @@ import { visibleSongsData } from "./dataDerivations";
 import { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
 import { typesTreatedAsNonLoveSongs } from "./storySteps";
 
-export const RIGHT_TOOLBAR_WIDTH = 280; // TODO: probably a better way to do this *shrug*
-
 // algo:
 // 1. given an array of non-overlapping, contiguous time regions (an array with a start & stop year)...
 // Use 1968-1969, then do decades from there on out (1970-1979, 1980-1989, etc.)
