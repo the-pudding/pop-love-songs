@@ -1,6 +1,6 @@
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
-import { get } from "svelte/store";
+import { STORY_STEP_CONTROLLER_BOTTOM_PADDING } from "$components/viz/viz-utils";
 
 export const DEFAULT_Y_ENTRANCE_POSITION = -100;
 
@@ -49,7 +49,6 @@ const getPercentageForSong = (
 };
 
 const Y_MARGIN = 24;
-export const STORY_STEP_CONTROLLER_BOTTOM_PADDING = 100;
 // TODO: could be abstracted to a file of shared functions/constants
 const getYPosForPercentage = (percentage, canvasHeight) =>
 	Y_MARGIN +
