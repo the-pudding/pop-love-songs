@@ -13,7 +13,7 @@ export const DEFAULT_Y_ENTRANCE_POSITION = -100;
 const DOMAIN = MAX_YEAR - MIN_YEAR;
 export const RIGHT_TOOLBAR_WIDTH = 280; // TODO: probably a better way to do this *shrug*
 
-const X_MARGIN = 80;
+export const X_MARGIN = 80;
 // We've abstracted this so we can use it in the other calculations. TODO: probably could be its moved to its own file of shared constants/functions
 export const getXPosForYear = (year, canvasWidth) => {
 	const xPercentage = (year - MIN_YEAR) / DOMAIN;

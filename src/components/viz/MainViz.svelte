@@ -3,6 +3,8 @@
 
 	import { forceSimulation, forceX, forceY, forceCollide } from "d3";
 
+	import XAxis from "./XAxis.svelte";
+
 	import viewport from "$stores/viewport.js";
 	import { songIsSelected, songIsVisible } from "$stores/dataDerivations";
 	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
@@ -118,8 +120,8 @@
 	const updateSimulationProperties = () => {
 		if (!simulation) return;
 		simulation
-			.force("x", forceX().x((_, songIndex) => $xForcePosition[songIndex]).strength(2))
-			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex] || DEFAULT_Y_ENTRANCE_POSITION).strength(1))
+			.force("x", forceX().x((_, songIndex) => $xForcePosition[songIndex]).strength(5))
+			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex] || DEFAULT_Y_ENTRANCE_POSITION).strength(2))
 			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsVisible[songIndex] ? radius : 0))
 			.alpha(0.06)
 			.restart();
@@ -152,6 +154,7 @@
 	});
 </script>
 
+<XAxis />
 
 {#if $currentStoryStep.visualEncodings.showAggregateSnakeChart}
 	<svg height={$viewport.height} width={$viewport.width}>
