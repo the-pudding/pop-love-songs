@@ -2,10 +2,14 @@
     import {afterUpdate, onMount} from "svelte";
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";
+
+    import Tap from "../helpers/Tap.svelte";
+
     import {selectedGenders, selectedSongs, selectedLoveSongTypes, selectedPerformers, timeRange, columnsToFilterVisibilityOn, visibleButNotSelectedLoveSongTypes} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
 	import { formattedChange } from "$stores/dataDerivations";
+	
     
     // Story index synced to query params:
     const searchParams = new URLSearchParams("currentStoryStepIndex=0");
@@ -30,13 +34,9 @@
         if ($currentStoryStepIndex < storySteps.length - 1) $currentStoryStepIndex++;
     }
 
-    const handleKeyDown = (e) => {
-        if (e.key === "ArrowLeft") {
-            onPreviousButtonClick()
-        } else if (e.key === "ArrowRight") {
-            onNextButtonClick()
-        }
-    }
+    const onTap = ({ detail }) => {
+		detail === "right" ? onNextButtonClick() : onPreviousButtonClick();
+	};
 
     const updateFilterFilterState = () => {
         selectedSongs.set([...$currentStoryStep.searchAndFilterState.selectedSongs])
@@ -52,7 +52,6 @@
     $: $currentStoryStepIndex, updateFilterFilterState()
 </script>
 
-<svelte:window on:keydown={handleKeyDown} />
 
 {#if $currentStoryStep.loveSongTypeDefinitionImage}
     <img src={`assets/${$currentStoryStep.loveSongTypeDefinitionImage}.png`} alt="love song definition table" />
@@ -65,11 +64,9 @@
             [Change since 60s: <b>{$formattedChange}</b>]
         {/if}
     </h4>
-    <div>
-        <button on:click={onPreviousButtonClick} disabled={$currentStoryStepIndex <= 0}>previous</button>
-        <button on:click={onNextButtonClick} disabled={$currentStoryStepIndex >= storySteps.length - 1}>...next!</button>
-    </div>
 </div>
+
+<Tap on:tap={onTap} debug={false} enableKeyboard={true} />
 
 <style>
     img {
