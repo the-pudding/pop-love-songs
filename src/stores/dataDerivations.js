@@ -4,7 +4,10 @@ import {
 	LOVE_SONG_TYPE_CONSTANTS,
 	SONG_DATA_COLUMNS_ENUM
 } from "$data/data-constants";
-import { getArrayOfPerformers } from "$data/data-utils.js";
+import {
+	getArrayOfPerformers,
+	onlyShowOneDecimalPlaceIfLessThan10
+} from "$data/data-utils.js";
 import {
 	selectedGenders,
 	selectedSongs,
@@ -322,5 +325,28 @@ export const percentageOfLoveSongsDuringLast10YearsOfSelection = derived(
 			tenYearsBefore,
 			$maxYearFromSelectedSongs
 		);
+	}
+);
+
+export const changeFrom60sToLast10Years = derived(
+	[
+		percentageOfLoveSongsDuring1959To1969,
+		percentageOfLoveSongsDuringLast10YearsOfSelection
+	],
+	([
+		$percentageOfLoveSongsDuring1959To1969,
+		$percentageOfLoveSongsDuringLast10YearsOfSelection
+	]) => {
+		return (
+			$percentageOfLoveSongsDuringLast10YearsOfSelection -
+			$percentageOfLoveSongsDuring1959To1969
+		);
+	}
+);
+
+export const formattedChange = derived(
+	changeFrom60sToLast10Years,
+	($changeFrom60sToLast10Years) => {
+		return `${$changeFrom60sToLast10Years > 0 ? "+" : $changeFrom60sToLast10Years < 0 ? "-" : ""}${onlyShowOneDecimalPlaceIfLessThan10(Math.abs($changeFrom60sToLast10Years))}`;
 	}
 );

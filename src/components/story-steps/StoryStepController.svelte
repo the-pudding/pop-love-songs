@@ -5,6 +5,7 @@
     import {selectedGenders, selectedSongs, selectedLoveSongTypes, selectedPerformers, timeRange, columnsToFilterVisibilityOn, visibleButNotSelectedLoveSongTypes} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
+	import { formattedChange } from "$stores/dataDerivations";
     
     // Story index synced to query params:
     const searchParams = new URLSearchParams("currentStoryStepIndex=0");
@@ -58,7 +59,12 @@
 {/if}
 
 <div class="container" style:height={`${STORY_STEP_CONTROLLER_BOTTOM_PADDING}px`}>
-    <h4 class="title">{$currentStoryStep.text}</h4>
+    <h4 class="title">
+        {$currentStoryStep.text}
+        {#if $currentStoryStep.showLoveSongChangeOverTime}
+            [Change since 60s: <b>{$formattedChange}</b>]
+        {/if}
+    </h4>
     <div>
         <button on:click={onPreviousButtonClick} disabled={$currentStoryStepIndex <= 0}>previous</button>
         <button on:click={onNextButtonClick} disabled={$currentStoryStepIndex >= storySteps.length - 1}>...next!</button>

@@ -1,20 +1,7 @@
 <script>
-    import { derived } from 'svelte/store';
-    import {percentageOfLoveSongsCurrentlySelected, percentageOfLoveSongsDuring1959To1969, percentageOfLoveSongsDuringLast10YearsOfSelection, maxYearFromSelectedSongs} from '$stores/dataDerivations'   
-	import { onlyShowOneDecimalPlaceIfLessThan10 } from '$data/data-utils';
+    import {percentageOfLoveSongsCurrentlySelected, percentageOfLoveSongsDuring1959To1969, percentageOfLoveSongsDuringLast10YearsOfSelection, maxYearFromSelectedSongs, changeFrom60sToLast10Years, formattedChange} from '$stores/dataDerivations'   
 
-    const changeFrom60sToLast10Years = derived(
-        [percentageOfLoveSongsDuring1959To1969, percentageOfLoveSongsDuringLast10YearsOfSelection],
-        ([$percentageOfLoveSongsDuring1959To1969, $percentageOfLoveSongsDuringLast10YearsOfSelection]) => {
-            return  $percentageOfLoveSongsDuringLast10YearsOfSelection - $percentageOfLoveSongsDuring1959To1969;
-        }
-    );
-    const formattedChange = derived(
-        changeFrom60sToLast10Years,
-        ($changeFrom60sToLast10Years) => {
-            return `${$changeFrom60sToLast10Years > 0 ? '+' : $changeFrom60sToLast10Years < 0 ? '-' : ''}${onlyShowOneDecimalPlaceIfLessThan10(Math.abs($changeFrom60sToLast10Years))}`;
-        }
-    );
+    
     // Calculate the color of the text based on the change: red for negative, green for positive, gray for 3 percent or less
     $: textColor = $changeFrom60sToLast10Years > 3 ? 'green' : $changeFrom60sToLast10Years < -3 ? 'red' : 'gray';
 </script>
