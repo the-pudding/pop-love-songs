@@ -12,9 +12,6 @@ import {
 	getYPositionInSnakeChart
 } from "./forcePositionOptions-helper.js";
 
-// TODO: probably we'll overwrite this whole thing for the final. TEMP, just hardcoded for the demo
-export const FIRST_STEP_TO_SHOW_SIDE_BAR = 3;
-
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
 	selectedPerformers: [],
