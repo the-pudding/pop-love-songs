@@ -96,5 +96,7 @@
     .title {
         text-align: center;
         background-color: var(--color-gray-300);
+        /* If screen width is less 1000 shrink font size */
+        font-size: clamp(1rem, 2vw, 1.5rem);
     }
 </style>
