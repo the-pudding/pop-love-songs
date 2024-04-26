@@ -2,7 +2,8 @@ import { scaleLinear } from "d3";
 import { SONG_DATA_COLUMNS_ENUM } from "./data-constants";
 import { MAX_YEAR, MIN_YEAR } from "./songs-data";
 
-const DOMAIN = MAX_YEAR - MIN_YEAR;
+export const Y_MARGIN = 56;
+
 export const RIGHT_TOOLBAR_WIDTH = 280; // TODO: probably a better way to do this *shrug*
 
 const xScaleSansRange = scaleLinear().domain([MIN_YEAR, MAX_YEAR]);
