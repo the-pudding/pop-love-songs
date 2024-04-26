@@ -2,10 +2,8 @@ import { derived } from "svelte/store";
 import { area as d3area } from "d3";
 import viewport from "./viewport";
 
-import {
-	getXPosForYear,
-	getYPosInAggregateSnakeChart
-} from "./forcePositionOptions-helper";
+import { getYPosInAggregateSnakeChart } from "./forcePositionOptions-helper";
+import { getXPosForYear } from "$data/data-utils";
 import {
 	LOVE_SONG_TYPES,
 	SONG_DATA_COLUMNS_ENUM

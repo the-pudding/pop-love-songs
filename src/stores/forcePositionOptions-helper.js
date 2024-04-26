@@ -1,6 +1,6 @@
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
-import { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
 import { STORY_STEP_CONTROLLER_BOTTOM_PADDING } from "$components/viz/viz-utils";
+import { getXPosForYear, X_MARGIN } from "$data/data-utils";
 
 export const DEFAULT_Y_ENTRANCE_POSITION = -100;
 
@@ -9,18 +9,6 @@ export const DEFAULT_Y_ENTRANCE_POSITION = -100;
  */
 
 // --- xForcePosition options ---
-
-const DOMAIN = MAX_YEAR - MIN_YEAR;
-export const RIGHT_TOOLBAR_WIDTH = 280; // TODO: probably a better way to do this *shrug*
-
-export const X_MARGIN = 80;
-// We've abstracted this so we can use it in the other calculations. TODO: probably could be its moved to its own file of shared constants/functions
-export const getXPosForYear = (year, canvasWidth) => {
-	const xPercentage = (year - MIN_YEAR) / DOMAIN;
-	return (
-		X_MARGIN + xPercentage * (canvasWidth - RIGHT_TOOLBAR_WIDTH - 2 * X_MARGIN)
-	);
-};
 
 export const getXPositionFromTime = (song, canvasWidth) =>
 	getXPosForYear(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal], canvasWidth);

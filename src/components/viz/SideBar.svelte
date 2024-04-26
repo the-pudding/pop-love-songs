@@ -4,8 +4,8 @@
 	import {currentStoryStepIndex, currentStoryStep, FIRST_STEP_TO_SHOW_SIDE_BAR} from "$stores/storySteps.js";
 	import LoveSongDeathMeter from "./LoveSongDeathMeter.svelte";
 	import SongInfo from "./SongInfo.svelte";
-	import { RIGHT_TOOLBAR_WIDTH } from "$stores/forcePositionOptions-helper";
-	import { getArrayOfPerformers } from "$data/data-utils";
+
+	import { RIGHT_TOOLBAR_WIDTH, getArrayOfPerformers } from "$data/data-utils";
 
 	const performerSongCount = derived(
 		selectedSongsData,

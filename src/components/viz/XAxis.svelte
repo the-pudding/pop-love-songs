@@ -3,7 +3,7 @@
     import viewport from "$stores/viewport.js";
     import { STORY_STEP_CONTROLLER_BOTTOM_PADDING } from './viz-utils';
     import { MAX_YEAR, MIN_YEAR } from '$data/songs-data';
-    import { RIGHT_TOOLBAR_WIDTH, X_MARGIN } from '$stores/forcePositionOptions-helper';
+	import { RIGHT_TOOLBAR_WIDTH, X_MARGIN } from '$data/data-utils';
     
     let gx;
 
