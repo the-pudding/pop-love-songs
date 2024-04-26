@@ -66,7 +66,7 @@
     </h4>
 </div>
 
-<Tap on:tap={onTap} debug={false} enableKeyboard={true} />
+<Tap on:tap={onTap} debug={false} enableKeyboard={true} showArrows={true} />
 
 <style>
     img {

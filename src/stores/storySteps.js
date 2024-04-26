@@ -40,7 +40,7 @@ const newSteps = {
 	// Intro: Is Boomer Bob right that the love song is dying?
 
 	allTheBillboardHitsInAMonoChromeCluster: {
-		text: "If you look at the Billboard Top 10 from 1959-2023 (each buble is a song, sized by its popularity & tenure on the top 10)...",
+		text: "If you look at the Billboard Top 10 from 1959-2023 (each buble is a song, sized by its popularity & tenure on the top 10)... [to advance, tap side arrows buttons or use keyboard arrow keys]",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES
