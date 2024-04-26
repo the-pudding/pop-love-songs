@@ -18,7 +18,7 @@
 		searchSongOnYouTube
 	} from "./viz-utils";
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
-	import { loveSongTypeColorMap, unselectedLoveSongTypeColorMap, xForcePosition, yForcePosition } from "$stores/visualEncodings";
+	import { loveSongTypeColorMap, songRadius, unselectedLoveSongTypeColorMap, xForcePosition, yForcePosition } from "$stores/visualEncodings";
 	import { aggregateSnakeChartSVGPaths } from "$stores/aggregateSnakeChartPositions";
 	import { currentStoryStep } from "$stores/storySteps";
 
@@ -44,10 +44,11 @@
 		context.clearRect(0, 0, canvas.width, canvas.height);
 
 		// Draw the circles
-		forceSimulationData.forEach(({song, radius, x, y}, songIndex) => {
+		forceSimulationData.forEach(({song, x, y}, songIndex) => {
 			const isSelected = $songIsSelected[songIndex];
 			const isVisible = $songIsVisible[songIndex];
 			const circle = new Path2D();
+			const radius = $songRadius[songIndex];
 			const displayRadius = isVisible ? radius : 0;
 			circle.arc(x, y, displayRadius, 0, 2 * Math.PI);
 
@@ -122,7 +123,7 @@
 		simulation
 			.force("x", forceX().x((_, songIndex) => $xForcePosition[songIndex]).strength(5))
 			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex] || DEFAULT_Y_ENTRANCE_POSITION).strength(2))
-			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsVisible[songIndex] ? radius : 0))
+			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsVisible[songIndex] ? $songRadius[songIndex] : 0))
 			.alpha(0.06)
 			.restart();
 	};

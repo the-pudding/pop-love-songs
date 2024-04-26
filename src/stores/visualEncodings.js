@@ -6,6 +6,7 @@ import { loveSongsLabeledByTimeRegionPercentageForPosition } from "./loveSongsLa
 import {
 	LOVE_SONG_TYPE_COLOR_MAP,
 	LOVE_SONG_TYPE_CONSTANTS,
+	SONG_DATA_COLUMNS_ENUM,
 	UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP
 } from "$data/data-constants.js";
 
@@ -74,3 +75,14 @@ export const unselectedLoveSongTypeColorMap = derived(
 			UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP
 		)
 );
+
+export const songRadius = derived([viewport], ([$viewport]) => {
+	const { width, height } = $viewport;
+	const roughArea = width * height;
+	// TODO: we'll probably have some "breakpoints", particularly when x-becomes small, which has a disproportionate effect on layout
+	const ADJUSTER = 0.003;
+	const scalingFactor = (1 / songsData.length) * roughArea * ADJUSTER;
+	return songsData.map(({ song }) =>
+		Math.sqrt(song[SONG_DATA_COLUMNS_ENUM.popularity_score] * scalingFactor)
+	);
+});

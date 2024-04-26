@@ -2,14 +2,6 @@ import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 
 export const STORY_STEP_CONTROLLER_BOTTOM_PADDING = 100;
 
-const RADIUS_SCALING_FACTOR = 1.2; // TODO: this should probably be responsive to available screen area
-export const calculateRadiusFromPopularityScore = (
-	popularityScore,
-	radiusScalingFactor = RADIUS_SCALING_FACTOR
-) => {
-	return Math.sqrt(popularityScore * radiusScalingFactor);
-};
-
 const NEXT_COLOR_STEP = 1; // keep this as 1
 const BASE_OFFSET = 10;
 
