@@ -1,13 +1,13 @@
 <script>
-    import * as d3 from 'd3'; 
+    import * as d3 from 'd3'; // TODO: can we import only the necessary functions?
     import viewport from "$stores/viewport.js";
     import { STORY_STEP_CONTROLLER_BOTTOM_PADDING } from './viz-utils';
-    import { MAX_YEAR, MIN_YEAR } from '$data/songs-data';
-	import { RIGHT_TOOLBAR_WIDTH, X_MARGIN } from '$data/data-utils';
+
+	import { xScaleJustAddRange } from '$data/data-utils';
     
     let gx;
 
-    $: x = d3.scaleLinear([MIN_YEAR, MAX_YEAR], [X_MARGIN, $viewport.width - RIGHT_TOOLBAR_WIDTH - 2 * X_MARGIN]);
+    $: x = xScaleJustAddRange($viewport.width)
     $: d3.select(gx).call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(10).tickSizeOuter(0));
 </script>
 

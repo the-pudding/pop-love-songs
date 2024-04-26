@@ -1,16 +1,23 @@
+import { scaleLinear } from "d3";
 import { SONG_DATA_COLUMNS_ENUM } from "./data-constants";
 import { MAX_YEAR, MIN_YEAR } from "./songs-data";
 
 const DOMAIN = MAX_YEAR - MIN_YEAR;
 export const RIGHT_TOOLBAR_WIDTH = 280; // TODO: probably a better way to do this *shrug*
 
+const xScaleSansRange = scaleLinear().domain([MIN_YEAR, MAX_YEAR]);
+// TODO: @michelle is it inefficient to create a new scale every time we call this function?
+export const xScaleJustAddRange = (canvasWidth) =>
+	xScaleSansRange.range([
+		X_MARGIN,
+		canvasWidth - RIGHT_TOOLBAR_WIDTH - 2 * X_MARGIN
+	]);
+
 export const X_MARGIN = 80; // TODO: probably best off as a percentage of the canvas width
 
 export const getXPosForYear = (year, canvasWidth) => {
-	const xPercentage = (year - MIN_YEAR) / DOMAIN;
-	return (
-		X_MARGIN + xPercentage * (canvasWidth - RIGHT_TOOLBAR_WIDTH - 2 * X_MARGIN)
-	);
+	// set the domain with canvas width
+	return xScaleJustAddRange(canvasWidth)(year);
 };
 
 export const PERFORMER_LIST_DELIMITER = "|";
