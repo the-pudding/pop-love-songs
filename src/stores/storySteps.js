@@ -32,9 +32,8 @@ const VISUAL_ENCODING_BLANK_STATE = {
 	calculateXForcePosition: getXPositionFromTime,
 	calculateYForcePosition: getYPositionInSnakeChart,
 	// TODO: just to get to a prototype, their may be more clever ways to derive these:
-	showAggregateSnakeChart: false,
+	showAggregateSnakeChart: false
 	// TODO: we actually want to drop this second value, since we'll never show both simultaneously
-	showBubbleChart: true
 };
 
 const newSteps = {
@@ -139,8 +138,7 @@ const newSteps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true,
-			showBubbleChart: true
+			showAggregateSnakeChart: true
 		},
 		showLoveSongChangeOverTime: true
 	},
@@ -161,8 +159,7 @@ const newSteps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true,
-			showBubbleChart: true
+			showAggregateSnakeChart: true
 		},
 		showLoveSongChangeOverTime: true
 	},
@@ -176,8 +173,7 @@ const newSteps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true,
-			showBubbleChart: false
+			showAggregateSnakeChart: true
 		},
 		showLoveSongChangeOverTime: true
 	},
@@ -191,8 +187,7 @@ const newSteps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true,
-			showBubbleChart: false
+			showAggregateSnakeChart: true
 		},
 		loveSongTypeDefinitionImage: "longing-&-heartbreak"
 	},
@@ -209,9 +204,7 @@ const newSteps = {
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: false,
-			showBubbleChart: true
+			...VISUAL_ENCODING_BLANK_STATE
 		}
 	},
 	longingAndHeartbreakDoNotTipTheScales: {
@@ -228,8 +221,7 @@ const newSteps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true,
-			showBubbleChart: true
+			showAggregateSnakeChart: true
 		},
 		showLoveSongChangeOverTime: true
 	},
@@ -266,8 +258,7 @@ const newSteps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true,
-			showBubbleChart: true
+			showAggregateSnakeChart: true
 		}
 	},
 	courtshipHasNoEffect: {
@@ -285,8 +276,7 @@ const newSteps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true,
-			showBubbleChart: true
+			showAggregateSnakeChart: true
 		},
 		showLoveSongChangeOverTime: true
 	},
@@ -309,8 +299,7 @@ const newSteps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true,
-			showBubbleChart: true
+			showAggregateSnakeChart: true
 		},
 		loveSongTypeDefinitionImage: "its-complicated"
 	},
@@ -355,8 +344,7 @@ const newSteps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true,
-			showBubbleChart: false
+			showAggregateSnakeChart: true
 		}
 	},
 	kikiDoYouLoveMe: {
@@ -381,8 +369,7 @@ const newSteps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true,
-			showBubbleChart: true
+			showAggregateSnakeChart: true
 		}
 	},
 	itsComplicatedDoesNotTipTheScales: {
@@ -401,8 +388,7 @@ const newSteps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true,
-			showBubbleChart: false
+			showAggregateSnakeChart: true
 		},
 		showLoveSongChangeOverTime: true
 	},
@@ -445,8 +431,7 @@ const newSteps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true,
-			showBubbleChart: true
+			showAggregateSnakeChart: true
 		}
 	},
 	goodRiddanceDetail: {
@@ -473,8 +458,7 @@ const newSteps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true,
-			showBubbleChart: true
+			showAggregateSnakeChart: true
 		}
 	},
 	goodRiddanceArtists: {
@@ -505,8 +489,7 @@ const newSteps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true,
-			showBubbleChart: true
+			showAggregateSnakeChart: true
 		}
 	},
 
@@ -563,8 +546,7 @@ const newSteps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true,
-			showBubbleChart: true
+			showAggregateSnakeChart: true
 		}
 	},
 	womenDominateLoveSongForTheSelf: {
@@ -593,8 +575,7 @@ const newSteps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true,
-			showBubbleChart: true
+			showAggregateSnakeChart: true
 		}
 	},
 	didLoveSongForTheSelfTipTheScales: {
@@ -615,8 +596,7 @@ const newSteps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true,
-			showBubbleChart: false
+			showAggregateSnakeChart: true
 		},
 		showLoveSongChangeOverTime: true
 	},
@@ -672,8 +652,7 @@ const newSteps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true,
-			showBubbleChart: false
+			showAggregateSnakeChart: true
 		}
 	},
 	sexualConquestDetail: {
@@ -698,8 +677,7 @@ const newSteps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true,
-			showBubbleChart: true
+			showAggregateSnakeChart: true
 		}
 	},
 
@@ -712,8 +690,7 @@ const newSteps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true,
-			showBubbleChart: true
+			showAggregateSnakeChart: true
 		}
 	},
 
@@ -726,8 +703,7 @@ const newSteps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true,
-			showBubbleChart: false
+			showAggregateSnakeChart: true
 		},
 		showLoveSongChangeOverTime: true
 	},

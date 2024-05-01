@@ -10,7 +10,7 @@
 	$: x = $hoveredSongInfo.x;
 	$: y = $hoveredSongInfo.y;
 	// TODO: probably we'll want to to do something more like place different content if bubble chart is hidden
-	$: visible = x !== undefined && y !== undefined && song.length > 0 && $currentStoryStep.visualEncodings.showBubbleChart;
+	$: visible = x !== undefined && y !== undefined && song.length > 0 && !$currentStoryStep.visualEncodings.showAggregateSnakeChart;
 
 	$: xOffset = $viewport.width / 2 > x ? 20 : -310;
 	$: yOffset = $viewport.height / 2 > y ? 30 : -130;
