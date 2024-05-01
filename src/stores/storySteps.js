@@ -543,8 +543,18 @@ const newSteps = {
 		},
 		loveSongTypeDefinitionImage: "sexual-conquest"
 	},
-
 	introducingSexualConquest: {
+		text: "Nicki Minaj and Drake feature in the most songs in category, with their hits like WAP and Way 2 Sexy.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.sexualConquest],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
+		}
+	},
+	sexualConquestInContext: {
 		text: "As Boomers bemoan, Sexual Conquest has risen in popularity in recent decades. It even went so far as to dethrone Serenades in the 2000s.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
@@ -559,31 +569,6 @@ const newSteps = {
 			],
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.sexualConquest]
 			// columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true
-		}
-	},
-	sexualConquestDetail: {
-		text: "Nicki Minaj and Drake feature in the most songs in category, with their hits like WAP and Way 2 Sexy.",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedPerformers: ["Nicki Minaj", "Drake"],
-			visibleButNotSelectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
-				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
-				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf,
-				// LOVE_SONG_TYPE_CONSTANTS.sexualConquest
-				LOVE_SONG_TYPE_CONSTANTS.notALoveSong
-			],
-			// selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.sexualConquest],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
@@ -680,7 +665,7 @@ export const storySteps = [
 
 	newSteps.definingSexualConquest,
 	newSteps.introducingSexualConquest,
-	newSteps.sexualConquestDetail,
+	newSteps.sexualConquestInContext,
 
 	// Conclusion:
 	newSteps.addInNonLoveSongsInGray,
