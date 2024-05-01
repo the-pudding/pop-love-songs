@@ -421,79 +421,26 @@ const newSteps = {
 		text: "Good Riddance, ranging from Dion's 'Runaround Sue' (1962) to Olivia Rodrigo's 2021 'Good 4 U', really established itself starting in the 2000s with Cher's 'Believe'...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedSongs: ["Runaround Sue", "Good 4 U", "Believe"],
-			selectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
-				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
-			],
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.goodRiddance],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true
+			...VISUAL_ENCODING_BLANK_STATE
 		}
 	},
 	goodRiddanceDetail: {
-		text: "Female artists largely created & sustain this love song type.",
+		text: "Female & gender non-conforming artists dominate Good Riddance. Barbra Streisand paved the way for heavy hitters like Kelly Clarksen and Mariah Carey.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedGenders: [GENDER_CONSTANTS.female],
-			selectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
-				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+			selectedGenders: [
+				GENDER_CONSTANTS.female,
+				GENDER_CONSTANTS["gender non-conforming"]
 			],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
-			visibleButNotSelectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
-			]
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.goodRiddance],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true
-		}
-	},
-	goodRiddanceArtists: {
-		text: "Barbra Streisand was ahead of her time, beating Good Riddance heavy hitters like Kelly Clarksen and Mariah Carey by decades.",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedPerformers: [
-				"Barbra Streisand",
-				"Kelly Clarkson",
-				"Mariah Carey"
-			],
-			selectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
-				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
-			],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
-			visibleButNotSelectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
-			]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true
+			...VISUAL_ENCODING_BLANK_STATE
 		}
 	},
 
@@ -765,7 +712,6 @@ export const storySteps = [
 	newSteps.definingGoodRiddance,
 	newSteps.introducingGoodRiddance,
 	newSteps.goodRiddanceDetail,
-	newSteps.goodRiddanceArtists,
 
 	newSteps.definingLoveSongForTheSelf,
 	newSteps.introducingLoveSongForTheSelf,
