@@ -195,7 +195,7 @@
 <!-- TODO: if not shown, don't run the simulation (ie for performance) -->
 <canvas
 	id="visible"
-	style:display={$currentStoryStep.visualEncodings.showBubbleChart ? "block" : "none"}
+	style:opacity={1 - $aggregateSnakeChartOpacity}
 	bind:this={canvas}
 	on:mousemove={handleMouseMove}
 	on:mousedown={handleSongClicked}
