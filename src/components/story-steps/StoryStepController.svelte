@@ -89,10 +89,6 @@
         pointer-events: none;
     }
 
-    button {
-        pointer-events: all;
-    }
-
     .title {
         text-align: center;
         background-color: var(--color-gray-300);
