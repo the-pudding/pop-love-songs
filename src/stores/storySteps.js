@@ -398,7 +398,7 @@ const newSteps = {
 	},
 
 	definingGoodRiddance: {
-		text: "But we're not done: meet Good Riddance, which is like Longing & Heartbreak, but with a bite. It's the angsty side of love.",
+		text: "But we're not done. Let's look at two more modern & female-pioneered types in terms, starting with: Good Riddance, which is like Longing & Heartbreak, but with a bite. It's the angsty side of love.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -572,8 +572,6 @@ const newSteps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: getYPositionInSnakeChart,
 			showAggregateSnakeChart: true
 		}
 	},
@@ -585,8 +583,6 @@ const newSteps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: getYPositionInSnakeChart,
 			showAggregateSnakeChart: true
 		}
 	},
@@ -595,14 +591,10 @@ const newSteps = {
 		text: "... and we have our answer: the love song is just as strong as it ever was (>1% change from the 60s!) In fact, love songs today are arguably more alive, encompassing more of the complexity of romance.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			// note: these don't make a difference unless filters are open (which they might be as we develop)
-			selectedLoveSongTypes: Object.values(LOVE_SONG_TYPE_CONSTANTS),
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: getYPositionInSnakeChart,
 			showAggregateSnakeChart: true
 		},
 		showLoveSongChangeOverTime: true
@@ -618,8 +610,7 @@ const newSteps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: getYPositionInSnakeChart
+			showAggregateSnakeChart: true
 		},
 		showLoveSongChangeOverTime: true
 	}
