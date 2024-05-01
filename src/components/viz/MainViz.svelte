@@ -40,7 +40,7 @@
 	let simulation;
 
 	const updateVisibleAndInvisibleCanvases = () => {
-		if (!context) return;
+		if (!context || !canvas) return;
 
 		// clear the canvas
 		invisibleContext.clearRect(0, 0, canvas.width, canvas.height);
