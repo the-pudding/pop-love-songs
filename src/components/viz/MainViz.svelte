@@ -21,8 +21,9 @@
 	} from "./viz-utils";
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
 	import { loveSongTypeColorMap, songRadius, unselectedLoveSongTypeColorMap, xForcePosition, yForcePosition } from "$stores/visualEncodings";
-	import { aggregateSnakeChartSVGPaths, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
+	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
 	import { currentStoryStep } from "$stores/storySteps";
+	import { visibleButNotSelectedLoveSongTypes } from "$stores/searchAndFilter";
 
 	// Give it an initial position
 	const forceSimulationData = songsData.map((songObject, songIndex) => ({
@@ -182,11 +183,11 @@
 <XAxis />
 
 <svg height={$viewport.height} width={$viewport.width} style="opacity: {$aggregateSnakeChartOpacity}">
-	{#each $aggregateSnakeChartSVGPaths as { svgPathGenerator, y0BorderGenerator, y1BorderGenerator, loveSongType, visibleButNotSelected }}
-		<path d={svgPathGenerator($tweenedCoords[loveSongType].svgCoords)} fill={getSnakeFill(loveSongType, visibleButNotSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap)} />
+	{#each $tweenedCoords as { loveSongType, svgCoords }}
+		<path d={$svgPathGenerator(svgCoords)} fill={getSnakeFill(loveSongType, $visibleButNotSelectedLoveSongTypes.includes(loveSongType), $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap)} />
 		<g fill="none" stroke-width="1" stroke-miterlimit="1">
-			<path d={y1BorderGenerator($tweenedCoords[loveSongType].svgCoords)} stroke="#000"></path>
-			<path d={y0BorderGenerator($tweenedCoords[loveSongType].svgCoords)} stroke="#000"></path>
+			<path d={$svgPathGenerator.lineY1()(svgCoords)} stroke="#000"></path>
+			<path d={$svgPathGenerator.lineY0()(svgCoords)} stroke="#000"></path>
 		</g>
 	{/each}
 </svg>
