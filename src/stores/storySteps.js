@@ -11,6 +11,10 @@ import {
 	getXPositionFromTime,
 	getYPositionInSnakeChart
 } from "./forcePositionOptions-helper.js";
+import {
+	selectedLoveSongTypes,
+	visibleButNotSelectedLoveSongTypes
+} from "./searchAndFilter.js";
 
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
@@ -193,7 +197,7 @@ const newSteps = {
 	},
 
 	// Remaining Boomer-Bob-friendly types:
-	longingAndHeartbreakOverview: {
+	introducingLongingAndHeartbreak: {
 		text: "Longing & Heartbreak is typified by songs like X, Y and Z. [we'll directly annotate specific bubbles on screen with song snippet, photos of artists, etc]",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
@@ -267,19 +271,16 @@ const newSteps = {
 		text: "These songs stretch from The Beatles' 'I Want To Hold Your Hand' to Carly Rae Jepsen's 'Call Me Maybe'...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedSongs: ["I Want To Hold Your Hand", "Call Me Maybe"],
 			selectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
 				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
 			],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true
+			...VISUAL_ENCODING_BLANK_STATE
 		}
 	},
+
 	courtshipHasNoEffect: {
 		text: "But the popularity of Courtship & Anticipation songs has remained steady over the years, neither bolstering nor hurting the broader love song category as a whole.",
 		searchAndFilterState: {
@@ -342,52 +343,36 @@ const newSteps = {
 		},
 		loveSongTypeDefinitionImage: "its-complicated"
 	},
+	introducingItsComplicated: {
+		text: "No one does It's Complicated like Drake [we'll annotate him], featured in *11* of these hits alone. You might also think of X & Y songs, too [also will be annotated].",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.itsComplicated],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
+		}
+	},
 	itsComplicatedDetail: {
 		text: "It's Complicated hit its stride in the 00s and 10s, surpassing Courtship & Anticipation as well as Longing & Heartbreak.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
-			],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
-			visibleButNotSelectedLoveSongTypes: [
-				// LOVE_SONG_TYPE_CONSTANTS.serenade,
-				// LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				// LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
-			]
+			visibleButNotSelectedLoveSongTypes: LOVE_SONG_TYPES.filter(
+				(t) => ![LOVE_SONG_TYPE_CONSTANTS.itsComplicated].includes(t)
+			),
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) =>
+					![
+						LOVE_SONG_TYPE_CONSTANTS.serenade,
+						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+						LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+					].includes(t)
+			)
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true
-		}
-	},
-	kikiDoYouLoveMe: {
-		text: "Drake emobodies the love song type, appearing in *11* Billboard Top Ten hits. Kiki may not love him, but *he's* definitely riding It's Complicated hard.",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedPerformers: ["Drake"],
-			selectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
-			],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
-			visibleButNotSelectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
-			]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: getYPositionInSnakeChart,
 			showAggregateSnakeChart: true
 		}
 	},
@@ -762,7 +747,7 @@ export const storySteps = [
 	newSteps.introTheTypeGrid,
 
 	// Remaining Boomer-Bob-friendly types:
-	newSteps.longingAndHeartbreakOverview,
+	newSteps.introducingLongingAndHeartbreak,
 	newSteps.longingAndHeartbreakComparedToSerenade,
 	newSteps.longingAndHeartbreakDoNotTipTheScales,
 
@@ -773,8 +758,8 @@ export const storySteps = [
 	// Expansive-mode
 	newSteps.letsGoBeyondBoomerBob,
 
+	newSteps.introducingItsComplicated,
 	newSteps.itsComplicatedDetail,
-	newSteps.kikiDoYouLoveMe,
 	newSteps.itsComplicatedDoesNotTipTheScales,
 
 	newSteps.definingGoodRiddance,
