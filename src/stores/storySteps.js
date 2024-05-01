@@ -474,59 +474,14 @@ const newSteps = {
 		loveSongTypeDefinitionImage: "love-song-for-the-self"
 	},
 	introducingLoveSongForTheSelf: {
-		text: "Love Song for the Self is the opposite of love song death: it's exploded in popularity since TLC & Destiny's Child put it on the map in the early 2000s.",
+		text: "Love Song for the Self hit its stride with TLC & Destiny's Child in the early 2000s. Think 'Fergalicious' or Ariana Grande's 'thank u, next' in this female-domanated type.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedSongs: [
-				"Independent Women Part I",
-				"No Scrubs",
-				"Unpretty",
-				"Bootylicious"
-			],
-			selectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
-				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
-				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
-			],
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true
-		}
-	},
-	womenDominateLoveSongForTheSelf: {
-		text: "Woman almost single-handedly created Love Song for the Self [toggle the gender filter to see!]. Think 'Fergalicious' or Ariana Grande's 'thank u, next'.",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedGenders: [GENDER_CONSTANTS.female],
-			selectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
-				LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
-				LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
-			],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
-			visibleButNotSelectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-				LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
-				LOVE_SONG_TYPE_CONSTANTS.goodRiddance
-			]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: getYPositionInSnakeChart,
-			showAggregateSnakeChart: true
+			...VISUAL_ENCODING_BLANK_STATE
 		}
 	},
 	didLoveSongForTheSelfTipTheScales: {
@@ -544,6 +499,12 @@ const newSteps = {
 						LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
 					].includes(t)
 			)
+			// visibleButNotSelectedLoveSongTypes: [
+			// 	LOVE_SONG_TYPE_CONSTANTS.serenade,
+			// 	LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+			// 	LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+			// 	LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+			// ]
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
@@ -715,7 +676,6 @@ export const storySteps = [
 
 	newSteps.definingLoveSongForTheSelf,
 	newSteps.introducingLoveSongForTheSelf,
-	newSteps.womenDominateLoveSongForTheSelf,
 	newSteps.didLoveSongForTheSelfTipTheScales,
 
 	newSteps.definingSexualConquest,
