@@ -40,7 +40,7 @@ const VISUAL_ENCODING_BLANK_STATE = {
 	// TODO: we actually want to drop this second value, since we'll never show both simultaneously
 };
 
-const newSteps = {
+const steps = {
 	// Intro: Is Boomer Bob right that the love song is dying?
 
 	allTheBillboardHitsInAMonoChromeCluster: {
@@ -620,53 +620,53 @@ export const storySteps = [
 	// LATEST STORY:
 
 	// Intro: Is Boomer Bob right that the love song is dying?
-	newSteps.allTheBillboardHitsInAMonoChromeCluster,
-	newSteps.highlightSerenadesWithinCluster,
-	newSteps.showJustSerenadeCluster,
-	newSteps.serenadesAreIndeedDying,
-	newSteps.serenadesPeakedInThe90s,
-	newSteps.aFewArtistsKeepThemAliveToday,
-	newSteps.anAggSnakeChartMakesBoomerBobSeemRight,
+	steps.allTheBillboardHitsInAMonoChromeCluster,
+	steps.highlightSerenadesWithinCluster,
+	steps.showJustSerenadeCluster,
+	steps.serenadesAreIndeedDying,
+	steps.serenadesPeakedInThe90s,
+	steps.aFewArtistsKeepThemAliveToday,
+	steps.anAggSnakeChartMakesBoomerBobSeemRight,
 
 	// What counts as love song?
-	newSteps.butWeWillTakeAMoreExpansiveView,
-	newSteps.whyWeCare,
-	newSteps.introTheTypeGrid,
+	steps.butWeWillTakeAMoreExpansiveView,
+	steps.whyWeCare,
+	steps.introTheTypeGrid,
 
 	// Remaining Boomer-Bob-friendly types:
-	newSteps.introducingLongingAndHeartbreak,
-	newSteps.longingAndHeartbreakComparedToSerenade,
-	newSteps.longingAndHeartbreakDoNotTipTheScales,
+	steps.introducingLongingAndHeartbreak,
+	steps.longingAndHeartbreakComparedToSerenade,
+	steps.longingAndHeartbreakDoNotTipTheScales,
 
-	newSteps.definingCourtship,
-	newSteps.introducingCourtship,
-	newSteps.courtshipHasNoEffect,
+	steps.definingCourtship,
+	steps.introducingCourtship,
+	steps.courtshipHasNoEffect,
 
 	// Expansive-mode
-	newSteps.letsGoBeyondBoomerBob,
+	steps.letsGoBeyondBoomerBob,
 
-	newSteps.introducingItsComplicated,
-	newSteps.itsComplicatedDetail,
-	newSteps.itsComplicatedDoesNotTipTheScales,
+	steps.introducingItsComplicated,
+	steps.itsComplicatedDetail,
+	steps.itsComplicatedDoesNotTipTheScales,
 
-	newSteps.definingGoodRiddance,
-	newSteps.introducingGoodRiddance,
-	newSteps.goodRiddanceDetail,
+	steps.definingGoodRiddance,
+	steps.introducingGoodRiddance,
+	steps.goodRiddanceDetail,
 
-	newSteps.definingLoveSongForTheSelf,
-	newSteps.introducingLoveSongForTheSelf,
-	newSteps.didLoveSongForTheSelfTipTheScales,
+	steps.definingLoveSongForTheSelf,
+	steps.introducingLoveSongForTheSelf,
+	steps.didLoveSongForTheSelfTipTheScales,
 
-	newSteps.definingSexualConquest,
-	newSteps.introducingSexualConquest,
-	newSteps.sexualConquestInContext,
+	steps.definingSexualConquest,
+	steps.introducingSexualConquest,
+	steps.sexualConquestInContext,
 
 	// Conclusion:
-	newSteps.addInNonLoveSongsInGray,
-	newSteps.theLoveSongIsActuallyRising,
+	steps.addInNonLoveSongsInGray,
+	steps.theLoveSongIsActuallyRising,
 
 	// Explore mode
-	newSteps.youDecide
+	steps.youDecide
 ];
 
 export const currentStoryStepIndex = writable(0);
