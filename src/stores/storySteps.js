@@ -33,6 +33,7 @@ const VISUAL_ENCODING_BLANK_STATE = {
 	calculateYForcePosition: getYPositionInSnakeChart,
 	// TODO: just to get to a prototype, their may be more clever ways to derive these:
 	showAggregateSnakeChart: false,
+	// TODO: we actually want to drop this second value, since we'll never show both simultaneously
 	showBubbleChart: true
 };
 

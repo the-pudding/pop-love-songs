@@ -1,5 +1,7 @@
 <script>
 	import { onMount } from "svelte";
+	import { tweened } from 'svelte/motion';
+	import { cubicInOut } from 'svelte/easing';
 
 	import { forceSimulation, forceX, forceY, forceCollide } from "d3";
 
@@ -153,21 +155,33 @@
 
 		
 	});
+
+	// Transition opacity between charts
+	const CHART_TRANSITION_OPACITY_DURATION = 800
+	const aggregateSnakeChartOpacity = tweened(0, {
+		duration: CHART_TRANSITION_OPACITY_DURATION,
+		easing: cubicInOut
+	});
+	$: {
+		if ($currentStoryStep.visualEncodings.showAggregateSnakeChart) {
+			aggregateSnakeChartOpacity.set(1);
+		} else {
+			aggregateSnakeChartOpacity.set(0);
+		}
+	}
 </script>
 
 <XAxis />
 
-{#if $currentStoryStep.visualEncodings.showAggregateSnakeChart}
-	<svg height={$viewport.height} width={$viewport.width}>
-		{#each $aggregateSnakeChartSVGPaths as { svgPath, y0Border, y1Border, loveSongType, visibleButNotSelected }}
-			<path d={svgPath} fill={getSnakeFill(loveSongType, visibleButNotSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap)} />
-			<g fill="none" stroke-width="1" stroke-miterlimit="1">
-				<path d={y1Border} stroke="#000"></path>
-				<path d={y0Border} stroke="#000"></path>
-			</g>
-		{/each}
-	</svg>
-{/if}
+<svg height={$viewport.height} width={$viewport.width} style="opacity: {$aggregateSnakeChartOpacity}">
+	{#each $aggregateSnakeChartSVGPaths as { svgPath, y0Border, y1Border, loveSongType, visibleButNotSelected }}
+		<path d={svgPath} fill={getSnakeFill(loveSongType, visibleButNotSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap)} />
+		<g fill="none" stroke-width="1" stroke-miterlimit="1">
+			<path d={y1Border} stroke="#000"></path>
+			<path d={y0Border} stroke="#000"></path>
+		</g>
+	{/each}
+</svg>
 
 <!-- TODO: if not shown, don't run the simulation (ie for performance) -->
 <canvas
