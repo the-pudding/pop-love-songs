@@ -21,7 +21,7 @@
 	} from "./viz-utils";
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
 	import { loveSongTypeColorMap, songRadius, unselectedLoveSongTypeColorMap, xForcePosition, yForcePosition } from "$stores/visualEncodings";
-	import { aggregateSnakeChartSVGPaths } from "$stores/aggregateSnakeChartPositions";
+	import { aggregateSnakeChartSVGPaths, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
 	import { currentStoryStep } from "$stores/storySteps";
 
 	// Give it an initial position
@@ -162,9 +162,17 @@
 		duration: CHART_TRANSITION_OPACITY_DURATION,
 		easing: cubicInOut
 	});
+
+	const tweenedCoords = tweened($svgCoordsForLoveSongTypes, {
+		duration: 800,
+		easing: cubicInOut
+	});
+
 	$: {
+		tweenedCoords.set($svgCoordsForLoveSongTypes);
 		if ($currentStoryStep.visualEncodings.showAggregateSnakeChart) {
 			aggregateSnakeChartOpacity.set(1);
+			
 		} else {
 			aggregateSnakeChartOpacity.set(0);
 		}
@@ -174,11 +182,11 @@
 <XAxis />
 
 <svg height={$viewport.height} width={$viewport.width} style="opacity: {$aggregateSnakeChartOpacity}">
-	{#each $aggregateSnakeChartSVGPaths as { svgPath, y0Border, y1Border, loveSongType, visibleButNotSelected }}
-		<path d={svgPath} fill={getSnakeFill(loveSongType, visibleButNotSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap)} />
+	{#each $aggregateSnakeChartSVGPaths as { svgPathGenerator, y0BorderGenerator, y1BorderGenerator, loveSongType, visibleButNotSelected }}
+		<path d={svgPathGenerator($tweenedCoords[loveSongType].svgCoords)} fill={getSnakeFill(loveSongType, visibleButNotSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap)} />
 		<g fill="none" stroke-width="1" stroke-miterlimit="1">
-			<path d={y1Border} stroke="#000"></path>
-			<path d={y0Border} stroke="#000"></path>
+			<path d={y1BorderGenerator($tweenedCoords[loveSongType].svgCoords)} stroke="#000"></path>
+			<path d={y0BorderGenerator($tweenedCoords[loveSongType].svgCoords)} stroke="#000"></path>
 		</g>
 	{/each}
 </svg>

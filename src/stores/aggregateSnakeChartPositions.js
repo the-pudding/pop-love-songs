@@ -146,6 +146,7 @@ export const svgCoordsForLoveSongTypes = derived(
 		}))
 );
 
+// TODO: delete this, replace with just a svgPathGenerator that returns one object
 export const aggregateSnakeChartSVGPaths = derived(
 	[svgCoordsForLoveSongTypes, viewport, visibleButNotSelectedLoveSongTypes],
 	([
@@ -158,11 +159,13 @@ export const aggregateSnakeChartSVGPaths = derived(
 			const visibleButNotSelected =
 				$visibleButNotSelectedLoveSongTypes.includes(loveSongType);
 			return {
+				// DERIVE THESE IN MAINVIZ, DON'T PASS
 				loveSongType,
 				visibleButNotSelected,
-				svgPath: pathGenerator(svgCoords),
-				y0Border: pathGenerator.lineY0()(svgCoords),
-				y1Border: pathGenerator.lineY1()(svgCoords)
+				// KEEP THESE PROPERTIES
+				svgPathGenerator: pathGenerator,
+				y0BorderGenerator: pathGenerator.lineY0(),
+				y1BorderGenerator: pathGenerator.lineY1()
 			};
 		})
 );
