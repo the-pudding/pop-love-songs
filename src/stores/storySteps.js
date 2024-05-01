@@ -83,7 +83,7 @@ const newSteps = {
 		}
 	},
 	serenadesAreIndeedDying: {
-		text: "And, if you spread Serenades from 1959-2023, they are indeed declining...",
+		text: "And, if you spread Serenades from 1959-2023, they are indeed declining... [DEV NOTE: hit 'd' on keyboard to open/close filters & stats]",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -594,7 +594,10 @@ const newSteps = {
 	theLoveSongIsActuallyRising: {
 		text: "... and we have our answer: the love song is just as strong as it ever was (>1% change from the 60s!) In fact, love songs today are arguably more alive, encompassing more of the complexity of romance.",
 		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			// note: these don't make a difference unless filters are open (which they might be as we develop)
+			selectedLoveSongTypes: Object.values(LOVE_SONG_TYPE_CONSTANTS),
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
@@ -607,7 +610,7 @@ const newSteps = {
 
 	// Explore mode
 	youDecide: {
-		text: "... that is, *if* you accept these love song definitions. But you don't need to! You decide: use the filters to tell *us* how the love song is doing [the % change score will update with filters]... Enjoy!",
+		text: "... that is, *if* you accept these love song definitions. But you don't need to! You decide: use the filters to tell *us* how the love song is doing: the % change score will update with filters [hit 'd' to open/close filters]... Enjoy!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: Object.values(LOVE_SONG_TYPE_CONSTANTS),
