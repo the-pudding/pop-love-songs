@@ -194,19 +194,38 @@ const newSteps = {
 
 	// Remaining Boomer-Bob-friendly types:
 	longingAndHeartbreakOverview: {
-		text: "Longing & Heartbreak is almost as popular as the Serenade, and even has surpassed it in the 2020s, thanks in large part to Blinding Lights by The Weeknd.",
+		text: "Longing & Heartbreak is typified by songs like X, Y and Z. [we'll directly annotate specific bubbles on screen with song snippet, photos of artists, etc]",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
-			],
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE
 		}
 	},
+
+	longingAndHeartbreakComparedToSerenade: {
+		text: "Longing & Heartbreak surpassed Serenades in the 2020s, thanks in large part to Blinding Lights by The Weeknd. Note: for each decade, we'll vertically sort the love song types by popularity (which is why Hearbreak jumps above Serenade in the 2020s).",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) =>
+					![
+						LOVE_SONG_TYPE_CONSTANTS.serenade,
+						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+					].includes(t)
+			),
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.serenade,
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+			]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
+		}
+	},
+
 	longingAndHeartbreakDoNotTipTheScales: {
 		text: "Does expanding to include Heartbreak & Longing songs keep love songs alive? Au contraire! Added to Serenades, love songs have now dropped 22% since the 60s!",
 		searchAndFilterState: {
@@ -744,6 +763,7 @@ export const storySteps = [
 
 	// Remaining Boomer-Bob-friendly types:
 	newSteps.longingAndHeartbreakOverview,
+	newSteps.longingAndHeartbreakComparedToSerenade,
 	newSteps.longingAndHeartbreakDoNotTipTheScales,
 
 	newSteps.definingCourtship,
