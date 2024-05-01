@@ -101,7 +101,7 @@
 			offsetY
 		);
 		const selectedSong = forceSimulationData[songIndex]?.song;
-		if (selectedSong) {
+		if (selectedSong && !$currentStoryStep.visualEncodings.showAggregateSnakeChart) {
 			// This is just to make it easier to pull up a song on YouTube
 			searchSongOnYouTube(selectedSong);
 		}

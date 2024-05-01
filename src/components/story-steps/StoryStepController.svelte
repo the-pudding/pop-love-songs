@@ -61,7 +61,7 @@
     <h4 class="title">
         {$currentStoryStep.text}
         {#if $currentStoryStep.showLoveSongChangeOverTime}
-            [Change since 60s: <b>{$formattedChange}</b>]
+            [Last 10 years vs 60s: <b>{$formattedChange}% point change</b>]
         {/if}
     </h4>
 </div>
