@@ -134,27 +134,35 @@ const getSvgCoordsForLoveSongType = (
 		];
 	}, []);
 
+export const svgCoordsForLoveSongTypes = derived(
+	[aggregateSnakeChartPositions],
+	([$aggregateSnakeChartPositions]) =>
+		LOVE_SONG_TYPES.map((loveSongType) => ({
+			loveSongType,
+			svgCoords: getSvgCoordsForLoveSongType(
+				loveSongType,
+				$aggregateSnakeChartPositions
+			)
+		}))
+);
+
 export const aggregateSnakeChartSVGPaths = derived(
-	[aggregateSnakeChartPositions, viewport, visibleButNotSelectedLoveSongTypes],
+	[svgCoordsForLoveSongTypes, viewport, visibleButNotSelectedLoveSongTypes],
 	([
-		$aggregateSnakeChartPositions,
+		$svgCoordsForLoveSongTypes,
 		$viewport,
 		$visibleButNotSelectedLoveSongTypes
 	]) =>
-		LOVE_SONG_TYPES.map((loveSongType) => {
+		$svgCoordsForLoveSongTypes.map(({ loveSongType, svgCoords }) => {
 			const pathGenerator = createSVGPathGenerator($viewport);
-			const svgCoordsForLoveSongType = getSvgCoordsForLoveSongType(
-				loveSongType,
-				$aggregateSnakeChartPositions
-			);
 			const visibleButNotSelected =
 				$visibleButNotSelectedLoveSongTypes.includes(loveSongType);
 			return {
 				loveSongType,
 				visibleButNotSelected,
-				svgPath: pathGenerator(svgCoordsForLoveSongType),
-				y0Border: pathGenerator.lineY0()(svgCoordsForLoveSongType),
-				y1Border: pathGenerator.lineY1()(svgCoordsForLoveSongType)
+				svgPath: pathGenerator(svgCoords),
+				y0Border: pathGenerator.lineY0()(svgCoords),
+				y1Border: pathGenerator.lineY1()(svgCoords)
 			};
 		})
 );
