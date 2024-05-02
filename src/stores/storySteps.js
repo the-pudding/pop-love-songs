@@ -249,8 +249,21 @@ const steps = {
 		showLoveSongChangeOverTime: true
 	},
 	// Courtship
+	introducingCourtship: {
+		text: "But we're just getting started... How about when you love someone, and it *might* become something more? Think: The Beatles' 'I Want To Hold Your Hand' to Carly Rae Jepsen's 'Call Me Maybe'...",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+			],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
+		}
+	},
 	definingCourtship: {
-		text: "But we're just getting started... How about when you love someone, and it *might* become something more? Let's call these Courtship & Anticipation.",
+		text: "Let's add a new row for romantic possibility, and call these Courtship & Anticipation.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -267,20 +280,6 @@ const steps = {
 		},
 		loveSongTypeDefinitionImage: "courtship-&-anticipation"
 	},
-	introducingCourtship: {
-		text: "These songs stretch from The Beatles' 'I Want To Hold Your Hand' to Carly Rae Jepsen's 'Call Me Maybe'...",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
-			],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
-		}
-	},
-
 	courtshipHasNoEffect: {
 		text: "But the popularity of Courtship & Anticipation songs has remained steady over the years, neither bolstering nor hurting the broader love song category as a whole.",
 		searchAndFilterState: {
@@ -304,26 +303,17 @@ const steps = {
 	// Expansive-mode
 
 	// its complicated
-	letsGoBeyondBoomerBob: {
-		text: "But we think love songs go beyond Boomer Bob's narrow view. Let's explore love songs that pull in more of romance's complexity, starting with: It's Complicated, which straddles stable & painful relationships.",
+	introducingItsComplicated: {
+		text: "But we think love songs go beyond Boomer Bob's narrow view. Let's explore love songs that pull in more of romance's complexity. What about when a relationship isn't clearly good or bad? Such as in X Y Z, which Drake can't seem to keep away from?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
-				(t) =>
-					![
-						LOVE_SONG_TYPE_CONSTANTS.serenade,
-						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
-					].includes(t)
-			)
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.itsComplicated],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true
-		},
-		loveSongTypeDefinitionImage: "its-complicated"
+			...VISUAL_ENCODING_BLANK_STATE
+		}
 	},
-
 	definingItsComplicated: {
 		text: "Sometimes a romantic relationship isn't squarely thriving or over. Sometimes... It's Complicated. It straddles stable & painful relationships.",
 		searchAndFilterState: {
@@ -331,8 +321,8 @@ const steps = {
 			selectedLoveSongTypes: [
 				LOVE_SONG_TYPE_CONSTANTS.serenade,
 				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
-				// LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+				LOVE_SONG_TYPE_CONSTANTS.itsComplicated
 			],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
@@ -342,17 +332,6 @@ const steps = {
 			calculateYForcePosition: getYPositionInSnakeChart
 		},
 		loveSongTypeDefinitionImage: "its-complicated"
-	},
-	introducingItsComplicated: {
-		text: "No one does It's Complicated like Drake [we'll annotate him], featured in *11* of these hits alone. You might also think of X & Y songs, too [also will be annotated].",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.itsComplicated],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
-		}
 	},
 	itsComplicatedDetail: {
 		text: "It's Complicated hit its stride in the 00s and 10s, surpassing Courtship & Anticipation as well as Longing & Heartbreak.",
@@ -397,8 +376,19 @@ const steps = {
 		showLoveSongChangeOverTime: true
 	},
 
+	introducingGoodRiddance: {
+		text: "But we're not done. Let's look at two more modern & female-pioneered types in terms, starting with: Good Riddance, ranging from Dion's 'Runaround Sue' (1962) to Olivia Rodrigo's 2021 'Good 4 U'",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.goodRiddance],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
+		}
+	},
 	definingGoodRiddance: {
-		text: "But we're not done. Let's look at two more modern & female-pioneered types in terms, starting with: Good Riddance, which is like Longing & Heartbreak, but with a bite. It's the angsty side of love.",
+		text: "Let's call this Good Riddance, which is like Longing & Heartbreak, but with a bite. It's the angsty side of love.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -417,17 +407,6 @@ const steps = {
 		},
 		loveSongTypeDefinitionImage: "good-riddance"
 	},
-	introducingGoodRiddance: {
-		text: "Good Riddance, ranging from Dion's 'Runaround Sue' (1962) to Olivia Rodrigo's 2021 'Good 4 U', really established itself starting in the 2000s with Cher's 'Believe'...",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.goodRiddance],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
-		}
-	},
 	goodRiddanceDetail: {
 		text: "Female & gender non-conforming artists dominate Good Riddance. Barbra Streisand paved the way for heavy hitters like Kelly Clarksen and Mariah Carey.",
 		searchAndFilterState: {
@@ -445,8 +424,20 @@ const steps = {
 	},
 
 	// Love song for the self
+
+	introducingLoveSongForTheSelf: {
+		text: "What if heartbreak turns love... back to yourself? Think: TLC & Destiny's Child in the early 2000s. Or 'Fergalicious' or Ariana Grande's 'thank u, next' in this female-domanated type.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
+		}
+	},
 	definingLoveSongForTheSelf: {
-		text: "Even more of a female-led type, Love Song for the Self is like a Serenade... but directed back at the speaker themselves. Though it's not typically written *to* a lover, it's almost always written *in reaction* to romantic rejection.",
+		text: "Even more of a female-led type, this Love Song for the Self is like a Serenade, but for the self. Iit's not typically written *to* a lover, it's often written *in reaction* to romantic rejection.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -472,17 +463,6 @@ const steps = {
 			calculateYForcePosition: getYPositionInSnakeChart
 		},
 		loveSongTypeDefinitionImage: "love-song-for-the-self"
-	},
-	introducingLoveSongForTheSelf: {
-		text: "Love Song for the Self hit its stride with TLC & Destiny's Child in the early 2000s. Think 'Fergalicious' or Ariana Grande's 'thank u, next' in this female-domanated type.",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
-		}
 	},
 	didLoveSongForTheSelfTipTheScales: {
 		text: "But even with Good Riddance & Love Song for the Self, love songs are still in decline (though less than before)",
@@ -513,8 +493,19 @@ const steps = {
 		showLoveSongChangeOverTime: true
 	},
 
+	introducingSexualConquest: {
+		text: "But we've got one love song type left: songs that get... a little steamy. Think about artists like Nicki Minaj and Drake with their respective hits WAP and Way 2 Sexy.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.sexualConquest],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
+		}
+	},
 	definingSexualConquest: {
-		text: "But we've got one love song type left: blurring the lines between courtship and romance (and perhaps love and lust), we have Sexual Conquest.",
+		text: "These songs blurring the lines between courtship and romance (and perhaps love and lust), and we'll call them Sexual Conquest.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -542,17 +533,6 @@ const steps = {
 			calculateYForcePosition: getYPositionInSnakeChart
 		},
 		loveSongTypeDefinitionImage: "sexual-conquest"
-	},
-	introducingSexualConquest: {
-		text: "Nicki Minaj and Drake feature in the most songs in category, with their hits like WAP and Way 2 Sexy.",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.sexualConquest],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
-		}
 	},
 	sexualConquestInContext: {
 		text: "As Boomers bemoan, Sexual Conquest has risen in popularity in recent decades. It even went so far as to dethrone Serenades in the 2000s.",
@@ -602,7 +582,7 @@ const steps = {
 
 	// Explore mode
 	youDecide: {
-		text: "... that is, *if* you accept these love song definitions. But you don't need to! You decide: use the filters to tell *us* how the love song is doing: the % change score will update with filters [hit 'd' to open/close filters]... Enjoy!",
+		text: "... that is, *if* you accept these love song definitions. But you don't need to! You decide: use the filters to tell *us* how the love song is doing: the % change score will update with filters [hit 'd' to open/close filters, bubble view on next slide]!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: Object.values(LOVE_SONG_TYPE_CONSTANTS),
@@ -611,6 +591,18 @@ const steps = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
+		},
+		showLoveSongChangeOverTime: true
+	},
+	youDecideBubbleVersion: {
+		text: "[bubble view, mostly just for us to play with during development -- worth keeping as an option to switch to here in the sandbox? [hit 'd' to open/close filters]]",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: Object.values(LOVE_SONG_TYPE_CONSTANTS),
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
 		},
 		showLoveSongChangeOverTime: true
 	}
@@ -638,27 +630,26 @@ export const storySteps = [
 	steps.longingAndHeartbreakComparedToSerenade,
 	steps.longingAndHeartbreakDoNotTipTheScales,
 
-	steps.definingCourtship,
 	steps.introducingCourtship,
+	steps.definingCourtship,
 	steps.courtshipHasNoEffect,
 
 	// Expansive-mode
-	steps.letsGoBeyondBoomerBob,
-
 	steps.introducingItsComplicated,
+	steps.definingItsComplicated,
 	steps.itsComplicatedDetail,
 	steps.itsComplicatedDoesNotTipTheScales,
 
-	steps.definingGoodRiddance,
 	steps.introducingGoodRiddance,
+	steps.definingGoodRiddance,
 	steps.goodRiddanceDetail,
 
-	steps.definingLoveSongForTheSelf,
 	steps.introducingLoveSongForTheSelf,
+	steps.definingLoveSongForTheSelf,
 	steps.didLoveSongForTheSelfTipTheScales,
 
-	steps.definingSexualConquest,
 	steps.introducingSexualConquest,
+	steps.definingSexualConquest,
 	steps.sexualConquestInContext,
 
 	// Conclusion:
@@ -666,8 +657,12 @@ export const storySteps = [
 	steps.theLoveSongIsActuallyRising,
 
 	// Explore mode
-	steps.youDecide
+	steps.youDecide,
+	steps.youDecideBubbleVersion
 ];
+
+// Export steps as a CSV for easy editing in Excel
+// console.log(storySteps.map((step, i) => `${i},${step.text}`).join("\n"));
 
 export const currentStoryStepIndex = writable(0);
 
