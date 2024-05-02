@@ -19,7 +19,8 @@
 				});
 				return performers;
 			}, {});
-			const MIN_HITS = 2;
+			// If Fewer than 20 performers, show all
+			const MIN_HITS = Object.keys(performers).length <= 20 ? 1 : 2;
 			return Object.entries(performers).filter(([, count]) => count >= MIN_HITS).sort(([, countA], [, countB]) => countB - countA);
 		}
 	);
