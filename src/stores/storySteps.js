@@ -198,7 +198,7 @@ const steps = {
 
 	// Remaining Boomer-Bob-friendly types:
 	introducingLongingAndHeartbreak: {
-		text: "Longing & Heartbreak is typified by songs like X, Y and Z. [we'll directly annotate specific bubbles on screen with song snippet, photos of artists, etc]",
+		text: "Longing & Heartbreak is typified by songs like (Whitney Houston - I Will Always Love You) or (Rihanna - Stay). [we'll directly annotate specific bubbles on screen with song snippet, photos of artists, etc]",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak],
@@ -422,6 +422,27 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE
 		}
 	},
+	goodRiddanceDoesNotTipTheScale: {
+		text: "But, even with modern hits like 'Without You' by Halsey and 'Good 4 U' by Olivia Rodrigo, Good Riddance only contributes a small bump to the love song category.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) =>
+					![
+						LOVE_SONG_TYPE_CONSTANTS.serenade,
+						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+						LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+						LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+					].includes(t)
+			)
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			showAggregateSnakeChart: true
+		},
+		showLoveSongChangeOverTime: true
+	},
 
 	// Love song for the self
 
@@ -643,6 +664,7 @@ export const storySteps = [
 	steps.introducingGoodRiddance,
 	steps.definingGoodRiddance,
 	steps.goodRiddanceDetail,
+	steps.goodRiddanceDoesNotTipTheScale,
 
 	steps.introducingLoveSongForTheSelf,
 	steps.definingLoveSongForTheSelf,
@@ -662,7 +684,7 @@ export const storySteps = [
 ];
 
 // Export steps as a CSV for easy editing in Excel
-// console.log(storySteps.map((step, i) => `${i},${step.text}`).join("\n"));
+// console.log(storySteps.map((step, i) => `${i}) ${step.text}`).join("\n"));
 
 export const currentStoryStepIndex = writable(0);
 
