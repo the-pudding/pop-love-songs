@@ -1,10 +1,10 @@
-import { derived } from "svelte/store";
+import { derived, get } from "svelte/store";
 import {
 	LOVE_SONG_TYPE_CONSTANTS,
 	SONG_DATA_COLUMNS_ENUM
 } from "$data/data-constants.js";
 import { visibleSongsData } from "./dataDerivations";
-import { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
+import songsData, { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
 import { typesTreatedAsNonLoveSongs } from "./storySteps";
 
 // algo:
@@ -59,9 +59,32 @@ export const getPopularitySumByType = (
 		};
 	}, {});
 
+export const getOffsetAndSqueeze = (
+	popularitySumIgnoringFilters,
+	popularityScoreSumsInTimeRegion
+) => {
+	const squeezePercentageMultiplier =
+		popularityScoreSumsInTimeRegion / popularitySumIgnoringFilters;
+	const percentToOffset = (1 - squeezePercentageMultiplier) / 2;
+
+	return { percentToOffset, squeezePercentageMultiplier };
+};
+
+export const getPercentage = (
+	squeezePercentageMultiplier,
+	loveSongTypePopularity,
+	popularityScoreSumsInTimeRegion
+) => {
+	return (
+		squeezePercentageMultiplier *
+		(loveSongTypePopularity / popularityScoreSumsInTimeRegion)
+	);
+};
+
 const getAggregatePercentageByLoveSongType = (
 	songsInTimeRegion,
-	typesTreatedAsNonLoveSongs
+	typesTreatedAsNonLoveSongs,
+	popularitySumIgnoringFilters
 ) => {
 	// 1. aggregate
 	const popularitySumByType = getPopularitySumByType(
@@ -79,17 +102,29 @@ const getAggregatePercentageByLoveSongType = (
 		popularitySumByType
 	).reduce((acc, loveSongType) => acc + popularitySumByType[loveSongType], 0);
 
+	// 3. Given that we may be working with 100% of love songs in this region, we will offset & squeeze the chart down to size (centered)
+	const { percentToOffset, squeezePercentageMultiplier } = getOffsetAndSqueeze(
+		popularitySumIgnoringFilters,
+		popularityScoreSumsInTimeRegion
+	);
+
 	const nonZeroResult = loveSongTypesSortedGreatestToLeast.reduce(
 		(acc, loveSongType) => {
 			const totalPercentageThatHasBeenAccountedFor = Object.keys(acc).reduce(
 				(sum, accountedForLoveSongType) =>
 					sum +
-					popularitySumByType[accountedForLoveSongType] /
-						popularityScoreSumsInTimeRegion,
-				0
+					getPercentage(
+						squeezePercentageMultiplier,
+						popularitySumByType[accountedForLoveSongType],
+						popularityScoreSumsInTimeRegion
+					),
+				percentToOffset
 			);
-			const loveSongPercentage =
-				popularitySumByType[loveSongType] / popularityScoreSumsInTimeRegion;
+			const loveSongPercentage = getPercentage(
+				squeezePercentageMultiplier,
+				popularitySumByType[loveSongType],
+				popularityScoreSumsInTimeRegion
+			);
 
 			return {
 				...acc,
@@ -119,10 +154,21 @@ const getAggregatePercentageByLoveSongType = (
 	};
 };
 
+export const getPopularitySumIgnoringFilters = (timeRegion) =>
+	songsData.reduce((acc, { song }) => {
+		const songYear = +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
+		return songYear >= timeRegion.start && songYear <= timeRegion.stop
+			? acc + song[SONG_DATA_COLUMNS_ENUM.popularity_score]
+			: acc;
+	}, 0);
+
 export const loveSongsLabeledByTimeRegionPercentageForPosition = derived(
 	[visibleSongsData, typesTreatedAsNonLoveSongs],
 	([$visibleSongsData, $typesTreatedAsNonLoveSongs]) => {
 		return aggregationTimeRegions.map((timeRegion) => {
+			// TODO OPTIMIZATION: since timeRegions are technically hardcoded, we could derive them all at once, rather than each time
+			const popularitySumIgnoringFilters =
+				getPopularitySumIgnoringFilters(timeRegion);
 			const songsInTimeRegion = $visibleSongsData.filter(({ song }) => {
 				const songYear = +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
 				return songYear >= timeRegion.start && songYear <= timeRegion.stop;
@@ -132,7 +178,8 @@ export const loveSongsLabeledByTimeRegionPercentageForPosition = derived(
 				...timeRegion,
 				popularityScoreSumsInTimeRegion: getAggregatePercentageByLoveSongType(
 					songsInTimeRegion,
-					$typesTreatedAsNonLoveSongs
+					$typesTreatedAsNonLoveSongs,
+					popularitySumIgnoringFilters
 				)
 			};
 		});
