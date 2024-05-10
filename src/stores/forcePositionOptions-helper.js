@@ -1,6 +1,10 @@
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { STORY_STEP_CONTROLLER_BOTTOM_PADDING } from "$components/viz/viz-utils";
-import { getXPosForYear, X_MARGIN, Y_MARGIN } from "$data/data-utils";
+import {
+	getXPosForYear,
+	X_MARGIN,
+	Y_MARGIN_SCREEN_PERCENTAGE
+} from "$data/data-utils";
 
 export const DEFAULT_Y_ENTRANCE_POSITION = -100;
 
@@ -37,9 +41,11 @@ const getPercentageForSong = (
 };
 
 const getYPosForPercentage = (percentage, canvasHeight) =>
-	Y_MARGIN +
+	canvasHeight * Y_MARGIN_SCREEN_PERCENTAGE +
 	percentage *
-		(canvasHeight - STORY_STEP_CONTROLLER_BOTTOM_PADDING - 2 * Y_MARGIN);
+		(canvasHeight -
+			STORY_STEP_CONTROLLER_BOTTOM_PADDING -
+			2 * canvasHeight * Y_MARGIN_SCREEN_PERCENTAGE);
 
 const TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE = 0.008;
 export const getYPosInAggregateSnakeChart = ({
