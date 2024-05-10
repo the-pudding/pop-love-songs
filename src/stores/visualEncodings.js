@@ -80,7 +80,7 @@ export const songRadius = derived([viewport], ([$viewport]) => {
 	const { width, height } = $viewport;
 	const roughArea = width * height;
 	// TODO: we'll probably have some "breakpoints", particularly when x-becomes small, which has a disproportionate effect on layout
-	const ADJUSTER = 0.003;
+	const ADJUSTER = 0.006;
 	const scalingFactor = (1 / songsData.length) * roughArea * ADJUSTER;
 	return songsData.map(({ song }) =>
 		Math.sqrt(song[SONG_DATA_COLUMNS_ENUM.popularity_score] * scalingFactor)
