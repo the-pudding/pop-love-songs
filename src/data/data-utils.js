@@ -4,7 +4,7 @@ import { MAX_YEAR, MIN_YEAR } from "./songs-data";
 
 export const Y_MARGIN = 56;
 
-export const X_MARGIN = 36; // TODO: probably best off as a percentage of the canvas width
+export const X_MARGIN = 48; // This margin must accomodate the left/right nav arrows (Tap element)
 const xScaleSansRange = scaleLinear().domain([MIN_YEAR, MAX_YEAR]);
 // TODO: @michelle is it inefficient to create a new scale every time we call this function?
 export const xScaleJustAddRange = (canvasWidth) =>
