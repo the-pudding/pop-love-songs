@@ -629,7 +629,7 @@ const steps = {
 	}
 };
 
-export const storySteps = [
+const unprocessedStorySteps = [
 	// LATEST STORY:
 
 	// Intro: Is Boomer Bob right that the love song is dying?
@@ -682,6 +682,12 @@ export const storySteps = [
 	steps.youDecide,
 	steps.youDecideBubbleVersion
 ];
+
+export const storySteps = unprocessedStorySteps.map((step) => ({
+	...step,
+	showXAxis:
+		step.visualEncodings.calculateXForcePosition === getXPositionFromTime
+}));
 
 // Export steps as a CSV for easy editing in Excel
 // console.log(storySteps.map((step, i) => `${i}) ${step.text}`).join("\n"));

@@ -174,7 +174,9 @@
 	}
 </script>
 
-<XAxis />
+{#if $currentStoryStep.showXAxis}
+	<XAxis />
+{/if}
 
 <svg height={$viewport.height} width={$viewport.width} style="opacity: {$aggregateSnakeChartOpacity}">
 	{#each $tweenedCoords as { loveSongType, svgCoords }}
