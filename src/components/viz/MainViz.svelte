@@ -19,7 +19,9 @@
 		getSongIndexFromInvisibleFill,
 		searchSongOnYouTube
 	} from "./viz-utils";
-	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
+	import { LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
+	import { getXPosForYear } from "$data/data-utils";
+	import { DEFAULT_Y_ENTRANCE_POSITION, getYPosForPercentage } from "$stores/forcePositionOptions-helper";
 	import { loveSongTypeColorMap, songRadius, unselectedLoveSongTypeColorMap, xForcePosition, yForcePosition } from "$stores/visualEncodings";
 	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
 	import { currentStoryStep } from "$stores/storySteps";
@@ -172,6 +174,18 @@
 			aggregateSnakeChartOpacity.set(0);
 		}
 	}
+
+
+	// @michelle, is there a more elegant way to do this? maybe just pre-compute a derived store?
+	$: getLabelCoords = (svgCoords) => {
+		$tweenedCoords
+		const {x, y0, y1} = svgCoords[0]
+		return {
+			x: getXPosForYear(x, $viewport.width),
+			y: getYPosForPercentage(y0, $viewport.height) - 0.003 * $viewport.height
+		}
+	};
+
 </script>
 
 {#if $currentStoryStep.showXAxis}
@@ -185,6 +199,13 @@
 			<path d={$svgPathGenerator.lineY1()(svgCoords)} stroke="#000"></path>
 			<path d={$svgPathGenerator.lineY0()(svgCoords)} stroke="#000"></path>
 		</g>
+	{/each}
+	{#each $tweenedCoords as { loveSongType, svgCoords }}
+		<text class="snake-label" x={getLabelCoords(svgCoords).x} y={getLabelCoords(svgCoords).y} fill="black" opacity={
+			$visibleButNotSelectedLoveSongTypes.includes(loveSongType)
+				? 0 
+				: 1
+		}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}</text>
 	{/each}
 </svg>
 
@@ -206,5 +227,9 @@
 	}
 	#invisible {
 		visibility: hidden;
+	}
+
+	text.snake-label {
+		font-size: clamp(1rem, 2vw, 1.25rem);
 	}
 </style>

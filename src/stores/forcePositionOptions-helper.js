@@ -40,7 +40,7 @@ const getPercentageForSong = (
 	return timeRegion.popularityScoreSumsInTimeRegion[loveSongType];
 };
 
-const getYPosForPercentage = (percentage, canvasHeight) =>
+export const getYPosForPercentage = (percentage, canvasHeight) =>
 	canvasHeight * Y_MARGIN_SCREEN_PERCENTAGE +
 	percentage *
 		(canvasHeight -
