@@ -60,46 +60,53 @@ const getAggregatePercentageByLoveSongType = (
 		popularityScoreSumsInTimeRegion
 	);
 
-	return loveSongTypesSortedGreatestToLeast.reduce((acc, loveSongType) => {
+	const rawResult = loveSongTypesSortedGreatestToLeast.reduce(
+		(acc, loveSongType) => {
+			const totalPercentageThatHasBeenAccountedFor = Object.keys(acc).reduce(
+				(sum, accountedForLoveSongType) =>
+					sum +
+					getPercentage(
+						squeezePercentageMultiplier,
+						popularitySumByType[accountedForLoveSongType],
+						popularityScoreSumsInTimeRegion
+					),
+				percentToOffset
+			);
+			const loveSongPercentage = getPercentage(
+				squeezePercentageMultiplier,
+				popularitySumByType[loveSongType],
+				popularityScoreSumsInTimeRegion
+			);
+
+			return {
+				...acc,
+				[loveSongType]: {
+					y0: totalPercentageThatHasBeenAccountedFor + loveSongPercentage,
+					y1: totalPercentageThatHasBeenAccountedFor
+				}
+			};
+		},
+		{}
+	);
+
+	// EDIT FOR EDGE CASES: handle love songs treated as non love songs, which we want to position specially next to the non-love songs
+	return Object.keys(rawResult).reduce((acc, loveSongType) => {
 		const isLoveSongTypeTreatedAsNonLoveSong =
 			typesTreatedAsNonLoveSongs.includes(+loveSongType) &&
 			+loveSongType !== LOVE_SONG_TYPE_CONSTANTS.notALoveSong;
-		// EDGE CASE FOR VISUAL EFFECT: we want to simulate the love song being "absorbed" into the non-love song category, which sits at the top of the chart (at least during the story steps)
-		// TODO: technically, we just want to position them within the "not a love song" category, so we could just send it to that value directly. To do that, we'd need to make this manual positioning happen AFTER we calculate the positoin for "non love songs".
+		// EDGE CASE FOR VISUAL EFFECT: we want to simulate the love song being "absorbed" into the non-love song category, whever it sits
 		if (isLoveSongTypeTreatedAsNonLoveSong) {
 			return {
 				...acc,
 				[loveSongType]: {
-					y0: percentToOffset,
-					y1: percentToOffset
+					y0: rawResult[LOVE_SONG_TYPE_CONSTANTS.notALoveSong].y0,
+					y1: rawResult[LOVE_SONG_TYPE_CONSTANTS.notALoveSong].y0
 				}
 			};
 		}
-
-		const totalPercentageThatHasBeenAccountedFor = Object.keys(acc).reduce(
-			(sum, accountedForLoveSongType) =>
-				isLoveSongTypeTreatedAsNonLoveSong
-					? sum // ignore them, we're positioning them specially to "absorb" into "not love songs", and they don't count towards the total
-					: sum +
-						getPercentage(
-							squeezePercentageMultiplier,
-							popularitySumByType[accountedForLoveSongType],
-							popularityScoreSumsInTimeRegion
-						),
-			percentToOffset
-		);
-		const loveSongPercentage = getPercentage(
-			squeezePercentageMultiplier,
-			popularitySumByType[loveSongType],
-			popularityScoreSumsInTimeRegion
-		);
-
 		return {
 			...acc,
-			[loveSongType]: {
-				y0: totalPercentageThatHasBeenAccountedFor + loveSongPercentage,
-				y1: totalPercentageThatHasBeenAccountedFor
-			}
+			[loveSongType]: rawResult[loveSongType]
 		};
 	}, {});
 };
