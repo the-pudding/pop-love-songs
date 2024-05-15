@@ -36,12 +36,14 @@
 	);
 </script>
 
-{#each $labelMetadata as { loveSongType, x, y, opacity, fontSize }}
-	<div class={$currentStoryStep.allowUserToChangeFilters ? '' : 'no-pointer-events' } style:left={`${x}px`} style:top={`${y}px`} fill="black" style:opacity={opacity} style:fontSize={fontSize}>
-		{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}
-		<LoveSongTypeCategoryButtons loveSongType={loveSongType} />
-	</div>
-{/each}
+{#if $currentStoryStep.showXAxis}
+	{#each $labelMetadata as { loveSongType, x, y, opacity, fontSize }}
+		<div class={$currentStoryStep.allowUserToChangeFilters ? '' : 'no-pointer-events' } style:left={`${x}px`} style:top={`${y}px`} fill="black" style:opacity={opacity} style:fontSize={fontSize}>
+			{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}
+			<LoveSongTypeCategoryButtons loveSongType={loveSongType} />
+		</div>
+	{/each}	
+{/if}
 
 <style>
     div {
