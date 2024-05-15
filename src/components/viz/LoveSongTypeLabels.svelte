@@ -14,19 +14,20 @@
 	$: labelMetadata = derived(
 		[visibleButNotSelectedLoveSongTypes, viewport],
 		([$visibleButNotSelectedLoveSongTypes, $viewport]) => {
-			return tweenedCoords.map(({ loveSongType, svgCoords }) => {
+			return tweenedCoords.reduce((acc, { loveSongType, svgCoords }) => {
 				const MIN_Y_HEIGHT_TO_FIT_LABEL = 0.04;
-				const {x, y0} = svgCoords.find(({y0, y1}) => (y0 - y1) >= MIN_Y_HEIGHT_TO_FIT_LABEL) || {x: 0, y0: 0}; // temp
+				const {x, y0} = svgCoords.find(({y0, y1}) => (y0 - y1) >= MIN_Y_HEIGHT_TO_FIT_LABEL) || {};
+				if (x === undefined || y0 === undefined) return acc;
 
-				return {
+				return [... acc, {
 					loveSongType,
 					x: getXPosForYear(x, $viewport.width),
 					// TODO: @michelle there's gotta be a better way to align text to the baseline via css...
 					// TODO: Also, I think I need to factor in the conditional margin between snakes...
 					y: getYPosForPercentage(y0, $viewport.height) - 0.035 * $viewport.height,
 					opacity: $visibleButNotSelectedLoveSongTypes.includes(loveSongType) ? 0 : 1
-				}
-			});
+				}]
+			}, []);
 		}
 	);
 
