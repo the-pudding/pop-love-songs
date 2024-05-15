@@ -5,7 +5,7 @@ import {
 } from "$data/data-constants.js";
 import { visibleSongsData } from "./dataDerivations";
 import songsData, { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
-import { typesTreatedAsNonLoveSongs } from "./storySteps";
+import { typesTreatedAsNonLoveSongs } from "./searchAndFilter";
 
 // algo:
 // 1. given an array of non-overlapping, contiguous time regions (an array with a start & stop year)...

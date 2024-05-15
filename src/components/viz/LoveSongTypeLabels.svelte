@@ -3,7 +3,7 @@
 
 	import { LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
 	import viewport from "$stores/viewport";
-	import { visibleButNotSelectedLoveSongTypes } from "$stores/searchAndFilter";
+	import { typesTreatedAsNonLoveSongs, visibleButNotSelectedLoveSongTypes } from "$stores/searchAndFilter";
 	import { getXPosForYear } from "$data/data-utils";
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
 	
@@ -33,10 +33,17 @@
 		}
 	);
 
+	const setAsNotALoveSong = (loveSongType) => () => {
+		typesTreatedAsNonLoveSongs.update((typesTreatedAsNonLoveSongs) => {
+			return [...typesTreatedAsNonLoveSongs, loveSongType];
+		});
+	}
+
 </script>
 {#each $labelMetadata as { loveSongType, x, y, opacity, fontSize }}
 	<div class="snake-label" style:left={`${x}px`} style:top={`${y}px`} fill="black" style:opacity={opacity} style:fontSize={fontSize}>
-		{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}
+		{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]} 
+		<button on:click={setAsNotALoveSong(loveSongType)}>remove from love song category</button>
 	</div>
 {/each}
 
@@ -45,5 +52,8 @@
 		/* TODO: For some reason I can only set font-size via css... */
 		font-size: clamp(1rem, 2vw, 1.25rem);
 		position: fixed;
+	}
+	div button {
+		font-size: 12px;
 	}
 </style>

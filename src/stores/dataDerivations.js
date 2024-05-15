@@ -15,9 +15,9 @@ import {
 	selectedPerformers,
 	timeRange,
 	columnsToFilterVisibilityOn,
-	visibleButNotSelectedLoveSongTypes
+	visibleButNotSelectedLoveSongTypes,
+	typesTreatedAsNonLoveSongs
 } from "./searchAndFilter.js";
-import { typesTreatedAsNonLoveSongs } from "./storySteps.js";
 
 const genderSelected = derived(
 	[selectedGenders],

@@ -1,7 +1,7 @@
 import { derived } from "svelte/store";
 import viewport from "./viewport.js";
 import songsData from "$data/songs-data.js";
-import { currentStoryStep, typesTreatedAsNonLoveSongs } from "./storySteps.js";
+import { currentStoryStep } from "./storySteps.js";
 import { loveSongsLabeledByTimeRegionPercentageForPosition } from "./loveSongsLabeledByTimeRegionPercentageForPosition.js";
 import {
 	LOVE_SONG_TYPE_COLOR_MAP,
@@ -9,6 +9,7 @@ import {
 	SONG_DATA_COLUMNS_ENUM,
 	UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP
 } from "$data/data-constants.js";
+import { typesTreatedAsNonLoveSongs } from "./searchAndFilter.js";
 
 // Position (or the force layout that guides it)
 

@@ -12,3 +12,4 @@ export const timeRange = writable({
 
 export const columnsToFilterVisibilityOn = writable([]);
 export const visibleButNotSelectedLoveSongTypes = writable([]);
+export const typesTreatedAsNonLoveSongs = writable([]);

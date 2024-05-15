@@ -11,10 +11,6 @@ import {
 	getXPositionFromTime,
 	getYPositionInSnakeChart
 } from "./forcePositionOptions-helper.js";
-import {
-	selectedLoveSongTypes,
-	visibleButNotSelectedLoveSongTypes
-} from "./searchAndFilter.js";
 
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
@@ -697,10 +693,4 @@ export const currentStoryStepIndex = writable(0);
 export const currentStoryStep = derived(
 	[currentStoryStepIndex],
 	([$currentStoryStepIndex]) => storySteps[$currentStoryStepIndex]
-);
-
-export const typesTreatedAsNonLoveSongs = derived(
-	[currentStoryStep],
-	([$currentStoryStep]) =>
-		$currentStoryStep.searchAndFilterState.typesTreatedAsNonLoveSongs
 );

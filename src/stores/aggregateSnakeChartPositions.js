@@ -20,7 +20,7 @@ import {
 	getPopularitySumByType,
 	getPopularitySumIgnoringFilters
 } from "./loveSongsLabeledByTimeRegionPercentageForPosition";
-import { typesTreatedAsNonLoveSongs } from "./storySteps";
+import { typesTreatedAsNonLoveSongs } from "./searchAndFilter";
 
 // 2. ... aggregate the total songs for each time region, then label each with a sumative percentage, append that to the object
 

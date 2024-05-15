@@ -5,7 +5,7 @@
 
     import Tap from "../helpers/Tap.svelte";
 
-    import {selectedGenders, selectedSongs, selectedLoveSongTypes, selectedPerformers, timeRange, columnsToFilterVisibilityOn, visibleButNotSelectedLoveSongTypes} from "$stores/searchAndFilter.js"
+    import {selectedGenders, selectedSongs, selectedLoveSongTypes, selectedPerformers, timeRange, columnsToFilterVisibilityOn, visibleButNotSelectedLoveSongTypes, typesTreatedAsNonLoveSongs} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
 	import { formattedChange } from "$stores/dataDerivations";
@@ -47,6 +47,7 @@
         
         columnsToFilterVisibilityOn.set([...$currentStoryStep.searchAndFilterState.columnsToFilterVisibilityOn])
         visibleButNotSelectedLoveSongTypes.set([...$currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes])
+        typesTreatedAsNonLoveSongs.set([...$currentStoryStep.searchAndFilterState.typesTreatedAsNonLoveSongs])
     }
 
     $: $currentStoryStepIndex, updateFilterFilterState()
