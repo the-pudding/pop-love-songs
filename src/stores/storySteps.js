@@ -601,9 +601,7 @@ const steps = {
 	youDecide: {
 		text: "... that is, *if* you accept these love song definitions. But you don't need to! You decide: use the filters to tell *us* how the love song is doing: the % change score will update with filters [hit 'd' to open/close filters, bubble view on next slide]!",
 		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: Object.values(LOVE_SONG_TYPE_CONSTANTS),
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+			...SEARCH_AND_FILTER_BLANK_STATE
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
@@ -615,9 +613,7 @@ const steps = {
 	youDecideBubbleVersion: {
 		text: "[bubble view, mostly just for us to play with during development -- worth keeping as an option to switch to here in the sandbox? [hit 'd' to open/close filters]]",
 		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: Object.values(LOVE_SONG_TYPE_CONSTANTS),
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+			...SEARCH_AND_FILTER_BLANK_STATE
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE
