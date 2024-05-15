@@ -6,6 +6,7 @@ import { getYPosInAggregateSnakeChart } from "./forcePositionOptions-helper";
 import { getXPosForYear } from "$data/data-utils";
 import {
 	LOVE_SONG_TYPES,
+	LOVE_SONG_TYPE_CONSTANTS,
 	SONG_DATA_COLUMNS_ENUM
 } from "$data/data-constants.js";
 import { visibleSongsData } from "./dataDerivations";
@@ -60,14 +61,31 @@ const getAggregatePercentageByLoveSongType = (
 	);
 
 	return loveSongTypesSortedGreatestToLeast.reduce((acc, loveSongType) => {
+		const isLoveSongTypeTreatedAsNonLoveSong =
+			typesTreatedAsNonLoveSongs.includes(+loveSongType) &&
+			+loveSongType !== LOVE_SONG_TYPE_CONSTANTS.notALoveSong;
+		// EDGE CASE FOR VISUAL EFFECT: we want to simulate the love song being "absorbed" into the non-love song category, which sits at the top of the chart (at least during the story steps)
+		// TODO: technically, we just want to position them within the "not a love song" category, so we could just send it to that value directly. To do that, we'd need to make this manual positioning happen AFTER we calculate the positoin for "non love songs".
+		if (isLoveSongTypeTreatedAsNonLoveSong) {
+			return {
+				...acc,
+				[loveSongType]: {
+					y0: percentToOffset,
+					y1: percentToOffset
+				}
+			};
+		}
+
 		const totalPercentageThatHasBeenAccountedFor = Object.keys(acc).reduce(
 			(sum, accountedForLoveSongType) =>
-				sum +
-				getPercentage(
-					squeezePercentageMultiplier,
-					popularitySumByType[accountedForLoveSongType],
-					popularityScoreSumsInTimeRegion
-				),
+				isLoveSongTypeTreatedAsNonLoveSong
+					? sum // ignore them, we're positioning them specially to "absorb" into "not love songs", and they don't count towards the total
+					: sum +
+						getPercentage(
+							squeezePercentageMultiplier,
+							popularitySumByType[accountedForLoveSongType],
+							popularityScoreSumsInTimeRegion
+						),
 			percentToOffset
 		);
 		const loveSongPercentage = getPercentage(
