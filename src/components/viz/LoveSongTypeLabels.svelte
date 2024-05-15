@@ -7,6 +7,7 @@
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
 	import LoveSongTypeCategoryButtons from "./LoveSongTypeCategoryButtons.svelte";
 	import { LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
+	import { currentStoryStep } from "$stores/storySteps";
 	
 
     export let tweenedCoords;
@@ -36,16 +37,20 @@
 </script>
 
 {#each $labelMetadata as { loveSongType, x, y, opacity, fontSize }}
-	<div class="snake-label" style:left={`${x}px`} style:top={`${y}px`} fill="black" style:opacity={opacity} style:fontSize={fontSize}>
+	<div class={$currentStoryStep.allowUserToChangeFilters ? '' : 'no-pointer-events' } style:left={`${x}px`} style:top={`${y}px`} fill="black" style:opacity={opacity} style:fontSize={fontSize}>
 		{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}
 		<LoveSongTypeCategoryButtons loveSongType={loveSongType} />
 	</div>
 {/each}
 
 <style>
-    div.snake-label {
+    div {
 		/* TODO: For some reason I can only set font-size via css... */
 		font-size: clamp(1rem, 2vw, 1.25rem);
 		position: fixed;
+	}
+
+	div.no-pointer-events {
+		pointer-events: none;
 	}
 </style>
