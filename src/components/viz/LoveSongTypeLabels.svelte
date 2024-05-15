@@ -1,6 +1,6 @@
 <script>
 	import { derived } from "svelte/store";
-	
+
 	import { LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
 	import viewport from "$stores/viewport";
 	import { visibleButNotSelectedLoveSongTypes } from "$stores/searchAndFilter";
@@ -14,14 +14,19 @@
 	$: labelMetadata = derived(
 		[visibleButNotSelectedLoveSongTypes, viewport],
 		([$visibleButNotSelectedLoveSongTypes, $viewport]) => {
-			return tweenedCoords.map(({ loveSongType, svgCoords }) => ({
-				loveSongType,
-				x: getXPosForYear(svgCoords[0].x, $viewport.width),
-				// TODO: @michelle there's gotta be a better way to align text to the baseline via css...
-				// TODO: Also, I think I need to factor in the conditional margin between snakes...
-				y: getYPosForPercentage(svgCoords[0].y0, $viewport.height) - 0.035 * $viewport.height,
-				opacity: $visibleButNotSelectedLoveSongTypes.includes(loveSongType) ? 0 : 1
-			}))
+			return tweenedCoords.map(({ loveSongType, svgCoords }) => {
+				const MIN_Y_HEIGHT_TO_FIT_LABEL = 0.04;
+				const {x, y0} = svgCoords.find(({y0, y1}) => (y0 - y1) >= MIN_Y_HEIGHT_TO_FIT_LABEL) || {x: 0, y0: 0}; // temp
+
+				return {
+					loveSongType,
+					x: getXPosForYear(x, $viewport.width),
+					// TODO: @michelle there's gotta be a better way to align text to the baseline via css...
+					// TODO: Also, I think I need to factor in the conditional margin between snakes...
+					y: getYPosForPercentage(y0, $viewport.height) - 0.035 * $viewport.height,
+					opacity: $visibleButNotSelectedLoveSongTypes.includes(loveSongType) ? 0 : 1
+				}
+			});
 		}
 	);
 
