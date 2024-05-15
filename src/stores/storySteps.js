@@ -609,7 +609,8 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		},
-		showLoveSongChangeOverTime: true
+		showLoveSongChangeOverTime: true,
+		allowUserToChangeFilters: true
 	},
 	youDecideBubbleVersion: {
 		text: "[bubble view, mostly just for us to play with during development -- worth keeping as an option to switch to here in the sandbox? [hit 'd' to open/close filters]]",
@@ -621,7 +622,8 @@ const steps = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE
 		},
-		showLoveSongChangeOverTime: true
+		showLoveSongChangeOverTime: true,
+		allowUserToChangeFilters: true
 	}
 };
 
