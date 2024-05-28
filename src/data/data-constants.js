@@ -30,7 +30,7 @@ export const LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP = {
 	2: "Good Riddance",
 	3: "Courtship & Anticipation",
 	4: "It's Complicated",
-	5: "Sexual Conquest",
+	5: "Sexual Confidence", // Note: this was originally "Sexual Conquest", and still is in the original data. It's now just displayed as such.
 	6: "Longing & Heartbreak",
 	7: "Love Song for the Self"
 };
