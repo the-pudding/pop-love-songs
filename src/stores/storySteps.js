@@ -472,7 +472,7 @@ const steps = {
 	// Love song for the self
 
 	introducingLoveSongForTheSelf: {
-		text: "But what if heartbreak turns love... back onto the OG, yourself? Think: TLC & Destiny's Child in the early 2000s. Or 'Fergalicious' or Ariana Grande's 'Thank U, Next' in this female-dominated type.",
+		text: "But what if heartbreak turns love... back onto the OG, yourself? Think: TLC & Destiny's Child in the early 2000s or Ariana Grande's 'Thank U, Next' in this female-dominated type.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf],
@@ -483,7 +483,6 @@ const steps = {
 			songAnnotations: [
 				{ song: "I Am Woman", year: 1972 },
 				{ song: "Unpretty", year: 1999 },
-				{ song: "Fergalicious", year: 2006 },
 				{ song: "Thank U, Next", year: 2018 }
 			]
 		}
