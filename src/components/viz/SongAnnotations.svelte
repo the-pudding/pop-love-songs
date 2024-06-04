@@ -26,8 +26,6 @@
 
 <style>
 	div.annotation-wrapper {
-        top: 100px;
-        left: 100px;
 		z-index: 10000;
 		position: absolute;
 		width: 280px;
