@@ -23,7 +23,6 @@
             return {xPos, yOffset: 0, song}
         }
         const nextXPos = getXPos($annotatedSongsData[i + 1].song);
-        console.log(nextXPos, xPos, i)
         return {xPos, yOffset: nextXPos - xPos < ANNOTATION_WIDTH ? -180 : 0, song}
     })
 </script>
