@@ -21,7 +21,7 @@
 			: "black"
 	}`}
 >
-	<strong>{song[SONG_DATA_COLUMNS_ENUM.song]}</strong> ({Math.round(
+	<strong>{song[SONG_DATA_COLUMNS_ENUM.song]}</strong> ({Math.floor(
 		song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]
 	)})
 </div>

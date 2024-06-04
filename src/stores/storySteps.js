@@ -109,7 +109,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: fractionOfScreenFactory(0.5),
-			songAnnotations: [{ song: "I'll Make Love To You", year: 1995 }]
+			songAnnotations: [{ song: "I'll Make Love To You", year: 1994 }]
 		},
 		showLoveSongChangeOverTime: true
 	},
@@ -127,7 +127,11 @@ const steps = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: fractionOfScreenFactory(0.5)
+			calculateYForcePosition: fractionOfScreenFactory(0.5),
+			songAnnotations: [
+				{ song: "Love Story", year: 2008 },
+				{ song: "Intentions", year: 2020 }
+			]
 		},
 		showLoveSongChangeOverTime: true
 	},
@@ -253,7 +257,7 @@ const steps = {
 	},
 	// Courtship
 	introducingCourtship: {
-		text: "But we're just getting started... How about when you love someone, and it *might* become something more? You just spotted someone, your heart is beating fast, and who KNOWS where this thing might lead?",
+		text: "But we're just getting started... How about when you love someone, and it *might* become something more? You just spotted someone, your heart is beating fast, and who KNOWS where this thing might lead? Think 'Call Me Maybe' by Carly Rae Jepsen...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -262,7 +266,11 @@ const steps = {
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
+			...VISUAL_ENCODING_BLANK_STATE,
+			songAnnotations: [
+				{ song: "Call Me Maybe", year: 2012 },
+				{ song: "I Want To Hold Your Hand", year: 1964 }
+			]
 		}
 	},
 	definingCourtship: {
@@ -284,7 +292,7 @@ const steps = {
 		loveSongTypeDefinitionImage: "courtship-&-anticipation"
 	},
 	courtshipHasNoEffect: {
-		text: "The popularity of Courtship & Anticipation songs has remained steady over the years, neither bolstering nor hurting the broader love song category as a whole. From The Beatles' 'I Want To Hold Your Hand' to Carly Rae Jepsen's 'Call Me Maybe,' we continue to get excited about the possibility of love...",
+		text: "The popularity of Courtship & Anticipation songs has remained steady over the years, neither bolstering nor hurting the broader love song category as a whole.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -307,14 +315,19 @@ const steps = {
 
 	// its complicated
 	introducingItsComplicated: {
-		text: "Now, let's explore love songs that pull in more of romance's complexity. What about when a relationship isn't clearly good or bad? You're with someone, but constantly fighting. Committed, but also conflicted... think 'In My Feelings' by Drake...",
+		text: "Now, let's explore love songs that pull in more of romance's complexity. What about when a relationship isn't clearly good or bad? You're with someone, but constantly fighting. Or maybe you know they're unfaithful, but still want to work it out...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.itsComplicated],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
+			...VISUAL_ENCODING_BLANK_STATE,
+			songAnnotations: [
+				{ song: "Will You Love Me Tomorrow", year: 1961 },
+				{ song: "Quit Playing Games (With My Heart)", year: 1997 },
+				{ song: "In My Feelings", year: 2018 }
+			]
 		}
 	},
 	definingItsComplicated: {
@@ -387,7 +400,12 @@ const steps = {
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
+			...VISUAL_ENCODING_BLANK_STATE,
+			songAnnotations: [
+				{ song: "Runaround Sue", year: 1962 },
+				{ song: "Survivor", year: 2001 },
+				{ song: "Good 4 U", year: 2021 }
+			]
 		}
 	},
 	definingGoodRiddance: {
@@ -422,7 +440,11 @@ const steps = {
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
+			...VISUAL_ENCODING_BLANK_STATE,
+			songAnnotations: [
+				{ song: "No More Tears (Enough Is Enough)", year: 1980 },
+				{ song: "Stronger (What Doesn't Kill You)", year: 2011 }
+			]
 		}
 	},
 	goodRiddanceDoesNotTipTheScale: {
@@ -450,14 +472,20 @@ const steps = {
 	// Love song for the self
 
 	introducingLoveSongForTheSelf: {
-		text: "But what if heartbreak turns love... back onto the OG, yourself? Think: TLC & Destiny's Child in the early 2000s. Or 'Fergalicious' or Ariana Grande's 'thank u, next' in this female-dominated type.",
+		text: "But what if heartbreak turns love... back onto the OG, yourself? Think: TLC & Destiny's Child in the early 2000s. Or 'Fergalicious' or Ariana Grande's 'Thank U, Next' in this female-dominated type.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
+			...VISUAL_ENCODING_BLANK_STATE,
+			songAnnotations: [
+				{ song: "I Am Woman", year: 1972 },
+				{ song: "Unpretty", year: 1999 },
+				{ song: "Fergalicious", year: 2006 },
+				{ song: "Thank U, Next", year: 2018 }
+			]
 		}
 	},
 	definingLoveSongForTheSelf: {
@@ -525,7 +553,12 @@ const steps = {
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
+			...VISUAL_ENCODING_BLANK_STATE,
+			songAnnotations: [
+				{ song: "Physical", year: 1982 },
+				{ song: "WAP", year: 2020 },
+				{ song: "Way 2 Sexy", year: 2021 }
+			]
 		}
 	},
 	definingSexualConquest: {
