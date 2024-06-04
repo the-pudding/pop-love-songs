@@ -31,9 +31,11 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 const VISUAL_ENCODING_BLANK_STATE = {
 	calculateXForcePosition: getXPositionFromTime,
 	calculateYForcePosition: getYPositionInSnakeChart,
-	// TODO: just to get to a prototype, their may be more clever ways to derive these:
-	showAggregateSnakeChart: false
-	// TODO: we actually want to drop this second value, since we'll never show both simultaneously
+
+	showAggregateSnakeChart: false,
+
+	// Note: currently just using song name, which could cause collissions, but since its manually set, I'll cross that bridgfe if we come to it.
+	songAnnotations: []
 };
 
 const steps = {
@@ -106,7 +108,8 @@ const steps = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: fractionOfScreenFactory(0.5)
+			calculateYForcePosition: fractionOfScreenFactory(0.5),
+			songAnnotations: [{ song: "I'll Make Love To You" }]
 		},
 		showLoveSongChangeOverTime: true
 	},

@@ -13,6 +13,7 @@
 	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
 
 	import songsData from "$data/songs-data.js";
+	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 	import {
 		getInvisibleFillFromSongIndex,
 		getSnakeFill,
@@ -63,6 +64,13 @@
 			}
 			context.fillStyle = getSongFill(song, isSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap);
 			context.fill(circle);
+
+			// Draw a border around annotated songs
+			if ($currentStoryStep.visualEncodings.songAnnotations.some(({ song: annotationSongName }) => annotationSongName === song[SONG_DATA_COLUMNS_ENUM.song])) {
+				context.strokeStyle = "gray";
+				context.lineWidth = 2;
+				context.stroke(circle);
+			}
 		});
 	};
 
