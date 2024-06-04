@@ -28,3 +28,9 @@ export const getArrayOfPerformers = (song) => {
 export const onlyShowOneDecimalPlaceIfLessThan10 = (number) => {
 	return number < 10 ? number.toFixed(1) : number.toFixed(0);
 };
+
+export const songInAnnotations = (song, songAnnotations) =>
+	songAnnotations.some(
+		({ song: annotationSongName }) =>
+			annotationSongName === song[SONG_DATA_COLUMNS_ENUM.song]
+	);

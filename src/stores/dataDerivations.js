@@ -6,7 +6,8 @@ import {
 } from "$data/data-constants";
 import {
 	getArrayOfPerformers,
-	onlyShowOneDecimalPlaceIfLessThan10
+	onlyShowOneDecimalPlaceIfLessThan10,
+	songInAnnotations
 } from "$data/data-utils.js";
 import {
 	selectedGenders,
@@ -18,6 +19,7 @@ import {
 	visibleButNotSelectedLoveSongTypes,
 	typesTreatedAsNonLoveSongs
 } from "./searchAndFilter.js";
+import { currentStoryStep } from "./storySteps.js";
 
 const genderSelected = derived(
 	[selectedGenders],
@@ -349,4 +351,19 @@ export const formattedChange = derived(
 	($changeFrom60sToLast10Years) => {
 		return `${$changeFrom60sToLast10Years > 0 ? "+" : $changeFrom60sToLast10Years < 0 ? "-" : ""}${onlyShowOneDecimalPlaceIfLessThan10(Math.abs($changeFrom60sToLast10Years))}`;
 	}
+);
+
+// Annotations
+
+export const annotatedSongsData = derived(
+	[visibleSongsData, currentStoryStep],
+	([$visibleSongsData, $currentStoryStep]) => {
+		if ($currentStoryStep.visualEncodings.songAnnotations.length === 0) {
+			return [];
+		}
+		return $visibleSongsData.filter(({ song }) =>
+			songInAnnotations(song, $currentStoryStep.visualEncodings.songAnnotations)
+		);
+	},
+	[]
 );

@@ -13,7 +13,6 @@
 	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
 
 	import songsData from "$data/songs-data.js";
-	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 	import {
 		getInvisibleFillFromSongIndex,
 		getSnakeFill,
@@ -26,6 +25,7 @@
 	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
 	import { currentStoryStep } from "$stores/storySteps";
 	import { visibleButNotSelectedLoveSongTypes } from "$stores/searchAndFilter";
+	import { songInAnnotations } from "$data/data-utils";
 
 	// Give it an initial position
 	const forceSimulationData = songsData.map((songObject, songIndex) => ({
@@ -66,7 +66,7 @@
 			context.fill(circle);
 
 			// Draw a border around annotated songs
-			if ($currentStoryStep.visualEncodings.songAnnotations.some(({ song: annotationSongName }) => annotationSongName === song[SONG_DATA_COLUMNS_ENUM.song])) {
+			if (songInAnnotations(song, $currentStoryStep.visualEncodings.songAnnotations)) {
 				context.strokeStyle = "gray";
 				context.lineWidth = 2;
 				context.stroke(circle);
