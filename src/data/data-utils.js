@@ -31,6 +31,7 @@ export const onlyShowOneDecimalPlaceIfLessThan10 = (number) => {
 
 export const songInAnnotations = (song, songAnnotations) =>
 	songAnnotations.some(
-		({ song: annotationSongName }) =>
-			annotationSongName === song[SONG_DATA_COLUMNS_ENUM.song]
+		({ song: annotationSongName, year }) =>
+			annotationSongName === song[SONG_DATA_COLUMNS_ENUM.song] &&
+			year === Math.floor(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal])
 	);

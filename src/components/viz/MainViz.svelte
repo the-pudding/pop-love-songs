@@ -67,8 +67,8 @@
 
 			// Draw a border around annotated songs
 			if (songInAnnotations(song, $currentStoryStep.visualEncodings.songAnnotations)) {
-				context.strokeStyle = "gray";
-				context.lineWidth = 2;
+				context.strokeStyle = "black";
+				context.lineWidth = 4;
 				context.stroke(circle);
 			}
 		});

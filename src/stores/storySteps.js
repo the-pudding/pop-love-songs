@@ -109,7 +109,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: fractionOfScreenFactory(0.5),
-			songAnnotations: [{ song: "I'll Make Love To You" }]
+			songAnnotations: [{ song: "I'll Make Love To You", year: 1995 }]
 		},
 		showLoveSongChangeOverTime: true
 	},
@@ -204,7 +204,11 @@ const steps = {
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
+			...VISUAL_ENCODING_BLANK_STATE,
+			songAnnotations: [
+				{ song: "I Will Always Love You", year: 1993 },
+				{ song: "Stay", year: 2013 }
+			]
 		}
 	},
 
