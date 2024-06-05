@@ -1,10 +1,10 @@
 <script>
 	import {onDestroy} from "svelte";
 	import {timeRange} from "$stores/searchAndFilter.js";
-	import { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
+	import { MAX_DATE, MIN_DATE } from "$data/songs-data";
 
-    let startYear = MIN_YEAR;
-    let endYear = MAX_YEAR;
+    let startYear = MIN_DATE;
+    let endYear = MAX_DATE;
 	
     // Stay in sync with store
 	const unsubscribe = timeRange.subscribe(($timeRange) => {
@@ -22,11 +22,11 @@
 <div class="wrapper">
     <div>
         <label for="startYear">Start Year</label>
-        <input type="number" id="startYear" bind:value={startYear} min={MIN_YEAR} max={MAX_YEAR} />
+        <input type="number" id="startYear" bind:value={startYear} min={MIN_DATE} max={MAX_DATE} />
     </div>
     <div>
         <label for="endYear">End Year</label>
-        <input type="number" id="endYear" bind:value={endYear} min={MIN_YEAR} max={MAX_YEAR} />
+        <input type="number" id="endYear" bind:value={endYear} min={MIN_DATE} max={MAX_DATE} />
     </div>
 </div>
 

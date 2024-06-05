@@ -5,7 +5,7 @@ import {
 	GENDER_CONSTANTS,
 	LOVE_SONG_TYPES
 } from "$data/data-constants.js";
-import { MAX_YEAR, MIN_YEAR } from "$data/songs-data.js";
+import { MAX_DATE, MIN_DATE } from "$data/songs-data.js";
 import {
 	fractionOfScreenFactory,
 	getXPositionFromTime,
@@ -18,8 +18,8 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedGenders: [],
 	selectedSongs: [],
 	timeRange: {
-		startYear: MIN_YEAR,
-		endYear: MAX_YEAR
+		startYear: MIN_DATE,
+		endYear: MAX_DATE
 	},
 
 	columnsToFilterVisibilityOn: [],
@@ -99,7 +99,7 @@ const steps = {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
 			timeRange: {
-				startYear: MIN_YEAR,
+				startYear: MIN_DATE,
 				endYear: 2000
 			},
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
@@ -118,7 +118,7 @@ const steps = {
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
 			timeRange: {
 				startYear: 2001,
-				endYear: MAX_YEAR
+				endYear: MAX_DATE
 			},
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},

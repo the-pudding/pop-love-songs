@@ -1,5 +1,5 @@
 import { derived } from "svelte/store";
-import songsData, { MAX_YEAR, MIN_YEAR } from "$data/songs-data.js";
+import songsData, { MAX_DATE, MIN_DATE } from "$data/songs-data.js";
 import {
 	LOVE_SONG_TYPE_CONSTANTS,
 	SONG_DATA_COLUMNS_ENUM
@@ -207,8 +207,8 @@ export function getLoveSongPercentage(
 	typesTreatedAsNonLoveSongs,
 	selectedSongsData,
 	selectedLoveSongTypes,
-	minYear = MIN_YEAR,
-	maxYear = MAX_YEAR
+	minYear = MIN_DATE,
+	maxYear = MAX_DATE
 ) {
 	const selectedLoveSongsPopularityScore = selectedSongsData.reduce(
 		(acc, { song }) => {
@@ -318,7 +318,7 @@ export const percentageOfLoveSongsDuringLast10YearsOfSelection = derived(
 		$maxYearFromSelectedSongs,
 		$typesTreatedAsNonLoveSongs
 	]) => {
-		const tenYearsBefore = Math.max(MIN_YEAR, $maxYearFromSelectedSongs - 10);
+		const tenYearsBefore = Math.max(MIN_DATE, $maxYearFromSelectedSongs - 10);
 
 		return getLoveSongPercentage(
 			$typesTreatedAsNonLoveSongs,

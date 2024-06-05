@@ -1,11 +1,11 @@
 import { scaleLinear } from "d3";
 import { SONG_DATA_COLUMNS_ENUM } from "./data-constants";
-import { MAX_YEAR, MIN_YEAR } from "./songs-data";
+import { MAX_DATE, MIN_DATE } from "./songs-data";
 
 export const Y_MARGIN_SCREEN_PERCENTAGE = 0.02;
 
 export const X_MARGIN = 48; // This margin must accomodate the left/right nav arrows (Tap element)
-const xScaleSansRange = scaleLinear().domain([MIN_YEAR, MAX_YEAR]);
+const xScaleSansRange = scaleLinear().domain([MIN_DATE, MAX_DATE]);
 // TODO: @michelle is it inefficient to create a new scale every time we call this function?
 export const xScaleJustAddRange = (canvasWidth) =>
 	xScaleSansRange.range([X_MARGIN, canvasWidth - X_MARGIN]);

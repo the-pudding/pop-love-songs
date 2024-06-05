@@ -1,11 +1,12 @@
 import rawSongsData from "$data/23-EXPORT-viz-ready-data.json";
 import { SONG_DATA_COLUMNS_ENUM } from "./data-constants";
 
-export const MIN_YEAR = rawSongsData.reduce(
+// TODO: OPTIMIZATION find min & max within the same reduce loop
+export const MIN_DATE = rawSongsData.reduce(
 	(acc, song) => Math.min(acc, +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]),
 	Infinity
 );
-export const MAX_YEAR = rawSongsData.reduce(
+export const MAX_DATE = rawSongsData.reduce(
 	(acc, song) => Math.max(acc, +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]),
 	-Infinity
 );

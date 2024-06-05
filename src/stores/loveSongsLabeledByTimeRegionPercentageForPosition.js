@@ -4,7 +4,7 @@ import {
 	SONG_DATA_COLUMNS_ENUM
 } from "$data/data-constants.js";
 import { visibleSongsData } from "./dataDerivations";
-import songsData, { MAX_YEAR, MIN_YEAR } from "$data/songs-data";
+import songsData, { MAX_DATE, MIN_DATE } from "$data/songs-data";
 import { typesTreatedAsNonLoveSongs } from "./searchAndFilter";
 
 // algo:
@@ -12,7 +12,7 @@ import { typesTreatedAsNonLoveSongs } from "./searchAndFilter";
 // Use 1968-1969, then do decades from there on out (1970-1979, 1980-1989, etc.)
 export const aggregationTimeRegions = [
 	{
-		start: MIN_YEAR,
+		start: MIN_DATE,
 		stop: 1969
 	},
 	{
@@ -37,7 +37,7 @@ export const aggregationTimeRegions = [
 	},
 	{
 		start: 2020,
-		stop: MAX_YEAR
+		stop: MAX_DATE
 	}
 ];
 
