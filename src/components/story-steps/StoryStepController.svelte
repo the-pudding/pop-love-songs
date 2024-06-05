@@ -61,7 +61,7 @@
 <div class="container" style:height={`${STORY_STEP_CONTROLLER_BOTTOM_PADDING}px`}>
     <h4 class="title">
         {$currentStoryStep.text}
-        {#if $currentStoryStep.showLoveSongChangeOverTime}
+        {#if $currentStoryStep.showLoveSongChange}
             [Last 10 years vs 60s: <b>{$formattedChange}% point change</b>]
         {/if}
     </h4>

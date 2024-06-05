@@ -91,8 +91,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: fractionOfScreenFactory(0.5)
-		},
-		showLoveSongChangeOverTime: true
+		}
 	},
 	serenadesPeakedInThe90s: {
 		text: "Serenades peaked in popularity in the 90s with hits like 'I'll Make Love to You' by Boyz II Men...",
@@ -110,8 +109,7 @@ const steps = {
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: fractionOfScreenFactory(0.5),
 			songAnnotations: [{ song: "I'll Make Love To You", year: 1994 }]
-		},
-		showLoveSongChangeOverTime: true
+		}
 	},
 	aFewArtistsKeepThemAliveToday: {
 		text: "But these days, only a few artists like Biebs & T-Swift champion them. With the Serenade dropping from almost 1 in 4 songs in the 60s to just 1 in 10 today, love songs *do* seem to be on their death bed...",
@@ -133,7 +131,7 @@ const steps = {
 				{ song: "Intentions", year: 2020 }
 			]
 		},
-		showLoveSongChangeOverTime: true
+		showLoveSongChange: true
 	},
 	anAggSnakeChartMakesBoomerBobSeemRight: {
 		text: "Comparing Serenades to all other pop hits, we have to ask: is Boomer Bob right? Are love songs dying?",
@@ -147,7 +145,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		},
-		showLoveSongChangeOverTime: true
+		showLoveSongChange: true
 	},
 
 	// What counts as love song?
@@ -168,7 +166,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		}
-		// showLoveSongChangeOverTime: true
+		// showLoveSongChange: true
 	},
 	whyWeCare: {
 		text: "After all, our world has changed immensely since 1959. While some things, like love itself, seem rather eternal, it only stands to reason that the individual stories, feelings and expressions of love might also shift with the times... and that exploring those shifts could be fun! (Or even illuminating)... ",
@@ -182,7 +180,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		},
-		showLoveSongChangeOverTime: true
+		showLoveSongChange: true
 	},
 	introTheTypeGrid: {
 		text: "Earlier we showed you the Serenades. These are the bona fide love songs, passed down from ancient times: you loves someone, and they love you back! It's the best-case scenario. But what happens if you love them, but they just... don't?",
@@ -253,7 +251,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		},
-		showLoveSongChangeOverTime: true
+		showLoveSongChange: true
 	},
 	// Courtship
 	introducingCourtship: {
@@ -308,7 +306,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		},
-		showLoveSongChangeOverTime: true
+		showLoveSongChange: true
 	},
 
 	// Expansive-mode
@@ -389,7 +387,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		},
-		showLoveSongChangeOverTime: true
+		showLoveSongChange: true
 	},
 
 	introducingGoodRiddance: {
@@ -466,7 +464,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		},
-		showLoveSongChangeOverTime: true
+		showLoveSongChange: true
 	},
 
 	// Love song for the self
@@ -541,7 +539,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		},
-		showLoveSongChangeOverTime: true
+		showLoveSongChange: true
 	},
 
 	introducingSexualConquest: {
@@ -633,7 +631,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		},
-		showLoveSongChangeOverTime: true
+		showLoveSongChange: true
 	},
 
 	trendsWeExplored: {
@@ -646,7 +644,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		},
-		showLoveSongChangeOverTime: true
+		showLoveSongChange: true
 	},
 	whatCausedTheseChanges: {
 		text: "What caused these changes? Speculations abound -- on one hand, we've certainly changed how we think about love and relationships since the 60's. On the other hand, how Billboard ranks songs itself has changed, from a loosely polling record stores to analyzing streaming. It's possible many of these love songs were always popular -- it just took the Billboard recognizing streaming for them to be recognized.",
@@ -658,7 +656,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		},
-		showLoveSongChangeOverTime: true
+		showLoveSongChange: true
 	},
 
 	// Explore mode
@@ -671,7 +669,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		},
-		showLoveSongChangeOverTime: true,
+		showLoveSongChange: true,
 		allowUserToChangeFilters: true
 	},
 	youDecideBubbleVersion: {
@@ -682,7 +680,7 @@ const steps = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE
 		},
-		showLoveSongChangeOverTime: true,
+		showLoveSongChange: true,
 		allowUserToChangeFilters: true
 	}
 };

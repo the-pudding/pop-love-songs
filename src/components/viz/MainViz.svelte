@@ -26,6 +26,7 @@
 	import { currentStoryStep } from "$stores/storySteps";
 	import { visibleButNotSelectedLoveSongTypes } from "$stores/searchAndFilter";
 	import { songInAnnotations } from "$data/data-utils";
+	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";
 
 	// Give it an initial position
 	const forceSimulationData = songsData.map((songObject, songIndex) => ({
@@ -206,6 +207,8 @@
 	on:mousedown={handleSongClicked}
 />
 <canvas id="invisible" bind:this={invisibleCanvas} />
+
+<LoveSongChangeAnnotation tweenedCoords={$tweenedCoords} />
 
 <LoveSongTypeLabels tweenedCoords={$tweenedCoords} />
 
