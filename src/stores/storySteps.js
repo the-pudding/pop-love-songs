@@ -112,7 +112,7 @@ const steps = {
 		}
 	},
 	aFewArtistsKeepThemAliveToday: {
-		text: "But these days, only a few artists like Biebs & T-Swift champion them. With the Serenade dropping from almost 1 in 4 songs in the 60s to just 1 in 10 today, love songs *do* seem to be on their death bed...",
+		text: "... then they've waned: only a few artists like Biebs & T-Swift champion Serenades these days.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -130,11 +130,10 @@ const steps = {
 				{ song: "Love Story", year: 2008 },
 				{ song: "Intentions", year: 2020 }
 			]
-		},
-		showLoveSongChange: true
+		}
 	},
 	anAggSnakeChartMakesBoomerBobSeemRight: {
-		text: "Comparing Serenades to all other pop hits, we have to ask: is Boomer Bob right? Are love songs dying?",
+		text: "When we compare the proportion of love songs to all other pop hits, we see a striking, nearly 50% drop. So, we have to ask: is Boomer Bob right? Are love songs dying?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -153,23 +152,21 @@ const steps = {
 		text: "Not quite: we think Boomer Bob has too narrow of a view of love. Sure, Serenades have declined. But what about other songs? Is 'Buy U A Drank' by T-Pain a love song? What about 'I Will Always Love You' by Whitney Houston? 'WAP'? In this piece, we'll take a more expansive view.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedSongs: [
-				"Buy U A Drank (Shawty Snappin')",
-				"I Will Always Love You",
-				"WAP"
-			],
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
 				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
 			)
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true
+			songAnnotations: [
+				{ song: "Buy U A Drank (Shawty Snappin')", year: 2007 },
+				{ song: "I Will Always Love You", year: 1993 },
+				{ song: "WAP", year: 2020 }
+			]
 		}
-		// showLoveSongChange: true
 	},
 	whyWeCare: {
-		text: "After all, our world has changed immensely since 1959. While some things, like love itself, seem rather eternal, it only stands to reason that the individual stories, feelings and expressions of love might also shift with the times... and that exploring those shifts could be fun! (Or even illuminating)... ",
+		text: "Our world has changed immensely since 1959. It's easy to shake our fists and say, 'It's all gone down hill!' But we miss out on what's really happening. There's a fascinating story of complexity & change, if we challenges ourselves to look deeper at love songs -- and romance itself. So let's do that...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -236,7 +233,7 @@ const steps = {
 	},
 
 	longingAndHeartbreakDoNotTipTheScales: {
-		text: "Does expanding to include Heartbreak & Longing keep love songs alive? Au contraire! Added to Serenades, love songs have now dropped 22% since the 60s!",
+		text: "Does expanding to include Heartbreak & Longing reveal that love songs are still alive and well? Not at all! Love songs have still dropped just as precipitously since the 60s!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -290,7 +287,7 @@ const steps = {
 		loveSongTypeDefinitionImage: "courtship-&-anticipation"
 	},
 	courtshipHasNoEffect: {
-		text: "The popularity of Courtship & Anticipation songs has remained steady over the years, neither bolstering nor hurting the broader love song category as a whole.",
+		text: "The popularity of Courtship & Anticipation songs has remained fairly steady over the years. Their slight uptick in the modern era does little to change the love song's overall decline.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -370,7 +367,7 @@ const steps = {
 		}
 	},
 	itsComplicatedDoesNotTipTheScales: {
-		text: "But even with It's Complicated, love songs are still in decline, weighing in at a 16% decrease since the 60's.",
+		text: "Can this angsty genre save the love song? Not quite. We're getting closer, but the 60s still sport a more than a 25% advantage over the modern era.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -470,7 +467,7 @@ const steps = {
 	// Love song for the self
 
 	introducingLoveSongForTheSelf: {
-		text: "But what if heartbreak turns love... back onto the OG, yourself? Think: TLC & Destiny's Child in the early 2000s or Ariana Grande's 'Thank U, Next' in this female-dominated type.",
+		text: "Ok, fine. But what about when heartbreak turns love... back onto the OG, yourself? Think: TLC & Destiny's Child in the early 2000s or Ariana Grande's 'Thank U, Next' in this female-dominated type.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf],
@@ -486,7 +483,7 @@ const steps = {
 		}
 	},
 	definingLoveSongForTheSelf: {
-		text: "Even more of a female-led type, this Love Song for the Self is like a Serenade, but for the self. While it's never written to a lover, it's often written in reaction to romantic rejection -- you don't love me? That's ok, because I do!",
+		text: "This Love Song for the Self is like a Serenade, but for the self. While it's never written to a lover, it's often written in reaction to romantic rejection -- you don't love me? That's ok, because I do!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -514,7 +511,7 @@ const steps = {
 		loveSongTypeDefinitionImage: "love-song-for-the-self"
 	},
 	didLoveSongForTheSelfTipTheScales: {
-		text: "But even with Good Riddance & Love Song for the Self, love songs are still in decline - though less than before!",
+		text: "But even with Good Riddance & largerly women-pioneered Love Song for the Self, love songs are still in decline - though less than before!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -589,7 +586,7 @@ const steps = {
 		loveSongTypeDefinitionImage: "sexual-conquest"
 	},
 	sexualConquestInContext: {
-		text: "As Boomers bemoan, Sexual Confidence has risen in popularity in recent decades. It's even gone so far as to dethrone Serenades in the 2000s! While many might use this trend to suggest that young people today are far more interested in sex than love, other theoriests point out that for many of today's young people, sex has become the GATEWAY to love -- the first step, not the destination.",
+		text: "As Boomers bemoan, Sexual Confidence has risen in popularity in recent decades. It's even dethroned Serenades in the 2000s! Are today's youth far more interested in sex than love? Maybe. Other theoriests point out that for many of today's young people, sex has become the GATEWAY to love -- the first step, not the destination.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			visibleButNotSelectedLoveSongTypes: [
@@ -622,7 +619,7 @@ const steps = {
 	},
 
 	theLoveSongIsActuallyRising: {
-		text: "... and we have our answer: the love song is just as strong as it ever was (>2% change from the 60s!) In fact, love songs today are arguably more alive, encompassing more of the complexity of romance.",
+		text: "... and we have our answer: the love song is just as strong as it ever was (>2% decline since the 60s!) In fact, love songs today are arguably more alive, encompassing more of the complexity of romance.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]

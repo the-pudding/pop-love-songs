@@ -1,7 +1,6 @@
 <script>
 	import { LOVE_SONG_TYPE_CONSTANTS } from "$data/data-constants";
 	import { MIN_DATE } from "$data/songs-data";
-    import { onlyShowOneDecimalPlaceIfLessThan10 } from "$data/data-utils";
     
     import viewport from "$stores/viewport";
     import { currentStoryStep } from "$stores/storySteps";
@@ -23,10 +22,10 @@
 {#if $currentStoryStep.showLoveSongChange}
     <div>
         <div style:top={`${sixtiesYPos}px`} class="guideline"></div>
-        <div style:top={`${sixtiesYPos}px`} class="baseline-text">60s: {onlyShowOneDecimalPlaceIfLessThan10(1 - sixtiesYScreenPercentage)}</div>
+        <div style:top={`${sixtiesYPos}px`} class="baseline-text">60s</div>
 
         <div style:top={`${modernYPos}px`} class="guideline"></div>
-        <div style:top={`${modernYPos}px`}>now: {onlyShowOneDecimalPlaceIfLessThan10(1 - modernYScreenPercentage)}</div>
+        <div style:top={`${modernYPos}px`}>now</div>
         
         <div style:top={`${changeTextPos}px`} class="change">{$formattedLoveSongPercentChange}% change</div>
     
@@ -38,6 +37,7 @@
         z-index: 100000;
         position: fixed;
         right: 20px;
+        pointer-events: none;
     }
 
     div div.baseline-text {
