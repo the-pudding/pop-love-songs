@@ -23,12 +23,12 @@
 {#if $currentStoryStep.showLoveSongChange}
     <div>
         <div style:top={`${sixtiesYPos}px`} class="guideline"></div>
-        <div style:top={`${sixtiesYPos}px`}>60s: {onlyShowOneDecimalPlaceIfLessThan10(1 - sixtiesYScreenPercentage)}</div>
+        <div style:top={`${sixtiesYPos}px`} class="baseline-text">60s: {onlyShowOneDecimalPlaceIfLessThan10(1 - sixtiesYScreenPercentage)}</div>
 
         <div style:top={`${modernYPos}px`} class="guideline"></div>
         <div style:top={`${modernYPos}px`}>now: {onlyShowOneDecimalPlaceIfLessThan10(1 - modernYScreenPercentage)}</div>
         
-        <div style:top={`${changeTextPos}px`}>{$formattedLoveSongPercentChange}% change</div>
+        <div style:top={`${changeTextPos}px`} class="change">{$formattedLoveSongPercentChange}% change</div>
     
     </div>
 {/if}
@@ -40,9 +40,25 @@
         right: 20px;
     }
 
+    div div.baseline-text {
+        top: 50%;
+        transform: translateY(-100%);
+        display: flex;
+        align-items: baseline;
+    }
+
     div div.guideline {
         width: 100%;
         height: 1px;
         border-top: 1px dashed black;
+    }
+
+    div .change {
+        margin-right: 24px;
+
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: baseline;
     }
 </style>
