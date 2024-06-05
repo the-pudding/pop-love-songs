@@ -7,9 +7,7 @@
 
     import {selectedGenders, selectedSongs, selectedLoveSongTypes, selectedPerformers, timeRange, columnsToFilterVisibilityOn, visibleButNotSelectedLoveSongTypes, typesTreatedAsNonLoveSongs} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
-    import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
-	import { formattedChange } from "$stores/dataDerivations";
-	
+    import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"	
     
     // Story index synced to query params:
     const searchParams = new URLSearchParams("currentStoryStepIndex=0");
@@ -61,9 +59,6 @@
 <div class="container" style:height={`${STORY_STEP_CONTROLLER_BOTTOM_PADDING}px`}>
     <h4 class="title">
         {$currentStoryStep.text}
-        {#if $currentStoryStep.showLoveSongChange}
-            [Last 10 years vs 60s: <b>{$formattedChange}% point change</b>]
-        {/if}
     </h4>
 </div>
 

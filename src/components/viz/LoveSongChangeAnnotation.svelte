@@ -6,6 +6,7 @@
     import viewport from "$stores/viewport";
     import { currentStoryStep } from "$stores/storySteps";
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
+	import { formattedLoveSongPercentChange } from "$stores/dataDerivations";
 	
     export let tweenedCoords;
 
@@ -15,6 +16,8 @@
     // TODO: (bug?) the max value of the tweenedCoords does not === MAX_DATE... why? Is this a mistake in how we're laying out the coords?
     $: modernYScreenPercentage = tweenedCoords.find(({loveSongType}) => loveSongType === LOVE_SONG_TYPE_CONSTANTS.notALoveSong).svgCoords.at(-1).y0
     $: modernYPos = getYPosForPercentage(modernYScreenPercentage, $viewport.height)
+
+    $: changeTextPos = (sixtiesYPos + modernYPos) / 2
 </script>
 
 {#if $currentStoryStep.showLoveSongChange}
@@ -24,7 +27,9 @@
 
         <div style:top={`${modernYPos}px`} class="guideline"></div>
         <div style:top={`${modernYPos}px`}>now: {onlyShowOneDecimalPlaceIfLessThan10(1 - modernYScreenPercentage)}</div>
-        <!-- <div>[% change]</div> -->
+        
+        <div style:top={`${changeTextPos}px`}>{$formattedLoveSongPercentChange}% change</div>
+    
     </div>
 {/if}
 

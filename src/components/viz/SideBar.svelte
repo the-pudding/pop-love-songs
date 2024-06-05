@@ -1,7 +1,6 @@
 <script>
 	import {derived} from "svelte/store";
 	import { selectedSongsData } from "$stores/dataDerivations.js";
-	import LoveSongDeathMeter from "./LoveSongDeathMeter.svelte";
 	import SongInfo from "./SongInfo.svelte";
 
 	import { getArrayOfPerformers } from "$data/data-utils";
@@ -28,10 +27,6 @@
 
 
 <section style:width={300}>
-	<h4>Love song <b>popularity % change</b></h4>
-	<ul>
-		<LoveSongDeathMeter/>
-	</ul>
 	<h4>Top 20 artists for selection</h4>
 	<ul>
 		{#each ($performerSongCount).slice(0, 20) as [performer, count]}

@@ -622,7 +622,7 @@ const steps = {
 	},
 
 	theLoveSongIsActuallyRising: {
-		text: "... and we have our answer: the love song is just as strong as it ever was (>1% change from the 60s!) In fact, love songs today are arguably more alive, encompassing more of the complexity of romance.",
+		text: "... and we have our answer: the love song is just as strong as it ever was (>2% change from the 60s!) In fact, love songs today are arguably more alive, encompassing more of the complexity of romance.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]

@@ -330,7 +330,7 @@ export const percentageOfLoveSongsDuringLast10YearsOfSelection = derived(
 	}
 );
 
-export const changeFrom60sToLast10Years = derived(
+export const percentChangeFrom60sToLast10Years = derived(
 	[
 		percentageOfLoveSongsDuring1959To1969,
 		percentageOfLoveSongsDuringLast10YearsOfSelection
@@ -339,17 +339,17 @@ export const changeFrom60sToLast10Years = derived(
 		$percentageOfLoveSongsDuring1959To1969,
 		$percentageOfLoveSongsDuringLast10YearsOfSelection
 	]) => {
-		return (
+		const change =
 			$percentageOfLoveSongsDuringLast10YearsOfSelection -
-			$percentageOfLoveSongsDuring1959To1969
-		);
+			$percentageOfLoveSongsDuring1959To1969;
+		return change / $percentageOfLoveSongsDuring1959To1969;
 	}
 );
 
-export const formattedChange = derived(
-	changeFrom60sToLast10Years,
-	($changeFrom60sToLast10Years) => {
-		return `${$changeFrom60sToLast10Years > 0 ? "+" : $changeFrom60sToLast10Years < 0 ? "-" : ""}${onlyShowOneDecimalPlaceIfLessThan10(Math.abs($changeFrom60sToLast10Years))}`;
+export const formattedLoveSongPercentChange = derived(
+	percentChangeFrom60sToLast10Years,
+	($percentChangeFrom60sToLast10Years) => {
+		return `${$percentChangeFrom60sToLast10Years > 0 ? "+" : $percentChangeFrom60sToLast10Years < 0 ? "-" : ""}${onlyShowOneDecimalPlaceIfLessThan10(Math.abs(100 * $percentChangeFrom60sToLast10Years))}`;
 	}
 );
 
