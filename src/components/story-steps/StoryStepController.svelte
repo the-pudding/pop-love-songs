@@ -53,7 +53,7 @@
 </script>
 
 
-{#if $currentStoryStep.loveSongTypeDefinitionImage}
+{#if $currentStoryStep.showLoveSongTypeTableWithThisHighlighted}
     <LoveSongDefinitionTable />
 {/if}
 
