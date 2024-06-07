@@ -220,8 +220,7 @@ const steps = {
 			)
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true
+			...VISUAL_ENCODING_BLANK_STATE
 		},
 		showLoveSongTypeTableWithThisHighlighted:
 			LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
@@ -254,14 +253,11 @@ const steps = {
 						LOVE_SONG_TYPE_CONSTANTS.serenade,
 						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
 					].includes(t)
-			),
-			selectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.serenade,
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
-			]
+			)
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
+			...VISUAL_ENCODING_BLANK_STATE,
+			restartBubblesOnReturnInto: false
 		}
 	},
 
@@ -279,6 +275,7 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
+			restartBubblesOnAdvanceInto: false,
 			showAggregateSnakeChart: true
 		},
 		showLoveSongChange: true

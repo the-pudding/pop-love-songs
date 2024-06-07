@@ -33,8 +33,8 @@
 		...songObject,
 		// TODO: this is only relevant *on page load*. This choice works well specifically for the initial load.
 		// If we end up keeping step number query params, we might want to base this off the step number.
-		x: Math.random() * $viewport.width,
-		y: Math.random() * $viewport.height
+		x: 2 * Math.random() * $viewport.width - $viewport.width / 2,
+		y: 2 * Math.random() * $viewport.height - $viewport.height / 2
 		// x: $xForcePosition[songIndex],
 		// y: $yForcePosition[songIndex]
 	}));
