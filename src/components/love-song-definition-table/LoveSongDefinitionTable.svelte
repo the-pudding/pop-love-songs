@@ -5,6 +5,10 @@
     // Rendering logic:
     // Only show rows which have 1+ visible types
     // If there is 1+ highlighted types, then “un-highlight” any non-highlighted types
+
+    $: rowIsVisible = (loveSongTypesInRow) => {
+        return loveSongTypesInRow.some(loveSongType => !$currentStoryStep.searchAndFilterState.typesTreatedAsNonLoveSongs.some(t => t === loveSongType));
+    }
 </script>
 
 <table>
@@ -18,24 +22,30 @@
         <th scope="col"></th>
     </tr>
 
-    <tr>
-        <th scope="row">... might love you”</th>
-        <td style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]}</td>
-        <td class="straddles-cell-below" style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.sexualConquest]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.sexualConquest]}</td>
-    </tr>
-    <tr>
-        <th scope="row">... love you back ❤️”</th>
-        <td style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.serenade]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.serenade]}</td>
-        <td>
-            <div style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]}</div>
-            <div class="straddles-cell-below" style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]}</div>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row">... don't love you (but might have once)”</th>
-        <td style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]}</td>
-        <td style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]}</td>
-    </tr>
+    {#if rowIsVisible([LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation, LOVE_SONG_TYPE_CONSTANTS.sexualConquest])}
+        <tr>
+            <th scope="row">... might love you”</th>
+            <td style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]}</td>
+            <td class="straddles-cell-below" style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.sexualConquest]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.sexualConquest]}</td>
+        </tr>
+    {/if}
+    {#if rowIsVisible([LOVE_SONG_TYPE_CONSTANTS.serenade, LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf, LOVE_SONG_TYPE_CONSTANTS.itsComplicated])}
+        <tr>
+            <th scope="row">... love you back ❤️”</th>
+            <td style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.serenade]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.serenade]}</td>
+            <td>
+                <div style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]}</div>
+                <div class="straddles-cell-below" style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]}</div>
+            </td>
+        </tr>
+    {/if}
+    {#if rowIsVisible([LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak, LOVE_SONG_TYPE_CONSTANTS.goodRiddance])}
+        <tr>
+            <th scope="row">... don't love you (but might have once)”</th>
+            <td style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]}</td>
+            <td style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]}</td>
+        </tr>
+    {/if}
 </table>
 
 <style>

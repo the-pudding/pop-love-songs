@@ -212,7 +212,11 @@ const steps = {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
-				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
+				(t) =>
+					![
+						LOVE_SONG_TYPE_CONSTANTS.serenade,
+						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+					].includes(t)
 			)
 		},
 		visualEncodings: {
