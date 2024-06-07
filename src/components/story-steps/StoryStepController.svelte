@@ -4,11 +4,12 @@
     import { page } from "$app/stores";
 
     import Tap from "../helpers/Tap.svelte";
+    import LoveSongDefinitionTable from "../love-song-definition-table/LoveSongDefinitionTable.svelte";
 
     import {selectedGenders, selectedSongs, selectedLoveSongTypes, selectedPerformers, timeRange, columnsToFilterVisibilityOn, visibleButNotSelectedLoveSongTypes, typesTreatedAsNonLoveSongs} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"	
-    
+	
     // Story index synced to query params:
     const searchParams = new URLSearchParams("currentStoryStepIndex=0");
 
@@ -53,7 +54,7 @@
 
 
 {#if $currentStoryStep.loveSongTypeDefinitionImage}
-    <img src={`assets/${$currentStoryStep.loveSongTypeDefinitionImage}.png`} alt="love song definition table" />
+    <LoveSongDefinitionTable />
 {/if}
 
 <div class="container" style:height={`${STORY_STEP_CONTROLLER_BOTTOM_PADDING}px`}>
@@ -65,13 +66,6 @@
 <Tap on:tap={onTap} debug={false} enableKeyboard={true} showArrows={true} />
 
 <style>
-    img {
-        position: fixed; 
-        max-height: 80%;
-        top: 0; 
-        left: 0;
-        z-index: 100000000000;
-    }
     .container {
         position: fixed;
         bottom: 0px;
