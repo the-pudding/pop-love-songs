@@ -591,7 +591,7 @@ const steps = {
 		}
 	},
 	definingSexualConquest: {
-		text: "These songs blur the lines between courtship and romance (and perhaps love and lust), and we'll call them Sexual Confidence. Throbbing club beats and dance mixes... confident tunes that blend and remix genres...",
+		text: "These songs blur the lines between courtship and romance, and we'll call them Sexual Confidence. Has lust replaced love? Maybe. More likely, as theorists point, the younger generation sees sex as a *gateway* to love. The first step, not the destination.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -616,7 +616,7 @@ const steps = {
 			LOVE_SONG_TYPE_CONSTANTS.sexualConquest
 	},
 	sexualConquestInContext: {
-		text: "As Boomers bemoan, Sexual Confidence has risen in popularity in recent decades. It's even dethroned Serenades in the 2000s! Are today's youth far more interested in sex than love? Maybe. Other theoriests point out that for many of today's young people, sex has become the GATEWAY to love -- the first step, not the destination.",
+		text: "As Boomers bemoan, Sexual Confidence has risen in popularity in recent decades. It's even dethroned Serenades in the 2000s!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			visibleButNotSelectedLoveSongTypes: [
@@ -674,7 +674,7 @@ const steps = {
 		showLoveSongChange: true
 	},
 	whatCausedTheseChanges: {
-		text: "What caused these changes? Speculations abound -- on one hand, we've certainly changed how we think about love and relationships since the 60's. On the other hand, how Billboard ranks songs itself has changed, from a loosely polling record stores to analyzing streaming. It's possible many of these love songs were always popular -- it just took the Billboard recognizing streaming for them to be recognized.",
+		text: "What caused these changes? We've certainly changed how we think about love and relationships since the 60's. But how Billboard ranks songs itself has changed, from a loosely polling record stores to counting every stream. It's possible 'It's Complicated' songs played on 60s homes -- but Billboard only captured that popularity with streams.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
@@ -760,7 +760,7 @@ const unprocessedStorySteps = [
 	// Conclusion:
 	steps.addInNonLoveSongsInGray,
 	steps.theLoveSongIsActuallyRising,
-	steps.trendsWeExplored,
+	// steps.trendsWeExplored,
 	steps.whatCausedTheseChanges,
 
 	// Explore mode
