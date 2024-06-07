@@ -27,8 +27,8 @@
         <th scope="row">... love you back ❤️”</th>
         <td style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.serenade]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.serenade]}</td>
         <td>
-                <div style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]}</div>
-                <div class="straddles-cell-below" style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]}</div>
+            <div style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]}</div>
+            <div class="straddles-cell-below" style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]}</div>
         </td>
     </tr>
     <tr>
