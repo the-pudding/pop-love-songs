@@ -11,6 +11,7 @@ import {
 	getXPositionFromTime,
 	getYPositionInSnakeChart
 } from "./forcePositionOptions-helper.js";
+import { forceX, forceY } from "d3";
 
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
@@ -31,6 +32,8 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 const VISUAL_ENCODING_BLANK_STATE = {
 	calculateXForcePosition: getXPositionFromTime,
 	calculateYForcePosition: getYPositionInSnakeChart,
+	forceXStrength: 5, // it is FAR more important that the bubble is accurate to the time encoding
+	forceYStrength: 2, // the y position can be a bit more flexible
 
 	showAggregateSnakeChart: false,
 
@@ -49,8 +52,10 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: fractionOfScreenFactory(0.7, 0.3),
-			calculateYForcePosition: fractionOfScreenFactory(0.7, 0.3)
+			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
+			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			forceXStrength: 0.1,
+			forceYStrength: 0.1
 		}
 	},
 	highlightSerenadesWithinCluster: {
@@ -63,8 +68,10 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: fractionOfScreenFactory(0.7, 0.3),
-			calculateYForcePosition: fractionOfScreenFactory(0.7, 0.3)
+			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
+			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			forceXStrength: 0.1,
+			forceYStrength: 0.1
 		}
 	},
 	showJustSerenadeCluster: {
@@ -76,8 +83,10 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: fractionOfScreenFactory(0.7, 0.3),
-			calculateYForcePosition: fractionOfScreenFactory(0.7, 0.3)
+			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
+			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			forceXStrength: 0.2,
+			forceYStrength: 0.2
 		}
 	},
 	serenadesAreIndeedDying: {
@@ -90,7 +99,9 @@ const steps = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: fractionOfScreenFactory(0.5)
+			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			forceXStrength: 1,
+			forceYStrength: 0.5
 		}
 	},
 	serenadesPeakedInThe90s: {
@@ -107,7 +118,9 @@ const steps = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: fractionOfScreenFactory(0.5),
+			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			forceXStrength: 1,
+			forceYStrength: 0.5,
 			songAnnotations: [{ song: "I'll Make Love To You", year: 1994 }]
 		}
 	},
@@ -125,7 +138,9 @@ const steps = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: fractionOfScreenFactory(0.5),
+			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			forceXStrength: 1,
+			forceYStrength: 0.5,
 			songAnnotations: [
 				{ song: "Love Story", year: 2008 },
 				{ song: "Intentions", year: 2020 }
@@ -158,6 +173,7 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
+			forceYStrength: 0.1, // I want the bubbles to spread to fill their respective regions more similarly to the snake
 			songAnnotations: [
 				{ song: "Buy U A Drank (Shawty Snappin')", year: 2007 },
 				{ song: "I Will Always Love You", year: 1993 },

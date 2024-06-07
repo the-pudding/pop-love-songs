@@ -31,8 +31,12 @@
 	// Give it an initial position
 	const forceSimulationData = songsData.map((songObject, songIndex) => ({
 		...songObject,
-		x: $xForcePosition[songIndex],
-		y: $yForcePosition[songIndex]
+		// TODO: this is only relevant *on page load*. This choice works well specifically for the initial load.
+		// If we end up keeping step number query params, we might want to base this off the step number.
+		x: Math.random() * $viewport.width,
+		y: Math.random() * $viewport.height
+		// x: $xForcePosition[songIndex],
+		// y: $yForcePosition[songIndex]
 	}));
 
 	let canvas;
@@ -70,6 +74,10 @@
 			if (songInAnnotations(song, $currentStoryStep.visualEncodings.songAnnotations)) {
 				context.strokeStyle = "black";
 				context.lineWidth = 4;
+				context.stroke(circle);
+			} else if (isSelected && isVisible) {
+				context.strokeStyle = "white";
+				context.lineWidth = 0.2;
 				context.stroke(circle);
 			}
 		});
@@ -128,9 +136,10 @@
 	const updateSimulationProperties = () => {
 		if (!simulation) return;
 		simulation
-			.force("x", forceX().x((_, songIndex) => $xForcePosition[songIndex]).strength(5))
-			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex] || DEFAULT_Y_ENTRANCE_POSITION).strength(2))
-			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsVisible[songIndex] ? $songRadius[songIndex] : 0))
+			.force("x", forceX().x((_, songIndex) => $xForcePosition[songIndex]).strength($currentStoryStep.visualEncodings.forceXStrength))
+			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex] || DEFAULT_Y_ENTRANCE_POSITION).strength($currentStoryStep.visualEncodings.forceYStrength))
+			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsVisible[songIndex] ? $songRadius[songIndex] + 0.5 : 0).strength(0.5))
+			.velocityDecay(0.3) // think of it like "friction": lower values help things slide smoother, but too much causes a sort of "bounce" effect as it oscillates towards the force center
 			.alpha(0.06)
 			.restart();
 	};
