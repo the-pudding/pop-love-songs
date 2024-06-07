@@ -23,7 +23,7 @@
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
 	import { loveSongTypeColorMap, songRadius, unselectedLoveSongTypeColorMap, xForcePosition, yForcePosition } from "$stores/visualEncodings";
 	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
-	import { currentStoryStep } from "$stores/storySteps";
+	import { currentStoryStep, restartBubbles } from "$stores/storySteps";
 	import { visibleButNotSelectedLoveSongTypes } from "$stores/searchAndFilter";
 	import { songInAnnotations } from "$data/data-utils";
 	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";
@@ -141,7 +141,10 @@
 			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsVisible[songIndex] ? $songRadius[songIndex] + 0.5 : 0).strength(0.5))
 			.velocityDecay(0.3) // think of it like "friction": lower values help things slide smoother, but too much causes a sort of "bounce" effect as it oscillates towards the force center
 			.alpha(0.06)
-			.restart();
+		
+		if ($restartBubbles) {
+			simulation.restart()
+		}
 	};
 
 	// @michelle: I'm noticing a growing list of reactive elements here, and I'm wondering if we should be using a derived store for the data, and just make it one thing? 

@@ -1,4 +1,5 @@
 import { derived, writable } from "svelte/store";
+import previous from "./previous";
 import {
 	SONG_DATA_COLUMNS_ENUM,
 	LOVE_SONG_TYPE_CONSTANTS,
@@ -11,7 +12,6 @@ import {
 	getXPositionFromTime,
 	getYPositionInSnakeChart
 } from "./forcePositionOptions-helper.js";
-import { forceX, forceY } from "d3";
 
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
@@ -34,6 +34,8 @@ const VISUAL_ENCODING_BLANK_STATE = {
 	calculateYForcePosition: getYPositionInSnakeChart,
 	forceXStrength: 5, // it is FAR more important that the bubble is accurate to the time encoding
 	forceYStrength: 2, // the y position can be a bit more flexible
+	restartBubblesOnAdvanceInto: true,
+	restartBubblesOnReturnInto: true,
 
 	showAggregateSnakeChart: false,
 
@@ -54,6 +56,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
 			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			restartBubblesOnReturnInto: false,
 			forceXStrength: 0.1,
 			forceYStrength: 0.1
 		}
@@ -70,6 +73,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
 			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			restartBubblesOnAdvanceInto: false,
 			forceXStrength: 0.1,
 			forceYStrength: 0.1
 		}
@@ -100,6 +104,7 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			restartBubblesOnReturnInto: false,
 			forceXStrength: 1,
 			forceYStrength: 0.5
 		}
@@ -119,6 +124,8 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			restartBubblesOnAdvanceInto: false,
+			restartBubblesOnReturnInto: false,
 			forceXStrength: 1,
 			forceYStrength: 0.5,
 			songAnnotations: [{ song: "I'll Make Love To You", year: 1994 }]
@@ -139,6 +146,8 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			restartBubblesOnAdvanceInto: false,
+			restartBubblesOnReturnInto: true,
 			forceXStrength: 1,
 			forceYStrength: 0.5,
 			songAnnotations: [
@@ -157,6 +166,7 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
+			forceYStrength: 0.5, // PREP FOR NEXT SLIDE: I want the bubbles to spread to fill their respective regions more similarly to the snake
 			showAggregateSnakeChart: true
 		},
 		showLoveSongChange: true
@@ -173,6 +183,7 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
+			restartBubblesOnAdvanceInto: false,
 			forceYStrength: 0.1, // I want the bubbles to spread to fill their respective regions more similarly to the snake
 			songAnnotations: [
 				{ song: "Buy U A Drank (Shawty Snappin')", year: 2007 },
@@ -191,6 +202,7 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
+			restartBubblesOnAdvanceInto: false, // bubble chart isn't changing, leave it as is as snake comes in over the top
 			showAggregateSnakeChart: true
 		},
 		showLoveSongChange: true
@@ -765,7 +777,26 @@ export const storySteps = unprocessedStorySteps.map((step) => ({
 
 export const currentStoryStepIndex = writable(0);
 
+const previousStoryStepIndex = previous(currentStoryStepIndex, null);
+
 export const currentStoryStep = derived(
 	[currentStoryStepIndex],
 	([$currentStoryStepIndex]) => storySteps[$currentStoryStepIndex]
+);
+
+export const restartBubbles = derived(
+	[currentStoryStepIndex, previousStoryStepIndex],
+	([$currentStoryStepIndex, $previousStoryStepIndex]) => {
+		const isAdvancingIntoStep =
+			$currentStoryStepIndex > $previousStoryStepIndex ||
+			$previousStoryStepIndex === null;
+
+		if (isAdvancingIntoStep) {
+			return storySteps[$currentStoryStepIndex].visualEncodings
+				.restartBubblesOnAdvanceInto;
+		} else {
+			return storySteps[$currentStoryStepIndex].visualEncodings
+				.restartBubblesOnReturnInto;
+		}
+	}
 );
