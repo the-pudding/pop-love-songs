@@ -8,8 +8,10 @@
 	
 	import SearchAndFilterTopBar from "./viz/search-and-filter-top-bar/SearchAndFilterTopBar.svelte";
 	
+	import { currentStoryStep } from "$stores/storySteps";
 	// TODO: disable devMode in production
 	import devMode from "$stores/devMode";
+	
 	
 	$: handleKeyPress = (e) => {
 		if (e.key === "d") {
@@ -20,7 +22,7 @@
 
 <svelte:window on:keydown={handleKeyPress} />
 
-{#if $devMode}
+{#if $devMode || $currentStoryStep.allowUserToChangeFilters}
 	<SearchAndFilterTopBar />
 {/if}
 <MainViz />
