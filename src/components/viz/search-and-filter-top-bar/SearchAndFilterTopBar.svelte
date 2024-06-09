@@ -1,28 +1,19 @@
 <script>
-	import LoveSongTypeFilter from "./LoveSongTypeFilter.svelte";
 	import GenderFilter from "./GenderFilter.svelte";
 	import PerformerFilter from "./PerformerFilter.svelte";
+	import SnakeBubbleToggle from "./SnakeBubbleToggle.svelte";
 	import SongFilter from "./SongFilter.svelte";
-	import TimeRangeFilter from "./TimeRangeFilter.svelte";
-	// Purely for authorship visibility/ease:
-	import ColumnsToFilterVisibilityOn from './ColumnsToFilterVisibilityOn.svelte'
-	import VisibleButNotSelectedLoveSongTypes from './VisibleButNotSelectedLoveSongTypes.svelte'
-
 
 </script>
 
 <fieldset>
 	<div>
-		<LoveSongTypeFilter />
 		<GenderFilter />
+		
+		<SnakeBubbleToggle />
+		<!-- These only make sense in bubble view: -->
 		<PerformerFilter />
 		<SongFilter />
-		<TimeRangeFilter />
-		<!-- For authoring -->
-		<span>Slide-controls:</span>
-		<ColumnsToFilterVisibilityOn />
-		<VisibleButNotSelectedLoveSongTypes />
-		<span>)</span>
 	</div>
 </fieldset>
 

@@ -24,9 +24,9 @@
 	import { loveSongTypeColorMap, songRadius, unselectedLoveSongTypeColorMap, xForcePosition, yForcePosition } from "$stores/visualEncodings";
 	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
 	import { currentStoryStep, restartBubbles } from "$stores/storySteps";
-	import { visibleButNotSelectedLoveSongTypes } from "$stores/searchAndFilter";
+	import { showAggregateSnakeChart } from "$stores/searchAndFilter";
 	import { songInAnnotations } from "$data/data-utils";
-	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";
+	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";	
 
 	// Give it an initial position
 	const forceSimulationData = songsData.map((songObject, songIndex) => ({
@@ -119,7 +119,7 @@
 			offsetY
 		);
 		const selectedSong = forceSimulationData[songIndex]?.song;
-		if (selectedSong && !$currentStoryStep.visualEncodings.showAggregateSnakeChart) {
+		if (selectedSong && !$showAggregateSnakeChart) {
 			// This is just to make it easier to pull up a song on YouTube
 			searchSongOnYouTube(selectedSong);
 		}
@@ -187,7 +187,7 @@
 
 	$: {
 		tweenedCoords.set($svgCoordsForLoveSongTypes);
-		if ($currentStoryStep.visualEncodings.showAggregateSnakeChart) {
+		if ($showAggregateSnakeChart) {
 			aggregateSnakeChartOpacity.set(1);
 			
 		} else {
@@ -202,7 +202,7 @@
 
 <svg height={$viewport.height} width={$viewport.width} style="opacity: {$aggregateSnakeChartOpacity}">
 	{#each $tweenedCoords as { loveSongType, svgCoords }}
-		<path d={$svgPathGenerator(svgCoords)} fill={getSnakeFill(loveSongType, $visibleButNotSelectedLoveSongTypes.includes(loveSongType), $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap)} />
+		<path d={$svgPathGenerator(svgCoords)} fill={getSnakeFill(loveSongType, $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType), $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap)} />
 		<g fill="none" stroke-width="1" stroke-miterlimit="1">
 			<path d={$svgPathGenerator.lineY1()(svgCoords)} stroke="#000"></path>
 			<path d={$svgPathGenerator.lineY0()(svgCoords)} stroke="#000"></path>

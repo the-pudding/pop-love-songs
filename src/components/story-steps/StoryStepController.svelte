@@ -6,7 +6,7 @@
     import Tap from "../helpers/Tap.svelte";
     import LoveSongDefinitionTable from "../love-song-definition-table/LoveSongDefinitionTable.svelte";
 
-    import {selectedGenders, selectedSongs, selectedLoveSongTypes, selectedPerformers, timeRange, columnsToFilterVisibilityOn, visibleButNotSelectedLoveSongTypes, typesTreatedAsNonLoveSongs} from "$stores/searchAndFilter.js"
+    import {selectedGenders, selectedSongs, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"	
 	
@@ -40,13 +40,10 @@
     const updateFilterFilterState = () => {
         selectedSongs.set([...$currentStoryStep.searchAndFilterState.selectedSongs])
         selectedGenders.set([...$currentStoryStep.searchAndFilterState.selectedGenders])
-        selectedLoveSongTypes.set([...$currentStoryStep.searchAndFilterState.selectedLoveSongTypes])
         selectedPerformers.set([...$currentStoryStep.searchAndFilterState.selectedPerformers])
-        timeRange.set({...$currentStoryStep.searchAndFilterState.timeRange})
         
-        columnsToFilterVisibilityOn.set([...$currentStoryStep.searchAndFilterState.columnsToFilterVisibilityOn])
-        visibleButNotSelectedLoveSongTypes.set([...$currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes])
         typesTreatedAsNonLoveSongs.set([...$currentStoryStep.searchAndFilterState.typesTreatedAsNonLoveSongs])
+        showAggregateSnakeChart.set($currentStoryStep.visualEncodings.showAggregateSnakeChart)
     }
 
     $: $currentStoryStepIndex, updateFilterFilterState()

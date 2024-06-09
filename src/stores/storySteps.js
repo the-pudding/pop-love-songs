@@ -690,22 +690,14 @@ const steps = {
 	youDecide: {
 		text: "But what about you? Do these count as 'love songs,' or do you have a different definition? You decide: click the buttons by the love song type labels to determine what does and doesn't count as a love song, and tell US how the love song is doing!",
 		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			columnsToFilterVisibilityOn: [
+				SONG_DATA_COLUMNS_ENUM.type_and_gender_list_str
+			]
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
-		},
-		showLoveSongChange: true,
-		allowUserToChangeFilters: true
-	},
-	youDecideBubbleVersion: {
-		text: "[bubble view, mostly just for us to play with during development -- worth keeping as an option to switch to here in the sandbox? [hit 'd' to open/close filters]]",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
 		},
 		showLoveSongChange: true,
 		allowUserToChangeFilters: true
@@ -764,8 +756,7 @@ const unprocessedStorySteps = [
 	steps.whatCausedTheseChanges,
 
 	// Explore mode
-	steps.youDecide,
-	steps.youDecideBubbleVersion
+	steps.youDecide
 ];
 
 export const storySteps = unprocessedStorySteps.map((step) => ({

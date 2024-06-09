@@ -12,11 +12,7 @@ import {
 import {
 	selectedGenders,
 	selectedSongs,
-	selectedLoveSongTypes,
 	selectedPerformers,
-	timeRange,
-	columnsToFilterVisibilityOn,
-	visibleButNotSelectedLoveSongTypes,
 	typesTreatedAsNonLoveSongs
 } from "./searchAndFilter.js";
 import { currentStoryStep } from "./storySteps.js";
@@ -36,17 +32,23 @@ const genderSelected = derived(
 );
 
 const loveSongTypeSelected = derived(
-	[selectedLoveSongTypes, visibleButNotSelectedLoveSongTypes],
-	([$selectedLoveSongTypes, $visibleButNotSelectedLoveSongTypes]) =>
+	[currentStoryStep],
+	([$currentStoryStep]) =>
 		songsData.map(({ song }) => {
 			const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 			const passesSpecialCase =
-				!$visibleButNotSelectedLoveSongTypes.includes(loveSongType) ||
-				$visibleButNotSelectedLoveSongTypes.length === 0;
+				!$currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(
+					loveSongType
+				) ||
+				$currentStoryStep.searchAndFilterState
+					.visibleButNotSelectedLoveSongTypes.length === 0;
 			return (
 				passesSpecialCase &&
-				($selectedLoveSongTypes.includes(loveSongType) ||
-					$selectedLoveSongTypes.length === 0)
+				($currentStoryStep.searchAndFilterState.selectedLoveSongTypes.includes(
+					loveSongType
+				) ||
+					$currentStoryStep.searchAndFilterState.selectedLoveSongTypes
+						.length === 0)
 			);
 		}),
 	[]
@@ -79,11 +81,12 @@ const songSelected = derived(
 );
 
 const withinTimeRange = derived(
-	[timeRange],
-	([$timeRange]) =>
+	[currentStoryStep],
+	([$currentStoryStep]) =>
 		songsData.map(({ song }) => {
-			const startYear = $timeRange.startYear;
-			const endYear = $timeRange.endYear;
+			const { timeRange } = $currentStoryStep.searchAndFilterState;
+			const startYear = timeRange.startYear;
+			const endYear = timeRange.endYear;
 			const dateAsDecimal = song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
 			return (
 				(!startYear || startYear <= dateAsDecimal) &&
@@ -131,8 +134,7 @@ export const songIsVisible = derived(
 		performerSelected,
 		songSelected,
 		withinTimeRange,
-		columnsToFilterVisibilityOn,
-		visibleButNotSelectedLoveSongTypes
+		currentStoryStep
 	],
 	([
 		$genderSelected,
@@ -140,39 +142,43 @@ export const songIsVisible = derived(
 		$performerSelected,
 		$songSelected,
 		$withinTimeRange,
-		$columnsToFilterVisibilityOn,
-		$visibleButNotSelectedLoveSongTypes
+		$currentStoryStep
 	]) =>
 		songsData.map((song, index) => {
 			// If we're filtering visibility based on a given column, then it must be selected to be visible.
-			const genderVisible = $columnsToFilterVisibilityOn.includes(
-				SONG_DATA_COLUMNS_ENUM.type_and_gender_list_str
-			)
-				? $genderSelected[index]
-				: true;
-			const loveSongTypeVisible = $columnsToFilterVisibilityOn.includes(
-				SONG_DATA_COLUMNS_ENUM.love_song_sub_type
-			)
-				? $loveSongTypeSelected[index] ||
-					$visibleButNotSelectedLoveSongTypes.includes(
-						songsData[index].song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-					)
-				: true;
-			const performerVisible = $columnsToFilterVisibilityOn.includes(
-				SONG_DATA_COLUMNS_ENUM.performers_list_str
-			)
-				? $performerSelected[index]
-				: true;
-			const songVisible = $columnsToFilterVisibilityOn.includes(
-				SONG_DATA_COLUMNS_ENUM.song
-			)
-				? $songSelected[index]
-				: true;
-			const timeRangeVisible = $columnsToFilterVisibilityOn.includes(
-				SONG_DATA_COLUMNS_ENUM.date_as_decimal
-			)
-				? $withinTimeRange[index]
-				: true;
+			const genderVisible =
+				$currentStoryStep.searchAndFilterState.columnsToFilterVisibilityOn.includes(
+					SONG_DATA_COLUMNS_ENUM.type_and_gender_list_str
+				)
+					? $genderSelected[index]
+					: true;
+			const loveSongTypeVisible =
+				$currentStoryStep.searchAndFilterState.columnsToFilterVisibilityOn.includes(
+					SONG_DATA_COLUMNS_ENUM.love_song_sub_type
+				)
+					? $loveSongTypeSelected[index] ||
+						$currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(
+							songsData[index].song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+						)
+					: true;
+			const performerVisible =
+				$currentStoryStep.searchAndFilterState.columnsToFilterVisibilityOn.includes(
+					SONG_DATA_COLUMNS_ENUM.performers_list_str
+				)
+					? $performerSelected[index]
+					: true;
+			const songVisible =
+				$currentStoryStep.searchAndFilterState.columnsToFilterVisibilityOn.includes(
+					SONG_DATA_COLUMNS_ENUM.song
+				)
+					? $songSelected[index]
+					: true;
+			const timeRangeVisible =
+				$currentStoryStep.searchAndFilterState.columnsToFilterVisibilityOn.includes(
+					SONG_DATA_COLUMNS_ENUM.date_as_decimal
+				)
+					? $withinTimeRange[index]
+					: true;
 
 			return (
 				genderVisible &&
@@ -248,37 +254,23 @@ export function getLoveSongPercentage(
 }
 
 export const percentageOfLoveSongsCurrentlySelected = derived(
-	[
-		selectedSongsData,
-		selectedLoveSongTypes,
-		timeRange,
-		typesTreatedAsNonLoveSongs
-	],
-	([
-		$selectedSongsData,
-		$selectedLoveSongTypes,
-		$timeRange,
-		$typesTreatedAsNonLoveSongs
-	]) => {
+	[selectedSongsData, currentStoryStep, typesTreatedAsNonLoveSongs],
+	([$selectedSongsData, $currentStoryStep, $typesTreatedAsNonLoveSongs]) => {
 		return getLoveSongPercentage(
 			$typesTreatedAsNonLoveSongs,
 			$selectedSongsData,
-			$selectedLoveSongTypes,
-			$timeRange.startYear,
-			$timeRange.endYear
+			$currentStoryStep.searchAndFilterState.selectedLoveSongTypes,
+			$currentStoryStep.searchAndFilterState.timeRange.startYear,
+			$currentStoryStep.searchAndFilterState.timeRange.endYear
 		);
 	}
 );
 
 export const percentageOfLoveSongsDuring1959To1969 = derived(
-	[
-		selectedSongsDataIgnoringTime,
-		selectedLoveSongTypes,
-		typesTreatedAsNonLoveSongs
-	],
+	[selectedSongsDataIgnoringTime, currentStoryStep, typesTreatedAsNonLoveSongs],
 	([
 		$selectedSongsDataIgnoringTime,
-		$selectedLoveSongTypes,
+		$currentStoryStep,
 		$typesTreatedAsNonLoveSongs
 	]) => {
 		return getLoveSongPercentage(
@@ -286,7 +278,7 @@ export const percentageOfLoveSongsDuring1959To1969 = derived(
 			// Note: we want to be able to *reliably* compare to the 60s and not have it accidentally filtered out
 			// if we happen to look at a selection that doesn't include the 60s.
 			$selectedSongsDataIgnoringTime,
-			$selectedLoveSongTypes,
+			$currentStoryStep.searchAndFilterState.selectedLoveSongTypes,
 			1959,
 			1969
 		);
@@ -308,13 +300,13 @@ export const maxYearFromSelectedSongs = derived(
 export const percentageOfLoveSongsDuringLast10YearsOfSelection = derived(
 	[
 		selectedSongsData,
-		selectedLoveSongTypes,
+		currentStoryStep,
 		maxYearFromSelectedSongs,
 		typesTreatedAsNonLoveSongs
 	],
 	([
 		$selectedSongsData,
-		$selectedLoveSongTypes,
+		$currentStoryStep,
 		$maxYearFromSelectedSongs,
 		$typesTreatedAsNonLoveSongs
 	]) => {
@@ -323,7 +315,7 @@ export const percentageOfLoveSongsDuringLast10YearsOfSelection = derived(
 		return getLoveSongPercentage(
 			$typesTreatedAsNonLoveSongs,
 			$selectedSongsData,
-			$selectedLoveSongTypes,
+			$currentStoryStep.searchAndFilterState.selectedLoveSongTypes,
 			tenYearsBefore,
 			$maxYearFromSelectedSongs
 		);
