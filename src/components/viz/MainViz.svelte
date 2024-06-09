@@ -162,7 +162,6 @@
 		context = canvas.getContext("2d");
 
 		simulation = forceSimulation(forceSimulationData).on("tick", () => {
-			console.log('updating viz with simulation')
 			updateVisibleAndInvisibleCanvases();
 		});
 

@@ -1,10 +1,12 @@
+<!-- NOTE: David modified this file so the parent would control state, this just displays it and calls a callback when toggled -->
 <script>
 	export let label;
 	export let style = "inner";
 	export let options = ["on", "off"];
 	export let value = options[0];
+	export let onToggle = () => {};
 
-	let checked = value === options[0];
+	$: checked = value === options[0];
 
 	const id = `toggle-${Math.floor(Math.random() * 1000000)}`;
 
@@ -12,7 +14,7 @@
 		const target = event.target;
 		const state = target.getAttribute("aria-checked");
 		checked = state === "true" ? false : true;
-		value = checked ? options[0] : options[1];
+		onToggle({checked, value: checked ? options[0] : options[1]});
 	};
 </script>
 

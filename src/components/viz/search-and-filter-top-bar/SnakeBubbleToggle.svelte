@@ -16,8 +16,8 @@
 		localValue = $showAggregateSnakeChart? CHART_OPTIONS.snake : CHART_OPTIONS.bubble;
 	});
 
-	// Watch for changes in the userSelectedSongs and update the store
-	$: {
+	const handleToggle = ({value}) => {
+		localValue = value;
 		showAggregateSnakeChart.set(localValue === CHART_OPTIONS.snake);
 	}
 
@@ -25,4 +25,4 @@
 	onDestroy(unsubscribe);
 </script>
 
-<Toggle label="Enable" style="inner" options={Object.values(CHART_OPTIONS)} bind:value={localValue} />
+<Toggle label="Enable" style="inner" options={Object.values(CHART_OPTIONS)} value={localValue} onToggle={handleToggle} />
