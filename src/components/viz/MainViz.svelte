@@ -17,8 +17,7 @@
 		getInvisibleFillFromSongIndex,
 		getSnakeFill,
 		getSongFill,
-		getSongIndexFromInvisibleFill,
-		searchSongOnYouTube
+		getSongIndexFromInvisibleFill
 	} from "./viz-utils";
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
 	import { loveSongTypeColorMap, songRadius, unselectedLoveSongTypeColorMap, xForcePosition, yForcePosition } from "$stores/visualEncodings";
@@ -120,8 +119,7 @@
 		);
 		const selectedSong = forceSimulationData[songIndex]?.song;
 		if (selectedSong && !$showAggregateSnakeChart) {
-			// This is just to make it easier to pull up a song on YouTube
-			searchSongOnYouTube(selectedSong);
+			// TODO: is there anything we want done? If not, delete this code.
 		}
 	};
 
