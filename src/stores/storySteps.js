@@ -30,6 +30,7 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 };
 
 const VISUAL_ENCODING_BLANK_STATE = {
+	onLoadUseRandomInitialPositions: false,
 	calculateXForcePosition: getXPositionFromTime,
 	calculateYForcePosition: getYPositionInSnakeChart,
 	forceXStrength: 5, // it is FAR more important that the bubble is accurate to the time encoding
@@ -54,6 +55,7 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
+			onLoadUseRandomInitialPositions: true,
 			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
 			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
 			restartBubblesOnReturnInto: false,
@@ -71,6 +73,7 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
+			onLoadUseRandomInitialPositions: true,
 			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
 			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
 			restartBubblesOnAdvanceInto: false,
@@ -87,6 +90,7 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
+			onLoadUseRandomInitialPositions: true,
 			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
 			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
 			forceXStrength: 0.2,

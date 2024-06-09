@@ -27,15 +27,12 @@
 	import { songInAnnotations } from "$data/data-utils";
 	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";	
 
-	// Give it an initial position
+	// Initiate mutable simulation, give bubbles an initial position
 	const forceSimulationData = songsData.map((songObject, songIndex) => ({
 		...songObject,
-		// TODO: this is only relevant *on page load*. This choice works well specifically for the initial load.
-		// If we end up keeping step number query params, we might want to base this off the step number.
-		x: 2 * Math.random() * $viewport.width - $viewport.width / 2,
-		y: 2 * Math.random() * $viewport.height - $viewport.height / 2
-		// x: $xForcePosition[songIndex],
-		// y: $yForcePosition[songIndex]
+		
+		x: $currentStoryStep.visualEncodings.onLoadUseRandomInitialPositions ? 2 * Math.random() * $viewport.width - $viewport.width / 2 : $xForcePosition[songIndex],
+		y: $currentStoryStep.visualEncodings.onLoadUseRandomInitialPositions ? 2 * Math.random() * $viewport.height - $viewport.height / 2 : $yForcePosition[songIndex]
 	}));
 
 	let canvas;
