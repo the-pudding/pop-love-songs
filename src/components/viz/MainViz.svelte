@@ -17,7 +17,7 @@
 		getInvisibleFillFromSongIndex,
 		getSnakeFill,
 		getSongFill,
-		getSongIndexFromInvisibleFill
+		getSongIndexFromClickLocation
 	} from "./viz-utils";
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
 	import { loveSongTypeColorMap, songRadius, unselectedLoveSongTypeColorMap, xForcePosition, yForcePosition } from "$stores/visualEncodings";
@@ -100,27 +100,16 @@
 	};
 
 	const handleMouseMove = (e) => {
+		if ($showAggregateSnakeChart) return
 		const { offsetX, offsetY } = e;
-		const songIndex = getSongIndexFromInvisibleFill(
-			invisibleContext,
-			offsetX,
-			offsetY
-		);
-		const selectedSong = forceSimulationData[songIndex]?.song;
+		const songIndex = getSongIndexFromClickLocation(invisibleContext, offsetX, offsetY);		
+		const selectedSong = $songIsSelected[songIndex] && $songIsVisible[songIndex] && forceSimulationData[songIndex]?.song;
 		handleSongHovered(selectedSong, offsetX, offsetY);
 	};
 
+	// TODO: do we want to do anything here? if not delete.
 	const handleSongClicked = (e) => {
-		const { offsetX, offsetY } = e;
-		const songIndex = getSongIndexFromInvisibleFill(
-			invisibleContext,
-			offsetX,
-			offsetY
-		);
-		const selectedSong = forceSimulationData[songIndex]?.song;
-		if (selectedSong && !$showAggregateSnakeChart) {
-			// TODO: is there anything we want done? If not, delete this code.
-		}
+		// const { offsetX, offsetY } = e;
 	};
 
 	const resizeCanvases = () => {

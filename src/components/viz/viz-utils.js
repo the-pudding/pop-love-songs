@@ -21,7 +21,7 @@ export const getInvisibleFillFromSongIndex = (songIndex) => {
 	return `rgb(${rgb.join(",")})`;
 };
 
-export const getSongIndexFromInvisibleFill = (
+const lookForSongIndexFromInvisibleFill = (
 	invisibleContext,
 	offsetX,
 	offsetY
@@ -39,6 +39,42 @@ export const getSongIndexFromInvisibleFill = (
 	// Convert to a song index
 	const songIndex = (rgbHex - BASE_OFFSET) / NEXT_COLOR_STEP;
 	return songIndex < 0 ? null : songIndex;
+};
+
+export const getSongIndexFromClickLocation = (
+	invisibleContext,
+	offsetX,
+	offsetY
+) => {
+	const DISTANCE_TO_EXPLORE = 1; // I tried a lot of smaller values, this seems to work best, though it it does exclude super tiny songs
+	const offsetsToTry = [
+		[offsetX, offsetY],
+		[offsetX + DISTANCE_TO_EXPLORE, offsetY + DISTANCE_TO_EXPLORE],
+		[offsetX - DISTANCE_TO_EXPLORE, offsetY - DISTANCE_TO_EXPLORE],
+		[offsetX + DISTANCE_TO_EXPLORE, offsetY - DISTANCE_TO_EXPLORE],
+		[offsetX - DISTANCE_TO_EXPLORE, offsetY + DISTANCE_TO_EXPLORE]
+	];
+	const potentialSongIndexes = offsetsToTry.map(([x, y]) =>
+		lookForSongIndexFromInvisibleFill(invisibleContext, x, y)
+	);
+	const MIN_NUM_MATCHING_SONG_INDEXES = 3;
+	// Check if the count of the most common song index is greater than the minimum
+	const songIndex = potentialSongIndexes.reduce((acc, curr) => {
+		acc[curr] = (acc[curr] || 0) + 1;
+		return acc;
+	}, {});
+	const songIndexCounts = Object.values(songIndex);
+	const maxSongIndexCount = Math.max(...songIndexCounts);
+
+	if (maxSongIndexCount < MIN_NUM_MATCHING_SONG_INDEXES) {
+		return null;
+	}
+
+	// Get the song index that has the highest count
+	const songIndexWithMaxCount = Object.keys(songIndex).find(
+		(key) => songIndex[key] === maxSongIndexCount
+	);
+	return songIndexWithMaxCount;
 };
 
 export const getSongFill = (
