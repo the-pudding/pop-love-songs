@@ -53,9 +53,9 @@
         <tr>
             <th scope="row">... don't love you (but might have once)”</th>
             <td style:opacity={typeOpacity(LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak)} style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]}</td>
-            <td style:opacity={typeOpacity(LOVE_SONG_TYPE_CONSTANTS.goodRiddance)} style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]}>
+            <td>
                 <div class="straddles-cell-above" style:opacity={typeOpacity(LOVE_SONG_TYPE_CONSTANTS.itsComplicated)} style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]}</div>
-                <div>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]}</div>
+                <div style:opacity={typeOpacity(LOVE_SONG_TYPE_CONSTANTS.goodRiddance)} style:color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]}</div>
             </td>
         </tr>
     {/if}
