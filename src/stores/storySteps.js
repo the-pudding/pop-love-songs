@@ -64,7 +64,7 @@ const steps = {
 		}
 	},
 	highlightSerenadesWithinCluster: {
-		text: "... you'll see tons of what you might call Serenades: songs that directly express a feeling of love and/or devotion for someone. Swelling strings, a more slow-to-moderate tempo, perfect to dance to at prom or a wedding... How sweet!",
+		text: "... you'll see tons of what you might call Serenades: songs that directly express a feeling of love and/or devotion for someone. Think 'No One' by Alicia Keys or 'Perfect' by Ed Sheeran. With swelling strings or sentimental guitar, it's the stuff you dance to at prom or a wedding... How sweet!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -98,7 +98,7 @@ const steps = {
 		}
 	},
 	serenadesAreIndeedDying: {
-		text: "If you spread the Serenades from 1959-2023, they are indeed declining...",
+		text: "If you spread the Serenades from 1959-2023, they are indeed declining, both in total count and total popularity...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -161,7 +161,7 @@ const steps = {
 		}
 	},
 	anAggSnakeChartMakesBoomerBobSeemRight: {
-		text: "When we compare the proportion of love songs to all other pop hits, we see a striking, nearly 50% drop. So, we have to ask: is Boomer Bob right? Are love songs dying?",
+		text: "When we compare the proportion of love songs to all other pop hits, we see a striking, nearly 50% drop since the 60s. So, we have to ask: is Boomer Bob right? Are love songs dying?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -178,7 +178,7 @@ const steps = {
 
 	// What counts as love song?
 	butWeWillTakeAMoreExpansiveView: {
-		text: "Not quite: we think Boomer Bob has too narrow of a view of love. Sure, Serenades have declined. But what about other songs? Is 'Buy U A Drank' by T-Pain a love song? What about 'I Will Always Love You' by Whitney Houston? 'WAP'? In this piece, we'll take a more expansive view.",
+		text: "Not quite: we think Boomer Bob has too narrow of a view of love. Sure, Serenades have declined. But what about other songs? What about 'I Will Always Love You' by Whitney Houston? Is 'Buy U A Drank' by T-Pain a love song? Or 'WAP'? In this piece, we'll take a more expansive view.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -197,7 +197,7 @@ const steps = {
 		}
 	},
 	whyWeCare: {
-		text: "Our world has changed immensely since 1959. It's easy to shake our fists and say, 'It's all gone down hill!' But we miss out on what's really happening. There's a fascinating story of complexity & change, if we challenges ourselves to look deeper at love songs -- and romance itself. So let's do that...",
+		text: "Pop has massively changed since 1959. It's easy to shake our fists and say, 'Kids these days don't value love anymore!' But if we do, we might miss what's *really* going on. Truth is, if we challenges ourselves to look deeper at love songs -- and romance itself -- we a find far more complex (and fascinating) story. Let us show you...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -212,7 +212,20 @@ const steps = {
 		showLoveSongChange: true
 	},
 	introTheTypeGrid: {
-		text: "Earlier we showed you the Serenades. These are the bona fide love songs, passed down from ancient times: you loves someone, and they love you back! It's the best-case scenario. But what happens if you love them, but they just... don't?",
+		text: "If we're going to take you deep into love song land, we need a classification system. Earlier we showed you most obvioius form of love songs: Serenades. What typifies these songs (besides sappiness)? The relationship between the subjects: you loves someone, and they love you back! It's the best-case scenario in love.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) => ![LOVE_SONG_TYPE_CONSTANTS.serenade].includes(t)
+			)
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE
+		},
+		showLoveSongTypeTableWithThisHighlighted: LOVE_SONG_TYPE_CONSTANTS.serenade
+	},
+	addingHeartbreakToTheGrid: {
+		text: "But what happens if you love them, but they just... don't? We can add another row to our table, where we'll name this new type of sad love song: Longing & Heartbreak.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -232,7 +245,7 @@ const steps = {
 
 	// Remaining Boomer-Bob-friendly types:
 	introducingLongingAndHeartbreak: {
-		text: "Longing & Heartbreak is what happens. Ouch! It's typified here by songs like Whitney Houston's 'I Will Always Love You' or Rihanna's 'Stay.'",
+		text: "Longing & Heartbreak songs are typified here by songs like Whitney Houston's 'I Will Always Love You' or Rihanna's 'Stay.'",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak],
@@ -266,7 +279,7 @@ const steps = {
 	},
 
 	longingAndHeartbreakDoNotTipTheScales: {
-		text: "Does expanding to include Heartbreak & Longing reveal that love songs are still alive and well? Not at all! Love songs have still dropped just as precipitously since the 60s!",
+		text: "Does expanding to include Heartbreak & Longing reveal that love songs are still alive and well? Not at all! Even with this expanded defintion of love songs, they've have declined just as much since the 60s!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -347,7 +360,7 @@ const steps = {
 
 	// its complicated
 	introducingItsComplicated: {
-		text: "Now, let's explore love songs that pull in more of romance's complexity. What about when a relationship isn't clearly good or bad? You're with someone, but constantly fighting. Or maybe you know they're unfaithful, but still want to work it out...",
+		text: "Ok, so the love song *is* dying, it seems? Not so fast: brace yourself, Boomers, we're about to explore the messier side of romance. To start: what about when a relationship isn't clearly good or bad? You're with someone, but constantly fighting. Maybe you know they're unfaithful, but you still have hope...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.itsComplicated],
@@ -363,7 +376,7 @@ const steps = {
 		}
 	},
 	definingItsComplicated: {
-		text: "Sometimes a romantic relationship isn't squarely thriving or over. Sometimes... It's Complicated. ",
+		text: "Truth is, sometimes a romantic relationship straddles both love *and* heartbreak because, well... It's Complicated. Boomers, we see you: these may not be the classic love songs of your youth isn't, so we'll give them their own column.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -385,7 +398,7 @@ const steps = {
 			LOVE_SONG_TYPE_CONSTANTS.itsComplicated
 	},
 	itsComplicatedDetail: {
-		text: "It's Complicated hit its stride in the 00s and 10s, surpassing Courtship & Anticipation as well as Longing & Heartbreak. If these songs are any indication, angst is on the rise in romance!",
+		text: "Popular culture seems to have steadily warmed to the more complex experiences of love. It's Complicated hit its stride in the 00s and 10s, surpassing both Courtship & Anticipation and Longing & Heartbreak.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			visibleButNotSelectedLoveSongTypes: LOVE_SONG_TYPES.filter(
@@ -407,7 +420,7 @@ const steps = {
 		}
 	},
 	itsComplicatedDoesNotTipTheScales: {
-		text: "Can this angsty genre save the love song? Not quite. We're getting closer, but the 60s still sport a more than a 25% advantage over the modern era.",
+		text: "Can this angsty genre save the love song? Not quite. We're getting closer, but the 60s still 25% more love songs than the modern era.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -428,7 +441,7 @@ const steps = {
 	},
 
 	introducingGoodRiddance: {
-		text: "But we're not done. Let's look at two more modern & female-pioneered types, starting with: Good Riddance, ranging from Dion's 'Runaround Sue' (1962) to Olivia Rodrigo's 2021 'Good 4 U.'",
+		text: "But we're not done. What about those songs where the relationship *is* clearly over... but the singer seems grateful it ended? Think Dion's 'Runaround Sue' or Olivia Rodrigo's 'Good 4 U.'",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.goodRiddance],
@@ -444,7 +457,7 @@ const steps = {
 		}
 	},
 	definingGoodRiddance: {
-		text: "Good Riddance is like Longing & Heartbreak, but with a bite. You've ended your relationship, but instead of feeling sad, you think -- wow, I dodged a bullet! My ex sucks!",
+		text: "Meet 'Good Riddance': it's Longing & Heartbreak... with a bite. It's over and wow, did you dodge a bullet! Your ex sucks!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -467,7 +480,7 @@ const steps = {
 			LOVE_SONG_TYPE_CONSTANTS.goodRiddance
 	},
 	goodRiddanceDetail: {
-		text: "Female & gender non-conforming artists dominate Good Riddance. Barbra Streisand paved the way for heavy hitters like Kelly Clarksen and Mariah Carey.",
+		text: "Female & gender non-conforming artists dominate Good Riddance. What Barbra Streisand started with 2 hits in the late 70s, Kelly Clarksen and Mariah Carey perfected with a whopping 9 hits between them.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedGenders: [
@@ -486,7 +499,7 @@ const steps = {
 		}
 	},
 	goodRiddanceDoesNotTipTheScale: {
-		text: "But, even with modern hits like 'Without You' by Halsey and 'Good 4 U' by Olivia Rodrigo, Good Riddance only gives a small bump to the love song category.",
+		text: "But, even with modern hits like Halsey's 'Without You' and GAYLE's oh-so-subtle 'abcdefu', Good Riddance only gives a small bump to the love song category.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -510,7 +523,7 @@ const steps = {
 	// Love song for the self
 
 	introducingLoveSongForTheSelf: {
-		text: "Ok, fine. But what about when heartbreak turns love... back onto the OG, yourself? Think: TLC & Destiny's Child in the early 2000s or Ariana Grande's 'Thank U, Next' in this female-dominated type.",
+		text: "We've ventured far from the Serenade. But we can go further: think about those songs heartbreak turns love... back onto the OG, yourself? Think: TLC & Destiny's Child in the early 2000s or Miley's 'Flowers'",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf],
@@ -526,7 +539,7 @@ const steps = {
 		}
 	},
 	definingLoveSongForTheSelf: {
-		text: "This Love Song for the Self is like a Serenade, but for the self. While it's never written to a lover, it's often written in reaction to romantic rejection -- you don't love me? That's ok, because I do!",
+		text: "Meet  'Love Song for the Self': like a Serenade, but for the self. While it's never written to a lover, it's often written in reaction to romantic rejection -- you don't love me? That's ok, because I do! I'll by *myself* those flowers...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -550,7 +563,7 @@ const steps = {
 			LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
 	},
 	didLoveSongForTheSelfTipTheScales: {
-		text: "But even with Good Riddance & largerly women-pioneered Love Song for the Self, love songs are still in decline - though less than before!",
+		text: "But even with the women-pioneered Good Riddance and Love Song for the Self generes, love songs are still in decline - though much less than before!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -579,7 +592,7 @@ const steps = {
 	},
 
 	introducingSexualConquest: {
-		text: "But we've got one love song type left: songs that get... a little steamy. Think about artists like Nicki Minaj and Drake with their respective hits 'WAP' and 'Way 2 Sexy.'",
+		text: "And it happens we've got one love song type left: songs that get... a little steamy. Think about artists like Nicki Minaj and Drake with their respective hits 'WAP' and 'Way 2 Sexy.'",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.sexualConquest],
@@ -595,7 +608,7 @@ const steps = {
 		}
 	},
 	definingSexualConquest: {
-		text: "These songs blur the lines between courtship and romance, and we'll call them Sexual Confidence. Has lust replaced love? Maybe. More likely, as theorists point, the younger generation sees sex as a *gateway* to love. The first step, not the destination.",
+		text: "These songs blur the lines between courtship and romance, and we'll call them Sexual Confidence.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -620,7 +633,7 @@ const steps = {
 			LOVE_SONG_TYPE_CONSTANTS.sexualConquest
 	},
 	sexualConquestInContext: {
-		text: "As Boomers bemoan, Sexual Confidence has risen in popularity in recent decades. It's even dethroned Serenades in the 2000s!",
+		text: "As Boomers bemoan, Sexual Confidence has risen in popularity. It even dethroned Serenades in the 2000s! Has lust replaced love? Maybe. More likely, as theorists point, the younger generation sees sex as a *gateway* to love. The first step, not the destination.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			visibleButNotSelectedLoveSongTypes: [
@@ -642,7 +655,7 @@ const steps = {
 	},
 
 	addInNonLoveSongsInGray: {
-		text: "Now it's finally time to zoom out and answer our original question: is the love song dying? Let's look at the aggregate in 3, 2...",
+		text: "Phew! Take a deep breath: we've finally covered every major love song type in the table (both classic *and* more expansive!) Now it's finally time to zoom out and answer our original question: is the love song dying? In 3, 2...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE
 		},
@@ -665,20 +678,20 @@ const steps = {
 		showLoveSongChange: true
 	},
 
-	trendsWeExplored: {
-		text: "Some of the trends we've explored have been: the decline of the Serenade, the rise of the Heartbreak Song and the steady growing popularity of more complex love song types like It's Complicated and Good Riddance. Meanwhile, feel-good genres like Sexual Confidence and Love Song for the Self are lending a distinctly empowering feel to the ol' L-word.",
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true
-		},
-		showLoveSongChange: true
-	},
+	// trendsWeExplored: {
+	// 	text: "Some of the trends we've explored have been: the decline of the Serenade, the rise of the Heartbreak Song and the steady growing popularity of more complex love song types like It's Complicated and Good Riddance. Meanwhile, feel-good genres like Sexual Confidence and Love Song for the Self are lending a distinctly empowering feel to the ol' L-word.",
+	// 	searchAndFilterState: {
+	// 		...SEARCH_AND_FILTER_BLANK_STATE,
+	// 		columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+	// 	},
+	// 	visualEncodings: {
+	// 		...VISUAL_ENCODING_BLANK_STATE,
+	// 		showAggregateSnakeChart: true
+	// 	},
+	// 	showLoveSongChange: true
+	// },
 	whatCausedTheseChanges: {
-		text: "What caused these changes? We've certainly changed how we think about love and relationships since the 60's. But how Billboard ranks songs itself has changed, from a loosely polling record stores to counting every stream. It's possible 'It's Complicated' songs played on 60s homes -- but Billboard only captured that popularity with streams.",
+		text: "What caused these changes? Certainly cultural shifted. Perhaps we're also just seeing Billboard evolving their data collection approach: from tallying record sales in the 60s to, today, counting all 200 times you relistened to 'WAP' on Spotify.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
@@ -692,7 +705,7 @@ const steps = {
 
 	// Explore mode
 	youDecide: {
-		text: "But what about you? Do these count as 'love songs,' or do you have a different definition? You decide: click the buttons by the love song type labels to determine what does and doesn't count as a love song, and tell US how the love song is doing!",
+		text: "But, ultimately, the status of love songs depends on what *you* count as a love song. So, you decide: add and remove love songs based on your definition, and tell US how the love song is doing! (for true nerds: try the advanced filters via the top bar)",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			columnsToFilterVisibilityOn: [
@@ -724,6 +737,7 @@ const unprocessedStorySteps = [
 	steps.butWeWillTakeAMoreExpansiveView,
 	steps.whyWeCare,
 	steps.introTheTypeGrid,
+	steps.addingHeartbreakToTheGrid,
 
 	// Remaining Boomer-Bob-friendly types:
 	steps.introducingLongingAndHeartbreak,
