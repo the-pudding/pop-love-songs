@@ -666,7 +666,7 @@ const steps = {
 	},
 
 	theLoveSongIsActuallyRising: {
-		text: "... and we have our answer: the love song is just as strong as it ever was (>2% decline since the 60s!) In fact, love songs today are arguably more alive, encompassing more of the complexity of romance.",
+		text: "... and we have our answer: the love song is just as strong as it ever was (less than a 2% decline since the 60s!) In fact, we'd argue love songs today are *more* alive: they paint a far more vivid, complex, & diverse view of romantic experience.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
@@ -691,7 +691,7 @@ const steps = {
 	// 	showLoveSongChange: true
 	// },
 	whatCausedTheseChanges: {
-		text: "What caused these changes? Certainly cultural shifted. Perhaps we're also just seeing Billboard evolving their data collection approach: from tallying record sales in the 60s to, today, counting all 200 times you relistened to 'WAP' on Spotify.",
+		text: "What caused these changes? Certainly cultural shifted. To a lesser extend, we might be just seeing Billboard's data collection evolve: from tallying record sales in the 60s to, today, counting all 200 times you streamed 'WAP' on Spotify.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
