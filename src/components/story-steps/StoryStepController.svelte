@@ -4,11 +4,12 @@
     import { page } from "$app/stores";
 
     import Tap from "../helpers/Tap.svelte";
+    import BoomerBobImages from "./BoomerBobImages.svelte";
     import LoveSongDefinitionTable from "../love-song-definition-table/LoveSongDefinitionTable.svelte";
 
     import {selectedGenders, selectedSongs, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
-    import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"	
+    import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
 	
     // Story index synced to query params:
     const searchParams = new URLSearchParams("currentStoryStepIndex=0");
@@ -49,6 +50,10 @@
     $: $currentStoryStepIndex, updateFilterFilterState()
 </script>
 
+
+{#if $currentStoryStep.showBoomerBobImages}
+    <BoomerBobImages />
+{/if}
 
 {#if $currentStoryStep.showLoveSongTypeTableWithThisHighlighted}
     <LoveSongDefinitionTable />

@@ -95,7 +95,8 @@ const steps = {
 			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
 			forceXStrength: 0.2,
 			forceYStrength: 0.2
-		}
+		},
+		showBoomerBobImages: true
 	},
 	serenadesAreIndeedDying: {
 		text: "If you spread the Serenades from 1959-2023, they are indeed declining, both in total count and total popularity...",
