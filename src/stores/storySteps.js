@@ -197,7 +197,7 @@ const steps = {
 		}
 	},
 	whyWeCare: {
-		text: "Pop has massively changed since 1959. It's easy to shake our fists and say, 'Kids these days don't value love anymore!' But if we do, we might miss what's *really* going on. Truth is, if we challenges ourselves to look deeper at love songs -- and romance itself -- we a find far more complex (and fascinating) story. Let us show you...",
+		text: "It's easy to just shake our fists and say, 'Kids these days don't value love anymore!' But if, instead, we challenge ourselves to look deeper at love songs -- and romance itself -- we uncover a far more complex (and fascinating) story. A story that will change how you see love in pop music. Let's dive in...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
