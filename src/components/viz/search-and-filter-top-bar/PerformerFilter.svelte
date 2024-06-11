@@ -1,7 +1,7 @@
 <script>
     import {onDestroy} from "svelte";
     import MultiSelect from "svelte-multiselect"; // (eventually we'll replace this with our own Select component likely)
-    import {selectedPerformers} from "$stores/searchAndFilter.js";
+    import {selectedPerformers, showAggregateSnakeChart} from "$stores/searchAndFilter.js";
     import {selectedSongsData} from "$stores/dataDerivations.js";
 	import { getArrayOfPerformers } from "$data/data-utils";
 
@@ -27,9 +27,14 @@
         );
     });
 
-    // Watch for changes in the userSelectedPerformers and update the store
-    $: if (userSelectedPerformers) {
+    // Watch for changes in the userSelectedPerformers and update the global store, etc
+    $: {
         selectedPerformers.set(userSelectedPerformers.map(({ value }) => value));
+
+        const thereIsAFilter = userSelectedPerformers.length > 0
+		if ($showAggregateSnakeChart && thereIsAFilter) {
+			showAggregateSnakeChart.set(false);
+		}
     }
 
     // Cleanup the subscription when the component is destroyed
