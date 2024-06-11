@@ -220,7 +220,7 @@ const steps = {
 		showLoveSongChange: true
 	},
 	introTheTypeGrid: {
-		text: "If we're going to take you deep into love song land, we need a classification system. Earlier we showed you most obvioius form of love songs: Serenades. What typifies these songs (besides sappiness)? The relationship between the subjects: you loves someone, and they love you back! It's the best-case scenario in love.",
+		text: "If we're going to take you deep into love song land, we need a classification system. Earlier we showed you most obvious form of love songs: Serenades. What typifies these songs (besides sappiness)? The relationship between the subjects: you loves someone, and they love you back! It's the best-case scenario in love.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -233,7 +233,7 @@ const steps = {
 		showLoveSongTypeTableWithThisHighlighted: LOVE_SONG_TYPE_CONSTANTS.serenade
 	},
 	addingHeartbreakToTheGrid: {
-		text: "But what happens if you love them, but they just... don't? We can add another row to our table, where we'll name this new type of sad love song: Longing & Heartbreak.",
+		text: "This opens up other relationship dynamics in songs about love: what happens if you love them, but they just... don't? We can add another row to our table, where we'll name this new type of sad love song: Longing & Heartbreak.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -324,7 +324,7 @@ const steps = {
 		}
 	},
 	definingCourtship: {
-		text: "Let's add a new row for romantic possibility, and call these Courtship & Anticipation.",
+		text: "Let's add a new row for when romantic relationship is still unfolding, and call these Courtship & Anticipation.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -345,7 +345,7 @@ const steps = {
 			LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
 	},
 	courtshipHasNoEffect: {
-		text: "The popularity of Courtship & Anticipation songs has remained fairly steady over the years. Their slight uptick in the modern era does little to change the love song's overall decline.",
+		text: "The popularity of Courtship & Anticipation songs has remained fairly steady over the years. Their slight uptick in the modern era only blunts love song's overall decline a little bit.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -384,7 +384,7 @@ const steps = {
 		}
 	},
 	definingItsComplicated: {
-		text: "Truth is, sometimes a romantic relationship straddles both love *and* heartbreak because, well... It's Complicated. Boomers, we see you: these may not be the classic love songs of your youth isn't, so we'll give them their own column.",
+		text: "Sometimes a romantic relationship straddles both our love *and* heartbreak categories because, well... It's Complicated. Boomers, these may not be the classic love songs of your youth, so we've give them their own column.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -428,7 +428,7 @@ const steps = {
 		}
 	},
 	itsComplicatedDoesNotTipTheScales: {
-		text: "Can this angsty genre save the love song? Not quite. We're getting closer, but the 60s still 25% more love songs than the modern era.",
+		text: "Can this angsty genre save the love song? Not quite. We're getting closer, but we've still lost over 25% of love songs since the 60s.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -531,7 +531,7 @@ const steps = {
 	// Love song for the self
 
 	introducingLoveSongForTheSelf: {
-		text: "We've ventured far from the Serenade. But we can go further: think about those songs heartbreak turns love... back onto the OG, yourself? Think: TLC & Destiny's Child in the early 2000s or Miley's 'Flowers'",
+		text: "We've ventured far from the Serenade. But we can go further: think about those songs where heartbreak turns love... back onto the OG, yourself? Think: TLC & Destiny's Child in the early 2000s or Miley's 'Flowers'",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf],
@@ -547,7 +547,7 @@ const steps = {
 		}
 	},
 	definingLoveSongForTheSelf: {
-		text: "Meet  'Love Song for the Self': like a Serenade, but for the self. While it's never written to a lover, it's often written in reaction to romantic rejection -- you don't love me? That's ok, because I do! I'll by *myself* those flowers...",
+		text: "Meet  'Love Song for the Self': like a Serenade, but for the self. While it's not written *to* a lover, it's often written in reaction to romantic rejection -- you don't love me? That's ok, because I do! I'll buy *myself* some flowers...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -571,7 +571,7 @@ const steps = {
 			LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
 	},
 	didLoveSongForTheSelfTipTheScales: {
-		text: "But even with the women-pioneered Good Riddance and Love Song for the Self generes, love songs are still in decline - though much less than before!",
+		text: "But even with the women-pioneered Good Riddance and Love Song for the Self genres, love songs are still in decline - though much less than before!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -600,7 +600,7 @@ const steps = {
 	},
 
 	introducingSexualConquest: {
-		text: "And it happens we've got one love song type left: songs that get... a little steamy. Think about artists like Nicki Minaj and Drake with their respective hits 'WAP' and 'Way 2 Sexy.'",
+		text: "But it happens we've got one love song type left: songs that get... a little steamy. Think about artists like Nicki Minaj and Drake with their respective hits 'WAP' and 'Way 2 Sexy.'",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.sexualConquest],
@@ -641,7 +641,7 @@ const steps = {
 			LOVE_SONG_TYPE_CONSTANTS.sexualConquest
 	},
 	sexualConquestInContext: {
-		text: "As Boomers bemoan, Sexual Confidence has risen in popularity. It even dethroned Serenades in the 2000s! Has lust replaced love? Maybe. More likely, as theorists point, the younger generation sees sex as a *gateway* to love. The first step, not the destination.",
+		text: "As Boomers bemoan, Sexual Confidence has risen in popularity. It even dethroned Serenades in the 2000s! Has lust replaced love? Maybe. More likely, as theorists point out, the younger generation sees sex as a *gateway* to love. The first step, not the destination.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			visibleButNotSelectedLoveSongTypes: [
@@ -663,7 +663,7 @@ const steps = {
 	},
 
 	addInNonLoveSongsInGray: {
-		text: "Phew! Take a deep breath: we've finally covered every major love song type in the table (both classic *and* more expansive!) Now it's finally time to zoom out and answer our original question: is the love song dying? In 3, 2...",
+		text: "Ok... Take a deep breath: we've finally covered every major love song type in the table (both classic *and* more expansive!) Now it's finally time to zoom out and answer our original question: is the love song dying? In 3, 2...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE
 		},
@@ -674,7 +674,7 @@ const steps = {
 	},
 
 	theLoveSongIsActuallyRising: {
-		text: "... and we have our answer: the love song is just as strong as it ever was (less than a 2% decline since the 60s!) In fact, we'd argue love songs today are *more* alive: they paint a far more vivid, complex, & diverse view of romantic experience.",
+		text: "... and we have our answer: the love song is just as strong as it ever was (less than a 2% decline since the 60s!) In fact, we'd argue love songs today are *more* alive: they paint a far more vivid, complex, & diverse view of romantic experience we've all gone through.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
