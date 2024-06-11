@@ -34,6 +34,10 @@
 </div>
 
 <style>
+	div {
+		font-family: 'Atlas Grotesk', sans-serif;
+	}
+	
 	.love-song-type {
 		font-style: italic;
 		font-size: 10px;

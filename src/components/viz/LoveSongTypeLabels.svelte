@@ -47,6 +47,7 @@
 <style>
     div {
 		/* TODO: For some reason I can only set font-size via css... */
+		font-family: 'Atlas Grotesk', sans-serif;
 		font-size: clamp(1rem, 2vw, 1.25rem);
 		position: fixed;
 	}

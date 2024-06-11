@@ -38,6 +38,8 @@
         position: fixed;
         right: 20px;
         pointer-events: none;
+
+        font-family: 'Atlas Grotesk', sans-serif;
     }
 
     div div.baseline-text {
@@ -60,5 +62,7 @@
         transform: translateY(-50%);
         display: flex;
         align-items: baseline;
+        font-weight: bold;
+        font-size: 24px;
     }
 </style>

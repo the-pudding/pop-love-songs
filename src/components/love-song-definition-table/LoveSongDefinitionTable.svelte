@@ -82,6 +82,8 @@
         width: 100%;
         background: white;
         opacity: 0.96;
+
+        font-family: 'Atlas Grotesk', sans-serif;
     }
 
     th, td {
