@@ -127,6 +127,11 @@ export const selectedSongsDataIgnoringTime = derived(
 	[]
 );
 
+// TODO: OPTIMIZATION @michelle basically this fires anytime a selection changes (eg genderSelected), which triggers a lot of calculations & (most notably) can restart the force layout.
+// However, this store needs ONLY to update if columnsToFilterVisibilityOn contains 1 or more items, or itself changed to have no items.
+// My sense is that this is where we'd want to just implement a custom store
+// ie one that subscribes to all this, but only broadcasts an update to *its* subscribers when the columnsToFilterVisibilityOn changes in the ways described above.
+// Note this would also (likely) remove the need for: preventBubbleRestartBecauseTheUserIsMerelySearching
 export const songIsVisible = derived(
 	[
 		genderSelected,

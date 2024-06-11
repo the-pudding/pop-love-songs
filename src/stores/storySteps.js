@@ -1,5 +1,12 @@
 import { derived, writable } from "svelte/store";
 import previous from "./previous";
+import viewport from "./viewport";
+import {
+	selectedGenders,
+	selectedPerformers,
+	selectedSongs
+} from "./searchAndFilter";
+
 import {
 	SONG_DATA_COLUMNS_ENUM,
 	LOVE_SONG_TYPE_CONSTANTS,
@@ -810,5 +817,51 @@ export const restartBubbles = derived(
 			return storySteps[$currentStoryStepIndex].visualEncodings
 				.restartBubblesOnReturnInto;
 		}
+	}
+);
+
+// All this is to prevent the bubbles from restarting when the user is merely searching:
+
+const previousSelectedGenders = previous(selectedGenders, []);
+const previousViewport = previous(viewport, { width: null, height: null });
+
+// TODO: OPTIMIZATION, if we update songIsVisible to a memoized custom store, I think we can remove all this code
+export const preventBubbleRestartBecauseTheUserIsMerelySearching = derived(
+	[
+		currentStoryStep,
+		previousSelectedGenders,
+		selectedGenders,
+		selectedPerformers,
+		selectedSongs,
+		previousViewport,
+		viewport
+	],
+	([
+		$currentStoryStep,
+		$previousSelectedGenders,
+		$selectedGenders,
+		$selectedPerformers, // we just need to update when these change
+		$selectedSongs,
+		$previousViewport,
+		$viewport
+	]) => {
+		const genderHasChanged =
+			$selectedGenders.sort().join(",") !==
+			$previousSelectedGenders.sort().join(",");
+		const viewportChanged =
+			viewport.width !== null &&
+			($viewport.width !== $previousViewport.width ||
+				$viewport.height !== $previousViewport.height);
+		console.log(genderHasChanged, !$currentStoryStep.allowUserToChangeFilters);
+		// Only applies to user filter steps
+		if (
+			!$currentStoryStep.allowUserToChangeFilters ||
+			genderHasChanged ||
+			viewportChanged
+		) {
+			return false;
+		}
+		// So: if we're on a filter step & the gender selection NOT changed, don't restart the bubbles
+		return true;
 	}
 );
