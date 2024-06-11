@@ -26,6 +26,7 @@
 	import { showAggregateSnakeChart } from "$stores/searchAndFilter";
 	import { songInAnnotations } from "$data/data-utils";
 	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";	
+	import { LOVE_SONG_TYPE_CONSTANTS, SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 
 	// Initiate mutable simulation, give bubbles an initial position
 	const forceSimulationData = songsData.map((songObject, songIndex) => ({
@@ -117,11 +118,15 @@
 		invisibleCanvas.height = $viewport.height;
 	};
 
+	const isNotALoveSong = (song) => song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type] === LOVE_SONG_TYPE_CONSTANTS.notALoveSong;
 	const updateSimulationProperties = () => {
 		if (!simulation) return;
 		simulation
 			.force("x", forceX().x((_, songIndex) => $xForcePosition[songIndex]).strength($currentStoryStep.visualEncodings.forceXStrength))
-			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex] || DEFAULT_Y_ENTRANCE_POSITION).strength($currentStoryStep.visualEncodings.forceYStrength))
+			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex] || DEFAULT_Y_ENTRANCE_POSITION).strength(
+				// The non love songs generally have more ground to spread out over, so we reduce the strength of the y force for them
+				({song}) => $currentStoryStep.visualEncodings.forceYStrength * (isNotALoveSong(song) ? 0.1 : 1)
+			))
 			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsVisible[songIndex] ? $songRadius[songIndex] + 0.5 : 0).strength(0.5))
 			.velocityDecay(0.3) // think of it like "friction": lower values help things slide smoother, but too much causes a sort of "bounce" effect as it oscillates towards the force center
 			.alpha(0.06)

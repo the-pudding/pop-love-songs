@@ -6,7 +6,7 @@ import {
 	Y_MARGIN_SCREEN_PERCENTAGE
 } from "$data/data-utils";
 
-export const DEFAULT_Y_ENTRANCE_POSITION = -100;
+export const DEFAULT_Y_ENTRANCE_POSITION = 0;
 
 /*
  * All functions take in song and a canvas width and returns a position
