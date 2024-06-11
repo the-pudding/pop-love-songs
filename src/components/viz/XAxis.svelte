@@ -21,8 +21,4 @@
         left: 0;
         pointer-events: none;
     }
-
-    svg g g text {
-        font-family: 'Atlas Grotesk', sans-serif;
-    }
 </style>
