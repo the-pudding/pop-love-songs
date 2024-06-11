@@ -1,7 +1,6 @@
 <script>
     import {afterUpdate, onMount} from "svelte";
-    import { goto } from "$app/navigation";
-    import { page } from "$app/stores";
+    import urlParams from "../../utils/urlParams.js";
 
     import Tap from "../helpers/Tap.svelte";
     import BoomerBobImages from "./BoomerBobImages.svelte";
@@ -15,13 +14,12 @@
     const searchParams = new URLSearchParams("currentStoryStepIndex=0");
 
     onMount(() => {
-       const urlIndex = parseInt($page.url.searchParams.get("currentStoryStepIndex")?.toString() || "0");
+       const urlIndex = parseInt(urlParams.get("currentStoryStepIndex")?.toString() || "0");
        $currentStoryStepIndex = urlIndex > storySteps.length - 1 ? 0 : urlIndex;
     });
 
     function updateQueryParams() {
-        searchParams.set("currentStoryStepIndex", $currentStoryStepIndex);
-        goto(`?${searchParams.toString()}`);
+        urlParams.set("currentStoryStepIndex", $currentStoryStepIndex);
     }
 
     afterUpdate(updateQueryParams);
