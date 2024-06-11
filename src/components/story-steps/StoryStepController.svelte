@@ -11,15 +11,16 @@
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
 	
     // Story index synced to query params:
-    const searchParams = new URLSearchParams("currentStoryStepIndex=0");
+    const STEP_QUERY_PARAM = "step"
+    const searchParams = new URLSearchParams("step=0");
 
     onMount(() => {
-       const urlIndex = parseInt(urlParams.get("currentStoryStepIndex")?.toString() || "0");
+       const urlIndex = parseInt(urlParams.get("step")?.toString() || "0");
        $currentStoryStepIndex = urlIndex > storySteps.length - 1 ? 0 : urlIndex;
     });
 
     function updateQueryParams() {
-        urlParams.set("currentStoryStepIndex", $currentStoryStepIndex);
+        urlParams.set("step", $currentStoryStepIndex);
     }
 
     afterUpdate(updateQueryParams);
