@@ -14,6 +14,7 @@
 
 	import songsData from "$data/songs-data.js";
 	import {
+		CHART_TRANSITION_OPACITY_DURATION,
 		getInvisibleFillFromSongIndex,
 		getSnakeFill,
 		getSongFill,
@@ -125,7 +126,7 @@
 			.force("x", forceX().x((_, songIndex) => $xForcePosition[songIndex]).strength($currentStoryStep.visualEncodings.forceXStrength))
 			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex] || DEFAULT_Y_ENTRANCE_POSITION).strength(
 				// The non love songs generally have more ground to spread out over, so we reduce the strength of the y force for them
-				({song}) => $currentStoryStep.visualEncodings.forceYStrength * (isNotALoveSong(song) ? 0.1 : 1)
+				({song}) => $currentStoryStep.visualEncodings.forceYStrength * (isNotALoveSong(song) ? 0.3 : 1)
 			))
 			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsVisible[songIndex] ? $songRadius[songIndex] + 0.5 : 0).strength(0.5))
 			.velocityDecay(0.3) // think of it like "friction": lower values help things slide smoother, but too much causes a sort of "bounce" effect as it oscillates towards the force center
@@ -162,7 +163,6 @@
 	});
 
 	// Transition opacity between charts
-	const CHART_TRANSITION_OPACITY_DURATION = 800
 	const aggregateSnakeChartOpacity = tweened(0, {
 		duration: CHART_TRANSITION_OPACITY_DURATION,
 		easing: cubicInOut
