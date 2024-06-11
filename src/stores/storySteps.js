@@ -713,7 +713,7 @@ const steps = {
 
 	// Explore mode
 	youDecide: {
-		text: "But, ultimately, the status of love songs depends on what *you* count as a love song. So, you decide: add and remove love songs based on your definition, and tell US how the love song is doing! (for true nerds: try the advanced filters via the top bar)",
+		text: "But, ultimately, the status of love songs depends on what *you* count as a love song. So, you decide: add and remove love songs based on your definition, and tell *us* how the love song is doing! (for nerds: try the advanced filters in the top bar)",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			columnsToFilterVisibilityOn: [

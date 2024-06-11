@@ -25,4 +25,4 @@
 	onDestroy(unsubscribe);
 </script>
 
-<Toggle label="Enable" style="inner" options={Object.values(CHART_OPTIONS)} value={localValue} onToggle={handleToggle} />
+<Toggle label="Switch to" style="inner" options={Object.values(CHART_OPTIONS)} value={localValue} onToggle={handleToggle} />
