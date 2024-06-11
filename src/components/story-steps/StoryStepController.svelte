@@ -16,7 +16,7 @@
 
     onMount(() => {
        const urlIndex = parseInt($page.url.searchParams.get("currentStoryStepIndex")?.toString() || "0");
-       $currentStoryStepIndex = urlIndex; // TODO: there's a bug where, after refresh, the filters from the first step are still in the filter bar, though not applied
+       $currentStoryStepIndex = urlIndex > storySteps.length - 1 ? 0 : urlIndex;
     });
 
     function updateQueryParams() {
