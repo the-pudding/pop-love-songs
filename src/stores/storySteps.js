@@ -852,8 +852,7 @@ export const preventBubbleRestartBecauseTheUserIsMerelySearching = derived(
 			viewport.width !== null &&
 			($viewport.width !== $previousViewport.width ||
 				$viewport.height !== $previousViewport.height);
-		console.log(genderHasChanged, !$currentStoryStep.allowUserToChangeFilters);
-		// Only applies to user filter steps
+
 		if (
 			!$currentStoryStep.allowUserToChangeFilters ||
 			genderHasChanged ||
