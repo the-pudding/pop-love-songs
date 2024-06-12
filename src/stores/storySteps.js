@@ -53,9 +53,61 @@ const VISUAL_ENCODING_BLANK_STATE = {
 
 const steps = {
 	// Intro: Is Boomer Bob right that the love song is dying?
+	haveYouSeenTheseYouTubeComments: {
+		text: "Have you ever seen a comment like this? 'no cussing, no drugs, no twerking. they don't make love songs this anymore'. They seem to be part of a larger sentiment: something about contemporary music is in decline.",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: ["FAAAAKKEEE"],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			onLoadUseRandomInitialPositions: true,
+			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
+			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			forceXStrength: 0.2,
+			forceYStrength: 0.2
+		}
+		// showBoomerBobImages: true
+	},
+	boomerBobSaysLoveSongsAreDying: {
+		text: "And even a cursory look on Google brings up articles with a special focus on the contemporary state of love songs. According to Boomer Bob: the love song is dying. [flood screen with comments, articles, Rick Beato]",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: ["FAAAAKKEEE"],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			onLoadUseRandomInitialPositions: true,
+			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
+			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			forceXStrength: 0.2,
+			forceYStrength: 0.2
+		},
+		showBoomerBobImages: true
+	},
+
+	titleCard: {
+		text: "Is it true? Let's investigate. [TITLE CARD: 'is the love song dying?' maybe made out of bubbles]",
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: ["FAAAAKKEEE"],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			onLoadUseRandomInitialPositions: true,
+			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
+			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			forceXStrength: 0.2,
+			forceYStrength: 0.2
+		}
+		// showBoomerBobImages: true
+	},
 
 	allTheBillboardHitsInAMonoChromeCluster: {
-		text: "If you look at the Billboard Top 10 from 1959-2023 (each bubble represents a song, sized according to its popularity & length of time in the Top 10)... [to advance, click side arrow buttons or use keyboard arrow keys]",
+		text: "Here are all the Billboard Top 10 hits from 1959-2023 (each bubble represents a song, sized according to its tunure in the Top 10)... [to advance, click side arrow buttons or use keyboard arrow keys]",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES
@@ -71,7 +123,7 @@ const steps = {
 		}
 	},
 	highlightSerenadesWithinCluster: {
-		text: "... you'll see tons of what you might call Serenades: songs that directly express a feeling of love and/or devotion for someone. Think 'No One' by Alicia Keys or 'Perfect' by Ed Sheeran. With swelling strings or sentimental guitar, it's the stuff you dance to at prom or a wedding... How sweet!",
+		text: "... you'll see tons of >>what Boomers would consider classic love songs<<: songs that directly express a feeling of love and/or devotion for someone. Think 'No One' by Alicia Keys or 'Perfect' by Ed Sheeran. With swelling strings or sentimental guitar, it's the stuff you dance to at prom or a wedding... How sweet!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -229,8 +281,8 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE
-		},
-		showLoveSongTypeTableWithThisHighlighted: LOVE_SONG_TYPE_CONSTANTS.serenade
+		}
+		// showLoveSongTypeTableWithThisHighlighted: LOVE_SONG_TYPE_CONSTANTS.serenade
 	},
 	addingHeartbreakToTheGrid: {
 		text: "This opens up other relationship dynamics in songs about love: what happens if you love them, but they just... don't? We can add another row to our table, where we'll name this new type of sad love song: Longing & Heartbreak.",
@@ -246,9 +298,9 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE
-		},
-		showLoveSongTypeTableWithThisHighlighted:
-			LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+		}
+		// showLoveSongTypeTableWithThisHighlighted:
+		// LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
 	},
 
 	// Remaining Boomer-Bob-friendly types:
@@ -674,7 +726,7 @@ const steps = {
 	},
 
 	theLoveSongIsActuallyRising: {
-		text: "... and we have our answer: the love song is just as strong as it ever was (less than a 2% decline since the 60s!) In fact, we'd argue love songs today are *more* alive: they paint a far more vivid, complex, & diverse view of romantic experience we've all gone through.",
+		text: "So… are love songs dying? The answer is: we don’t think so — we think the love song is evolving. Take a look at these categories. People are loving, losing, and connecting in more ways than ever before — even if those ways look different from generations of old. People are just as obsessed with love and connection, even if it looks different from before. ",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
@@ -713,7 +765,7 @@ const steps = {
 
 	// Explore mode
 	youDecide: {
-		text: "But, ultimately, the status of love songs depends on what *you* count as a love song. So, you decide: add and remove love songs based on your definition, and tell *us* how the love song is doing! (for nerds: try the advanced filters in the top bar)",
+		text: "But, ultimately, the status of love songs depends on what *you* count as a love song. (Boomer Bob probably still only counts Serenades!) So, you decide: add and remove love songs based on your definition, and tell *us* how the love song is doing! (for nerds: try the advanced filters in the top bar)",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			columnsToFilterVisibilityOn: [
@@ -733,9 +785,13 @@ const unprocessedStorySteps = [
 	// LATEST STORY:
 
 	// Intro: Is Boomer Bob right that the love song is dying?
+	steps.haveYouSeenTheseYouTubeComments,
+	steps.boomerBobSaysLoveSongsAreDying,
+	steps.titleCard,
+
 	steps.allTheBillboardHitsInAMonoChromeCluster,
 	steps.highlightSerenadesWithinCluster,
-	steps.showJustSerenadeCluster,
+	// steps.showJustSerenadeCluster,
 	steps.serenadesAreIndeedDying,
 	steps.serenadesPeakedInThe90s,
 	steps.aFewArtistsKeepThemAliveToday,
@@ -753,33 +809,33 @@ const unprocessedStorySteps = [
 	steps.longingAndHeartbreakDoNotTipTheScales,
 
 	steps.introducingCourtship,
-	steps.definingCourtship,
+	// steps.definingCourtship,
 	steps.courtshipHasNoEffect,
 
 	// Expansive-mode
 	steps.introducingItsComplicated,
-	steps.definingItsComplicated,
+	// steps.definingItsComplicated,
 	steps.itsComplicatedDetail,
 	steps.itsComplicatedDoesNotTipTheScales,
 
 	steps.introducingGoodRiddance,
-	steps.definingGoodRiddance,
+	// steps.definingGoodRiddance,
 	steps.goodRiddanceDetail,
 	steps.goodRiddanceDoesNotTipTheScale,
 
 	steps.introducingLoveSongForTheSelf,
-	steps.definingLoveSongForTheSelf,
+	// steps.definingLoveSongForTheSelf,
 	steps.didLoveSongForTheSelfTipTheScales,
 
 	steps.introducingSexualConquest,
-	steps.definingSexualConquest,
+	// steps.definingSexualConquest,
 	steps.sexualConquestInContext,
 
 	// Conclusion:
 	steps.addInNonLoveSongsInGray,
 	steps.theLoveSongIsActuallyRising,
 	// steps.trendsWeExplored,
-	steps.whatCausedTheseChanges,
+	// steps.whatCausedTheseChanges,
 
 	// Explore mode
 	steps.youDecide
