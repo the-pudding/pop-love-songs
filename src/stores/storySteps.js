@@ -37,6 +37,8 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 };
 
 const VISUAL_ENCODING_BLANK_STATE = {
+	colorButDontSeperateThisLoveSongType: null,
+
 	onLoadUseRandomInitialPositions: false,
 	calculateXForcePosition: getXPositionFromTime,
 	calculateYForcePosition: getYPositionInSnakeChart,
@@ -54,7 +56,7 @@ const VISUAL_ENCODING_BLANK_STATE = {
 const steps = {
 	// Intro: Is Boomer Bob right that the love song is dying?
 	haveYouSeenTheseYouTubeComments: {
-		text: "Have you ever seen a comment like this? 'no cussing, no drugs, no twerking. they don't make love songs this anymore'. They seem to be part of a larger sentiment: something about contemporary music is in decline.",
+		text: "Have you ever seen a comment like this? 'no cussing, no drugs, no twerking. they don't make love songs like this anymore'. They seem to be part of a larger sentiment: something about contemporary music is in decline.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: ["FAAAAKKEEE"],
@@ -71,7 +73,7 @@ const steps = {
 		// showBoomerBobImages: true
 	},
 	boomerBobSaysLoveSongsAreDying: {
-		text: "And even a cursory look on Google brings up articles with a special focus on the contemporary state of love songs. According to Boomer Bob: the love song is dying. [flood screen with comments, articles, Rick Beato]",
+		text: "This Baby Boomer-centric sentiment seems to come to a clear head around one topic: the treatement of lover & romance -- or the lack thereof. According to Boomer Bob: the love song is, apparently, dying. [flood screen with comments, articles, Rick Beato]",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: ["FAAAAKKEEE"],
@@ -89,7 +91,7 @@ const steps = {
 	},
 
 	titleCard: {
-		text: "Is it true? Let's investigate. [TITLE CARD: 'is the love song dying?' maybe made out of bubbles]",
+		text: "Is it true? Has the younger generation killed off romance in favor of lust (or whatever else Boomer Bob bemaons?) Let's investigate. [TITLE CARD: 'is the love song dying?' maybe made out of bubbles]",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: ["FAAAAKKEEE"],
@@ -107,7 +109,7 @@ const steps = {
 	},
 
 	allTheBillboardHitsInAMonoChromeCluster: {
-		text: "Here are all the Billboard Top 10 hits from 1959-2023 (each bubble represents a song, sized according to its tunure in the Top 10)... [to advance, click side arrow buttons or use keyboard arrow keys]",
+		text: "Here is every Billboard Top 10 hits from 1959-2023. Each of the 5,000 bubbles represents a song. Circle area represents its tunure in the Top 10. [hover for more info]",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES
@@ -123,7 +125,7 @@ const steps = {
 		}
 	},
 	highlightSerenadesWithinCluster: {
-		text: "... you'll see tons of >>what Boomers would consider classic love songs<<: songs that directly express a feeling of love and/or devotion for someone. Think 'No One' by Alicia Keys or 'Perfect' by Ed Sheeran. With swelling strings or sentimental guitar, it's the stuff you dance to at prom or a wedding... How sweet!",
+		text: "Using hand-labeling and a bit of ChatGPT, we've identified all X hunded of the Boomer Bob approved loved songs. These songs are bold & unmistakably about romantic love & devotion. Think 'No One' by Alicia Keys or 'Perfect' by Ed Sheeran.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -158,7 +160,7 @@ const steps = {
 		showBoomerBobImages: true
 	},
 	serenadesAreIndeedDying: {
-		text: "If you spread the Serenades from 1959-2023, they are indeed declining, both in total count and total popularity...",
+		text: "If you spread the Serenades from 1959-2023, they are indeed declining...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -174,7 +176,7 @@ const steps = {
 		}
 	},
 	serenadesPeakedInThe90s: {
-		text: "Serenades peaked in popularity in the 90s with hits like 'I'll Make Love to You' by Boyz II Men...",
+		text: "Serenades peaked in the 90s with hits like 'I'll Make Love to You' by Boyz II Men...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -196,7 +198,7 @@ const steps = {
 		}
 	},
 	aFewArtistsKeepThemAliveToday: {
-		text: "... then they waned: today, only a few artists like Biebs & T-Swift champion Serenades.",
+		text: "... then they waned. Today, only a few artists like Biebs & T-Swift champion Serenades.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
@@ -272,7 +274,7 @@ const steps = {
 		showLoveSongChange: true
 	},
 	introTheTypeGrid: {
-		text: "If we're going to take you deep into love song land, we need a classification system. Earlier we showed you most obvious form of love songs: Serenades. What typifies these songs (besides sappiness)? The relationship between the subjects: you loves someone, and they love you back! It's the best-case scenario in love.",
+		text: "We're going to take you deep into love song land, one new type of love song at a time. Earlier we showed you most obvious form of love songs, which we'll call 'Serenades'. What typifies these songs (besides sappiness)? The relationship between the subjects: you loves someone, and they love you back! It's the best-case scenario in love.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -280,27 +282,24 @@ const steps = {
 			)
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
+			...VISUAL_ENCODING_BLANK_STATE,
+			restartBubblesOnReturnInto: false
 		}
-		// showLoveSongTypeTableWithThisHighlighted: LOVE_SONG_TYPE_CONSTANTS.serenade
 	},
 	addingHeartbreakToTheGrid: {
-		text: "This opens up other relationship dynamics in songs about love: what happens if you love them, but they just... don't? We can add another row to our table, where we'll name this new type of sad love song: Longing & Heartbreak.",
+		text: "This opens up other relationship dynamics in songs about love: what happens if you love them, but they just... don't? Let's call this new type of sad love song 'Longing & Heartbreak.'",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
-				(t) =>
-					![
-						LOVE_SONG_TYPE_CONSTANTS.serenade,
-						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
-					].includes(t)
+				(t) => ![LOVE_SONG_TYPE_CONSTANTS.serenade].includes(t)
 			)
 		},
 		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE
+			...VISUAL_ENCODING_BLANK_STATE,
+			colorButDontSeperateThisLoveSongType:
+				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+			restartBubblesOnAdvanceInto: false
 		}
-		// showLoveSongTypeTableWithThisHighlighted:
-		// LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
 	},
 
 	// Remaining Boomer-Bob-friendly types:

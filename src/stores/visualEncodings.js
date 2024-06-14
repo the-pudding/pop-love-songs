@@ -51,21 +51,31 @@ export const yForcePosition = derived(
 
 // Color
 
-const updateColorMap = (typesTreatedAsNonLoveSongs, colorMap) =>
+const updateColorMap = (
+	typesTreatedAsNonLoveSongs,
+	colorMap,
+	colorButDontSeperateThisLoveSongType = null
+) =>
 	Object.keys(colorMap).reduce(
 		(updatedColors, loveSongType) => ({
 			...updatedColors,
-			[loveSongType]: typesTreatedAsNonLoveSongs.includes(+loveSongType)
-				? colorMap[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]
-				: colorMap[loveSongType]
+			[loveSongType]:
+				typesTreatedAsNonLoveSongs.includes(+loveSongType) &&
+				+loveSongType !== colorButDontSeperateThisLoveSongType // special case: differentiate spatially not color-wise
+					? colorMap[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]
+					: colorMap[loveSongType]
 		}),
 		{}
 	);
 
 export const loveSongTypeColorMap = derived(
-	[typesTreatedAsNonLoveSongs],
-	([$typesTreatedAsNonLoveSongs]) =>
-		updateColorMap($typesTreatedAsNonLoveSongs, LOVE_SONG_TYPE_COLOR_MAP)
+	[typesTreatedAsNonLoveSongs, currentStoryStep],
+	([$typesTreatedAsNonLoveSongs, $currentStoryStep]) =>
+		updateColorMap(
+			$typesTreatedAsNonLoveSongs,
+			LOVE_SONG_TYPE_COLOR_MAP,
+			$currentStoryStep.visualEncodings.colorButDontSeperateThisLoveSongType
+		)
 );
 
 export const unselectedLoveSongTypeColorMap = derived(
