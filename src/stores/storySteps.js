@@ -10,7 +10,6 @@ import {
 import {
 	SONG_DATA_COLUMNS_ENUM,
 	LOVE_SONG_TYPE_CONSTANTS,
-	GENDER_CONSTANTS,
 	LOVE_SONG_TYPES
 } from "$data/data-constants.js";
 import { MAX_DATE, MIN_DATE } from "$data/songs-data.js";
@@ -73,7 +72,7 @@ const steps = {
 		// showBoomerBobImages: true
 	},
 	boomerBobSaysLoveSongsAreDying: {
-		text: "This Baby Boomer-centric sentiment seems to come to a clear head around one topic: the treatement of lover & romance -- or the lack thereof. According to Boomer Bob: the love song is, apparently, dying. [flood screen with comments, articles, Rick Beato]",
+		text: "This Baby Boomer-centric sentiment seems to come to a chrystalize around one topic in particular: modern pop's treatement of love & romance -- or the lack thereof. According to Boomer Bob the love song is, apparently, dying.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: ["FAAAAKKEEE"],
@@ -223,7 +222,7 @@ const steps = {
 
 	// What counts as love song?
 	butWeWillTakeAMoreExpansiveView: {
-		text: "Not quite: we think Boomer Bob has too narrow of a view of love. Sure, Serenades have declined. But what about other songs? What about 'I Will Always Love You' by Whitney Houston? Is 'Buy U A Drank' by T-Pain a love song? Or 'WAP'? In this piece, we'll take a more expansive view.",
+		text: "Not quite: we think Boomer Bob has too narrow of a view of love. Sure, Serenades have declined. But what about other songs? What about 'I Will Always Love You' by Whitney Houston? Is 'Buy U A Drank' by T-Pain a love song? Or 'WAP'?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -257,7 +256,7 @@ const steps = {
 		showLoveSongChange: true
 	},
 	definingSerenades: {
-		text: "We're going to take you deep into love song land, one new type of love song at a time. Earlier we showed you most obvious form of love songs, which we'll call 'Serenades'. What typifies these songs (besides sappiness)? The relationship between the subjects: you loves someone, and they love you back! It's the best-case scenario in love.",
+		text: "On our journey to a more expansive view of love, we'll introduce other (often less known) types of love songs, one at a time. Earlier we showed you most obvious form of love songs, which we'll call 'Serenades'. They're typified by a simple relationship: you loves someone, and they love you back!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -270,7 +269,7 @@ const steps = {
 		}
 	},
 	colorInHeartbreak: {
-		text: "This opens up other relationship dynamics in songs about love: what happens if you love them, but they just... don't? Let's call this new type of sad love song 'Longing & Heartbreak.'",
+		text: "But what happens if you love them, but they just... don't? Let's call this new type of sad love song 'Longing & Heartbreak.'",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -287,7 +286,7 @@ const steps = {
 
 	// Remaining Boomer-Bob-friendly types:
 	introducingLongingAndHeartbreak: {
-		text: "Longing & Heartbreak songs are typified here by songs like Whitney Houston's 'I Will Always Love You' or Rihanna's 'Stay.'",
+		text: "Think: The Beatle's 'Yesterday',  Whitney Houston's 'I Will Always Love You' or Rihanna's 'Stay.'",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak],
@@ -296,6 +295,7 @@ const steps = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
+				{ song: "Yesterday", year: 1966 },
 				{ song: "I Will Always Love You", year: 1993 },
 				{ song: "Stay", year: 2013 }
 			]
@@ -352,6 +352,7 @@ const steps = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
+				{ song: "All For You", year: 2001 },
 				{ song: "Call Me Maybe", year: 2012 },
 				{ song: "I Want To Hold Your Hand", year: 1964 }
 			]
@@ -397,7 +398,7 @@ const steps = {
 		}
 	},
 	itsComplicatedDoesNotTipTheScales: {
-		text: "Can this angsty genre save the love song? Not quite. Pop culture increasingly slowly warmed up to these messy tunes, but love songs are still down 25%.",
+		text: "Can this angsty genre save the love song? Not quite. Even as pop culture increasingly warmed up to these messy tunes, love songs are still down 25%+ these days.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -459,7 +460,7 @@ const steps = {
 	// Love song for the self
 
 	introducingLoveSongForTheSelf: {
-		text: "Yes, Boomer Bob, we've ventured *very* far from the Serenade. But we can go further: think about those songs where heartbreak turns love... back onto the OG, yourself? Like, 'you don't love me? That's ok, because I do!' Think: TLC & Destiny's Child in the early 2000s or Miley's 'Flowers'",
+		text: "Yes, Boomer Bob, we've ventured *very* far from the Serenade. But we can go further: think about those songs where heartbreak turns love... back onto the OG, yourself? Like, 'You don't love me? That's ok, because I do!' Think: TLC & Destiny's Child in the early 2000s or Miley's 'Flowers'",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf],
@@ -553,7 +554,7 @@ const steps = {
 	},
 
 	theLoveSongIsActuallyRising: {
-		text: "We don't think so — we think it's just evolving. Look at the change: less than a 2% decline. Look at categories: people are loving, losing, and connecting in more ways than ever before — even if those ways look different from generations of old. People are just as obsessed with love and connection.",
+		text: "We don't think so — we think it's just evolving. There's been less than a 2% decline. In our view, people are loving, losing, and connecting in more ways than ever before — even if those ways look different from generations of old.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
