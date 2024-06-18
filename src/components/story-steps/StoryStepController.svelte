@@ -4,7 +4,6 @@
 
     import Tap from "../helpers/Tap.svelte";
     import BoomerBobImages from "./BoomerBobImages.svelte";
-    import LoveSongDefinitionTable from "../love-song-definition-table/LoveSongDefinitionTable.svelte";
 
     import {selectedGenders, selectedSongs, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
@@ -52,10 +51,6 @@
 
 {#if $currentStoryStep.showBoomerBobImages}
     <BoomerBobImages />
-{/if}
-
-{#if $currentStoryStep.showLoveSongTypeTableWithThisHighlighted}
-    <LoveSongDefinitionTable />
 {/if}
 
 <div class="container" style:height={`${STORY_STEP_CONTROLLER_BOTTOM_PADDING}px`}>
