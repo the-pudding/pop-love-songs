@@ -23,9 +23,11 @@ const getPercentageForSong = (
 	song,
 	$loveSongsLabeledByTimeRegionPercentageForPosition
 ) => {
-	const songYear = Math.round(+song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]);
+	const songYear = +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
 	const timeRegion = $loveSongsLabeledByTimeRegionPercentageForPosition.find(
-		(timeRegion) => songYear >= timeRegion.start && songYear <= timeRegion.stop
+		(timeRegion) =>
+			Math.ceil(songYear) >= timeRegion.start &&
+			Math.floor(songYear) <= timeRegion.stop
 	);
 	if (!timeRegion) {
 		console.warn(

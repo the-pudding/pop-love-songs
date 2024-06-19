@@ -235,7 +235,7 @@ const steps = {
 			forceYStrength: 0.1, // I want the bubbles to spread to fill their respective regions more similarly to the snake
 			songAnnotations: [
 				{ song: "Buy U A Drank (Shawty Snappin')", year: 2007 },
-				{ song: "I Will Always Love You", year: 1993 },
+				{ song: "I Will Always Love You", year: 1992 },
 				{ song: "WAP", year: 2020 }
 			]
 		}
@@ -295,8 +295,8 @@ const steps = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
-				{ song: "Yesterday", year: 1966 },
-				{ song: "I Will Always Love You", year: 1993 },
+				{ song: "Yesterday", year: 1965 },
+				{ song: "I Will Always Love You", year: 1992 },
 				{ song: "Stay", year: 2013 }
 			]
 		}
@@ -428,7 +428,7 @@ const steps = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
-				{ song: "Runaround Sue", year: 1962 },
+				{ song: "Runaround Sue", year: 1961 },
 				{ song: "I Will Survive", year: 1979 },
 				{ song: "Survivor", year: 2001 },
 				{ song: "Good 4 U", year: 2021 }
@@ -471,7 +471,8 @@ const steps = {
 			songAnnotations: [
 				{ song: "I Am Woman", year: 1972 },
 				{ song: "Unpretty", year: 1999 },
-				{ song: "Thank U, Next", year: 2018 }
+				// { song: "Thank U, Next", year: 2018 },
+				{ song: "Flowers", year: 2023 }
 			]
 		}
 	},

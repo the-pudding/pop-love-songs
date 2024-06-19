@@ -1,4 +1,4 @@
-import rawSongsData from "$data/23-EXPORT-viz-ready-data.json";
+import rawSongsData from "$data/pop-love-songs-data-through-september-2023.json";
 import { SONG_DATA_COLUMNS_ENUM } from "./data-constants";
 
 // TODO: OPTIMIZATION find min & max within the same reduce loop

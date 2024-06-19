@@ -4,7 +4,8 @@ export const SONG_DATA_COLUMNS_ENUM = {
 	type_and_gender_list_str: 2,
 	date_as_decimal: 3,
 	love_song_sub_type: 4,
-	popularity_score: 5
+	popularity_score: 5,
+	total_weeks_in_top_10: 6
 };
 
 export const PERFORMER_TYPE_ABBREVIATIONS = {
@@ -26,24 +27,24 @@ export const GENDER_CONSTANTS = Object.fromEntries(
 // TODO: choose better name
 export const LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP = {
 	0: "(not a love song)",
-	1: "Serenade",
-	2: "Good Riddance",
-	3: "Courtship & Anticipation",
-	4: "It's Complicated",
-	5: "Sexual Confidence", // Note: this was originally "Sexual Conquest", and still is in the original data. It's now just displayed as such.
-	6: "Longing & Heartbreak",
+	1: "It's Complicated",
+	2: "Serenade",
+	3: "Longing & Heartbreak",
+	4: "Courtship & Anticipation",
+	5: "Good Riddance",
+	6: "Sexual Confidence", // Note: this was originally "Sexual Conquest", and still is in the original data. It's now just displayed as such.
 	7: "Love Song for the Self"
 };
 
 export const LOVE_SONG_TYPE_CONSTANTS = {
 	notALoveSong: 0,
-	serenade: 1,
-	longingAndHeartbreak: 6,
-	sexualConquest: 5,
-	itsComplicated: 4,
-	goodRiddance: 2,
-	loveSongForTheSelf: 7,
-	courtshipAndAnticipation: 3
+	itsComplicated: 1,
+	serenade: 2,
+	longingAndHeartbreak: 3,
+	courtshipAndAnticipation: 4,
+	goodRiddance: 5,
+	sexualConquest: 6,
+	loveSongForTheSelf: 7
 };
 
 // TODO: bug-central: when you set an integer as a key, it gets converted to a string.
