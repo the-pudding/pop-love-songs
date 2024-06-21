@@ -4,7 +4,8 @@ export const SONG_DATA_COLUMNS_ENUM = {
 	type_and_gender_list_str: 2,
 	date_as_decimal: 3,
 	love_song_sub_type: 4,
-	popularity_score: 5,
+	// TODO: choose, remove extra field to reduce data size
+	popularity_score: 6, // use 5 for the sum of "11 - rank", 6 for total weeks, regardless of rank
 	total_weeks_in_top_10: 6
 };
 

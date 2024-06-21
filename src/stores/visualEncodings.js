@@ -90,8 +90,10 @@ export const unselectedLoveSongTypeColorMap = derived(
 export const songRadius = derived([viewport], ([$viewport]) => {
 	const { width, height } = $viewport;
 	const roughArea = width * height;
-	// TODO: we'll probably have some "breakpoints", particularly when x-becomes small, which has a disproportionate effect on layout
-	const ADJUSTER = 0.006;
+	// const ADJUSTER = 0.006; // for the "11 - rank" combined metric
+	const SMALL_SCREEN_SIZE_BREAKPOINT = 600000;
+	// TODO: there may be a better or more sophisticated way of doing this
+	const ADJUSTER = roughArea < SMALL_SCREEN_SIZE_BREAKPOINT ? 0.025 : 0.035; // for "total weeks in top 10 (regardless of rank)"
 	const scalingFactor = (1 / songsData.length) * roughArea * ADJUSTER;
 	return songsData.map(({ song }) =>
 		Math.sqrt(song[SONG_DATA_COLUMNS_ENUM.popularity_score] * scalingFactor)

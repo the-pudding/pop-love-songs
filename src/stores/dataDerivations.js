@@ -282,9 +282,10 @@ export const percentageOfLoveSongsDuring1959To1969 = derived(
 			$typesTreatedAsNonLoveSongs,
 			// Note: we want to be able to *reliably* compare to the 60s and not have it accidentally filtered out
 			// if we happen to look at a selection that doesn't include the 60s.
+			// TODO: OPTIMIZATION: since we're not allowing others to filter by year, we can remove selectedSongsDataIgnoringTime
 			$selectedSongsDataIgnoringTime,
 			$currentStoryStep.searchAndFilterState.selectedLoveSongTypes,
-			1959,
+			MIN_DATE,
 			1969
 		);
 	}
@@ -302,42 +303,27 @@ export const maxYearFromSelectedSongs = derived(
 	0
 );
 
-export const percentageOfLoveSongsDuringLast10YearsOfSelection = derived(
-	[
-		selectedSongsData,
-		currentStoryStep,
-		maxYearFromSelectedSongs,
-		typesTreatedAsNonLoveSongs
-	],
-	([
-		$selectedSongsData,
-		$currentStoryStep,
-		$maxYearFromSelectedSongs,
-		$typesTreatedAsNonLoveSongs
-	]) => {
-		const tenYearsBefore = Math.max(MIN_DATE, $maxYearFromSelectedSongs - 10);
-
+export const percentageOfLoveSongsDuringThe2020s = derived(
+	[selectedSongsData, currentStoryStep, typesTreatedAsNonLoveSongs],
+	([$selectedSongsData, $currentStoryStep, $typesTreatedAsNonLoveSongs]) => {
 		return getLoveSongPercentage(
 			$typesTreatedAsNonLoveSongs,
 			$selectedSongsData,
 			$currentStoryStep.searchAndFilterState.selectedLoveSongTypes,
-			tenYearsBefore,
-			$maxYearFromSelectedSongs
+			2020,
+			MAX_DATE
 		);
 	}
 );
 
 export const percentChangeFrom60sToLast10Years = derived(
-	[
-		percentageOfLoveSongsDuring1959To1969,
-		percentageOfLoveSongsDuringLast10YearsOfSelection
-	],
+	[percentageOfLoveSongsDuring1959To1969, percentageOfLoveSongsDuringThe2020s],
 	([
 		$percentageOfLoveSongsDuring1959To1969,
-		$percentageOfLoveSongsDuringLast10YearsOfSelection
+		$percentageOfLoveSongsDuringThe2020s
 	]) => {
 		const change =
-			$percentageOfLoveSongsDuringLast10YearsOfSelection -
+			$percentageOfLoveSongsDuringThe2020s -
 			$percentageOfLoveSongsDuring1959To1969;
 		return change / $percentageOfLoveSongsDuring1959To1969;
 	}
@@ -346,6 +332,7 @@ export const percentChangeFrom60sToLast10Years = derived(
 export const formattedLoveSongPercentChange = derived(
 	percentChangeFrom60sToLast10Years,
 	($percentChangeFrom60sToLast10Years) => {
+		// debugger;
 		return `${$percentChangeFrom60sToLast10Years > 0 ? "+" : $percentChangeFrom60sToLast10Years < 0 ? "-" : ""}${onlyShowOneDecimalPlaceIfLessThan10(Math.abs(100 * $percentChangeFrom60sToLast10Years))}`;
 	}
 );
