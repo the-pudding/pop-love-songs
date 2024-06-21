@@ -96,6 +96,8 @@ export const songRadius = derived([viewport], ([$viewport]) => {
 	const ADJUSTER = roughArea < SMALL_SCREEN_SIZE_BREAKPOINT ? 0.025 : 0.035; // for "total weeks in top 10 (regardless of rank)"
 	const scalingFactor = (1 / songsData.length) * roughArea * ADJUSTER;
 	return songsData.map(({ song }) =>
-		Math.sqrt(song[SONG_DATA_COLUMNS_ENUM.popularity_score] * scalingFactor)
+		Math.sqrt(
+			song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10] * scalingFactor
+		)
 	);
 });

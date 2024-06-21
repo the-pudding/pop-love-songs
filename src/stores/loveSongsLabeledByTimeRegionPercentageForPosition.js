@@ -52,7 +52,7 @@ export const getPopularitySumByType = (
 		)
 			? LOVE_SONG_TYPE_CONSTANTS.notALoveSong
 			: song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
-		const popularity = song[SONG_DATA_COLUMNS_ENUM.popularity_score];
+		const popularity = song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10];
 		return {
 			...acc,
 			[loveSongType]: (acc[loveSongType] || 0) + popularity
@@ -158,7 +158,7 @@ export const getPopularitySumIgnoringFilters = (timeRegion) =>
 	songsData.reduce((acc, { song }) => {
 		const songYear = +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
 		return songYear >= timeRegion.start && songYear <= timeRegion.stop
-			? acc + song[SONG_DATA_COLUMNS_ENUM.popularity_score]
+			? acc + song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10]
 			: acc;
 	}, 0);
 

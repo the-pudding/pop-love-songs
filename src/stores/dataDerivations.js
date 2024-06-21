@@ -234,7 +234,7 @@ export function getLoveSongPercentage(
 				selectedLoveSongTypes.includes(loveSongType)
 			) {
 				if (isWithinYearRange(dateAsDecimal, minYear, maxYear)) {
-					return acc + song[SONG_DATA_COLUMNS_ENUM.popularity_score];
+					return acc + song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10];
 				}
 			}
 			return acc;
@@ -246,7 +246,7 @@ export function getLoveSongPercentage(
 		(acc, { song }) => {
 			const dateAsDecimal = song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
 			if (isWithinYearRange(dateAsDecimal, minYear, maxYear)) {
-				return acc + song[SONG_DATA_COLUMNS_ENUM.popularity_score];
+				return acc + song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10];
 			}
 			return acc;
 		},
