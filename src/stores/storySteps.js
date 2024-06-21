@@ -520,7 +520,7 @@ const steps = {
 		}
 	},
 	didLoveSongForTheSelfTipTheScales: {
-		text: "This women-pioneered 'Love Song for the Self' is the most modern of all the genres. Yes, Boomer Bob: it's not written *to* a lover. But, in fact, it's often written in reaction to romantic rejection. Ok... so where does it leave us? Is the love song dying?",
+		text: "This women-pioneered 'Love Song for the Self' is the most modern of all the genres. Yes, Boomer Bob: we know that it's not written *to* a lover. But, in fact, it's often written in reaction to romantic rejection. Ok... so where does it leave us? Is the love song dying?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -548,7 +548,7 @@ const steps = {
 
 	theLoveSongIsActuallyRising: {
 		// — even if those ways look different from generations of old
-		text: "We don't think so — we think it's just evolving! To begin, it's actually increased by 12%. But it's not just about volume: people are loving, losing, and connecting in more ways than ever before.",
+		text: "... not at all, in fact it's actually *increased* by 12%! The love song didn't die, it evolved: people are loving, losing, and connecting in more ways than ever before. We think modern pop is just as romantic as ever, just maybe in ways that Boomer Bob doesn't recognize.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
