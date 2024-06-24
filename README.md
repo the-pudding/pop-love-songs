@@ -1,4 +1,4 @@
-# Svelte Starter
+# Pop Love Songs (from Svelte Starter)
 
 This [starter template](https://github.com/the-pudding/svelte-starter) aims to quickly scaffold a [SvelteKit](https://kit.svelte.dev/) project, designed around data-driven, visual stories at [The Pudding](https://pudding.cool).
 
