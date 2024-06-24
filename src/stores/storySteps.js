@@ -419,7 +419,7 @@ const steps = {
 	},
 
 	introducingGoodRiddance: {
-		text: "Ok, so what about those songs where the relationship *is* clearly over, but the singer's heartbreak has resurrected into... rightious power? Think Kelly Clarksen and Mariah Carey, who sport a combined *9* Top 10 hits of this type alone.",
+		text: "Ok, so what about those songs where the relationship *is* clearly over, but the singer's heartbreak has resurrected into... righteous power? They're not crying, they're yelling 'Good Riddance'! Think Kelly Clarksen and Mariah Carey, who sport a combined *9* Top 10 hits of this type alone.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.goodRiddance],
@@ -436,7 +436,7 @@ const steps = {
 		}
 	},
 	goodRiddanceDoesNotTipTheScale: {
-		text: "Hits like GAYLE's oh-so-subtle 'abcdefu' surged in the last few decades -- and reduce the love song's decline to under 10%! Maybe love's not dead... just a little wounded?",
+		text: "These 'Good Riddance' hits surged in the last few decades -- and reduce the love song's decline to under 10%! Maybe love's not dead... just a little wounded?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
