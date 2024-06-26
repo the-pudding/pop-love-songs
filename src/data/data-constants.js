@@ -51,26 +51,22 @@ export const LOVE_SONG_TYPE_CONSTANTS = {
 // ... except when you try to do things like Object.keys to get the keys, which will return strings.
 // I'll try and pre-empt this by doing any such conversion here, carefully.
 export const LOVE_SONG_TYPE_COLOR_MAP = {
-	[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]: "gray",
-	[LOVE_SONG_TYPE_CONSTANTS.serenade]: "pink",
-	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: "blue",
-	[LOVE_SONG_TYPE_CONSTANTS.sexualConquest]: "red",
-	[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: "brown",
-	[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: "purple",
-	[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: "orange",
-	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: "green"
+	[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]: "#9EA593",
+	[LOVE_SONG_TYPE_CONSTANTS.serenade]: "#F7E1FC",
+	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: "#0955CD",
+	[LOVE_SONG_TYPE_CONSTANTS.sexualConquest]: "#FD2824",
+	[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: "#9E3625",
+	[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: "#5E3BA6",
+	[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: "#FFD700",
+	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: "#04BC47"
 };
 
-const UNSELECTED_OPACITY = 0.2;
-export const UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP = {
-	[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]: `rgba(0, 0, 0, ${UNSELECTED_OPACITY})`,
-	[LOVE_SONG_TYPE_CONSTANTS.serenade]: `rgba(255, 192, 203, ${UNSELECTED_OPACITY})`,
-	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: `rgba(0, 0, 255, ${UNSELECTED_OPACITY})`,
-	[LOVE_SONG_TYPE_CONSTANTS.sexualConquest]: `rgba(255, 0, 0, ${UNSELECTED_OPACITY})`,
-	[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: `rgba(165, 42, 42, ${UNSELECTED_OPACITY})`,
-	[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: `rgba(128, 0, 128, ${UNSELECTED_OPACITY})`,
-	[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: `rgba(255, 165, 0, ${UNSELECTED_OPACITY})`,
-	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: `rgba(0, 128, 0, ${UNSELECTED_OPACITY})`
-};
+const UNSELECTED_OPACITY_HEX_PREFIX = "4D"; // 30% opacity
+export const UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP = Object.fromEntries(
+	Object.entries(LOVE_SONG_TYPE_COLOR_MAP).map(([key, value]) => [
+		key,
+		`${value}${UNSELECTED_OPACITY_HEX_PREFIX}`
+	])
+);
 
 export const LOVE_SONG_TYPES = Object.values(LOVE_SONG_TYPE_CONSTANTS);
