@@ -8,10 +8,6 @@
     import {selectedGenders, selectedSongs, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
-	
-    // Story index synced to query params:
-    const STEP_QUERY_PARAM = "step"
-    const searchParams = new URLSearchParams("step=0");
 
     onMount(() => {
        const urlIndex = parseInt(urlParams.get("step")?.toString() || "0");
@@ -70,15 +66,11 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 10px;
-        
-        pointer-events: none;
+        padding-left: 5%; 
+        padding-right: 5%;
     }
 
     .title {
-        text-align: center;
-        background-color: var(--color-gray-300);
-        /* If screen width is less 1000 shrink font size */
         font-size: clamp(1rem, 2vw, 1.5rem);
     }
 </style>

@@ -460,7 +460,7 @@ const steps = {
 	// Sexual Confidence
 
 	introducingSexualConquest: {
-		text: "But we can't call it just yet. What about these songs that get... a little steamy. Think about artists like Nicki Minaj and Drake with their respective hits 'WAP' and 'Way 2 Sexy.'",
+		text: "But we can't call it just yet. What about these songs that get... a little steamy? Think about artists like Nicki Minaj and Drake with their respective hits 'WAP' and 'Way 2 Sexy.'",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.sexualConquest],

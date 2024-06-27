@@ -7,7 +7,10 @@
     let gx;
 
     $: x = xScaleJustAddRange($viewport.width)
-    $: d3.select(gx).call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(10).tickSizeOuter(0)).style("font-family", "Atlas Grotesk");
+    $: d3.select(gx).call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(5).tickSize(0))
+        .style("font-family", "Atlas Grotesk")
+        .style("font-weight", "bold")
+        .style("font-size", "16px")
 </script>
 
 <svg width={$viewport.width} height={$viewport.height}>
