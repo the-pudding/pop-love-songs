@@ -57,8 +57,6 @@
 		position: absolute;
 		width: 200px;
 		max-height: 300px;
-		background-color: white;
-		border: 1px solid black;
-		padding: 0.5rem;
-	}
+		background-color: transparent;
+    }
 </style>

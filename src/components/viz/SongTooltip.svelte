@@ -30,11 +30,11 @@
 	div {
 		z-index: 10000;
 		position: absolute;
-		width: 280px;
-		height: 100px;
-		background-color: white;
-		border: 1px solid black;
+		max-width: 400px; /* TODO: make smaller for mobile? */
+		background-color: rgba(253, 253, 253, 0.8);
 		padding: 0.5rem;
+
+		/* note: dynamically toggled via JS */
 		display: none;
 	}
 	.visible {
