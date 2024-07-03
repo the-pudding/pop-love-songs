@@ -1,3 +1,4 @@
+import songsData from "$data/songs-data.js";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { STORY_STEP_CONTROLLER_BOTTOM_PADDING } from "$components/viz/viz-utils";
 import {
@@ -86,3 +87,12 @@ export const fractionOfScreenFactory =
 		const randomOffset = range * randomVariance * (Math.random() - 1);
 		return randomOffset + X_MARGIN + fraction * range;
 	};
+
+// Create an unchanging array of random positions for each song, since it should stay constant accros the story
+const RANDOM_X_POSITIONS = songsData.map(() => Math.random());
+const RANDOM_Y_POSITIONS = songsData.map(() => Math.random());
+
+export const randomXDistribution = (song, canvasWidthOrHeight, _, index) =>
+	RANDOM_X_POSITIONS[index] * canvasWidthOrHeight;
+export const randomYDistribution = (song, canvasWidthOrHeight, _, index) =>
+	RANDOM_Y_POSITIONS[index] * canvasWidthOrHeight;

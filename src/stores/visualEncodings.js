@@ -18,7 +18,9 @@ export const xForcePosition = derived(
 	([$viewport, $currentStoryStep]) => {
 		const { width } = $viewport;
 		const { calculateXForcePosition } = $currentStoryStep.visualEncodings;
-		return songsData.map(({ song }) => calculateXForcePosition(song, width));
+		return songsData.map(({ song }, index) =>
+			calculateXForcePosition(song, width, undefined, index)
+		);
 	}
 );
 
@@ -37,11 +39,12 @@ export const yForcePosition = derived(
 	]) => {
 		const { height } = $viewport;
 		const { calculateYForcePosition } = $currentStoryStep.visualEncodings;
-		return songsData.map(({ song }) =>
+		return songsData.map(({ song }, index) =>
 			calculateYForcePosition(
 				song,
 				height,
-				$loveSongsLabeledByTimeRegionPercentageForPosition
+				$loveSongsLabeledByTimeRegionPercentageForPosition,
+				index
 			)
 		);
 	}

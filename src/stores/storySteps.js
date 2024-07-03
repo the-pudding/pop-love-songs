@@ -16,7 +16,9 @@ import { MAX_DATE, MIN_DATE } from "$data/songs-data.js";
 import {
 	fractionOfScreenFactory,
 	getXPositionFromTime,
-	getYPositionInSnakeChart
+	getYPositionInSnakeChart,
+	randomXDistribution,
+	randomYDistribution
 } from "./forcePositionOptions-helper.js";
 
 const SEARCH_AND_FILTER_BLANK_STATE = {
@@ -38,7 +40,6 @@ const SEARCH_AND_FILTER_BLANK_STATE = {
 const VISUAL_ENCODING_BLANK_STATE = {
 	colorButDontSeperateThisLoveSongType: null,
 
-	onLoadUseRandomInitialPositions: false,
 	calculateXForcePosition: getXPositionFromTime,
 	calculateYForcePosition: getYPositionInSnakeChart,
 	forceXStrength: 5, // it is FAR more important that the bubble is accurate to the time encoding
@@ -63,11 +64,10 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			onLoadUseRandomInitialPositions: true,
-			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
-			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
-			forceXStrength: 0.2,
-			forceYStrength: 0.2
+			calculateXForcePosition: randomXDistribution,
+			calculateYForcePosition: randomYDistribution,
+			forceXStrength: 1,
+			forceYStrength: 1
 		}
 		// showBoomerBobImages: true
 	},
@@ -80,11 +80,10 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			onLoadUseRandomInitialPositions: true,
-			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
-			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
-			forceXStrength: 0.2,
-			forceYStrength: 0.2
+			calculateXForcePosition: randomXDistribution,
+			calculateYForcePosition: randomXDistribution,
+			forceXStrength: 1,
+			forceYStrength: 1
 		},
 		showBoomerBobImages: true
 	},
@@ -98,11 +97,10 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			onLoadUseRandomInitialPositions: true,
-			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
-			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
-			forceXStrength: 0.2,
-			forceYStrength: 0.2
+			calculateXForcePosition: randomXDistribution,
+			calculateYForcePosition: randomYDistribution,
+			forceXStrength: 1,
+			forceYStrength: 1
 		}
 		// showBoomerBobImages: true
 	},
@@ -115,12 +113,11 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			onLoadUseRandomInitialPositions: true,
-			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
-			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			calculateXForcePosition: randomXDistribution,
+			calculateYForcePosition: randomYDistribution,
 			restartBubblesOnReturnInto: false,
-			forceXStrength: 0.1,
-			forceYStrength: 0.1
+			forceXStrength: 1,
+			forceYStrength: 1
 		}
 	},
 	highlightSerenadesWithinCluster: {
@@ -133,12 +130,11 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			onLoadUseRandomInitialPositions: true,
-			calculateXForcePosition: fractionOfScreenFactory(0.5, 0),
-			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			calculateXForcePosition: randomXDistribution,
+			calculateYForcePosition: randomYDistribution,
 			restartBubblesOnAdvanceInto: false,
-			forceXStrength: 0.1,
-			forceYStrength: 0.1
+			forceXStrength: 1,
+			forceYStrength: 1
 		}
 	},
 	serenadesAreIndeedDying: {

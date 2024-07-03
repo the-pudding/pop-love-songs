@@ -33,8 +33,8 @@
 	const forceSimulationData = songsData.map((songObject, songIndex) => ({
 		...songObject,
 		
-		x: $currentStoryStep.visualEncodings.onLoadUseRandomInitialPositions ? 2 * Math.random() * $viewport.width - $viewport.width / 2 : $xForcePosition[songIndex],
-		y: $currentStoryStep.visualEncodings.onLoadUseRandomInitialPositions ? 2 * Math.random() * $viewport.height - $viewport.height / 2 : $yForcePosition[songIndex]
+		x: $xForcePosition[songIndex],
+		y: $yForcePosition[songIndex]
 	}));
 
 	let canvas;
