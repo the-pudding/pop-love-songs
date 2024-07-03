@@ -201,7 +201,7 @@ const steps = {
 		}
 	},
 	anAggSnakeChartMakesBoomerBobSeemRight: {
-		text: "To see, here are the love songs as a proportion of all other Billboard Top 10 hits. Egads! The proportion of love songs in the 2020s is 41% less than in the 1960s! So, was Boomer Bob right? Are love songs, in fact, dying?",
+		text: "To see, here are the love songs as a proportion of all other Billboard Top 10 hits. Egads! The proportion of love songs in the 2020s is almost half what it was in the 1960s! So, was Boomer Bob right? Are love songs, in fact, dying?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -228,6 +228,7 @@ const steps = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			restartBubblesOnAdvanceInto: false,
+			restartBubblesOnReturnInto: false,
 			forceYStrength: 0.1, // I want the bubbles to spread to fill their respective regions more similarly to the snake
 			songAnnotations: [
 				{ song: "Buy U A Drank (Shawty Snappin')", year: 2007 },
@@ -246,13 +247,14 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			restartBubblesOnAdvanceInto: false, // bubble chart isn't changing, leave it as is as snake comes in over the top
+			restartBubblesOnAdvanceInto: false,
+			restartBubblesOnReturnInto: false,
 			showAggregateSnakeChart: true
 		},
 		showLoveSongChange: true
 	},
 	definingSerenades: {
-		text: "On our journey to a more expansive view of love, we'll introduce other (often less known) types of love songs, one at a time. Earlier we showed you most obvious form of love songs, which we'll call 'Serenades'. They're typified by a simple relationship: you loves someone, and they love you back!",
+		text: "Earlier we showed you most obvious form of love songs, which we'll call 'Serenades'. They're typified by a simple relationship: you loves someone, and they love you back!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -261,7 +263,13 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			restartBubblesOnReturnInto: false
+			restartBubblesOnAdvanceInto: false,
+			restartBubblesOnReturnInto: false,
+			songAnnotations: [
+				{ song: "Fever", year: 1958 },
+				{ song: "Like A Virgin", year: 1984 },
+				{ song: "Just The Way You Are", year: 2010 }
+			]
 		}
 	},
 	colorInHeartbreak: {
@@ -276,7 +284,12 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			colorButDontSeperateThisLoveSongType:
 				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-			restartBubblesOnAdvanceInto: false
+			restartBubblesOnAdvanceInto: false,
+			restartBubblesOnReturnInto: false,
+			songAnnotations: [
+				{ song: "Heartbreaker", year: 1983 },
+				{ song: "You Belong With Me", year: 2009 }
+			]
 		}
 	},
 
@@ -312,7 +325,8 @@ const steps = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			restartBubblesOnReturnInto: false
+			restartBubblesOnReturnInto: false,
+			songAnnotations: [{ song: "Blinding Lights", year: 2020 }]
 		}
 	},
 
@@ -474,7 +488,7 @@ const steps = {
 	sexualConquestInContext: {
 		// TODO: this could be a tooltip for those wanting to engage a bit more:
 		// "Has lust replaced love? Maybe. But, as theorists point out, perhaps the younger generation sees sex as a *gateway* to love. (or maybe it's just more socially acceptable to be horny!)"
-		text: "As Boomers bemoan, these 'Sexual Confidence' songs exploded in popularity, nearly eclipsing the Serenade in the 2000s. With this more sensual side of love... the modern love song is *exactly* as strong as in Boomer Bob's day! Our last type could tip the balance...",
+		text: "As Boomers bemoan, these 'Sexual Confidence' songs exploded in popularity, nearly eclipsing the Serenade in the 2000s. With this more sensual side of love... the modern love song is *exactly* as strong as in Boomer Bob's day! But we've got one more type left...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
