@@ -4,6 +4,8 @@ export const STORY_STEP_CONTROLLER_BOTTOM_PADDING = 100;
 
 export const CHART_TRANSITION_OPACITY_DURATION = 800;
 
+export const BUBBLE_BORDER_THICKNESS = 4;
+
 const NEXT_COLOR_STEP = 1; // keep this as 1
 const BASE_OFFSET = 10;
 

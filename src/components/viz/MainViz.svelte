@@ -14,6 +14,7 @@
 
 	import songsData from "$data/songs-data.js";
 	import {
+		BUBBLE_BORDER_THICKNESS,
 		CHART_TRANSITION_OPACITY_DURATION,
 		getInvisibleFillFromSongIndex,
 		getSnakeFill,
@@ -56,7 +57,8 @@
 			const isSelected = $songIsSelected[songIndex];
 			const isVisible = $songIsVisible[songIndex];
 			const circle = new Path2D();
-			const radius = $songRadius[songIndex];
+			// border extends into & out of the edge, so divide it in half and add it to the radius, for visual consistency
+			const radius = $songRadius[songIndex] + (songInAnnotations(song, $currentStoryStep.visualEncodings.songAnnotations) ? BUBBLE_BORDER_THICKNESS / 2 : 0);
 			const displayRadius = isVisible ? radius : 0;
 			circle.arc(x, y, displayRadius, 0, 2 * Math.PI);
 
@@ -71,7 +73,7 @@
 			// Draw a border around annotated songs
 			if (songInAnnotations(song, $currentStoryStep.visualEncodings.songAnnotations)) {
 				context.strokeStyle = "black";
-				context.lineWidth = 4;
+				context.lineWidth = BUBBLE_BORDER_THICKNESS;
 				context.stroke(circle);
 			} else if (isSelected && isVisible) {
 				context.strokeStyle = "white";
