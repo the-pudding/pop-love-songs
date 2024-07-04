@@ -115,7 +115,8 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: randomXDistribution,
 			calculateYForcePosition: randomYDistribution,
-			restartBubblesOnReturnInto: false,
+			restartBubblesOnAdvanceInto: true, // a little wiggle is nice
+			restartBubblesOnReturnInto: false, // nothing's changed position-wise
 			forceXStrength: 1,
 			forceYStrength: 1,
 			songAnnotations: [
