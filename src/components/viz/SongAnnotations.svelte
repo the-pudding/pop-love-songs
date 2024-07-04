@@ -59,8 +59,7 @@
 	div.annotation-wrapper {
 		z-index: 10000;
 		position: absolute;
-        /* TODO: is this confusing?  */
-        transition: top 0.8s, left 0.8s;
+        /* transition: top 0.8s, left 0.8s; */
 		width: 200px;
 		max-height: 300px;
 		background-color: transparent;

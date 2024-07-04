@@ -98,10 +98,21 @@ export const SERENADE_HIGHLIGHTS_FROM_INTRO = [
 	{ song: "No One", year: 2007, xPercent: 0.5, yPercent: 0.1 },
 	{ song: "Perfect", year: 2017, xPercent: 0.4, yPercent: 0.6 }
 ];
+export const NON_SERENADE_HIGHLIGHTS_FROM_INTRO = [
+	{ song: "Day Tripper", year: 1966, xPercent: 0.1, yPercent: 0.6 },
+	{ song: "Thriller", year: 1984, xPercent: 0.8, yPercent: 0.4 },
+	{ song: "If I Were A Boy", year: 2008, xPercent: 0.5, yPercent: 0.55 },
+	{ song: "Kiss Me More", year: 2021, xPercent: 0.4, yPercent: 0.2 }
+];
+
+const ALL_HIGHLIGHTS_FROM_INTRO = [
+	...SERENADE_HIGHLIGHTS_FROM_INTRO,
+	...NON_SERENADE_HIGHLIGHTS_FROM_INTRO
+];
 
 const RANDOM_X_POSITIONS = songsData.map(({ song }) => {
-	if (songInAnnotations(song, SERENADE_HIGHLIGHTS_FROM_INTRO)) {
-		const { xPercent } = SERENADE_HIGHLIGHTS_FROM_INTRO.find(
+	if (songInAnnotations(song, ALL_HIGHLIGHTS_FROM_INTRO)) {
+		const { xPercent } = ALL_HIGHLIGHTS_FROM_INTRO.find(
 			({ song: songName }) => songName === song[SONG_DATA_COLUMNS_ENUM.song]
 		);
 		return xPercent;
@@ -109,8 +120,8 @@ const RANDOM_X_POSITIONS = songsData.map(({ song }) => {
 	return Math.random();
 });
 const RANDOM_Y_POSITIONS = songsData.map(({ song }) => {
-	if (songInAnnotations(song, SERENADE_HIGHLIGHTS_FROM_INTRO)) {
-		const { yPercent } = SERENADE_HIGHLIGHTS_FROM_INTRO.find(
+	if (songInAnnotations(song, ALL_HIGHLIGHTS_FROM_INTRO)) {
+		const { yPercent } = ALL_HIGHLIGHTS_FROM_INTRO.find(
 			({ song: songName }) => songName === song[SONG_DATA_COLUMNS_ENUM.song]
 		);
 		return yPercent;

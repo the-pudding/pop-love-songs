@@ -14,6 +14,7 @@ import {
 } from "$data/data-constants.js";
 import { MAX_DATE, MIN_DATE } from "$data/songs-data.js";
 import {
+	NON_SERENADE_HIGHLIGHTS_FROM_INTRO,
 	SERENADE_HIGHLIGHTS_FROM_INTRO,
 	fractionOfScreenFactory,
 	getXPositionFromTime,
@@ -120,10 +121,7 @@ const steps = {
 			restartBubblesOnReturnInto: false, // nothing's changed position-wise
 			forceXStrength: 1,
 			forceYStrength: 1,
-			songAnnotations: [
-				{ song: "Thriller", year: 1984 },
-				{ song: "Kiss Me More", year: 2021 }
-			]
+			songAnnotations: NON_SERENADE_HIGHLIGHTS_FROM_INTRO
 		}
 	},
 	highlightSerenadesWithinCluster: {
