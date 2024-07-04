@@ -14,6 +14,7 @@ import {
 } from "$data/data-constants.js";
 import { MAX_DATE, MIN_DATE } from "$data/songs-data.js";
 import {
+	SERENADE_HIGHLIGHTS_FROM_INTRO,
 	fractionOfScreenFactory,
 	getXPositionFromTime,
 	getYPositionInSnakeChart,
@@ -140,13 +141,7 @@ const steps = {
 			restartBubblesOnAdvanceInto: false,
 			forceXStrength: 1,
 			forceYStrength: 1,
-			songAnnotations: [
-				{ song: "Happy Together", year: 1967 },
-				{ song: "Love Song", year: 1989 },
-				{ song: "No One", year: 2007 },
-				{ song: "Cheerleader", year: 2013 },
-				{ song: "Perfect", year: 2017 }
-			]
+			songAnnotations: SERENADE_HIGHLIGHTS_FROM_INTRO
 		}
 	},
 	serenadesAreIndeedDying: {
@@ -162,7 +157,8 @@ const steps = {
 			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
 			restartBubblesOnReturnInto: false,
 			forceXStrength: 1,
-			forceYStrength: 0.5
+			forceYStrength: 0.5,
+			songAnnotations: SERENADE_HIGHLIGHTS_FROM_INTRO
 		}
 	},
 	serenadesPeakedInThe90s: {

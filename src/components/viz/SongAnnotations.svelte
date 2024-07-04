@@ -8,6 +8,7 @@
     import { songAnnotationsWithPosition } from "$stores/visualEncodings";
 	import SongInfo from "./SongInfo.svelte";
 	import { CHART_TRANSITION_OPACITY_DURATION } from "./viz-utils";
+	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 	
 
     $: y = $viewport.height / 2;
@@ -42,6 +43,7 @@
 
 {#each layoutData as {xPos, yPos, song}}
     <div
+        id={song[SONG_DATA_COLUMNS_ENUM.song]}
         class="annotation-wrapper"
         role="tooltip"
         style={`top: ${yPos}px; left: ${xPos}px; opacity: ${$opacity}`}
@@ -57,6 +59,8 @@
 	div.annotation-wrapper {
 		z-index: 10000;
 		position: absolute;
+        /* TODO: is this confusing?  */
+        transition: top 0.8s, left 0.8s;
 		width: 200px;
 		max-height: 300px;
 		background-color: transparent;
