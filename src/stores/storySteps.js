@@ -72,7 +72,7 @@ const steps = {
 		// showBoomerBobImages: true
 	},
 	boomerBobSaysLoveSongsAreDying: {
-		text: "This Baby Boomer-centric sentiment seems to crystalize around one topic in particular: modern pop music's treatment of love & romance -- or the lack thereof. According to Boomer Bob, the love song is, apparently, dying.",
+		text: "This Baby Boomer-centric sentiment seems to crystalize around one topic in particular: modern pop music's treatment of love & romance -- or the lack thereof. According to Boomer Bob, the love song is dying.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: ["FAAAAKKEEE"],
@@ -117,7 +117,11 @@ const steps = {
 			calculateYForcePosition: randomYDistribution,
 			restartBubblesOnReturnInto: false,
 			forceXStrength: 1,
-			forceYStrength: 1
+			forceYStrength: 1,
+			songAnnotations: [
+				{ song: "Thriller", year: 1984 },
+				{ song: "Kiss Me More", year: 2021 }
+			]
 		}
 	},
 	highlightSerenadesWithinCluster: {
@@ -134,7 +138,14 @@ const steps = {
 			calculateYForcePosition: randomYDistribution,
 			restartBubblesOnAdvanceInto: false,
 			forceXStrength: 1,
-			forceYStrength: 1
+			forceYStrength: 1,
+			songAnnotations: [
+				{ song: "Happy Together", year: 1967 },
+				{ song: "Love Song", year: 1989 },
+				{ song: "No One", year: 2007 },
+				{ song: "Cheerleader", year: 2013 },
+				{ song: "Perfect", year: 2017 }
+			]
 		}
 	},
 	serenadesAreIndeedDying: {
@@ -408,7 +419,7 @@ const steps = {
 		}
 	},
 	itsComplicatedDoesNotTipTheScales: {
-		text: "Can this angsty genre save the love song? No, but we're getting closer! Pop culture increasingly warmed up to these messy tunes, but love songs are still down 16%.",
+		text: "Can this angsty genre save the love song? No, but we're getting closer! Even as Pop culture warmed up to these messy tunes, the love songs as a whole declined 16% since the 60s.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
