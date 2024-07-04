@@ -1,6 +1,7 @@
 import { derived } from "svelte/store";
 import viewport from "./viewport.js";
 import songsData from "$data/songs-data.js";
+import { songInAnnotations } from "$data/data-utils.js";
 import { currentStoryStep } from "./storySteps.js";
 import { loveSongsLabeledByTimeRegionPercentageForPosition } from "./loveSongsLabeledByTimeRegionPercentageForPosition.js";
 import {
@@ -50,7 +51,31 @@ export const yForcePosition = derived(
 	}
 );
 
-// Size
+// Annotations with position
+export const songAnnotationsWithPosition = derived(
+	[yForcePosition, xForcePosition, currentStoryStep],
+	([$yForcePosition, $xForcePosition, $currentStoryStep]) =>
+		songsData.reduce((accum, { song }, index) => {
+			// if song is in annotations, add its position
+			if (
+				songInAnnotations(
+					song,
+					$currentStoryStep.visualEncodings.songAnnotations
+				)
+			) {
+				return [
+					...accum,
+					{
+						song,
+						x: $xForcePosition[index],
+						y: $yForcePosition[index]
+					}
+				];
+			} else {
+				return accum;
+			}
+		}, [])
+);
 
 // Color
 
