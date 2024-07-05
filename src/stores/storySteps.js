@@ -74,7 +74,7 @@ const steps = {
 		// showBoomerBobImages: true
 	},
 	boomerBobSaysLoveSongsAreDying: {
-		text: "This Baby Boomer-centric sentiment seems to crystalize around one topic in particular: modern pop music's treatment of love & romance -- or the lack thereof. According to Boomer Bob, the love song is dying.",
+		text: "This Baby Boomer-centric sentiment seems to crystalize around one topic in particular: modern pop music's treatment of love & romance -- or the lack thereof. According to Boomer Bob, the love song is dying. But is it true? Let's investigate...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: ["FAAAAKKEEE"],
@@ -91,7 +91,7 @@ const steps = {
 	},
 
 	titleCard: {
-		text: "Is it true? Has the younger generation killed off romance in favor of lust (or whatever else Boomer Bob bemoans?) Let's investigate. [TITLE CARD: 'is the love song dying?' maybe made out of bubbles]",
+		text: "[TITLE CARD: 'is the love song dying?']",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: ["FAAAAKKEEE"],
@@ -104,7 +104,6 @@ const steps = {
 			forceXStrength: 1,
 			forceYStrength: 1
 		}
-		// showBoomerBobImages: true
 	},
 
 	allTheBillboardHitsInAMonoChromeCluster: {
