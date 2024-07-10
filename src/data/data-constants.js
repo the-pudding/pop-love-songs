@@ -51,14 +51,14 @@ export const LOVE_SONG_TYPE_CONSTANTS = {
 // ... except when you try to do things like Object.keys to get the keys, which will return strings.
 // I'll try and pre-empt this by doing any such conversion here, carefully.
 export const LOVE_SONG_TYPE_COLOR_MAP = {
-	[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]: "#9EA593",
-	[LOVE_SONG_TYPE_CONSTANTS.serenade]: "#F7E1FC",
-	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: "#0955CD",
-	[LOVE_SONG_TYPE_CONSTANTS.sexualConquest]: "#FD2824",
-	[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: "#9E3625",
-	[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: "#5E3BA6",
+	[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]: "#D1D1D1",
+	[LOVE_SONG_TYPE_CONSTANTS.serenade]: "#F2C3FF",
+	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: "#5CAFFF",
+	[LOVE_SONG_TYPE_CONSTANTS.sexualConquest]: "#FF5C00",
+	[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: "#96753C",
+	[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: "#A290E9",
 	[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: "#FFD700",
-	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: "#04BC47"
+	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: "#02D098"
 };
 
 const UNSELECTED_OPACITY_HEX_PREFIX = "4D"; // 30% opacity
