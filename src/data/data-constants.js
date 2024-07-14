@@ -1,27 +1,15 @@
 export const SONG_DATA_COLUMNS_ENUM = {
 	performers_list_str: 0,
 	song: 1,
-	type_and_gender_list_str: 2,
-	date_as_decimal: 3,
-	love_song_sub_type: 4,
-	total_weeks_in_top_10: 5
+	date_as_decimal: 2,
+	love_song_sub_type: 3,
+	total_weeks_in_top_10: 4
 };
 
 export const PERFORMER_TYPE_ABBREVIATIONS = {
 	i: "individual",
 	g: "group"
 };
-
-export const GENDER_ABBREVIATIONS = {
-	f: "female",
-	m: "male",
-	n: "gender non-conforming",
-	x: "mixed gender group" // OPTIMIZATION: technically this is redundant, so we could drop "g" for this in the original data
-};
-
-export const GENDER_CONSTANTS = Object.fromEntries(
-	Object.entries(GENDER_ABBREVIATIONS).map(([key, value]) => [value, key])
-);
 
 // TODO: choose better name
 export const LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP = {

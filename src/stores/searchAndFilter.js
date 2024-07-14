@@ -1,6 +1,5 @@
 import { writable } from "svelte/store";
 
-export const selectedGenders = writable([]);
 export const selectedSongs = writable([]);
 export const selectedPerformers = writable([]);
 

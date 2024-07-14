@@ -10,26 +10,11 @@ import {
 	songInAnnotations
 } from "$data/data-utils.js";
 import {
-	selectedGenders,
 	selectedSongs,
 	selectedPerformers,
 	typesTreatedAsNonLoveSongs
 } from "./searchAndFilter.js";
 import { currentStoryStep } from "./storySteps.js";
-
-const genderSelected = derived(
-	[selectedGenders],
-	([$selectedGenders]) =>
-		songsData.map(
-			({ song }) =>
-				$selectedGenders.some((selectedGender) =>
-					song[SONG_DATA_COLUMNS_ENUM.type_and_gender_list_str].includes(
-						`${selectedGender}|`
-					)
-				) || $selectedGenders.length === 0
-		),
-	[]
-);
 
 const loveSongTypeSelected = derived(
 	[currentStoryStep],
@@ -97,13 +82,7 @@ const withinTimeRange = derived(
 );
 
 export const songIsSelected = derived(
-	[
-		genderSelected,
-		loveSongTypeSelected,
-		performerSelected,
-		songSelected,
-		withinTimeRange
-	],
+	[loveSongTypeSelected, performerSelected, songSelected, withinTimeRange],
 	(subStores) =>
 		songsData.map((song, index) =>
 			subStores.every((subStore) => subStore[index])
@@ -114,7 +93,6 @@ export const songIsSelected = derived(
 // Note: this is just so we can compare to the 60s percentage no matter what time range we're selecting at
 export const selectedSongsDataIgnoringTime = derived(
 	[
-		genderSelected,
 		loveSongTypeSelected,
 		performerSelected,
 		songSelected
@@ -127,14 +105,13 @@ export const selectedSongsDataIgnoringTime = derived(
 	[]
 );
 
-// TODO: OPTIMIZATION @michelle basically this fires anytime a selection changes (eg genderSelected), which triggers a lot of calculations & (most notably) can restart the force layout.
+// TODO: OPTIMIZATION @michelle basically this fires anytime a selection changes (eg loveSongTypeSelected), which triggers a lot of calculations & (most notably) can restart the force layout.
 // However, this store needs ONLY to update if columnsToFilterVisibilityOn contains 1 or more items, or itself changed to have no items.
 // My sense is that this is where we'd want to just implement a custom store
 // ie one that subscribes to all this, but only broadcasts an update to *its* subscribers when the columnsToFilterVisibilityOn changes in the ways described above.
 // Note this would also (likely) remove the need for: preventBubbleRestartBecauseTheUserIsMerelySearching
 export const songIsVisible = derived(
 	[
-		genderSelected,
 		loveSongTypeSelected,
 		performerSelected,
 		songSelected,
@@ -142,7 +119,6 @@ export const songIsVisible = derived(
 		currentStoryStep
 	],
 	([
-		$genderSelected,
 		$loveSongTypeSelected,
 		$performerSelected,
 		$songSelected,
@@ -151,12 +127,6 @@ export const songIsVisible = derived(
 	]) =>
 		songsData.map((song, index) => {
 			// If we're filtering visibility based on a given column, then it must be selected to be visible.
-			const genderVisible =
-				$currentStoryStep.searchAndFilterState.columnsToFilterVisibilityOn.includes(
-					SONG_DATA_COLUMNS_ENUM.type_and_gender_list_str
-				)
-					? $genderSelected[index]
-					: true;
 			const loveSongTypeVisible =
 				$currentStoryStep.searchAndFilterState.columnsToFilterVisibilityOn.includes(
 					SONG_DATA_COLUMNS_ENUM.love_song_sub_type
@@ -186,7 +156,6 @@ export const songIsVisible = derived(
 					: true;
 
 			return (
-				genderVisible &&
 				loveSongTypeVisible &&
 				performerVisible &&
 				songVisible &&

@@ -5,7 +5,7 @@
     import Tap from "../helpers/Tap.svelte";
     import BoomerBobImages from "./BoomerBobImages.svelte";
 
-    import {selectedGenders, selectedSongs, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart} from "$stores/searchAndFilter.js"
+    import {selectedSongs, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
 
@@ -34,7 +34,6 @@
 
     const updateFilterFilterState = () => {
         selectedSongs.set([...$currentStoryStep.searchAndFilterState.selectedSongs])
-        selectedGenders.set([...$currentStoryStep.searchAndFilterState.selectedGenders])
         selectedPerformers.set([...$currentStoryStep.searchAndFilterState.selectedPerformers])
         
         typesTreatedAsNonLoveSongs.set([...$currentStoryStep.searchAndFilterState.typesTreatedAsNonLoveSongs])

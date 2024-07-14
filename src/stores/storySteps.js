@@ -1,11 +1,7 @@
 import { derived, writable } from "svelte/store";
 import previous from "./previous";
 import viewport from "./viewport";
-import {
-	selectedGenders,
-	selectedPerformers,
-	selectedSongs
-} from "./searchAndFilter";
+import { selectedPerformers, selectedSongs } from "./searchAndFilter";
 
 import {
 	SONG_DATA_COLUMNS_ENUM,
@@ -26,7 +22,6 @@ import {
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
 	selectedPerformers: [],
-	selectedGenders: [],
 	selectedSongs: [],
 	timeRange: {
 		startYear: MIN_DATE,
@@ -579,10 +574,7 @@ const steps = {
 	youDecide: {
 		text: "But, ultimately, the status of love songs depends on what *you* count as a love song. (Boomer Bob probably still only counts Serenades!) So, you decide: add and remove love songs based on your definition, and tell *us* how the love song is doing! (for nerds: try the advanced filters in the top bar)",
 		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			columnsToFilterVisibilityOn: [
-				SONG_DATA_COLUMNS_ENUM.type_and_gender_list_str
-			]
+			...SEARCH_AND_FILTER_BLANK_STATE
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
@@ -677,15 +669,12 @@ export const restartBubbles = derived(
 
 // All this is to prevent the bubbles from restarting when the user is merely searching:
 
-const previousSelectedGenders = previous(selectedGenders, []);
 const previousViewport = previous(viewport, { width: null, height: null });
 
 // TODO: OPTIMIZATION, if we update songIsVisible to a memoized custom store, I think we can remove all this code
 export const preventBubbleRestartBecauseTheUserIsMerelySearching = derived(
 	[
 		currentStoryStep,
-		previousSelectedGenders,
-		selectedGenders,
 		selectedPerformers,
 		selectedSongs,
 		previousViewport,
@@ -693,29 +682,20 @@ export const preventBubbleRestartBecauseTheUserIsMerelySearching = derived(
 	],
 	([
 		$currentStoryStep,
-		$previousSelectedGenders,
-		$selectedGenders,
 		$selectedPerformers, // we just need to update when these change
 		$selectedSongs,
 		$previousViewport,
 		$viewport
 	]) => {
-		const genderHasChanged =
-			$selectedGenders.sort().join(",") !==
-			$previousSelectedGenders.sort().join(",");
 		const viewportChanged =
 			viewport.width !== null &&
 			($viewport.width !== $previousViewport.width ||
 				$viewport.height !== $previousViewport.height);
 
-		if (
-			!$currentStoryStep.allowUserToChangeFilters ||
-			genderHasChanged ||
-			viewportChanged
-		) {
+		if (!$currentStoryStep.allowUserToChangeFilters || viewportChanged) {
 			return false;
 		}
-		// So: if we're on a filter step & the gender selection NOT changed, don't restart the bubbles
+		// So: if we're on a filter step (ie last step) & teh user is just searching for a performer/song, don't restart the bubbles
 		return true;
 	}
 );

@@ -1,5 +1,4 @@
 <script>
-	import GenderFilter from "./GenderFilter.svelte";
 	import PerformerFilter from "./PerformerFilter.svelte";
 	import SnakeBubbleToggle from "./SnakeBubbleToggle.svelte";
 	import SongFilter from "./SongFilter.svelte";
@@ -8,8 +7,6 @@
 
 <fieldset>
 	<div>
-		<GenderFilter />
-		
 		<SnakeBubbleToggle />
 		<!-- These only make sense in bubble view: -->
 		<PerformerFilter />
