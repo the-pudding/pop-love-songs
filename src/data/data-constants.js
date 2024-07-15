@@ -29,7 +29,7 @@ export const LOVE_SONG_TYPE_CONSTANTS = {
 	serenade: 2,
 	longingAndHeartbreak: 3,
 	courtshipAndAnticipation: 4,
-	sexualConquest: 5,
+	sexualConfidence: 5,
 	loveSongForTheSelf: 6,
 	goodRiddance: 7
 };
@@ -42,7 +42,7 @@ export const LOVE_SONG_TYPE_COLOR_MAP = {
 	[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]: "#D1D1D1",
 	[LOVE_SONG_TYPE_CONSTANTS.serenade]: "#F2C3FF",
 	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: "#5CAFFF",
-	[LOVE_SONG_TYPE_CONSTANTS.sexualConquest]: "#FF5C00",
+	[LOVE_SONG_TYPE_CONSTANTS.sexualConfidence]: "#FF5C00",
 	[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: "#96753C",
 	[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: "#A290E9",
 	[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: "#FFD700",

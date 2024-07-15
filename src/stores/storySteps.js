@@ -469,11 +469,11 @@ const steps = {
 
 	// Sexual Confidence
 
-	introducingSexualConquest: {
+	introducingSexualConfidence: {
 		text: "But we can't call it just yet. What about these songs that get... a little steamy? Think about artists like Nicki Minaj and Drake with their respective hits 'WAP' and 'Way 2 Sexy.'",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.sexualConquest],
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.sexualConfidence],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
@@ -485,7 +485,7 @@ const steps = {
 			]
 		}
 	},
-	sexualConquestInContext: {
+	sexualConfidenceInContext: {
 		// TODO: this could be a tooltip for those wanting to engage a bit more:
 		// "Has lust replaced love? Maybe. But, as theorists point out, perhaps the younger generation sees sex as a *gateway* to love. (or maybe it's just more socially acceptable to be horny!)"
 		text: "As Boomers bemoan, these 'Sexual Confidence' songs exploded in popularity, nearly eclipsing the Serenade in the 2000s. With this more sensual side of love... the modern love song is *exactly* as strong as in Boomer Bob's day! But we've got one more type left...",
@@ -499,7 +499,7 @@ const steps = {
 						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
 						LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
 						LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
-						LOVE_SONG_TYPE_CONSTANTS.sexualConquest
+						LOVE_SONG_TYPE_CONSTANTS.sexualConfidence
 					].includes(t)
 			)
 		},
@@ -541,7 +541,7 @@ const steps = {
 						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
 						LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
 						LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
-						LOVE_SONG_TYPE_CONSTANTS.sexualConquest,
+						LOVE_SONG_TYPE_CONSTANTS.sexualConfidence,
 						LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
 					].includes(t)
 			),
@@ -620,8 +620,8 @@ const unprocessedStorySteps = [
 	steps.introducingGoodRiddance,
 	steps.goodRiddanceDoesNotTipTheScale,
 
-	steps.introducingSexualConquest,
-	steps.sexualConquestInContext,
+	steps.introducingSexualConfidence,
+	steps.sexualConfidenceInContext,
 
 	steps.introducingLoveSongForTheSelf,
 	steps.didLoveSongForTheSelfTipTheScales,
