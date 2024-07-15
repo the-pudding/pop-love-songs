@@ -1,10 +1,11 @@
 <script>
-    import PerformerName from "./PerformerName.svelte";
 	import { getArrayOfPerformers } from "$data/data-utils";
     export let song;
     $: performers = getArrayOfPerformers(song);
 </script>
 
-{#each performers as performer}
-    <PerformerName {performer} />
+{#each performers as performer, index}
+    <span aria-label={performer}>
+        {performer}{index < performers.length - 1 ? ", " : ""}
+    </span>
 {/each}
