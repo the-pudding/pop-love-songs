@@ -12,26 +12,26 @@ export const PERFORMER_TYPE_ABBREVIATIONS = {
 };
 
 // TODO: choose better name
+// Note: originally Sexual Confidence was originally called "Sexual Conquest"
 export const LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP = {
 	0: "(not a love song)",
 	1: "It's Complicated",
 	2: "Serenade",
 	3: "Longing & Heartbreak",
 	4: "Courtship & Anticipation",
-	5: "Good Riddance",
-	6: "Sexual Confidence", // Note: this was originally "Sexual Conquest", and still is in the original data. It's now just displayed as such.
-	7: "Love Song for the Self"
+	5: "Sexual Confidence",
+	6: "Love Song for the Self",
+	7: "Good Riddance"
 };
-
 export const LOVE_SONG_TYPE_CONSTANTS = {
 	notALoveSong: 0,
 	itsComplicated: 1,
 	serenade: 2,
 	longingAndHeartbreak: 3,
 	courtshipAndAnticipation: 4,
-	goodRiddance: 5,
-	sexualConquest: 6,
-	loveSongForTheSelf: 7
+	sexualConquest: 5,
+	loveSongForTheSelf: 6,
+	goodRiddance: 7
 };
 
 // TODO: bug-central: when you set an integer as a key, it gets converted to a string.

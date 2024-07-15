@@ -331,7 +331,7 @@ const steps = {
 	},
 
 	longingAndHeartbreakDoNotTipTheScales: {
-		text: "Did adding Heartbreak & Longing save the love song? Nope! Their decline changed little.",
+		text: "Did adding Longing & Heartbreak save the love song? Nope! Their decline decreased only a little.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -408,7 +408,7 @@ const steps = {
 		}
 	},
 	itsComplicatedDoesNotTipTheScales: {
-		text: "Can this angsty genre save the love song? No, but we're getting closer! Even as Pop culture warmed up to these messy tunes, the love songs as a whole declined 16% since the 60s.",
+		text: "Can this angsty genre save the love song? No, but we're getting closer! Even as Pop culture warmed up to these messy tunes, the love songs as a whole declined 12% since the 60s.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -429,7 +429,7 @@ const steps = {
 	},
 
 	introducingGoodRiddance: {
-		text: "Ok, so what about those songs where the relationship *is* clearly over, but the singer's heartbreak has resurrected into... righteous power? They're not crying, they're yelling 'Good Riddance'! Think Kelly Clarksen and Mariah Carey, who sport a combined *9* Top 10 hits of this type alone.",
+		text: "Ok, so what about those songs where the relationship *is* clearly over, but the singer's heartbreak has resurrected into... righteous power? They're not crying, they're yelling 'Good Riddance'! Think P!nk, who sports 4 Top 10 hits of this type alone.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.goodRiddance],
@@ -440,13 +440,13 @@ const steps = {
 			songAnnotations: [
 				{ song: "Runaround Sue", year: 1961 },
 				{ song: "I Will Survive", year: 1979 },
-				{ song: "Survivor", year: 2001 },
+				{ song: "So What", year: 2008 },
 				{ song: "Good 4 U", year: 2021 }
 			]
 		}
 	},
 	goodRiddanceDoesNotTipTheScale: {
-		text: "These 'Good Riddance' hits surged in the last few decades -- and reduce the love song's decline to under 10%! Maybe love's not dead... just a little wounded?",
+		text: "These 'Good Riddance' hits surged in the last few decades -- and reduce the love song's decline to under 10%! Maybe love's not dead... just little wounded?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -558,7 +558,7 @@ const steps = {
 
 	theLoveSongIsActuallyRising: {
 		// — even if those ways look different from generations of old
-		text: "... not at all, in fact it's actually *increased* by 12%! The love song didn't die, it evolved: people are loving, losing, and connecting in more ways than ever before. We think modern pop is just as romantic as ever, just maybe in ways that Boomer Bob doesn't recognize.",
+		text: "... not at all, in fact it's actually *increased* by 13%! The love song didn't die, it evolved: people are loving, losing, and connecting in more ways than ever before. We think modern pop is just as romantic as ever, just maybe in ways that Boomer Bob doesn't recognize.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
@@ -572,7 +572,7 @@ const steps = {
 
 	// Explore mode
 	youDecide: {
-		text: "But, ultimately, the status of love songs depends on what *you* count as a love song. (Boomer Bob probably still only counts Serenades!) So, you decide: add and remove love songs based on your definition, and tell *us* how the love song is doing! (for nerds: try the advanced filters in the top bar)",
+		text: "But, ultimately, the status of love songs depends on what *you* count as a love song. (Boomer Bob probably still only counts Serenades!) So, you decide: add and remove love songs based on your definition, and tell *us* how the love song is doing! (search specific songs or performers with the top bar)",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE
 		},
