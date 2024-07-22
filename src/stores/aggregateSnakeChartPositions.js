@@ -19,7 +19,8 @@ import {
 	getOffsetAndSqueeze,
 	getPercentage,
 	getPopularitySumByType,
-	getPopularitySumIgnoringFilters
+	getPopularitySumIgnoringFilters,
+	sortLoveSongTypesTopToBottom
 } from "./loveSongsLabeledByTimeRegionPercentageForPosition";
 import { typesTreatedAsNonLoveSongs } from "./searchAndFilter";
 
@@ -30,7 +31,6 @@ const getAggregatePercentageByLoveSongType = (
 	typesTreatedAsNonLoveSongs,
 	popularitySumIgnoringFilters
 ) => {
-	// 1. aggregate
 	const popularitySumByType = getPopularitySumByType(
 		songsInTimeRegion,
 		typesTreatedAsNonLoveSongs
@@ -44,17 +44,15 @@ const getAggregatePercentageByLoveSongType = (
 		}
 	});
 
-	const loveSongTypesSortedGreatestToLeast = Object.keys(
-		popularitySumByType
-	).sort((a, b) => popularitySumByType[b] - popularitySumByType[a]);
+	const loveSongTypesSortedGreatestToLeast =
+		sortLoveSongTypesTopToBottom(popularitySumByType);
 
-	// // 2. Sort in descending order (biggest to smallest), then convert to percentages.
-	// // Note, the percentages are summative, meaning that if the largest (first) value is "Serenade" at 50%, then the next value will be "Serenade" + "Longing & Heartbreak" at 75%.
+	// Note, the percentages are summative, meaning that if the largest (first) value is "Serenade" at 50%, then the next value will be "Serenade" + "Longing & Heartbreak" at 75%.
 	const popularityScoreSumsInTimeRegion = Object.keys(
 		popularitySumByType
 	).reduce((acc, loveSongType) => acc + popularitySumByType[loveSongType], 0);
 
-	// 3. Given that we may be working with 100% of love songs in this region, we will offset & squeeze the chart down to size (centered)
+	// Given that we may be working with 100% of love songs in this region, we will offset & squeeze the chart down to size (centered)
 	const { percentToOffset, squeezePercentageMultiplier } = getOffsetAndSqueeze(
 		popularitySumIgnoringFilters,
 		popularityScoreSumsInTimeRegion
