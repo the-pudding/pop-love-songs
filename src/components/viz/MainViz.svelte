@@ -193,10 +193,6 @@
 <svg height={$viewport.height} width={$viewport.width} style="opacity: {$aggregateSnakeChartOpacity}">
 	{#each $tweenedCoords as { loveSongType, svgCoords }}
 		<path d={$svgPathGenerator(svgCoords)} fill={getSnakeFill(loveSongType, $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType), $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap)} />
-		<g fill="none" stroke-width="1" stroke-miterlimit="1">
-			<path d={$svgPathGenerator.lineY1()(svgCoords)} stroke="#000"></path>
-			<path d={$svgPathGenerator.lineY0()(svgCoords)} stroke="#000"></path>
-		</g>
 	{/each}
 </svg>
 
