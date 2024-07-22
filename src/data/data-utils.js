@@ -2,7 +2,7 @@ import { scaleLinear } from "d3";
 import { SONG_DATA_COLUMNS_ENUM } from "./data-constants";
 import { MAX_DATE, MIN_DATE } from "./songs-data";
 
-export const Y_MARGIN_SCREEN_PERCENTAGE = 0.02;
+export const Y_MARGIN_SCREEN_PERCENTAGE = 0.05;
 
 export const X_MARGIN = 48; // This margin must accomodate the left/right nav arrows (Tap element)
 const xScaleSansRange = scaleLinear().domain([MIN_DATE, MAX_DATE]);

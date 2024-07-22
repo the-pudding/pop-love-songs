@@ -1,14 +1,16 @@
 <script>
     import {afterUpdate, onMount} from "svelte";
     import urlParams from "../../utils/urlParams.js";
+    import viewport from "$stores/viewport.js";
 
     import Tap from "../helpers/Tap.svelte";
     import BoomerBobImages from "./BoomerBobImages.svelte";
 
     import {selectedSongs, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
-    import {STORY_STEP_CONTROLLER_BOTTOM_PADDING} from "$components/viz/viz-utils.js"
-
+    import {STORY_STEP_CONTROLLER_TOP_PADDING} from "$components/viz/viz-utils.js"
+    import { Y_MARGIN_SCREEN_PERCENTAGE } from "$data/data-utils.js";
+	
     onMount(() => {
        const urlIndex = parseInt(urlParams.get("step")?.toString() || "0");
        $currentStoryStepIndex = urlIndex > storySteps.length - 1 ? 0 : urlIndex;
@@ -41,6 +43,9 @@
     }
 
     $: $currentStoryStepIndex, updateFilterFilterState()
+    $: console.log($viewport.height * Y_MARGIN_SCREEN_PERCENTAGE)
+
+    const style = `height: ${STORY_STEP_CONTROLLER_TOP_PADDING}px; margin-top: ${$viewport.height * Y_MARGIN_SCREEN_PERCENTAGE}px;`
 </script>
 
 
@@ -48,7 +53,7 @@
     <BoomerBobImages />
 {/if}
 
-<div class="container" style:height={`${STORY_STEP_CONTROLLER_BOTTOM_PADDING}px`}>
+<div class="container" style={style}>
     <h4 class="title">
         {$currentStoryStep.text}
     </h4>
@@ -59,7 +64,7 @@
 <style>
     .container {
         position: fixed;
-        bottom: 0px;
+        top: 0px;
         width: 100%;
         display: flex;
         flex-direction: column;

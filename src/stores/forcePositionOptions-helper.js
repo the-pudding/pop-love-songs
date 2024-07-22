@@ -1,6 +1,6 @@
 import songsData from "$data/songs-data.js";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
-import { STORY_STEP_CONTROLLER_BOTTOM_PADDING } from "$components/viz/viz-utils";
+import { STORY_STEP_CONTROLLER_TOP_PADDING } from "$components/viz/viz-utils";
 import {
 	getXPosForYear,
 	songInAnnotations,
@@ -44,12 +44,16 @@ const getPercentageForSong = (
 	return timeRegion.popularityScoreSumsInTimeRegion[loveSongType];
 };
 
-export const getYPosForPercentage = (percentage, canvasHeight) =>
-	canvasHeight * Y_MARGIN_SCREEN_PERCENTAGE +
-	percentage *
-		(canvasHeight -
-			STORY_STEP_CONTROLLER_BOTTOM_PADDING -
-			2 * canvasHeight * Y_MARGIN_SCREEN_PERCENTAGE);
+export const getYPosForPercentage = (percentage, canvasHeight) => {
+	const yStart =
+		canvasHeight * Y_MARGIN_SCREEN_PERCENTAGE +
+		STORY_STEP_CONTROLLER_TOP_PADDING;
+	const yRange =
+		canvasHeight -
+		STORY_STEP_CONTROLLER_TOP_PADDING -
+		2 * canvasHeight * Y_MARGIN_SCREEN_PERCENTAGE;
+	return yStart + percentage * yRange;
+};
 
 const TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE = 0.008;
 export const getYPosInAggregateSnakeChart = ({
