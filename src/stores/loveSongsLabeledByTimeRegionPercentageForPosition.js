@@ -1,4 +1,4 @@
-import { derived, get } from "svelte/store";
+import { derived } from "svelte/store";
 import {
 	LOVE_SONG_TYPE_CONSTANTS,
 	SONG_DATA_COLUMNS_ENUM
