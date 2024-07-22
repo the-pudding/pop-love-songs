@@ -9,8 +9,8 @@
 </script>
 
 <div class="container" style={style}>
-    <div class="year">2020s</div>
-    <div class="percentage">Y%</div>
+    <div class="year">{year}</div>
+    <div class="percentage">{percentage}%</div>
     <div class="love-songs">love songs</div>
 </div>   
 
