@@ -1,6 +1,7 @@
 <script>
 	import { LOVE_SONG_TYPE_CONSTANTS } from "$data/data-constants";
 	import { MIN_DATE } from "$data/songs-data";
+    import { onlyShowOneDecimalPlaceIfLessThan10 } from "$data/data-utils";
     
     import viewport from "$stores/viewport";
     import { currentStoryStep } from "$stores/storySteps";
@@ -20,8 +21,8 @@
 {#if $currentStoryStep.showLoveSongChange}
     <div>
 
-       <TotalLoveSongPercentageAnnotation topPosition={sixtiesYPos} year="1960s" percentage={"Y"} isLeftSide={true} />
-       <TotalLoveSongPercentageAnnotation topPosition={modernYPos} year="2020s" percentage={"X"} />
+       <TotalLoveSongPercentageAnnotation topPosition={sixtiesYPos} year="1960s" percentage={onlyShowOneDecimalPlaceIfLessThan10(100 * (1 - sixtiesYScreenPercentage))} isLeftSide={true} />
+       <TotalLoveSongPercentageAnnotation topPosition={modernYPos} year="2020s" percentage={onlyShowOneDecimalPlaceIfLessThan10(100 * (1 - modernYScreenPercentage))} />
     </div>
 {/if}
 

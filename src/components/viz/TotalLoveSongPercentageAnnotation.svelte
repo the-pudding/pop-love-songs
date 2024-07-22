@@ -1,11 +1,11 @@
 <script>
-	export let topPosition = 0;
+    export let topPosition = 0;
     export let year = "";
     export let percentage = 0;
     export let isLeftSide = false;
 
     // TODO: decide left/right margins more intelligently
-    $: style = `top: ${topPosition}px; ${isLeftSide ? "left: 50px;" : "right: 50px;"}`;
+    $: style = `top: ${topPosition}px; ${isLeftSide ? "left: 50px;" : "right: 60px;"} text-align: ${isLeftSide ? "left" : "right"}`;
 </script>
 
 <div class="container" style={style}>
@@ -18,13 +18,13 @@
     .container {
         z-index: 100000;
         position: fixed;
-        right: 20px;
         /* pointer-events: none; */
 
         font-family: 'Atlas Grotesk', sans-serif;
     }
     .year, .love-songs {
-        font-size: 12px;
+        font-size: 16px;
+        line-height: 16px;
     }
 
     .year, .percentage {
@@ -32,6 +32,7 @@
     }
 
     .percentage {
-        font-size: 24px;
+        font-size: 48px;
+        line-height: 48px;
     }
 </style>
