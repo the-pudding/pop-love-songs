@@ -95,7 +95,7 @@ export const sortLoveSongTypesTopToBottom = (popularitySumByType) => {
 		sorted.splice(notALoveSongIndex, 1);
 		sorted.unshift(`${LOVE_SONG_TYPE_CONSTANTS.notALoveSong}`);
 	}
-	console.log("sorted", sorted);
+
 	return sorted;
 };
 
