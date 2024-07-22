@@ -567,7 +567,8 @@ const steps = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		},
-		showLoveSongChange: true
+		showLoveSongChange: true,
+		isFinalComparisonStep: true
 	},
 
 	// Explore mode

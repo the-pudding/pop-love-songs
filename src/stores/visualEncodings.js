@@ -82,9 +82,25 @@ export const songAnnotationsWithPosition = derived(
 const updateColorMap = (
 	typesTreatedAsNonLoveSongs,
 	colorMap,
-	colorButDontSeperateThisLoveSongType = null
-) =>
-	Object.keys(colorMap).reduce(
+	colorButDontSeperateThisLoveSongType = null,
+	isFinalComparisonStep = false
+) => {
+	if (isFinalComparisonStep) {
+		// color all love songs the same color, for easier visual comparison against non love songs
+		const SHARED_COLOR = colorMap[LOVE_SONG_TYPE_CONSTANTS.serenade];
+		return Object.keys(colorMap).reduce(
+			(updatedColors, loveSongType) => ({
+				...updatedColors,
+				[loveSongType]:
+					+loveSongType === +LOVE_SONG_TYPE_CONSTANTS.notALoveSong
+						? colorMap[loveSongType]
+						: SHARED_COLOR
+			}),
+			{}
+		);
+	}
+
+	return Object.keys(colorMap).reduce(
 		(updatedColors, loveSongType) => ({
 			...updatedColors,
 			[loveSongType]:
@@ -95,6 +111,7 @@ const updateColorMap = (
 		}),
 		{}
 	);
+};
 
 export const loveSongTypeColorMap = derived(
 	[typesTreatedAsNonLoveSongs, currentStoryStep],
@@ -102,16 +119,19 @@ export const loveSongTypeColorMap = derived(
 		updateColorMap(
 			$typesTreatedAsNonLoveSongs,
 			LOVE_SONG_TYPE_COLOR_MAP,
-			$currentStoryStep.visualEncodings.colorButDontSeperateThisLoveSongType
+			$currentStoryStep.visualEncodings.colorButDontSeperateThisLoveSongType,
+			$currentStoryStep.isFinalComparisonStep
 		)
 );
 
 export const unselectedLoveSongTypeColorMap = derived(
-	[typesTreatedAsNonLoveSongs],
-	([$typesTreatedAsNonLoveSongs]) =>
+	[typesTreatedAsNonLoveSongs, currentStoryStep],
+	([$typesTreatedAsNonLoveSongs, $currentStoryStep]) =>
 		updateColorMap(
 			$typesTreatedAsNonLoveSongs,
-			UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP
+			UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP,
+			$currentStoryStep.visualEncodings.colorButDontSeperateThisLoveSongType,
+			$currentStoryStep.isFinalComparisonStep
 		)
 );
 
