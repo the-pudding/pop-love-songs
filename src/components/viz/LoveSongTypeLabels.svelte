@@ -17,7 +17,8 @@
 		([$currentStoryStep, $viewport]) => {
 			return tweenedCoords.reduce((acc, { loveSongType, svgCoords }) => {
 				const MIN_Y_HEIGHT_TO_FIT_LABEL = 0.04;
-				const {x, y0, y1} = svgCoords.find(({y0, y1}) => (y0 - y1) >= MIN_Y_HEIGHT_TO_FIT_LABEL) || {};
+				// TEMP: we don't want to place labels on the very left (first) decade, since that's where the 60s annotations goes
+				const {x, y0, y1} = svgCoords.find(({y0, y1}, index) => (y0 - y1) >= MIN_Y_HEIGHT_TO_FIT_LABEL && index > 1) || {};
 				if (x === undefined || y0 === undefined) return acc;
 
 				return [... acc, {
@@ -27,7 +28,7 @@
 					// TODO: Also, I think I need to factor in the conditional margin between snakes...
 					y: getYPosForPercentage(y0, $viewport.height) - 0.035 * $viewport.height,
 					opacity: $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType) ? 0 : 1,
-					// TODO: for some reason, I can't seem to set the style:fontSize property on the dev... ?
+					// TODO: for some reason, I can't seem to set the style:fontSize property on the div... ?
 					fontSize: (y0 - y1) < 2 * MIN_Y_HEIGHT_TO_FIT_LABEL ? "clamp(0.5rem, 2vw, .75rem)" : "clamp(1rem, 2vw, 1.25rem)"
 				}]
 			}, []);
