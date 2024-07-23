@@ -2,7 +2,7 @@
 	import {onDestroy} from "svelte";
 	import Toggle from "$components/helpers/Toggle.svelte";
 
-	import { showAggregateSnakeChart } from "$stores/searchAndFilter.js";
+	import { selectedPerformers, selectedSongs, showAggregateSnakeChart } from "$stores/searchAndFilter.js";
 
 	const CHART_OPTIONS = {
 		snake: 'snake chart',
@@ -19,6 +19,11 @@
 	const handleToggle = ({value}) => {
 		localValue = value;
 		showAggregateSnakeChart.set(localValue === CHART_OPTIONS.snake);
+
+		if (localValue === CHART_OPTIONS.snake) {
+			selectedSongs.set([]);
+			selectedPerformers.set([]);
+		}
 	}
 
 	// Cleanup the subscription when the component is destroyed
