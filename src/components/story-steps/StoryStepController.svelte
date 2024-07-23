@@ -43,8 +43,7 @@
         showAggregateSnakeChart.set($currentStoryStep.visualEncodings.showAggregateSnakeChart)
     }
 
-    $: $currentStoryStepIndex, updateFilterFilterState()
-    $: console.log($viewport.height * Y_MARGIN_SCREEN_PERCENTAGE)
+    $: $currentStoryStepIndex, updateFilterFilterState();
 
     const style = `height: ${STORY_STEP_CONTROLLER_TOP_PADDING}px; margin-top: ${$viewport.height * Y_MARGIN_SCREEN_PERCENTAGE}px;`
 </script>
