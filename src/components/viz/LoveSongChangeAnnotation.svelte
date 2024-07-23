@@ -6,6 +6,8 @@
     import viewport from "$stores/viewport";
     import { currentStoryStep } from "$stores/storySteps";
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
+    import { showAggregateSnakeChart } from "$stores/searchAndFilter";
+
 	import TotalLoveSongPercentageAnnotation from "./TotalLoveSongPercentageAnnotation.svelte";
 	
     export let tweenedCoords;
@@ -18,7 +20,7 @@
     $: modernYPos = getYPosForPercentage(modernYScreenPercentage, $viewport.height)
 </script>
 
-{#if $currentStoryStep.showLoveSongChange}
+{#if $currentStoryStep.showLoveSongChange && $showAggregateSnakeChart}
     <div>
 
        <TotalLoveSongPercentageAnnotation topPosition={sixtiesYPos} year="1960s" percentage={onlyShowOneDecimalPlaceIfLessThan10(100 * (1 - sixtiesYScreenPercentage))} isLeftSide={true} />
