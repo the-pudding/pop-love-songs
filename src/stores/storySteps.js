@@ -53,7 +53,7 @@ const VISUAL_ENCODING_BLANK_STATE = {
 const steps = {
 	// Intro: Is Boomer Bob right that the love song is dying?
 	haveYouSeenTheseYouTubeComments: {
-		text: "Have you ever seen a comment like this? 'no cussing, no drugs, no twerking. they don't make love songs like this anymore'. They seem to be part of a larger sentiment: something about contemporary music is in decline.",
+		text: "Have you ever seen a comment like this?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: ["FAAAAKKEEE"],
@@ -65,8 +65,8 @@ const steps = {
 			calculateYForcePosition: randomYDistribution,
 			forceXStrength: 1,
 			forceYStrength: 1
-		}
-		// showBoomerBobImages: true
+		},
+		showOpeningComment: true
 	},
 	boomerBobSaysLoveSongsAreDying: {
 		text: "This Baby Boomer-centric sentiment seems to crystalize around one topic in particular: modern pop music's treatment of love & romance -- or the lack thereof. According to Boomer Bob, the love song is dying. But is it true? Let's investigate...",

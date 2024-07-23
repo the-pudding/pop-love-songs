@@ -19,7 +19,7 @@
     img {
         position: fixed; 
         max-width: 45%;
-        top: 0; 
+        top: 40%; 
         z-index: 10000;
     }
 
