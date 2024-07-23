@@ -98,15 +98,15 @@ export const fractionOfScreenFactory =
 // I know... weird place to put this, but trust me: it was the simplest solution
 export const SERENADE_HIGHLIGHTS_FROM_INTRO = [
 	{ song: "Happy Together", year: 1967, xPercent: 0.9, yPercent: 0.5 },
-	{ song: "Love Song", year: 1989, xPercent: 0.1, yPercent: 0.2 },
-	{ song: "No One", year: 2007, xPercent: 0.5, yPercent: 0.1 },
+	{ song: "Love Song", year: 1989, xPercent: 0.1, yPercent: 0.7 },
+	{ song: "No One", year: 2007, xPercent: 0.5, yPercent: 0.8 },
 	{ song: "Perfect", year: 2017, xPercent: 0.4, yPercent: 0.6 }
 ];
 export const NON_SERENADE_HIGHLIGHTS_FROM_INTRO = [
 	{ song: "Day Tripper", year: 1966, xPercent: 0.1, yPercent: 0.6 },
 	{ song: "Thriller", year: 1984, xPercent: 0.8, yPercent: 0.4 },
 	{ song: "If I Were A Boy", year: 2008, xPercent: 0.5, yPercent: 0.55 },
-	{ song: "Kiss Me More", year: 2021, xPercent: 0.4, yPercent: 0.2 }
+	{ song: "Kiss Me More", year: 2021, xPercent: 0.4, yPercent: 0.8 }
 ];
 
 const ALL_HIGHLIGHTS_FROM_INTRO = [
