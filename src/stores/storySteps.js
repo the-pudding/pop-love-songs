@@ -46,6 +46,8 @@ const VISUAL_ENCODING_BLANK_STATE = {
 
 	showAggregateSnakeChart: false,
 
+	useHeavierSongBorders: false,
+
 	// Note: currently just using song name, which could cause collissions, but since its manually set, I'll cross that bridgfe if we come to it.
 	songAnnotations: []
 };
@@ -124,12 +126,18 @@ const steps = {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
 				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
+			),
+			visibleButNotSelectedLoveSongTypes: LOVE_SONG_TYPES.filter(
+				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
 			)
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: randomXDistribution,
 			calculateYForcePosition: randomYDistribution,
+
+			useHeavierSongBorders: true,
+
 			restartBubblesOnAdvanceInto: false,
 			forceXStrength: 1,
 			forceYStrength: 1,
@@ -533,18 +541,6 @@ const steps = {
 		text: "This women-pioneered 'Love Song for the Self' is the most modern of all the genres. Yes, Boomer Bob: we know that it's not written *to* a lover. But, in fact, it's often written in reaction to romantic rejection. Ok... so where does it leave us? Is the love song dying?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
-				(t) =>
-					![
-						LOVE_SONG_TYPE_CONSTANTS.serenade,
-						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
-						LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
-						LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
-						LOVE_SONG_TYPE_CONSTANTS.sexualConfidence,
-						LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
-					].includes(t)
-			),
 			visibleButNotSelectedLoveSongTypes: LOVE_SONG_TYPES.filter(
 				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf
 			)
