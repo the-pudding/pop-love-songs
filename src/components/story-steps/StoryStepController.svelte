@@ -66,10 +66,6 @@
         position: fixed;
         top: 0px;
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         padding-left: 5%; 
         padding-right: 5%;
     }
