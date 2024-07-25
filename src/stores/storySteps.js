@@ -121,7 +121,7 @@ const steps = {
 		}
 	},
 	highlightSerenadesWithinCluster: {
-		text: "These are the 1,040 Top 10 hits we think Boomer Bob would *definitely* consider love songs (labeled by hand and with ChatGPT[hover for more info]). All these songs are unmistakably about romantic love & devotion. They play at weddings & proms. Think 'No One' by Alicia Keys or 'Perfect' by Ed Sheeran.",
+		text: "These are the 1,040 Top 10 hits we think Boomer Bob would *definitely* consider love songs (labeled by hand and with ChatGPT[hover for more info]). All these songs are unmistakably about romantic love & devotion. They play at weddings & proms.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -359,7 +359,7 @@ const steps = {
 	},
 	// Courtship
 	introducingCourtship: {
-		text: "But we're just getting started... How about when you love someone, and it *might* become something more? You just spotted someone, your heart is beating fast, and who KNOWS where this thing might lead? Think 'Call Me Maybe' by Carly Rae Jepsen...",
+		text: "But we're just getting started... How about when you love someone, and it *might* become something more? You just spotted someone, your heart is beating fast, and who KNOWS where this thing might lead?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [
@@ -437,7 +437,7 @@ const steps = {
 	},
 
 	introducingGoodRiddance: {
-		text: "Ok, so what about those songs where the relationship *is* clearly over, but the singer's heartbreak has resurrected into... righteous power? They're not crying, they're yelling 'Good Riddance'! Think P!nk, who sports 4 Top 10 hits of this type alone.",
+		text: "Ok, so what about those songs where the relationship *is* clearly over, but the singer's heartbreak has resurrected into... righteous power? They're not crying, they're yelling 'Good Riddance'!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.goodRiddance],
@@ -478,7 +478,7 @@ const steps = {
 	// Sexual Confidence
 
 	introducingSexualConfidence: {
-		text: "But we can't call it just yet. What about these songs that get... a little steamy? Think about artists like Nicki Minaj and Drake with their respective hits 'WAP' and 'Way 2 Sexy.'",
+		text: "But we can't call it just yet. What about these songs that get... a little steamy? Think artists like Nicki Minaj and Drake, who dominate this category.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.sexualConfidence],
@@ -496,7 +496,7 @@ const steps = {
 	sexualConfidenceInContext: {
 		// TODO: this could be a tooltip for those wanting to engage a bit more:
 		// "Has lust replaced love? Maybe. But, as theorists point out, perhaps the younger generation sees sex as a *gateway* to love. (or maybe it's just more socially acceptable to be horny!)"
-		text: "As Boomers bemoan, these 'Sexual Confidence' songs exploded in popularity, nearly eclipsing the Serenade in the 2000s. With this more sensual side of love... the modern love song is *exactly* as strong as in Boomer Bob's day! But we've got one more type left...",
+		text: "As Boomers bemoan, these 'Sexual Confidence' songs exploded in popularity, nearly eclipsing the Serenade in the 2000s. With this more sensual side of love, the modern love song is nearly *exactly* as strong as in Boomer Bob's day! But we've got one more type left...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -538,7 +538,7 @@ const steps = {
 		}
 	},
 	didLoveSongForTheSelfTipTheScales: {
-		text: "This women-pioneered 'Love Song for the Self' is the most modern of all the genres. Yes, Boomer Bob: we know that it's not written *to* a lover. But, in fact, it's often written in reaction to romantic rejection. Ok... so where does it leave us? Is the love song dying?",
+		text: "This women-pioneered 'Love Song for the Self' is the most modern of all the genres. And while it's not written *to* a lover, it's often written *in reaction to* romantic rejection. Ok... so where does it leave us? Is the love song dying?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			visibleButNotSelectedLoveSongTypes: LOVE_SONG_TYPES.filter(
