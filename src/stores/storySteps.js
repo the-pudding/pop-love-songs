@@ -417,7 +417,7 @@ const steps = {
 		}
 	},
 	itsComplicatedDoesNotTipTheScales: {
-		text: "Can this angsty genre save the love song? No, but we're getting closer! Even as Pop culture warmed up to these messy tunes, the love songs as a whole declined 12% since the 60s.",
+		text: "Can this angsty genre save the love song? No, but we're getting closer!",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -455,7 +455,7 @@ const steps = {
 		}
 	},
 	goodRiddanceDoesNotTipTheScale: {
-		text: "These 'Good Riddance' hits surged in the last few decades -- and reduce the love song's decline to under 10%! Maybe love's not dead... just little wounded?",
+		text: "With the predominantly modern 'Good Riddance', maybe love's not dead... just little wounded?",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -497,7 +497,7 @@ const steps = {
 	sexualConfidenceInContext: {
 		// TODO: this could be a tooltip for those wanting to engage a bit more:
 		// "Has lust replaced love? Maybe. But, as theorists point out, perhaps the younger generation sees sex as a *gateway* to love. (or maybe it's just more socially acceptable to be horny!)"
-		text: "As Boomers bemoan, these 'Sexual Confidence' songs exploded in popularity, nearly eclipsing the Serenade in the 2000s. With this more sensual side of love, the modern love song is nearly *exactly* as strong as in Boomer Bob's day! But we've got one more type left...",
+		text: "As Boomers bemoan, these 'Sexual Confidence' songs exploded in popularity, nearly eclipsing the Serenade in the 2000s. With this more sensual side of love, the modern love song seems *on par* with Boomer Bob's day! But we've got one more type left...",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -522,7 +522,7 @@ const steps = {
 	// Love song for the self
 
 	introducingLoveSongForTheSelf: {
-		text: "We've ventured *very* far from the Serenade. Far enough to finds its reincarnation: songs where heartbreak turns love... back onto the OG, yourself. Like, 'You don't love me? That's ok, because I do! In fact, I'll by *myself* flowers...'",
+		text: "We've ventured *very* far from the Serenade. Far enough to finds its reincarnation: songs where heartbreak turns love back onto the OG, yourself. Like, 'You don't love me? That's ok, because I do! In fact, I'll by *myself* flowers...'",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf],
@@ -555,7 +555,7 @@ const steps = {
 
 	theLoveSongIsActuallyRising: {
 		// — even if those ways look different from generations of old
-		text: "... not at all, in fact it's actually *increased* by 13%! The love song didn't die, it evolved: people are loving, losing, and connecting in more ways than ever before. We think modern pop is just as romantic as ever, just maybe in ways that Boomer Bob doesn't recognize.",
+		text: "... not at all, in fact it's actually *increased*! The love song didn't die, it evolved: people are loving, losing, and connecting in more ways than ever before. We think modern pop is just as romantic as ever, just maybe in ways that Boomer Bob doesn't recognize.",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
