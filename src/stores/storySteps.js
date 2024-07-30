@@ -88,7 +88,7 @@ const steps = {
 	},
 
 	titleCard: {
-		text: "[TITLE CARD: 'is the love song dying?']",
+		text: "",
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			selectedLoveSongTypes: ["FAAAAKKEEE"],
@@ -100,7 +100,8 @@ const steps = {
 			calculateYForcePosition: randomYDistribution,
 			forceXStrength: 1,
 			forceYStrength: 1
-		}
+		},
+		showTitleCard: true
 	},
 
 	allTheBillboardHitsInAMonoChromeCluster: {

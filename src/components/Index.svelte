@@ -2,6 +2,9 @@
 	import { onMount } from "svelte";
 
 	import MainViz from "./viz/MainViz.svelte";
+	import BoomerBobImages from "./story-steps/BoomerBobImages.svelte";
+	import OpeningComment from "./story-steps/OpeningComment.svelte";
+	import TitleCard from "./story-steps/TitleCard.svelte";
 	import SideBar from "./viz/SideBar.svelte";
 	import StoryStepController from "./story-steps/StoryStepController.svelte";
 	
@@ -13,8 +16,7 @@
 	import { currentStoryStep } from "$stores/storySteps";
 	// TODO: disable devMode in production
 	import devMode from "$stores/devMode";
-	
-	
+
 	$: handleKeyPress = (e) => {
 		if (e.key === "d") {
 			devMode.update((devMode) => !devMode);
@@ -22,6 +24,7 @@
 	};
 
 	// Wait until after we've mounted (and thus pulled the story step from the URL)
+	// TODO: this doesn't seem to actually work. Instead, just create a store that StoryStepController updates
 	let urlParsed = false
 	onMount(() => {
 	   urlParsed = true;
@@ -35,7 +38,15 @@
 {/if}
 
 {#if urlParsed}
+	<!-- TODO: OPTIMIZATION: does it make sense to rip the viz elements on/off the dom, or just leave them there always? -->
 	<MainViz />
+	{#if $currentStoryStep.showBoomerBobImages}
+		<BoomerBobImages />
+	{:else if $currentStoryStep.showOpeningComment}
+		<OpeningComment />
+	{:else if $currentStoryStep.showTitleCard}
+		<TitleCard />
+	{/if}
 {/if}
 
 {#if $devMode}

@@ -4,8 +4,6 @@
     import viewport from "$stores/viewport.js";
 
     import Tap from "../helpers/Tap.svelte";
-    import BoomerBobImages from "./BoomerBobImages.svelte";
-    import OpeningComment from "./OpeningComment.svelte";
 
     import {selectedSongs, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
@@ -47,13 +45,6 @@
 
     const style = `height: ${STORY_STEP_CONTROLLER_TOP_PADDING}px; margin-top: ${$viewport.height * Y_MARGIN_SCREEN_PERCENTAGE}px;`
 </script>
-
-
-{#if $currentStoryStep.showBoomerBobImages}
-    <BoomerBobImages />
-{:else if $currentStoryStep.showOpeningComment}
-    <OpeningComment />
-{/if}
 
 <div class="container" style={style}>
     <h4 class="title">
