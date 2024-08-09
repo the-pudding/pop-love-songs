@@ -561,7 +561,7 @@ const steps = Object.keys(stepsWithoutText).reduce(
 		...acc,
 		[key]: {
 			...stepsWithoutText[key],
-			text: copy.steps[key]
+			text: copy.stepText[key]
 		}
 	}),
 	{}
