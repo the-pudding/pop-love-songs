@@ -49,11 +49,11 @@ export const LOVE_SONG_TYPE_COLOR_MAP = {
 	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: "#02D098"
 };
 
-const UNSELECTED_OPACITY_HEX_PREFIX = "4D"; // 30% opacity
+const FORTY_PERCENT_OPACITY_HEX_POSTFIX = "66"; // 40% opacity
 export const UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP = Object.fromEntries(
 	Object.entries(LOVE_SONG_TYPE_COLOR_MAP).map(([key, value]) => [
 		key,
-		`${value}${UNSELECTED_OPACITY_HEX_PREFIX}`
+		`${value}${FORTY_PERCENT_OPACITY_HEX_POSTFIX}`
 	])
 );
 
