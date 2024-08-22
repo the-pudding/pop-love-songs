@@ -9,6 +9,7 @@
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_TOP_PADDING} from "$components/viz/viz-utils.js"
     import { Y_MARGIN_SCREEN_PERCENTAGE } from "$data/data-utils.js";
+	import DataMethodsModal from "./DataMethodsModal.svelte";
 	
     onMount(() => {
        const urlIndex = parseInt(urlParams.get("step")?.toString() || "0");
@@ -49,6 +50,7 @@
 <div class="container" style={style}>
     <h4 class="title">
         {$currentStoryStep.text}
+        <DataMethodsModal buttonText='show data methods' />
     </h4>
 </div>
 
