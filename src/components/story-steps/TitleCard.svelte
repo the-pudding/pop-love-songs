@@ -1,6 +1,10 @@
+<script>
+    import copy from '$data/copy.json';
+</script>
+
 <section>
     <h1>Is the love song dying?</h1>
-    <p>by David Mora and Michelle Jia</p>
+    <p>{@html copy.byline}</p>
 </section>
 
 <style>
