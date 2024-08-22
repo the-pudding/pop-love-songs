@@ -20,7 +20,22 @@
         urlParams.set("step", $currentStoryStepIndex);
     }
 
-    afterUpdate(updateQueryParams);
+    // Find button in gDoc text that opens modal
+    let showModal = false;
+    let container;
+    const addModalOpenButtonListener = () => {
+        const modalOpenButton = container && container.querySelector('.modalTrigger')
+        if (modalOpenButton) {
+            modalOpenButton.addEventListener('click', () => {
+                showModal = true;
+            })
+        }
+    }
+
+    afterUpdate(() => {
+        updateQueryParams();
+        addModalOpenButtonListener();
+    });
 
     // Buttons
     const onPreviousButtonClick = () => {
@@ -47,10 +62,10 @@
     const style = `height: ${STORY_STEP_CONTROLLER_TOP_PADDING}px; margin-top: ${$viewport.height * Y_MARGIN_SCREEN_PERCENTAGE}px;`
 </script>
 
-<div class="container" style={style}>
+<div bind:this={container} class="container" style={style}>
     <h4 class="title">
-        {$currentStoryStep.text}
-        <DataMethodsModal buttonText='show data methods' />
+        {@html $currentStoryStep.text}
+        <DataMethodsModal bind:showModal />
     </h4>
 </div>
 

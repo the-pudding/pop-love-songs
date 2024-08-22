@@ -4,15 +4,11 @@
     
     const { dataMethods } = copy;
 
-    export let buttonText = 'show modal';
-
-	let showModal = false;
+    export let showModal = false; // boolean
 </script>
 
-<button on:click={() => (showModal = true)}>{buttonText}</button>
-
 <Modal bind:showModal>
-	<h1>Data Methods</h1>
+	<h1 slot="header">Data Methods</h1>
     
     <!-- Iterate over dataMethods -->
     {#each dataMethods as {title, paragraphs}}
