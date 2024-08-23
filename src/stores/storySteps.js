@@ -583,7 +583,7 @@ const unprocessedStorySteps = [
 
 	// What counts as love song?
 	steps.butWeWillTakeAMoreExpansiveView,
-	steps.whyWeCare,
+	// steps.whyWeCare,
 
 	// Boomer-Bob-friendly types:
 	steps.definingSerenades,
