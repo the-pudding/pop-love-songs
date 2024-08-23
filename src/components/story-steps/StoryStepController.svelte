@@ -1,5 +1,5 @@
 <script>
-    import {afterUpdate, onMount} from "svelte";
+    import {afterUpdate, onMount, tick} from "svelte";
     import urlParams from "../../utils/urlParams.js";
     import viewport from "$stores/viewport.js";
 
@@ -10,11 +10,6 @@
     import {STORY_STEP_CONTROLLER_TOP_PADDING} from "$components/viz/viz-utils.js"
     import { Y_MARGIN_SCREEN_PERCENTAGE } from "$data/data-utils.js";
 	import DataMethodsModal from "./DataMethodsModal.svelte";
-	
-    onMount(() => {
-       const urlIndex = parseInt(urlParams.get("step")?.toString() || "0");
-       $currentStoryStepIndex = urlIndex > storySteps.length - 1 ? 0 : urlIndex;
-    });
 
     function updateQueryParams() {
         urlParams.set("step", $currentStoryStepIndex);
@@ -35,6 +30,14 @@
     afterUpdate(() => {
         updateQueryParams();
         addModalOpenButtonListener();
+    });
+    
+    onMount(async () => {
+       const urlIndex = parseInt(urlParams.get("step")?.toString() || "0");
+       $currentStoryStepIndex = urlIndex > storySteps.length - 1 ? 0 : urlIndex;
+
+       await tick();
+       addModalOpenButtonListener();
     });
 
     // Buttons
