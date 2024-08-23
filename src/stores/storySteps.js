@@ -576,7 +576,7 @@ const unprocessedStorySteps = [
 	steps.allTheBillboardHitsInAMonoChromeCluster,
 	steps.highlightSerenadesWithinCluster,
 
-	steps.serenadesAreIndeedDying,
+	// steps.serenadesAreIndeedDying,
 	steps.serenadesPeakedInThe90s,
 	steps.aFewArtistsKeepThemAliveToday,
 	steps.anAggSnakeChartMakesBoomerBobSeemRight,
