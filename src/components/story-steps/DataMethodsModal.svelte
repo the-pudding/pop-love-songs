@@ -18,3 +18,23 @@
         {/each}
     {/each}
 </Modal>
+
+<style>
+    h1 {
+        font-size: 35px;
+    }
+
+    h2 {
+        font-size: 24px;
+        margin-top: 24px;
+        margin-bottom: 0px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    h2 + p {
+        margin-top: 4px;
+    }
+</style>

@@ -13,14 +13,16 @@
 	on:close={() => (showModal = false)}
 	on:click|self={() => dialog.close()}
 >
+	<!-- svelte-ignore a11y-autofocus -->
+	<div class="button-container">
+		<button autofocus on:click={() => dialog.close()} aria-label="Close Modal">X</button>
+	</div>
+	
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
-    <div on:click|stopPropagation>
+    <div class="content" on:click|stopPropagation>
         <slot name="header" />
         <hr />
         <slot />
-        <hr />
-        <!-- svelte-ignore a11y-autofocus -->
-        <button autofocus on:click={() => dialog.close()} aria-label="Close Modal">X</button>
     </div>
 </dialog>
 
@@ -30,11 +32,12 @@
 		border-radius: 0.2em;
 		border: none;
 		padding: 0;
+		margin: auto;
 	}
 	dialog::backdrop {
 		background: rgba(0, 0, 0, 0.5);
 	}
-	dialog > div {
+	dialog > div.content {
 		padding: 1em;
 	}
 	dialog[open] {
@@ -59,7 +62,22 @@
 			opacity: 1;
 		}
 	}
-	button {
-		display: block;
+
+	.button-container {
+		display: flex;
+		justify-content: flex-end;
+		right: 0;
+		top:-12px;
+		position: sticky;
+		height: 0;
+		margin: 0;
+		padding: 0;
+	}
+	dialog button {
+		margin: 12px;
+		margin-top: 0px;
+		background: none;
+		font-size: 48px;
+		font-weight: bold;
 	}
 </style>
