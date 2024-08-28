@@ -38,12 +38,12 @@
 			-2px 2px 1px rgba(var(--color-rgba-annotation-text-shadow));
 	}
 
-	div.performer {
+	.year, .performer {
 		font-size: 16px;
-	}
-
-	span.year {
-		font-size: 16px;
-		font-weight: normal;
+		font-weight: 300;
+		text-shadow: 1px 1px 1px rgba(var(--color-rgba-annotation-text-shadow)),
+			-1px -1px 1px rgba(var(--color-rgba-annotation-text-shadow)),
+			1px -1px 1px rgba(var(--color-rgba-annotation-text-shadow)),
+			-1px 1px 1px rgba(var(--color-rgba-annotation-text-shadow));
 	}
 </style>
