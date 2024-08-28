@@ -15,6 +15,13 @@
 
 	$: xOffset = $viewport.width / 2 > x ? 20 : -310;
 	$: yOffset = $viewport.height / 2 > y ? 30 : -130;
+
+	// When a step changes, you don't want to keep showing the tooltip from the previous step.
+	currentStoryStep.subscribe(() => {
+		if (visible) {
+			hoveredSongInfo.set({})
+		}
+	})
 </script>
 
 <div
