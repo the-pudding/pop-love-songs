@@ -53,7 +53,8 @@
 		context.clearRect(0, 0, canvas.width, canvas.height);
 
 		// Draw the circles
-		forceSimulationData.forEach(({song, x, y}, songIndex) => {
+		let annotatedSongsToRedrawOnTop = []
+		const drawSongCircle = (({song, x, y}, songIndex) => {
 			const isSelected = $songIsSelected[songIndex];
 			const isVisible = $songIsVisible[songIndex];
 			const circle = new Path2D();
@@ -75,6 +76,10 @@
 				context.strokeStyle = "black";
 				context.lineWidth = BUBBLE_BORDER_THICKNESS;
 				context.stroke(circle);
+				annotatedSongsToRedrawOnTop = [
+					...annotatedSongsToRedrawOnTop,
+					[{song, x, y}, songIndex]
+				]
 			} else if (isSelected && isVisible && $currentStoryStep.visualEncodings.useHeavierSongBorders) {
 				context.strokeStyle = "#333333"; // chosen cuz it's the lightest still accessible contrast with serenade's color
 				context.lineWidth = 1;
@@ -85,6 +90,10 @@
 				context.stroke(circle);
 			}
 		});
+
+		forceSimulationData.forEach(drawSongCircle);
+
+		annotatedSongsToRedrawOnTop.forEach((args) => drawSongCircle(...args));
 	};
 
 	const handleSongHovered = (selectedSong, offsetX, offsetY) => {
