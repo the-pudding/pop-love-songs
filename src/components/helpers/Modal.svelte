@@ -67,16 +67,16 @@
 		display: flex;
 		justify-content: flex-end;
 		right: 0;
-		top:-12px;
 		position: sticky;
 		height: 0;
 		margin: 0;
 		padding: 0;
 	}
 	dialog button {
-		margin: 12px;
-		margin-top: 0px;
 		background: none;
+		margin: 12px;
+		height: 60px;
+		width: 50px;
 		font-size: 48px;
 		font-weight: bold;
 	}

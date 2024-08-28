@@ -4,8 +4,15 @@
  */
 
 :root {
+	/* Project-specific colors */
+	--color-cream-background: #fff6df;
+	--color-good-riddance: #A290E9;
+	--color-longing-and-heartbreak: #5CAFFF;
+	--color-sexual-confidence: #FF5C00;
+
 	--category-blue: #4477aa;
-	--category-red: #ee6677;
+	/* --category-red: #ee6677; */
+	--category-red: var(--color-sexual-confidence);
 	--category-green: #228833;
 	--category-yellow: #ccbb44;
 	--category-cyan: #66ccee;
@@ -13,8 +20,9 @@
 	--category-gray: #bbbbbb;
 	--color-black: #000000;
 	--color-white: #ffffff;
-	/* TODO: throwing this here, maybe there's a more rigorous solution */
-	--color-cream-background: #fff6df;
+	
+
+
 	--color-gray-100: #efefef;
 	--color-gray-200: #dfdfdf;
 	--color-gray-300: #cacaca;

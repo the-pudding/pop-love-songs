@@ -71,6 +71,15 @@ input[type="button"] {
 	text-decoration: none;
 }
 
+button.modalTrigger {
+	background: none;
+	font-weight: bold;
+
+	border-bottom: 3px solid var(--color-good-riddance);
+
+	padding: 0px;
+}
+
 button,
 a[role="button"],
 input[type="button"],
@@ -245,7 +254,12 @@ ol, ul {
 	input[type="submit"]:hover,
 	input[type="reset"]:hover {
 		background: var(--color-button-hover, lightgray);
-	}	
+	}
+	
+	button.modalTrigger:hover {
+		background: none;
+		border-bottom: 3px solid var(--color-longing-and-heartbreak);
+	}
 
 	button:disabled:hover,
 	a[role="button"]:disabled:hover,
