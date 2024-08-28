@@ -15,8 +15,8 @@
 
 </script>
 
-<div class='song'>
-	<strong>{song[SONG_DATA_COLUMNS_ENUM.song]}</strong>
+<div class='song-and-year'>
+	<strong class='song'>{song[SONG_DATA_COLUMNS_ENUM.song]}</strong>
 	<span class='year'>{year}</span>
 </div>
 <div class="performer">
@@ -28,8 +28,14 @@
 		font-family: 'Atlas Grotesk', sans-serif;
 	}
 
-	div.song {
+	.song {
 		font-size: 24px;
+		font-weight: bold;
+		text-transform: uppercase;
+		text-shadow: 2px 2px 1px rgba(var(--color-rgba-annotation-text-shadow)),
+			-2px -2px 1px rgba(var(--color-rgba-annotation-text-shadow)),
+			2px -2px 1px rgba(var(--color-rgba-annotation-text-shadow)),
+			-2px 2px 1px rgba(var(--color-rgba-annotation-text-shadow));
 	}
 
 	div.performer {

@@ -6,6 +6,7 @@
 :root {
 	/* Project-specific colors */
 	--color-cream-background: #fff6df;
+	--color-rgba-annotation-text-shadow: 255, 246, 223, 0.9;
 	--color-good-riddance: #A290E9;
 	--color-longing-and-heartbreak: #5CAFFF;
 	--color-sexual-confidence: #FF5C00;
