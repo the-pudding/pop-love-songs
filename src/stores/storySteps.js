@@ -171,7 +171,6 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
 			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
-			restartBubblesOnAdvanceInto: false,
 			restartBubblesOnReturnInto: false,
 			forceXStrength: 1,
 			forceYStrength: 0.5,
