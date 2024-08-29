@@ -210,7 +210,7 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			forceYStrength: 0.5, // PREP FOR NEXT SLIDE: I want the bubbles to spread to fill their respective regions more similarly to the snake
+			restartBubblesOnReturnInto: false,
 			showAggregateSnakeChart: true
 		},
 		showLoveSongChange: true
@@ -228,7 +228,6 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			restartBubblesOnAdvanceInto: false,
 			restartBubblesOnReturnInto: false,
-			forceYStrength: 0.1, // I want the bubbles to spread to fill their respective regions more similarly to the snake
 			songAnnotations: [
 				{
 					song: "Buy U A Drank (Shawty Snappin')",
