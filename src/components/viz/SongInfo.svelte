@@ -5,15 +5,18 @@
 	import PerformerNames from "./PerformerNames.svelte";
 	
 	export let song;
+	export let alternateTitle;
 
-	// Format the year from, eg "1966.67" to "'66"
-	$: rawYear = song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
-	$: year = rawYear < 2000 ? `'${Math.floor(rawYear % 100)}` : Math.floor(rawYear);
+	const formatYear = (year) => {
+		const shortNumber = Math.floor(year % 100)
+		return `'${shortNumber > 9 ? shortNumber : '0' + shortNumber}`;
+	}
+	$: year = formatYear(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]);
 
 </script>
 
 <div class='song-and-year'>
-	<strong class='song'>{song[SONG_DATA_COLUMNS_ENUM.song]}</strong>
+	<strong class='song'>{alternateTitle || song[SONG_DATA_COLUMNS_ENUM.song]}</strong>
 	<span class='year'>{year}</span>
 </div>
 <div class="performer">

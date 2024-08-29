@@ -12,10 +12,20 @@
 
     const X_OFFSET = 24;
     const Y_OFFSET = 24;
-    $: layoutData = $songAnnotationsWithPosition.map(({song, x, y, rightAlign}) => {
-        const xPos = x + (rightAlign ? -1 : 1) * X_OFFSET;
-        const yPos = y - Y_OFFSET;
-        return {xPos, yPos, song, rightAlign}
+    const getX = (x, rightAlign, placeBelow, placeAbove) => {  
+        if (placeAbove) {
+            return x - X_OFFSET * 2; // slide it more centered
+        }
+        if (placeBelow) {
+            return x + X_OFFSET * 2; // slide it more centered
+        }
+        const direction = rightAlign ? -1 : 1
+        return x + direction * X_OFFSET;
+    }
+    $: layoutData = $songAnnotationsWithPosition.map(({song, x, y, rightAlign, placeBelow, placeAbove, alternateTitle}) => {
+        const xPos = getX(x, rightAlign, placeBelow, placeAbove);
+        const yPos = y - (placeBelow ? -40 : (placeAbove ? 60 : Y_OFFSET));
+        return {xPos, yPos, song, rightAlign, alternateTitle}
     })
 
     // @michelle: is it better to just use CSS transition?
@@ -25,14 +35,14 @@
     }
 </script>
 
-{#each layoutData as {xPos, yPos, song, rightAlign}}
+{#each layoutData as {xPos, yPos, song, rightAlign, alternateTitle}}
     <div
         id={song[SONG_DATA_COLUMNS_ENUM.song]}
         class="annotation-wrapper"
         role="tooltip"
         style={`top: ${yPos}px; left: ${xPos}px; ${rightAlign ? 'transform: translateX(-100%);' : ''} opacity: ${$opacity};`}
     >
-        <SongInfo song={song} />
+        <SongInfo song={song} alternateTitle={alternateTitle} />
     </div>
     
 {/each}

@@ -196,8 +196,8 @@ const stepsWithoutText = {
 			forceXStrength: 1,
 			forceYStrength: 0.5,
 			songAnnotations: [
-				{ song: "Love Story", year: 2008 },
-				{ song: "Intentions", year: 2020 }
+				{ song: "Love Story", year: 2008, rightAlign: true },
+				{ song: "Intentions", year: 2020, rightAlign: true, placeBelow: true }
 			]
 		}
 	},
@@ -230,9 +230,14 @@ const stepsWithoutText = {
 			restartBubblesOnReturnInto: false,
 			forceYStrength: 0.1, // I want the bubbles to spread to fill their respective regions more similarly to the snake
 			songAnnotations: [
-				{ song: "Buy U A Drank (Shawty Snappin')", year: 2007 },
-				{ song: "I Will Always Love You", year: 1992 },
-				{ song: "WAP", year: 2020 }
+				{
+					song: "Buy U A Drank (Shawty Snappin')",
+					alternateTitle: "Buy U A Drank",
+					year: 2007,
+					rightAlign: true
+				},
+				{ song: "I Will Always Love You", year: 1992, rightAlign: true },
+				{ song: "WAP", year: 2020, rightAlign: true }
 			]
 		}
 	},
@@ -264,8 +269,9 @@ const stepsWithoutText = {
 			restartBubblesOnReturnInto: false,
 			songAnnotations: [
 				{ song: "Fever", year: 1958 },
-				{ song: "Like A Virgin", year: 1984 },
-				{ song: "Just The Way You Are", year: 2010 }
+				{ song: "Just The Way You Are", year: 1978, placeAbove: true },
+				// { song: "Like A Virgin", year: 1984 },
+				{ song: "Just The Way You Are", year: 2010, rightAlign: true }
 			]
 		}
 	},
@@ -283,8 +289,8 @@ const stepsWithoutText = {
 			restartBubblesOnAdvanceInto: false,
 			restartBubblesOnReturnInto: false,
 			songAnnotations: [
-				{ song: "Heartbreaker", year: 1983 },
-				{ song: "You Belong With Me", year: 2009 }
+				{ song: "Heartbreaker", year: 1983, rightAlign: true },
+				{ song: "You Belong With Me", year: 2009, rightAlign: true }
 			]
 		}
 	},
@@ -300,7 +306,7 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
 				{ song: "Yesterday", year: 1965 },
-				{ song: "I Will Always Love You", year: 1992 },
+				{ song: "I Will Always Love You", year: 1992, placeAbove: true },
 				{ song: "Stay", year: 2013 }
 			]
 		}
@@ -320,7 +326,9 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			restartBubblesOnReturnInto: false,
-			songAnnotations: [{ song: "Blinding Lights", year: 2020 }]
+			songAnnotations: [
+				{ song: "Blinding Lights", year: 2020, rightAlign: true }
+			]
 		}
 	},
 
