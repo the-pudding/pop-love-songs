@@ -2,12 +2,9 @@
 	import {
 		SONG_DATA_COLUMNS_ENUM,
 	} from "$data/data-constants.js";
-	import { loveSongTypeColorMap } from "$stores/visualEncodings";
 	import PerformerNames from "./PerformerNames.svelte";
 	
 	export let song;
-
-	$: loveSongSubType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
 
 	// Format the year from, eg "1966.67" to "'66"
 	$: rawYear = song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];

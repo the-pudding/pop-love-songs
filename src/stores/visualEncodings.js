@@ -57,18 +57,18 @@ export const songAnnotationsWithPosition = derived(
 	([$yForcePosition, $xForcePosition, $currentStoryStep]) =>
 		songsData.reduce((accum, { song }, index) => {
 			// if song is in annotations, add its position
-			if (
-				songInAnnotations(
-					song,
-					$currentStoryStep.visualEncodings.songAnnotations
-				)
-			) {
+			const songAnnotation = songInAnnotations(
+				song,
+				$currentStoryStep.visualEncodings.songAnnotations
+			);
+			if (songAnnotation) {
 				return [
 					...accum,
 					{
 						song,
 						x: $xForcePosition[index],
-						y: $yForcePosition[index]
+						y: $yForcePosition[index],
+						rightAlign: songAnnotation.rightAlign
 					}
 				];
 			} else {

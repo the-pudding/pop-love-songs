@@ -29,9 +29,11 @@ export const onlyShowOneDecimalPlaceIfLessThan10 = (number) => {
 	return number < 10 ? number.toFixed(1) : number.toFixed(0);
 };
 
-export const songInAnnotations = (song, songAnnotations) =>
-	songAnnotations.some(
+export const songInAnnotations = (song, songAnnotations) => {
+	const matchingAnnotation = songAnnotations.find(
 		({ song: annotationSongName, year }) =>
 			annotationSongName === song[SONG_DATA_COLUMNS_ENUM.song] &&
 			year === Math.floor(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal])
 	);
+	return matchingAnnotation || false;
+};
