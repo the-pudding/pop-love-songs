@@ -2,9 +2,6 @@
     import { tweened } from "svelte/motion";
 	import { cubicInOut } from "svelte/easing";
 
-    import viewport from "$stores/viewport";
-
-    import { currentStoryStep } from "$stores/storySteps";
     import { songAnnotationsWithPosition } from "$stores/visualEncodings";
 	import SongInfo from "./SongInfo.svelte";
 	import { CHART_TRANSITION_OPACITY_DURATION } from "./viz-utils";
