@@ -25,6 +25,10 @@
 		font-family: 'Atlas Grotesk', sans-serif;
 	}
 
+	.song-and-year {
+		white-space: nowrap;
+	}
+
 	.song {
 		font-size: 24px;
 		font-weight: bold;
