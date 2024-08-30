@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 
-	import MainViz from "./viz/MainViz.svelte";
+	import SnakeAndBubbleChart from "./viz/SnakeAndBubble.Chart.svelte";
 	import BoomerBobImages from "./story-steps/BoomerBobImages.svelte";
 	import OpeningComment from "./story-steps/OpeningComment.svelte";
 	import TitleCard from "./story-steps/TitleCard.svelte";
@@ -39,7 +39,7 @@
 
 {#if urlParsed}
 	<!-- TODO: OPTIMIZATION: does it make sense to rip the viz elements on/off the dom, or just leave them there always? -->
-	<MainViz />
+	<SnakeAndBubbleChart />
 	{#if $currentStoryStep.showBoomerBobImages}
 		<BoomerBobImages />
 	{:else if $currentStoryStep.showOpeningComment}
