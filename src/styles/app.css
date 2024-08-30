@@ -100,10 +100,40 @@ h6 {
     padding-left: 5px;
 	padding-right: 5px;
 	padding-bottom: 2px;
+	padding-top: 1px;
     
     font-weight: 600;
 }
 
+.story-text > span.not-a-love-song {
+	color: var(--color-not-a-love-song);
+}
+
+
 .story-text > span.serenade {
 	color: var(--color-serenade);
+}
+
+.story-text > span.longing-and-heartbreak {
+	color: var(--color-longing-and-heartbreak);
+}
+
+.story-text > span.courtship-and-anticipation {
+	color: var(--color-courtship-and-anticipation);
+}
+
+.story-text > span.its-complicated {
+	color: var(--color-its-complicated);
+}
+
+.story-text > span.good-riddance {
+	color: var(--color-good-riddance);
+}
+
+.story-text > span.love-song-for-the-self {
+	color: var(--color-love-song-for-the-self);
+}
+
+.story-text > span.sexual-confidence {
+	color: var(--color-sexual-confidence);
 }
