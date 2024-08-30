@@ -6,7 +6,6 @@
     }
 </script>
 
-<!-- @michelle: is this the preferred way to load images? I saw a loadImage function -->
 <img src={COMMENT.src} alt={COMMENT.alt} />
 
 <style>
@@ -15,7 +14,6 @@
         max-width: 45%;
         top: 40%; 
         z-index: 10000;
-
         left: 30%;
     }
 </style>

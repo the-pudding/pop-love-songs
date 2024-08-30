@@ -11,7 +11,6 @@
     }
 </script>
 
-<!-- @michelle: is this the preferred way to load images? I saw a loadImage function -->
 <img class="decline" src={BOOMER_BOB_IMAGES.decline.src} alt={BOOMER_BOB_IMAGES.decline.alt} />
 <img class="rip" src={BOOMER_BOB_IMAGES.rip.src} alt={BOOMER_BOB_IMAGES.rip.alt} />
 
