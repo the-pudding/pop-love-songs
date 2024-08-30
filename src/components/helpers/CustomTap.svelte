@@ -6,12 +6,11 @@
 	import { currentStoryStepIndex } from "$stores/storySteps";
 	import { COLORS } from '$data/data-constants';
 
-	export let debug = false;
 	export let enableKeyboard = false;
 	export let full = false;
 	export let disable = [];
 	export let directions = ["left", "right"];
-	export let size = "64px";
+	export let size = "20000000px"; // not used: does nothing for our case. Look instead at the css.
 	// export let arrowSize = "36px";
 	const arrowStroke = COLORS.background;
 	export let arrowStrokeWidth = "2";
@@ -36,19 +35,6 @@
 
 <svelte:window on:keydown={onKeyDown} />
 
-<section class:debug class="tapper">
-	{#each directions as dir}
-		<button
-			on:click={dispatch("tap", dir)}
-			style="width: {getW(dir)}; height: {getH(dir)};"
-			aria-label={dir}
-			class="{dir} {arrowPosition}"
-			class:full
-			disabled={disable.includes(dir)}
-		>
-		</button>
-	{/each}
-</section>
 <section class="tapper-overlay">
 	{#each directions as dir}
 		{#if dir == "left"}
@@ -254,26 +240,6 @@
 	.full.up.end,
 	.full.down-end {
 		justify-content: flex-end;
-	}
-
-	.debug .left {
-		background: red;
-		opacity: 0.5;
-	}
-
-	.debug .right {
-		background: red;
-		opacity: 0.5;
-	}
-
-	.debug .up {
-		background: orange;
-		opacity: 0.5;
-	}
-
-	.debug .down {
-		background: orange;
-		opacity: 0.5;
 	}
 
     /* TODO: since we're having people look in landscape, this breakpoint should be bigger (but do we want them to shrink at all?) */
