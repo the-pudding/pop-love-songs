@@ -6,7 +6,6 @@ export const Y_MARGIN_SCREEN_PERCENTAGE = 0.05;
 
 export const X_MARGIN = 48; // This margin must accomodate the left/right nav arrows (Tap element)
 const xScaleSansRange = scaleLinear().domain([MIN_DATE, MAX_DATE]);
-// TODO: @michelle is it inefficient to create a new scale every time we call this function?
 export const xScaleJustAddRange = (canvasWidth) =>
 	xScaleSansRange.range([X_MARGIN, canvasWidth - X_MARGIN]);
 
