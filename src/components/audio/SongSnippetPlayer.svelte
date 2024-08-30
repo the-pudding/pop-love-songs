@@ -20,5 +20,9 @@
 </button>
 
 <style>
+	button {
+		padding: 4px; /* override Pudding default */
+		border-radius: 100%;
+	}
 	
 </style>
