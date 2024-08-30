@@ -8,13 +8,13 @@
 
 	export let enableKeyboard = false;
 	export let full = false;
-	export let disable = [];
+	// export let disable = [];
 	export let directions = ["left", "right"];
 	export let size = "20000000px"; // not used: does nothing for our case. Look instead at the css.
 	// export let arrowSize = "36px";
 	const arrowStroke = COLORS.background;
 	export let arrowStrokeWidth = "2";
-	export let arrowPosition = "center"; // start, center, end
+	// export let arrowPosition = "center"; // start, center, end
 
 	const dispatch = createEventDispatcher();
 
