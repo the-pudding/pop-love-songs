@@ -3,7 +3,7 @@
     import urlParams from "../../utils/urlParams.js";
     import viewport from "$stores/viewport.js";
 
-    import Tap from "../helpers/Tap.svelte";
+    import Tap from "../helpers/CustomTap.svelte";
 
     import {selectedSongs, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"

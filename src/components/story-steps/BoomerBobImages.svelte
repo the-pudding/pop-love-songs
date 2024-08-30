@@ -19,7 +19,7 @@
         position: fixed; 
         max-width: 45%;
         top: 40%; 
-        z-index: 10000;
+        z-index: 900;
     }
 
     img.decline {
