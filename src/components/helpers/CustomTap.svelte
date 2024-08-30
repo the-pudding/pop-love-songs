@@ -7,22 +7,14 @@
 	import { COLORS } from '$data/data-constants';
 
 	export let enableKeyboard = false;
-	export let full = false;
 	// export let disable = [];
 	export let directions = ["left", "right"];
-	export let size = "20000000px"; // not used: does nothing for our case. Look instead at the css.
 	// export let arrowSize = "36px";
 	const arrowStroke = COLORS.background;
 	export let arrowStrokeWidth = "2";
 	// export let arrowPosition = "center"; // start, center, end
 
-	const dispatch = createEventDispatcher();
-
-	$: getW = (dir) =>
-		["left", "right"].includes(dir) ? size : full ? "100%" : size;
-	$: getH = (dir) =>
-		["up", "down"].includes(dir) ? size : full ? "100%" : size;
-
+	const dispatch = createEventDispatcher(); 
 	$: onKeyDown = (e) => {
 		const dir = e.key.replace("Arrow", "").toLowerCase();
 		const hasDir = directions.includes(dir);
