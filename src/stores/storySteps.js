@@ -267,19 +267,19 @@ const stepsWithoutText = {
 			restartBubblesOnAdvanceInto: false,
 			restartBubblesOnReturnInto: false,
 			songAnnotations: [
-				{ song: "Fever", year: 1958, audioFile: "TODO" },
+				{ song: "Fever", year: 1958, audioFile: "fever" },
 				{
 					song: "Just The Way You Are",
 					year: 1978,
 					placeAbove: true,
-					audioFile: "TODO"
+					audioFile: "just-the-way-you-are-1978"
 				},
 				// { song: "Like A Virgin", year: 1984, audioFile: "TODO" },
 				{
 					song: "Just The Way You Are",
 					year: 2010,
 					rightAlign: true,
-					audioFile: "TODO"
+					audioFile: "just-the-way-you-are-2010"
 				}
 			]
 		}
@@ -314,14 +314,14 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
-				{ song: "Yesterday", year: 1965, audioFile: "TODO" },
+				{ song: "Yesterday", year: 1965, audioFile: "yesterday" },
 				{
 					song: "I Will Always Love You",
 					year: 1992,
 					placeAbove: true,
-					audioFile: "TODO"
+					audioFile: "i-will-always-love-you"
 				},
-				{ song: "Stay", year: 2013, audioFile: "TODO" }
+				{ song: "Stay", year: 2013, audioFile: "stay" }
 			]
 		}
 	},
@@ -341,7 +341,12 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			restartBubblesOnReturnInto: false,
 			songAnnotations: [
-				{ song: "Blinding Lights", year: 2020, rightAlign: true }
+				{
+					song: "Blinding Lights",
+					year: 2020,
+					rightAlign: true,
+					audioFile: "blinding-lights"
+				}
 			]
 		}
 	},
@@ -376,9 +381,13 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
-				{ song: "All For You", year: 2001, audioFile: "TODO" },
-				{ song: "Call Me Maybe", year: 2012, audioFile: "TODO" },
-				{ song: "I Want To Hold Your Hand", year: 1964, audioFile: "TODO" }
+				{ song: "All For You", year: 2001, audioFile: "all-for-you" },
+				{ song: "Call Me Maybe", year: 2012, audioFile: "call-me-maybe" },
+				{
+					song: "I Want To Hold Your Hand",
+					year: 1964,
+					audioFile: "i-want-to-hold-your-hand"
+				}
 			]
 		}
 	},
@@ -413,13 +422,17 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
-				{ song: "Will You Love Me Tomorrow", year: 1961, audioFile: "TODO" },
+				{
+					song: "Will You Love Me Tomorrow",
+					year: 1961,
+					audioFile: "will-you-love-me-tomorrow"
+				},
 				{
 					song: "Quit Playing Games (With My Heart)",
 					year: 1997,
-					audioFile: "TODO"
+					audioFile: "quit-playing-games-with-my-heart"
 				},
-				{ song: "In My Feelings", year: 2018, audioFile: "TODO" }
+				{ song: "In My Feelings", year: 2018, audioFile: "in-my-feelings" }
 			]
 		}
 	},
@@ -453,9 +466,9 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
 				// { song: "Runaround Sue", year: 1961, audioFile: "TODO" },
-				{ song: "I Will Survive", year: 1979, audioFile: "TODO" },
-				{ song: "So What", year: 2008, audioFile: "TODO" },
-				{ song: "Good 4 U", year: 2021, audioFile: "TODO" }
+				{ song: "I Will Survive", year: 1979, audioFile: "i-will-survive" },
+				{ song: "So What", year: 2008, audioFile: "so-what" },
+				{ song: "Good 4 U", year: 2021, audioFile: "good-4-u" }
 			]
 		}
 	},
@@ -491,9 +504,9 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
-				{ song: "Physical", year: 1981, audioFile: "TODO", audioFile: "TODO" },
-				{ song: "WAP", year: 2020, audioFile: "TODO", audioFile: "TODO" },
-				{ song: "Way 2 Sexy", year: 2021, audioFile: "TODO", audioFile: "TODO" }
+				{ song: "Physical", year: 1981, audioFile: "physical" },
+				{ song: "WAP", year: 2020, audioFile: "wap" },
+				{ song: "Way 2 Sexy", year: 2021, audioFile: "way-2-sexy" }
 			]
 		}
 	},
@@ -532,10 +545,10 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
-				{ song: "I Am Woman", year: 1972, audioFile: "TODO" },
-				{ song: "Unpretty", year: 1999, audioFile: "TODO" },
+				{ song: "I Am Woman", year: 1972, audioFile: "i-am-woman" },
+				{ song: "Unpretty", year: 1999, audioFile: "unpretty" },
 				// { song: "Thank U, Next", year: 2018, audioFile: "TODO" },
-				{ song: "Flowers", year: 2023, audioFile: "TODO" }
+				{ song: "Flowers", year: 2023, audioFile: "flowers" }
 			]
 		}
 	},
