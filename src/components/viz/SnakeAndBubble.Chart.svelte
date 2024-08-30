@@ -105,11 +105,7 @@
 			};
 		} else if ($hoveredSongInfo.song) {
 			// no need to trigger reactive update by writing to the store unless there is a song to overwrite
-			$hoveredSongInfo = {
-				song: null,
-				x: null,
-				y: null
-			};
+			$hoveredSongInfo = {};
 		}
 	};
 
@@ -120,6 +116,8 @@
 		const selectedSong = $songIsSelected[songIndex] && $songIsVisible[songIndex] && forceSimulationData[songIndex]?.song;
 		handleSongHovered(selectedSong, offsetX, offsetY);
 	};
+
+	const clearTooltip = () => $hoveredSongInfo = {}
 
 	// TODO: do we want to do anything here? if not delete.
 	const handleSongClicked = (e) => {
@@ -213,6 +211,7 @@
 	style:opacity={1 - $aggregateSnakeChartOpacity}
 	bind:this={canvas}
 	on:mousemove={handleMouseMove}
+	on:mouseleave={clearTooltip}
 	on:mousedown={handleSongClicked}
 />
 <canvas id="invisible" bind:this={invisibleCanvas} />
