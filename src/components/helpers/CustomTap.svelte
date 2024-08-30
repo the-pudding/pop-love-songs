@@ -120,7 +120,7 @@
 	.left-hint:hover {
 		transform: translate(-40%, -100%);
 		opacity: 1;
-		background: var(--color-red);
+		background: var(--color-good-riddance);
 	}
 	.right-hint {
 		transform: translate(50%, -100%);
@@ -132,10 +132,10 @@
 	.right-hint:hover {
 		transform: translate(40%, -100%);
 		opacity: 1;
-		background: var(--color-red);
+		background: var(--color-good-riddance);
 	}
 	.bounceHint {
-		background: var(--color-red);
+		background: var(--color-good-riddance);
 		opacity: 1;
 		animation: bounce 1.5s infinite linear;
 	}
@@ -256,12 +256,6 @@
 		justify-content: flex-end;
 	}
 
-	span {
-		display: inline-block;
-		line-height: 1;
-		opacity: 0.5;
-	}
-
 	.debug .left {
 		background: red;
 		opacity: 0.5;
@@ -282,6 +276,7 @@
 		opacity: 0.5;
 	}
 
+    /* TODO: since we're having people look in landscape, this breakpoint should be bigger (but do we want them to shrink at all?) */
 	@media (max-width: 600px) {
 		.directions {
 			padding: 0 0 0 1rem;
