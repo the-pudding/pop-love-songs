@@ -67,6 +67,7 @@
 
 <div bind:this={container} class="container" style={style}>
     <h4 class="story-text">
+        <!-- For styling of love song type spans within the text, see app.css -->
         {@html $currentStoryStep.text}
         <DataMethodsModal bind:showModal />
     </h4>
