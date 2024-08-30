@@ -9,6 +9,7 @@
 	import StoryStepNavigationAndText from "./story-steps/StoryStepNavigationAndText.svelte";
 	
 	import SongAnnotations from "./viz/SongAnnotations.svelte";
+	import PlayableSongAnnotations from "./viz/PlayableSongAnnotations.svelte";
 	import SongTooltip from "./viz/SongTooltip.svelte";
 	
 	import SearchAndFilterTopBar from "./viz/search-and-filter-top-bar/SearchAndFilterTopBar.svelte";
@@ -54,4 +55,5 @@
 {/if}
 <StoryStepNavigationAndText />
 <SongAnnotations />
+<PlayableSongAnnotations />
 <SongTooltip />

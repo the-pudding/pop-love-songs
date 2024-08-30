@@ -2,10 +2,12 @@
 	import {
 		SONG_DATA_COLUMNS_ENUM,
 	} from "$data/data-constants.js";
+	import SongSnippetPlayer from "../audio/SongSnippetPlayer.svelte";
 	import PerformerNames from "./PerformerNames.svelte";
 	
 	export let song;
 	export let alternateTitle;
+	export let audioFile = false;
 
 	const formatYear = (year) => {
 		const shortNumber = Math.floor(year % 100)
@@ -18,6 +20,9 @@
 <div class='song-and-year'>
 	<strong class='song'>{alternateTitle || song[SONG_DATA_COLUMNS_ENUM.song]}</strong>
 	<span class='year'>{year}</span>
+	{#if audioFile}
+		<SongSnippetPlayer audioFile={audioFile} />
+	{/if}
 </div>
 <div class="performer">
 	<PerformerNames {song} />
