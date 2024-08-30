@@ -152,8 +152,6 @@
 		}
 	};
 
-	// @michelle: I'm noticing a growing list of reactive elements here, and I'm wondering if we should be using a derived store for the data, and just make it one thing? 
-	// Or is this granularity normal / good for control?
 	$: $songIsSelected, $viewport.width, $viewport.height, updateViz();
 	// simulation force layout properties need to be update when viewport or target x/yForcePosition changes
 	$: $xForcePosition, $yForcePosition, $viewport.width, $viewport.height, updateSimulationProperties(); 

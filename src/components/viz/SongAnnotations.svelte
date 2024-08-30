@@ -1,6 +1,5 @@
 <script>
-    import { tweened } from "svelte/motion";
-	import { cubicInOut } from "svelte/easing";
+    import { fade } from 'svelte/transition'
 
     import { songAnnotationsWithPosition } from "$stores/visualEncodings";
 	import SongInfo from "./SongInfo.svelte";
@@ -24,12 +23,6 @@
         const yPos = y - (placeBelow ? -40 : (placeAbove ? 60 : Y_OFFSET));
         return {xPos, yPos, song, rightAlign, alternateTitle}
     })
-
-    // @michelle: is it better to just use CSS transition?
-    const opacity = tweened(0, {duration: CHART_TRANSITION_OPACITY_DURATION, easing: cubicInOut});
-    $: {
-        opacity.set($songAnnotationsWithPosition.length ? 1 : 0)
-    }
 </script>
 
 {#each layoutData as {xPos, yPos, song, rightAlign, alternateTitle}}
@@ -37,11 +30,11 @@
         id={song[SONG_DATA_COLUMNS_ENUM.song]}
         class="annotation-wrapper"
         role="tooltip"
-        style={`top: ${yPos}px; left: ${xPos}px; ${rightAlign ? 'transform: translateX(-100%);' : ''} opacity: ${$opacity};`}
+        in:fade={{delay: CHART_TRANSITION_OPACITY_DURATION, duration: CHART_TRANSITION_OPACITY_DURATION}}
+        style={`top: ${yPos}px; left: ${xPos}px; ${rightAlign ? 'transform: translateX(-100%);' : ''}`}
     >
         <SongInfo song={song} alternateTitle={alternateTitle} />
     </div>
-    
 {/each}
 
 
@@ -50,8 +43,8 @@
 	div.annotation-wrapper {
 		z-index: 10000;
 		position: absolute;
-        /* transition: top 0.8s, left 0.8s; */
 		max-height: 300px;
 		background-color: transparent;
+        transition: opacity 4s;
     }
 </style>
