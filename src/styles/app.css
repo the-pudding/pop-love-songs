@@ -95,7 +95,7 @@ h6 {
 
 /* Styling the spans highlighting specific love song types in the text */
 .story-text > span {
-	background: black;
+	background: black; /* TODO: we nee to be sure all color contrasts are a11y compliant */
     border-radius: 4px;
     padding-left: 5px;
 	padding-right: 5px;
@@ -124,6 +124,7 @@ h6 {
 
 .story-text > span.its-complicated {
 	color: var(--color-its-complicated);
+	background: white; /* override background color for better contrast */
 }
 
 .story-text > span.good-riddance {
