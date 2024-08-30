@@ -66,7 +66,7 @@
 </script>
 
 <div bind:this={container} class="container" style={style}>
-    <h4 class="title">
+    <h4 class="story-text">
         {@html $currentStoryStep.text}
         <DataMethodsModal bind:showModal />
     </h4>
@@ -83,7 +83,7 @@
         padding-right: 5%;
     }
 
-    .title {
-        font-size: clamp(1rem, 2vw, 1.5rem);
+    .story-text {
+        font-size: 16px;
     }
 </style>

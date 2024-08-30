@@ -7,9 +7,18 @@
 	/* Project-specific colors */
 	--color-cream-background: #fff6df;
 	--color-rgba-annotation-text-shadow: 255, 246, 223, 0.9;
-	--color-good-riddance: #A290E9;
+
+	/* see LOVE_SONG_TYPE_COLOR_MAP */
+	--color-not-a-love-song: #D1D1D1;
+	--color-serenade: #F2C3FF;
 	--color-longing-and-heartbreak: #5CAFFF;
 	--color-sexual-confidence: #FF5C00;
+	--color-its-complicated: #96753C;
+	--color-good-riddance: #A290E9;
+	--color-love-song-for-the-self: #FFD700;
+	--color-courtship-and-anticipation: #02D098;
+
+	/* END project-specific colors */
 
 	--category-blue: #4477aa;
 	/* --category-red: #ee6677; */

@@ -92,3 +92,18 @@ h5 {
 h6 {
 	font-size: var(--20px, 20px);
 }
+
+/* Styling the spans highlighting specific love song types in the text */
+.story-text > span {
+	background: black;
+    border-radius: 4px;
+    padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 2px;
+    
+    font-weight: 600;
+}
+
+.story-text > span.serenade {
+	color: var(--color-serenade);
+}
