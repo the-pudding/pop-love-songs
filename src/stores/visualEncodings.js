@@ -65,13 +65,10 @@ export const songAnnotationsWithPosition = derived(
 				return [
 					...accum,
 					{
+						...songAnnotation,
 						song,
 						x: $xForcePosition[index],
-						y: $yForcePosition[index],
-						rightAlign: songAnnotation.rightAlign,
-						placeBelow: songAnnotation.placeBelow,
-						placeAbove: songAnnotation.placeAbove,
-						alternateTitle: songAnnotation.alternateTitle
+						y: $yForcePosition[index]
 					}
 				];
 			} else {

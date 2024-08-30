@@ -18,11 +18,13 @@
         const direction = rightAlign ? -1 : 1
         return x + direction * X_OFFSET;
     }
-    $: layoutData = $songAnnotationsWithPosition.map(({song, x, y, rightAlign, placeBelow, placeAbove, alternateTitle}) => {
-        const xPos = getX(x, rightAlign, placeBelow, placeAbove);
-        const yPos = y - (placeBelow ? -40 : (placeAbove ? 60 : Y_OFFSET));
-        return {xPos, yPos, song, rightAlign, alternateTitle}
-    })
+    $: layoutData = $songAnnotationsWithPosition
+        .filter(({audioFile}) => !audioFile) 
+        .map(({song, x, y, rightAlign, placeBelow, placeAbove, alternateTitle}) => {
+            const xPos = getX(x, rightAlign, placeBelow, placeAbove);
+            const yPos = y - (placeBelow ? -40 : (placeAbove ? 60 : Y_OFFSET));
+            return {xPos, yPos, song, rightAlign, alternateTitle}
+        })
 </script>
 
 {#each layoutData as {xPos, yPos, song, rightAlign, alternateTitle}}

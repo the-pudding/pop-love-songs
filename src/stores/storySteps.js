@@ -267,10 +267,20 @@ const stepsWithoutText = {
 			restartBubblesOnAdvanceInto: false,
 			restartBubblesOnReturnInto: false,
 			songAnnotations: [
-				{ song: "Fever", year: 1958 },
-				{ song: "Just The Way You Are", year: 1978, placeAbove: true },
-				// { song: "Like A Virgin", year: 1984 },
-				{ song: "Just The Way You Are", year: 2010, rightAlign: true }
+				{ song: "Fever", year: 1958, audioFile: "TODO" },
+				{
+					song: "Just The Way You Are",
+					year: 1978,
+					placeAbove: true,
+					audioFile: "TODO"
+				},
+				// { song: "Like A Virgin", year: 1984, audioFile: "TODO" },
+				{
+					song: "Just The Way You Are",
+					year: 2010,
+					rightAlign: true,
+					audioFile: "TODO"
+				}
 			]
 		}
 	},
@@ -304,9 +314,14 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
-				{ song: "Yesterday", year: 1965 },
-				{ song: "I Will Always Love You", year: 1992, placeAbove: true },
-				{ song: "Stay", year: 2013 }
+				{ song: "Yesterday", year: 1965, audioFile: "TODO" },
+				{
+					song: "I Will Always Love You",
+					year: 1992,
+					placeAbove: true,
+					audioFile: "TODO"
+				},
+				{ song: "Stay", year: 2013, audioFile: "TODO" }
 			]
 		}
 	},
@@ -361,9 +376,9 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
-				{ song: "All For You", year: 2001 },
-				{ song: "Call Me Maybe", year: 2012 },
-				{ song: "I Want To Hold Your Hand", year: 1964 }
+				{ song: "All For You", year: 2001, audioFile: "TODO" },
+				{ song: "Call Me Maybe", year: 2012, audioFile: "TODO" },
+				{ song: "I Want To Hold Your Hand", year: 1964, audioFile: "TODO" }
 			]
 		}
 	},
@@ -398,9 +413,13 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
-				{ song: "Will You Love Me Tomorrow", year: 1961 },
-				{ song: "Quit Playing Games (With My Heart)", year: 1997 },
-				{ song: "In My Feelings", year: 2018 }
+				{ song: "Will You Love Me Tomorrow", year: 1961, audioFile: "TODO" },
+				{
+					song: "Quit Playing Games (With My Heart)",
+					year: 1997,
+					audioFile: "TODO"
+				},
+				{ song: "In My Feelings", year: 2018, audioFile: "TODO" }
 			]
 		}
 	},
@@ -433,10 +452,10 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
-				{ song: "Runaround Sue", year: 1961 },
-				{ song: "I Will Survive", year: 1979 },
-				{ song: "So What", year: 2008 },
-				{ song: "Good 4 U", year: 2021 }
+				// { song: "Runaround Sue", year: 1961, audioFile: "TODO" },
+				{ song: "I Will Survive", year: 1979, audioFile: "TODO" },
+				{ song: "So What", year: 2008, audioFile: "TODO" },
+				{ song: "Good 4 U", year: 2021, audioFile: "TODO" }
 			]
 		}
 	},
@@ -472,9 +491,9 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
-				{ song: "Physical", year: 1981 },
-				{ song: "WAP", year: 2020 },
-				{ song: "Way 2 Sexy", year: 2021 }
+				{ song: "Physical", year: 1981, audioFile: "TODO", audioFile: "TODO" },
+				{ song: "WAP", year: 2020, audioFile: "TODO", audioFile: "TODO" },
+				{ song: "Way 2 Sexy", year: 2021, audioFile: "TODO", audioFile: "TODO" }
 			]
 		}
 	},
@@ -513,10 +532,10 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
-				{ song: "I Am Woman", year: 1972 },
-				{ song: "Unpretty", year: 1999 },
-				// { song: "Thank U, Next", year: 2018 },
-				{ song: "Flowers", year: 2023 }
+				{ song: "I Am Woman", year: 1972, audioFile: "TODO" },
+				{ song: "Unpretty", year: 1999, audioFile: "TODO" },
+				// { song: "Thank U, Next", year: 2018, audioFile: "TODO" },
+				{ song: "Flowers", year: 2023, audioFile: "TODO" }
 			]
 		}
 	},

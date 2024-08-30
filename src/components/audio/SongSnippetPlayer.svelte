@@ -2,15 +2,15 @@
 	import { playing } from "$stores/audio.js";
 	import PlayAndPauseButton from "./PlayAndPauseButton.svelte";
 
-	export let audioFileName;
+	export let audioFile;
 
-	$: playingMe = $playing && $playing.audioFileName === audioFileName;
+	$: playingMe = $playing && $playing.audioFile === audioFile;
 
 	const onClick = () => {
 		if (playingMe) {
 			$playing = undefined;
 		} else {
-			$playing = { audioFileName };
+			$playing = { audioFile };
 		}
 	};
 </script>
