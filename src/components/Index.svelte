@@ -6,7 +6,7 @@
 	import OpeningComment from "./story-steps/OpeningComment.svelte";
 	import TitleCard from "./story-steps/TitleCard.svelte";
 	import SideBar from "./viz/SideBar.svelte";
-	import StoryStepController from "./story-steps/StoryStepController.svelte";
+	import StoryStepNavigationAndText from "./story-steps/StoryStepNavigationAndText.svelte";
 	
 	import SongAnnotations from "./viz/SongAnnotations.svelte";
 	import SongTooltip from "./viz/SongTooltip.svelte";
@@ -24,7 +24,7 @@
 	};
 
 	// Wait until after we've mounted (and thus pulled the story step from the URL)
-	// TODO: this doesn't seem to actually work. Instead, just create a store that StoryStepController updates
+	// TODO: this doesn't seem to actually work. Instead, just create a store that StoryStepNavigationAndText updates
 	let urlParsed = false
 	onMount(() => {
 	   urlParsed = true;
@@ -52,6 +52,6 @@
 {#if $devMode}
 	<SideBar />
 {/if}
-<StoryStepController />
+<StoryStepNavigationAndText />
 <SongAnnotations />
 <SongTooltip />

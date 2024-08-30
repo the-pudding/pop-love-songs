@@ -3,13 +3,13 @@
     import urlParams from "../../utils/urlParams.js";
     import viewport from "$stores/viewport.js";
 
-    import Tap from "../helpers/Tap.svelte";
+    import Tap from "../helpers/Tap.svelte.js";
 
     import {selectedSongs, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart} from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_TOP_PADDING} from "$components/viz/viz-utils.js"
     import { Y_MARGIN_SCREEN_PERCENTAGE } from "$data/data-utils.js";
-	import DataMethodsModal from "./DataMethodsModal.svelte";
+	import DataMethodsModal from "./DataMethodsModal.svelte.js";
 
     function updateQueryParams() {
         urlParams.set("step", $currentStoryStepIndex);
