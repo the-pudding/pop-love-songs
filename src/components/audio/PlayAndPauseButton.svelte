@@ -2,11 +2,22 @@
 <script>
     export let paused = true;
 </script>
-
-<div class:paused class='button'></div>
+<div class=fixed-width-container>
+    <div class:paused class='inner-icon'></div>
+</div>
 
 <style>
-    .button {
+    .fixed-width-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .inner-icon {
         border: 0;
         padding: 0; /* override Pudding default */
         background: transparent;
@@ -21,12 +32,14 @@
         /* border-width: 37px 0 37px 60px; */
         border-width: 12px 0 12px 19.4px;
     }
-    .button.paused {
+
+    .inner-icon.paused {
         border-style: double;
         /* border-width: 0px 0 0px 60px; */
         border-width: 0px 0 0px 24px;
     }
-    .button:hover {
+
+    .inner-icon:hover {
         border-color: transparent transparent transparent #404040;
     }
 </style>
