@@ -8,6 +8,7 @@
 <style>
     .button {
         border: 0;
+        padding: 0; /* override Pudding default */
         background: transparent;
         box-sizing: border-box;
         width: 0;
