@@ -124,7 +124,7 @@ h6 {
 
 .story-text > span.its-complicated {
 	color: var(--color-its-complicated);
-	background: white; /* override background color for better contrast */
+	background: white; /* TODO: override background color for better contrast, see ACCESSIBLY_CONTRASTING_COLOR_MAP */
 }
 
 .story-text > span.good-riddance {

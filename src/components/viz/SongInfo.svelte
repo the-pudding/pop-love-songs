@@ -1,5 +1,6 @@
 <script>
 	import {
+	LOVE_SONG_TYPE_COLOR_MAP,
 		SONG_DATA_COLUMNS_ENUM,
 	} from "$data/data-constants.js";
 	import SongSnippetPlayer from "../audio/SongSnippetPlayer.svelte";
@@ -21,7 +22,7 @@
 	<strong class='song'>{alternateTitle || song[SONG_DATA_COLUMNS_ENUM.song]}</strong>
 	<span class='year'>{year}</span>
 	{#if audioFile}
-		<SongSnippetPlayer audioFile={audioFile} />
+		<SongSnippetPlayer loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
 	{/if}
 </div>
 <div class="performer">

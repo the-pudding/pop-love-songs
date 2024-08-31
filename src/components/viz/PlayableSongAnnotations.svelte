@@ -24,7 +24,7 @@
         .filter(({audioFile}) => audioFile) 
         .map(({x, y, song, rightAlign, placeBelow, placeAbove, alternateTitle, audioFile}) => {
             const xPos = getX(x, rightAlign, placeBelow, placeAbove);
-            const yPos = y - (placeBelow ? -40 : (placeAbove ? 60 : Y_OFFSET));
+            const yPos = -200 + y - (placeBelow ? -40 : (placeAbove ? 60 : Y_OFFSET)); // TODO: make this not stupid
             return {xPos, yPos, song, rightAlign, alternateTitle, audioFile}
         })
 </script>

@@ -49,6 +49,18 @@ export const LOVE_SONG_TYPE_COLOR_MAP = {
 	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: "#02D098"
 };
 
+// TODO: actually fill this in with verified values
+export const ACCESSIBLY_CONTRASTING_COLOR_MAP = {
+	[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]: "#000000",
+	[LOVE_SONG_TYPE_CONSTANTS.serenade]: "#000000",
+	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: "#000000",
+	[LOVE_SONG_TYPE_CONSTANTS.sexualConfidence]: "#000000",
+	[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: "white",
+	[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: "#000000",
+	[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: "#000000",
+	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: "#000000"
+};
+
 export const COLORS = {
 	background: "#fff6df"
 };

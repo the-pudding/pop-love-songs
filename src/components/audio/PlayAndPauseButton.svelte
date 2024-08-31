@@ -1,9 +1,10 @@
 <!-- Taken from here: https://css-tricks.com/making-pure-css-playpause-button/ -->
 <script>
+    export let fillColor = 'red';
     export let paused = true;
 </script>
 <div class="fixed-width-container">
-    <div class:paused class='inner-icon'></div>
+    <div class:paused class='inner-icon' style:border-color={`transparent transparent transparent ${fillColor}`}></div>
 </div>
 
 <style>
@@ -24,7 +25,6 @@
         width: 0;
         /* height: 74px; */
         height: 16px;
-        border-color: transparent transparent transparent #202020;
         transition: 100ms all ease;
         cursor: pointer;
         border-style: solid;
@@ -36,9 +36,5 @@
         border-style: double;
         /* border-width: 0px 0 0px 60px; */
         border-width: 0px 0 0px 16px;
-    }
-
-    .inner-icon:hover {
-        border-color: transparent transparent transparent #404040;
     }
 </style>
