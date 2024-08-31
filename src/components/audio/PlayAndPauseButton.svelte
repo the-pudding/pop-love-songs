@@ -25,7 +25,7 @@
         width: 0;
         /* height: 74px; */
         height: 16px;
-        transition: 100ms all ease;
+        transition: 200ms all ease;
         cursor: pointer;
         border-style: solid;
         /* border-width: 37px 0 37px 60px; */

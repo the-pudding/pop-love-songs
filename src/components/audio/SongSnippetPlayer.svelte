@@ -28,11 +28,11 @@
 	button {
 		padding: 4px; /* override Pudding default */
 		border-radius: 100%;
-		transition: transform 0.3s;
+		transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.575);
 	}
 
 	button:hover {
-		transform: scale(1.1);
+		transform: scale(1.15);
 	}
 	
 </style>
