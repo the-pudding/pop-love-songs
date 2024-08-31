@@ -34,7 +34,7 @@
         id={song[SONG_DATA_COLUMNS_ENUM.song]}
         class="annotation-wrapper"
         role="tooltip"
-        in:fade={{delay: CHART_TRANSITION_OPACITY_DURATION, duration: CHART_TRANSITION_OPACITY_DURATION}}
+        in:fade={{delay: CHART_TRANSITION_OPACITY_DURATION / 2, duration: CHART_TRANSITION_OPACITY_DURATION / 2 }}
         style={`top: ${yPos}px; left: ${xPos}px; ${rightAlign ? 'transform: translateX(-100%);' : ''}`}
     >
         <SongInfo song={song} alternateTitle={alternateTitle} audioFile={audioFile} />
