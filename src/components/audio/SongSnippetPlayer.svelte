@@ -21,18 +21,18 @@
 </script>
 
 <button on:click={onClick} style:background={backgroundColor}>
-	<PlayAndPauseButton {fillColor} paused={playingMe} />
+	<PlayAndPauseButton {fillColor} showPauseIcon={playingMe} />
 </button>
 
 <style>
 	button {
 		padding: 4px; /* override Pudding default */
 		border-radius: 100%;
-		transition: opacity 0.3s;
+		transition: transform 0.3s;
 	}
 
 	button:hover {
-		opacity: 0.7;
+		transform: scale(1.1);
 	}
 	
 </style>
