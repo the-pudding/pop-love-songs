@@ -11,13 +11,15 @@
 	import SongAnnotations from "./viz/SongAnnotations.svelte";
 	import PlayableSongAnnotations from "./viz/PlayableSongAnnotations.svelte";
 	import SongTooltip from "./viz/SongTooltip.svelte";
+	import Audio from "./audio/Audio.svelte";
 	
 	import SearchAndFilterTopBar from "./viz/search-and-filter-top-bar/SearchAndFilterTopBar.svelte";
 	
 	import { currentStoryStep } from "$stores/storySteps";
+	import { playing } from "$stores/audio.js";
 	// TODO: disable devMode in production
 	import devMode from "$stores/devMode";
-
+	
 	$: handleKeyPress = (e) => {
 		if (e.key === "d") {
 			devMode.update((devMode) => !devMode);
@@ -34,26 +36,30 @@
 
 <svelte:window on:keydown={handleKeyPress} />
 
-{#if $devMode || $currentStoryStep.allowUserToChangeFilters}
-	<SearchAndFilterTopBar />
-{/if}
-
-{#if urlParsed}
-	<!-- TODO: OPTIMIZATION: does it make sense to rip the viz elements on/off the dom, or just leave them there always? -->
-	<SnakeAndBubbleChart />
-	{#if $currentStoryStep.showBoomerBobImages}
-		<BoomerBobImages />
-	{:else if $currentStoryStep.showOpeningComment}
-		<OpeningComment />
-	{:else if $currentStoryStep.showTitleCard}
-		<TitleCard />
+<article>
+	{#if $devMode || $currentStoryStep.allowUserToChangeFilters}
+		<SearchAndFilterTopBar />
 	{/if}
-{/if}
 
-{#if $devMode}
-	<SideBar />
-{/if}
-<StoryStepNavigationAndText />
-<SongAnnotations />
-<PlayableSongAnnotations />
-<SongTooltip />
+	{#if urlParsed}
+		<!-- TODO: OPTIMIZATION: does it make sense to rip the viz elements on/off the dom, or just leave them there always? -->
+		<SnakeAndBubbleChart />
+		{#if $currentStoryStep.showBoomerBobImages}
+			<BoomerBobImages />
+		{:else if $currentStoryStep.showOpeningComment}
+			<OpeningComment />
+		{:else if $currentStoryStep.showTitleCard}
+			<TitleCard />
+		{/if}
+	{/if}
+
+	{#if $devMode}
+		<SideBar />
+	{/if}
+	<StoryStepNavigationAndText />
+	<SongAnnotations />
+	<PlayableSongAnnotations />
+	<SongTooltip />
+
+	<Audio audioFile={$playing?.audioFile} />
+</article>
