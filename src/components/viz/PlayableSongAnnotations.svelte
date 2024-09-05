@@ -10,20 +10,15 @@
 	
     const X_OFFSET = 24;
     const Y_OFFSET = 24;
-    const getX = (x, rightAlign, placeBelow, placeAbove) => {  
-        if (placeAbove) {
-            return x - X_OFFSET * 2; // slide it more centered
-        }
-        if (placeBelow) {
-            return x + X_OFFSET * 2; // slide it more centered
-        }
+    const getX = (x, rightAlign) => { 
         const direction = rightAlign ? -1 : 1
         return x + direction * X_OFFSET;
     }
+    
     $: layoutData = $songAnnotationsWithPosition
         .filter(({audioFile}) => audioFile) 
         .map(({x, y, song, rightAlign, placeBelow, placeAbove, alternateTitle, audioFile}) => {
-            const xPos = getX(x, rightAlign, placeBelow, placeAbove);
+            const xPos = getX(x, rightAlign);
             const yPos = -200 + y - (placeBelow ? -40 : (placeAbove ? 60 : Y_OFFSET)); // TODO: make this not stupid
             return {bubbleX: x, bubbleY: y, xPos, yPos, song, rightAlign, alternateTitle, audioFile}
         })
@@ -35,7 +30,7 @@
         class="annotation-wrapper"
         role="tooltip"
         in:fade={{delay: CHART_TRANSITION_OPACITY_DURATION / 2, duration: CHART_TRANSITION_OPACITY_DURATION / 2 }}
-        style={`top: ${yPos}px; left: ${xPos}px; ${rightAlign ? 'transform: translateX(-100%), translateY(-50%);' : ''}`}
+        style={`top: ${yPos}px; left: ${xPos}px; ${rightAlign ? `transform: translateX(-100%);` : ''}`}
     >
         <SongInfo song={song} alternateTitle={alternateTitle} audioFile={audioFile} />
     </div>
