@@ -21,14 +21,15 @@
 		getSongFill,
 		getSongIndexFromClickLocation
 	} from "./viz-utils";
+
+	import { simulationStore } from "$stores/simulation";
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
 	import { loveSongTypeColorMap, songRadius, unselectedLoveSongTypeColorMap, xForcePosition, yForcePosition } from "$stores/visualEncodings";
 	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
 	import { currentStoryStep, preventBubbleRestartBecauseTheUserIsMerelySearching, restartBubbles } from "$stores/storySteps";
 	import { showAggregateSnakeChart } from "$stores/searchAndFilter";
 	import { songInAnnotations } from "$data/data-utils";
-	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";	
-	import { LOVE_SONG_TYPE_CONSTANTS, SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
+	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";
 
 	// Initiate mutable simulation, give bubbles an initial position
 	const forceSimulationData = songsData.map((songObject, songIndex) => ({
@@ -131,15 +132,13 @@
 		invisibleCanvas.width = $viewport.width;
 		invisibleCanvas.height = $viewport.height;
 	};
-
-	const isNotALoveSong = (song) => song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type] === LOVE_SONG_TYPE_CONSTANTS.notALoveSong;
+	
 	const updateSimulationProperties = () => {
 		if (!simulation) return;
 		simulation
 			.force("x", forceX().x((_, songIndex) => $xForcePosition[songIndex]).strength($currentStoryStep.visualEncodings.forceXStrength))
 			.force("y", forceY().y((_, songIndex) => $yForcePosition[songIndex] || DEFAULT_Y_ENTRANCE_POSITION).strength(
-				// The non love songs generally have more ground to spread out over, so we reduce the strength of the y force for them
-				({song}) => $currentStoryStep.visualEncodings.forceYStrength * (isNotALoveSong(song) ? 0.3 : 1)
+				() => $currentStoryStep.visualEncodings.forceYStrength
 			))
 			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsVisible[songIndex] ? $songRadius[songIndex] + 0.5 : 0).strength(0.5))
 			.velocityDecay(0.3) // think of it like "friction": lower values help things slide smoother, but too much causes a sort of "bounce" effect as it oscillates towards the force center
@@ -164,6 +163,7 @@
 
 		simulation = forceSimulation(forceSimulationData).on("tick", () => {
 			updateVisibleAndInvisibleCanvases();
+			simulationStore.set(simulation);
 		});
 
 		resizeCanvases();

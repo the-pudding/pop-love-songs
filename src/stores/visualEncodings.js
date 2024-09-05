@@ -11,6 +11,7 @@ import {
 	UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP
 } from "$data/data-constants.js";
 import { typesTreatedAsNonLoveSongs } from "./searchAndFilter.js";
+import { nodePositionsInSimulation } from "./simulation.js";
 
 // Position (or the force layout that guides it)
 
@@ -53,22 +54,22 @@ export const yForcePosition = derived(
 
 // Annotations with position
 export const songAnnotationsWithPosition = derived(
-	[yForcePosition, xForcePosition, currentStoryStep],
-	([$yForcePosition, $xForcePosition, $currentStoryStep]) =>
+	[nodePositionsInSimulation, currentStoryStep],
+	([$nodePositionsInSimulation, $currentStoryStep]) =>
 		songsData.reduce((accum, { song }, index) => {
 			// if song is in annotations, add its position
 			const songAnnotation = songInAnnotations(
 				song,
 				$currentStoryStep.visualEncodings.songAnnotations
 			);
-			if (songAnnotation) {
+			if (songAnnotation && $nodePositionsInSimulation) {
 				return [
 					...accum,
 					{
 						...songAnnotation,
 						song,
-						x: $xForcePosition[index],
-						y: $yForcePosition[index]
+						x: $nodePositionsInSimulation[index].x,
+						y: $nodePositionsInSimulation[index].y
 					}
 				];
 			} else {
