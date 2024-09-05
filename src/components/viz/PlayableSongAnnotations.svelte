@@ -1,6 +1,7 @@
 <script>
     import { fade } from 'svelte/transition'
 
+    import viewport from '$stores/viewport';
     import { songAnnotationsWithPosition } from "$stores/visualEncodings";
 
 	import SongInfo from "./SongInfo.svelte";
@@ -9,17 +10,18 @@
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 	
     const X_OFFSET = 24;
-    const Y_OFFSET = 24;
     const getX = (x, rightAlign) => { 
         const direction = rightAlign ? -1 : 1
         return x + direction * X_OFFSET;
     }
-    
+
     $: layoutData = $songAnnotationsWithPosition
         .filter(({audioFile}) => audioFile) 
         .map(({x, y, song, rightAlign, placeBelow, placeAbove, alternateTitle, audioFile}) => {
             const xPos = getX(x, rightAlign);
-            const yPos = -200 + y - (placeBelow ? -40 : (placeAbove ? 60 : Y_OFFSET)); // TODO: make this not stupid
+            const {height} = $viewport;
+            const yOffset = 0.1 * height;
+            const yPos = 0.5 * $viewport.height - (placeBelow ? - yOffset : (placeAbove ? yOffset : 0));
             return {bubbleX: x, bubbleY: y, xPos, yPos, song, rightAlign, alternateTitle, audioFile}
         })
 </script>

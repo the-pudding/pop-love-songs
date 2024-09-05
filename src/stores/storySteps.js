@@ -279,6 +279,7 @@ const stepsWithoutText = {
 					song: "Just The Way You Are",
 					year: 2010,
 					rightAlign: true,
+					placeBelow: true,
 					audioFile: "just-the-way-you-are-2010"
 				}
 			]
