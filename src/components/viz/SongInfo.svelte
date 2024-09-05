@@ -1,8 +1,8 @@
 <script>
 	import {
-	LOVE_SONG_TYPE_COLOR_MAP,
 		SONG_DATA_COLUMNS_ENUM,
 	} from "$data/data-constants.js";
+	import viewport from "$stores/viewport";
 	import SongSnippetPlayer from "../audio/SongSnippetPlayer.svelte";
 	import PerformerNames from "./PerformerNames.svelte";
 	
@@ -19,8 +19,10 @@
 </script>
 
 <div class='song-and-year'>
-	<strong class='song'>{alternateTitle || song[SONG_DATA_COLUMNS_ENUM.song]}</strong>
-	<span class='year'>{year}</span>
+	<strong class='song' style={`font-size: ${$viewport.isMobileLandscapeWidth ? '16px' : '24px'}`}>
+		{alternateTitle || song[SONG_DATA_COLUMNS_ENUM.song]}
+	</strong>
+	<span class='year' style={`font-size: ${$viewport.isMobileLandscapeWidth ? '12px' : '16px'}`}>{year}</span>
 	{#if audioFile}
 		<SongSnippetPlayer loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
 	{/if}
@@ -39,7 +41,6 @@
 	}
 
 	.song {
-		font-size: 24px;
 		font-weight: bold;
 		text-transform: uppercase;
 		text-shadow: 2px 2px 1px rgba(var(--color-rgba-annotation-text-shadow)),
@@ -49,7 +50,6 @@
 	}
 
 	.year, .performer {
-		font-size: 16px;
 		font-weight: 300;
 		text-shadow: 1px 1px 1px rgba(var(--color-rgba-annotation-text-shadow)),
 			-1px -1px 1px rgba(var(--color-rgba-annotation-text-shadow)),
