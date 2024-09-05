@@ -298,8 +298,18 @@ const stepsWithoutText = {
 			restartBubblesOnAdvanceInto: false,
 			restartBubblesOnReturnInto: false,
 			songAnnotations: [
-				{ song: "Heartbreaker", year: 1983, rightAlign: true },
-				{ song: "You Belong With Me", year: 2009, rightAlign: true }
+				{
+					song: "Heartbreaker",
+					year: 1983,
+					rightAlign: true,
+					audioFile: "heartbreaker"
+				},
+				{
+					song: "You Belong With Me",
+					year: 2009,
+					rightAlign: true,
+					audioFile: "you-belong-with-me"
+				}
 			]
 		}
 	},
