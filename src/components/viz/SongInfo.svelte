@@ -24,7 +24,7 @@
 	</strong>
 	<span class='year' style={`font-size: ${$viewport.isMobileLandscapeWidth ? '12px' : '16px'}`}>{year}</span>
 	{#if audioFile}
-		<SongSnippetPlayer loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
+		<SongSnippetPlayer songName={song[SONG_DATA_COLUMNS_ENUM.song]} loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
 	{/if}
 </div>
 <div class="performer">

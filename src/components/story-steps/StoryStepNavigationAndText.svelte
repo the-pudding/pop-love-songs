@@ -53,7 +53,7 @@
 	};
 
     const updateFilterFilterState = () => {
-        selectedSongs.set([...$currentStoryStep.searchAndFilterState.selectedSongs])
+        selectedSongs.set([]) // clear any selections if you navigate to a new story step (story steps don't ever directly set this)
         selectedPerformers.set([...$currentStoryStep.searchAndFilterState.selectedPerformers])
         
         typesTreatedAsNonLoveSongs.set([...$currentStoryStep.searchAndFilterState.typesTreatedAsNonLoveSongs])

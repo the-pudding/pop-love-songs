@@ -23,7 +23,6 @@ import {
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
 	selectedPerformers: [],
-	selectedSongs: [],
 	timeRange: {
 		startYear: MIN_DATE,
 		endYear: MAX_DATE
