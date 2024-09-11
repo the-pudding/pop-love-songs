@@ -3,6 +3,7 @@
 	import { playing } from "$stores/audio.js";
 	import PlayAndPauseButton from "./PlayAndPauseButton.svelte";
 
+	export let songName;
 	export let loveSongType;
 	export let audioFile;
 
@@ -15,7 +16,7 @@
 		if (playingMe) {
 			$playing = undefined;
 		} else {
-			$playing = { audioFile };
+			$playing = { audioFile, songName };
 		}
 	};
 </script>
