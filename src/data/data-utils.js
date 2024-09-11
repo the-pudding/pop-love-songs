@@ -28,6 +28,11 @@ export const onlyShowOneDecimalPlaceIfLessThan10 = (number) => {
 	return number < 10 ? number.toFixed(1) : number.toFixed(0);
 };
 
+export const abbreviateYear = (year) => {
+	const shortNumber = Math.floor(year % 100);
+	return `'${shortNumber > 9 ? shortNumber : "0" + shortNumber}`;
+};
+
 export const songInAnnotations = (song, songAnnotations) => {
 	const matchingAnnotation = songAnnotations.find(
 		({ song: annotationSongName, year }) =>

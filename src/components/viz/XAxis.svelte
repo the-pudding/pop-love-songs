@@ -1,13 +1,14 @@
 <script>
     import * as d3 from 'd3'; // TODO: can we import only the necessary functions?
     import viewport from "$stores/viewport.js";
-	import { Y_MARGIN_SCREEN_PERCENTAGE, xScaleJustAddRange } from '$data/data-utils';
+	import { Y_MARGIN_SCREEN_PERCENTAGE, abbreviateYear, xScaleJustAddRange } from '$data/data-utils';
     
     let gx;
 
+    const formatYear = year => `${abbreviateYear(year)}s`;
     $: x = xScaleJustAddRange($viewport.width)
-    $: d3.select(gx).call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(5).tickSize(0))
-        .style("font-family", "Atlas Grotesk")
+    $: d3.select(gx).call(d3.axisBottom(x).tickFormat(formatYear).ticks(5).tickSize(0))
+        // .style("font-family", "Atlas Grotesk")
         .style("font-weight", "bold")
         .style("font-size", "16px")
 </script>
@@ -18,6 +19,7 @@
 
 <style>
     svg {
+        font-family: var(--sans);
         position: fixed;
         top: 0;
         left: 0;

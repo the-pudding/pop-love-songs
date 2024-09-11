@@ -2,6 +2,7 @@
 	import {
 		SONG_DATA_COLUMNS_ENUM,
 	} from "$data/data-constants.js";
+	import { abbreviateYear } from "$data/data-utils";
 	import viewport from "$stores/viewport";
 	import SongSnippetPlayer from "../audio/SongSnippetPlayer.svelte";
 	import PerformerNames from "./PerformerNames.svelte";
@@ -10,11 +11,8 @@
 	export let alternateTitle;
 	export let audioFile = false;
 
-	const formatYear = (year) => {
-		const shortNumber = Math.floor(year % 100)
-		return `'${shortNumber > 9 ? shortNumber : '0' + shortNumber}`;
-	}
-	$: year = formatYear(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]);
+	
+	$: year = abbreviateYear(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]);
 
 </script>
 
@@ -33,7 +31,7 @@
 
 <style>
 	div {
-		font-family: 'Atlas Grotesk', sans-serif;
+		font-family: var(--sans), sans-serif;
 	}
 
 	.song-and-year {
