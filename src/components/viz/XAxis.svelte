@@ -1,28 +1,45 @@
 <script>
-    import * as d3 from 'd3'; // TODO: can we import only the necessary functions?
     import viewport from "$stores/viewport.js";
-	import { Y_MARGIN_SCREEN_PERCENTAGE, abbreviateYear, xScaleJustAddRange } from '$data/data-utils';
+	import { Y_MARGIN_SCREEN_PERCENTAGE, abbreviateYear, getXPosForYear, xScaleJustAddRange } from '$data/data-utils';
+
+    const X_YEARS = [1960, 1970, 1980, 1990, 2000, 2010, 2020];
     
     let gx;
 
     const formatYear = year => `${abbreviateYear(year)}s`;
     $: x = xScaleJustAddRange($viewport.width)
-    $: d3.select(gx).call(d3.axisBottom(x).tickFormat(formatYear).ticks(5).tickSize(0))
-        // .style("font-family", "Atlas Grotesk")
-        .style("font-weight", "bold")
-        .style("font-size", "16px")
+    $: xPositions = X_YEARS.map(year => ({
+        year,
+        x: getXPosForYear(year, $viewport.width)
+    }))
 </script>
 
-<svg width={$viewport.width} height={$viewport.height}>
-    <g bind:this={gx} transform="translate(0, {$viewport.height - ($viewport.height * Y_MARGIN_SCREEN_PERCENTAGE)})" />
-</svg>
+<div class="x-axis">
+    {#each xPositions as { year, x }}
+        <div class="tick" style="left: {x}px;">
+            {formatYear(year)}
+        </div>
+    {/each}
+</div>
 
 <style>
-    svg {
-        font-family: var(--sans);
-        position: fixed;
-        top: 0;
+    .x-axis {
+        position: absolute;
+        bottom: 0;
         left: 0;
+        right: 0;
+        height: 30px;
+        z-index: 1000;
         pointer-events: none;
+
+        font-family: var(--sans);
+        font-weight: bold;
+
+        opacity: 0.3;
+    }
+
+    .tick {
+        position: absolute;
+        font-size: 16px;
     }
 </style>
