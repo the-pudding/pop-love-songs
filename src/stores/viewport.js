@@ -10,8 +10,7 @@ export default readable({ width: 0, height: 0 }, (set) => {
 		set({
 			width: window.innerWidth,
 			height: window.innerHeight,
-			isMobileLandscapeWidth: window.innerWidth < MOBILE_LANDSCAPE_WIDTH,
-			blah: console.log(window.innerWidth < MOBILE_LANDSCAPE_WIDTH)
+			isMobileLandscapeWidth: window.innerWidth < MOBILE_LANDSCAPE_WIDTH
 		});
 
 	if (browser) {

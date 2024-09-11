@@ -24,7 +24,6 @@
 		$audioCanPlay = false;
 		loaded = false;
 		// TEMP: hardcoding to the one file we have
-		console.log({audioFile})
 		const TEMP = "fever";
 		const src = `${base}/assets/audio/${TEMP}.mp3`;
 		audioEl.src = src;

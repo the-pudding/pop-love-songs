@@ -89,7 +89,6 @@ const withinTimeRange = derived(
 export const songIsSelected = derived(
 	[loveSongTypeSelected, performerSelected, songSelected, withinTimeRange],
 	(subStores) => {
-		console.log({ subStores });
 		return songsData.map((song, index) =>
 			subStores.every((subStore) => subStore[index])
 		);
