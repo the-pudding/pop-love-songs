@@ -680,6 +680,13 @@ export const currentStoryStep = derived(
 	([$currentStoryStepIndex]) => storySteps[$currentStoryStepIndex]
 );
 
+export const aSingleLoveSongTypeIsSpotlighted = derived(
+	[currentStoryStep],
+	([$currentStoryStep]) =>
+		$currentStoryStep.searchAndFilterState.selectedLoveSongTypes.length === 1 &&
+		!$currentStoryStep.visualEncodings.showAggregateSnakeChart
+);
+
 export const restartBubbles = derived(
 	[currentStoryStepIndex, previousStoryStepIndex],
 	([$currentStoryStepIndex, $previousStoryStepIndex]) => {

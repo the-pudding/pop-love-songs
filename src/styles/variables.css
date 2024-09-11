@@ -4,6 +4,7 @@
  */
 
 :root {
+	--chart_transition_opacity_duration: 800ms; /* see CHART_TRANSITION_OPACITY_DURATION */
 	/* Project-specific colors */
 	--color-cream-background: #fff6df;
 	--color-rgba-annotation-text-shadow: 255, 246, 223, 0.9;
