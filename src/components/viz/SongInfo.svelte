@@ -25,7 +25,7 @@
 		<SongSnippetPlayer songName={song[SONG_DATA_COLUMNS_ENUM.song]} loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
 	{/if}
 </div>
-<div class="performer">
+<div class="performer" style={`font-size: ${$viewport.isMobileLandscapeWidth ? '12px' : '16px'}`}>
 	<PerformerNames {song} />
 </div>
 
