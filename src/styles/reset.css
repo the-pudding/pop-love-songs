@@ -206,23 +206,6 @@ ol, ul {
 	padding-left: 16px;
 }
 
-.skip-to-main {
-	border: none;
-	width: 1px;
-	height: 1px;
-	overflow: hidden;
-	position: absolute;
-}
-
-.skip-to-main:focus {
-	background-color: var(--color-gray-900, black);
-	color: var(--color-white, white);
-	width: auto;
-	height: auto;
-	padding: 8px;
-	z-index: var(--z-overlay, 1000);
-}
-
 .sr-only {
 	clip: rect(0 0 0 0);
 	clip-path: inset(100%);
