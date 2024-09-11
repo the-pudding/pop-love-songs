@@ -15,6 +15,7 @@ import {
 	typesTreatedAsNonLoveSongs
 } from "./searchAndFilter.js";
 import { currentStoryStep } from "./storySteps.js";
+import { playing } from "./audio.js";
 
 const loveSongTypeSelected = derived(
 	[currentStoryStep],
@@ -55,14 +56,18 @@ const performerSelected = derived(
 );
 
 const songSelected = derived(
-	[selectedSongs],
-	([$selectedSongs]) =>
-		songsData.map(
+	[selectedSongs, playing],
+	([$selectedSongs, $playing]) => {
+		const selectedSongNames = [...$selectedSongs, $playing?.songName].filter(
+			(name) => !!name
+		);
+
+		return songsData.map(
 			({ song }) =>
-				$selectedSongs.includes(song[SONG_DATA_COLUMNS_ENUM.song]) ||
-				$selectedSongs.length === 0
-		),
-	[]
+				selectedSongNames.includes(song[SONG_DATA_COLUMNS_ENUM.song]) ||
+				selectedSongNames.length === 0
+		);
+	}
 );
 
 const withinTimeRange = derived(
@@ -83,10 +88,12 @@ const withinTimeRange = derived(
 
 export const songIsSelected = derived(
 	[loveSongTypeSelected, performerSelected, songSelected, withinTimeRange],
-	(subStores) =>
-		songsData.map((song, index) =>
+	(subStores) => {
+		console.log({ subStores });
+		return songsData.map((song, index) =>
 			subStores.every((subStore) => subStore[index])
-		),
+		);
+	},
 	[]
 );
 

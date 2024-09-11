@@ -16,6 +16,7 @@
 		if (playingMe) {
 			$playing = undefined;
 		} else {
+			// TODO: if song names are identical, it'll technically select both (see songSelected derived store). Solution: also pass in year and/or performer
 			$playing = { audioFile, songName };
 		}
 	};
