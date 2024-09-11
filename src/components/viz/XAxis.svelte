@@ -1,8 +1,7 @@
 <script>
-	import { curveLinear } from 'd3';
     import viewport from "$stores/viewport.js";
-	import { Y_MARGIN_SCREEN_PERCENTAGE, abbreviateYear, getXPosForYear, xScaleJustAddRange } from '$data/data-utils';
-	import { aSingleLoveSongTypeIsSpotlighted } from "$stores/storySteps";
+    import { Y_MARGIN_SCREEN_PERCENTAGE, abbreviateYear, getXPosForYear, xScaleJustAddRange } from '$data/data-utils';
+    import { aSingleLoveSongTypeIsSpotlighted } from "$stores/storySteps";
 
     const X_YEARS = [1960, 1970, 1980, 1990, 2000, 2010, 2020];
 
@@ -14,20 +13,24 @@
     }))
 </script>
 
-<div class="x-axis" style:bottom={$aSingleLoveSongTypeIsSpotlighted ? "30%" : "0"}>
+<div class="x-axis" >
     {#each xPositions as { year, x }}
-        <div class="tick" style="left: {x}px;">
+        <div 
+            class="dashed-line"
+            style="left: {x}px;" 
+            style:bottom={$aSingleLoveSongTypeIsSpotlighted ? "30%" : "0"}
+        />
+        <div class="tick" style="left: {x}px;" style:bottom={$aSingleLoveSongTypeIsSpotlighted ? "30%" : "0"}>
             {formatYear(year)}
         </div>
     {/each}
 </div>
 
 <style>
-    .x-axis {
+    .tick, .dashed-line {
         position: absolute;
-        left: 0;
-        right: 0;
         transition: bottom var(--chart_transition_opacity_duration) ease;
+        transition: opacity var(--chart_transition_opacity_duration) ease;
         height: 30px;
         z-index: 1000;
         pointer-events: none;
@@ -39,7 +42,14 @@
     }
 
     .tick {
-        position: absolute;
         font-size: 16px;
+    }
+
+    .dashed-line {
+        transform: translateY(-24px);
+        width: 1px;
+        height: 30vh;
+        border-left: 1px dashed black;
+
     }
 </style>
