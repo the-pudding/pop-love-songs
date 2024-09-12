@@ -3,6 +3,7 @@
 
     import viewport from '$stores/viewport';
     import { songAnnotationsWithPosition } from "$stores/visualEncodings";
+    import { getYPosForPercentage } from '$stores/forcePositionOptions-helper';
 
 	import SongInfo from "./SongInfo.svelte";
 
@@ -19,9 +20,8 @@
         .filter(({audioFile}) => audioFile) 
         .map(({x, y, song, rightAlign, placeBelow, placeAbove, alternateTitle, audioFile}) => {
             const xPos = getX(x, rightAlign);
-            const {height} = $viewport;
-            const yOffset = 0.1 * height;
-            const yPos = 0.5 * $viewport.height - (placeBelow ? - yOffset : (placeAbove ? yOffset : 0));
+            const yOffset = 0.2 * $viewport.height;
+            const yPos = getYPosForPercentage(0.5, $viewport.height) - yOffset;
             return {bubbleX: x, bubbleY: y, xPos, yPos, song, rightAlign, alternateTitle, audioFile}
         })
 </script>
