@@ -2,6 +2,7 @@
     import viewport from "$stores/viewport.js";
     import { abbreviateYear, getXPosForYear } from '$data/data-utils';
     import { aSingleLoveSongTypeIsSpotlighted } from "$stores/storySteps";
+	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
 
     $: tickYears = [1960, 1970, 1980, 1990, 2000, 2010, 2020]
         .filter(year => !$viewport.isMobileLandscapeWidth || year % 20 === 0);
@@ -11,6 +12,11 @@
         year,
         x: getXPosForYear(year, $viewport.width)
     }))
+
+    $: yCenter = getYPosForPercentage(0.5, $viewport.height);
+    $: radiusOutFromCenter = Math.abs(getYPosForPercentage(0.5, $viewport.height) - getYPosForPercentage(0.4, $viewport.height));
+    $: yBottom = getYPosForPercentage(1, $viewport.height) - yCenter - radiusOutFromCenter;
+    $: yHeight = 2 * radiusOutFromCenter;
 </script>
 
 <div class="x-axis" >
@@ -18,8 +24,8 @@
         <div 
             class="dashed-line"
             style="left: {x}px;" 
-            style:bottom={$aSingleLoveSongTypeIsSpotlighted ? "30%" : "0"}
-            style:height={$aSingleLoveSongTypeIsSpotlighted ? "30%" : "0"}
+            style:bottom={`${$aSingleLoveSongTypeIsSpotlighted ? yBottom : 0}px`}
+            style:height={`${$aSingleLoveSongTypeIsSpotlighted ? yHeight : 0}px`}
         />
         <div 
             class="tick" 
