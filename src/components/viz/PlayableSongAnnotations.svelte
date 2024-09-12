@@ -14,22 +14,21 @@
         .filter(({audioFile}) => audioFile) 
         .map(({x, y, song, alternateTitle, audioFile}, index, fullArray) => {
             const threeSongs = fullArray.length === 3;
-            const rightAlign = x > (2 * $viewport.width / 3);
-            // TODO: xTranslation set here if to far to right or left
+            const xTranslation = x > (0.8 * $viewport.width) ? '-100' : x < (0.2 * $viewport.width) ? '0' : '-50';
             const placeBelow = threeSongs && index === 1;
             const yOffset = (placeBelow ? 0.1 : 0.2) * $viewport.height;
             const textY = getYPosForPercentage(0.5, $viewport.height) - yOffset;
-            return {bubbleX: x, bubbleY: y, textY, song, rightAlign, placeBelow, alternateTitle, audioFile}
+            return {bubbleX: x, bubbleY: y, textY, song, xTranslation, placeBelow, alternateTitle, audioFile}
         })
 </script>
 
-{#each layoutData as {bubbleX, textY, song, rightAlign, placeBelow, alternateTitle, audioFile}}
+{#each layoutData as {bubbleX, textY, song, xTranslation, placeBelow, alternateTitle, audioFile}}
     <div
         id={song[SONG_DATA_COLUMNS_ENUM.song]}
         class="annotation-wrapper"
         role="tooltip"
         in:fade={{delay: CHART_TRANSITION_OPACITY_DURATION / 2, duration: CHART_TRANSITION_OPACITY_DURATION / 2 }}
-        style={`top: ${textY}px; left: ${bubbleX}px; transform: translateX(-${rightAlign ? '100' : '50'}%) translateY(-${'100'}%);`}
+        style={`top: ${textY}px; left: ${bubbleX}px; transform: translateX(${xTranslation}%) translateY(-${'100'}%);`}
     >
         <SongInfo song={song} alternateTitle={alternateTitle} audioFile={audioFile} />
     </div>
