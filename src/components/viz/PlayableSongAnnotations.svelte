@@ -13,33 +13,35 @@
     $: layoutData = $songAnnotationsWithPosition
         .filter(({audioFile}) => audioFile) 
         .map(({x, y, song, alternateTitle, audioFile}, index, fullArray) => {
-            const rightAlign = index === 2;
-            const placeBelow = fullArray.length === 3 && index === 1;
+            const threeSongs = fullArray.length === 3;
+            const rightAlign = x > (2 * $viewport.width / 3);
+            // TODO: xTranslation set here if to far to right or left
+            const placeBelow = threeSongs && index === 1;
             const yOffset = (placeBelow ? 0.1 : 0.2) * $viewport.height;
-            const yPos = getYPosForPercentage(0.5, $viewport.height) - yOffset;
-            return {bubbleX: x, bubbleY: y, yPos, song, rightAlign, placeBelow, alternateTitle, audioFile}
+            const textY = getYPosForPercentage(0.5, $viewport.height) - yOffset;
+            return {bubbleX: x, bubbleY: y, textY, song, rightAlign, placeBelow, alternateTitle, audioFile}
         })
 </script>
 
-{#each layoutData as {bubbleX, yPos, song, rightAlign, placeBelow, alternateTitle, audioFile}}
+{#each layoutData as {bubbleX, textY, song, rightAlign, placeBelow, alternateTitle, audioFile}}
     <div
         id={song[SONG_DATA_COLUMNS_ENUM.song]}
         class="annotation-wrapper"
         role="tooltip"
         in:fade={{delay: CHART_TRANSITION_OPACITY_DURATION / 2, duration: CHART_TRANSITION_OPACITY_DURATION / 2 }}
-        style={`top: ${yPos}px; left: ${bubbleX}px; transform: translateX(-${rightAlign ? '100' : '50'}%) translateY(-${'100'}%);`}
+        style={`top: ${textY}px; left: ${bubbleX}px; transform: translateX(-${rightAlign ? '100' : '50'}%) translateY(-${'100'}%);`}
     >
         <SongInfo song={song} alternateTitle={alternateTitle} audioFile={audioFile} />
     </div>
 {/each}
 
-<!-- For each layoutData, use html to draw a line extending from bubbleX/Y up to x/yPos with thickness 3 pixels -->
+<!-- For each layoutData, use html to draw a line extending from bubbleX/Y up to textY with thickness 3 pixels -->
 
-{#each layoutData as {bubbleX, bubbleY, yPos}}
+{#each layoutData as {bubbleX, bubbleY, textY}}
     <div
         class="annotation-line"
         in:fade={{delay: CHART_TRANSITION_OPACITY_DURATION / 2, duration: CHART_TRANSITION_OPACITY_DURATION / 2 }}
-        style={`top: ${yPos}px; left: ${bubbleX}px; height: ${bubbleY - yPos}px;`}
+        style={`top: ${textY}px; left: ${bubbleX}px; height: ${bubbleY - textY}px;`}
     />
 {/each}
 
