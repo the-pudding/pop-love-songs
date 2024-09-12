@@ -1,13 +1,13 @@
 <script>
     import viewport from "$stores/viewport.js";
-    import { Y_MARGIN_SCREEN_PERCENTAGE, abbreviateYear, getXPosForYear, xScaleJustAddRange } from '$data/data-utils';
+    import { abbreviateYear, getXPosForYear } from '$data/data-utils';
     import { aSingleLoveSongTypeIsSpotlighted } from "$stores/storySteps";
 
-    const X_YEARS = [1960, 1970, 1980, 1990, 2000, 2010, 2020];
+    $: tickYears = [1960, 1970, 1980, 1990, 2000, 2010, 2020]
+        .filter(year => !$viewport.isMobileLandscapeWidth || year % 20 === 0);
 
     const formatYear = year => `${abbreviateYear(year)}s`;
-    $: x = xScaleJustAddRange($viewport.width)
-    $: xPositions = X_YEARS.map(year => ({
+    $: xPositions = tickYears.map(year => ({
         year,
         x: getXPosForYear(year, $viewport.width)
     }))
