@@ -19,8 +19,13 @@
             class="dashed-line"
             style="left: {x}px;" 
             style:bottom={$aSingleLoveSongTypeIsSpotlighted ? "30%" : "0"}
+            style:height={$aSingleLoveSongTypeIsSpotlighted ? "30%" : "0"}
         />
-        <div class="tick" style="left: {x}px;" style:bottom={$aSingleLoveSongTypeIsSpotlighted ? "30%" : "0"}>
+        <div 
+            class="tick" 
+            style="left: {x}px;" 
+            style:bottom={$aSingleLoveSongTypeIsSpotlighted ? "30%" : "0"}
+        >
             {formatYear(year)}
         </div>
     {/each}
@@ -29,9 +34,7 @@
 <style>
     .tick, .dashed-line {
         position: absolute;
-        transition: bottom var(--chart_transition_opacity_duration) ease;
-        transition: opacity var(--chart_transition_opacity_duration) ease;
-        height: 30px;
+        transition: bottom var(--chart_transition_opacity_duration) ease, height var(--chart_transition_opacity_duration) ease;
         z-index: 1000;
         pointer-events: none;
 
@@ -43,12 +46,13 @@
 
     .tick {
         font-size: 16px;
+        max-height: 24px;
+        transform: translateX(-50%);
     }
 
     .dashed-line {
         transform: translateY(-24px);
         width: 1px;
-        height: 30vh;
         border-left: 1px dashed black;
 
     }
