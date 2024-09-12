@@ -10,29 +10,24 @@
 	import { CHART_TRANSITION_OPACITY_DURATION } from "./viz-utils";
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 	
-    const X_OFFSET = 24;
-    const getX = (x, rightAlign) => { 
-        const direction = rightAlign ? -1 : 1
-        return x + direction * X_OFFSET;
-    }
-
     $: layoutData = $songAnnotationsWithPosition
         .filter(({audioFile}) => audioFile) 
-        .map(({x, y, song, rightAlign, placeBelow, placeAbove, alternateTitle, audioFile}) => {
-            const xPos = getX(x, rightAlign);
-            const yOffset = 0.2 * $viewport.height;
+        .map(({x, y, song, alternateTitle, audioFile}, index, fullArray) => {
+            const rightAlign = index === 2;
+            const placeBelow = fullArray.length === 3 && index === 1;
+            const yOffset = (placeBelow ? 0.1 : 0.2) * $viewport.height;
             const yPos = getYPosForPercentage(0.5, $viewport.height) - yOffset;
-            return {bubbleX: x, bubbleY: y, xPos, yPos, song, rightAlign, alternateTitle, audioFile}
+            return {bubbleX: x, bubbleY: y, yPos, song, rightAlign, placeBelow, alternateTitle, audioFile}
         })
 </script>
 
-{#each layoutData as {bubbleX, bubbleY, xPos, yPos, song, rightAlign, alternateTitle, audioFile}}
+{#each layoutData as {bubbleX, yPos, song, rightAlign, placeBelow, alternateTitle, audioFile}}
     <div
         id={song[SONG_DATA_COLUMNS_ENUM.song]}
         class="annotation-wrapper"
         role="tooltip"
         in:fade={{delay: CHART_TRANSITION_OPACITY_DURATION / 2, duration: CHART_TRANSITION_OPACITY_DURATION / 2 }}
-        style={`top: ${yPos}px; left: ${xPos}px; ${rightAlign ? `transform: translateX(-100%);` : ''}`}
+        style={`top: ${yPos}px; left: ${bubbleX}px; transform: translateX(-${rightAlign ? '100' : '50'}%) translateY(-${'100'}%);`}
     >
         <SongInfo song={song} alternateTitle={alternateTitle} audioFile={audioFile} />
     </div>
@@ -40,7 +35,7 @@
 
 <!-- For each layoutData, use html to draw a line extending from bubbleX/Y up to x/yPos with thickness 3 pixels -->
 
-{#each layoutData as {bubbleX, bubbleY, xPos, yPos, song, rightAlign, alternateTitle, audioFile}}
+{#each layoutData as {bubbleX, bubbleY, yPos}}
     <div
         class="annotation-line"
         in:fade={{delay: CHART_TRANSITION_OPACITY_DURATION / 2, duration: CHART_TRANSITION_OPACITY_DURATION / 2 }}
