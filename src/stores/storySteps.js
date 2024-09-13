@@ -39,8 +39,8 @@ const VISUAL_ENCODING_BLANK_STATE = {
 
 	calculateXForcePosition: getXPositionFromTime,
 	calculateYForcePosition: getYPositionInSnakeChart,
-	forceXStrength: 5, // it is FAR more important that the bubble is accurate to the time encoding
-	forceYStrength: 2, // the y position can be a bit more flexible
+	forceXStrength: 7, // it is FAR more important that the bubble is accurate to the time encoding
+	forceYStrength: 1, // the y position can be a bit more flexible
 	restartBubblesOnAdvanceInto: true,
 	restartBubblesOnReturnInto: true,
 
@@ -63,9 +63,7 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: randomXDistribution,
-			calculateYForcePosition: randomYDistribution,
-			forceXStrength: 1,
-			forceYStrength: 1
+			calculateYForcePosition: randomYDistribution
 		},
 		showOpeningComment: true
 	},
@@ -78,9 +76,7 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: randomXDistribution,
-			calculateYForcePosition: randomXDistribution,
-			forceXStrength: 1,
-			forceYStrength: 1
+			calculateYForcePosition: randomXDistribution
 		},
 		showBoomerBobImages: true
 	},
@@ -94,9 +90,7 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: randomXDistribution,
-			calculateYForcePosition: randomYDistribution,
-			forceXStrength: 1,
-			forceYStrength: 1
+			calculateYForcePosition: randomYDistribution
 		},
 		showTitleCard: true
 	},
@@ -140,22 +134,23 @@ const stepsWithoutText = {
 			songAnnotations: SERENADE_HIGHLIGHTS_FROM_INTRO
 		}
 	},
-	serenadesAreIndeedDying: {
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
-			restartBubblesOnReturnInto: false,
-			forceXStrength: 1,
-			forceYStrength: 0.5,
-			songAnnotations: SERENADE_HIGHLIGHTS_FROM_INTRO
-		}
-	},
+	// CUT from story
+	// serenadesAreIndeedDying: {
+	// 	searchAndFilterState: {
+	// 		...SEARCH_AND_FILTER_BLANK_STATE,
+	// 		selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
+	// 		columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+	// 	},
+	// 	visualEncodings: {
+	// 		...VISUAL_ENCODING_BLANK_STATE,
+	// 		calculateXForcePosition: getXPositionFromTime,
+	// 		calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+	// 		restartBubblesOnReturnInto: false,
+	// 		forceXStrength: 1,
+	// 		forceYStrength: 0.5,
+	// 		songAnnotations: SERENADE_HIGHLIGHTS_FROM_INTRO
+	// 	}
+	// },
 	serenadesPeakedInThe90s: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
@@ -169,9 +164,8 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
 			restartBubblesOnReturnInto: false,
-			forceXStrength: 1,
+			forceXStrength: 11,
 			forceYStrength: 0.5,
 			songAnnotations: [{ song: "I'll Make Love To You", year: 1994 }]
 		}
@@ -189,10 +183,9 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
-			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
 			restartBubblesOnAdvanceInto: false,
 			restartBubblesOnReturnInto: true,
-			forceXStrength: 1,
+			forceXStrength: 11,
 			forceYStrength: 0.5,
 			songAnnotations: [
 				{ song: "Love Story", year: 2008, rightAlign: true },
@@ -296,7 +289,6 @@ const stepsWithoutText = {
 			colorButDontSeperateThisLoveSongType:
 				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
 			restartBubblesOnAdvanceInto: false,
-			restartBubblesOnReturnInto: false,
 			songAnnotations: [
 				{
 					song: "Heartbreaker",
