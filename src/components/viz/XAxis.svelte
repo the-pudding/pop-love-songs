@@ -13,10 +13,12 @@
         x: getXPosForYear(year, $viewport.width)
     }))
 
-    $: yCenter = getYPosForPercentage(0.5, $viewport.height);
-    $: radiusOutFromCenter = Math.abs(getYPosForPercentage(0.5, $viewport.height) - getYPosForPercentage(0.4, $viewport.height));
+    const CENTER_PERCENTAGE = 0.5;
+    const OFFSET_PERCENTAGE = 0.1; 
+    $: yCenter = getYPosForPercentage(CENTER_PERCENTAGE, $viewport.height);
+    $: radiusOutFromCenter = Math.abs(yCenter - getYPosForPercentage(CENTER_PERCENTAGE - OFFSET_PERCENTAGE, $viewport.height));
     $: yBottom = getYPosForPercentage(1, $viewport.height) - yCenter - radiusOutFromCenter;
-    $: yHeight = 2 * radiusOutFromCenter;
+    $: yHeight = 4 * radiusOutFromCenter; // LOL I thought this should be 2 *, but it's 4 * for some reason
 </script>
 
 <div class="x-axis" >
@@ -30,7 +32,7 @@
         <div 
             class="tick" 
             style="left: {x}px;" 
-            style:bottom={$aSingleLoveSongTypeIsSpotlighted ? "30%" : "0"}
+            style:bottom={`${$aSingleLoveSongTypeIsSpotlighted ? yBottom : "0"}px`}
         >
             {formatYear(year)}
         </div>
@@ -53,7 +55,8 @@
     .tick {
         font-size: 16px;
         max-height: 24px;
-        transform: translateX(-50%);
+        /* Center text */
+        transform: translateX(-50%) translateY(-0px);
     }
 
     .dashed-line {
