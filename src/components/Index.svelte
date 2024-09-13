@@ -61,5 +61,5 @@
 	<PlayableSongAnnotations />
 	<SongTooltip />
 
-	<Audio audioFile={$playing?.audioFile} />
+	<Audio audioFile={$playing?.audioFile} onComplete={() => $playing = undefined} />
 </article>

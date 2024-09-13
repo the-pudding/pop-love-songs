@@ -5,6 +5,7 @@
 	import { onMount, tick } from "svelte";
 
 	export let audioFile;
+	export let onComplete;
 
 	let audioEl;
 	let loaded = false;
@@ -43,6 +44,10 @@
 			}
 		});
 		document.addEventListener("visibilitychange", onVisibilityChange);
+		audioEl.addEventListener("ended", () => {
+			paused = true;
+			onComplete();
+		});
 	};
 
 	$: if (audioFile) updateSource();
