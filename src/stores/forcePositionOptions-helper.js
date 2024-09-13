@@ -101,7 +101,10 @@ export const getYPositionInSnakeChart = (
 			song,
 			$loveSongsLabeledByTimeRegionPercentageForPosition
 		) || {};
-	return getYPosForPercentage(seededRandom() * (y0 - y1) + y1, canvasHeight);
+	
+	const base = y1;
+	const randomPositionWithinBand = seededRandom() * (y0 - y1);
+	return getYPosForPercentage(base + randomPositionWithinBand, canvasHeight);
 };
 
 // x and y
