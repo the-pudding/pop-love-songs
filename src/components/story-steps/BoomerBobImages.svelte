@@ -34,5 +34,13 @@
         max-width: 100%;
         max-height: 100%;
         object-fit: contain;
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
     }
 </style>
