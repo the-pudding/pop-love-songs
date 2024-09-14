@@ -65,7 +65,6 @@
     }
 
     .dashed-line {
-        transform: translateY(-24px);
         width: 1px;
         border-left: 1px dashed black;
 
