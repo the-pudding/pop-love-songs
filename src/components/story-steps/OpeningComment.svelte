@@ -9,10 +9,12 @@
 
 <style>
     img {
-        position: fixed; 
-        max-width: 45%;
-        top: 40%; 
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        max-width: min(60%, 700px);
         z-index: 10000;
-        left: 30%;
     }
 </style>

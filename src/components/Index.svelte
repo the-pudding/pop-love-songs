@@ -15,10 +15,11 @@
 	
 	import SearchAndFilterTopBar from "./viz/search-and-filter-top-bar/SearchAndFilterTopBar.svelte";
 	
-	import { currentStoryStep } from "$stores/storySteps";
+	import { currentStoryStep, currentStoryStepIndex } from "$stores/storySteps";
 	import { playing } from "$stores/audio.js";
 	// TODO: disable devMode in production
 	import devMode from "$stores/devMode";
+	import Header from "./Header.svelte";
 	
 	$: handleKeyPress = (e) => {
 		if (e.key === "d") {
@@ -35,6 +36,10 @@
 </script>
 
 <svelte:window on:keydown={handleKeyPress} />
+
+{#if $currentStoryStepIndex === 0}
+	<Header />
+{/if}
 
 <article>
 	{#if $devMode || $currentStoryStep.allowUserToChangeFilters}
