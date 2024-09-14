@@ -1,32 +1,36 @@
 <script>
+	import { Y_MARGIN_SCREEN_PERCENTAGE } from "$data/data-utils";
+	import viewport from "$stores/viewport";
+	import { STORY_STEP_CONTROLLER_TOP_PADDING } from "../viz/viz-utils";
+
     const BOOMER_BOB_IMAGES = {
-        decline: {
-            src: "assets/images/love songs are in decline.png",
-            alt: "article heading stating 'love song's are in decline but at least Pharrell's happy'"
-        },
-        rip: {
-            src: "assets/images/love songs, rip.png",
-            alt: "article heading stating 'love songs, rip'"
+        headlines: {
+            src: "assets/images/love song decline headlines.png",
+            alt: "Screenshots of article headlines reading: 'A generation without love songs', 'RIP love songs', or 'they no longer write love songs like they used to'."
         }
     }
+
+    $: topMargin = STORY_STEP_CONTROLLER_TOP_PADDING + ($viewport.height * Y_MARGIN_SCREEN_PERCENTAGE)
+    $: console.log({topMargin})
+    $: style = `
+        height: ${$viewport.height - topMargin}px;
+    `
 </script>
 
-<img class="decline" src={BOOMER_BOB_IMAGES.decline.src} alt={BOOMER_BOB_IMAGES.decline.alt} />
-<img class="rip" src={BOOMER_BOB_IMAGES.rip.src} alt={BOOMER_BOB_IMAGES.rip.alt} />
+<div class="container">
+    <img {style} src={BOOMER_BOB_IMAGES.headlines.src} alt={BOOMER_BOB_IMAGES.headlines.alt} />
+</div>
 
 <style>
+    div.container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     img {
         position: fixed; 
-        max-width: 45%;
-        top: 40%; 
-        z-index: 900;
-    }
-
-    img.decline {
-        left: 0;
-    }
-
-    img.rip {
         left: 50%;
+        transform: translate(-50%, -50%);
     }
 </style>
