@@ -8,7 +8,7 @@
 	import PerformerNames from "./PerformerNames.svelte";
 	
 	export let song;
-	export let alternateTitle;
+	export let alternateTitle = '';
 	export let audioFile = false;
 
 	
