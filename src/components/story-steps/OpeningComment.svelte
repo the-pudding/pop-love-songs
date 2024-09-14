@@ -1,8 +1,7 @@
 <script>
     const COMMENT = {
-        src: "assets/images/music-has-declined.png",
-        // TODO: better alt text (should I put the text *exactly* as it appears?)
-        alt: "comment expressing a feeling that modern music is angry and depressed, a huge departure from the love songs of the past"      
+        src: "assets/images/Boomer Bob comment.png",
+        alt: "A screenshot of a comment from a user named Boomer Bob reading: 'Music in general has become more angry, depressing and self absorbed. Music up until about the 90's was more passionate and inspiring on many levels, including love. Its a sad statement about today's society...'"      
     }
 </script>
 

@@ -62,7 +62,11 @@
 
     $: $currentStoryStepIndex, updateFilterFilterState();
 
-    const style = `height: ${STORY_STEP_CONTROLLER_TOP_PADDING}px; margin-top: ${$viewport.height * Y_MARGIN_SCREEN_PERCENTAGE}px;`
+    $: style = `
+        height: ${STORY_STEP_CONTROLLER_TOP_PADDING}px; 
+        margin-top: ${$viewport.height * Y_MARGIN_SCREEN_PERCENTAGE}px;
+        ${$currentStoryStep.showOpeningComment ? "bottom: 0" : "top: 0"}px;
+    `
 </script>
 
 <div bind:this={container} class="container" style={style}>
@@ -78,10 +82,11 @@
 <style>
     .container {
         position: fixed;
-        top: 0px;
         width: 100%;
         padding-left: 5%; 
         padding-right: 5%;
+        /* TODO: there's probably a better way to place this with the correct margin (only matters on the first screen) */
+        margin-bottom: 4%;
     }
 
     .story-text {
