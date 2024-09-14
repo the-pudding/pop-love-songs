@@ -1,6 +1,6 @@
 <script>
     import viewport from "$stores/viewport.js";
-    import { abbreviateYear, getXPosForYear } from '$data/data-utils';
+    import { abbreviateYear, getXPosForYear, Y_MARGIN_SCREEN_PERCENTAGE } from '$data/data-utils';
     import { aSingleLoveSongTypeIsSpotlighted } from "$stores/storySteps";
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
 
@@ -13,12 +13,17 @@
         x: getXPosForYear(year, $viewport.width)
     }))
 
+    // Calculations for when a single love song type is spotlighted
     const CENTER_PERCENTAGE = 0.5;
-    const OFFSET_PERCENTAGE = 0.1; 
+    const OFFSET_PERCENTAGE = 0.25;
     $: yCenter = getYPosForPercentage(CENTER_PERCENTAGE, $viewport.height);
-    $: radiusOutFromCenter = Math.abs(yCenter - getYPosForPercentage(CENTER_PERCENTAGE - OFFSET_PERCENTAGE, $viewport.height));
-    $: yBottom = getYPosForPercentage(1, $viewport.height) - yCenter - radiusOutFromCenter;
-    $: yHeight = 4 * radiusOutFromCenter; // LOL I thought this should be 2 *, but it's 4 * for some reason
+    $: yBottomOfDashedLine = getYPosForPercentage(CENTER_PERCENTAGE + OFFSET_PERCENTAGE, $viewport.height);
+    $: radiusOutFromCenter = Math.abs(yCenter - yBottomOfDashedLine);
+    $: yHeight = 2 * radiusOutFromCenter;
+    $: topOfDashedLine = yCenter - radiusOutFromCenter;
+
+    // Where to place axis during normal, snake chart view
+    $: belowSnakeChart = $viewport.height - (Y_MARGIN_SCREEN_PERCENTAGE * $viewport.height);
 </script>
 
 <div class="x-axis" >
@@ -26,13 +31,13 @@
         <div 
             class="dashed-line"
             style="left: {x}px;" 
-            style:bottom={`${$aSingleLoveSongTypeIsSpotlighted ? yBottom : 0}px`}
+            style:top={`${$aSingleLoveSongTypeIsSpotlighted ? topOfDashedLine : belowSnakeChart}px`}
             style:height={`${$aSingleLoveSongTypeIsSpotlighted ? yHeight : 0}px`}
         />
         <div 
             class="tick" 
             style="left: {x}px;" 
-            style:bottom={`${$aSingleLoveSongTypeIsSpotlighted ? yBottom : "0"}px`}
+            style:top={`${$aSingleLoveSongTypeIsSpotlighted ? yBottomOfDashedLine : belowSnakeChart}px`}
         >
             {formatYear(year)}
         </div>
@@ -42,7 +47,7 @@
 <style>
     .tick, .dashed-line {
         position: absolute;
-        transition: bottom var(--chart_transition_opacity_duration) ease, height var(--chart_transition_opacity_duration) ease;
+        transition: top var(--chart_transition_opacity_duration) ease, height var(--chart_transition_opacity_duration) ease;
         z-index: 1000;
         pointer-events: none;
 
