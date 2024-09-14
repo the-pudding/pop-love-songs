@@ -3,7 +3,7 @@
 	import { ChevronLeft, ChevronRight } from "lucide-svelte";
 	import { createEventDispatcher } from "svelte";
 
-	import { currentStoryStepIndex } from "$stores/storySteps";
+	import { currentStoryStepIndex, isLastStep } from "$stores/storySteps";
 	import { COLORS } from '$data/data-constants';
 
 	export let enableKeyboard = false;
@@ -39,7 +39,7 @@
 					/>
 				</button>
 			{/if}
-		{:else}
+		{:else if !$isLastStep}
 			<button
 				class="{dir}-hint"
 				class:bounceHint={$currentStoryStepIndex == 0}
