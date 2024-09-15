@@ -5,7 +5,7 @@
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
 
     $: tickYears = [1960, 1970, 1980, 1990, 2000, 2010, 2020]
-        .filter(year => !$viewport.isMobileLandscapeWidth || year % 20 === 0);
+        .filter(year => !$viewport.isLikelyInMobileLandscape || year % 20 === 0);
 
     const formatYear = year => `${abbreviateYear(year)}s`;
     $: xPositions = tickYears.map(year => ({

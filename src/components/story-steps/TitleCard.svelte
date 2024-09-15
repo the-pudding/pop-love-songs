@@ -11,10 +11,10 @@
 <section>
     <div class='background-image' aria-label={faces.alt} role="img" style={`background: url(${faces.src.replaceAll(' ', '%20')}) no-repeat center center fixed;`} />
     <!-- @michelle: I'm overall a bit unsure where best to deploy $viewport vs CSS media query. Does viewport offer an advantage that it's *actual* screen size? -->
-    <h1 style:font-size={$viewport.isMobileLandscapeWidth ? '64px' : '108px'} style:line-height={$viewport.isMobileLandscapeWidth ? '72px' : '116px'}>
+    <h1 style:font-size={$viewport.isLikelyInMobileLandscape ? '64px' : '108px'} style:line-height={$viewport.isLikelyInMobileLandscape ? '72px' : '116px'}>
         Is the<br>love song<br>dying?
     </h1>
-    <p class="by-line" style:font-size={$viewport.isMobileLandscapeWidth ? '16px' : '24px'}>
+    <p class="by-line" style:font-size={$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}>
         {@html copy.byline}
     </p>
 </section>

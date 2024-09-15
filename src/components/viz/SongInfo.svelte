@@ -17,15 +17,15 @@
 </script>
 
 <div class='song-and-year'>
-	<strong class='song' style={`font-size: ${$viewport.isMobileLandscapeWidth ? '16px' : '24px'}`}>
+	<strong class='song' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}`}>
 		{alternateTitle || song[SONG_DATA_COLUMNS_ENUM.song]}
 	</strong>
-	<span class='year' style={`font-size: ${$viewport.isMobileLandscapeWidth ? '12px' : '16px'}`}>{year}</span>
+	<span class='year' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '12px' : '16px'}`}>{year}</span>
 	{#if audioFile}
 		<SongSnippetPlayer songName={song[SONG_DATA_COLUMNS_ENUM.song]} loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
 	{/if}
 </div>
-<div class="performer" style={`font-size: ${$viewport.isMobileLandscapeWidth ? '12px' : '16px'}`}>
+<div class="performer" style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '12px' : '16px'}`}>
 	<PerformerNames {song} />
 </div>
 
