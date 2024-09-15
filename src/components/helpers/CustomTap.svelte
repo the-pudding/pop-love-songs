@@ -4,13 +4,13 @@
 	import { createEventDispatcher } from "svelte";
 
 	import { currentStoryStepIndex, isLastStep } from "$stores/storySteps";
-	import { COLORS } from '$data/data-constants';
+	import variables from '$data/variables'
 
 	export let enableKeyboard = false;
 	// export let disable = [];
 	export let directions = ["left", "right"];
 	// export let arrowSize = "36px";
-	const arrowStroke = COLORS.background;
+	const arrowStroke = variables.color['cream-background'];
 	export let arrowStrokeWidth = "2";
 	// export let arrowPosition = "center"; // start, center, end
 
