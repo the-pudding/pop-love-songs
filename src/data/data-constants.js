@@ -1,3 +1,5 @@
+import variables from "$data/variables.json";
+
 export const SONG_DATA_COLUMNS_ENUM = {
 	performers_list_str: 0,
 	song: 1,
@@ -39,14 +41,19 @@ export const LOVE_SONG_TYPE_CONSTANTS = {
 // ... except when you try to do things like Object.keys to get the keys, which will return strings.
 // I'll try and pre-empt this by doing any such conversion here, carefully.
 export const LOVE_SONG_TYPE_COLOR_MAP = {
-	[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]: "#D1D1D1",
-	[LOVE_SONG_TYPE_CONSTANTS.serenade]: "#F2C3FF",
-	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: "#5CAFFF",
-	[LOVE_SONG_TYPE_CONSTANTS.sexualConfidence]: "#FF5C00",
-	[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: "#96753C",
-	[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: "#A290E9",
-	[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: "#FFD700",
-	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: "#02D098"
+	// Note: colors are all hex values, so we can easily tack on opacity later when needed
+	[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]: variables.color["not-a-love-song"],
+	[LOVE_SONG_TYPE_CONSTANTS.serenade]: variables.color.serenade,
+	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]:
+		variables.color["longing-and-heartbreak"],
+	[LOVE_SONG_TYPE_CONSTANTS.sexualConfidence]:
+		variables.color["sexual-confidence"],
+	[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: variables.color["its-complicated"],
+	[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: variables.color["good-riddance"],
+	[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]:
+		variables.color["love-song-for-the-self"],
+	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]:
+		variables.color["courtship-and-anticipation"]
 };
 
 // TODO: actually fill this in with verified values
