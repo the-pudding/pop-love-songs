@@ -95,13 +95,10 @@ h6 {
 
 /* Styling the spans highlighting specific love song types in the text */
 .story-text > span {
-    border-radius: 4px;
-    padding-left: 5px;
-	padding-right: 5px;
-	padding-bottom: 2px;
-	padding-top: 1px;
-    
-    font-weight: 600;
+	border-radius: 4px;
+	padding: 1px 5px 2px;
+	font-weight: 600;
+	white-space: nowrap;
 }
 
 .story-text > span.not-a-love-song {
