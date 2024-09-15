@@ -1,5 +1,6 @@
 <script>
     import copy from '$data/copy.json';
+	import viewport from '$stores/viewport';
 
     const faces = {
         src: "assets/images/elvis and olivia rodrigo.png",
@@ -9,9 +10,13 @@
 
 <section>
     <div class='background-image' aria-label={faces.alt} role="img" style={`background: url(${faces.src.replaceAll(' ', '%20')}) no-repeat center center fixed;`} />
-    <!-- </div> -->
-    <h1>Is the<br>love song<br>dying?</h1>
-    <p class="by-line">{@html copy.byline}</p>
+    <!-- @michelle: I'm overall a bit unsure where best to deploy $viewport vs CSS media query. Does viewport offer an advantage that it's *actual* screen size? -->
+    <h1 style:font-size={$viewport.isMobileLandscapeWidth ? '64px' : '108px'} style:line-height={$viewport.isMobileLandscapeWidth ? '72px' : '116px'}>
+        Is the<br>love song<br>dying?
+    </h1>
+    <p class="by-line" style:font-size={$viewport.isMobileLandscapeWidth ? '16px' : '24px'}>
+        {@html copy.byline}
+    </p>
 </section>
 
 <style>
@@ -49,17 +54,20 @@
     h1 {
         font-family: var(--sans);
         font-weight: bold;
-        font-size: 108px;
         text-align: center;
-        text-shadow: 6px 6px 2px white,
-			-6px -6px 2px white,
-			6px -6px 2px white,
-			-6px 6px 2px white;
+        text-shadow: 
+            6px 6px 0.5px white,
+            -6px -6px 0.5px white,
+            6px -6px 0.5px white,
+            -6px 6px 0.5px white,
+            6px 0px 0.5px white,
+            -6px 0px 0.5px white,
+            0px 6px 0.5px white,
+            0px -6px 0.5px white;
     }
 
     .by-line {
         font-family: var(--sans);
-        font-size: 24px;
         font-weight: 300;
     }
 </style>
