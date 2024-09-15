@@ -1,6 +1,7 @@
 <script>
     import copy from '$data/copy.json';
 	import viewport from '$stores/viewport';
+	import { textShadow } from '../utils';
 
     const faces = {
         src: "assets/images/elvis and olivia rodrigo.png",
@@ -16,19 +17,27 @@
         g: 0.2,
         '?': 0
     }
+
+    $: h1Style = `
+        font-size: ${$viewport.isLikelyInMobileLandscape ? '64px' : '108px'};
+        line-height: ${$viewport.isLikelyInMobileLandscape ? '72px' : '116px'};
+        text-shadow: ${textShadow(6, 6, 0.5, 'white')};
+    `;
 </script>
 
 <section>
     <div class='background-image' aria-label={faces.alt} role="img" style={`background: url(${faces.src.replaceAll(' ', '%20')}) no-repeat center center fixed;`} />
+    
     <!-- @michelle: I'm overall a bit unsure where best to deploy $viewport vs CSS media query. Does viewport offer an advantage that it's *actual* screen size? -->
-    <h1 style:font-size={$viewport.isLikelyInMobileLandscape ? '64px' : '108px'} style:line-height={$viewport.isLikelyInMobileLandscape ? '72px' : '116px'}>
+    <h1 style={h1Style}>
         Is the<br>love song<br>
         {#each Array.from("dying?") as character}
-            <span class={character} style={`-webkit-text-fill-color: rgba(0, 0, 0, ${DYING_OPACITIES[character]});`}>
+            <span class={character} style={`-webkit-text-fill-color: rgba(0, 0, 0, ${DYING_OPACITIES[character]}); display: inline-block; width: auto;`}>
                 {character}
             </span>
         {/each}
     </h1>
+
     <p class="by-line" style:font-size={$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}>
         {@html copy.byline}
     </p>
@@ -76,15 +85,6 @@
         font-family: var(--sans);
         font-weight: bold;
         text-align: center;
-        text-shadow: 
-            6px 6px 0.5px var(--color-cream-background),
-            -6px -6px 0.5px var(--color-cream-background),
-            6px -6px 0.5px var(--color-cream-background),
-            -6px 6px 0.5px var(--color-cream-background),
-            6px 0px 0.5px var(--color-cream-background),
-            -6px 0px 0.5px var(--color-cream-background),
-            0px 6px 0.5px var(--color-cream-background),
-            0px -6px 0.5px var(--color-cream-background);
     }
 
     .by-line {
