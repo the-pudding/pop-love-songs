@@ -1,8 +1,14 @@
 <script>
     import copy from '$data/copy.json';
+
+    const faces = {
+        src: "assets/images/elvis and olivia rodrigo.png",
+        alt: "Elvis Presley, smiling, and Olivia Rodrigo, scowling, side by side."
+    }
 </script>
 
 <section>
+    <img src={faces.src} alt={faces.alt} />
     <h1>Is the<br>love song<br>dying?</h1>
     <p class="by-line">{@html copy.byline}</p>
 </section>
@@ -20,6 +26,19 @@
         align-items: center;
         justify-content: center;
         padding: 20px;
+    }
+
+    img {
+        position: fixed;
+        top: 0;
+        left: 0;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    h1, .by-line {
+        z-index: 500;
     }
 
     h1 {
