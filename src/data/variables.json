@@ -9,7 +9,7 @@
     "gray": "#BBBBBB"
   },
   "chart": {
-    "transition-opacity-duration": "800"
+    "transition-opacity-duration": 800
   },
   "color": {
     "black": "#000000",

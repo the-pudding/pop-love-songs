@@ -3,7 +3,7 @@
 
     import { songAnnotationsWithPosition } from "$stores/visualEncodings";
 	import SongInfo from "./SongInfo.svelte";
-	import { CHART_TRANSITION_OPACITY_DURATION } from "./viz-utils";
+	import variables from '$data/variables.json';
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 
     const X_OFFSET = 24;
@@ -32,7 +32,7 @@
         id={song[SONG_DATA_COLUMNS_ENUM.song]}
         class="annotation-wrapper"
         role="tooltip"
-        in:fade={{delay: CHART_TRANSITION_OPACITY_DURATION / 2, duration: CHART_TRANSITION_OPACITY_DURATION / 2 }}
+        in:fade={{delay: variables.chart.transition_opacity_duration / 2, duration: variables.chart.transition_opacity_duration / 2 }}
         style={`top: ${yPos}px; left: ${xPos}px; ${rightAlign ? 'transform: translateX(-100%);' : ''}`}
     >
         <SongInfo song={song} alternateTitle={alternateTitle} />

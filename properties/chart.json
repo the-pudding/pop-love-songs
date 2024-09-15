@@ -1,7 +1,7 @@
 {
 	"chart": {
 		"transition-opacity-duration": {
-			"value": "800"
+			"value": 800
 		}
 	}
 }

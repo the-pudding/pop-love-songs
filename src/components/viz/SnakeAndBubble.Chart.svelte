@@ -13,9 +13,9 @@
 	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
 
 	import songsData from "$data/songs-data.js";
+	import variables from '$data/variables.json';
 	import {
 		BUBBLE_BORDER_THICKNESS,
-		CHART_TRANSITION_OPACITY_DURATION,
 		getInvisibleFillFromSongIndex,
 		getSnakeFill,
 		getSongFill,
@@ -175,7 +175,7 @@
 
 	// Transition opacity between charts
 	const aggregateSnakeChartOpacity = tweened(0, {
-		duration: CHART_TRANSITION_OPACITY_DURATION,
+		duration: variables.chart.transition_opacity_duration,
 		easing: cubicInOut
 	});
 
