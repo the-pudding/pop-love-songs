@@ -1,10 +1,10 @@
-export const textShadow = (x, y, blur, color) => `
-    ${x}px ${y}px ${blur}px ${color},
-    ${-x}px ${-y}px ${blur}px ${color},
-    ${x}px ${-y}px ${blur}px ${color},
-    ${-x}px ${y}px ${blur}px ${color},
-    ${x}px 0px ${blur}px ${color},
-    ${-x}px 0px ${blur}px ${color},
-    0px ${y}px ${blur}px ${color},
-    0px ${-y}px ${blur}px ${color}
+export const textShadow = (offset, blur, color) => `
+    ${offset}px ${offset}px ${blur}px ${color},
+    ${-offset}px ${-offset}px ${blur}px ${color},
+    ${offset}px ${-offset}px ${blur}px ${color},
+    ${-offset}px ${offset}px ${blur}px ${color},
+    ${offset}px 0px ${blur}px ${color},
+    ${-offset}px 0px ${blur}px ${color},
+    0px ${offset}px ${blur}px ${color},
+    0px ${-offset}px ${blur}px ${color}
 `;

@@ -1,4 +1,5 @@
 <script>
+	import variables from '$data/variables.json';
     import copy from '$data/copy.json';
 	import viewport from '$stores/viewport';
 	import { textShadow } from '$utils/styling';
@@ -21,7 +22,7 @@
     $: h1Style = `
         font-size: ${$viewport.isLikelyInMobileLandscape ? '64px' : '108px'};
         line-height: ${$viewport.isLikelyInMobileLandscape ? '72px' : '116px'};
-        text-shadow: ${textShadow(6, 6, 0.5, 'white')};
+        text-shadow: ${textShadow(4, 0.5, variables.color['cream-background'])};
     `;
 </script>
 
