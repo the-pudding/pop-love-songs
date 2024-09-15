@@ -47,7 +47,7 @@
 <style>
     .tick, .dashed-line {
         position: absolute;
-        transition: top var(--chart_transition_opacity_duration) ease, height var(--chart_transition_opacity_duration) ease;
+        transition: top calc(var(--chart-transition-opacity-duration) * 1ms) ease, height calc(var(--chart-transition-opacity-duration) * 1ms) ease;
         z-index: 1000;
         pointer-events: none;
 

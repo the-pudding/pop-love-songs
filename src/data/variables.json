@@ -8,6 +8,9 @@
     "purple": "#AA3377",
     "gray": "#BBBBBB"
   },
+  "chart": {
+    "transition-opacity-duration": "800"
+  },
   "color": {
     "black": "#000000",
     "white": "#ffffff",
@@ -26,7 +29,17 @@
     "blue": "#4717f6",
     "green": "#34a29e",
     "red": "#ff533d",
-    "yellow": "#e5e338"
+    "yellow": "#e5e338",
+    "cream-background": "#fff6df",
+    "rgba-annotation-text-shadow": "255, 246, 223, 0.9",
+    "not-a-love-song": "#D1D1D1",
+    "serenade": "#F2C3FF",
+    "longing-and-heartbreak": "#5CAFFF",
+    "sexual-confidence": "#FF5C00",
+    "its-complicated": "#96753C",
+    "good-riddance": "#A290E9",
+    "love-song-for-the-self": "#FFD700",
+    "courtship-and-anticipation": "#02D098"
   },
   "": {
     "12px": "0.75rem",

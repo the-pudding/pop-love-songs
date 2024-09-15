@@ -53,6 +53,36 @@
 		},
 		"yellow": {
 			"value": "#e5e338"
+		},
+		"cream-background": {
+			"value": "#fff6df"
+		},
+		"rgba-annotation-text-shadow": {
+			"value": "255, 246, 223, 0.9"
+		},
+		"not-a-love-song": {
+			"value": "#D1D1D1"
+		},
+		"serenade": {
+			"value": "#F2C3FF"
+		},
+		"longing-and-heartbreak": {
+			"value": "#5CAFFF"
+		},
+		"sexual-confidence": {
+			"value": "#FF5C00"
+		},
+		"its-complicated": {
+			"value": "#96753C"
+		},
+		"good-riddance": {
+			"value": "#A290E9"
+		},
+		"love-song-for-the-self": {
+			"value": "#FFD700"
+		},
+		"courtship-and-anticipation": {
+			"value": "#02D098"
 		}
 	}
 }
