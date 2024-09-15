@@ -39,7 +39,17 @@
     "its-complicated": "#96753C",
     "good-riddance": "#A290E9",
     "love-song-for-the-self": "#FFD700",
-    "courtship-and-anticipation": "#02D098"
+    "courtship-and-anticipation": "#02D098",
+    "a11y-contrast": {
+      "not-a-love-song": "#000000",
+      "serenade": "#000000",
+      "longing-and-heartbreak": "#000000",
+      "sexual-confidence": "#000000",
+      "its-complicated": "white",
+      "good-riddance": "#000000",
+      "love-song-for-the-self": "#000000",
+      "courtship-and-anticipation": "#000000"
+    }
   },
   "": {
     "12px": "0.75rem",

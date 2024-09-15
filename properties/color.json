@@ -83,6 +83,32 @@
 		},
 		"courtship-and-anticipation": {
 			"value": "#02D098"
+		},
+		"a11y-contrast": {
+			"not-a-love-song": {
+				"value": "#000000"
+			},
+			"serenade": {
+				"value": "#000000"
+			},
+			"longing-and-heartbreak": {
+				"value": "#000000"
+			},
+			"sexual-confidence": {
+				"value": "#000000"
+			},
+			"its-complicated": {
+				"value": "white"
+			},
+			"good-riddance": {
+				"value": "#000000"
+			},
+			"love-song-for-the-self": {
+				"value": "#000000"
+			},
+			"courtship-and-anticipation": {
+				"value": "#000000"
+			}
 		}
 	}
 }

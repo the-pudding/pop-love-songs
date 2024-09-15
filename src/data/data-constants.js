@@ -58,14 +58,22 @@ export const LOVE_SONG_TYPE_COLOR_MAP = {
 
 // TODO: actually fill this in with verified values
 export const ACCESSIBLY_CONTRASTING_COLOR_MAP = {
-	[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]: "#000000",
-	[LOVE_SONG_TYPE_CONSTANTS.serenade]: "#000000",
-	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: "#000000",
-	[LOVE_SONG_TYPE_CONSTANTS.sexualConfidence]: "#000000",
-	[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: "white",
-	[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: "#000000",
-	[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: "#000000",
-	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: "#000000"
+	[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]:
+		variables.color["a11y-contrast"]["not-a-love-song"],
+	[LOVE_SONG_TYPE_CONSTANTS.serenade]:
+		variables.color["a11y-contrast"]["serenade"],
+	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]:
+		variables.color["a11y-contrast"]["longing-and-heartbreak"],
+	[LOVE_SONG_TYPE_CONSTANTS.sexualConfidence]:
+		variables.color["a11y-contrast"]["sexual-confidence"],
+	[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]:
+		variables.color["a11y-contrast"]["its-complicated"],
+	[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]:
+		variables.color["a11y-contrast"]["good-riddance"],
+	[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]:
+		variables.color["a11y-contrast"]["love-song-for-the-self"],
+	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]:
+		variables.color["a11y-contrast"]["courtship-and-anticipation"]
 };
 
 const FORTY_PERCENT_OPACITY_HEX_POSTFIX = "66"; // 40% opacity
