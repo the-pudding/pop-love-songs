@@ -180,7 +180,7 @@
 	});
 
 	const tweenedCoords = tweened($svgCoordsForLoveSongTypes, {
-		duration: 800,
+		duration: variables.chart.transition_opacity_duration,
 		easing: cubicInOut
 	});
 
