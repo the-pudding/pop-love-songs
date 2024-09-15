@@ -106,6 +106,7 @@ h6 {
 
 .story-text > span.not-a-love-song {
 	color: var(--color-not-a-love-song);
+	background: var(--color-a11y-contrast-not-a-love-song);
 }
 
 
