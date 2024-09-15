@@ -1,7 +1,7 @@
 <script>
     import copy from '$data/copy.json';
 	import viewport from '$stores/viewport';
-	import { textShadow } from '../utils';
+	import { textShadow } from '$utils/styling';
 
     const faces = {
         src: "assets/images/elvis and olivia rodrigo.png",
@@ -27,7 +27,7 @@
 
 <section>
     <div class='background-image' aria-label={faces.alt} role="img" style={`background: url(${faces.src.replaceAll(' ', '%20')}) no-repeat center center fixed;`} />
-    
+
     <!-- @michelle: I'm overall a bit unsure where best to deploy $viewport vs CSS media query. Does viewport offer an advantage that it's *actual* screen size? -->
     <h1 style={h1Style}>
         Is the<br>love song<br>
