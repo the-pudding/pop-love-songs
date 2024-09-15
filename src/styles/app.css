@@ -95,7 +95,6 @@ h6 {
 
 /* Styling the spans highlighting specific love song types in the text */
 .story-text > span {
-	background: black; /* TODO: we nee to be sure all color contrasts are a11y compliant */
     border-radius: 4px;
     padding-left: 5px;
 	padding-right: 5px;
@@ -112,29 +111,35 @@ h6 {
 
 .story-text > span.serenade {
 	color: var(--color-serenade);
+	background: var(--color-a11y-contrast-serenade);
 }
 
 .story-text > span.longing-and-heartbreak {
 	color: var(--color-longing-and-heartbreak);
+	background: var(--color-a11y-contrast-longing-and-heartbreak);
 }
 
 .story-text > span.courtship-and-anticipation {
 	color: var(--color-courtship-and-anticipation);
+	background: var(--color-a11y-contrast-courtship-and-anticipation);
 }
 
 .story-text > span.its-complicated {
 	color: var(--color-its-complicated);
-	background: white; /* TODO: override background color for better contrast, see ACCESSIBLY_CONTRASTING_COLOR_MAP */
+	background: var(--color-a11y-contrast-its-complicated);
 }
 
 .story-text > span.good-riddance {
 	color: var(--color-good-riddance);
+	background: var(--color-a11y-contrast-good-riddance);
 }
 
 .story-text > span.love-song-for-the-self {
 	color: var(--color-love-song-for-the-self);
+	background: var(--color-a11y-contrast-love-song-for-the-self);
 }
 
 .story-text > span.sexual-confidence {
 	color: var(--color-sexual-confidence);
+	background: var(--color-a11y-contrast-sexual-confidence);
 }
