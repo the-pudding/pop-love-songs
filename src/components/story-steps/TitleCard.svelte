@@ -8,7 +8,8 @@
 </script>
 
 <section>
-    <img src={faces.src} alt={faces.alt} />
+    <div class='background-image' aria-label={faces.alt} role="img" style={`background: url(${faces.src.replaceAll(' ', '%20')}) no-repeat center center fixed;`} />
+    <!-- </div> -->
     <h1>Is the<br>love song<br>dying?</h1>
     <p class="by-line">{@html copy.byline}</p>
 </section>
@@ -28,13 +29,17 @@
         padding: 20px;
     }
 
-    img {
+    .background-image { 
         position: fixed;
         top: 0;
         left: 0;
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
+        width: 100%;
+        height: 100%;
+
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
 
     h1, .by-line {
@@ -46,11 +51,10 @@
         font-weight: bold;
         font-size: 108px;
         text-align: center;
-        text-shadow: 12px 12px 1px white,
-			-12px -12px 1px white,
-			12px -12px 1px white,
-			-12px 12px 1px white;
-         /* -webkit-text-stroke: 12px red */
+        text-shadow: 6px 6px 2px white,
+			-6px -6px 2px white,
+			6px -6px 2px white,
+			-6px 6px 2px white;
     }
 
     .by-line {
