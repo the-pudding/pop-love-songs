@@ -27,7 +27,7 @@
 </script>
 
 <section>
-    <div class='background-image' aria-label={faces.alt} role="img" style={`background: url(${faces.src.replaceAll(' ', '%20')}) no-repeat center center fixed;`} />
+    <div class='background-image' aria-label={faces.alt} role="img" style={`background-image: url(${faces.src.replaceAll(' ', '%20')});`} />
 
     <!-- @michelle: I'm overall a bit unsure where best to deploy $viewport vs CSS media query. Does viewport offer an advantage that it's *actual* screen size? -->
     <h1 style={h1Style}>
@@ -61,14 +61,11 @@
 
     .background-image { 
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
 
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
+        height: 100%; 
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
         background-size: cover;
     }
 
