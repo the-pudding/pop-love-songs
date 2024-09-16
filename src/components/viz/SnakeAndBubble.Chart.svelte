@@ -205,7 +205,9 @@
 		<path d={$svgPathGenerator(svgCoords)} fill={getSnakeFill(loveSongType, $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType), $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap)} />
 	{/each}
 	<!-- Outline of all love songs -->
-	<path d={$svgPathGenerator($svgCoordsForSnakeChartOutline)} fill="none" stroke="black" stroke-width="6" stroke-dasharray="12" />
+	 {#if $currentStoryStep.showLoveSongChange}
+		<path d={$svgPathGenerator($svgCoordsForSnakeChartOutline)} fill="none" stroke="black" stroke-width="6" stroke-dasharray="12" />
+	{/if}
 </svg>
 
 <!-- TODO: if not shown, don't run the simulation (ie for performance) -->
