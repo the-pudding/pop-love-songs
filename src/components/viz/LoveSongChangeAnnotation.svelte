@@ -21,7 +21,6 @@
     $: modernYPos = getYPosForPercentage(modernYScreenPercentage, $viewport.height)
 
     // From svgCoordsForSnakeChartOutline, for each y1's
-    $: console.log({$svgCoordsForSnakeChartOutline})
     const SMALL_LABEL_DECADES = [1970, 1980, 1990, 2000, 2010]
     $: smallLabelYPos = SMALL_LABEL_DECADES.map((decade, index) => {
         // reduce to get the average of the y1's for all the x's in that decade
@@ -41,7 +40,6 @@
             decade
         }
     })
-    $: console.log({smallLabelYPos})
 </script>
 
 {#if $currentStoryStep.showLoveSongChange && $showAggregateSnakeChart}

@@ -9,7 +9,6 @@
     }
 
     $: topMargin = STORY_STEP_CONTROLLER_TOP_PADDING + ($viewport.height * Y_MARGIN_SCREEN_PERCENTAGE)
-    $: console.log({topMargin})
     $: style = `
         top: ${topMargin}px;
         width: 100%;

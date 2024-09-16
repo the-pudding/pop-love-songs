@@ -38,7 +38,7 @@
 		z-index: 10000;
 		position: absolute;
 		max-width: 400px; /* TODO: make smaller for mobile? */
-		background-color: rgba(253, 253, 253, 0.8);
+		/* background-color: rgba(253, 253, 253, 0.8); */
 		padding: 0.5rem;
 
 		/* note: dynamically toggled via JS */

@@ -169,7 +169,12 @@ const RANDOM_Y_POSITIONS = songsData.map(({ song }) => {
 	return Math.random();
 });
 
+const MARGIN = 0.05;
+const randomDistribution = (canvasWidthOrHeight, position) =>
+	canvasWidthOrHeight * (0 + MARGIN) +
+	position * canvasWidthOrHeight * (1 - MARGIN * 2);
+
 export const randomXDistribution = (song, canvasWidthOrHeight, _, index) =>
-	RANDOM_X_POSITIONS[index] * canvasWidthOrHeight;
+	randomDistribution(canvasWidthOrHeight, RANDOM_X_POSITIONS[index]);
 export const randomYDistribution = (song, canvasWidthOrHeight, _, index) =>
-	RANDOM_Y_POSITIONS[index] * canvasWidthOrHeight;
+	randomDistribution(canvasWidthOrHeight, RANDOM_Y_POSITIONS[index]);

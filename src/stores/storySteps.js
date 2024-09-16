@@ -135,22 +135,22 @@ const stepsWithoutText = {
 		}
 	},
 	// CUT from story
-	// serenadesAreIndeedDying: {
-	// 	searchAndFilterState: {
-	// 		...SEARCH_AND_FILTER_BLANK_STATE,
-	// 		selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
-	// 		columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-	// 	},
-	// 	visualEncodings: {
-	// 		...VISUAL_ENCODING_BLANK_STATE,
-	// 		calculateXForcePosition: getXPositionFromTime,
-	// 		calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
-	// 		restartBubblesOnReturnInto: false,
-	// 		forceXStrength: 1,
-	// 		forceYStrength: 0.5,
-	// 		songAnnotations: SERENADE_HIGHLIGHTS_FROM_INTRO
-	// 	}
-	// },
+	serenadesAreIndeedDying: {
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			calculateXForcePosition: getXPositionFromTime,
+			calculateYForcePosition: fractionOfScreenFactory(0.5, 0),
+			// restartBubblesOnReturnInto: false,
+			forceXStrength: 1,
+			forceYStrength: 0.5,
+			songAnnotations: SERENADE_HIGHLIGHTS_FROM_INTRO
+		}
+	},
 	serenadesPeakedInThe90s: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
@@ -616,9 +616,9 @@ const unprocessedStorySteps = [
 	steps.allTheBillboardHitsInAMonoChromeCluster,
 	steps.highlightSerenadesWithinCluster,
 
-	// steps.serenadesAreIndeedDying,
-	steps.serenadesPeakedInThe90s,
-	steps.aFewArtistsKeepThemAliveToday,
+	steps.serenadesAreIndeedDying,
+	// steps.serenadesPeakedInThe90s,
+	// steps.aFewArtistsKeepThemAliveToday,
 	steps.anAggSnakeChartMakesBoomerBobSeemRight,
 
 	// What counts as love song?
