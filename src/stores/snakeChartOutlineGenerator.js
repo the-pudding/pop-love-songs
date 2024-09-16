@@ -5,6 +5,12 @@ import { svgCoordsForLoveSongTypes } from "./aggregateSnakeChartPositions";
 import { LOVE_SONG_TYPE_CONSTANTS } from "$data/data-constants";
 
 const BASE_OF_CHART = 1;
+const UPPER_PADDING = -0.005;
+const createPoint = ({ x, y1 }) => ({
+	x,
+	y0: BASE_OF_CHART,
+	y1: y1 + UPPER_PADDING
+});
 
 export const svgCoordsForSnakeChartOutline = derived(
 	[svgCoordsForLoveSongTypes],
@@ -23,11 +29,11 @@ export const svgCoordsForSnakeChartOutline = derived(
 						if (+loveSongType === +LOVE_SONG_TYPE_CONSTANTS.notALoveSong) {
 							return accum;
 						}
-						const { y1, x } = svgCoords[index];
+						const { x, y1 } = svgCoords[index];
 						// recall that y1 is the "top" of the chart visually, but in y-coordinates it is the smaller value (closer to the top of the canvas)
-						return y1 < accum.y1 ? { y0: BASE_OF_CHART, y1, x } : accum;
+						return y1 < accum.y1 ? createPoint({ x, y1 }) : accum;
 					},
-					{ y0: BASE_OF_CHART, y1: Infinity, x: Infinity }
+					{ y1: Infinity }
 				);
 			return coordinateObjectWithMaxY1ForTimeRegion;
 		});
