@@ -26,11 +26,12 @@
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
 	import { loveSongTypeColorMap, songRadius, unselectedLoveSongTypeColorMap, xForcePosition, yForcePosition } from "$stores/visualEncodings";
 	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
+	import { svgCoordsForSnakeChartOutline } from "$stores/snakeChartOutlineGenerator";
 	import { currentStoryStep, preventBubbleRestartBecauseTheUserIsMerelySearching, restartBubbles } from "$stores/storySteps";
 	import { showAggregateSnakeChart } from "$stores/searchAndFilter";
 	import { songInAnnotations } from "$data/data-utils";
 	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";
-
+	
 	// Initiate mutable simulation, give bubbles an initial position
 	const forceSimulationData = songsData.map((songObject, songIndex) => ({
 		...songObject,
@@ -203,6 +204,7 @@
 	{#each $tweenedCoords as { loveSongType, svgCoords }}
 		<path d={$svgPathGenerator(svgCoords)} fill={getSnakeFill(loveSongType, $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType), $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap)} />
 	{/each}
+	<path d={$svgPathGenerator($svgCoordsForSnakeChartOutline)} fill="none" stroke="black" stroke-width="1" />
 </svg>
 
 <!-- TODO: if not shown, don't run the simulation (ie for performance) -->
