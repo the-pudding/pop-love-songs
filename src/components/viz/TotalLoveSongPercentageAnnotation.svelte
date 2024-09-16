@@ -11,7 +11,7 @@
 </script>
 
 <div class="container" style={style} aria-label={`In ${year}, love songs made up ${percentage}% of all songs.`}>
-    <div class="percentage" style:font-size={$viewport.isLikelyInMobileLandscape ? '32px' : '56px'}>{percentage}%</div>
+    <div class="percentage" style:font-size={$viewport.isLikelyInMobileLandscape ? '40px' : '56px'}>{percentage}%</div>
 </div>   
 
 <style>

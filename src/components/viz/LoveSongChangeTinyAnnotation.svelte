@@ -3,7 +3,7 @@
 
     export let x = 0;
     export let y = 0;
-    export let year = "";
+    export let decade = "";
     export let percentage = 0;
 
     // TODO: decide left/right margins more intelligently
@@ -11,21 +11,18 @@
 </script>
 
 {#if !$viewport.isLikelyInMobileLandscape}
-    <div class="container" style={style} aria-label={`In ${year}, love songs made up ${percentage}% of all songs.`}>
-        <div class="percentage">{percentage}%</div>
+    <div class="container" style={style} aria-label={`In the ${`${decade}s`}, love songs made up ${percentage}% of all songs.`}>
+        {percentage}%
     </div>   
 {/if}
 
 <style>
     .container {
         position: fixed;
-        transform: translateY(-100%);
+        transform: translateY(-100%) translateX(-50%);
 
         z-index: 100000;
         font-family: 'Atlas Grotesk', sans-serif;
-    }
-
-    .percentage {
         font-weight: bold;
         font-size: 16px;
     }
