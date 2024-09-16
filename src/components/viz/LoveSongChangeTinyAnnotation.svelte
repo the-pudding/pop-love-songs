@@ -1,4 +1,5 @@
 <script>
+	import { currentStoryStep } from "$stores/storySteps";
 	import viewport from "$stores/viewport";
 
     export let x = 0;
@@ -10,7 +11,7 @@
     $: style = `top: ${y}px; left: ${x}px;`;
 </script>
 
-{#if !$viewport.isLikelyInMobileLandscape}
+{#if !$viewport.isLikelyInMobileLandscape && !$currentStoryStep.isFinalComparisonStep}
     <div class="container" style={style} aria-label={`In the ${`${decade}s`}, love songs made up ${percentage}% of all songs.`}>
         {percentage}%
     </div>   
