@@ -1,11 +1,14 @@
 <script>
 	import viewport from "$stores/viewport";
-	import { getXPosForYear } from "$data/data-utils";
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
-	import LoveSongTypeCategoryButtons from "./LoveSongTypeCategoryButtons.svelte";
-	import { LOVE_SONG_TYPE_CONSTANTS, LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
 	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep } from "$stores/storySteps";
-	
+
+	import { getXPosForYear } from "$data/data-utils";
+	import { LOVE_SONG_TYPE_CONSTANTS, LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
+
+	import NonLoveSongLabel from "./NonLoveSongLabel.svelte";
+	import LoveSongTypeCategoryButtons from "./LoveSongTypeCategoryButtons.svelte";
+
     export let tweenedCoords;
 
 	const getX = (x, width) => {
@@ -38,6 +41,7 @@
 
 {#if show}
 	{#each labelMetadata as { loveSongType, x, y, opacity, fontSize }}
+		<NonLoveSongLabel />
 		<div class={$currentStoryStep.allowUserToChangeFilters ? '' : 'no-pointer-events' } style:left={`${x}px`} style:top={`${y}px`} fill="black" style:opacity={opacity} style:font-size={fontSize}>
 			{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}
 			<LoveSongTypeCategoryButtons loveSongType={loveSongType} />
