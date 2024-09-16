@@ -40,8 +40,8 @@
 </script>
 
 {#if show}
+	<NonLoveSongLabel />
 	{#each labelMetadata as { loveSongType, x, y, opacity, fontSize }}
-		<NonLoveSongLabel />
 		<div class={$currentStoryStep.allowUserToChangeFilters ? '' : 'no-pointer-events' } style:left={`${x}px`} style:top={`${y}px`} fill="black" style:opacity={opacity} style:font-size={fontSize}>
 			{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}
 			<LoveSongTypeCategoryButtons loveSongType={loveSongType} />
