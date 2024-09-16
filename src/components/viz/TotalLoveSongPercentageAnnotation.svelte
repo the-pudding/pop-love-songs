@@ -1,4 +1,6 @@
 <script>
+	import viewport from "$stores/viewport";
+
     export let topPosition = 0;
     export let year = "";
     export let percentage = 0;
@@ -8,31 +10,21 @@
     $: style = `top: ${topPosition}px; ${isLeftSide ? "left: 50px;" : "right: 60px;"} text-align: ${isLeftSide ? "left" : "right"}`;
 </script>
 
-<div class="container" style={style}>
-    <div class="year">{year}</div>
-    <div class="percentage">{percentage}%</div>
-    <div class="love-songs">love songs</div>
+<div class="container" style={style} aria-label={`In ${year}, love songs made up ${percentage}% of all songs.`}>
+    <div class="percentage" style:font-size={$viewport.isLikelyInMobileLandscape ? '32px' : '56px'}>{percentage}%</div>
 </div>   
 
 <style>
     .container {
-        z-index: 100000;
         position: fixed;
-        /* pointer-events: none; */
+        transform: translateY(-100%);
 
+        z-index: 100000;
         font-family: 'Atlas Grotesk', sans-serif;
-    }
-    .year, .love-songs {
-        font-size: 16px;
-        line-height: 16px;
-    }
-
-    .year, .percentage {
-        font-weight: bold;
     }
 
     .percentage {
-        font-size: 48px;
-        line-height: 48px;
+        font-weight: bold;
+        font-size: 56px;
     }
 </style>
