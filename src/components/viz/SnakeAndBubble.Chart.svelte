@@ -18,14 +18,13 @@
 		BUBBLE_BORDER_THICKNESS,
 		getInvisibleFillFromSongIndex,
 		getSnakeFill,
-		getSongColor,
 		getSongIndexFromClickLocation
 	} from "./viz-utils";
 
 	import { simulationStore } from "$stores/simulation";
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
 	import { songRadius, xForcePosition, yForcePosition } from "$stores/visualEncodings";
-	import { loveSongTypeColorMap, unselectedLoveSongTypeColorMap } from "$stores/colorMap";
+	import { loveSongTypeColorMap, songColor, unselectedLoveSongTypeColorMap } from "$stores/colorMap";
 	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
 	import { svgCoordsForSnakeChartOutline } from "$stores/snakeChartOutlineGenerator";
 	import { currentStoryStep, preventBubbleRestartBecauseTheUserIsMerelySearching, restartBubbles } from "$stores/storySteps";
@@ -71,7 +70,7 @@
 				invisibleContext.fillStyle = getInvisibleFillFromSongIndex(songIndex);
 				invisibleContext.fill(circle);
 			}
-			context.fillStyle = getSongColor(song, isSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap);
+			context.fillStyle = $songColor[songIndex];
 			context.fill(circle);
 
 			// Draw a border around annotated songs

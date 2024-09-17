@@ -1,4 +1,5 @@
 import { derived } from "svelte/store";
+import songsData from "$data/songs-data.js";
 
 import { typesTreatedAsNonLoveSongs } from "./searchAndFilter";
 import { currentStoryStep } from "./storySteps";
@@ -9,6 +10,7 @@ import {
 	LOVE_SONG_TYPE_CONSTANTS,
 	UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP
 } from "$data/data-constants.js";
+import { getSongColor } from "$components/viz/viz-utils";
 
 const updateColorMap = (
 	typesTreatedAsNonLoveSongs,
@@ -66,12 +68,16 @@ export const unselectedLoveSongTypeColorMap = derived(
 		)
 );
 
-// TODO
 export const songColor = derived(
-	[songIsSelected],
-	([$songIsSelected]) =>
+	[songIsSelected, loveSongTypeColorMap, unselectedLoveSongTypeColorMap],
+	([$songIsSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap]) =>
 		songsData.map(({ song }, index) =>
-			getSongColor(song, $songIsSelected[index], {}, {})
+			getSongColor(
+				song,
+				$songIsSelected[index],
+				$loveSongTypeColorMap,
+				$unselectedLoveSongTypeColorMap
+			)
 		),
 	[]
 );
