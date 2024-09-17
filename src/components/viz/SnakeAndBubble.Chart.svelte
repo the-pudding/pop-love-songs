@@ -24,7 +24,8 @@
 
 	import { simulationStore } from "$stores/simulation";
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
-	import { loveSongTypeColorMap, songRadius, unselectedLoveSongTypeColorMap, xForcePosition, yForcePosition } from "$stores/visualEncodings";
+	import { songRadius, xForcePosition, yForcePosition } from "$stores/visualEncodings";
+	import { loveSongTypeColorMap, unselectedLoveSongTypeColorMap } from "$stores/colorMap";
 	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
 	import { svgCoordsForSnakeChartOutline } from "$stores/snakeChartOutlineGenerator";
 	import { currentStoryStep, preventBubbleRestartBecauseTheUserIsMerelySearching, restartBubbles } from "$stores/storySteps";
