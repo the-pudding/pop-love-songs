@@ -155,7 +155,8 @@
 		}
 	};
 
-	$: $songIsSelected, $viewport.width, $viewport.height, updateViz();
+	// All these stores do not require re-running the simulation, just redrawing the canvas
+	$: $songIsSelected, $viewport.width, $viewport.height, $tweenedSongColor, updateViz();
 	// simulation force layout properties need to be update when viewport or target x/yForcePosition changes
 	$: $xForcePosition, $yForcePosition, $viewport.width, $viewport.height, updateSimulationProperties(); 
 	const updateViz = () => {
