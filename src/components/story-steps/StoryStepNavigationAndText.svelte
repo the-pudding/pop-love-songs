@@ -63,7 +63,7 @@
     $: $currentStoryStepIndex, updateFilterFilterState();
 
     $: style = `
-        height: ${STORY_STEP_CONTROLLER_TOP_PADDING}px; 
+        ${$currentStoryStep.showOpeningComment ? "" : `height: ${STORY_STEP_CONTROLLER_TOP_PADDING}px;`}
         margin-top: ${$viewport.height * Y_MARGIN_SCREEN_PERCENTAGE}px;
         ${$currentStoryStep.showOpeningComment ? "bottom: 0" : "top: 0"}px;
     `
