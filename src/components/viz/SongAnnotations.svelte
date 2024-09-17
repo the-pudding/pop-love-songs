@@ -47,6 +47,5 @@
 		position: absolute;
 		max-height: 300px;
 		background-color: transparent;
-        transition: opacity 4s;
     }
 </style>

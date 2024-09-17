@@ -22,7 +22,7 @@
     $: h1Style = `
         font-size: ${$viewport.isLikelyInMobileLandscape ? '64px' : '108px'};
         line-height: ${$viewport.isLikelyInMobileLandscape ? '72px' : '116px'};
-        text-shadow: ${textShadow(4, 0.5, variables.color['cream-background'])};
+        text-shadow: ${textShadow(4, 0.5)};
     `;
 </script>
 

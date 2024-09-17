@@ -3,7 +3,9 @@
 		SONG_DATA_COLUMNS_ENUM,
 	} from "$data/data-constants.js";
 	import { formatYearForDisplay } from "$data/data-utils";
+	import { textShadow } from "$utils/styling";
 	import viewport from "$stores/viewport";
+
 	import SongSnippetPlayer from "../audio/SongSnippetPlayer.svelte";
 	import PerformerNames from "./PerformerNames.svelte";
 	
@@ -17,7 +19,7 @@
 </script>
 
 <div class='song-and-year'>
-	<strong class='song' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}`}>
+	<strong class='song' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}; text-shadow: ${textShadow(2, 1)};`}>
 		{alternateTitle || song[SONG_DATA_COLUMNS_ENUM.song]}
 	</strong>
 	
@@ -25,7 +27,7 @@
 		<SongSnippetPlayer songName={song[SONG_DATA_COLUMNS_ENUM.song]} loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
 	{/if}
 </div>
-<div class="performer" style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '12px' : '16px'}`}>
+<div class="performer" style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '12px' : '16px'}; text-shadow: ${textShadow(1, 0.5)};`}>
 	<PerformerNames {song} />  (<span class='year' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '12px' : '16px'}`}>{year}</span>)
 </div>
 
@@ -41,17 +43,9 @@
 	.song {
 		font-weight: bold;
 		text-transform: uppercase;
-		text-shadow: 2px 2px 1px rgba(var(--color-rgba-annotation-text-shadow)),
-			-2px -2px 1px rgba(var(--color-rgba-annotation-text-shadow)),
-			2px -2px 1px rgba(var(--color-rgba-annotation-text-shadow)),
-			-2px 2px 1px rgba(var(--color-rgba-annotation-text-shadow));
 	}
 
 	.year, .performer {
 		font-weight: 300;
-		text-shadow: 1px 1px 1px rgba(var(--color-rgba-annotation-text-shadow)),
-			-1px -1px 1px rgba(var(--color-rgba-annotation-text-shadow)),
-			1px -1px 1px rgba(var(--color-rgba-annotation-text-shadow)),
-			-1px 1px 1px rgba(var(--color-rgba-annotation-text-shadow));
 	}
 </style>
