@@ -98,12 +98,16 @@
 		annotatedSongsToRedrawOnTop.forEach((args) => drawSongCircle(...args));
 	};
 
-	const handleSongHovered = (selectedSong, offsetX, offsetY) => {
+	const handleSongHovered = (selectedSong, songIndex, offsetX, offsetY) => {
 		if (selectedSong) {
+			const {x, y} = $simulationStore.nodes()[songIndex]
 			$hoveredSongInfo = {
 				song: selectedSong,
 				x: offsetX,
-				y: offsetY
+				y: offsetY,
+				circleX: x,
+				circleY: y,
+				circleRadius: $songRadius[songIndex]
 			};
 		} else if ($hoveredSongInfo.song) {
 			// no need to trigger reactive update by writing to the store unless there is a song to overwrite
@@ -116,7 +120,7 @@
 		const { offsetX, offsetY } = e;
 		const songIndex = getSongIndexFromClickLocation(invisibleContext, offsetX, offsetY);		
 		const selectedSong = $songIsSelected[songIndex] && $songIsVisible[songIndex] && forceSimulationData[songIndex]?.song;
-		handleSongHovered(selectedSong, offsetX, offsetY);
+		handleSongHovered(selectedSong, songIndex, offsetX, offsetY);
 	};
 
 	const clearTooltip = () => $hoveredSongInfo = {}

@@ -1,15 +1,20 @@
 <script>
 	import viewport from "$stores/viewport.js";
 	import { currentStoryStep } from "$stores/storySteps";
-
 	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
-	import SongInfo from "./SongInfo.svelte";
 	import { showAggregateSnakeChart } from "$stores/searchAndFilter";
+	
+	import SongInfo from "./SongInfo.svelte";
+	import { BUBBLE_BORDER_THICKNESS } from './viz-utils';
 	
 
 	$: song = $hoveredSongInfo.song || [];
 	$: x = $hoveredSongInfo.x;
 	$: y = $hoveredSongInfo.y;
+	$: circleX = $hoveredSongInfo.circleX;
+	$: circleY = $hoveredSongInfo.circleY;
+	$: circleRadius = $hoveredSongInfo.circleRadius;
+
 	// TODO: probably we'll want to to do something more like place different content if bubble chart is hidden
 	$: visible = x !== undefined && y !== undefined && song.length > 0 && !$showAggregateSnakeChart;
 
@@ -24,17 +29,27 @@
 	})
 </script>
 
-<div
-	role="tooltip"
-	aria-hidden={!visible}
-	class:visible
-	style={`top: ${y + yOffset}px; left: ${x + xOffset}px`}
->
-	<SongInfo {song} />
+<div>
+	<div
+		class="tooltip"
+		role="tooltip"
+		aria-hidden={!visible}
+		class:visible
+		style={`top: ${y + yOffset}px; left: ${x + xOffset}px`}
+	>
+		<SongInfo {song} />
+	</div>
+
+	<div
+		class="circle-outline"
+		aria-hidden={!visible}
+		class:visible
+		style={`top: ${circleY}px; left: ${circleX}px; height: ${circleRadius * 2}px; width: ${circleRadius * 2}px; border: ${BUBBLE_BORDER_THICKNESS}px solid black;`}
+	/>
 </div>
 
 <style>
-	div {
+	 .tooltip {
 		z-index: 10000;
 		position: absolute;
 		max-width: 400px; /* TODO: make smaller for mobile? */
@@ -46,5 +61,13 @@
 	}
 	.visible {
 		display: block;
+	}
+
+	.circle-outline {
+		z-index: 10000;
+		position: absolute;
+		border-radius: 100%;
+		transform: translate(-50%, -50%);
+		pointer-events: none;
 	}
 </style>

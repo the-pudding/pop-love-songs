@@ -1,4 +1,5 @@
 <script>
+	import { pointer } from 'd3';
     import {afterUpdate, onMount, tick} from "svelte";
     import urlParams from "../../utils/urlParams.js";
     import viewport from "$stores/viewport.js";
@@ -95,6 +96,8 @@
         padding-right: 5%;
         /* TODO: there's probably a better way to place this with the correct margin (only matters on the first screen) */
         margin-bottom: 4%;
+
+        pointer-events: none;
     }
 
     .story-text {
@@ -109,5 +112,7 @@
         padding-right: 12px;
 
         border-radius: 8px;
+
+        pointer-events: all;
     }
 </style>
