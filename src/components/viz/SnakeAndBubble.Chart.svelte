@@ -85,7 +85,7 @@
 				]
 			} else if (isSelected && isVisible && $currentStoryStep.visualEncodings.useHeavierSongBorders) {
 				context.strokeStyle = "#333333"; // chosen cuz it's the lightest still accessible contrast with serenade's color
-				context.lineWidth = 1;
+				context.lineWidth = 0.5;
 				context.stroke(circle);
 			} else if (isSelected && isVisible) {
 				context.strokeStyle = "white";
