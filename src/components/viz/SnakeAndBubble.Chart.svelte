@@ -3,7 +3,7 @@
 	import { tweened } from 'svelte/motion';
 	import { cubicInOut } from 'svelte/easing';
 
-	import { forceSimulation, forceX, forceY, forceCollide, interpolateRgb } from "d3";
+	import { forceSimulation, forceX, forceY, forceCollide } from "d3";
 
 	import XAxis from "./XAxis.svelte";
 	import LoveSongTypeLabels from "./LoveSongTypeLabels.svelte";
@@ -27,7 +27,7 @@
 	import { loveSongTypeColorMap, rgbaArrayToString, songColor, unselectedLoveSongTypeColorMap } from "$stores/colorMap";
 	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
 	import { svgCoordsForSnakeChartOutline } from "$stores/snakeChartOutlineGenerator";
-	import { currentStoryStep, currentStoryStepIndex, preventBubbleRestartBecauseTheUserIsMerelySearching, restartBubbles } from "$stores/storySteps";
+	import { currentStoryStep, preventBubbleRestartBecauseTheUserIsMerelySearching, restartBubbles } from "$stores/storySteps";
 	import { showAggregateSnakeChart } from "$stores/searchAndFilter";
 	import { songInAnnotations } from "$data/data-utils";
 	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";
@@ -195,12 +195,10 @@
 		duration: variables.chart['transition-opacity-duration'],
 		easing: cubicInOut
 	});
-	// $: $songColor, tweenedSongColor.set($songColor);
-
-	$: console.log($tweenedSongColor[0])
 
 	$: {
 		tweenedCoords.set($svgCoordsForLoveSongTypes);
+		// @michelle: is there a good reason to move this out to its own one line reactive statement?
 		tweenedSongColor.set($songColor);
 		if ($showAggregateSnakeChart) {
 			aggregateSnakeChartOpacity.set(1);

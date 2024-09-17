@@ -57,6 +57,7 @@ const stepsWithoutText = {
 	haveYouSeenTheseYouTubeComments: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES,
 			selectedLoveSongTypes: ["FAAAAKKEEE"],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
@@ -70,6 +71,7 @@ const stepsWithoutText = {
 	boomerBobSaysLoveSongsAreDying: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES,
 			selectedLoveSongTypes: ["FAAAAKKEEE"],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
@@ -84,6 +86,7 @@ const stepsWithoutText = {
 	titleCard: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES,
 			selectedLoveSongTypes: ["FAAAAKKEEE"],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
@@ -135,10 +138,12 @@ const stepsWithoutText = {
 			songAnnotations: SERENADE_HIGHLIGHTS_FROM_INTRO
 		}
 	},
-	// CUT from story
 	serenadesAreIndeedDying: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
+			),
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
@@ -155,6 +160,9 @@ const stepsWithoutText = {
 	serenadesPeakedInThe90s: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
+			),
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
 			timeRange: {
 				startYear: MIN_DATE,
@@ -174,6 +182,9 @@ const stepsWithoutText = {
 	aFewArtistsKeepThemAliveToday: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
+			),
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
 			timeRange: {
 				startYear: 2001,
@@ -311,6 +322,13 @@ const stepsWithoutText = {
 	introducingLongingAndHeartbreak: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) =>
+					![
+						LOVE_SONG_TYPE_CONSTANTS.serenade,
+						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+					].includes(t)
+			),
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
@@ -376,6 +394,14 @@ const stepsWithoutText = {
 	introducingCourtship: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) =>
+					![
+						LOVE_SONG_TYPE_CONSTANTS.serenade,
+						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+					].includes(t)
+			),
 			selectedLoveSongTypes: [
 				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
 			],
@@ -419,6 +445,15 @@ const stepsWithoutText = {
 	introducingItsComplicated: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) =>
+					![
+						LOVE_SONG_TYPE_CONSTANTS.serenade,
+						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+						LOVE_SONG_TYPE_CONSTANTS.itsComplicated
+					].includes(t)
+			),
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.itsComplicated],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
@@ -462,6 +497,16 @@ const stepsWithoutText = {
 	introducingGoodRiddance: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) =>
+					![
+						LOVE_SONG_TYPE_CONSTANTS.serenade,
+						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+						LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+						LOVE_SONG_TYPE_CONSTANTS.goodRiddance
+					].includes(t)
+			),
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.goodRiddance],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
@@ -501,6 +546,17 @@ const stepsWithoutText = {
 	introducingSexualConfidence: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
+				(t) =>
+					![
+						LOVE_SONG_TYPE_CONSTANTS.serenade,
+						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+						LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+						LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+						LOVE_SONG_TYPE_CONSTANTS.sexualConfidence
+					].includes(t)
+			),
 			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.sexualConfidence],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
