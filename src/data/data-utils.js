@@ -34,6 +34,9 @@ export const formatYearForDisplay = (year) => {
 	// return `'${shortNumber > 9 ? shortNumber : "0" + shortNumber}`;
 };
 
+export const formatSongTitleForDisplay = (title = "") =>
+	title.split("(")[0].trim(); // songs get super long when they're like "San Francisco (Be Sure to Wear Flowers in Your Hair)"
+
 export const songInAnnotations = (song, songAnnotations) => {
 	const matchingAnnotation = songAnnotations.find(
 		({ song: annotationSongName, year }) =>

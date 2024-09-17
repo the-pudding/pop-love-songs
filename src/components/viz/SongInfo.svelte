@@ -2,7 +2,7 @@
 	import {
 		SONG_DATA_COLUMNS_ENUM,
 	} from "$data/data-constants.js";
-	import { formatYearForDisplay } from "$data/data-utils";
+	import { formatSongTitleForDisplay, formatYearForDisplay } from "$data/data-utils";
 	import { textShadow } from "$utils/styling";
 	import viewport from "$stores/viewport";
 
@@ -14,13 +14,14 @@
 	export let audioFile = false;
 
 	
+	$: displaySongName = alternateTitle || formatSongTitleForDisplay(song[SONG_DATA_COLUMNS_ENUM.song]);
 	$: year = formatYearForDisplay(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]);
 
 </script>
 
 <div class='song-and-year'>
 	<strong class='song' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}; text-shadow: ${textShadow(2, 1)};`}>
-		{alternateTitle || song[SONG_DATA_COLUMNS_ENUM.song]}
+		{displaySongName}
 	</strong>
 	
 	{#if audioFile}
