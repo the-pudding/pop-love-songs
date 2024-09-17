@@ -27,7 +27,7 @@
         id={song[SONG_DATA_COLUMNS_ENUM.song]}
         class="annotation-wrapper"
         role="tooltip"
-        in:fade={{delay: variables.chart.transition_opacity_duration / 2, duration: variables.chart.transition_opacity_duration / 2 }}
+        in:fade={{delay: variables.chart['transition-opacity-duration'] / 2, duration: variables.chart['transition-opacity-duration'] / 2 }}
         style={`top: ${textY}px; left: ${bubbleX}px; transform: translateX(${xTranslation}%) translateY(-${'100'}%);`}
     >
         <SongInfo song={song} alternateTitle={alternateTitle} audioFile={audioFile} />
@@ -39,7 +39,7 @@
 {#each layoutData as {bubbleX, bubbleY, textY}}
     <div
         class="annotation-line"
-        in:fade={{delay: variables.chart.transition_opacity_duration / 2, duration: variables.chart.transition_opacity_duration / 2 }}
+        in:fade={{delay: variables.chart['transition-opacity-duration'] / 2, duration: variables.chart['transition-opacity-duration'] / 2 }}
         style={`top: ${textY}px; left: ${bubbleX}px; height: ${bubbleY - textY}px;`}
     />
 {/each}

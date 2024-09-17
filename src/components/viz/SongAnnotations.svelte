@@ -30,9 +30,8 @@
 {#each layoutData as {xPos, yPos, song, rightAlign, alternateTitle}}
     <div
         id={song[SONG_DATA_COLUMNS_ENUM.song]}
-        class="annotation-wrapper"
+        class="annotation-wrapper fade-in-image"
         role="tooltip"
-        in:fade={{delay: variables.chart.transition_opacity_duration / 2, duration: variables.chart.transition_opacity_duration / 2 }}
         style={`top: ${yPos}px; left: ${xPos}px; ${rightAlign ? 'transform: translateX(-100%);' : ''}`}
     >
         <SongInfo song={song} alternateTitle={alternateTitle} />
@@ -47,5 +46,14 @@
 		position: absolute;
 		max-height: 300px;
 		background-color: transparent;
+    }
+
+    .fade-in-image {
+        animation: fadeIn calc(var(--chart-transition-opacity-duration) * 1ms);
+    }
+
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
     }
 </style>

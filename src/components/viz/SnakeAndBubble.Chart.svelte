@@ -180,12 +180,12 @@
 
 	// Transition opacity between charts
 	const aggregateSnakeChartOpacity = tweened(0, {
-		duration: variables.chart.transition_opacity_duration,
+		duration: variables.chart['transition-opacity-duration'],
 		easing: cubicInOut
 	});
 
 	const tweenedCoords = tweened($svgCoordsForLoveSongTypes, {
-		duration: variables.chart.transition_opacity_duration,
+		duration: variables.chart['transition-opacity-duration'],
 		easing: cubicInOut
 	});
 
