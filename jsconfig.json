@@ -2,36 +2,14 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"$lib": [
-				"src"
-			],
-			"$lib/*": [
-				"src/*"
-			],
-			"$actions/*": [
-				"src/actions/*"
-			],
-			"$components/*": [
-				"src/components/*"
-			],
-			"$data/*": [
-				"src/data/*"
-			],
-			"$routes/*": [
-				"src/routes/*"
-			],
-			"$stores/*": [
-				"src/stores/*"
-			],
-			"$styles/*": [
-				"src/styles/*"
-			],
-			"$svg/*": [
-				"src/svg/*"
-			],
-			"$utils/*": [
-				"src/utils/*"
-			],
+			"$actions/*": ["src/actions/*"],
+			"$components/*": ["src/components/*"],
+			"$data/*": ["src/data/*"],
+			"$routes/*": ["src/routes/*"],
+			"$stores/*": ["src/stores/*"],
+			"$styles/*": ["src/styles/*"],
+			"$svg/*": ["src/svg/*"],
+			"$utils/*": ["src/utils/*"]
 		}
 	},
 	"include": [
