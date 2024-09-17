@@ -3,7 +3,7 @@
 	import { tweened } from 'svelte/motion';
 	import { cubicInOut } from 'svelte/easing';
 
-	import { forceSimulation, forceX, forceY, forceCollide } from "d3";
+	import { forceSimulation, forceX, forceY, forceCollide, interpolateRgb } from "d3";
 
 	import XAxis from "./XAxis.svelte";
 	import LoveSongTypeLabels from "./LoveSongTypeLabels.svelte";
@@ -27,7 +27,7 @@
 	import { loveSongTypeColorMap, songColor, unselectedLoveSongTypeColorMap } from "$stores/colorMap";
 	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
 	import { svgCoordsForSnakeChartOutline } from "$stores/snakeChartOutlineGenerator";
-	import { currentStoryStep, preventBubbleRestartBecauseTheUserIsMerelySearching, restartBubbles } from "$stores/storySteps";
+	import { currentStoryStep, currentStoryStepIndex, preventBubbleRestartBecauseTheUserIsMerelySearching, restartBubbles } from "$stores/storySteps";
 	import { showAggregateSnakeChart } from "$stores/searchAndFilter";
 	import { songInAnnotations } from "$data/data-utils";
 	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";
@@ -70,7 +70,8 @@
 				invisibleContext.fillStyle = getInvisibleFillFromSongIndex(songIndex);
 				invisibleContext.fill(circle);
 			}
-			context.fillStyle = $songColor[songIndex];
+			// context.fillStyle = $songColor[songIndex];
+			context.fillStyle = $tweenedSongColor;
 			context.fill(circle);
 
 			// Draw a border around annotated songs
@@ -189,11 +190,21 @@
 		easing: cubicInOut
 	});
 
+	// Transition color
+	let gray = variables.color['not-a-love-song'];
+	let pink = variables.color['serenade'];
+	const tweenedSongColor = tweened(gray, {
+		duration: variables.chart['transition-opacity-duration'],
+		interpolate: interpolateRgb,
+		easing: cubicInOut
+	});
+	$: console.log($tweenedSongColor)
+
 	$: {
 		tweenedCoords.set($svgCoordsForLoveSongTypes);
+		tweenedSongColor.set($currentStoryStepIndex % 2 === 0 ? gray : pink);
 		if ($showAggregateSnakeChart) {
 			aggregateSnakeChartOpacity.set(1);
-			
 		} else {
 			aggregateSnakeChartOpacity.set(0);
 		}
