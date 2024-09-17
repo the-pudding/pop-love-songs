@@ -109,7 +109,8 @@ const stepsWithoutText = {
 			forceXStrength: 1,
 			forceYStrength: 1,
 			songAnnotations: NON_SERENADE_HIGHLIGHTS_FROM_INTRO
-		}
+		},
+		showTotalWeeksInTop10InSongInfo: true
 	},
 	highlightSerenadesWithinCluster: {
 		searchAndFilterState: {

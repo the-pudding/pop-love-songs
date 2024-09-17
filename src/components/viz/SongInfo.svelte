@@ -5,6 +5,7 @@
 	import { formatSongTitleForDisplay, formatYearForDisplay } from "$data/data-utils";
 	import { textShadow } from "$utils/styling";
 	import viewport from "$stores/viewport";
+	import { currentStoryStep } from "$stores/storySteps";
 
 	import SongSnippetPlayer from "../audio/SongSnippetPlayer.svelte";
 	import PerformerNames from "./PerformerNames.svelte";
@@ -31,6 +32,11 @@
 <div class="performer" style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '12px' : '16px'}; text-shadow: ${textShadow(1, 0.5)};`}>
 	<PerformerNames {song} />  (<span class='year' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '12px' : '16px'}`}>{year}</span>)
 </div>
+{#if $currentStoryStep.showTotalWeeksInTop10InSongInfo}
+	<div class='weeks-in-top-10' style={`text-shadow: ${textShadow(1, 0.5)}`}>
+		<b>{song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10]}</b> weeks in the Top 10
+	</div>
+{/if}
 
 <style>
 	div {
@@ -46,7 +52,7 @@
 		text-transform: uppercase;
 	}
 
-	.year, .performer {
+	.year, .performer, .weeks-in-top-10 {
 		font-weight: 300;
 	}
 </style>
