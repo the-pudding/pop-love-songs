@@ -96,21 +96,6 @@ export const songIsSelected = derived(
 	[]
 );
 
-// Note: this is just so we can compare to the 60s percentage no matter what time range we're selecting at
-export const selectedSongsDataIgnoringTime = derived(
-	[
-		loveSongTypeSelected,
-		performerSelected,
-		songSelected
-		// withinTimeRange
-	],
-	(subStores) =>
-		songsData.filter((song, index) =>
-			subStores.every((subStore) => subStore[index])
-		),
-	[]
-);
-
 // TODO: OPTIMIZATION @michelle basically this fires anytime a selection changes (eg loveSongTypeSelected), which triggers a lot of calculations & (most notably) can restart the force layout.
 // However, this store needs ONLY to update if columnsToFilterVisibilityOn contains 1 or more items, or itself changed to have no items.
 // My sense is that this is where we'd want to just implement a custom store
@@ -247,18 +232,14 @@ export const percentageOfLoveSongsCurrentlySelected = derived(
 );
 
 export const percentageOfLoveSongsDuring1959To1969 = derived(
-	[selectedSongsDataIgnoringTime, currentStoryStep, typesTreatedAsNonLoveSongs],
-	([
-		$selectedSongsDataIgnoringTime,
-		$currentStoryStep,
-		$typesTreatedAsNonLoveSongs
-	]) => {
+	[songIsSelected, currentStoryStep, typesTreatedAsNonLoveSongs],
+	([$songIsSelected, $currentStoryStep, $typesTreatedAsNonLoveSongs]) => {
 		return getLoveSongPercentage(
 			$typesTreatedAsNonLoveSongs,
 			// Note: we want to be able to *reliably* compare to the 60s and not have it accidentally filtered out
 			// if we happen to look at a selection that doesn't include the 60s.
-			// TODO: OPTIMIZATION: since we're not allowing others to filter by year, we can remove selectedSongsDataIgnoringTime
-			$selectedSongsDataIgnoringTime,
+			// TODO: OPTIMIZATION: since we're not allowing others to filter by year, we can remove songIsSelected
+			$songIsSelected,
 			$currentStoryStep.searchAndFilterState.selectedLoveSongTypes,
 			MIN_DATE,
 			1969
