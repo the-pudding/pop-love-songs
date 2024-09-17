@@ -93,7 +93,7 @@ h6 {
 	font-size: var(--20px, 20px);
 }
 
-/* Styling the spans highlighting specific love song types in the text */
+/* Styling the spans highlighting specific love song types in the text (coming from the gdoc), see StoryStepNavigationAndText.svelte */
 .story-text > span {
 	border-radius: 4px;
 	padding: 1px 5px 2px;

@@ -67,14 +67,22 @@
         margin-top: ${$viewport.height * Y_MARGIN_SCREEN_PERCENTAGE}px;
         ${$currentStoryStep.showOpeningComment ? "bottom: 0" : "top: 0"}px;
     `
+    
+    $: storyTextStyle = `
+        font-size: ${$viewport.isLikelyInMobileLandscape ? '14px' : '16px'};
+        /* cream + transparency so the text stays readable */
+        ${$currentStoryStep.chartOccupiesFullScreen ? "background-color: #fff6dfbf;" : ""}
+    `
 </script>
 
 <div bind:this={container} class="container" style={style}>
-    <h4 class="story-text">
-        <!-- For styling of love song type spans within the text, see app.css -->
-        {@html $currentStoryStep.text}
-        <DataMethodsModal bind:showModal />
-    </h4>
+    {#if !!$currentStoryStep.text}
+        <h4 class="story-text" style={storyTextStyle}>
+            <!-- For styling of love song type spans within the text, see app.css -->
+            {@html $currentStoryStep.text}
+            <DataMethodsModal bind:showModal />
+        </h4>
+    {/if}
 </div>
 
 <Tap on:tap={onTap} enableKeyboard={true} />
@@ -90,8 +98,16 @@
     }
 
     .story-text {
-        font-size: 16px;
         max-width: 800px;
         margin: 0 auto;
+        padding: 12px;
+        /* I want visual padding, but I need to keep the text very close to the top, since it's a tight squeeze with the chart */
+        padding-top: 4px;
+        margin-top: -8px;
+        padding-bottom: 4px;
+        padding-left: 12px;
+        padding-right: 12px;
+
+        border-radius: 8px;
     }
 </style>

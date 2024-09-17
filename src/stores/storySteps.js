@@ -657,7 +657,10 @@ const unprocessedStorySteps = [
 export const storySteps = unprocessedStorySteps.map((step) => ({
 	...step,
 	showXAxis:
-		step.visualEncodings.calculateXForcePosition === getXPositionFromTime
+		step.visualEncodings.calculateXForcePosition === getXPositionFromTime,
+	chartOccupiesFullScreen:
+		step.visualEncodings.calculateXForcePosition === randomXDistribution ||
+		step.visualEncodings.calculateYForcePosition === randomYDistribution
 }));
 
 // Export steps as a CSV for easy editing in Excel
