@@ -78,7 +78,7 @@ const stepsWithoutText = {
 			calculateXForcePosition: randomXDistribution,
 			calculateYForcePosition: randomXDistribution
 		},
-		showBoomerBobImages: true
+		showHeadlinesAboutLoveSongDecline: true
 	},
 
 	titleCard: {

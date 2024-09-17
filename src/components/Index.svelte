@@ -2,7 +2,7 @@
 	import { onMount } from "svelte";
 
 	import SnakeAndBubbleChart from "./viz/SnakeAndBubble.Chart.svelte";
-	import BoomerBobImages from "./story-steps/BoomerBobImages.svelte";
+	import HeadlinesAboutLoveSongDecline from "./story-steps/HeadlinesAboutLoveSongDecline.svelte";
 	import OpeningComment from "./story-steps/OpeningComment.svelte";
 	import TitleCard from "./story-steps/TitleCard.svelte";
 	import SideBar from "./viz/SideBar.svelte";
@@ -49,8 +49,8 @@
 	{#if urlParsed}
 		<!-- TODO: OPTIMIZATION: does it make sense to rip the viz elements on/off the dom, or just leave them there always? -->
 		<SnakeAndBubbleChart />
-		{#if $currentStoryStep.showBoomerBobImages}
-			<BoomerBobImages />
+		{#if $currentStoryStep.showHeadlinesAboutLoveSongDecline}
+			<HeadlinesAboutLoveSongDecline />
 		{:else if $currentStoryStep.showOpeningComment}
 			<OpeningComment />
 		{:else if $currentStoryStep.showTitleCard}
