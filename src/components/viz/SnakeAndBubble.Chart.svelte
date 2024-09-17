@@ -24,7 +24,7 @@
 	import { simulationStore } from "$stores/simulation";
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
 	import { songRadius, xForcePosition, yForcePosition } from "$stores/visualEncodings";
-	import { loveSongTypeColorMap, songColor, unselectedLoveSongTypeColorMap } from "$stores/colorMap";
+	import { loveSongTypeColorMap, rgbaArrayToString, songColor, unselectedLoveSongTypeColorMap } from "$stores/colorMap";
 	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
 	import { svgCoordsForSnakeChartOutline } from "$stores/snakeChartOutlineGenerator";
 	import { currentStoryStep, currentStoryStepIndex, preventBubbleRestartBecauseTheUserIsMerelySearching, restartBubbles } from "$stores/storySteps";
@@ -71,7 +71,7 @@
 				invisibleContext.fill(circle);
 			}
 			// context.fillStyle = $songColor[songIndex];
-			context.fillStyle = $tweenedSongColor;
+			context.fillStyle = rgbaArrayToString($tweenedSongColor[songIndex]);
 			context.fill(circle);
 
 			// Draw a border around annotated songs
@@ -191,18 +191,17 @@
 	});
 
 	// Transition color
-	let gray = variables.color['not-a-love-song'];
-	let pink = variables.color['serenade'];
-	const tweenedSongColor = tweened(gray, {
+	const tweenedSongColor = tweened($songColor, {
 		duration: variables.chart['transition-opacity-duration'],
-		interpolate: interpolateRgb,
 		easing: cubicInOut
 	});
-	$: console.log($tweenedSongColor)
+	// $: $songColor, tweenedSongColor.set($songColor);
+
+	$: console.log($tweenedSongColor[0])
 
 	$: {
 		tweenedCoords.set($svgCoordsForLoveSongTypes);
-		tweenedSongColor.set($currentStoryStepIndex % 2 === 0 ? gray : pink);
+		tweenedSongColor.set($songColor);
 		if ($showAggregateSnakeChart) {
 			aggregateSnakeChartOpacity.set(1);
 		} else {

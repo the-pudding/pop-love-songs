@@ -68,16 +68,32 @@ export const unselectedLoveSongTypeColorMap = derived(
 		)
 );
 
+// Now calculate song color in a numeric rgba representation that Svelte can easily interpolate between
+// (for some reason, it broke when I tried to interpolate using d3.interpolateRgb, and was unable to properly work with an array of values, only a single value)
+
+const hexToRgbaArray = (hex) => {
+	const r = parseInt(hex.slice(1, 3), 16);
+	const g = parseInt(hex.slice(3, 5), 16);
+	const b = parseInt(hex.slice(5, 7), 16);
+	const a = hex.length === 9 ? parseInt(hex.slice(7, 9), 16) / 255 : 1;
+	return [r, g, b, a];
+}
+
+export const rgbaArrayToString = (rgbaArray) =>
+	`rgba(${rgbaArray[0]}, ${rgbaArray[1]}, ${rgbaArray[2]}, ${rgbaArray[3]})`;
+
 export const songColor = derived(
 	[songIsSelected, loveSongTypeColorMap, unselectedLoveSongTypeColorMap],
 	([$songIsSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap]) =>
-		songsData.map(({ song }, index) =>
-			getSongColor(
+		songsData.map(({ song }, index) => {
+			const hex = getSongColor(
 				song,
 				$songIsSelected[index],
 				$loveSongTypeColorMap,
 				$unselectedLoveSongTypeColorMap
-			)
-		),
+			);
+			// TODO: OPTIMIZATION: create an rgba array version of the color maps, so we don't have to recalculate this every time
+			return hexToRgbaArray(hex);
+		}),
 	[]
 );
