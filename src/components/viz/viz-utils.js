@@ -79,7 +79,7 @@ export const getSongIndexFromClickLocation = (
 	return songIndexWithMaxCount;
 };
 
-export const getSongFill = (
+export const getSongColor = (
 	song,
 	songIsSelected,
 	$loveSongTypeColorMap,

@@ -18,7 +18,7 @@
 		BUBBLE_BORDER_THICKNESS,
 		getInvisibleFillFromSongIndex,
 		getSnakeFill,
-		getSongFill,
+		getSongColor,
 		getSongIndexFromClickLocation
 	} from "./viz-utils";
 
@@ -70,7 +70,7 @@
 				invisibleContext.fillStyle = getInvisibleFillFromSongIndex(songIndex);
 				invisibleContext.fill(circle);
 			}
-			context.fillStyle = getSongFill(song, isSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap);
+			context.fillStyle = getSongColor(song, isSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap);
 			context.fill(circle);
 
 			// Draw a border around annotated songs
