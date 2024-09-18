@@ -55,7 +55,7 @@ export const getYPosForPercentage = (percentage, canvasHeight) => {
 	return yStart + percentage * yRange;
 };
 
-const TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE = 0.008;
+export const TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE = 0.008;
 export const getYPosInAggregateSnakeChart = ({
 	percentage,
 	percentageChange,
