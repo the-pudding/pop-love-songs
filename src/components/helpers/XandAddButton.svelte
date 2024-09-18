@@ -13,5 +13,7 @@
         border-radius: 100%;
         width: 16px;
         height: 16px;
+
+        transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 2);
     }
 </style>

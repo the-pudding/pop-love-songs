@@ -1,11 +1,12 @@
 <script>
 	import XandAddButton from "$components/helpers/XandAddButton.svelte";
-	import { LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP, LOVE_SONG_TYPE_CONSTANTS } from "$data/data-constants";
+	import { LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
 	import { typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
 	import { currentStoryStep } from "$stores/storySteps";
 	
 
     export let loveSongType;
+	$: isTreatedAsNonLoveSong = $typesTreatedAsNonLoveSongs.includes(loveSongType);
 
 	const toggleLoveSongStatus = (loveSongType) => () => {
 		typesTreatedAsNonLoveSongs.update((typesTreatedAsNonLoveSongs) => {
@@ -19,22 +20,11 @@
 
 </script>
     {#if $currentStoryStep.allowUserToChangeFilters}
-        <!-- TODO: Make button set accessible -->
         <span class="label-button-group">
-            {#if loveSongType === LOVE_SONG_TYPE_CONSTANTS.notALoveSong}
-                {#each $typesTreatedAsNonLoveSongs as nonLoveSongType}
-                    <button on:click={toggleLoveSongStatus(nonLoveSongType)}>
-						{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[nonLoveSongType]}
-						<XandAddButton rotateIntoPlusSign={true} />
-					</button>
-					
-                {/each}
-            {:else}
-                <button on:click={toggleLoveSongStatus(loveSongType)}>
-					<XandAddButton rotateIntoPlusSign={false} />
-				</button>
-				
-            {/if}
+			<button on:click={toggleLoveSongStatus(loveSongType)}>
+				{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}
+				<XandAddButton rotateIntoPlusSign={isTreatedAsNonLoveSong} />
+			</button>
         </span>
     {/if}
 	

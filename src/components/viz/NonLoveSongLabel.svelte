@@ -2,10 +2,11 @@
 	import { getXPosForYear } from "$data/data-utils";
 	import { MAX_DATE, MIN_DATE } from "$data/songs-data";
 	import { LOVE_SONG_TYPE_CONSTANTS } from "$data/data-constants";
-	import { currentStoryStep } from "$stores/storySteps";
+	import { currentStoryStep, isLastStep } from "$stores/storySteps";
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
     import viewport from "$stores/viewport";
 	import ToggleLoveSongCategoryButtons from "./ToggleLoveSongCategoryButtons.svelte";
+	import { typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
 
     const midDate = MIN_DATE + (MAX_DATE - MIN_DATE) / 2;
     $: x = getXPosForYear(midDate, $viewport.width);
@@ -18,8 +19,7 @@
 </script>
 
 <div class:visible={visible} {style}>
-    NON-LOVE SONGS:
-    <ToggleLoveSongCategoryButtons loveSongType={LOVE_SONG_TYPE_CONSTANTS.notALoveSong} />
+    NON-LOVE SONGS{isLastStep && !!$typesTreatedAsNonLoveSongs.length ? ":" : ""}
 </div>
 
 <style>

@@ -1,10 +1,10 @@
 <script>
 	import viewport from "$stores/viewport";
-	import { getYPosForPercentage, TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE } from "$stores/forcePositionOptions-helper";
+	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
 	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep, precedingStepSpotlightedType } from "$stores/storySteps";
 
 	import { getXPosForYear } from "$data/data-utils";
-	import { LOVE_SONG_TYPE_CONSTANTS, LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP, TEXT_SHADOW_COLOR_MAP } from "$data/data-constants";
+	import { LOVE_SONG_TYPE_CONSTANTS, TEXT_SHADOW_COLOR_MAP } from "$data/data-constants";
 
 	import NonLoveSongLabel from "./NonLoveSongLabel.svelte";
 	import ToggleLoveSongCategoryButtons from "./ToggleLoveSongCategoryButtons.svelte";
@@ -34,7 +34,6 @@
 		return svgCoords.find(({x}) => x === decade);
 	}
 
-	const MIN_Y_HEIGHT_TO_FIT_LABEL = 0.04;
 	$: labelMetadata = tweenedCoords
 		.filter(({loveSongType}) => loveSongType !== LOVE_SONG_TYPE_CONSTANTS.notALoveSong && !$currentStoryStep.searchAndFilterState.typesTreatedAsNonLoveSongs.includes(loveSongType))
 		.reduce((acc, { loveSongType, svgCoords }) => {
@@ -71,7 +70,6 @@
 			style:font-weight={fontWeight}
 			style:text-shadow={textShadow}
 		>
-			{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}
 			<ToggleLoveSongCategoryButtons loveSongType={loveSongType} />
 		</div>
 	{/each}	
