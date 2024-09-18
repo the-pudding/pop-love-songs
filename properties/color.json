@@ -106,6 +106,29 @@
 			"courtship-and-anticipation": {
 				"value": "#000000"
 			}
+		},
+		"text-shadow": {
+			"serenade": {
+				"value": "#FAEEFF"
+			},
+			"longing-and-heartbreak": {
+				"value": "#AFD8FF"
+			},
+			"courtship-and-anticipation": {
+				"value": "#5EEBC4"
+			},
+			"sexual-confidence": {
+				"value": "#FF833C"
+			},
+			"its-complicated": {
+				"value": "#A69880"
+			},
+			"good-riddance": {
+				"value": "#C9BFFC"
+			},
+			"love-song-for-the-self": {
+				"value": "#FFF0AD"
+			}
 		}
 	}
 }

@@ -48,6 +48,15 @@
       "good-riddance": "#000000",
       "love-song-for-the-self": "#000000",
       "courtship-and-anticipation": "#000000"
+    },
+    "text-shadow": {
+      "serenade": "#FAEEFF",
+      "longing-and-heartbreak": "#AFD8FF",
+      "courtship-and-anticipation": "#5EEBC4",
+      "sexual-confidence": "#FF833C",
+      "its-complicated": "#A69880",
+      "good-riddance": "#C9BFFC",
+      "love-song-for-the-self": "#FFF0AD"
     }
   },
   "": {

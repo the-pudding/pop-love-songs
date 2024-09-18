@@ -76,6 +76,26 @@ export const ACCESSIBLY_CONTRASTING_COLOR_MAP = {
 		variables.color["a11y-contrast"]["courtship-and-anticipation"]
 };
 
+export const TEXT_SHADOW_COLOR_MAP = {
+	// We don't need it for this color (and didn't set it in the variables.json file)
+	// [LOVE_SONG_TYPE_CONSTANTS.notALoveSong]:
+	// 	variables.color["text-shadow"]["not-a-love-song"],
+	[LOVE_SONG_TYPE_CONSTANTS.serenade]:
+		variables.color["text-shadow"]["serenade"],
+	[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]:
+		variables.color["text-shadow"]["longing-and-heartbreak"],
+	[LOVE_SONG_TYPE_CONSTANTS.sexualConfidence]:
+		variables.color["text-shadow"]["sexual-confidence"],
+	[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]:
+		variables.color["text-shadow"]["its-complicated"],
+	[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]:
+		variables.color["text-shadow"]["good-riddance"],
+	[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]:
+		variables.color["text-shadow"]["love-song-for-the-self"],
+	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]:
+		variables.color["text-shadow"]["courtship-and-anticipation"]
+};
+
 const FORTY_PERCENT_OPACITY_HEX_POSTFIX = "66"; // 40% opacity
 export const UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP = Object.fromEntries(
 	Object.entries(LOVE_SONG_TYPE_COLOR_MAP).map(([key, value]) => [

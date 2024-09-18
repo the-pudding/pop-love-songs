@@ -4,10 +4,11 @@
 	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep, precedingStepSpotlightedType } from "$stores/storySteps";
 
 	import { getXPosForYear } from "$data/data-utils";
-	import { LOVE_SONG_TYPE_CONSTANTS, LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
+	import { LOVE_SONG_TYPE_CONSTANTS, LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP, TEXT_SHADOW_COLOR_MAP } from "$data/data-constants";
 
 	import NonLoveSongLabel from "./NonLoveSongLabel.svelte";
 	import LoveSongTypeCategoryButtons from "./LoveSongTypeCategoryButtons.svelte";
+	import { textShadow } from "$utils/styling";
 
     export let tweenedCoords;
 
@@ -47,7 +48,8 @@
 				y: getY(y0, y1, loveSongType, $viewport.height),
 				opacity: $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType) ? 0 : 1,
 				fontSize: `${baseFontSize + (wasJustSpotlighted ? 8 : 0)}px`,
-				fontWeight: wasJustSpotlighted ? "bold" : "normal"
+				fontWeight: wasJustSpotlighted ? "bold" : "normal",
+				textShadow: textShadow(2, 2, TEXT_SHADOW_COLOR_MAP[loveSongType])
 			}]
 		}, []);
 
@@ -56,7 +58,7 @@
 
 {#if show}
 	<NonLoveSongLabel />
-	{#each labelMetadata as { loveSongType, x, y, opacity, fontSize, fontWeight }}
+	{#each labelMetadata as { loveSongType, x, y, opacity, fontSize, fontWeight, textShadow }}
 		<div
 			class={$currentStoryStep.allowUserToChangeFilters ? '' : 'no-pointer-events' }
 			style:left={`${x}px`} style:top={`${y}px`}
@@ -64,6 +66,7 @@
 			style:opacity={opacity}
 			style:font-size={fontSize}
 			style:font-weight={fontWeight}
+			style:text-shadow={textShadow}
 		>
 			{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}
 			<LoveSongTypeCategoryButtons loveSongType={loveSongType} />
@@ -75,7 +78,7 @@
     div {
 		font-family: 'Atlas Grotesk', sans-serif;
 		position: fixed;
-		transform: translateY(-100%)
+		transform: translateY(-100%);
 	}
 
 	div.no-pointer-events {

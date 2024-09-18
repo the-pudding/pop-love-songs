@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Tue, 17 Sep 2024 03:45:10 GMT
+ * Generated on Wed, 18 Sep 2024 22:05:41 GMT
  */
 
 :root {
@@ -47,6 +47,13 @@
   --color-a11y-contrast-good-riddance: #000000;
   --color-a11y-contrast-love-song-for-the-self: #000000;
   --color-a11y-contrast-courtship-and-anticipation: #000000;
+  --color-text-shadow-serenade: #faeeff;
+  --color-text-shadow-longing-and-heartbreak: #afd8ff;
+  --color-text-shadow-courtship-and-anticipation: #5eebc4;
+  --color-text-shadow-sexual-confidence: #ff833c;
+  --color-text-shadow-its-complicated: #a69880;
+  --color-text-shadow-good-riddance: #c9bffc;
+  --color-text-shadow-love-song-for-the-self: #fff0ad;
   --12px: 0.75rem;
   --14px: 0.875rem;
   --16px: 1rem;
