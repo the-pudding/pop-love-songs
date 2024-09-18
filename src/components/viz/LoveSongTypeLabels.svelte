@@ -25,8 +25,8 @@
 	const getX = (x, width) => {
 		return getXPosForYear(x, width);
 	}
-	const getY = (y0, y1, loveSongType, height) => {
-		return getYPosForPercentage(y0, height) - TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE * height / 2;
+	const getY = (y0, height) => {
+		return getYPosForPercentage(y0, height);
 	}
 
 	const findPoint = ({svgCoords, loveSongType}) => {
@@ -40,14 +40,17 @@
 		.reduce((acc, { loveSongType, svgCoords }) => {
 			const {x, y0, y1} = findPoint({svgCoords, loveSongType}) || {};
 			if (!x) return acc;
-			const baseFontSize = (y0 - y1) < 2 * MIN_Y_HEIGHT_TO_FIT_LABEL ? 12 : 16;
+
 			const wasJustSpotlighted = $precedingStepSpotlightedType === loveSongType;
+
+			const baseFontSize = 16;
+			const fontAdjustment = (wasJustSpotlighted && !$viewport.isLikelyInMobileLandscape ? 8 : 0) + ($viewport.isLikelyInMobileLandscape ? -4 : 0);
 			return [... acc, {
 				loveSongType,
 				x: getX(x, $viewport.width),
-				y: getY(y0, y1, loveSongType, $viewport.height),
+				y: getY(y0, $viewport.height),
 				opacity: $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType) ? 0 : 1,
-				fontSize: `${baseFontSize + (wasJustSpotlighted ? 8 : 0)}px`,
+				fontSize: `${baseFontSize + fontAdjustment}px`,
 				fontWeight: wasJustSpotlighted ? "bold" : "normal",
 				textShadow: textShadow(2, 2, TEXT_SHADOW_COLOR_MAP[loveSongType])
 			}]
@@ -78,7 +81,8 @@
     div {
 		font-family: 'Atlas Grotesk', sans-serif;
 		position: fixed;
-		transform: translateY(-100%);
+		/* LOL for some reason this % is perfect */
+		transform: translateY(-95%);
 	}
 
 	div.no-pointer-events {
