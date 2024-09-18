@@ -2,6 +2,8 @@
 	import viewport from "$stores/viewport";
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
 	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep, precedingStepSpotlightedType } from "$stores/storySteps";
+	import { nonLoveSongLabelBottomLeftCoords } from "$stores/labels";
+	import { typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
 
 	import { getXPosForYear } from "$data/data-utils";
 	import { LOVE_SONG_TYPE_CONSTANTS, TEXT_SHADOW_COLOR_MAP } from "$data/data-constants";
@@ -22,10 +24,13 @@
 		[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: 2000,
 	}
 
-	const getX = (x, width) => {
+	const getX = (x, width, orderInNonLoveSongStack, nonLoveSongX) => {
+		if (orderInNonLoveSongStack !== -1) return nonLoveSongX;
 		return getXPosForYear(x, width);
 	}
-	const getY = (y0, height) => {
+	const getY = (y0, height, orderInNonLoveSongStack, nonLoveSongY) => {
+		console.log({orderInNonLoveSongStack, nonLoveSongY})
+		if (orderInNonLoveSongStack !== -1) return nonLoveSongY;
 		return getYPosForPercentage(y0, height);
 	}
 
@@ -41,13 +46,16 @@
 			if (!x) return acc;
 
 			const wasJustSpotlighted = $precedingStepSpotlightedType === loveSongType;
+			const orderInNonLoveSongStack = $typesTreatedAsNonLoveSongs.findIndex((type) => type === loveSongType);
+			const isTreatedAsNonLoveSong = orderInNonLoveSongStack !== -1;
 
 			const baseFontSize = 16;
 			const fontAdjustment = (wasJustSpotlighted && !$viewport.isLikelyInMobileLandscape ? 8 : 0) + ($viewport.isLikelyInMobileLandscape ? -4 : 0);
 			return [... acc, {
 				loveSongType,
-				x: getX(x, $viewport.width),
-				y: getY(y0, $viewport.height),
+				x: getX(x, $viewport.width, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.x),
+				y: getY(y0, $viewport.height, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.y),
+				translate: `translate(${isTreatedAsNonLoveSong ? -50 : 0}%, ${isTreatedAsNonLoveSong ? 100 + 100 * orderInNonLoveSongStack : -95}%)`,
 				opacity: $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType) ? 0 : 1,
 				fontSize: `${baseFontSize + fontAdjustment}px`,
 				fontWeight: wasJustSpotlighted ? "bold" : "normal",
@@ -60,10 +68,11 @@
 
 {#if show}
 	<NonLoveSongLabel />
-	{#each labelMetadata as { loveSongType, x, y, opacity, fontSize, fontWeight, textShadow }}
+	{#each labelMetadata as { loveSongType, x, y, translate, opacity, fontSize, fontWeight, textShadow }}
 		<div
 			class={$currentStoryStep.allowUserToChangeFilters ? '' : 'no-pointer-events' }
 			style:left={`${x}px`} style:top={`${y}px`}
+			style:transform={translate}
 			fill="black" 
 			style:opacity={opacity}
 			style:font-size={fontSize}
@@ -79,8 +88,9 @@
     div {
 		font-family: 'Atlas Grotesk', sans-serif;
 		position: fixed;
-		/* LOL for some reason this % is perfect */
-		transform: translateY(-95%);
+		transition: transform calc(var(--chart-transition-opacity-duration) * 1ms) ease, 
+			left calc(var(--chart-transition-opacity-duration) * 1ms) ease,
+			top calc(var(--chart-transition-opacity-duration) * 1ms) ease,
 	}
 
 	div.no-pointer-events {

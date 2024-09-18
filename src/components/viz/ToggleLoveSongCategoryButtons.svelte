@@ -19,16 +19,15 @@
 	}
 
 </script>
-    {#if $currentStoryStep.allowUserToChangeFilters}
-        <span class="label-button-group">
-			<button on:click={toggleLoveSongStatus(loveSongType)}>
-				{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}
-				<XandAddButton rotateIntoPlusSign={isTreatedAsNonLoveSong} />
-			</button>
-        </span>
-    {/if}
-	
-
+    
+<span class="label-button-group">
+	{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}
+	{#if $currentStoryStep.allowUserToChangeFilters}
+	<button on:click={toggleLoveSongStatus(loveSongType)}>
+		<XandAddButton rotateIntoPlusSign={isTreatedAsNonLoveSong} />
+	</button>
+	{/if}
+</span>
 
 <style>
 	span.label-button-group button {
