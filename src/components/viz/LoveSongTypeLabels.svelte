@@ -1,7 +1,7 @@
 <script>
 	import viewport from "$stores/viewport";
 	import { getYPosForPercentage, TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE } from "$stores/forcePositionOptions-helper";
-	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep } from "$stores/storySteps";
+	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep, precedingStepSpotlightedType } from "$stores/storySteps";
 
 	import { getXPosForYear } from "$data/data-utils";
 	import { LOVE_SONG_TYPE_CONSTANTS, LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
@@ -18,7 +18,7 @@
 		[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: 2000,
 		[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: 2000,
 		[LOVE_SONG_TYPE_CONSTANTS.sexualConfidence]: 2000,
-		[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: 2010,
+		[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: 2000,
 	}
 
 	const getX = (x, width) => {
@@ -39,13 +39,15 @@
 		.reduce((acc, { loveSongType, svgCoords }) => {
 			const {x, y0, y1} = findPoint({svgCoords, loveSongType}) || {};
 			if (!x) return acc;
-
+			const baseFontSize = (y0 - y1) < 2 * MIN_Y_HEIGHT_TO_FIT_LABEL ? 12 : 16;
+			const wasJustSpotlighted = $precedingStepSpotlightedType === loveSongType;
 			return [... acc, {
 				loveSongType,
 				x: getX(x, $viewport.width),
 				y: getY(y0, y1, loveSongType, $viewport.height),
 				opacity: $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType) ? 0 : 1,
-				fontSize: (y0 - y1) < 2 * MIN_Y_HEIGHT_TO_FIT_LABEL ? "12px" : "16px"
+				fontSize: `${baseFontSize + (wasJustSpotlighted ? 8 : 0)}px`,
+				fontWeight: wasJustSpotlighted ? "bold" : "normal"
 			}]
 		}, []);
 
@@ -54,8 +56,15 @@
 
 {#if show}
 	<NonLoveSongLabel />
-	{#each labelMetadata as { loveSongType, x, y, opacity, fontSize }}
-		<div class={$currentStoryStep.allowUserToChangeFilters ? '' : 'no-pointer-events' } style:left={`${x}px`} style:top={`${y}px`} fill="black" style:opacity={opacity} style:font-size={fontSize}>
+	{#each labelMetadata as { loveSongType, x, y, opacity, fontSize, fontWeight }}
+		<div
+			class={$currentStoryStep.allowUserToChangeFilters ? '' : 'no-pointer-events' }
+			style:left={`${x}px`} style:top={`${y}px`}
+			fill="black" 
+			style:opacity={opacity}
+			style:font-size={fontSize}
+			style:font-weight={fontWeight}
+		>
 			{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}
 			<LoveSongTypeCategoryButtons loveSongType={loveSongType} />
 		</div>

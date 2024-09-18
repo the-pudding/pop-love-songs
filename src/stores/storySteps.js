@@ -739,11 +739,26 @@ export const currentStoryStep = derived(
 	([$currentStoryStepIndex]) => storySteps[$currentStoryStepIndex]
 );
 
+const spotlightedLoveSongType = (storyStep) => {
+	if (!storyStep) return false;
+	if (
+		storyStep.searchAndFilterState.selectedLoveSongTypes.length === 1 &&
+		!storyStep.visualEncodings.showAggregateSnakeChart
+	) {
+		return storyStep.searchAndFilterState.selectedLoveSongTypes[0];
+	}
+	return false;
+};
+
 export const aSingleLoveSongTypeIsSpotlighted = derived(
 	[currentStoryStep],
-	([$currentStoryStep]) =>
-		$currentStoryStep.searchAndFilterState.selectedLoveSongTypes.length === 1 &&
-		!$currentStoryStep.visualEncodings.showAggregateSnakeChart
+	([$currentStoryStep]) => !!spotlightedLoveSongType($currentStoryStep)
+);
+
+export const precedingStepSpotlightedType = derived(
+	[currentStoryStepIndex],
+	([$currentStoryStepIndex]) =>
+		spotlightedLoveSongType(storySteps[$currentStoryStepIndex - 1])
 );
 
 export const restartBubbles = derived(
