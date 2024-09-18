@@ -361,6 +361,8 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			restartBubblesOnReturnInto: false,
+			forceXStrength: 10, // it is FAR more important that the bubble is accurate to the time encoding
+			forceYStrength: 3, // the y position can be a bit more flexible
 			songAnnotations: [
 				{
 					song: "Blinding Lights",
