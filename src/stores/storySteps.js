@@ -361,8 +361,9 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			restartBubblesOnReturnInto: false,
-			forceXStrength: 10, // it is FAR more important that the bubble is accurate to the time encoding
-			forceYStrength: 3, // the y position can be a bit more flexible
+			// Since we're introducing (and pointing out) sorting here, it's key that they are nicely herded
+			forceXStrength: 10,
+			forceYStrength: 3,
 			songAnnotations: [
 				{
 					song: "Blinding Lights",
