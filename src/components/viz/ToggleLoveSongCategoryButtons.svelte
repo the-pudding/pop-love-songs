@@ -1,4 +1,5 @@
 <script>
+	import XandAddButton from "$components/helpers/XandAddButton.svelte";
 	import { LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP, LOVE_SONG_TYPE_CONSTANTS } from "$data/data-constants";
 	import { typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
 	import { currentStoryStep } from "$stores/storySteps";
@@ -22,10 +23,17 @@
         <span class="label-button-group">
             {#if loveSongType === LOVE_SONG_TYPE_CONSTANTS.notALoveSong}
                 {#each $typesTreatedAsNonLoveSongs as nonLoveSongType}
-                    <button on:click={toggleLoveSongStatus(nonLoveSongType)}>add back {LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[nonLoveSongType]}</button>
+                    <button on:click={toggleLoveSongStatus(nonLoveSongType)}>
+						{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[nonLoveSongType]}
+						<XandAddButton rotateIntoPlusSign={true} />
+					</button>
+					
                 {/each}
             {:else}
-                <button on:click={toggleLoveSongStatus(loveSongType)}>remove</button>
+                <button on:click={toggleLoveSongStatus(loveSongType)}>
+					<XandAddButton rotateIntoPlusSign={false} />
+				</button>
+				
             {/if}
         </span>
     {/if}

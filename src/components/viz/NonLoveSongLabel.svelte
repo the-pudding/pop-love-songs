@@ -5,7 +5,7 @@
 	import { currentStoryStep } from "$stores/storySteps";
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
     import viewport from "$stores/viewport";
-	import LoveSongTypeCategoryButtons from "./LoveSongTypeCategoryButtons.svelte";
+	import ToggleLoveSongCategoryButtons from "./ToggleLoveSongCategoryButtons.svelte";
 
     const midDate = MIN_DATE + (MAX_DATE - MIN_DATE) / 2;
     $: x = getXPosForYear(midDate, $viewport.width);
@@ -18,8 +18,8 @@
 </script>
 
 <div class:visible={visible} {style}>
-    NON-LOVE SONGS
-    <LoveSongTypeCategoryButtons loveSongType={LOVE_SONG_TYPE_CONSTANTS.notALoveSong} />
+    NON-LOVE SONGS:
+    <ToggleLoveSongCategoryButtons loveSongType={LOVE_SONG_TYPE_CONSTANTS.notALoveSong} />
 </div>
 
 <style>

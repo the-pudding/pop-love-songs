@@ -7,7 +7,7 @@
 	import { LOVE_SONG_TYPE_CONSTANTS, LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP, TEXT_SHADOW_COLOR_MAP } from "$data/data-constants";
 
 	import NonLoveSongLabel from "./NonLoveSongLabel.svelte";
-	import LoveSongTypeCategoryButtons from "./LoveSongTypeCategoryButtons.svelte";
+	import ToggleLoveSongCategoryButtons from "./ToggleLoveSongCategoryButtons.svelte";
 	import { textShadow } from "$utils/styling";
 
     export let tweenedCoords;
@@ -72,7 +72,7 @@
 			style:text-shadow={textShadow}
 		>
 			{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}
-			<LoveSongTypeCategoryButtons loveSongType={loveSongType} />
+			<ToggleLoveSongCategoryButtons loveSongType={loveSongType} />
 		</div>
 	{/each}	
 {/if}
