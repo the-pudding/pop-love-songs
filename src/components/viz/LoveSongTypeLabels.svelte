@@ -11,6 +11,16 @@
 
     export let tweenedCoords;
 
+	const DECADE_TO_PLACE_LABEL_IN = {
+		[LOVE_SONG_TYPE_CONSTANTS.serenade]: 1970,
+		[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: 1970,
+		[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: 1980,
+		[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: 2000,
+		[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: 2000,
+		[LOVE_SONG_TYPE_CONSTANTS.sexualConfidence]: 2000,
+		[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: 2010,
+	}
+
 	const getX = (x, width) => {
 		return getXPosForYear(x, width);
 	}
@@ -18,12 +28,16 @@
 		return getYPosForPercentage(y0, height) - 0.035 * height;
 	}
 
+	const findPoint = ({svgCoords, loveSongType}) => {
+		const decade = DECADE_TO_PLACE_LABEL_IN[loveSongType];
+		return svgCoords.find(({x}) => x === decade);
+	}
+
+	const MIN_Y_HEIGHT_TO_FIT_LABEL = 0.04;
 	$: labelMetadata = tweenedCoords
 		.filter(({loveSongType}) => loveSongType !== LOVE_SONG_TYPE_CONSTANTS.notALoveSong)
 		.reduce((acc, { loveSongType, svgCoords }) => {
-			const MIN_Y_HEIGHT_TO_FIT_LABEL = 0.04;
-			// TEMP: we don't want to place labels on the very left (first) decade, since that's where the 60s annotations goes
-			const {x, y0, y1} = svgCoords.find(({y0, y1}) => (y0 - y1) >= MIN_Y_HEIGHT_TO_FIT_LABEL) || {};
+			const {x, y0, y1} = findPoint({svgCoords, loveSongType}) || {};
 			if (!x) return acc;
 
 			return [... acc, {
@@ -31,8 +45,7 @@
 				x: getX(x, $viewport.width),
 				y: getY(y0, y1, loveSongType, $viewport.height),
 				opacity: $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType) ? 0 : 1,
-				// TODO: fixed by Michelle! use normal css-case even in svelte properties on components.
-				fontSize: (y0 - y1) < 2 * MIN_Y_HEIGHT_TO_FIT_LABEL ? "clamp(0.5rem, 2vw, .75rem)" : "clamp(1rem, 2vw, 1.25rem)"
+				fontSize: (y0 - y1) < 2 * MIN_Y_HEIGHT_TO_FIT_LABEL ? "12px" : "16px"
 			}]
 		}, []);
 
@@ -52,7 +65,6 @@
 <style>
     div {
 		font-family: 'Atlas Grotesk', sans-serif;
-		/* font-size: clamp(1rem, 2vw, 1.25rem); */
 		position: fixed;
 	}
 
