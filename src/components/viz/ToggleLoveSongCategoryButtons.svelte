@@ -3,6 +3,7 @@
 	import { LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
 	import { typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
 	import { currentStoryStep } from "$stores/storySteps";
+	import viewport from "$stores/viewport";
 	
 
     export let loveSongType;
@@ -20,21 +21,33 @@
 
 </script>
     
-<span class="label-button-group">
-	{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}
+<div class="label-button-group">
+	<div class="label">{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}</div>
 	{#if $currentStoryStep.allowUserToChangeFilters}
-	<button on:click={toggleLoveSongStatus(loveSongType)}>
-		<XandAddButton rotateIntoPlusSign={isTreatedAsNonLoveSong} />
-	</button>
+		<button on:click={toggleLoveSongStatus(loveSongType)}>
+			<XandAddButton rotateIntoPlusSign={isTreatedAsNonLoveSong} diameter={$viewport.isLikelyInMobileLandscape ? 24 : 28} />
+		</button>
 	{/if}
-</span>
+</div>
 
 <style>
-	span.label-button-group button {
+	.label-button-group {
+		display: flex;
+		align-items: center;
+	}
+	.label {
+
+	}
+	button {
 		font-size: 12px;
-        margin-right: 4px;
-		margin-top: 4px;
+		margin-top: 2px;
+        margin-left: 6px;
 		background: none;
     	padding: 0;
+		transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.575);
+	}
+
+	button:hover {
+		transform: scale(1.15);
 	}
 </style>
