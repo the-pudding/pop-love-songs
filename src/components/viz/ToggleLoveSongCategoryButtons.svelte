@@ -27,19 +27,16 @@
 	}
 </script>
 
-
 <button on:click={toggleLoveSongStatus(loveSongType)}>
 	<div
-		class={$isLastStep ? 'allow-toggle' : 'no-pointer-events' }
+		class={`container ${$isLastStep ? 'allow-toggle' : ''}` }
 		style:left={`${x}px`} style:top={`${y}px`}
 		style:transform={translate}
-		fill="black" 
 		style:opacity={opacity}
 		style:font-size={fontSize}
 		style:font-weight={fontWeight}
 		style:text-shadow={textShadow}
 	>
-	
 		<div class="label">{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}</div>
 		{#if $currentStoryStep.allowUserToChangeFilters}
 			<XandAddButton rotateIntoPlusSign={isTreatedAsNonLoveSong} diameter={$viewport.isLikelyInMobileLandscape ? 24 : 28} />
@@ -48,34 +45,24 @@
 </button>
 
 <style>
-	.allow-toggle, .no-pointer-events {
+
+	.container {
 		font-family: 'Atlas Grotesk', sans-serif;
 		position: fixed;
+		display: flex;
+		align-items: center;
+		pointer-events: none;
 	}
-	.allow-toggle {
+
+	.container.allow-toggle {
+		pointer-events: all;
 		transition: transform calc(var(--chart-transition-opacity-duration) * 1ms), 
 			left calc(var(--chart-transition-opacity-duration) * 1ms),
 			top calc(var(--chart-transition-opacity-duration) * 1ms);
 		transition-delay: calc(var(--chart-transition-opacity-duration) * 0.5ms), 0s, 0s;
 	}
-	.no-pointer-events {
-		pointer-events: none;
-	}
-
-	button > div {
-		display: flex;
-		align-items: center;
-
-		cursor: pointer;
-		transition: transform 0.3s ease;
-	}
-
-	button > div:hover {
-		transform: scale(1.02);
-	}	
 
 	.label {
 		margin-right: 4px;
 	}
-
 </style>
