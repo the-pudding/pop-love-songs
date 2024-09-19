@@ -7,5 +7,11 @@
 <input type="text" placeholder={placeholder} bind:value={searchString} />
 
 <style>
-    
+    input {
+        background-color: var(--color-background-cream);
+        border-radius: 12px;
+        margin-right: 16px;
+        font-family: var(--sans);
+        font-style: italic;
+    }
 </style>

@@ -34,6 +34,11 @@ export const formatYearForDisplay = (year) => {
 	// return `'${shortNumber > 9 ? shortNumber : "0" + shortNumber}`;
 };
 
+export const abbreviateYearForDisplay = (year) => {
+	const shortNumber = Math.floor(year % 100);
+	return `'${shortNumber > 9 ? shortNumber : "0" + shortNumber}s`;
+};
+
 export const formatSongTitleForDisplay = (title = "") =>
 	title.split("(")[0].trim(); // songs get super long when they're like "San Francisco (Be Sure to Wear Flowers in Your Hair)"
 
