@@ -33,5 +33,8 @@
 	span.label-button-group button {
 		font-size: 12px;
         margin-right: 4px;
+		margin-top: 4px;
+		background: none;
+    	padding: 0;
 	}
 </style>
