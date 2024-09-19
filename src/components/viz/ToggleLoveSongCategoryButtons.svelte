@@ -28,23 +28,25 @@
 </script>
 
 
-<div
-	class={$isLastStep ? 'allow-toggle' : 'no-pointer-events' }
-	style:left={`${x}px`} style:top={`${y}px`}
-	style:transform={translate}
-	fill="black" 
-	style:opacity={opacity}
-	style:font-size={fontSize}
-	style:font-weight={fontWeight}
-	style:text-shadow={textShadow}
->
-	<div role="button" class="label-button-group" on:click={toggleLoveSongStatus(loveSongType)}>
+<button on:click={toggleLoveSongStatus(loveSongType)}>
+	<div
+		class={$isLastStep ? 'allow-toggle' : 'no-pointer-events' }
+		style:left={`${x}px`} style:top={`${y}px`}
+		style:transform={translate}
+		fill="black" 
+		style:opacity={opacity}
+		style:font-size={fontSize}
+		style:font-weight={fontWeight}
+		style:text-shadow={textShadow}
+	>
+	
 		<div class="label">{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}</div>
 		{#if $currentStoryStep.allowUserToChangeFilters}
 			<XandAddButton rotateIntoPlusSign={isTreatedAsNonLoveSong} diameter={$viewport.isLikelyInMobileLandscape ? 24 : 28} />
 		{/if}
 	</div>
-</div>
+</button>
+
 <style>
 	.allow-toggle, .no-pointer-events {
 		font-family: 'Atlas Grotesk', sans-serif;
@@ -60,7 +62,7 @@
 		pointer-events: none;
 	}
 
-	.label-button-group {
+	button > div {
 		display: flex;
 		align-items: center;
 
@@ -68,7 +70,7 @@
 		transition: transform 0.3s ease;
 	}
 
-	.label-button-group:hover {
+	button > div:hover {
 		transform: scale(1.02);
 	}	
 
