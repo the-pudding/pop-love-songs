@@ -2,7 +2,7 @@
 	import { fonts } from './../../../.svelte-kit/output/server/nodes/0.js';
 	import viewport from "$stores/viewport";
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
-	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep, precedingStepSpotlightedType } from "$stores/storySteps";
+	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep, isLastStep, precedingStepSpotlightedType } from "$stores/storySteps";
 	import { nonLoveSongLabelBottomLeftCoords } from "$stores/labels";
 	import { typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
 
@@ -76,7 +76,7 @@
 	<NonLoveSongLabel />
 	{#each labelMetadata as { loveSongType, x, y, translate, opacity, fontSize, fontWeight, textShadow }}
 		<div
-			class={$currentStoryStep.allowUserToChangeFilters ? '' : 'no-pointer-events' }
+			class={$isLastStep ? 'allow-toggle' : 'no-pointer-events' }
 			style:left={`${x}px`} style:top={`${y}px`}
 			style:transform={translate}
 			fill="black" 
@@ -94,11 +94,13 @@
     div {
 		font-family: 'Atlas Grotesk', sans-serif;
 		position: fixed;
-		
-		transition: transform calc(var(--chart-transition-opacity-duration) * 1ms) ease, 
-			left calc(var(--chart-transition-opacity-duration) * 1ms) ease,
-			top calc(var(--chart-transition-opacity-duration) * 1ms) ease;
-		transition-delay: calc(var(--chart-transition-opacity-duration) * 1ms), 0s, 0s;
+	}
+
+	.allow-toggle {
+		transition: transform calc(var(--chart-transition-opacity-duration) * 1ms), 
+			left calc(var(--chart-transition-opacity-duration) * 1ms),
+			top calc(var(--chart-transition-opacity-duration) * 1ms);
+		transition-delay: calc(var(--chart-transition-opacity-duration) * 0.5ms), 0s, 0s;
 	}
 
 	div.no-pointer-events {
