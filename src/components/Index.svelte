@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 
+	import PerformerAndSongSearchBars from "./search/PerformerAndSongSearchBars.svelte";
 	import SnakeAndBubbleChart from "./viz/SnakeAndBubble.Chart.svelte";
 	import HeadlinesAboutLoveSongDecline from "./story-steps/HeadlinesAboutLoveSongDecline.svelte";
 	import OpeningComment from "./story-steps/OpeningComment.svelte";
@@ -13,9 +14,8 @@
 	import SongTooltip from "./viz/SongTooltip.svelte";
 	import Audio from "./audio/Audio.svelte";
 	
-	import SearchAndFilterTopBar from "./viz/search-and-filter-top-bar/SearchAndFilterTopBar.svelte";
 	
-	import { currentStoryStep, currentStoryStepIndex } from "$stores/storySteps";
+	import { currentStoryStep, currentStoryStepIndex, showSearchBars } from "$stores/storySteps";
 	import { playing } from "$stores/audio.js";
 	// TODO: disable devMode in production
 	import devMode from "$stores/devMode";
@@ -42,8 +42,8 @@
 {/if}
 
 <article>
-	{#if $devMode || $currentStoryStep.allowUserToChangeFilters}
-		<SearchAndFilterTopBar />
+	{#if $devMode || $showSearchBars}
+		<PerformerAndSongSearchBars />
 	{/if}
 
 	{#if urlParsed}

@@ -651,8 +651,7 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		},
-		showLoveSongChange: true,
-		allowUserToChangeFilters: true
+		showLoveSongChange: true
 	}
 };
 
@@ -759,6 +758,13 @@ export const precedingStepSpotlightedType = derived(
 	[currentStoryStepIndex],
 	([$currentStoryStepIndex]) =>
 		spotlightedLoveSongType(storySteps[$currentStoryStepIndex - 1])
+);
+
+export const showSearchBars = derived(
+	[aSingleLoveSongTypeIsSpotlighted, viewport, isLastStep],
+	([$aSingleLoveSongTypeIsSpotlighted, $viewport, $isLastStep]) =>
+		!$viewport.isLikelyInMobileLandscape &&
+		($aSingleLoveSongTypeIsSpotlighted || $isLastStep)
 );
 
 export const restartBubbles = derived(

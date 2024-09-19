@@ -2,7 +2,7 @@
 	import XandAddButton from "$components/helpers/XandAddButton.svelte";
 	import { ACCESSIBLY_CONTRASTING_COLOR_MAP, LOVE_SONG_TYPE_COLOR_MAP, LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
 	import { typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
-	import { currentStoryStep, isLastStep } from "$stores/storySteps";
+	import { isLastStep } from "$stores/storySteps";
 	import viewport from "$stores/viewport";
 	
 	export let loveSongType;
@@ -38,7 +38,7 @@
 		style:text-shadow={textShadow}
 	>
 		<div class="label">{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}</div>
-		{#if $currentStoryStep.allowUserToChangeFilters}
+		{#if $isLastStep}
 			<XandAddButton
 				rotateIntoPlusSign={isTreatedAsNonLoveSong}
 				diameter={$viewport.isLikelyInMobileLandscape ? 24 : 28} 
