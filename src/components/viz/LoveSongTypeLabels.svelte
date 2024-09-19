@@ -1,4 +1,5 @@
 <script>
+	import { fonts } from './../../../.svelte-kit/output/server/nodes/0.js';
 	import viewport from "$stores/viewport";
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
 	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep, precedingStepSpotlightedType } from "$stores/storySteps";
@@ -28,9 +29,10 @@
 		if (orderInNonLoveSongStack !== -1) return nonLoveSongX;
 		return getXPosForYear(x, width);
 	}
-	const getY = (y0, height, orderInNonLoveSongStack, nonLoveSongY) => {
-		console.log({orderInNonLoveSongStack, nonLoveSongY})
-		if (orderInNonLoveSongStack !== -1) return nonLoveSongY;
+	const getY = (y0, height, orderInNonLoveSongStack, nonLoveSongY, labelHeight) => {
+		if (orderInNonLoveSongStack !== -1) {
+			return nonLoveSongY + labelHeight * (2 + orderInNonLoveSongStack);
+		}
 		return getYPosForPercentage(y0, height);
 	}
 
@@ -51,13 +53,17 @@
 
 			const baseFontSize = 16;
 			const fontAdjustment = (wasJustSpotlighted && !$viewport.isLikelyInMobileLandscape ? 8 : 0) + ($viewport.isLikelyInMobileLandscape ? -4 : 0);
+			const fontSize = baseFontSize + fontAdjustment;
+			const labelHeight = fontSize * 1.5;
 			return [... acc, {
 				loveSongType,
+				labelHeight,
 				x: getX(x, $viewport.width, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.x),
-				y: getY(y0, $viewport.height, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.y),
-				translate: `translate(${isTreatedAsNonLoveSong ? -50 : 0}%, ${isTreatedAsNonLoveSong ? 100 + 100 * orderInNonLoveSongStack : -95}%)`,
+				y: getY(y0, $viewport.height, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.y, labelHeight),
+				// TODO: if we decide to keep this cool flying transition and want it NOT wonky, then we need to either left align, or use elements width to directly add shift to left property
+				translate: `translate(${isTreatedAsNonLoveSong ? -50 : 0}%, -95%)`,
 				opacity: $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType) ? 0 : 1,
-				fontSize: `${baseFontSize + fontAdjustment}px`,
+				fontSize: `${fontSize}px`,
 				fontWeight: wasJustSpotlighted ? "bold" : "normal",
 				textShadow: textShadow(2, 2, TEXT_SHADOW_COLOR_MAP[loveSongType])
 			}]
@@ -88,9 +94,11 @@
     div {
 		font-family: 'Atlas Grotesk', sans-serif;
 		position: fixed;
+		
 		transition: transform calc(var(--chart-transition-opacity-duration) * 1ms) ease, 
 			left calc(var(--chart-transition-opacity-duration) * 1ms) ease,
-			top calc(var(--chart-transition-opacity-duration) * 1ms) ease,
+			top calc(var(--chart-transition-opacity-duration) * 1ms) ease;
+		transition-delay: calc(var(--chart-transition-opacity-duration) * 1ms), 0s, 0s;
 	}
 
 	div.no-pointer-events {
