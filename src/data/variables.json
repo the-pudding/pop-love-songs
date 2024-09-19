@@ -40,14 +40,14 @@
     "love-song-for-the-self": "#FFD700",
     "courtship-and-anticipation": "#02D098",
     "a11y-contrast": {
-      "not-a-love-song": "#000000",
-      "serenade": "#000000",
-      "longing-and-heartbreak": "#000000",
-      "sexual-confidence": "#000000",
+      "not-a-love-song": "black",
+      "serenade": "black",
+      "longing-and-heartbreak": "black",
+      "sexual-confidence": "black",
       "its-complicated": "white",
-      "good-riddance": "#000000",
-      "love-song-for-the-self": "#000000",
-      "courtship-and-anticipation": "#000000"
+      "good-riddance": "black",
+      "love-song-for-the-self": "black",
+      "courtship-and-anticipation": "black"
     },
     "text-shadow": {
       "serenade": "#FAEEFF",

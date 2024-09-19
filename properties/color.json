@@ -83,28 +83,28 @@
 		},
 		"a11y-contrast": {
 			"not-a-love-song": {
-				"value": "#000000"
+				"value": "black"
 			},
 			"serenade": {
-				"value": "#000000"
+				"value": "black"
 			},
 			"longing-and-heartbreak": {
-				"value": "#000000"
+				"value": "black"
 			},
 			"sexual-confidence": {
-				"value": "#000000"
+				"value": "black"
 			},
 			"its-complicated": {
 				"value": "white"
 			},
 			"good-riddance": {
-				"value": "#000000"
+				"value": "black"
 			},
 			"love-song-for-the-self": {
-				"value": "#000000"
+				"value": "black"
 			},
 			"courtship-and-anticipation": {
-				"value": "#000000"
+				"value": "black"
 			}
 		},
 		"text-shadow": {

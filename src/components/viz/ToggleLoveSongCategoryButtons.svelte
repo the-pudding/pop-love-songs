@@ -1,6 +1,6 @@
 <script>
 	import XandAddButton from "$components/helpers/XandAddButton.svelte";
-	import { LOVE_SONG_TYPE_COLOR_MAP, LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
+	import { ACCESSIBLY_CONTRASTING_COLOR_MAP, LOVE_SONG_TYPE_COLOR_MAP, LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
 	import { typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
 	import { currentStoryStep, isLastStep } from "$stores/storySteps";
 	import viewport from "$stores/viewport";
@@ -43,6 +43,7 @@
 				rotateIntoPlusSign={isTreatedAsNonLoveSong}
 				diameter={$viewport.isLikelyInMobileLandscape ? 24 : 28} 
 				selectionColor={LOVE_SONG_TYPE_COLOR_MAP[loveSongType]}
+				selectionBackgroundColor={ACCESSIBLY_CONTRASTING_COLOR_MAP[loveSongType]}
 				isSelected={isTreatedAsNonLoveSong}
 			/>
 		{/if}
