@@ -18,15 +18,13 @@
 			}
 		});
 	}
-
 </script>
-    
-<div class="label-button-group">
+
+<!-- TODO: this should be a button, but that screws up the inheritted text style from the parent. Solution: use slots, I think. Or just move the outer layer into this component. -->
+<div role="button" class="label-button-group" on:click={toggleLoveSongStatus(loveSongType)}>
 	<div class="label">{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}</div>
 	{#if $currentStoryStep.allowUserToChangeFilters}
-		<button on:click={toggleLoveSongStatus(loveSongType)}>
-			<XandAddButton rotateIntoPlusSign={isTreatedAsNonLoveSong} diameter={$viewport.isLikelyInMobileLandscape ? 24 : 28} />
-		</button>
+		<XandAddButton rotateIntoPlusSign={isTreatedAsNonLoveSong} diameter={$viewport.isLikelyInMobileLandscape ? 24 : 28} />
 	{/if}
 </div>
 
@@ -34,20 +32,12 @@
 	.label-button-group {
 		display: flex;
 		align-items: center;
-	}
-	.label {
 
-	}
-	button {
-		font-size: 12px;
-		margin-top: 2px;
-        margin-left: 6px;
-		background: none;
-    	padding: 0;
-		transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.575);
+		cursor: pointer;
+		transition: transform 0.3s ease;
 	}
 
-	button:hover {
-		transform: scale(1.15);
-	}
+	.label-button-group:hover {
+		transform: scale(1.02);
+	}	
 </style>
