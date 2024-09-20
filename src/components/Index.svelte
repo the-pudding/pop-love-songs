@@ -6,7 +6,6 @@
 	import HeadlinesAboutLoveSongDecline from "./story-steps/HeadlinesAboutLoveSongDecline.svelte";
 	import OpeningComment from "./story-steps/OpeningComment.svelte";
 	import TitleCard from "./story-steps/TitleCard.svelte";
-	import SideBar from "./viz/SideBar.svelte";
 	import StoryStepNavigationAndText from "./story-steps/StoryStepNavigationAndText.svelte";
 	
 	import SongAnnotations from "./viz/SongAnnotations.svelte";
@@ -17,15 +16,7 @@
 	
 	import { currentStoryStep, currentStoryStepIndex, showSearchBars } from "$stores/storySteps";
 	import { playing } from "$stores/audio.js";
-	// TODO: disable devMode in production
-	import devMode from "$stores/devMode";
 	import Header from "./Header.svelte";
-	
-	$: handleKeyPress = (e) => {
-		if (e.key === "d") {
-			devMode.update((devMode) => !devMode);
-		}
-	};
 
 	// Wait until after we've mounted (and thus pulled the story step from the URL)
 	// TODO: this doesn't seem to actually work. Instead, just create a store that StoryStepNavigationAndText updates
@@ -35,14 +26,12 @@
     });
 </script>
 
-<svelte:window on:keydown={handleKeyPress} />
-
 {#if $currentStoryStepIndex === 0}
 	<Header />
 {/if}
 
 <article>
-	{#if $devMode || $showSearchBars}
+	{#if $showSearchBars}
 		<PerformerAndSongSearchBars />
 	{/if}
 
@@ -58,9 +47,6 @@
 		{/if}
 	{/if}
 
-	{#if $devMode}
-		<SideBar />
-	{/if}
 	<StoryStepNavigationAndText />
 	<SongAnnotations />
 	<PlayableSongAnnotations />
