@@ -18,6 +18,7 @@ import {
 	randomXDistribution,
 	randomYDistribution
 } from "./forcePositionOptions-helper.js";
+import { aSearchBarIsFocused } from "./searchAndFilter";
 
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
@@ -791,9 +792,9 @@ const previousViewport = previous(viewport, { width: null, height: null });
 
 // TODO: OPTIMIZATION, if we update songIsVisible to a memoized custom store, I think we can remove all this code
 export const preventBubbleRestartBecauseTheUserIsMerelySearching = derived(
-	[],
-	([]) => {
-		// TODO: block updates if either of the search bars are focused
-		return false;
+	[aSearchBarIsFocused, isLastStep],
+	([$aSearchBarIsFocused, $isLastStep]) => {
+		// TODO: we may need more sophisticated checks when the dropdown selection is added
+		return $aSearchBarIsFocused;
 	}
 );

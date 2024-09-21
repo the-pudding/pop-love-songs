@@ -1,5 +1,7 @@
 import { writable } from "svelte/store";
 
+export const aSearchBarIsFocused = writable(false);
+
 export const songSearchString = writable("");
 export const selectedSongs = writable([]);
 export const performerSearchString = writable("");
