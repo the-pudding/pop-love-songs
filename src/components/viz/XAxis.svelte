@@ -54,7 +54,7 @@
         font-family: var(--sans);
         font-weight: bold;
 
-        opacity: 0.3;
+        opacity: 0.5;
     }
 
     .tick {

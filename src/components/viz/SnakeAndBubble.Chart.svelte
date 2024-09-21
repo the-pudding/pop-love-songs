@@ -100,8 +100,9 @@
 	};
 
 	const handleSongHovered = (selectedSong, songIndex, offsetX, offsetY) => {
-		if (selectedSong) {
-			const {x, y} = $simulationStore.nodes()[songIndex]
+		const nodes = $simulationStore.nodes()
+		if (selectedSong && nodes) {
+			const {x, y} = nodes[songIndex]
 			$hoveredSongInfo = {
 				song: selectedSong,
 				x: offsetX,

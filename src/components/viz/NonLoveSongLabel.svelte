@@ -13,7 +13,7 @@
 </script>
 
 <div class:visible={visible} {style}>
-    NON-LOVE SONGS{isLastStep && !!$typesTreatedAsNonLoveSongs.length ? ":" : ""}
+    NON-LOVE SONGS{$isLastStep && !!$typesTreatedAsNonLoveSongs.length ? ":" : ""}
 </div>
 
 <style>

@@ -32,6 +32,9 @@
 		border-radius: 100%;
 		box-shadow: 2px 2px 4px gray;
 		transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.575);
+
+		pointer-events: all;
+		cursor: pointer;
 	}
 
 	button:hover {

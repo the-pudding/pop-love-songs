@@ -18,8 +18,14 @@
 	// TODO: probably we'll want to to do something more like place different content if bubble chart is hidden
 	$: visible = x !== undefined && y !== undefined && song.length > 0 && !$showAggregateSnakeChart;
 
-	$: xOffset = $viewport.width / 2 > x ? 20 : -310;
-	$: yOffset = $viewport.height / 2 > y ? 30 : -130;
+	$: xOffset = 12;
+	$: yOffset = 12;
+	$: tooltipPosition = {
+		top: $viewport.height / 2 > y ? `${y + yOffset}px` : 'auto',
+		bottom: $viewport.height / 2 > y ? 'auto' : `${$viewport.height - y + yOffset}px`,
+		left: $viewport.width / 2 > x ? `${x + xOffset}px` : 'auto',
+		right: $viewport.width / 2 > x ? 'auto' : `${$viewport.width - x + xOffset}px`,
+	};
 
 	// When a step changes, you don't want to keep showing the tooltip from the previous step.
 	currentStoryStep.subscribe(() => {
@@ -35,7 +41,7 @@
 		role="tooltip"
 		aria-hidden={!visible}
 		class:visible
-		style={`top: ${y + yOffset}px; left: ${x + xOffset}px`}
+		style={`top: ${tooltipPosition.top}; bottom: ${tooltipPosition.bottom}; left: ${tooltipPosition.left}; right: ${tooltipPosition.right}; transform: ${tooltipPosition.transform};`}
 	>
 		<SongInfo {song} />
 	</div>
@@ -52,8 +58,6 @@
 	 .tooltip {
 		z-index: 10000;
 		position: absolute;
-		max-width: 400px; /* TODO: make smaller for mobile? */
-		/* background-color: rgba(253, 253, 253, 0.8); */
 		padding: 0.5rem;
 
 		/* note: dynamically toggled via JS */

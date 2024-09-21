@@ -95,12 +95,11 @@ export const TEXT_SHADOW_COLOR_MAP = {
 	[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]:
 		variables.color["text-shadow"]["courtship-and-anticipation"]
 };
-
-const FORTY_PERCENT_OPACITY_HEX_POSTFIX = "66"; // 40% opacity
+const HEX_OPACITY_POSTFIX = "40"; // 25% opacity
 export const UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP = Object.fromEntries(
 	Object.entries(LOVE_SONG_TYPE_COLOR_MAP).map(([key, value]) => [
 		key,
-		`${value}${FORTY_PERCENT_OPACITY_HEX_POSTFIX}`
+		`${value}${HEX_OPACITY_POSTFIX}`
 	])
 );
 

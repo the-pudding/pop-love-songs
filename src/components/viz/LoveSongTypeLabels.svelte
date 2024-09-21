@@ -1,7 +1,7 @@
 <script>
 	import viewport from "$stores/viewport";
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
-	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep, isLastStep, precedingStepSpotlightedType } from "$stores/storySteps";
+	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep, precedingStepSpotlightedType } from "$stores/storySteps";
 	import { nonLoveSongLabelBottomLeftCoords } from "$stores/labels";
 	import { typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
 
@@ -9,7 +9,7 @@
 	import { LOVE_SONG_TYPE_CONSTANTS, TEXT_SHADOW_COLOR_MAP } from "$data/data-constants";
 
 	import NonLoveSongLabel from "./NonLoveSongLabel.svelte";
-	import ToggleLoveSongCategoryButtons from "./ToggleLoveSongCategoryButtons.svelte";
+	import LoveSongTypeLabel from "./LoveSongTypeLabel.svelte";
 	import { textShadow } from "$utils/styling";
 
     export let tweenedCoords;
@@ -28,6 +28,7 @@
 		if (orderInNonLoveSongStack !== -1) return nonLoveSongX;
 		return getXPosForYear(x, width);
 	}
+
 	const getY = (y0, height, orderInNonLoveSongStack, nonLoveSongY, labelHeight) => {
 		if (orderInNonLoveSongStack !== -1) {
 			return nonLoveSongY + labelHeight * (2 + orderInNonLoveSongStack);
@@ -60,7 +61,7 @@
 				x: getX(x, $viewport.width, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.x),
 				y: getY(y0, $viewport.height, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.y, labelHeight),
 				// TODO: if we decide to keep this cool flying transition and want it NOT wonky, then we need to either left align, or use elements width to directly add shift to left property
-				translate: `translate(${isTreatedAsNonLoveSong ? -50 : 0}%, -95%)`,
+				translate: `translate(${isTreatedAsNonLoveSong ? -50 : 0}%, -100%)`,
 				opacity: $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType) ? 0 : 1,
 				fontSize: `${fontSize}px`,
 				fontWeight: wasJustSpotlighted ? "bold" : "normal",
@@ -74,7 +75,7 @@
 {#if show}
 	<NonLoveSongLabel />
 	{#each labelMetadata as { loveSongType, x, y, translate, opacity, fontSize, fontWeight, textShadow }}
-		<ToggleLoveSongCategoryButtons {loveSongType} {x} {y} {translate} {opacity} {fontSize} {fontWeight} {textShadow} />
+		<LoveSongTypeLabel {loveSongType} {x} {y} {translate} {opacity} {fontSize} {fontWeight} {textShadow} />
 	{/each}	
 {/if}
 

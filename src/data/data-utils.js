@@ -40,7 +40,7 @@ export const abbreviateYearForDisplay = (year) => {
 };
 
 export const formatSongTitleForDisplay = (title = "") =>
-	title.split("(")[0].trim(); // songs get super long when they're like "San Francisco (Be Sure to Wear Flowers in Your Hair)"
+	title.split("(")[0].trim().split('/')[0].trim(); // songs get super long when they're like "San Francisco (Be Sure to Wear Flowers in Your Hair)"
 
 export const songInAnnotations = (song, songAnnotations) => {
 	const matchingAnnotation = songAnnotations.find(

@@ -39,8 +39,9 @@
 {/if}
 
 <style>
-	div {
+	div, strong {
 		font-family: var(--sans), sans-serif;
+		pointer-events: none;
 	}
 
 	.song-and-year {
