@@ -58,7 +58,7 @@ const stepsWithoutText = {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES,
-			selectedLoveSongTypes: ["FAAAAKKEEE"],
+			selectedLoveSongTypes: ["FAAAAKKEEE", "also fake"],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
@@ -72,7 +72,7 @@ const stepsWithoutText = {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES,
-			selectedLoveSongTypes: ["FAAAAKKEEE"],
+			selectedLoveSongTypes: ["FAAAAKKEEE", "also fake"],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
@@ -87,7 +87,7 @@ const stepsWithoutText = {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES,
-			selectedLoveSongTypes: ["FAAAAKKEEE"],
+			selectedLoveSongTypes: ["FAAAAKKEEE", "also fake"],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
