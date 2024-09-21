@@ -1,7 +1,8 @@
 <script>
+    import { songSearchString } from "$stores/searchAndFilter";
+
     import SearchBar from "./SearchBar.svelte";
-    let searchString = "";
 
 </script>
 
-<SearchBar placeholder="Search songs..." bind:searchString={searchString} />
+<SearchBar placeholder="Search songs..." bind:searchString={$songSearchString} />

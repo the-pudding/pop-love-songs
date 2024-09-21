@@ -12,7 +12,9 @@ import {
 import {
 	selectedSongs,
 	selectedPerformers,
-	typesTreatedAsNonLoveSongs
+	typesTreatedAsNonLoveSongs,
+	songSearchString,
+	performerSearchString
 } from "./searchAndFilter.js";
 import { currentStoryStep } from "./storySteps.js";
 import { playing } from "./audio.js";
@@ -41,10 +43,15 @@ const loveSongTypeSelected = derived(
 );
 
 const performerSelected = derived(
-	[selectedPerformers],
-	([$selectedPerformers]) =>
+	[selectedPerformers, performerSearchString],
+	([$selectedPerformers, $performerSearchString]) =>
 		songsData.map(({ song }) => {
 			const performers = getArrayOfPerformers(song);
+			if ($performerSearchString) {
+				return performers.some((performer) =>
+					performer.toLowerCase().includes($performerSearchString.toLowerCase())
+				);
+			}
 			return (
 				$selectedPerformers.length === 0 ||
 				$selectedPerformers.some((selectedPerformer) =>
@@ -56,17 +63,23 @@ const performerSelected = derived(
 );
 
 const songSelected = derived(
-	[selectedSongs, playing],
-	([$selectedSongs, $playing]) => {
+	[selectedSongs, songSearchString, playing],
+	([$selectedSongs, $songSearchString, $playing]) => {
 		const selectedSongNames = [...$selectedSongs, $playing?.songName].filter(
 			(name) => !!name
 		);
 
-		return songsData.map(
-			({ song }) =>
+		return songsData.map(({ song }) => {
+			if ($songSearchString) {
+				return song[SONG_DATA_COLUMNS_ENUM.song]
+					.toLowerCase()
+					.includes($songSearchString.toLowerCase());
+			}
+			return (
 				selectedSongNames.includes(song[SONG_DATA_COLUMNS_ENUM.song]) ||
 				selectedSongNames.length === 0
-		);
+			);
+		});
 	}
 );
 

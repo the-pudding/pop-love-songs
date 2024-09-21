@@ -1,7 +1,6 @@
 import { derived, writable } from "svelte/store";
 import previous from "./previous";
 import viewport from "./viewport";
-import { selectedPerformers, selectedSongs } from "./searchAndFilter";
 
 import copy from "$data/copy.json";
 import {
@@ -22,7 +21,6 @@ import {
 
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
-	selectedPerformers: [],
 	timeRange: {
 		startYear: MIN_DATE,
 		endYear: MAX_DATE
@@ -649,7 +647,10 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true
+			showAggregateSnakeChart: true,
+			// a little extra strenth helps keep the chart a bit clearer
+			forceXStrength: 8,
+			forceYStrength: 2
 		},
 		showLoveSongChange: true
 	}
@@ -790,29 +791,9 @@ const previousViewport = previous(viewport, { width: null, height: null });
 
 // TODO: OPTIMIZATION, if we update songIsVisible to a memoized custom store, I think we can remove all this code
 export const preventBubbleRestartBecauseTheUserIsMerelySearching = derived(
-	[
-		currentStoryStep,
-		selectedPerformers,
-		selectedSongs,
-		previousViewport,
-		viewport
-	],
-	([
-		$currentStoryStep,
-		$selectedPerformers, // we just need to update when these change
-		$selectedSongs,
-		$previousViewport,
-		$viewport
-	]) => {
-		const viewportChanged =
-			viewport.width !== null &&
-			($viewport.width !== $previousViewport.width ||
-				$viewport.height !== $previousViewport.height);
-
-		if (!$currentStoryStep.allowUserToChangeFilters || viewportChanged) {
-			return false;
-		}
-		// So: if we're on a filter step (ie last step) & teh user is just searching for a performer/song, don't restart the bubbles
-		return true;
+	[],
+	([]) => {
+		// TODO: block updates if either of the search bars are focused
+		return false;
 	}
 );

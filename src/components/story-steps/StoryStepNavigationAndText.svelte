@@ -1,12 +1,11 @@
 <script>
-	import { pointer } from 'd3';
     import {afterUpdate, onMount, tick} from "svelte";
     import urlParams from "../../utils/urlParams.js";
     import viewport from "$stores/viewport.js";
 
     import Tap from "../helpers/CustomTap.svelte";
 
-    import {selectedSongs, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart} from "$stores/searchAndFilter.js"
+    import { selectedSongs, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart, songSearchString, performerSearchString } from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_TOP_PADDING} from "$components/viz/viz-utils.js"
     import { Y_MARGIN_SCREEN_PERCENTAGE } from "$data/data-utils.js";
@@ -54,8 +53,12 @@
 	};
 
     const updateFilterFilterState = () => {
-        selectedSongs.set([]) // clear any selections if you navigate to a new story step (story steps don't ever directly set this)
-        selectedPerformers.set([...$currentStoryStep.searchAndFilterState.selectedPerformers])
+        // clear any selections if you navigate to a new story step (story steps don't ever directly set these)
+        selectedSongs.set([]) 
+        selectedPerformers.set([])
+        // als clear any user input text
+        songSearchString.set("")
+        performerSearchString.set("")
         
         typesTreatedAsNonLoveSongs.set([...$currentStoryStep.searchAndFilterState.typesTreatedAsNonLoveSongs])
         showAggregateSnakeChart.set($currentStoryStep.visualEncodings.showAggregateSnakeChart)
