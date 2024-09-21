@@ -22,8 +22,10 @@
 		showAggregateSnakeChart.set(localValue === CHART_OPTIONS.snake);
 
 		if (localValue === CHART_OPTIONS.snake) {
+			songSearchString.set("");
 			selectedSongs.set([]);
-			selectedPerformers.set([]);
+			performerSearchString.set("");
+			selectedPerformers.set([]);		
 		}
 	}
 
