@@ -792,8 +792,8 @@ const previousViewport = previous(viewport, { width: null, height: null });
 
 // TODO: OPTIMIZATION, if we update songIsVisible to a memoized custom store, I think we can remove all this code
 export const preventBubbleRestartBecauseTheUserIsMerelySearching = derived(
-	[aSearchBarIsFocused, isLastStep],
-	([$aSearchBarIsFocused, $isLastStep]) => {
+	[aSearchBarIsFocused],
+	([$aSearchBarIsFocused]) => {
 		// TODO: we may need more sophisticated checks when the dropdown selection is added
 		return $aSearchBarIsFocused;
 	}
