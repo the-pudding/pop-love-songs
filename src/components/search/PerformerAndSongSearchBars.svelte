@@ -1,5 +1,5 @@
 <script>
-	import SnakeBubbleToggle from "$components/viz/search-and-filter-top-bar/SnakeBubbleToggle.svelte";
+	import SnakeBubbleToggle from "$components/search/SnakeBubbleToggle.svelte";
 import { getXPosForYear } from "$data/data-utils";
 	import { MIN_DATE } from "$data/songs-data";
 

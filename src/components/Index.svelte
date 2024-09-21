@@ -13,7 +13,6 @@
 	import SongTooltip from "./viz/SongTooltip.svelte";
 	import Audio from "./audio/Audio.svelte";
 	
-	
 	import { currentStoryStep, currentStoryStepIndex, showSearchBars } from "$stores/storySteps";
 	import { playing } from "$stores/audio.js";
 	import Header from "./Header.svelte";
