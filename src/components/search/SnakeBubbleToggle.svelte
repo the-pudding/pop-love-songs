@@ -30,4 +30,4 @@
 	onDestroy(unsubscribe);
 </script>
 
-<Toggle label="Switch to" style="inner" options={Object.values(CHART_OPTIONS)} value={localValue} onToggle={handleToggle} />
+<Toggle label="switch between aggregate and individual song view" style="inner" options={Object.values(CHART_OPTIONS)} value={localValue} onToggle={handleToggle} />

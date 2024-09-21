@@ -19,11 +19,10 @@
 </script>
 
 <div class="toggle toggle--{style}">
-	<span class="label" {id}/>
 	<button
 		role="switch"
 		aria-checked={checked}
-		aria-labelledby={id}
+		aria-label={label}
 		on:click={handleClick}
 	>
 		{#if style === "inner"}
@@ -34,8 +33,7 @@
 </div>
 
 <style>
-	.toggle button,
-	.label {
+	.toggle button {
 		font-family: var(--sans);
 		font-size: 1em;
 	}
