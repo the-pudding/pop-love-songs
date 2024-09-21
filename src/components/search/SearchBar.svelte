@@ -8,7 +8,7 @@
 
 <style>
     input {
-        background-color: var(--color-background-cream);
+        background-color: var(--color-cream-background);
         border-radius: 12px;
         margin-right: 16px;
         font-family: var(--sans);

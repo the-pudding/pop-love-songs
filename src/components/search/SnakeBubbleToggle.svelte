@@ -5,8 +5,8 @@
 	import { selectedPerformers, selectedSongs, showAggregateSnakeChart } from "$stores/searchAndFilter.js";
 
 	const CHART_OPTIONS = {
-		snake: 'snake chart',
-		bubble: 'bubble chart'
+		snake: 'show aggregate',
+		bubble: 'show individual songs'
 	}
 
 	let localValue;

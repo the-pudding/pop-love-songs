@@ -19,7 +19,7 @@
 </script>
 
 <div class="toggle toggle--{style}">
-	<span class="label" {id}>{label}</span>
+	<span class="label" {id}/>
 	<button
 		role="switch"
 		aria-checked={checked}
@@ -36,7 +36,7 @@
 <style>
 	.toggle button,
 	.label {
-		font-family: inherit;
+		font-family: var(--sans);
 		font-size: 1em;
 	}
 
@@ -50,8 +50,10 @@
 
 	.toggle--inner button {
 		padding: 0.5em;
-		background-color: var(--color-white);
-		border: 2px solid var(--color-gray-900);
+        background-color: var(--color-cream-background);
+        border-radius: 12px;
+        font-style: italic;
+		outline: 1px solid var(--color-border, ray);
 	}
 
 	.toggle--inner button span {
@@ -63,7 +65,10 @@
 	}
 
 	.toggle--inner button:focus {
-		box-shadow: 0 0 4px 0 var(--color-focus);
+		/* box-shadow: 0 0 4px 0 var(--color-focus); */
+		/* See app.css, copied from there */
+		outline: 2px solid var(--color-focus);
+		outline-offset: 2px;
 	}
 
 	.toggle--slider {

@@ -1,6 +1,6 @@
 <script>
 	import SnakeBubbleToggle from "$components/search/SnakeBubbleToggle.svelte";
-import { getXPosForYear } from "$data/data-utils";
+    import { getXPosForYear } from "$data/data-utils";
 	import { MIN_DATE } from "$data/songs-data";
 
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
@@ -11,7 +11,7 @@ import { getXPosForYear } from "$data/data-utils";
 	import SongSearchBar from "./SongSearchBar.svelte";
 
     $: left = getXPosForYear(MIN_DATE, $viewport.width);
-    $: top = getYPosForPercentage(0, $viewport.height);
+    $: top = getYPosForPercentage(0, $viewport.height); 
 </script>
 
 <div style={`left: ${left}px; top: ${top}px;`}>
@@ -25,7 +25,9 @@ import { getXPosForYear } from "$data/data-utils";
 <style>
     div {
         position: fixed;
-
+        /* TODO: we probably want to lay out these within the whole app better (or just make the chart shorter on the last step */
+        transform: translateY(-50%) translateX(12px);
+        
         display: flex;
         justify-content: space-between;
         z-index: 1000;
