@@ -2,7 +2,8 @@
 	import {onDestroy} from "svelte";
 	import Toggle from "$components/helpers/Toggle.svelte";
 
-	import { selectedPerformers, selectedSongs, showAggregateSnakeChart } from "$stores/searchAndFilter.js";
+	import { performerSearchString, selectedPerformers, selectedSongs, showAggregateSnakeChart, songSearchString } from "$stores/searchAndFilter.js";
+	import { isLastStep } from "$stores/storySteps";
 
 	const CHART_OPTIONS = {
 		snake: 'show aggregate',
@@ -23,6 +24,16 @@
 		if (localValue === CHART_OPTIONS.snake) {
 			selectedSongs.set([]);
 			selectedPerformers.set([]);
+		}
+	}
+
+	// For the final step, if there are search strings or selected search values, we need to be sure we've toggled to individual songs chart
+	// @michelle Is this a random place to put this? Like should this be a derived store or something? What's tricking is that others are writing to showAggregateSnakeChart, too.
+	$: {
+		if ($isLastStep && $showAggregateSnakeChart) {
+			if ($performerSearchString || $songSearchString || $selectedPerformers.length || $selectedSongs.length) {
+				showAggregateSnakeChart.set(false);
+			}
 		}
 	}
 
