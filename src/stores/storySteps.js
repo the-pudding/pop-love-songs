@@ -566,7 +566,7 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: [
 				{ song: "Physical", year: 1981, audioFile: "physical" },
-				{ song: "WAP", year: 2020, audioFile: "wap" },
+				{ song: "WAP", year: 2020, audioFile: "wap", offsetToThisYear: 2010 },
 				{ song: "Way 2 Sexy", year: 2021, audioFile: "way-2-sexy" }
 			]
 		}
