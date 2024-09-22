@@ -50,6 +50,7 @@ const VISUAL_ENCODING_BLANK_STATE = {
 	showTotalWeeksInTop10InSongInfo: false,
 
 	songAnnotations: {
+		offsetFromThisYPercentage: undefined, // 0 - 1
 		adjacentAnnotations: [],
 		offsetAnnotations: []
 	}
@@ -233,7 +234,6 @@ const stepsWithoutText = {
 		showLoveSongChange: true
 	},
 
-	// What counts as love song?
 	butWeWillTakeAMoreExpansiveView: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
@@ -259,6 +259,7 @@ const stepsWithoutText = {
 			}
 		}
 	},
+
 	whyWeCare: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
@@ -286,7 +287,8 @@ const stepsWithoutText = {
 			restartBubblesOnAdvanceInto: false,
 			restartBubblesOnReturnInto: false,
 			songAnnotations: {
-				adjacentAnnotations: [
+				offsetFromThisYPercentage: 0.9,
+				offsetAnnotations: [
 					{ song: "Fever", year: 1958, audioFile: "fever" },
 					{
 						song: "Just The Way You Are",

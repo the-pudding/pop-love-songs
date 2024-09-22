@@ -4,6 +4,7 @@
     import viewport from '$stores/viewport';
     import { songAnnotationsWithPosition } from "$stores/visualEncodings";
     import { getYPosForPercentage } from '$stores/forcePositionOptions-helper';
+    import { currentStoryStep } from '$stores/storySteps';
 
 	import SongInfo from "./SongInfo.svelte";
 
@@ -13,6 +14,8 @@
 
     const aNonTrivialSize = (height) => Math.abs(height) > 16;
 	
+    const DEFAULT_OFFSET_REFERENCE = 0.5;
+    $: offsetFromThisYPercentage = $currentStoryStep.visualEncodings.songAnnotations.offsetFromThisYPercentage || DEFAULT_OFFSET_REFERENCE;
     $: layoutData = $songAnnotationsWithPosition
         .filter(({offsetAnnotation}) => offsetAnnotation) 
         .map(({x, y, radius, song, alternateTitle, audioFile, offsetToThisYear}, index, fullArray) => {
@@ -20,7 +23,7 @@
             const xTranslation = x > (0.8 * $viewport.width) ? '-100' : x < (0.2 * $viewport.width) ? '0' : '-50';
             const placeBelow = threeSongs && index === 1;
             const yOffset = (placeBelow ? 0.1 : 0.25) * $viewport.height;
-            const textY = getYPosForPercentage(0.5, $viewport.height) - yOffset;
+            const textY = getYPosForPercentage(offsetFromThisYPercentage, $viewport.height) - yOffset;
             return {
                 bubbleX: x, bubbleY: y - radius, textY, 
                 elbowX: offsetToThisYear && getXPosForYear(offsetToThisYear, $viewport.width),
@@ -61,8 +64,6 @@
         />
     {/if}
 {/each}
-
-
 
 <style>
     div {
