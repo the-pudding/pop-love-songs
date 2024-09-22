@@ -13,14 +13,14 @@
 	
     $: layoutData = $songAnnotationsWithPosition
         .filter(({audioFile}) => audioFile) 
-        .map(({x, y, song, alternateTitle, audioFile, offsetToThisYear}, index, fullArray) => {
+        .map(({x, y, radius, song, alternateTitle, audioFile, offsetToThisYear}, index, fullArray) => {
             const threeSongs = fullArray.length === 3;
             const xTranslation = x > (0.8 * $viewport.width) ? '-100' : x < (0.2 * $viewport.width) ? '0' : '-50';
             const placeBelow = threeSongs && index === 1;
             const yOffset = (placeBelow ? 0.1 : 0.25) * $viewport.height;
             const textY = getYPosForPercentage(0.5, $viewport.height) - yOffset;
             return {
-                bubbleX: x, bubbleY: y, textY, 
+                bubbleX: x, bubbleY: y - radius, textY, 
                 elbowX: offsetToThisYear && getXPosForYear(offsetToThisYear, $viewport.width),
                 song, xTranslation, placeBelow, 
                 alternateTitle, 

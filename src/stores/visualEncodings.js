@@ -46,32 +46,6 @@ export const yForcePosition = derived(
 	}
 );
 
-// Annotations with position
-export const songAnnotationsWithPosition = derived(
-	[nodePositionsInSimulation, currentStoryStep],
-	([$nodePositionsInSimulation, $currentStoryStep]) =>
-		songsData.reduce((accum, { song }, index) => {
-			// if song is in annotations, add its position
-			const songAnnotation = songInAnnotations(
-				song,
-				$currentStoryStep.visualEncodings.songAnnotations
-			);
-			if (songAnnotation && $nodePositionsInSimulation) {
-				return [
-					...accum,
-					{
-						...songAnnotation,
-						song,
-						x: $nodePositionsInSimulation[index].x,
-						y: $nodePositionsInSimulation[index].y
-					}
-				];
-			} else {
-				return accum;
-			}
-		}, [])
-);
-
 export const songRadius = derived([viewport], ([$viewport]) => {
 	const { width, height } = $viewport;
 	const roughArea = width * height;
@@ -86,3 +60,31 @@ export const songRadius = derived([viewport], ([$viewport]) => {
 		)
 	);
 });
+
+export const songAnnotationsWithPosition = derived(
+	[nodePositionsInSimulation, currentStoryStep, songRadius],
+	([$nodePositionsInSimulation, $currentStoryStep, $songRadius]) =>
+		songsData.reduce((accum, { song }, index) => {
+			// if song is in annotations, add its position
+			const songAnnotation = songInAnnotations(
+				song,
+				$currentStoryStep.visualEncodings.songAnnotations
+			);
+			if (songAnnotation && $nodePositionsInSimulation) {
+				return [
+					...accum,
+					{
+						...songAnnotation,
+						song,
+						x: $nodePositionsInSimulation[index].x,
+						y: $nodePositionsInSimulation[index].y,
+						radius: $songRadius[index]
+					}
+				];
+			} else {
+				return accum;
+			}
+		}, [])
+);
+
+
