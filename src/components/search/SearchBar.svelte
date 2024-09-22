@@ -3,8 +3,6 @@
 
     export let placeholder = "Search...";
     export let searchString = "";
-
-    $: console.log({$aSearchBarIsFocused})
 </script>
 
 <input 
