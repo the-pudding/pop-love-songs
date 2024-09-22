@@ -11,6 +11,7 @@ import {
 import { MAX_DATE, MIN_DATE } from "$data/songs-data.js";
 import {
 	NON_SERENADE_HIGHLIGHTS_FROM_INTRO,
+	SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD,
 	SERENADE_HIGHLIGHTS_FROM_INTRO,
 	fractionOfScreenFactory,
 	getXPositionFromTime,
@@ -153,7 +154,7 @@ const stepsWithoutText = {
 			// restartBubblesOnReturnInto: false,
 			forceXStrength: 1,
 			forceYStrength: 0.5,
-			songAnnotations: SERENADE_HIGHLIGHTS_FROM_INTRO
+			songAnnotations: SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD
 		}
 	},
 	serenadesPeakedInThe90s: {
