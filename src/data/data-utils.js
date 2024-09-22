@@ -43,10 +43,31 @@ export const formatSongTitleForDisplay = (title = "") =>
 	title.split("(")[0].trim().split('/')[0].trim(); // songs get super long when they're like "San Francisco (Be Sure to Wear Flowers in Your Hair)"
 
 export const songInAnnotations = (song, songAnnotations) => {
-	const matchingAnnotation = songAnnotations.find(
+	const { offsetAnnotations = [], adjacentAnnotations = [] } = songAnnotations;
+
+	const matchingOffsetAnnotation = offsetAnnotations.find(
 		({ song: annotationSongName, year }) =>
 			annotationSongName === song[SONG_DATA_COLUMNS_ENUM.song] &&
 			year === Math.floor(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal])
 	);
-	return matchingAnnotation || false;
+	const matchingAdjacentAnnotation = adjacentAnnotations.find(
+		({ song: annotationSongName, year }) =>
+			annotationSongName === song[SONG_DATA_COLUMNS_ENUM.song] &&
+			year === Math.floor(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal])
+	);
+
+	if (matchingOffsetAnnotation) {
+		return {
+			...matchingOffsetAnnotation,
+			offsetAnnotation: true
+		};
+	}
+	if (matchingAdjacentAnnotation) {
+		return {
+			...matchingAdjacentAnnotation,
+			adjacentAnnotation: true
+		};
+	}
+
+	return false;
 };

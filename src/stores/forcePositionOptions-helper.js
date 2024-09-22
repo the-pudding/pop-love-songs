@@ -163,7 +163,12 @@ const ALL_HIGHLIGHTS_FROM_INTRO = [
 ];
 
 const RANDOM_X_POSITIONS = songsData.map(({ song }) => {
-	if (songInAnnotations(song, ALL_HIGHLIGHTS_FROM_INTRO)) {
+	if (
+		songInAnnotations(song, {
+			adjacentAnnotations: ALL_HIGHLIGHTS_FROM_INTRO,
+			offsetAnnotations: []
+		})
+	) {
 		const { xPercent } = ALL_HIGHLIGHTS_FROM_INTRO.find(
 			({ song: songName }) => songName === song[SONG_DATA_COLUMNS_ENUM.song]
 		);
@@ -172,7 +177,12 @@ const RANDOM_X_POSITIONS = songsData.map(({ song }) => {
 	return Math.random();
 });
 const RANDOM_Y_POSITIONS = songsData.map(({ song }) => {
-	if (songInAnnotations(song, ALL_HIGHLIGHTS_FROM_INTRO)) {
+	if (
+		songInAnnotations(song, {
+			adjacentAnnotations: ALL_HIGHLIGHTS_FROM_INTRO,
+			offsetAnnotations: []
+		})
+	) {
 		const { yPercent } = ALL_HIGHLIGHTS_FROM_INTRO.find(
 			({ song: songName }) => songName === song[SONG_DATA_COLUMNS_ENUM.song]
 		);

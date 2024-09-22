@@ -47,9 +47,12 @@ const VISUAL_ENCODING_BLANK_STATE = {
 	showAggregateSnakeChart: false,
 
 	useHeavierSongBorders: false,
+	showTotalWeeksInTop10InSongInfo: false,
 
-	// Note: currently just using song name, which could cause collissions, but since its manually set, I'll cross that bridgfe if we come to it.
-	songAnnotations: []
+	songAnnotations: {
+		adjacentAnnotations: [],
+		offsetAnnotations: []
+	}
 };
 
 const stepsWithoutText = {
@@ -111,7 +114,9 @@ const stepsWithoutText = {
 			restartBubblesOnReturnInto: false, // nothing's changed position-wise
 			forceXStrength: 1,
 			forceYStrength: 1,
-			songAnnotations: NON_SERENADE_HIGHLIGHTS_FROM_INTRO
+			songAnnotations: {
+				adjacentAnnotations: NON_SERENADE_HIGHLIGHTS_FROM_INTRO
+			}
 		},
 		showTotalWeeksInTop10InSongInfo: true
 	},
@@ -135,7 +140,9 @@ const stepsWithoutText = {
 			restartBubblesOnAdvanceInto: false,
 			forceXStrength: 1,
 			forceYStrength: 1,
-			songAnnotations: SERENADE_HIGHLIGHTS_FROM_INTRO
+			songAnnotations: {
+				adjacentAnnotations: SERENADE_HIGHLIGHTS_FROM_INTRO
+			}
 		}
 	},
 	serenadesAreIndeedDying: {
@@ -154,7 +161,9 @@ const stepsWithoutText = {
 			// restartBubblesOnReturnInto: false,
 			forceXStrength: 1,
 			forceYStrength: 0.5,
-			songAnnotations: SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD
+			songAnnotations: {
+				adjacentAnnotations: SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD
+			}
 		}
 	},
 	serenadesPeakedInThe90s: {
@@ -176,7 +185,9 @@ const stepsWithoutText = {
 			restartBubblesOnReturnInto: false,
 			forceXStrength: 11,
 			forceYStrength: 0.5,
-			songAnnotations: [{ song: "I'll Make Love To You", year: 1994 }]
+			songAnnotations: {
+				adjacentAnnotations: [{ song: "I'll Make Love To You", year: 1994 }]
+			}
 		}
 	},
 	aFewArtistsKeepThemAliveToday: {
@@ -199,10 +210,12 @@ const stepsWithoutText = {
 			restartBubblesOnReturnInto: true,
 			forceXStrength: 11,
 			forceYStrength: 0.5,
-			songAnnotations: [
-				{ song: "Love Story", year: 2008, rightAlign: true },
-				{ song: "Intentions", year: 2020, rightAlign: true, placeBelow: true }
-			]
+			songAnnotations: {
+				adjacentAnnotations: [
+					{ song: "Love Story", year: 2008, rightAlign: true },
+					{ song: "Intentions", year: 2020, rightAlign: true, placeBelow: true }
+				]
+			}
 		}
 	},
 	anAggSnakeChartMakesBoomerBobSeemRight: {
@@ -232,16 +245,18 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			restartBubblesOnAdvanceInto: false,
 			restartBubblesOnReturnInto: false,
-			songAnnotations: [
-				{
-					song: "Buy U A Drank (Shawty Snappin')",
-					alternateTitle: "Buy U A Drank",
-					year: 2007,
-					rightAlign: true
-				},
-				{ song: "I Will Always Love You", year: 1992, rightAlign: true },
-				{ song: "WAP", year: 2020, rightAlign: true }
-			]
+			songAnnotations: {
+				adjacentAnnotations: [
+					{
+						song: "Buy U A Drank (Shawty Snappin')",
+						alternateTitle: "Buy U A Drank",
+						year: 2007,
+						rightAlign: true
+					},
+					{ song: "I Will Always Love You", year: 1992, rightAlign: true },
+					{ song: "WAP", year: 2020, rightAlign: true }
+				]
+			}
 		}
 	},
 	whyWeCare: {
@@ -270,23 +285,25 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			restartBubblesOnAdvanceInto: false,
 			restartBubblesOnReturnInto: false,
-			songAnnotations: [
-				{ song: "Fever", year: 1958, audioFile: "fever" },
-				{
-					song: "Just The Way You Are",
-					year: 1978,
-					placeAbove: true,
-					audioFile: "just-the-way-you-are-1978"
-				},
-				// { song: "Like A Virgin", year: 1984, audioFile: "TODO" },
-				{
-					song: "Just The Way You Are",
-					year: 2010,
-					rightAlign: true,
-					placeBelow: true,
-					audioFile: "just-the-way-you-are-2010"
-				}
-			]
+			songAnnotations: {
+				adjacentAnnotations: [
+					{ song: "Fever", year: 1958, audioFile: "fever" },
+					{
+						song: "Just The Way You Are",
+						year: 1978,
+						placeAbove: true,
+						audioFile: "just-the-way-you-are-1978"
+					},
+					// { song: "Like A Virgin", year: 1984, audioFile: "TODO" },
+					{
+						song: "Just The Way You Are",
+						year: 2010,
+						// rightAlign: true,
+						placeAbove: true,
+						audioFile: "just-the-way-you-are-2010"
+					}
+				]
+			}
 		}
 	},
 	colorInHeartbreak: {
@@ -301,20 +318,22 @@ const stepsWithoutText = {
 			colorButDontSeperateThisLoveSongType:
 				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
 			restartBubblesOnAdvanceInto: false,
-			songAnnotations: [
-				{
-					song: "Heartbreaker",
-					year: 1983,
-					rightAlign: true,
-					audioFile: "heartbreaker"
-				},
-				{
-					song: "You Belong With Me",
-					year: 2009,
-					rightAlign: true,
-					audioFile: "you-belong-with-me"
-				}
-			]
+			songAnnotations: {
+				adjacentAnnotations: [
+					{
+						song: "Heartbreaker",
+						year: 1983,
+						rightAlign: true,
+						audioFile: "heartbreaker"
+					},
+					{
+						song: "You Belong With Me",
+						year: 2009,
+						rightAlign: true,
+						audioFile: "you-belong-with-me"
+					}
+				]
+			}
 		}
 	},
 
@@ -334,16 +353,18 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			songAnnotations: [
-				{ song: "Yesterday", year: 1965, audioFile: "yesterday" },
-				{
-					song: "I Will Always Love You",
-					year: 1992,
-					placeAbove: true,
-					audioFile: "i-will-always-love-you"
-				},
-				{ song: "Stay", year: 2013, audioFile: "stay" }
-			]
+			songAnnotations: {
+				offsetAnnotations: [
+					{ song: "Yesterday", year: 1965, audioFile: "yesterday" },
+					{
+						song: "I Will Always Love You",
+						year: 1992,
+						placeAbove: true,
+						audioFile: "i-will-always-love-you"
+					},
+					{ song: "Stay", year: 2013, audioFile: "stay" }
+				]
+			}
 		}
 	},
 
@@ -364,14 +385,16 @@ const stepsWithoutText = {
 			// Since we're introducing (and pointing out) sorting here, it's key that they are nicely herded
 			forceXStrength: 10,
 			forceYStrength: 3,
-			songAnnotations: [
-				{
-					song: "Blinding Lights",
-					year: 2020,
-					rightAlign: true,
-					audioFile: "blinding-lights"
-				}
-			]
+			songAnnotations: {
+				adjacentAnnotations: [
+					{
+						song: "Blinding Lights",
+						year: 2020,
+						rightAlign: true,
+						audioFile: "blinding-lights"
+					}
+				]
+			}
 		}
 	},
 
@@ -412,15 +435,17 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			songAnnotations: [
-				{ song: "All For You", year: 2001, audioFile: "all-for-you" },
-				{ song: "Call Me Maybe", year: 2012, audioFile: "call-me-maybe" },
-				{
-					song: "I Want To Hold Your Hand",
-					year: 1964,
-					audioFile: "i-want-to-hold-your-hand"
-				}
-			]
+			songAnnotations: {
+				offsetAnnotations: [
+					{ song: "All For You", year: 2001, audioFile: "all-for-you" },
+					{ song: "Call Me Maybe", year: 2012, audioFile: "call-me-maybe" },
+					{
+						song: "I Want To Hold Your Hand",
+						year: 1964,
+						audioFile: "i-want-to-hold-your-hand"
+					}
+				]
+			}
 		}
 	},
 	courtshipHasNoEffect: {
@@ -462,19 +487,21 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			songAnnotations: [
-				{
-					song: "Will You Love Me Tomorrow",
-					year: 1961,
-					audioFile: "will-you-love-me-tomorrow"
-				},
-				{
-					song: "Quit Playing Games (With My Heart)",
-					year: 1997,
-					audioFile: "quit-playing-games-with-my-heart"
-				},
-				{ song: "In My Feelings", year: 2018, audioFile: "in-my-feelings" }
-			]
+			songAnnotations: {
+				offsetAnnotations: [
+					{
+						song: "Will You Love Me Tomorrow",
+						year: 1961,
+						audioFile: "will-you-love-me-tomorrow"
+					},
+					{
+						song: "Quit Playing Games (With My Heart)",
+						year: 1997,
+						audioFile: "quit-playing-games-with-my-heart"
+					},
+					{ song: "In My Feelings", year: 2018, audioFile: "in-my-feelings" }
+				]
+			}
 		}
 	},
 	itsComplicatedDoesNotTipTheScales: {
@@ -515,12 +542,14 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			songAnnotations: [
-				// { song: "Runaround Sue", year: 1961, audioFile: "TODO" },
-				{ song: "I Will Survive", year: 1979, audioFile: "i-will-survive" },
-				{ song: "So What", year: 2008, audioFile: "so-what" },
-				{ song: "Good 4 U", year: 2021, audioFile: "good-4-u" }
-			]
+			songAnnotations: {
+				offsetAnnotations: [
+					// { song: "Runaround Sue", year: 1961, audioFile: "TODO" },
+					{ song: "I Will Survive", year: 1979, audioFile: "i-will-survive" },
+					{ song: "So What", year: 2008, audioFile: "so-what" },
+					{ song: "Good 4 U", year: 2021, audioFile: "good-4-u" }
+				]
+			}
 		}
 	},
 	goodRiddanceDoesNotTipTheScale: {
@@ -565,11 +594,13 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			songAnnotations: [
-				{ song: "Physical", year: 1981, audioFile: "physical" },
-				{ song: "WAP", year: 2020, audioFile: "wap", offsetToThisYear: 2010 },
-				{ song: "Way 2 Sexy", year: 2021, audioFile: "way-2-sexy" }
-			]
+			songAnnotations: {
+				offsetAnnotations: [
+					{ song: "Physical", year: 1981, audioFile: "physical" },
+					{ song: "WAP", year: 2020, audioFile: "wap", offsetToThisYear: 2010 },
+					{ song: "Way 2 Sexy", year: 2021, audioFile: "way-2-sexy" }
+				]
+			}
 		}
 	},
 	sexualConfidenceInContext: {
@@ -606,12 +637,14 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			songAnnotations: [
-				{ song: "I Am Woman", year: 1972, audioFile: "i-am-woman" },
-				{ song: "Unpretty", year: 1999, audioFile: "unpretty" },
-				// { song: "Thank U, Next", year: 2018, audioFile: "TODO" },
-				{ song: "Flowers", year: 2023, audioFile: "flowers" }
-			]
+			songAnnotations: {
+				offsetAnnotations: [
+					{ song: "I Am Woman", year: 1972, audioFile: "i-am-woman" },
+					{ song: "Unpretty", year: 1999, audioFile: "unpretty" },
+					// { song: "Thank U, Next", year: 2018, audioFile: "TODO" },
+					{ song: "Flowers", year: 2023, audioFile: "flowers" }
+				]
+			}
 		}
 	},
 	didLoveSongForTheSelfTipTheScales: {

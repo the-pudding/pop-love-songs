@@ -17,22 +17,22 @@
         return x + direction * X_OFFSET;
     }
     $: layoutData = $songAnnotationsWithPosition
-        .filter(({audioFile}) => !audioFile) 
-        .map(({song, x, y, rightAlign, placeBelow, placeAbove, alternateTitle}) => {
+        .filter(({adjacentAnnotation}) => adjacentAnnotation) 
+        .map(({song, x, y, rightAlign, placeBelow, placeAbove, alternateTitle, audioFile}) => {
             const xPos = getX(x, rightAlign, placeBelow, placeAbove);
             const yPos = y - (placeBelow ? -40 : (placeAbove ? 60 : Y_OFFSET));
-            return {xPos, yPos, song, rightAlign, alternateTitle}
+            return {xPos, yPos, song, rightAlign, alternateTitle, audioFile}
         })
 </script>
 
-{#each layoutData as {xPos, yPos, song, rightAlign, alternateTitle}}
+{#each layoutData as {xPos, yPos, song, rightAlign, alternateTitle, audioFile}}
     <div
         id={song[SONG_DATA_COLUMNS_ENUM.song]}
         class="annotation-wrapper fade-in-image"
         role="tooltip"
         style={`top: ${yPos}px; left: ${xPos}px; ${rightAlign ? 'transform: translateX(-100%);' : ''}`}
     >
-        <SongInfo song={song} alternateTitle={alternateTitle} />
+        <SongInfo {song} {alternateTitle} {audioFile} />
     </div>
 {/each}
 

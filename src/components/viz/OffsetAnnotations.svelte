@@ -14,7 +14,7 @@
     const aNonTrivialSize = (height) => Math.abs(height) > 16;
 	
     $: layoutData = $songAnnotationsWithPosition
-        .filter(({audioFile}) => audioFile) 
+        .filter(({offsetAnnotation}) => offsetAnnotation) 
         .map(({x, y, radius, song, alternateTitle, audioFile, offsetToThisYear}, index, fullArray) => {
             const threeSongs = fullArray.length === 3;
             const xTranslation = x > (0.8 * $viewport.width) ? '-100' : x < (0.2 * $viewport.width) ? '0' : '-50';

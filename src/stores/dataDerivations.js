@@ -311,7 +311,9 @@ export const formattedLoveSongPercentChange = derived(
 export const annotatedSongsData = derived(
 	[visibleSongsData, currentStoryStep],
 	([$visibleSongsData, $currentStoryStep]) => {
-		if ($currentStoryStep.visualEncodings.songAnnotations.length === 0) {
+		const { adjacentAnnotations = [], offsetAnnotations = [] } =
+			$currentStoryStep.visualEncodings.songAnnotations;
+		if (!adjacentAnnotations.length && !offsetAnnotations.length) {
 			return [];
 		}
 		return $visibleSongsData.filter(({ song }) =>
