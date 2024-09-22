@@ -149,12 +149,12 @@ export const NON_SERENADE_HIGHLIGHTS_FROM_INTRO = [
 	{
 		song: "Thriller",
 		year: 1984,
-		xPercent: 0.8,
-		yPercent: 0.4,
+		xPercent: 0.85,
+		yPercent: 0.25,
 		rightAlign: true
 	},
 	{ song: "If I Were A Boy", year: 2008, xPercent: 0.5, yPercent: 0.55 },
-	{ song: "Kiss Me More", year: 2021, xPercent: 0.4, yPercent: 0.8 }
+	{ song: "Kiss Me More", year: 2021, xPercent: 0.4, yPercent: 0.85 }
 ];
 
 const ALL_HIGHLIGHTS_FROM_INTRO = [
