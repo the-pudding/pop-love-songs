@@ -8,8 +8,8 @@
 	import TitleCard from "./story-steps/TitleCard.svelte";
 	import StoryStepNavigationAndText from "./story-steps/StoryStepNavigationAndText.svelte";
 	
-	import SongAnnotations from "./viz/SongAnnotations.svelte";
-	import PlayableSongAnnotations from "./viz/PlayableSongAnnotations.svelte";
+	import AdjacentAnnotations from "./viz/AdjacentAnnotations.svelte";
+	import OffsetAnnotations from "./viz/OffsetAnnotations.svelte";
 	import SongTooltip from "./viz/SongTooltip.svelte";
 	import Audio from "./audio/Audio.svelte";
 	
@@ -47,8 +47,8 @@
 	{/if}
 
 	<StoryStepNavigationAndText />
-	<SongAnnotations />
-	<PlayableSongAnnotations />
+	<AdjacentAnnotations />
+	<OffsetAnnotations />
 	<SongTooltip />
 
 	<Audio audioFile={$playing?.audioFile} onComplete={() => $playing = undefined} />
