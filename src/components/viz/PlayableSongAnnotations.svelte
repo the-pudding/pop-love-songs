@@ -10,6 +10,8 @@
     import variables from '$data/variables.json';
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 	import { getXPosForYear } from '$data/data-utils';
+
+    const aNonTrivialSize = (height) => Math.abs(height) > 16;
 	
     $: layoutData = $songAnnotationsWithPosition
         .filter(({audioFile}) => audioFile) 
@@ -44,12 +46,14 @@
 <!-- For each layoutData, use html to draw a line extending from bubbleX/Y up to textY with thickness 3 pixels -->
 
 {#each layoutData as {bubbleX, bubbleY, textY, elbowX}}
-    <div
-        class="annotation-line"
-        in:fade={{delay: variables.chart['transition-opacity-duration'] / 2, duration: variables.chart['transition-opacity-duration'] / 2 }}
-        style={`top: ${textY}px; left: ${bubbleX}px; height: ${bubbleY - textY}px;`}
-    />
-    {#if elbowX}
+    {#if aNonTrivialSize(bubbleY - textY)}
+        <div
+            class="annotation-line"
+            in:fade={{delay: variables.chart['transition-opacity-duration'] / 2, duration: variables.chart['transition-opacity-duration'] / 2 }}
+            style={`top: ${textY}px; left: ${bubbleX}px; height: ${bubbleY - textY}px;`}
+        />
+    {/if}
+    {#if elbowX && aNonTrivialSize(bubbleX - elbowX)}
         <div
             class="annotation-line"
             in:fade={{delay: variables.chart['transition-opacity-duration'] / 2, duration: variables.chart['transition-opacity-duration'] / 2 }}
