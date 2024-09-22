@@ -1,9 +1,7 @@
 <script>
-    import { fade } from 'svelte/transition'
 
     import { songAnnotationsWithPosition } from "$stores/visualEncodings";
 	import SongInfo from "./SongInfo.svelte";
-	import variables from '$data/variables.json';
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 
     const X_OFFSET = 24;
@@ -46,6 +44,10 @@
 		position: absolute;
 		max-height: 300px;
 		background-color: transparent;
+
+        /* Both attempts to get (mostly just WAP) not to become a tower of wrapped text */
+        /* white-space: nowrap; */
+        min-width: 100px;
     }
 
     .fade-in-image {
