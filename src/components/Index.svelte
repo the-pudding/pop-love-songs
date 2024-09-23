@@ -14,6 +14,7 @@
 	import Audio from "./audio/Audio.svelte";
 	
 	import { currentStoryStep, currentStoryStepIndex, showSearchBars } from "$stores/storySteps";
+	import { aSearchFilterExists } from "$stores/searchAndFilter";
 	import { playing } from "$stores/audio.js";
 	import Header from "./Header.svelte";
 
@@ -47,8 +48,10 @@
 	{/if}
 
 	<StoryStepNavigationAndText />
-	<AdjacentAnnotations />
-	<OffsetAnnotations />
+	{#if !$aSearchFilterExists}
+		<AdjacentAnnotations />
+		<OffsetAnnotations />
+	{/if}
 	<SongTooltip />
 
 	<Audio audioFile={$playing?.audioFile} onComplete={() => $playing = undefined} />

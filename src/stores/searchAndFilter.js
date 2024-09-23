@@ -1,11 +1,27 @@
-import { writable } from "svelte/store";
-
-export const aSearchBarIsFocused = writable(false);
+import { writable, derived } from "svelte/store";
 
 export const songSearchString = writable("");
 export const selectedSongs = writable([]);
 export const performerSearchString = writable("");
 export const selectedPerformers = writable([]);
+
+export const aSearchFilterExists = derived(
+	[songSearchString, selectedSongs, performerSearchString, selectedPerformers],
+	([
+		$songSearchString,
+		$selectedSongs,
+		$performerSearchString,
+		$selectedPerformers
+	]) => {
+		return (
+			$songSearchString ||
+			$selectedSongs.length ||
+			$performerSearchString ||
+			$selectedPerformers.length
+		);
+	}
+);
+export const aSearchBarIsFocused = writable(false);
 
 export const typesTreatedAsNonLoveSongs = writable([]);
 

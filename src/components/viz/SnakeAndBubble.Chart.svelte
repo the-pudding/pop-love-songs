@@ -28,7 +28,7 @@
 	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
 	import { svgCoordsForSnakeChartOutline } from "$stores/snakeChartOutlineGenerator";
 	import { currentStoryStep, preventBubbleRestartBecauseTheUserIsMerelySearching, restartBubbles } from "$stores/storySteps";
-	import { showAggregateSnakeChart } from "$stores/searchAndFilter";
+	import { aSearchFilterExists, showAggregateSnakeChart } from "$stores/searchAndFilter";
 	import { songInAnnotations } from "$data/data-utils";
 	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";
 	
@@ -75,7 +75,7 @@
 			context.fill(circle);
 
 			// Draw a border around annotated songs
-			if (songInAnnotations(song, $currentStoryStep.visualEncodings.songAnnotations)) {
+			if (!$aSearchFilterExists && songInAnnotations(song, $currentStoryStep.visualEncodings.songAnnotations)) {
 				context.strokeStyle = "black";
 				context.lineWidth = BUBBLE_BORDER_THICKNESS;
 				context.stroke(circle);
@@ -157,7 +157,7 @@
 	};
 
 	// All these stores do not require re-running the simulation, just redrawing the canvas
-	$: $songIsSelected, $viewport.width, $viewport.height, $tweenedSongColor, updateViz();
+	$: $songIsSelected, $viewport.width, $viewport.height, $tweenedSongColor, $aSearchFilterExists, updateViz();
 	// simulation force layout properties need to be update when viewport or target x/yForcePosition changes
 	$: $xForcePosition, $yForcePosition, $viewport.width, $viewport.height, updateSimulationProperties(); 
 	const updateViz = () => {
