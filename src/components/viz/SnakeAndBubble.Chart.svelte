@@ -75,15 +75,7 @@
 			context.fill(circle);
 
 			// Draw a border around annotated songs
-			if (!$aSearchFilterExists && songInAnnotations(song, $currentStoryStep.visualEncodings.songAnnotations)) {
-				context.strokeStyle = "black";
-				context.lineWidth = BUBBLE_BORDER_THICKNESS;
-				context.stroke(circle);
-				annotatedSongsToRedrawOnTop = [
-					...annotatedSongsToRedrawOnTop,
-					[{song, x, y}, songIndex]
-				]
-			} else if (isSelected && isVisible && $currentStoryStep.visualEncodings.useHeavierSongBorders) {
+			if (isSelected && isVisible && $currentStoryStep.visualEncodings.useHeavierSongBorders) {
 				context.strokeStyle = "#333333"; // chosen cuz it's the lightest still accessible contrast with serenade's color
 				context.lineWidth = 0.5;
 				context.stroke(circle);
