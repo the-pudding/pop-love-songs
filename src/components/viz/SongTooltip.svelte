@@ -5,7 +5,7 @@
 	import { showAggregateSnakeChart } from "$stores/searchAndFilter";
 	
 	import SongInfo from "./SongInfo.svelte";
-	import { BUBBLE_BORDER_THICKNESS } from './viz-utils';
+	import BubbleOutline from "./BubbleOutline.svelte";
 	
 
 	$: song = $hoveredSongInfo.song || [];
@@ -46,12 +46,7 @@
 		<SongInfo {song} />
 	</div>
 
-	<div
-		class="circle-outline"
-		aria-hidden={!visible}
-		class:visible
-		style={`top: ${circleY}px; left: ${circleX}px; height: ${circleRadius * 2}px; width: ${circleRadius * 2}px; border: ${BUBBLE_BORDER_THICKNESS}px solid black;`}
-	/>
+	<BubbleOutline {circleX} {circleY} {circleRadius} />
 </div>
 
 <style>
@@ -61,15 +56,6 @@
 		padding: 0.5rem;
 
 		/* note: dynamically toggled via JS */
-		display: none;
-	}
-
-	.circle-outline {
-		z-index: 10000;
-		position: absolute;
-		border-radius: 100%;
-		transform: translate(-50%, -50%);
-		pointer-events: none;
 		display: none;
 	}
 
