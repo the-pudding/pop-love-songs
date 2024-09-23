@@ -27,8 +27,8 @@
 
 {#each layoutData as {xPos, yPos, song, rightAlign, alternateTitle, audioFile}}
     <div
-        id={song[SONG_DATA_COLUMNS_ENUM.song]}
-        class="annotation-wrapper fade-in-image"
+        id={song[SONG_DATA_COLUMNS_ENUM.song].replaceAll(' ', '-')}
+        class="annotation-wrapper"
         role="tooltip"
         style={`top: ${yPos}px; left: ${xPos}px; ${rightAlign ? 'transform: translateX(-100%);' : ''}`}
     >
@@ -48,14 +48,5 @@
         /* Both attempts to get (mostly just WAP) not to become a tower of wrapped text */
         /* white-space: nowrap; */
         min-width: 100px;
-    }
-
-    .fade-in-image {
-        animation: fadeIn calc(var(--chart-transition-opacity-duration) * 1ms);
-    }
-
-    @keyframes fadeIn {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
     }
 </style>

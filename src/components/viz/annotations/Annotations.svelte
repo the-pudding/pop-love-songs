@@ -14,9 +14,6 @@
     const inFadeSettings = {
         duration: variables.chart['transition-opacity-duration'], 
         delay: variables.chart['transition-opacity-duration']
-    }	
-    const outFadeSettings = {
-        duration: variables.chart['transition-opacity-duration'] / 2, 
     }
 
     // Re-trigger the "fade in" Svelte animation each time we change steps:
@@ -30,7 +27,8 @@
 </script>
 
 {#if !$aSearchFilterExists && show}
-    <div class="annotations" in:fade={inFadeSettings} out:fade={outFadeSettings}>
+    <!-- For reasons I can't fully guess, having an out:fade as well breaks this, causing children to remain across transitions -->
+    <div class="annotations" in:fade={inFadeSettings}>
         <OffsetAnnotations />
         <AdjacentAnnotations />
         <AnnotatedBubbleOverlay />
