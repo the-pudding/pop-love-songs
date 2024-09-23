@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 
+	import Header from "./Header.svelte";
 	import PerformerAndSongSearchBars from "./search/PerformerAndSongSearchBars.svelte";
 	import SnakeAndBubbleChart from "./viz/SnakeAndBubble.Chart.svelte";
 	import HeadlinesAboutLoveSongDecline from "./story-steps/HeadlinesAboutLoveSongDecline.svelte";
@@ -8,16 +9,14 @@
 	import TitleCard from "./story-steps/TitleCard.svelte";
 	import StoryStepNavigationAndText from "./story-steps/StoryStepNavigationAndText.svelte";
 	
-	import AdjacentAnnotations from "./viz/AdjacentAnnotations.svelte";
-	import OffsetAnnotations from "./viz/OffsetAnnotations.svelte";
+	import Annotations from "./viz/annotations/Annotations.svelte";
 	import SongTooltip from "./viz/SongTooltip.svelte";
-	import Audio from "./audio/Audio.svelte";
-	
-	import { currentStoryStep, currentStoryStepIndex, showSearchBars } from "$stores/storySteps";
-	import { aSearchFilterExists } from "$stores/searchAndFilter";
-	import { playing } from "$stores/audio.js";
-	import Header from "./Header.svelte";
 
+	import Audio from "./audio/Audio.svelte";
+
+	import { playing } from "$stores/audio.js";
+	import { currentStoryStep, currentStoryStepIndex, showSearchBars } from "$stores/storySteps";
+	
 	// Wait until after we've mounted (and thus pulled the story step from the URL)
 	// TODO: this doesn't seem to actually work. Instead, just create a store that StoryStepNavigationAndText updates
 	let urlParsed = false
@@ -48,10 +47,7 @@
 	{/if}
 
 	<StoryStepNavigationAndText />
-	{#if !$aSearchFilterExists}
-		<AdjacentAnnotations />
-		<OffsetAnnotations />
-	{/if}
+	<Annotations />
 	<SongTooltip />
 
 	<Audio audioFile={$playing?.audioFile} onComplete={() => $playing = undefined} />

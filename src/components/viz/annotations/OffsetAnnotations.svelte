@@ -6,7 +6,7 @@
     import { getYPosForPercentage } from '$stores/forcePositionOptions-helper';
     import { currentStoryStep } from '$stores/storySteps';
 
-	import SongInfo from "./SongInfo.svelte";
+	import SongInfo from "../SongInfo.svelte";
 
     import variables from '$data/variables.json';
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";

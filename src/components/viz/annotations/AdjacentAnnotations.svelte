@@ -1,7 +1,7 @@
 <script>
 
     import { songAnnotationsWithPosition } from "$stores/visualEncodings";
-	import SongInfo from "./SongInfo.svelte";
+	import SongInfo from "../SongInfo.svelte";
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 
     const X_OFFSET = 24;
