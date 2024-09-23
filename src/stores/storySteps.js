@@ -290,13 +290,7 @@ const stepsWithoutText = {
 				offsetFromThisYPercentage: 0.9,
 				offsetAnnotations: [
 					{ song: "Fever", year: 1958, audioFile: "fever" },
-					{
-						song: "Just The Way You Are",
-						year: 1978,
-						placeAbove: true,
-						audioFile: "just-the-way-you-are-1978"
-					},
-					// { song: "Like A Virgin", year: 1984, audioFile: "TODO" },
+					{ song: "Like A Virgin", year: 1984, audioFile: "like-a-virgin" },
 					{
 						song: "Just The Way You Are",
 						year: 2010,
