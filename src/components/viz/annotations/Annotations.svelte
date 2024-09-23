@@ -10,10 +10,13 @@
     import OffsetAnnotations from "./OffsetAnnotations.svelte";
     import AdjacentAnnotations from "./AdjacentAnnotations.svelte";
     import AnnotatedBubbleOverlay from "./AnnotatedBubbleOverlay.svelte";
-	
-    const fadeSettings = {
+
+    const inFadeSettings = {
         duration: variables.chart['transition-opacity-duration'], 
         delay: variables.chart['transition-opacity-duration']
+    }	
+    const outFadeSettings = {
+        duration: variables.chart['transition-opacity-duration'] / 2, 
     }
 
     // Re-trigger the "fade in" Svelte animation each time we change steps:
@@ -26,12 +29,10 @@
     $: $currentStoryStepIndex, restartFadeInAnimation();
 </script>
 
-{#if !$aSearchFilterExists}
-    {#if show}
-        <div class="annotations" in:fade={fadeSettings}>
-            <OffsetAnnotations />
-            <AdjacentAnnotations />
-            <AnnotatedBubbleOverlay />
-        </div>
-    {/if}
+{#if !$aSearchFilterExists && show}
+    <div class="annotations" in:fade={inFadeSettings} out:fade={outFadeSettings}>
+        <OffsetAnnotations />
+        <AdjacentAnnotations />
+        <AnnotatedBubbleOverlay />
+    </div>
 {/if}
