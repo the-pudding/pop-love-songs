@@ -63,9 +63,6 @@
 		/* note: dynamically toggled via JS */
 		display: none;
 	}
-	.visible {
-		display: block;
-	}
 
 	.circle-outline {
 		z-index: 10000;
@@ -73,5 +70,10 @@
 		border-radius: 100%;
 		transform: translate(-50%, -50%);
 		pointer-events: none;
+		display: none;
+	}
+
+	.visible {
+		display: block;
 	}
 </style>
