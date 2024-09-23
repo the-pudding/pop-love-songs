@@ -27,40 +27,41 @@
 	}
 </script>
 
-<button on:click={toggleLoveSongStatus(loveSongType)}>
-	<div
-		class={`container ${$isLastStep ? 'allow-toggle' : ''}` }
-		style:left={`${x}px`} style:top={`${y}px`}
-		style:transform={translate}
-		style:opacity={opacity}
-		style:font-size={fontSize}
-		style:font-weight={fontWeight}
-		style:text-shadow={textShadow}
-	>
-		<div class="label">{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}</div>
-		{#if $isLastStep}
-			<XandAddButton
-				rotateIntoPlusSign={isTreatedAsNonLoveSong}
-				diameter={$viewport.isLikelyInMobileLandscape ? 24 : 28} 
-				selectionColor={LOVE_SONG_TYPE_COLOR_MAP[loveSongType]}
-				selectionBackgroundColor={ACCESSIBLY_CONTRASTING_COLOR_MAP[loveSongType]}
-				isSelected={isTreatedAsNonLoveSong}
-			/>
-		{/if}
-	</div>
+<button
+	class={$isLastStep ? 'allow-toggle' : ''}
+	on:click={toggleLoveSongStatus(loveSongType)}
+	style:left={`${x}px`} style:top={`${y}px`}
+	style:transform={translate}
+	style:opacity={opacity}
+	style:font-size={fontSize}
+	style:font-weight={fontWeight}
+	style:text-shadow={textShadow}
+>
+	<div class="label">{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}</div>
+	{#if $isLastStep}
+		<XandAddButton
+			rotateIntoPlusSign={isTreatedAsNonLoveSong}
+			diameter={$viewport.isLikelyInMobileLandscape ? 24 : 28} 
+			selectionColor={LOVE_SONG_TYPE_COLOR_MAP[loveSongType]}
+			selectionBackgroundColor={ACCESSIBLY_CONTRASTING_COLOR_MAP[loveSongType]}
+			isSelected={isTreatedAsNonLoveSong}
+		/>
+	{/if}
 </button>
 
 <style>
 
-	.container {
+	button {
 		font-family: 'Atlas Grotesk', sans-serif;
 		position: fixed;
 		display: flex;
 		align-items: center;
 		pointer-events: none;
+
+		background-color: transparent;
 	}
 
-	.container.allow-toggle {
+	button.allow-toggle {
 		pointer-events: all;
 		transition: transform calc(var(--chart-transition-opacity-duration) * 1ms), 
 			left calc(var(--chart-transition-opacity-duration) * 1ms),
