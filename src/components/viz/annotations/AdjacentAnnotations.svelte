@@ -4,9 +4,9 @@
 	import SongInfo from "../SongInfo.svelte";
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 
-    const X_OFFSET = 24;
+    const X_OFFSET = 12;
     const Y_OFFSET = 24;
-    const getX = (x, rightAlign, placeBelow, placeAbove) => {  
+    const getX = (x, radius, rightAlign, placeBelow, placeAbove) => {  
         if (placeAbove) {
             return x - X_OFFSET * 2; // slide it more centered
         }
@@ -14,12 +14,12 @@
             return x + X_OFFSET * 2; // slide it more centered
         }
         const direction = rightAlign ? -1 : 1
-        return x + direction * X_OFFSET;
+        return x + direction * (X_OFFSET + radius);
     }
     $: layoutData = $songAnnotationsWithPosition
         .filter(({adjacentAnnotation}) => adjacentAnnotation) 
-        .map(({song, x, y, rightAlign, placeBelow, placeAbove, alternateTitle, audioFile}) => {
-            const xPos = getX(x, rightAlign, placeBelow, placeAbove);
+        .map(({song, x, y, radius, rightAlign, placeBelow, placeAbove, alternateTitle, audioFile}) => {
+            const xPos = getX(x, radius, rightAlign, placeBelow, placeAbove);
             const yPos = y - (placeBelow ? -40 : (placeAbove ? 60 : Y_OFFSET));
             return {xPos, yPos, song, rightAlign, alternateTitle, audioFile}
         })
