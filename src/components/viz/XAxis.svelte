@@ -7,7 +7,7 @@
     $: tickYears = [1960, 1970, 1980, 1990, 2000, 2010, 2020]
         .filter(year => !$viewport.isLikelyInMobileLandscape || year % 20 === 0);
 
-    const formatYear = year => abbreviateYearForDisplay(year);
+    const formatYear = year => `${abbreviateYearForDisplay(year)}s`;
     $: xPositions = tickYears.map(year => ({
         year,
         x: getXPosForYear(year, $viewport.width)
