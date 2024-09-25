@@ -251,10 +251,16 @@ const stepsWithoutText = {
 						song: "Buy U A Drank (Shawty Snappin')",
 						alternateTitle: "Buy U A Drank",
 						year: 2007,
-						rightAlign: true
+						rightAlign: true,
+						audioFile: "buy-u-a-drank"
 					},
-					{ song: "I Will Always Love You", year: 1992, rightAlign: true },
-					{ song: "WAP", year: 2020, rightAlign: true }
+					{
+						song: "I Will Always Love You",
+						year: 1992,
+						rightAlign: true,
+						audioFile: "i-will-always-love-you"
+					},
+					{ song: "WAP", year: 2020, rightAlign: true, audioFile: "wap" }
 				]
 			}
 		}
@@ -433,13 +439,20 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: {
 				offsetAnnotations: [
-					{ song: "All For You", year: 2001, audioFile: "all-for-you" },
-					{ song: "Call Me Maybe", year: 2012, audioFile: "call-me-maybe" },
 					{
 						song: "I Want To Hold Your Hand",
 						year: 1964,
 						audioFile: "i-want-to-hold-your-hand"
-					}
+					},
+					// { song: "All For You", year: 2001, audioFile: "all-for-you" },
+					{
+						song: "Buy U A Drank (Shawty Snappin')",
+						alternateTitle: "Buy U A Drank",
+						year: 2007,
+						offsetToThisYear: 2000,
+						audioFile: "buy-u-a-drank"
+					},
+					{ song: "Call Me Maybe", year: 2012, audioFile: "call-me-maybe" }
 				]
 			}
 		}

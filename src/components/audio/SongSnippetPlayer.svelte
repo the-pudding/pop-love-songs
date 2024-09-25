@@ -1,14 +1,16 @@
 <script>
-	import { ACCESSIBLY_CONTRASTING_COLOR_MAP, LOVE_SONG_TYPE_COLOR_MAP } from "$data/data-constants";
 	import { playing } from "$stores/audio.js";
+	import { accessiblyContrastingColorMap, loveSongTypeColorMap } from "$stores/colorMap";
+
 	import PlayAndPauseButton from "./PlayAndPauseButton.svelte";
 
 	export let songName;
 	export let loveSongType;
 	export let audioFile;
 
-	$: backgroundColor = ACCESSIBLY_CONTRASTING_COLOR_MAP[loveSongType];
-	$: fillColor = LOVE_SONG_TYPE_COLOR_MAP[loveSongType];
+	
+	$: backgroundColor = $accessiblyContrastingColorMap[loveSongType];
+	$: fillColor = $loveSongTypeColorMap[loveSongType];
 
 	$: playingMe = $playing && $playing.audioFile === audioFile;
 

@@ -6,6 +6,7 @@ import { currentStoryStep } from "./storySteps";
 import { songIsSelected } from "./dataDerivations";
 
 import {
+	ACCESSIBLY_CONTRASTING_COLOR_MAP,
 	LOVE_SONG_TYPE_COLOR_MAP,
 	LOVE_SONG_TYPE_CONSTANTS,
 	UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP
@@ -63,6 +64,17 @@ export const unselectedLoveSongTypeColorMap = derived(
 		updateColorMap(
 			$typesTreatedAsNonLoveSongs,
 			UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP,
+			$currentStoryStep.visualEncodings.colorButDontSeperateThisLoveSongType,
+			$currentStoryStep.isFinalComparisonStep
+		)
+);
+
+export const accessiblyContrastingColorMap = derived(
+	[typesTreatedAsNonLoveSongs, currentStoryStep],
+	([$typesTreatedAsNonLoveSongs, $currentStoryStep]) =>
+		updateColorMap(
+			$typesTreatedAsNonLoveSongs,
+			ACCESSIBLY_CONTRASTING_COLOR_MAP,
 			$currentStoryStep.visualEncodings.colorButDontSeperateThisLoveSongType,
 			$currentStoryStep.isFinalComparisonStep
 		)
