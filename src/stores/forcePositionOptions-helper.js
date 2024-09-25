@@ -131,7 +131,7 @@ export const SERENADE_HIGHLIGHTS_FROM_INTRO = [
 	{
 		song: "Happy Together",
 		year: 1967,
-		xPercent: 0.9,
+		xPercent: 0.8,
 		yPercent: 0.35,
 		rightAlign: true,
 		audioFile: "happy-together"
@@ -153,7 +153,7 @@ export const SERENADE_HIGHLIGHTS_FROM_INTRO = [
 	{
 		song: "Perfect",
 		year: 2017,
-		xPercent: 0.3,
+		xPercent: 0.2,
 		yPercent: 0.6,
 		audioFile: "perfect"
 	}
