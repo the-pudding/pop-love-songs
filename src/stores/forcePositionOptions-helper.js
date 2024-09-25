@@ -163,11 +163,10 @@ export const SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD = [
 		song: "Happy Together",
 		year: 1967,
 		xPercent: 0.9,
-		yPercent: 0.5,
 		leftAlign: true
 	},
-	{ song: "Love Song", year: 1989, xPercent: 0.1, yPercent: 0.7 },
-	{ song: "No One", year: 2007, xPercent: 0.5, yPercent: 0.8 }
+	{ song: "Love Song", year: 1989, xPercent: 0.1 },
+	{ song: "No One", year: 2007, xPercent: 0.5 }
 	// { song: "Perfect", year: 2017, xPercent: 0.4, yPercent: 0.6 }
 ];
 export const NON_SERENADE_HIGHLIGHTS_FROM_INTRO = [
