@@ -248,19 +248,27 @@ const stepsWithoutText = {
 			songAnnotations: {
 				adjacentAnnotations: [
 					{
+						song: "I Will Always Love You",
+						year: 1992,
+						rightAlign: true,
+						audioFile: "i-will-always-love-you",
+						yPercent: 0.2
+					},
+					{
 						song: "Buy U A Drank (Shawty Snappin')",
 						alternateTitle: "Buy U A Drank",
 						year: 2007,
 						rightAlign: true,
-						audioFile: "buy-u-a-drank"
+						audioFile: "buy-u-a-drank",
+						yPercent: 0.55
 					},
 					{
-						song: "I Will Always Love You",
-						year: 1992,
+						song: "WAP",
+						year: 2020,
 						rightAlign: true,
-						audioFile: "i-will-always-love-you"
-					},
-					{ song: "WAP", year: 2020, rightAlign: true, audioFile: "wap" }
+						audioFile: "wap",
+						yPercent: 0.7
+					}
 				]
 			}
 		}
@@ -326,13 +334,15 @@ const stepsWithoutText = {
 						song: "Heartbreaker",
 						year: 1983,
 						rightAlign: true,
-						audioFile: "heartbreaker"
+						audioFile: "heartbreaker",
+						yPercent: 0.45
 					},
 					{
 						song: "You Belong With Me",
 						year: 2009,
 						rightAlign: true,
-						audioFile: "you-belong-with-me"
+						audioFile: "you-belong-with-me",
+						yPercent: 0.25
 					}
 				]
 			}

@@ -94,14 +94,21 @@ const seededRandom = sfc32(0x9e3779b9, 0x243f6a88, 0xb7e15162, 0x85ae67bb);
 export const getYPositionInSnakeChart = (
 	song,
 	canvasHeight,
-	$loveSongsLabeledByTimeRegionPercentageForPosition
+	$loveSongsLabeledByTimeRegionPercentageForPosition,
+	_,
+	songAnnotations
 ) => {
+	const annotatedSong = songInAnnotations(song, songAnnotations);
+	if (annotatedSong && annotatedSong.yPercent) {
+		return getYPosForPercentage(annotatedSong.yPercent, canvasHeight);
+	}
+
 	const { y0, y1 } =
 		getPercentageForSong(
 			song,
 			$loveSongsLabeledByTimeRegionPercentageForPosition
 		) || {};
-	
+
 	const base = y1;
 	const randomPositionWithinBand = seededRandom() * (y0 - y1);
 	return getYPosForPercentage(base + randomPositionWithinBand, canvasHeight);

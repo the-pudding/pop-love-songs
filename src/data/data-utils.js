@@ -36,14 +36,15 @@ export const formatYearForDisplay = (year) => {
 
 export const abbreviateYearForDisplay = (year) => {
 	const shortNumber = Math.floor(year % 100);
-	return `'${shortNumber > 9 ? shortNumber : "0" + shortNumber}s`;
+	return `'${shortNumber > 9 ? shortNumber : "0" + shortNumber}`;
 };
 
 export const formatSongTitleForDisplay = (title = "") =>
-	title.split("(")[0].trim().split('/')[0].trim(); // songs get super long when they're like "San Francisco (Be Sure to Wear Flowers in Your Hair)"
+	title.split("(")[0].trim().split("/")[0].trim(); // songs get super long when they're like "San Francisco (Be Sure to Wear Flowers in Your Hair)"
 
 export const songInAnnotations = (song, songAnnotations) => {
-	const { offsetAnnotations = [], adjacentAnnotations = [] } = songAnnotations;
+	const { offsetAnnotations = [], adjacentAnnotations = [] } =
+		songAnnotations || {};
 
 	const matchingOffsetAnnotation = offsetAnnotations.find(
 		({ song: annotationSongName, year }) =>

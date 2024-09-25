@@ -34,13 +34,15 @@ export const yForcePosition = derived(
 		$loveSongsLabeledByTimeRegionPercentageForPosition
 	]) => {
 		const { height } = $viewport;
-		const { calculateYForcePosition } = $currentStoryStep.visualEncodings;
+		const { calculateYForcePosition, songAnnotations } =
+			$currentStoryStep.visualEncodings;
 		return songsData.map(({ song }, index) =>
 			calculateYForcePosition(
 				song,
 				height,
 				$loveSongsLabeledByTimeRegionPercentageForPosition,
-				index
+				index,
+				songAnnotations
 			)
 		);
 	}
