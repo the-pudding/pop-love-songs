@@ -2,7 +2,7 @@
 	import { onMount } from "svelte";
 
 	import Header from "./Header.svelte";
-	import PerformerAndSongSearchBars from "./search/PerformerAndSongSearchBars.svelte";
+	import InteractivityControlsAndFilters from "./search/InteractivityControlsAndFilters.svelte";
 	import SnakeAndBubbleChart from "./viz/SnakeAndBubble.Chart.svelte";
 	import HeadlinesAboutLoveSongDecline from "./story-steps/HeadlinesAboutLoveSongDecline.svelte";
 	import OpeningComment from "./story-steps/OpeningComment.svelte";
@@ -31,7 +31,7 @@
 
 <article>
 	{#if $showSearchBars}
-		<PerformerAndSongSearchBars />
+		<InteractivityControlsAndFilters />
 	{/if}
 
 	{#if urlParsed}
