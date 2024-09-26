@@ -1,9 +1,9 @@
 <script>
 	import viewport from "$stores/viewport";
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
-	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep, precedingStepSpotlightedType } from "$stores/storySteps";
+	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep, isLastStep, precedingStepSpotlightedType } from "$stores/storySteps";
 	import { nonLoveSongLabelBottomLeftCoords } from "$stores/labels";
-	import { typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
+	import { showAggregateSnakeChart, typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
 
 	import { getXPosForYear } from "$data/data-utils";
 	import { LOVE_SONG_TYPE_CONSTANTS, TEXT_SHADOW_COLOR_MAP } from "$data/data-constants";
@@ -29,9 +29,10 @@
 		return getXPosForYear(x, width);
 	}
 
+	const OFFSET_FROM_NON_LOVE_SONG_LABEL = 0;
 	const getY = (y0, height, orderInNonLoveSongStack, nonLoveSongY, labelHeight) => {
 		if (orderInNonLoveSongStack !== -1) {
-			return nonLoveSongY + labelHeight * (2 + orderInNonLoveSongStack);
+			return OFFSET_FROM_NON_LOVE_SONG_LABEL + nonLoveSongY + labelHeight * (2 + orderInNonLoveSongStack);
 		}
 		return getYPosForPercentage(y0, height);
 	}
@@ -54,7 +55,7 @@
 			const baseFontSize = 16;
 			const fontAdjustment = (wasJustSpotlighted && !$viewport.isLikelyInMobileLandscape ? 8 : 0) + ($viewport.isLikelyInMobileLandscape ? -4 : 0);
 			const fontSize = baseFontSize + fontAdjustment;
-			const labelHeight = fontSize * 1.5;
+			const labelHeight = fontSize * 2;
 			return [... acc, {
 				loveSongType,
 				labelHeight,
@@ -69,7 +70,8 @@
 			}]
 		}, []);
 
-	$: show = $currentStoryStep.showXAxis && !$currentStoryStep.isFinalComparisonStep && !$aSingleLoveSongTypeIsSpotlighted;
+	$: bubbleViewOnLastStep = $isLastStep && !$showAggregateSnakeChart;
+	$: show = $currentStoryStep.showXAxis && !$currentStoryStep.isFinalComparisonStep && !$aSingleLoveSongTypeIsSpotlighted && !bubbleViewOnLastStep;
 </script>
 
 {#if show}
