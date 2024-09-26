@@ -101,6 +101,7 @@
         margin-bottom: 4%;
 
         pointer-events: none;
+        border: none; /* TODO: see if this fixes the random border that appeared on mobile */
     }
 
     .story-text {
@@ -115,6 +116,7 @@
         padding-right: 12px;
 
         border-radius: 8px;
+        border: none; /* TODO: see if this fixes the random border that appeared on mobile */
 
         pointer-events: all;
     }
