@@ -35,31 +35,25 @@
 	})
 </script>
 
-<div>
-	<div
-		class="tooltip"
-		role="tooltip"
-		aria-hidden={!visible}
-		class:visible
-		style={`top: ${tooltipPosition.top}; bottom: ${tooltipPosition.bottom}; left: ${tooltipPosition.left}; right: ${tooltipPosition.right}; transform: ${tooltipPosition.transform};`}
-	>
-		<SongInfo {song} />
-	</div>
+<!-- @michelle: do you have any strong arguments for why I should use class:visible vs just conditionally rendering? -->
+{#if visible}
+	<div>
+		<div
+			class="tooltip"
+			role="tooltip"
+			style={`top: ${tooltipPosition.top}; bottom: ${tooltipPosition.bottom}; left: ${tooltipPosition.left}; right: ${tooltipPosition.right}; transform: ${tooltipPosition.transform};`}
+		>
+			<SongInfo {song} />
+		</div>
 
-	<BubbleOutline {circleX} {circleY} {circleRadius} />
-</div>
+		<BubbleOutline {circleX} {circleY} {circleRadius} />
+	</div>
+{/if}
 
 <style>
 	 .tooltip {
 		z-index: 10000;
 		position: absolute;
 		padding: 0.5rem;
-
-		/* note: dynamically toggled via JS */
-		display: none;
-	}
-
-	.visible {
-		display: block;
 	}
 </style>
