@@ -142,16 +142,20 @@
 			.force("collide", forceCollide().radius(({radius}, songIndex) => $songIsVisible[songIndex] ? $songRadius[songIndex] + 0.5 : 0).strength(0.5))
 			.velocityDecay(0.3) // think of it like "friction": lower values help things slide smoother, but too much causes a sort of "bounce" effect as it oscillates towards the force center
 			.alpha(0.06)
-		
+	};
+
+	const restartSimulation = () => {
+		if (!simulation) return;
 		if ($restartBubbles && !$preventBubbleRestartBecauseTheUserIsMerelySearching) {
 			simulation.restart()
 		}
 	};
 
-	// All these stores do not require re-running the simulation, just redrawing the canvas
-	$: $songIsSelected, $viewport.width, $viewport.height, $tweenedSongColor, $aSearchFilterExists, updateViz();
-	// simulation force layout properties need to be update when viewport or target x/yForcePosition changes
-	$: $xForcePosition, $yForcePosition, $viewport.width, $viewport.height, updateSimulationProperties(); 
+	$: $xForcePosition, $yForcePosition, updateSimulationProperties();
+	$: $xForcePosition, $yForcePosition, $viewport.width, $viewport.height, restartSimulation();
+
+	$: $songIsSelected, $viewport.width, $viewport.height, $tweenedSongColor, updateViz();
+	
 	const updateViz = () => {
 		resizeCanvases();
 		updateVisibleAndInvisibleCanvases();
