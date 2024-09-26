@@ -838,10 +838,6 @@ export const restartBubbles = derived(
 	}
 );
 
-// All this is to prevent the bubbles from restarting when the user is merely searching:
-
-const previousViewport = previous(viewport, { width: null, height: null });
-
 // TODO: OPTIMIZATION, if we update songIsVisible to a memoized custom store, I think we can remove all this code
 export const preventBubbleRestartBecauseTheUserIsMerelySearching = derived(
 	[aSearchBarIsFocused],
