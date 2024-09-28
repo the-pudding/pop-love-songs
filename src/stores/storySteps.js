@@ -40,8 +40,6 @@ const VISUAL_ENCODING_BLANK_STATE = {
 	calculateYForcePosition: getYPositionInSnakeChart,
 	forceXStrength: 7, // it is FAR more important that the bubble is accurate to the time encoding
 	forceYStrength: 1, // the y position can be a bit more flexible
-	restartBubblesOnAdvanceInto: true,
-	restartBubblesOnReturnInto: true,
 
 	showAggregateSnakeChart: false,
 
@@ -110,8 +108,6 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: randomXDistribution,
 			calculateYForcePosition: randomYDistribution,
-			restartBubblesOnAdvanceInto: true, // a little wiggle is nice
-			restartBubblesOnReturnInto: false, // nothing's changed position-wise
 			forceXStrength: 1,
 			forceYStrength: 1,
 			songAnnotations: {
@@ -137,7 +133,6 @@ const stepsWithoutText = {
 
 			useHeavierSongBorders: true,
 
-			restartBubblesOnAdvanceInto: false,
 			forceXStrength: 1,
 			forceYStrength: 1,
 			songAnnotations: {
@@ -157,7 +152,6 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
-			// restartBubblesOnReturnInto: false,
 			forceXStrength: 1,
 			forceYStrength: 0.5,
 			songAnnotations: {
@@ -181,7 +175,6 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
-			restartBubblesOnReturnInto: false,
 			forceXStrength: 11,
 			forceYStrength: 0.5,
 			songAnnotations: {
@@ -205,8 +198,6 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			calculateXForcePosition: getXPositionFromTime,
-			restartBubblesOnAdvanceInto: false,
-			restartBubblesOnReturnInto: true,
 			forceXStrength: 11,
 			forceYStrength: 0.5,
 			songAnnotations: {
@@ -226,7 +217,6 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			restartBubblesOnReturnInto: false,
 			showAggregateSnakeChart: true
 		},
 		showLoveSongChange: true
@@ -241,8 +231,6 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			restartBubblesOnAdvanceInto: false,
-			restartBubblesOnReturnInto: false,
 			songAnnotations: {
 				adjacentAnnotations: [
 					{
@@ -281,8 +269,6 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			restartBubblesOnAdvanceInto: false,
-			restartBubblesOnReturnInto: false,
 			showAggregateSnakeChart: true
 		},
 		showLoveSongChange: true
@@ -296,8 +282,6 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			restartBubblesOnAdvanceInto: false,
-			restartBubblesOnReturnInto: false,
 			songAnnotations: {
 				offsetFromThisYPercentage: 0.9,
 				offsetAnnotations: [
@@ -325,7 +309,6 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			colorButDontSeperateThisLoveSongType:
 				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-			restartBubblesOnAdvanceInto: false,
 			songAnnotations: {
 				adjacentAnnotations: [
 					{
@@ -391,7 +374,6 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			restartBubblesOnReturnInto: false,
 			// Since we're introducing (and pointing out) sorting here, it's key that they are nicely herded
 			forceXStrength: 10,
 			forceYStrength: 3,
@@ -421,7 +403,6 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			restartBubblesOnAdvanceInto: false,
 			showAggregateSnakeChart: true
 		},
 		showLoveSongChange: true
@@ -818,23 +799,6 @@ export const showSearchBars = derived(
 	([$aSingleLoveSongTypeIsSpotlighted, $viewport, $isLastStep]) =>
 		!$viewport.isLikelyInMobileLandscape &&
 		($aSingleLoveSongTypeIsSpotlighted || $isLastStep)
-);
-
-export const restartBubbles = derived(
-	[currentStoryStepIndex, previousStoryStepIndex],
-	([$currentStoryStepIndex, $previousStoryStepIndex]) => {
-		const isAdvancingIntoStep =
-			$currentStoryStepIndex > $previousStoryStepIndex ||
-			$previousStoryStepIndex === null;
-
-		if (isAdvancingIntoStep) {
-			return storySteps[$currentStoryStepIndex].visualEncodings
-				.restartBubblesOnAdvanceInto;
-		} else {
-			return storySteps[$currentStoryStepIndex].visualEncodings
-				.restartBubblesOnReturnInto;
-		}
-	}
 );
 
 // TODO: OPTIMIZATION, if we update songIsVisible to a memoized custom store, I think we can remove all this code

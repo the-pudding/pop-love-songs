@@ -27,8 +27,8 @@
 	import { loveSongTypeColorMap, rgbaArrayToString, songColor, unselectedLoveSongTypeColorMap } from "$stores/colorMap";
 	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
 	import { svgCoordsForSnakeChartOutline } from "$stores/snakeChartOutlineGenerator";
-	import { currentStoryStep, preventBubbleRestartBecauseTheUserIsMerelySearching, restartBubbles } from "$stores/storySteps";
-	import { aSearchFilterExists, showAggregateSnakeChart } from "$stores/searchAndFilter";
+	import { currentStoryStep, preventBubbleRestartBecauseTheUserIsMerelySearching } from "$stores/storySteps";
+	import { showAggregateSnakeChart } from "$stores/searchAndFilter";
 	import { songInAnnotations } from "$data/data-utils";
 	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";
 	
@@ -146,7 +146,7 @@
 
 	const restartSimulation = () => {
 		if (!simulation) return;
-		if ($restartBubbles && !$preventBubbleRestartBecauseTheUserIsMerelySearching) {
+		if (!$preventBubbleRestartBecauseTheUserIsMerelySearching) {
 			simulation.restart()
 		}
 	};
@@ -173,8 +173,6 @@
 		resizeCanvases();
 		updateVisibleAndInvisibleCanvases();
 		updateSimulationProperties();
-
-		
 	});
 
 	// Transition opacity between charts
