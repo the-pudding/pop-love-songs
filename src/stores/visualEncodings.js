@@ -31,7 +31,7 @@ const yForcePositionUnoptimized = derived(
 		$loveSongsLabeledByTimeRegionPercentageForPosition
 	]) => {
 		const { height } = $viewport;
-		const { calculateYForcePosition, songAnnotations } =
+		const { calculateYForcePosition, songAnnotations, manuallySetPositions } =
 			$currentStoryStep.visualEncodings;
 		return songsData.map(({ song }, index) =>
 			calculateYForcePosition(
@@ -39,7 +39,8 @@ const yForcePositionUnoptimized = derived(
 				height,
 				$loveSongsLabeledByTimeRegionPercentageForPosition,
 				index,
-				songAnnotations
+				songAnnotations,
+				manuallySetPositions
 			)
 		);
 	}

@@ -6,6 +6,7 @@ import { STORY_STEP_CONTROLLER_TOP_PADDING } from "$components/viz/viz-utils";
 import {
 	getXPosForYear,
 	songInAnnotations,
+	songInManuallySetPositions,
 	Y_MARGIN_SCREEN_PERCENTAGE
 } from "$data/data-utils";
 
@@ -76,10 +77,18 @@ export const getYPositionInSnakeChart = (
 	canvasHeight,
 	$loveSongsLabeledByTimeRegionPercentageForPosition,
 	songIndex,
-	songAnnotations
+	songAnnotations,
+	manuallySetPositions
 ) => {
 	const annotatedSong = songInAnnotations(song, songAnnotations);
-	if (annotatedSong && annotatedSong.yPercent) {
+	const manuallySetSong = songInManuallySetPositions(
+		song,
+		manuallySetPositions
+	);
+	const yPercent =
+		(annotatedSong && annotatedSong.yPercent) ||
+		(manuallySetSong && manuallySetSong.yPercent);
+	if (yPercent) {
 		return getYPosForPercentage(annotatedSong.yPercent, canvasHeight);
 	}
 
@@ -156,11 +165,22 @@ const NON_SERENADE_HIGHLIGHTS_FROM_INTRO = [
 
 export const ANNOTATION_METADATA = {
 	intro: {
-		serenadeHighlights: SERENADE_HIGHLIGHTS_FROM_INTRO,
-		nonSerenadeHighlights: NON_SERENADE_HIGHLIGHTS_FROM_INTRO
+		manuallySetPositions: {
+			...SERENADE_HIGHLIGHTS_FROM_INTRO,
+			...NON_SERENADE_HIGHLIGHTS_FROM_INTRO
+		},
+		annotations: {
+			serenadeHighlights: SERENADE_HIGHLIGHTS_FROM_INTRO,
+			nonSerenadeHighlights: NON_SERENADE_HIGHLIGHTS_FROM_INTRO
+		}
 	},
 	timelineSpread: {
-		serenadeHighlights: SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD
+		manuallySetPositions: {
+			...SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD
+		},
+		annotations: {
+			serenadeHighlights: SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD
+		}
 	}
 };
 

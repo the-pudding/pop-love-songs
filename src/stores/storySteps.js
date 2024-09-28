@@ -44,6 +44,7 @@ const VISUAL_ENCODING_BLANK_STATE = {
 	useHeavierSongBorders: false,
 	showTotalWeeksInTop10InSongInfo: false,
 
+	manuallySetPositions: [],
 	songAnnotations: {
 		offsetFromThisYPercentage: undefined, // 0 - 1
 		adjacentAnnotations: [],
@@ -108,8 +109,11 @@ const stepsWithoutText = {
 			calculateYForcePosition: randomYDistribution,
 			forceXStrength: 1,
 			forceYStrength: 1,
+
+			manuallySetPositions: ANNOTATION_METADATA.intro.manuallySetPositions,
 			songAnnotations: {
-				adjacentAnnotations: ANNOTATION_METADATA.intro.nonSerenadeHighlights
+				adjacentAnnotations:
+					ANNOTATION_METADATA.intro.annotations.nonSerenadeHighlights
 			}
 		},
 		showTotalWeeksInTop10InSongInfo: true
@@ -133,8 +137,11 @@ const stepsWithoutText = {
 
 			forceXStrength: 1,
 			forceYStrength: 1,
+
+			manuallySetPositions: ANNOTATION_METADATA.intro.manuallySetPositions,
 			songAnnotations: {
-				adjacentAnnotations: ANNOTATION_METADATA.intro.serenadeHighlights
+				adjacentAnnotations:
+					ANNOTATION_METADATA.intro.annotations.serenadeHighlights
 			}
 		}
 	},
@@ -152,9 +159,11 @@ const stepsWithoutText = {
 			calculateXForcePosition: getXPositionFromTime,
 			forceXStrength: 1,
 			forceYStrength: 0.5,
+			manuallySetPositions:
+				ANNOTATION_METADATA.timelineSpread.manuallySetPositions,
 			songAnnotations: {
 				adjacentAnnotations:
-					ANNOTATION_METADATA.timelineSpread.serenadeHighlights
+					ANNOTATION_METADATA.timelineSpread.annotations.serenadeHighlights
 			}
 		}
 	},

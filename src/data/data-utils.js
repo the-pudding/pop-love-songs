@@ -72,3 +72,7 @@ export const songInAnnotations = (song, songAnnotations) => {
 
 	return false;
 };
+
+// Cuz manuallySetPositions is actually just combined inner data from multiple song annotations
+export const songInManuallySetPositions = (song, manuallySetPositions) =>
+	songInAnnotations(song, { offsetAnnotation: manuallySetPositions });
