@@ -6,10 +6,11 @@ import { currentStoryStep } from "./storySteps.js";
 import { loveSongsLabeledByTimeRegionPercentageForPosition } from "./loveSongsLabeledByTimeRegionPercentageForPosition.js";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { nodePositionsInSimulation } from "./simulation.js";
+import previous from "./previous.js";
 
 // Position (or the force layout that guides it)
 
-export const xForcePosition = derived(
+const xForcePositionUnoptimized = derived(
 	[viewport, currentStoryStep],
 	([$viewport, $currentStoryStep]) => {
 		const { width } = $viewport;
@@ -22,7 +23,7 @@ export const xForcePosition = derived(
 
 // TODO: yForcePosition should derive from loveSongsLabeledByTimeRegionPercentageForPosition (the final data structure use for to derive snake positioning)
 // By providing it (optionally), position can be easily calculated (and no need to calculate it here)
-export const yForcePosition = derived(
+const yForcePositionUnoptimized = derived(
 	[
 		viewport,
 		currentStoryStep,
@@ -45,6 +46,62 @@ export const yForcePosition = derived(
 				songAnnotations
 			)
 		);
+	}
+);
+
+export const previousXForcePosition = previous(xForcePositionUnoptimized);
+export const previousYForcePosition = previous(yForcePositionUnoptimized);
+
+const EPSILON = 0.01;
+const substantiallyDifferent = (a, b) => {
+	return Math.abs(a - b) > EPSILON;
+};
+// TODO: OPTIMIZATION: do we need to check ALL values? or just one? or just the first few?
+// ... or is there like some tricky math-y thing we could do here that's really cheap/fast?
+const arraysDifferMeaningfully = (a, b) =>
+	a.length !== b.length ||
+	a.some((x, index) => substantiallyDifferent(x, b[index]));
+
+export const xForcePosition = derived(
+	[xForcePositionUnoptimized, previousXForcePosition],
+	([$xForcePositionUnoptimized, $previousXForcePosition], set) => {
+		// debugger;
+		if (!$previousXForcePosition) {
+			set($xForcePositionUnoptimized);
+			console.log("x SET");
+			return;
+		}
+
+		if (
+			arraysDifferMeaningfully(
+				$xForcePositionUnoptimized,
+				$previousXForcePosition
+			)
+		) {
+			set($xForcePositionUnoptimized);
+			console.log("x SET-----------------");
+		}
+	}
+);
+
+export const yForcePosition = derived(
+	[yForcePositionUnoptimized, previousYForcePosition],
+	([$yForcePositionUnoptimized, $previousYForcePosition], set) => {
+		// debugger;
+		if (!$previousYForcePosition) {
+			set($yForcePositionUnoptimized);
+			return;
+		}
+
+		if (
+			arraysDifferMeaningfully(
+				$yForcePositionUnoptimized,
+				$previousYForcePosition
+			)
+		) {
+			set($yForcePositionUnoptimized);
+			console.log("y SET-----------------");
+		}
 	}
 );
 
