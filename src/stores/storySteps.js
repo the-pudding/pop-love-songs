@@ -13,7 +13,6 @@ import {
 	NON_SERENADE_HIGHLIGHTS_FROM_INTRO,
 	SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD,
 	SERENADE_HIGHLIGHTS_FROM_INTRO,
-	fractionOfScreenFactory,
 	getXPositionFromTime,
 	getYPositionInSnakeChart,
 	randomXDistribution,

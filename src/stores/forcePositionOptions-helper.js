@@ -1,10 +1,11 @@
+import seedrandom from "seedrandom";
+
 import songsData from "$data/songs-data.js";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { STORY_STEP_CONTROLLER_TOP_PADDING } from "$components/viz/viz-utils";
 import {
 	getXPosForYear,
 	songInAnnotations,
-	X_MARGIN,
 	Y_MARGIN_SCREEN_PERCENTAGE
 } from "$data/data-utils";
 
@@ -70,32 +71,11 @@ export const getYPosInAggregateSnakeChart = ({
 		canvasHeight
 	);
 
-// TODO: what I really want is a random number for each song, that is the same each time.
-// I'm not sure why "seeding" it with the index didn't work (seemed to just do nothing)
-// https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript
-function sfc32(a, b, c, d) {
-	return function () {
-		a |= 0;
-		b |= 0;
-		c |= 0;
-		d |= 0;
-		let t = (((a + b) | 0) + d) | 0;
-		d = (d + 1) | 0;
-		a = b ^ (b >>> 9);
-		b = (c + (c << 3)) | 0;
-		c = (c << 21) | (c >>> 11);
-		c = (c + t) | 0;
-		return (t >>> 0) / 4294967296;
-	};
-}
-
-const seededRandom = sfc32(0x9e3779b9, 0x243f6a88, 0xb7e15162, 0x85ae67bb);
-
 export const getYPositionInSnakeChart = (
 	song,
 	canvasHeight,
 	$loveSongsLabeledByTimeRegionPercentageForPosition,
-	_,
+	songIndex,
 	songAnnotations
 ) => {
 	const annotatedSong = songInAnnotations(song, songAnnotations);
@@ -110,19 +90,11 @@ export const getYPositionInSnakeChart = (
 		) || {};
 
 	const base = y1;
-	const randomPositionWithinBand = seededRandom() * (y0 - y1);
+	// While positions appear random to the unsuspecting user, by using each song's index as its own random seed, we effectively create
+	// a "database" of sorts that will always return the same "randomized" position for each song, without having to send/store 5000+ positions
+	const randomPositionWithinBand = seedrandom(songIndex)() * (y0 - y1);
 	return getYPosForPercentage(base + randomPositionWithinBand, canvasHeight);
 };
-
-// x and y
-
-export const fractionOfScreenFactory =
-	(fraction = 0.5, randomVariance = 0.05) =>
-	(song, canvasWidthOrHeight) => {
-		const range = canvasWidthOrHeight - 2 * X_MARGIN;
-		const randomOffset = range * randomVariance * (Math.random() - 1);
-		return randomOffset + X_MARGIN + fraction * range;
-	};
 
 // Create an unchanging array of random positions for each song, since it should stay constant accros the story
 
@@ -187,6 +159,8 @@ const ALL_HIGHLIGHTS_FROM_INTRO = [
 	...NON_SERENADE_HIGHLIGHTS_FROM_INTRO
 ];
 
+// This ensures the viz will always have the same "random" positions for the songs, even if you hard-refresh the page
+const randomPosition = seedrandom("randomPosition");
 const RANDOM_X_POSITIONS = songsData.map(({ song }) => {
 	if (
 		songInAnnotations(song, {
@@ -199,7 +173,7 @@ const RANDOM_X_POSITIONS = songsData.map(({ song }) => {
 		);
 		return xPercent;
 	}
-	return Math.random();
+	return randomPosition();
 });
 const RANDOM_Y_POSITIONS = songsData.map(({ song }) => {
 	if (
@@ -213,7 +187,7 @@ const RANDOM_Y_POSITIONS = songsData.map(({ song }) => {
 		);
 		return yPercent;
 	}
-	return Math.random();
+	return randomPosition();
 });
 
 const MARGIN = 0.05;
