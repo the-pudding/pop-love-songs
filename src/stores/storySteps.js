@@ -10,9 +10,7 @@ import {
 } from "$data/data-constants.js";
 import { MAX_DATE, MIN_DATE } from "$data/songs-data.js";
 import {
-	NON_SERENADE_HIGHLIGHTS_FROM_INTRO,
-	SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD,
-	SERENADE_HIGHLIGHTS_FROM_INTRO,
+	ANNOTATION_METADATA,
 	getXPositionFromTime,
 	getYPositionInSnakeChart,
 	randomXDistribution,
@@ -111,7 +109,7 @@ const stepsWithoutText = {
 			forceXStrength: 1,
 			forceYStrength: 1,
 			songAnnotations: {
-				adjacentAnnotations: NON_SERENADE_HIGHLIGHTS_FROM_INTRO
+				adjacentAnnotations: ANNOTATION_METADATA.intro.nonSerenadeHighlights
 			}
 		},
 		showTotalWeeksInTop10InSongInfo: true
@@ -136,7 +134,7 @@ const stepsWithoutText = {
 			forceXStrength: 1,
 			forceYStrength: 1,
 			songAnnotations: {
-				adjacentAnnotations: SERENADE_HIGHLIGHTS_FROM_INTRO
+				adjacentAnnotations: ANNOTATION_METADATA.intro.serenadeHighlights
 			}
 		}
 	},
@@ -155,7 +153,8 @@ const stepsWithoutText = {
 			forceXStrength: 1,
 			forceYStrength: 0.5,
 			songAnnotations: {
-				adjacentAnnotations: SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD
+				adjacentAnnotations:
+					ANNOTATION_METADATA.timelineSpread.serenadeHighlights
 			}
 		}
 	},

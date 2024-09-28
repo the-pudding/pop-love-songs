@@ -99,7 +99,7 @@ export const getYPositionInSnakeChart = (
 // Create an unchanging array of random positions for each song, since it should stay constant accros the story
 
 // I know... weird place to put this, but trust me: it was the simplest solution
-export const SERENADE_HIGHLIGHTS_FROM_INTRO = [
+const SERENADE_HIGHLIGHTS_FROM_INTRO = [
 	{
 		song: "Happy Together",
 		year: 1967,
@@ -130,7 +130,7 @@ export const SERENADE_HIGHLIGHTS_FROM_INTRO = [
 		audioFile: "perfect"
 	}
 ];
-export const SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD = [
+const SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD = [
 	{
 		song: "Happy Together",
 		year: 1967,
@@ -141,7 +141,7 @@ export const SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD = [
 	{ song: "No One", year: 2007, xPercent: 0.5 }
 	// { song: "Perfect", year: 2017, xPercent: 0.4, yPercent: 0.6 }
 ];
-export const NON_SERENADE_HIGHLIGHTS_FROM_INTRO = [
+const NON_SERENADE_HIGHLIGHTS_FROM_INTRO = [
 	{ song: "Day Tripper", year: 1966, xPercent: 0.1, yPercent: 0.6 },
 	{
 		song: "Thriller",
@@ -153,6 +153,16 @@ export const NON_SERENADE_HIGHLIGHTS_FROM_INTRO = [
 	{ song: "If I Were A Boy", year: 2008, xPercent: 0.5, yPercent: 0.55 },
 	{ song: "Kiss Me More", year: 2021, xPercent: 0.4, yPercent: 0.85 }
 ];
+
+export const ANNOTATION_METADATA = {
+	intro: {
+		serenadeHighlights: SERENADE_HIGHLIGHTS_FROM_INTRO,
+		nonSerenadeHighlights: NON_SERENADE_HIGHLIGHTS_FROM_INTRO
+	},
+	timelineSpread: {
+		serenadeHighlights: SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD
+	}
+};
 
 const ALL_HIGHLIGHTS_FROM_INTRO = [
 	...SERENADE_HIGHLIGHTS_FROM_INTRO,
