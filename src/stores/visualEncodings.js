@@ -8,8 +8,6 @@ import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { nodePositionsInSimulation } from "./simulation.js";
 import previous from "./previous.js";
 
-// Position (or the force layout that guides it)
-
 const xForcePositionUnoptimized = derived(
 	[viewport, currentStoryStep],
 	([$viewport, $currentStoryStep]) => {
@@ -21,8 +19,6 @@ const xForcePositionUnoptimized = derived(
 	}
 );
 
-// TODO: yForcePosition should derive from loveSongsLabeledByTimeRegionPercentageForPosition (the final data structure use for to derive snake positioning)
-// By providing it (optionally), position can be easily calculated (and no need to calculate it here)
 const yForcePositionUnoptimized = derived(
 	[
 		viewport,
@@ -65,10 +61,8 @@ const arraysDifferMeaningfully = (a, b) =>
 export const xForcePosition = derived(
 	[xForcePositionUnoptimized, previousXForcePosition],
 	([$xForcePositionUnoptimized, $previousXForcePosition], set) => {
-		// debugger;
 		if (!$previousXForcePosition) {
 			set($xForcePositionUnoptimized);
-			console.log("x SET");
 			return;
 		}
 
@@ -87,7 +81,6 @@ export const xForcePosition = derived(
 export const yForcePosition = derived(
 	[yForcePositionUnoptimized, previousYForcePosition],
 	([$yForcePositionUnoptimized, $previousYForcePosition], set) => {
-		// debugger;
 		if (!$previousYForcePosition) {
 			set($yForcePositionUnoptimized);
 			return;
