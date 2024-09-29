@@ -31,7 +31,7 @@
             {/if}
         </div>
     {/if}
-    </div>
+</div>
 
 <style>
     .overflow-overlay {
