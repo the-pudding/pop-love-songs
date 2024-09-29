@@ -4,8 +4,11 @@
     export let searchString = "";
     export let searchResults = ['apple', 'banana', 'cherry', 'date', 'elderberry', 'fig', 'grape', 'honeydew', 'kiwi', 'lemon', 'mango'];
     export let renderComponent = null;
+    export let noResultsMessage = "No matching results";
 
     const MAX_RESULTS = 5;
+
+    let isFocused = false
 </script>
 
 <div class="search-container">
@@ -13,25 +16,29 @@
         type="text" 
         placeholder={placeholder} 
         bind:value={searchString} 
-        on:focus={() => aSearchBarIsFocused.set(true)} 
-        on:blur={() => aSearchBarIsFocused.set(false)} 
+        on:focus={() => { aSearchBarIsFocused.set(true); isFocused = true; }} 
+        on:blur={() => { aSearchBarIsFocused.set(false); isFocused = false; }} 
     />
 
-    {#if searchString && searchResults.length > 0}
+    {#if isFocused}
         <div class="dropdown-wrapper">
-            <ul class="dropdown">
-                {#each searchResults.slice(0, MAX_RESULTS) as result}
-                    <li>
-                        {#if renderComponent}
-                            <svelte:component this={renderComponent} {result} />
-                        {:else}
-                            {result}
-                        {/if}
-                    </li>
-                {/each}
-            </ul>
-            {#if searchResults.length > MAX_RESULTS}
-                <div class="overflow-overlay"/>
+            {#if searchResults.length === 0}
+                <div>{noResultsMessage}</div>
+            {:else}
+                <ul class="dropdown">
+                    {#each searchResults.slice(0, MAX_RESULTS) as result}
+                        <li>
+                            {#if renderComponent}
+                                <svelte:component this={renderComponent} {result} />
+                            {:else}
+                                {result}
+                            {/if}
+                        </li>
+                    {/each}
+                </ul>
+                {#if searchResults.length > MAX_RESULTS}
+                    <div class="overflow-overlay"/>
+                {/if}
             {/if}
         </div>
     {/if}

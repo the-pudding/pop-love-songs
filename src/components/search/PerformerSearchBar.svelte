@@ -26,8 +26,9 @@
 
     $: searchResults = Object.entries(performerSongCountMap).map(([name, songCountByLoveSongType]) => ({
         name,
-        songCountByLoveSongType
-    }));
+        songCountByLoveSongType,
+        totalSongCount: Object.values(songCountByLoveSongType).reduce((acc, count) => acc + count, 0)
+    })).sort((a, b) => b.totalSongCount - a.totalSongCount);
 </script>
 
 <SearchBar

@@ -6,14 +6,14 @@
     $: name = result.name;
     
     $: songCountByLoveSongType = result.songCountByLoveSongType;
-    $: songCount = Object.values(songCountByLoveSongType).reduce((acc, count) => acc + count, 0)
+    $: totalSongCount = result.totalSongCount;
 </script>
 
 <div class="performer-search-result">
         <!-- @michelle: what is the best html tags to use here? like is it better to wrap the name (primary info) in an h2 vs a div? -->
         <div class="top-row">
             <h2>{name}</h2>
-            <p>{songCount} hits</p>
+            <p>{totalSongCount} hits</p>
         </div>
         <ul>
             {#each Object.entries(songCountByLoveSongType) as [type, count]}
