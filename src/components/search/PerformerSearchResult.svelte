@@ -1,12 +1,11 @@
 <script>
+	import { LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
+
     export let result;
 
     $: name = result.name;
     
-    $: songCountByLoveSongType = {
-        "Serenade": 12,
-        "Not a Love Song": 31
-    }
+    $: songCountByLoveSongType = result.songCountByLoveSongType;
     $: songCount = Object.values(songCountByLoveSongType).reduce((acc, count) => acc + count, 0)
 </script>
 
@@ -18,7 +17,7 @@
         </div>
         <ul>
             {#each Object.entries(songCountByLoveSongType) as [type, count]}
-                <li>{type}: {count}</li>
+                <li>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[type]}: {count}</li>
             {/each}
         </ul>
 </div>
