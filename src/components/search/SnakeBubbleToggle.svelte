@@ -2,7 +2,7 @@
 	import {onDestroy} from "svelte";
 	import Toggle from "$components/helpers/Toggle.svelte";
 
-	import { performerSearchString, selectedPerformers, selectedSongs, showAggregateSnakeChart, songSearchString } from "$stores/searchAndFilter.js";
+	import { aSearchBarIsFocused, performerSearchString, selectedPerformers, selectedSongs, showAggregateSnakeChart, songSearchString } from "$stores/searchAndFilter.js";
 	import { isLastStep } from "$stores/storySteps";
 
 	const CHART_OPTIONS = {
@@ -33,7 +33,7 @@
 	// @michelle Is this a random place to put this? Like should this be a derived store or something? What's tricking is that others are writing to showAggregateSnakeChart, too.
 	$: {
 		if ($isLastStep && $showAggregateSnakeChart) {
-			if ($performerSearchString || $songSearchString || $selectedPerformers.length || $selectedSongs.length) {
+			if ($aSearchBarIsFocused) {
 				showAggregateSnakeChart.set(false);
 			}
 		}

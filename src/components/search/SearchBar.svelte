@@ -75,12 +75,6 @@
         font-style: italic;
     }
 
-    .dropdown {
-        
-        list-style: none;
-        padding: 0;
-    }
-
     .dropdown-wrapper {
         position: absolute;
         top: 100%;
@@ -93,6 +87,11 @@
         
         width: 100%;
         z-index: 1;
+    }
+
+    .dropdown {
+        list-style: none;
+        padding: 0;
     }
 
     .dropdown li {

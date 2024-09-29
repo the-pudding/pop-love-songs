@@ -17,7 +17,7 @@
             <h2>
                 <SearchResultText fullText={name} query={$performerSearchString} />
             </h2>
-            <p><b>{totalSongCount}</b> hits</p>
+            <p><b>{totalSongCount}</b> songs</p>
         </div>
         <ul>
             {#each Object.entries(songCountByLoveSongType) as [type, count]}
@@ -27,6 +27,11 @@
 </div>
 
 <style>
+    .performer-search-result {
+        font-family: var(--sans);
+        font-size: 12px;
+    }
+
     .top-row {
         display: flex;
         justify-content: space-between;

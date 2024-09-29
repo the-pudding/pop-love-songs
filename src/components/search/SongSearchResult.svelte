@@ -1,6 +1,7 @@
 <script>
-	import { LOVE_SONG_TYPE_COLOR_MAP, LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
+	import { ACCESSIBLY_CONTRASTING_COLOR_MAP, LOVE_SONG_TYPE_COLOR_MAP, LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
 	import { songSearchString } from "$stores/searchAndFilter";
+	import LoveSongTypePill from "./LoveSongTypePill.svelte";
 	import SearchResultText from "./SearchResultText.svelte";
 
     export let result;
@@ -13,14 +14,15 @@
         </span>
         <span class="year">{result.year}</span>
     </div>
-    <div class="bottom-row">
-        <span class="love-song-type" style:color={LOVE_SONG_TYPE_COLOR_MAP[result.loveSongType]}>
-            {LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[result.loveSongType]}
-        </span>
-    </div>
+    <LoveSongTypePill loveSongType={result.loveSongType} />
 </div>
 
 <style>
+    .search-result {
+        font-family: var(--sans);
+        font-size: 12px;
+    }
+
     .top-row {
         display: flex;
         justify-content: space-between;
@@ -29,10 +31,6 @@
         font-weight: bold;
     }
     .year {
-        color: #888;
-    }
-    .bottom-row {
-        margin-top: 5px;
-        color: #555;
+        color: var(--color-gray-500);
     }
 </style>

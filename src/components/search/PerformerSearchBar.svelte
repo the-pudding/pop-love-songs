@@ -1,13 +1,13 @@
 <script>
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 	import { getArrayOfPerformers } from "$data/data-utils";
-	import { selectedSongsData } from "$stores/dataDerivations";
+	import { visibleSongsData } from "$stores/dataDerivations";
     import { performerSearchString } from "$stores/searchAndFilter";
 	import PerformerSearchResult from "./PerformerSearchResult.svelte";
 
     import SearchBar from "./SearchBar.svelte";
 
-    $: performerSongCountMap = $selectedSongsData.reduce((acc, { song }) => {
+    $: performerSongCountMap = $visibleSongsData.reduce((acc, { song }) => {
         getArrayOfPerformers(song).forEach(performer => {
             const lowerCasePerformer = performer.toLowerCase();
             if (lowerCasePerformer.includes($performerSearchString.toLowerCase())) {
