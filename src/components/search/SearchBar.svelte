@@ -45,6 +45,10 @@
 </div>
 
 <style>
+    .search-container {
+        height: var(--search-bar-height);
+    }
+
     .overflow-overlay {
         position: absolute;
         bottom: 0;
@@ -64,6 +68,7 @@
 
     input {
         width: 100%;
+        height: 100%;
         background-color: var(--color-cream-background);
         border-radius: var(--search-bar-border-radius);
         font-family: var(--sans);
@@ -71,6 +76,7 @@
     }
 
     .dropdown {
+        
         list-style: none;
         padding: 0;
     }

@@ -19,7 +19,10 @@
 
 	/* presets (used in reset.css) */
 	--border-radius: 2px;
+
 	--search-bar-border-radius: 12px;
+	--search-bar-height: 40px;
+
 	--font-body: var(--serif);
 	--font-form: var(--sans);
 	--color-bg: var(--color-cream-background); /* David set this */

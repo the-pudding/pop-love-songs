@@ -22,7 +22,6 @@
         position: fixed;
         transform: translateY(-100%) translateX(-50%);
 
-        z-index: 100000;
         font-family: 'Atlas Grotesk', sans-serif;
         font-weight: bold;
         font-size: 16px;

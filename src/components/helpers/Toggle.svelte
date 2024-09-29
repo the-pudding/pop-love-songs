@@ -33,9 +33,13 @@
 </div>
 
 <style>
+	div.toggle {
+		height: var(--search-bar-height);
+	}
 	.toggle button {
 		font-family: var(--sans);
 		font-size: 1em;
+		height: 100%;
 	}
 
 	.toggle--inner [role="switch"][aria-checked="true"] :first-child,

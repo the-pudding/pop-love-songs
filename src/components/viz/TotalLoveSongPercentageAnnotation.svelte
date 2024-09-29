@@ -19,7 +19,6 @@
         position: fixed;
         transform: translateY(-100%);
 
-        z-index: 100000;
         font-family: 'Atlas Grotesk', sans-serif;
         font-weight: bold;
     }
