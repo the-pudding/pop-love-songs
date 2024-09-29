@@ -42,7 +42,8 @@
     }
     .top-row h2 {
         margin: 0;
-        font-size: 1.2em;
+        padding: 0;
+        font-size: 16px;
     }
     .top-row p {
         margin: 0;

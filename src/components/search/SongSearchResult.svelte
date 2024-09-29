@@ -1,5 +1,4 @@
 <script>
-	import { ACCESSIBLY_CONTRASTING_COLOR_MAP, LOVE_SONG_TYPE_COLOR_MAP, LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
 	import { songSearchString } from "$stores/searchAndFilter";
 	import LoveSongTypePill from "./LoveSongTypePill.svelte";
 	import SearchResultText from "./SearchResultText.svelte";
@@ -9,9 +8,9 @@
 
 <div class="search-result">
     <div class="top-row">
-        <span class="song-name">
+        <h2 class="song-name">
             <SearchResultText fullText={result.songName} query={$songSearchString} />
-        </span>
+        </h2>
         <span class="year">{result.year}</span>
     </div>
     <LoveSongTypePill loveSongType={result.loveSongType} />
@@ -26,10 +25,14 @@
     .top-row {
         display: flex;
         justify-content: space-between;
+        align-items: baseline;
     }
+
     .song-name {
-        font-weight: bold;
+        font-size: 16px;
+        margin: 0;
     }
+
     .year {
         color: var(--color-gray-500);
     }

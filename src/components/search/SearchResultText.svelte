@@ -18,9 +18,7 @@
 
 {#if query}
     {@const { beforeMatch, match, afterMatch } = highlightText(fullText, query)}
-    <span>
-        {beforeMatch}<b>{match}</b>{afterMatch}
-    </span>
+    {beforeMatch}<b>{match}</b>{afterMatch}
 {:else}
-    <span>{fullText}</span>
+    {fullText}
 {/if}
