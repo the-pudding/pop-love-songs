@@ -22,6 +22,7 @@
 
 	--search-bar-border-radius: 12px;
 	--search-bar-height: 40px;
+	--dropdown-max-height: 400px;
 
 	--font-body: var(--serif);
 	--font-form: var(--sans);

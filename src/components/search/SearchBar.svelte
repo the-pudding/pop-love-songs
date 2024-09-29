@@ -2,11 +2,10 @@
     import { aSearchBarIsFocused } from "$stores/searchAndFilter";
     export let placeholder = "Search...";
     export let searchString = "";
-    export let searchResults = ['apple', 'banana', 'cherry', 'date', 'elderberry', 'fig', 'grape', 'honeydew', 'kiwi', 'lemon', 'mango'];
+    export let searchResults = [];
     export let renderComponent = null;
-    export let noResultsMessage = "No matching results";
 
-    const MAX_RESULTS = 5;
+    const MAX_RESULTS = 30;
 
     let isFocused = false
 </script>
@@ -23,7 +22,9 @@
     {#if isFocused}
         <div class="dropdown-wrapper">
             {#if searchResults.length === 0}
-                <div>{noResultsMessage}</div>
+                <div class="no-results">
+                    Couldn't find anything. Try thinking more <i>mainstream</i>...
+                </div>
             {:else}
                 <ul class="dropdown">
                     {#each searchResults.slice(0, MAX_RESULTS) as result}
@@ -36,9 +37,6 @@
                         </li>
                     {/each}
                 </ul>
-                {#if searchResults.length > MAX_RESULTS}
-                    <div class="overflow-overlay"/>
-                {/if}
             {/if}
         </div>
     {/if}
@@ -49,17 +47,10 @@
         height: var(--search-bar-height);
     }
 
-    .overflow-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 50%;
-
-        border-radius: var(--search-bar-border-radius);
-        background: linear-gradient(rgba(255, 255, 255, 0), var(--color-cream-background));
-        pointer-events: none;
+    .no-results {
+        padding: 8px;
     }
+
     .search-container {
         position: relative;
         width: 300px;
@@ -79,14 +70,16 @@
         position: absolute;
         top: 100%;
         left: 0;
+        width: 100%;
+        max-height: var(--dropdown-max-height);
+        overflow-y: scroll;
+
         background-color: var(--color-cream-background);
-        border: 1px solid #ccc;
+        border: 1px solid var(--color-gray-300);
         border-radius: var(--search-bar-border-radius);
         margin-top: 4px;
-        
-        
-        width: 100%;
-        z-index: 1;
+        padding-left: 4px;
+        padding-right: 4px;
     }
 
     .dropdown {
