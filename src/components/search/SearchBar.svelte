@@ -1,9 +1,9 @@
 <script>
     import { aSearchBarIsFocused } from "$stores/searchAndFilter";
-
     export let placeholder = "Search...";
     export let searchString = "";
     export let searchResults = ['apple', 'banana', 'cherry', 'date', 'elderberry', 'fig', 'grape', 'honeydew', 'kiwi', 'lemon', 'mango'];
+    export let renderComponent = null;
 
     const MAX_RESULTS = 5;
 </script>
@@ -22,7 +22,11 @@
             <ul class="dropdown">
                 {#each searchResults.slice(0, MAX_RESULTS) as result}
                     <li>
-                        {result}
+                        {#if renderComponent}
+                            <svelte:component this={renderComponent} {result} />
+                        {:else}
+                            {result}
+                        {/if}
                     </li>
                 {/each}
             </ul>
