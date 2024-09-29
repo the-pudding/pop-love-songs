@@ -98,6 +98,7 @@
     .dropdown li {
         padding: 8px;
         cursor: pointer;
+        border-radius: var(--search-bar-border-radius);
     }
 
     .dropdown li:hover {
