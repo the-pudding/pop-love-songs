@@ -89,7 +89,7 @@ export const getYPositionInSnakeChart = (
 		(annotatedSong && annotatedSong.yPercent) ||
 		(manuallySetSong && manuallySetSong.yPercent);
 	if (!!yPercent || yPercent === 0) {
-		return getYPosForPercentage(annotatedSong.yPercent, canvasHeight);
+		return getYPosForPercentage(yPercent, canvasHeight);
 	}
 
 	const { y0, y1 } =
@@ -236,9 +236,9 @@ export const ANNOTATION_METADATA = {
 	},
 	serenadeComparisons: {
 		manuallySetPositions: [
-			...MORE_EXPANSIVE_VIEW
+			...MORE_EXPANSIVE_VIEW,
 			// ...DEFINING_SERENADES, // does not contain positions
-			// ...COLOR_IN_HEARTBREAK
+			...COLOR_IN_HEARTBREAK
 		],
 		annotations: {
 			butWeWillTakeAMoreExpansiveView: MORE_EXPANSIVE_VIEW,
