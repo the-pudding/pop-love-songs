@@ -242,6 +242,8 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
+			manuallySetPositions:
+				ANNOTATION_METADATA.serenadeComparisons.manuallySetPositions,
 			songAnnotations: {
 				adjacentAnnotations:
 					ANNOTATION_METADATA.serenadeComparisons.annotations
@@ -272,6 +274,8 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
+			manuallySetPositions:
+				ANNOTATION_METADATA.serenadeComparisons.manuallySetPositions,
 			songAnnotations: {
 				offsetFromThisYPercentage: 0.9,
 				offsetAnnotations:
@@ -290,6 +294,8 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			colorButDontSeperateThisLoveSongType:
 				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+			manuallySetPositions:
+				ANNOTATION_METADATA.serenadeComparisons.manuallySetPositions,
 			songAnnotations: {
 				adjacentAnnotations:
 					ANNOTATION_METADATA.serenadeComparisons.annotations.colorInHeartbreak
