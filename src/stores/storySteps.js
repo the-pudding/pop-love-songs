@@ -225,7 +225,10 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true
+			showAggregateSnakeChart: true,
+			// Trying to pre-set positions, so it doesn't re-start the force layout as it sees different position data
+			manuallySetPositions:
+				ANNOTATION_METADATA.serenadeComparisons.manuallySetPositions
 		},
 		showLoveSongChange: true
 	},
@@ -240,30 +243,9 @@ const stepsWithoutText = {
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: {
-				adjacentAnnotations: [
-					{
-						song: "I Will Always Love You",
-						year: 1992,
-						rightAlign: true,
-						audioFile: "i-will-always-love-you",
-						yPercent: 0.2
-					},
-					{
-						song: "Buy U A Drank (Shawty Snappin')",
-						alternateTitle: "Buy U A Drank",
-						year: 2007,
-						rightAlign: true,
-						audioFile: "buy-u-a-drank",
-						yPercent: 0.55
-					},
-					{
-						song: "WAP",
-						year: 2020,
-						rightAlign: true,
-						audioFile: "wap",
-						yPercent: 0.7
-					}
-				]
+				adjacentAnnotations:
+					ANNOTATION_METADATA.serenadeComparisons.annotations
+						.butWeWillTakeAMoreExpansiveView
 			}
 		}
 	},
@@ -292,17 +274,8 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: {
 				offsetFromThisYPercentage: 0.9,
-				offsetAnnotations: [
-					{ song: "Fever", year: 1958, audioFile: "fever" },
-					{ song: "Like A Virgin", year: 1984, audioFile: "like-a-virgin" },
-					{
-						song: "Just The Way You Are",
-						year: 2010,
-						// rightAlign: true,
-						placeAbove: true,
-						audioFile: "just-the-way-you-are-2010"
-					}
-				]
+				offsetAnnotations:
+					ANNOTATION_METADATA.serenadeComparisons.annotations.definingSerenades
 			}
 		}
 	},
@@ -318,22 +291,8 @@ const stepsWithoutText = {
 			colorButDontSeperateThisLoveSongType:
 				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
 			songAnnotations: {
-				adjacentAnnotations: [
-					{
-						song: "Heartbreaker",
-						year: 1983,
-						rightAlign: true,
-						audioFile: "heartbreaker",
-						yPercent: 0.45
-					},
-					{
-						song: "You Belong With Me",
-						year: 2009,
-						rightAlign: true,
-						audioFile: "you-belong-with-me",
-						yPercent: 0.25
-					}
-				]
+				adjacentAnnotations:
+					ANNOTATION_METADATA.serenadeComparisons.annotations.colorInHeartbreak
 			}
 		}
 	},

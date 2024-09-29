@@ -163,23 +163,87 @@ const NON_SERENADE_HIGHLIGHTS_FROM_INTRO = [
 	{ song: "Kiss Me More", year: 2021, xPercent: 0.4, yPercent: 0.85 }
 ];
 
+const MORE_EXPANSIVE_VIEW = [
+	{
+		song: "I Will Always Love You",
+		year: 1992,
+		rightAlign: true,
+		audioFile: "i-will-always-love-you",
+		yPercent: 0.2
+	},
+	{
+		song: "Buy U A Drank (Shawty Snappin')",
+		alternateTitle: "Buy U A Drank",
+		year: 2007,
+		rightAlign: true,
+		audioFile: "buy-u-a-drank",
+		yPercent: 0.55
+	},
+	{
+		song: "WAP",
+		year: 2020,
+		rightAlign: true,
+		audioFile: "wap",
+		yPercent: 0.7
+	}
+];
+
+const DEFINING_SERENADES = [
+	{ song: "Fever", year: 1958, audioFile: "fever" },
+	{ song: "Like A Virgin", year: 1984, audioFile: "like-a-virgin" },
+	{
+		song: "Just The Way You Are",
+		year: 2010,
+		// rightAlign: true,
+		placeAbove: true,
+		audioFile: "just-the-way-you-are-2010"
+	}
+];
+
+const COLOR_IN_HEARTBREAK = [
+	{
+		song: "Heartbreaker",
+		year: 1983,
+		rightAlign: true,
+		audioFile: "heartbreaker",
+		yPercent: 0.45
+	},
+	{
+		song: "You Belong With Me",
+		year: 2009,
+		rightAlign: true,
+		audioFile: "you-belong-with-me",
+		yPercent: 0.25
+	}
+];
+
 export const ANNOTATION_METADATA = {
 	intro: {
-		manuallySetPositions: {
+		manuallySetPositions: [
 			...SERENADE_HIGHLIGHTS_FROM_INTRO,
 			...NON_SERENADE_HIGHLIGHTS_FROM_INTRO
-		},
+		],
 		annotations: {
 			serenadeHighlights: SERENADE_HIGHLIGHTS_FROM_INTRO,
 			nonSerenadeHighlights: NON_SERENADE_HIGHLIGHTS_FROM_INTRO
 		}
 	},
 	timelineSpread: {
-		manuallySetPositions: {
-			...SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD
-		},
+		manuallySetPositions: [...SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD],
 		annotations: {
 			serenadeHighlights: SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD
+		}
+	},
+	serenadeComparisons: {
+		manuallySetPositions: [
+			...MORE_EXPANSIVE_VIEW,
+			// ...DEFINING_SERENADES, // does not contain positions
+			...COLOR_IN_HEARTBREAK
+		],
+		annotations: {
+			butWeWillTakeAMoreExpansiveView: MORE_EXPANSIVE_VIEW,
+			definingSerenades: DEFINING_SERENADES,
+			colorInHeartbreak: COLOR_IN_HEARTBREAK
 		}
 	}
 };
