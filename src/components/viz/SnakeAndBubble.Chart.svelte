@@ -61,7 +61,8 @@
 			const isVisible = $songIsVisible[songIndex];
 			const circle = new Path2D();
 			// border extends into & out of the edge, so divide it in half and add it to the radius, for visual consistency
-			const radius = $songRadius[songIndex] + (songInAnnotations(song, $currentStoryStep.visualEncodings.songAnnotations) ? BUBBLE_BORDER_THICKNESS / 2 : 0);
+			const isAnnotation = songInAnnotations(song, $currentStoryStep.visualEncodings.songAnnotations);
+			const radius = $songRadius[songIndex] + (isAnnotation ? BUBBLE_BORDER_THICKNESS / 2 : 0);
 			const displayRadius = isVisible ? radius : 0;
 			circle.arc(x, y, displayRadius, 0, 2 * Math.PI);
 
@@ -84,10 +85,15 @@
 				context.lineWidth = 0.2;
 				context.stroke(circle);
 			}
+
+			if (isAnnotation) {
+				annotatedSongsToRedrawOnTop.push([{song, x, y}, songIndex]);
+			}
 		});
 
 		forceSimulationData.forEach(drawSongCircle);
 
+		console.log(annotatedSongsToRedrawOnTop)
 		annotatedSongsToRedrawOnTop.forEach((args) => drawSongCircle(...args));
 	};
 
