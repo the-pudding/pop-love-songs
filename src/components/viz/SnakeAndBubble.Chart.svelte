@@ -28,7 +28,7 @@
 	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
 	import { svgCoordsForSnakeChartOutline } from "$stores/snakeChartOutlineGenerator";
 	import { currentStoryStep, preventBubbleRestartBecauseTheUserIsMerelySearching } from "$stores/storySteps";
-	import { showAggregateSnakeChart } from "$stores/searchAndFilter";
+	import { showAggregateSnakeChart, showAnnotations } from "$stores/searchAndFilter";
 	import { songInAnnotations } from "$data/data-utils";
 	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";
 	
@@ -86,7 +86,7 @@
 				context.stroke(circle);
 			}
 
-			if (isAnnotation) {
+			if (isAnnotation && $showAnnotations) {
 				annotatedSongsToRedrawOnTop.push([{song, x, y}, songIndex]);
 			}
 		});

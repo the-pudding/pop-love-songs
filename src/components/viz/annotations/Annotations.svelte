@@ -4,7 +4,7 @@
 
     import variables from '$data/variables.json';
 
-    import { aSearchFilterExists } from "$stores/searchAndFilter";
+    import { showAnnotations } from "$stores/searchAndFilter";
     import { currentStoryStepIndex } from "$stores/storySteps";
 
     import OffsetAnnotations from "./OffsetAnnotations.svelte";
@@ -26,7 +26,7 @@
     $: $currentStoryStepIndex, restartFadeInAnimation();
 </script>
 
-{#if !$aSearchFilterExists && show}
+{#if $showAnnotations && show}
     <!-- For reasons I can't fully guess, having an out:fade as well breaks this, causing children to remain across transitions -->
     <div class="annotations" in:fade={inFadeSettings}>
         <OffsetAnnotations />
