@@ -1,5 +1,7 @@
 <script>
 	import { LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
+	import { performerSearchString } from "$stores/searchAndFilter";
+	import SearchResultText from "./SearchResultText.svelte";
 
     export let result;
 
@@ -12,8 +14,10 @@
 <div class="performer-search-result">
         <!-- @michelle: what is the best html tags to use here? like is it better to wrap the name (primary info) in an h2 vs a div? -->
         <div class="top-row">
-            <h2>{name}</h2>
-            <p>{totalSongCount} hits</p>
+            <h2>
+                <SearchResultText fullText={name} query={$performerSearchString} />
+            </h2>
+            <p><b>{totalSongCount}</b> hits</p>
         </div>
         <ul>
             {#each Object.entries(songCountByLoveSongType) as [type, count]}
