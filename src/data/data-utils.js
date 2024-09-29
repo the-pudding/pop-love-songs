@@ -75,4 +75,8 @@ export const songInAnnotations = (song, songAnnotations) => {
 
 // Cuz manuallySetPositions is actually just combined inner data from multiple song annotations
 export const songInManuallySetPositions = (song, manuallySetPositions) =>
-	songInAnnotations(song, { offsetAnnotations: manuallySetPositions });
+	manuallySetPositions.find(
+		({ song: annotationSongName, year }) =>
+			annotationSongName === song[SONG_DATA_COLUMNS_ENUM.song] &&
+			year === Math.floor(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal])
+	);

@@ -88,7 +88,7 @@ export const getYPositionInSnakeChart = (
 	const yPercent =
 		(annotatedSong && annotatedSong.yPercent) ||
 		(manuallySetSong && manuallySetSong.yPercent);
-	if (yPercent !== false) {
+	if (!!yPercent || yPercent === 0) {
 		return getYPosForPercentage(annotatedSong.yPercent, canvasHeight);
 	}
 
@@ -164,21 +164,21 @@ const NON_SERENADE_HIGHLIGHTS_FROM_INTRO = [
 ];
 
 const MORE_EXPANSIVE_VIEW = [
-	{
-		song: "I Will Always Love You",
-		year: 1992,
-		rightAlign: true,
-		audioFile: "i-will-always-love-you",
-		yPercent: 0.2
-	},
-	{
-		song: "Buy U A Drank (Shawty Snappin')",
-		alternateTitle: "Buy U A Drank",
-		year: 2007,
-		rightAlign: true,
-		audioFile: "buy-u-a-drank",
-		yPercent: 0.55
-	},
+	// {
+	// 	song: "I Will Always Love You",
+	// 	year: 1992,
+	// 	rightAlign: true,
+	// 	audioFile: "i-will-always-love-you",
+	// 	yPercent: 0.2
+	// },
+	// {
+	// 	song: "Buy U A Drank (Shawty Snappin')",
+	// 	alternateTitle: "Buy U A Drank",
+	// 	year: 2007,
+	// 	rightAlign: true,
+	// 	audioFile: "buy-u-a-drank",
+	// 	yPercent: 0.55
+	// },
 	{
 		song: "WAP",
 		year: 2020,
@@ -236,7 +236,7 @@ export const ANNOTATION_METADATA = {
 	},
 	serenadeComparisons: {
 		manuallySetPositions: [
-			// ...MORE_EXPANSIVE_VIEW
+			...MORE_EXPANSIVE_VIEW
 			// ...DEFINING_SERENADES, // does not contain positions
 			// ...COLOR_IN_HEARTBREAK
 		],
