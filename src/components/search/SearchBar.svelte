@@ -17,14 +17,31 @@
 
     {#if searchString && searchResults.length > 0}
         <ul class="dropdown">
-            {#each searchResults.slice(0, 5) as result}
-                <li>{result}</li>
+            {#each searchResults.slice(0, 5) as result, index}
+                <li>
+                    {result}
+                </li>
             {/each}
+            {#if searchResults.length > 5}
+                <div class="overflow-overlay"/>
+            {/if}
         </ul>
+ 
     {/if}
 </div>
 
 <style>
+    .overflow-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+
+        border-radius: var(--search-bar-border-radius);
+        background: linear-gradient(rgba(255, 255, 255, 0), var(--color-cream-background));
+        pointer-events: none;
+    }
     .search-container {
         position: relative;
         width: 300px;
@@ -34,7 +51,7 @@
     input {
         width: 100%;
         background-color: var(--color-cream-background);
-        border-radius: 12px;
+        border-radius: var(--search-bar-border-radius);
         font-family: var(--sans);
         font-style: italic;
     }
@@ -45,7 +62,7 @@
         left: 0;
         background-color: var(--color-cream-background);
         border: 1px solid #ccc;
-        border-radius: 12px;
+        border-radius: var(--search-bar-border-radius);
         margin-top: 4px;
         padding: 0;
         list-style: none;
