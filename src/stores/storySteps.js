@@ -92,7 +92,9 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: randomXDistribution,
+			// Note: x (or y) need to be slightly different than the next step to trigger a simulation re-start
+			calculateXForcePosition: (...args) => randomXDistribution(...args) + -10,
+			// calculateXForcePosition: () => 0, // wipe in from left
 			calculateYForcePosition: randomYDistribution
 		},
 		showTitleCard: true

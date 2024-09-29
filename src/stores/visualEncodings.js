@@ -50,14 +50,8 @@ export const previousXForcePosition = previous(xForcePositionUnoptimized);
 export const previousYForcePosition = previous(yForcePositionUnoptimized);
 
 const EPSILON = 0.01;
-const substantiallyDifferent = (a, b, index) => {
-	// TODO: delete this (flags if there's a difference and which)
-	if (Math.abs(a - b) > EPSILON) {
-		console.log(songsData[index].song[SONG_DATA_COLUMNS_ENUM.song], a, b);
-	}
+const substantiallyDifferent = (a, b, index) => Math.abs(a - b) > EPSILON;
 
-	return Math.abs(a - b) > EPSILON;
-};
 // TODO: OPTIMIZATION: do we need to check ALL values? or just one? or just the first few?
 // ... or is there like some tricky math-y thing we could do here that's really cheap/fast?
 const arraysDifferMeaningfully = (a, b) =>
@@ -79,7 +73,6 @@ export const xForcePosition = derived(
 			)
 		) {
 			set($xForcePositionUnoptimized);
-			console.log("x SET-----------------");
 		}
 	}
 );
@@ -99,7 +92,6 @@ export const yForcePosition = derived(
 			)
 		) {
 			set($yForcePositionUnoptimized);
-			console.log("y SET-----------------");
 		}
 	}
 );
