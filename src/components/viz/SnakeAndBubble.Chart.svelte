@@ -92,8 +92,6 @@
 		});
 
 		forceSimulationData.forEach(drawSongCircle);
-
-		console.log(annotatedSongsToRedrawOnTop)
 		annotatedSongsToRedrawOnTop.forEach((args) => drawSongCircle(...args));
 	};
 
