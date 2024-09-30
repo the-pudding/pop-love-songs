@@ -4,10 +4,22 @@
     export let searchString = "";
     export let searchResults = [];
     export let renderComponent = null;
+    export let onResultSelected = () => {};
+    export let onInputFocused = () => {};
 
     const MAX_RESULTS = 30;
 
     let isFocused = false
+
+    $: handleResultClicked = (result) => {
+        onResultSelected(result);
+    }
+
+    $: handleFocus = () => {
+        onInputFocused();
+        aSearchBarIsFocused.set(true);
+        isFocused = true;
+    }
 </script>
 
 <div class="search-container">
@@ -15,7 +27,7 @@
         type="text" 
         placeholder={placeholder} 
         bind:value={searchString} 
-        on:focus={() => { aSearchBarIsFocused.set(true); isFocused = true; }} 
+        on:focus={handleFocus} 
         on:blur={() => { aSearchBarIsFocused.set(false); isFocused = false; }} 
     />
 
@@ -28,7 +40,8 @@
             {:else}
                 <ul class="dropdown">
                     {#each searchResults.slice(0, MAX_RESULTS) as result}
-                        <li>
+                        <!-- TODO: make this accessibly correct -->
+                        <li on:mousedown={() => handleResultClicked(result)}>
                             {#if renderComponent}
                                 <svelte:component this={renderComponent} {result} />
                             {:else}

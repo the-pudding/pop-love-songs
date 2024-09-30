@@ -2,7 +2,7 @@
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 	import { getArrayOfPerformers } from "$data/data-utils";
 	import { visibleSongsData } from "$stores/dataDerivations";
-    import { performerSearchString } from "$stores/searchAndFilter";
+    import { performerSearchString, selectedPerformers } from "$stores/searchAndFilter";
 	import PerformerSearchResult from "./PerformerSearchResult.svelte";
 
     import SearchBar from "./SearchBar.svelte";
@@ -29,11 +29,25 @@
         songCountByLoveSongType,
         totalSongCount: Object.values(songCountByLoveSongType).reduce((acc, count) => acc + count, 0)
     })).sort((a, b) => b.totalSongCount - a.totalSongCount);
+
+    $: handleSelectedPerformer = ({name}) => {
+        $selectedPerformers = [name];
+        $performerSearchString = "";
+    }
+
+    $: handleInputFocused = () => {
+        $selectedPerformers = [];
+        $performerSearchString = "";
+    }
+
+    $: placeholder = $selectedPerformers[0] || "Search performers...";
 </script>
 
 <SearchBar
-    placeholder="Search performers..."
+    {placeholder}
     bind:searchString={$performerSearchString}
     {searchResults}
+    onResultSelected={handleSelectedPerformer}
+    onInputFocused={handleInputFocused}
     renderComponent={PerformerSearchResult}
 />
