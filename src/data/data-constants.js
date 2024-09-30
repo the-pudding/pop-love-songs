@@ -16,7 +16,7 @@ export const PERFORMER_TYPE_ABBREVIATIONS = {
 // TODO: choose better name
 // Note: originally Sexual Confidence was originally called "Sexual Conquest"
 export const LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP = {
-	0: "(not a love song)",
+	0: "Non-love song",
 	1: "It's Complicated",
 	2: "Serenade",
 	3: "Longing & Heartbreak",
