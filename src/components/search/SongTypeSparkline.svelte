@@ -1,14 +1,34 @@
 <script>
+	import { typesTreatedAsNonLoveSongs } from '$stores/searchAndFilter.js';
     import { loveSongTypeColorMap } from "$stores/colorMap";
+    import { loveSongTypeToDisplayTextMap } from '$stores/labels';
+	import { LOVE_SONG_TYPE_CONSTANTS } from '$data/data-constants';
+	
 
     export let songCountByLoveSongType;
     export let totalSongCount;
+
+    let sortedSongTypes = [];
+    $: processTypesMarkedAsNonLoveSongs = Object.entries(songCountByLoveSongType).reduce(
+            (acc, [loveSongType, count]) => {
+                if ($typesTreatedAsNonLoveSongs.includes(+loveSongType)) {
+                    const existingNonLoveSongCount = acc[LOVE_SONG_TYPE_CONSTANTS.notALoveSong] || 0;
+                    acc[LOVE_SONG_TYPE_CONSTANTS.notALoveSong] = existingNonLoveSongCount + count;
+                } else {
+                    acc[loveSongType] = count;
+                }
+                return acc;
+            },
+            {}
+        );
+
+    $: sortedSongTypes = Object.entries(processTypesMarkedAsNonLoveSongs).sort((a, b) => b[1] - a[1]);
 </script>
 
 <ul class="stacked-bar-chart">
-    {#each Object.entries(songCountByLoveSongType) as [type, count]}
-        {@const description = `${count} songs of type ${type}`}
-        <li aria-label={description} title={description} class="bar-segment" style:width="{(count / totalSongCount) * 100}%" style:background={$loveSongTypeColorMap[type]}/>
+    {#each sortedSongTypes as [loveSongType, count]}
+        {@const description = `${count} ${$loveSongTypeToDisplayTextMap[loveSongType]} songs`}
+        <li aria-label={description} title={description} class="bar-segment" style:width="{(count / totalSongCount) * 100}%" style:background={$loveSongTypeColorMap[loveSongType]}/>
     {/each}
 </ul>
 

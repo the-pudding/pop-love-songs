@@ -71,15 +71,16 @@
         top: 100%;
         left: 0;
         width: 100%;
-        max-height: var(--dropdown-max-height);
+        max-height: 280px;
         overflow-y: scroll;
 
         background-color: var(--color-cream-background);
         border: 1px solid var(--color-gray-300);
         border-radius: var(--search-bar-border-radius);
         margin-top: 4px;
-        padding-left: 4px;
-        padding-right: 4px;
+
+        padding-left: 6px;
+        padding-right: 8px;
     }
 
     .dropdown {

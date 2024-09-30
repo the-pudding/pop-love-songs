@@ -29,7 +29,8 @@
     .performer-search-result {
         font-family: var(--sans);
         font-size: 12px;
-        margin-bottom: 24px;
+        margin-top: 12px;
+        margin-bottom: 12px;
     }
 
     .top-row {
