@@ -8,8 +8,8 @@
     import { selectedSongs, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart, songSearchString, performerSearchString } from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_TOP_PADDING} from "$components/viz/viz-utils.js"
-    import { Y_MARGIN_SCREEN_PERCENTAGE } from "$data/data-utils.js";
 	import DataMethodsModal from "./DataMethodsModal.svelte";
+	import { outermostMargin } from "$stores/canvasPosition.js";
 
     function updateQueryParams() {
         urlParams.set("step", $currentStoryStepIndex);
@@ -68,7 +68,7 @@
 
     $: style = `
         ${$currentStoryStep.showOpeningComment ? "" : `height: ${STORY_STEP_CONTROLLER_TOP_PADDING}px;`}
-        margin-top: ${$viewport.height * Y_MARGIN_SCREEN_PERCENTAGE}px;
+        margin-top: ${$outermostMargin}px;
         ${$currentStoryStep.showOpeningComment ? "bottom: 0" : "top: 0"}px;
     `
     
