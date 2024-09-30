@@ -78,14 +78,18 @@
 			context.fill(circle);
 
 			// Draw a border around annotated songs
-			if (isSelected && isVisible && $currentStoryStep.visualEncodings.useHeavierSongBorders) {
-				context.strokeStyle = "#333333"; // chosen cuz it's the lightest still accessible contrast with serenade's color
-				context.lineWidth = 0.5;
-				context.stroke(circle);
-			} else if (isSelected && isVisible) {
-				context.strokeStyle = "white";
-				context.lineWidth = 0.2;
-				context.stroke(circle);
+			const needsABorder = isSelected && isVisible
+			if (needsABorder) {
+				const requiresDarkBorderForAccessibility = isSelected && isVisible && $currentStoryStep.visualEncodings.useHeavierSongBorders
+				if (requiresDarkBorderForAccessibility) {
+					context.strokeStyle = `rgba(51, 51, 51, ${$tweenedDarkBorderOpacity})`; // chosen cuz it's the lightest still accessible contrast with serenade's color
+					context.lineWidth = 0.5;
+					context.stroke(circle);
+				} else if (isSelected && isVisible) {
+					context.strokeStyle = "white";
+					context.lineWidth = 0.2;
+					context.stroke(circle);
+				}
 			}
 
 			if (isAnnotation && $showAnnotations) {
@@ -206,6 +210,20 @@
 			aggregateSnakeChartOpacity.set(1);
 		} else {
 			aggregateSnakeChartOpacity.set(0);
+		}
+	}
+
+	const tweenedDarkBorderOpacity = tweened(0, {
+		duration: variables.chart['transition-opacity-duration'],
+		delay: variables.chart['transition-opacity-duration'],
+		easing: cubicInOut
+	});
+
+	$: {
+		if ($currentStoryStep.visualEncodings.useHeavierSongBorders) {
+			tweenedDarkBorderOpacity.set(1);
+		} else {
+			tweenedDarkBorderOpacity.set(0);
 		}
 	}
 </script>
