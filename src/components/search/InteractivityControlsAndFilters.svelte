@@ -13,22 +13,27 @@
     $: top = $bottomOfStoryText;
 </script>
 
-<div style={`left: ${left}px; top: ${top}px; width: ${width}px`}>
-    <PerformerSearchBar />
-    <SongSearchBar />
+<div class="wrapper" style={`left: ${left}px; top: ${top}px; width: ${width}px`}>
+    <div class="search-bars-wrapper">
+        <PerformerSearchBar />
+        <SongSearchBar />
+    </div>
     {#if $isLastStep}
         <SnakeBubbleToggle />
     {/if}
 </div>
 
 <style>
-    div {
+    .wrapper {
         position: fixed;
-        /* TODO: we probably want to lay out these within the whole app better (or just make the chart shorter on the last step */
-        transform: translateY(-50%);
+        transform: translateY(-40%);
         
         display: flex;
         justify-content: space-between;
         z-index: 1000;
+    }
+    .search-bars-wrapper {
+        display: flex;
+        justify-content: space-between;
     }
 </style>
