@@ -33,13 +33,13 @@ export const bottomOfStoryText = derived(
 	[outermostMargin],
 	([$outermostMargin]) => $outermostMargin + STORY_STEP_CONTROLLER_TOP_PADDING
 );
-const SEARCH_BAR_HEIGHT = 50; // TODO: get this right, maybe export to style dictionary
+const SEARCH_BAR_HEIGHT = 70; // TODO: maybe export to style dictionary, we can relate it to --search-bar-height
 const yMarginTop = derived(
 	[outermostMargin, viewport, isLastStep, showSearchBars],
 	([$outermostMargin, $isLastStep, $showSearchBars]) =>
 		$outermostMargin + ($isLastStep && $showSearchBars ? SEARCH_BAR_HEIGHT : 0)
 );
-const X_MARGIN = 48; // This margin must accomodate the left/right nav arrows (Tap element)
+const X_MARGIN = 48; // This margin must accommodate the left/right nav arrows (Tap element)
 export const margins = derived(
 	[yMarginTop, yMarginBottom, viewport],
 	([$yMarginTop, $yMarginBottom]) => ({

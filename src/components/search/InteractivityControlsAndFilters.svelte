@@ -10,7 +10,6 @@
 
     $: left = $getXPositionForYear(MIN_DATE);
     $: width = $getXPositionForYear(Math.floor(MAX_DATE)) - left;
-    $: console.log(MAX_DATE)
     $: top = $bottomOfStoryText;
 </script>
 
