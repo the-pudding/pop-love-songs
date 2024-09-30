@@ -2,12 +2,7 @@ import seedrandom from "seedrandom";
 
 import songsData from "$data/songs-data.js";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
-import { STORY_STEP_CONTROLLER_TOP_PADDING } from "$components/viz/viz-utils";
-import {
-	songInAnnotations,
-	songInManuallySetPositions,
-	Y_MARGIN_SCREEN_PERCENTAGE
-} from "$data/data-utils";
+import { songInAnnotations } from "$data/data-utils";
 
 export const DEFAULT_Y_ENTRANCE_POSITION = 0;
 
@@ -22,7 +17,7 @@ export const getXPositionFromTime =
 
 // --- yForcePosition options ---
 
-const getPercentageForSong = (
+export const getYPercentageForSong = (
 	song,
 	$loveSongsLabeledByTimeRegionPercentageForPosition
 ) => {
@@ -45,25 +40,15 @@ const getPercentageForSong = (
 	return timeRegion.popularityScoreSumsInTimeRegion[loveSongType];
 };
 
-export const getYPosForPercentage = (percentage, canvasHeight) => {
-	const yStart =
-		canvasHeight * Y_MARGIN_SCREEN_PERCENTAGE +
-		STORY_STEP_CONTROLLER_TOP_PADDING;
-	const yRange =
-		canvasHeight -
-		STORY_STEP_CONTROLLER_TOP_PADDING -
-		2 * canvasHeight * Y_MARGIN_SCREEN_PERCENTAGE;
-	return yStart + percentage * yRange;
-};
-
 export const TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE = 0.008;
 export const getYPosInAggregateSnakeChart = ({
 	percentage,
 	percentageChange,
 	canvasHeight,
-	isY0
+	isY0,
+	$getYPositionForPercentage
 }) =>
-	getYPosForPercentage(
+	$getYPositionForPercentage(
 		percentage +
 			(isY0 || percentageChange < 2 * TOP_MARGIN_ON_EACH_SNAKE_PERCENTAGE
 				? 0
@@ -71,38 +56,8 @@ export const getYPosInAggregateSnakeChart = ({
 		canvasHeight
 	);
 
-export const getYPositionInSnakeChart = (
-	song,
-	canvasHeight,
-	$loveSongsLabeledByTimeRegionPercentageForPosition,
-	songIndex,
-	songAnnotations,
-	manuallySetPositions
-) => {
-	const annotatedSong = songInAnnotations(song, songAnnotations);
-	const manuallySetSong = songInManuallySetPositions(
-		song,
-		manuallySetPositions
-	);
-	const yPercent =
-		(annotatedSong && annotatedSong.yPercent) ||
-		(manuallySetSong && manuallySetSong.yPercent);
-	if (!!yPercent || yPercent === 0) {
-		return getYPosForPercentage(yPercent, canvasHeight);
-	}
-
-	const { y0, y1 } =
-		getPercentageForSong(
-			song,
-			$loveSongsLabeledByTimeRegionPercentageForPosition
-		) || {};
-
-	const base = y1;
-	// While positions appear random to the unsuspecting user, by using each song's index as its own random seed, we effectively create
-	// a "database" of sorts that will always return the same "randomized" position for each song, without having to send/store 5000+ positions
-	const randomPositionWithinBand = seedrandom(songIndex)() * (y0 - y1);
-	return getYPosForPercentage(base + randomPositionWithinBand, canvasHeight);
-};
+export const getYPositionInSnakeChart =
+	"This is just a placeholder, we handle it in the store";
 
 // Create an unchanging array of random positions for each song, since it should stay constant accros the story
 

@@ -22,7 +22,10 @@ import {
 	sortLoveSongTypesTopToBottom
 } from "./loveSongsLabeledByTimeRegionPercentageForPosition";
 import { typesTreatedAsNonLoveSongs } from "./searchAndFilter";
-import { getXPositionForYear } from "./canvasPosition";
+import {
+	getXPositionForYear,
+	getYPositionForPercentage
+} from "./canvasPosition";
 
 // 2. ... aggregate the total songs for each time region, then label each with a sumative percentage, append that to the object
 
@@ -133,7 +136,11 @@ export const aggregateSnakeChartPositions = derived(
 	}
 );
 
-const createSVGPathGenerator = ($viewport, $getXPositionForYear) => {
+const createSVGPathGenerator = (
+	$viewport,
+	$getXPositionForYear,
+	$getYPositionForPercentage
+) => {
 	return d3area()
 		.x(({ x }) => $getXPositionForYear(x))
 		.y0(({ y0, y1 }) =>
@@ -141,14 +148,17 @@ const createSVGPathGenerator = ($viewport, $getXPositionForYear) => {
 				percentage: y0,
 				percentageChange: y0 - y1,
 				canvasHeight: $viewport.height,
-				isY0: true
+				isY0: true,
+				$getYPositionForPercentage
 			})
 		)
 		.y1(({ y0, y1 }) =>
 			getYPosInAggregateSnakeChart({
 				percentage: y1,
 				canvasHeight: $viewport.height,
-				percentageChange: y0 - y1
+				percentageChange: y0 - y1,
+				isY0: false,
+				$getYPositionForPercentage
 			})
 		);
 };
@@ -189,7 +199,11 @@ export const svgCoordsForLoveSongTypes = derived(
 );
 
 export const svgPathGenerator = derived(
-	[viewport, getXPositionForYear],
-	([$viewport, $getXPositionForYear]) =>
-		createSVGPathGenerator($viewport, $getXPositionForYear)
+	[viewport, getXPositionForYear, getYPositionForPercentage],
+	([$viewport, $getXPositionForYear, $getYPositionForPercentage]) =>
+		createSVGPathGenerator(
+			$viewport,
+			$getXPositionForYear,
+			$getYPositionForPercentage
+		)
 );

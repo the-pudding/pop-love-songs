@@ -3,9 +3,8 @@
 
     import viewport from '$stores/viewport';
     import { songAnnotationsWithPosition } from "$stores/visualEncodings";
-    import { getYPosForPercentage } from '$stores/forcePositionOptions-helper';
     import { currentStoryStep } from '$stores/storySteps';
-    import { getXPositionForYear } from '$stores/canvasPosition';
+    import { getXPositionForYear, getYPositionForPercentage } from '$stores/canvasPosition';
 
 	import SongInfo from "../SongInfo.svelte";
 
@@ -23,7 +22,7 @@
             const xTranslation = x > (0.8 * $viewport.width) ? '-100' : x < (0.2 * $viewport.width) ? '0' : '-50';
             const placeBelow = threeSongs && index === 1;
             const yOffset = (placeBelow ? 0.1 : 0.25) * $viewport.height;
-            const textY = getYPosForPercentage(offsetFromThisYPercentage, $viewport.height) - yOffset;
+            const textY = $getYPositionForPercentage(offsetFromThisYPercentage) - yOffset;
             return {
                 bubbleX: x, bubbleY: y - radius, textY, 
                 elbowX: offsetToThisYear && $getXPositionForYear(offsetToThisYear),

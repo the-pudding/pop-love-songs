@@ -2,8 +2,7 @@
     import viewport from "$stores/viewport.js";
     import { abbreviateYearForDisplay, Y_MARGIN_SCREEN_PERCENTAGE } from '$data/data-utils';
     import { aSingleLoveSongTypeIsSpotlighted } from "$stores/storySteps";
-	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
-	import { getXPositionForYear } from "$stores/canvasPosition";
+	import { getXPositionForYear, getYPositionForPercentage } from "$stores/canvasPosition";
 
     $: tickYears = [1960, 1970, 1980, 1990, 2000, 2010, 2020]
         .filter(year => !$viewport.isLikelyInMobileLandscape || year % 20 === 0);
@@ -17,8 +16,8 @@
     // Calculations for when a single love song type is spotlighted
     const CENTER_PERCENTAGE = 0.5;
     const OFFSET_PERCENTAGE = 0.25;
-    $: yCenter = getYPosForPercentage(CENTER_PERCENTAGE, $viewport.height);
-    $: yBottomOfDashedLine = getYPosForPercentage(CENTER_PERCENTAGE + OFFSET_PERCENTAGE, $viewport.height);
+    $: yCenter = $getYPositionForPercentage(CENTER_PERCENTAGE);
+    $: yBottomOfDashedLine = $getYPositionForPercentage(CENTER_PERCENTAGE + OFFSET_PERCENTAGE);
     $: radiusOutFromCenter = Math.abs(yCenter - yBottomOfDashedLine);
     $: yHeight = 2 * radiusOutFromCenter;
     $: topOfDashedLine = yCenter - radiusOutFromCenter;

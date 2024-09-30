@@ -3,10 +3,8 @@
 	import { MIN_DATE } from "$data/songs-data";
     import { onlyShowOneDecimalPlaceIfLessThan10 } from "$data/data-utils";
     
-    import viewport from "$stores/viewport";
     import { currentStoryStep } from "$stores/storySteps";
-	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
-    import { getXPositionForYear } from "$stores/canvasPosition";
+    import { getXPositionForYear, getYPositionForPercentage } from "$stores/canvasPosition";
     import { showAggregateSnakeChart } from "$stores/searchAndFilter";
 
 	import TotalLoveSongPercentageAnnotation from "./TotalLoveSongPercentageAnnotation.svelte";
@@ -17,10 +15,10 @@
     export let tweenedCoords;
 
     $: sixtiesYScreenPercentage = tweenedCoords.find(({loveSongType}) => +loveSongType === LOVE_SONG_TYPE_CONSTANTS.notALoveSong).svgCoords.find(({x}) => x === MIN_DATE).y0
-    $: sixtiesYPos = getYPosForPercentage(sixtiesYScreenPercentage, $viewport.height)
+    $: sixtiesYPos = $getYPositionForPercentage(sixtiesYScreenPercentage)
     
     $: modernYScreenPercentage = tweenedCoords.find(({loveSongType}) => loveSongType === LOVE_SONG_TYPE_CONSTANTS.notALoveSong).svgCoords.at(-1).y0
-    $: modernYPos = getYPosForPercentage(modernYScreenPercentage, $viewport.height)
+    $: modernYPos = $getYPositionForPercentage(modernYScreenPercentage)
 
     // From svgCoordsForSnakeChartOutline, for each y1's
     const SMALL_LABEL_DECADES = [1970, 1980, 1990, 2000, 2010]
@@ -37,7 +35,7 @@
             {y: 0, x: 0}
         )
         return {
-            y: getYPosForPercentage(coordsAveragedByDecade.y / 2, $viewport.height),
+            y: $getYPositionForPercentage(coordsAveragedByDecade.y / 2),
             x: $getXPositionForYear(coordsAveragedByDecade.x / 2),
             decade
         }

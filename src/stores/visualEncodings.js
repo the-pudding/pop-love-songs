@@ -7,7 +7,10 @@ import { loveSongsLabeledByTimeRegionPercentageForPosition } from "./loveSongsLa
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { nodePositionsInSimulation } from "./simulation.js";
 import previous from "./previous.js";
-import { calculateXForcePosition } from "./canvasPosition.js";
+import {
+	calculateXForcePosition,
+	calculateYForcePosition
+} from "./canvasPosition.js";
 
 const xForcePositionUnoptimized = derived(
 	calculateXForcePosition,
@@ -20,18 +23,20 @@ const yForcePositionUnoptimized = derived(
 	[
 		viewport,
 		currentStoryStep,
-		loveSongsLabeledByTimeRegionPercentageForPosition
+		loveSongsLabeledByTimeRegionPercentageForPosition,
+		calculateYForcePosition
 	],
 	([
 		$viewport,
 		$currentStoryStep,
-		$loveSongsLabeledByTimeRegionPercentageForPosition
+		$loveSongsLabeledByTimeRegionPercentageForPosition,
+		$calculateYForcePosition
 	]) => {
 		const { height } = $viewport;
-		const { calculateYForcePosition, songAnnotations, manuallySetPositions } =
+		const { songAnnotations, manuallySetPositions } =
 			$currentStoryStep.visualEncodings;
 		return songsData.map(({ song }, index) =>
-			calculateYForcePosition(
+			$calculateYForcePosition(
 				song,
 				height,
 				$loveSongsLabeledByTimeRegionPercentageForPosition,
