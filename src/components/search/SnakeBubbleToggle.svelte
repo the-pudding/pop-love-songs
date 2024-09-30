@@ -6,8 +6,8 @@
 	import { isLastStep } from "$stores/storySteps";
 
 	const CHART_OPTIONS = {
-		snake: 'toggle love song categories',
-		bubble: 'explore individual songs'
+		snake: 'change categories',
+		bubble: 'explore songs'
 	}
 
 	let localValue;

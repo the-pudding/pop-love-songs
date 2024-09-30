@@ -35,7 +35,7 @@ export const bottomOfStoryText = derived(
 );
 const SEARCH_BAR_HEIGHT = 70; // TODO: maybe export to style dictionary, we can relate it to --search-bar-height
 const yMarginTop = derived(
-	[outermostMargin, viewport, isLastStep, showSearchBars],
+	[outermostMargin, isLastStep, showSearchBars],
 	([$outermostMargin, $isLastStep, $showSearchBars]) =>
 		$outermostMargin + ($isLastStep && $showSearchBars ? SEARCH_BAR_HEIGHT : 0)
 );

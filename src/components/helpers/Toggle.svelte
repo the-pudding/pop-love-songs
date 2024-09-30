@@ -34,7 +34,8 @@
 
 <style>
 	div.toggle {
-		height: var(--search-bar-height);
+		/* Leaves room for it to oveflow over on medium-small screens */
+		min-height: var(--search-bar-height);
 	}
 	.toggle button {
 		font-family: var(--sans);
