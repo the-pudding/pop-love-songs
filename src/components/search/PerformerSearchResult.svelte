@@ -1,7 +1,8 @@
 <script>
-	import { LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
 	import { performerSearchString } from "$stores/searchAndFilter";
+	import { isLastStep } from "$stores/storySteps";
 	import SearchResultText from "./SearchResultText.svelte";
+	import SongTypeSparkline from "./SongTypeSparkline.svelte";
 
     export let result;
 
@@ -19,11 +20,9 @@
             </h2>
             <p><b>{totalSongCount}</b> songs</p>
         </div>
-        <ul>
-            {#each Object.entries(songCountByLoveSongType) as [type, count]}
-                <li>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[type]}: {count}</li>
-            {/each}
-        </ul>
+        {#if $isLastStep}
+            <SongTypeSparkline {songCountByLoveSongType} />
+        {/if}
 </div>
 
 <style>
