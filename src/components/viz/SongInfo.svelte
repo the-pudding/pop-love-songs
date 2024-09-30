@@ -27,7 +27,7 @@
 	</strong>
 	
 	{#if audioFile}
-		<SongSnippetPlayer songName={song[SONG_DATA_COLUMNS_ENUM.song]} loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
+		<SongSnippetPlayer songName={song[SONG_DATA_COLUMNS_ENUM.song]} year={song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]} loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
 	{/if}
 </div>
 <div class="performer" style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '14px' : '16px'}; text-shadow: ${textShadow(1, 0.5)};`}>

@@ -2,7 +2,7 @@
 	import {onDestroy} from "svelte";
 	import Toggle from "$components/helpers/Toggle.svelte";
 
-	import { aSearchBarIsFocused, performerSearchString, selectedPerformers, selectedSongs, showAggregateSnakeChart, songSearchString } from "$stores/searchAndFilter.js";
+	import { aSearchBarIsFocused, performerSearchString, selectedPerformers, selectedSong, showAggregateSnakeChart, songSearchString } from "$stores/searchAndFilter.js";
 	import { isLastStep } from "$stores/storySteps";
 
 	const CHART_OPTIONS = {
@@ -12,7 +12,6 @@
 
 	let localValue;
 
-	// Subscribe to the selectedSongs store, update the local variable when it changes
 	const unsubscribe = showAggregateSnakeChart.subscribe(($showAggregateSnakeChart) => {
 		localValue = $showAggregateSnakeChart? CHART_OPTIONS.snake : CHART_OPTIONS.bubble;
 	});
@@ -23,7 +22,7 @@
 
 		if (localValue === CHART_OPTIONS.snake) {
 			songSearchString.set("");
-			selectedSongs.set([]);
+			selectedSong.set([]);
 			performerSearchString.set("");
 			selectedPerformers.set([]);		
 		}

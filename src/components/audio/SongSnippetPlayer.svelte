@@ -5,6 +5,7 @@
 	import PlayAndPauseButton from "./PlayAndPauseButton.svelte";
 
 	export let songName;
+	export let year;
 	export let loveSongType;
 	export let audioFile;
 
@@ -19,7 +20,7 @@
 			$playing = undefined;
 		} else {
 			// TODO: if song names are identical, it'll technically select both (see songSelected derived store). Solution: also pass in year and/or performer
-			$playing = { audioFile, songName };
+			$playing = { audioFile, songName, year };
 		}
 	};
 </script>

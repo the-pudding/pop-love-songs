@@ -6,7 +6,7 @@
     import Tap from "../helpers/CustomTap.svelte";
     import XandAddButton from "$components/helpers/XandAddButton.svelte";
 
-    import { selectedSongs, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart, songSearchString, performerSearchString } from "$stores/searchAndFilter.js"
+    import { selectedSong, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart, songSearchString, performerSearchString } from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_TOP_PADDING} from "$components/viz/viz-utils.js"
 	import DataMethodsModal from "./DataMethodsModal.svelte";
@@ -83,7 +83,7 @@
 
     const updateFilterFilterState = () => {
         // clear any selections if you navigate to a new story step (story steps don't ever directly set these)
-        selectedSongs.set([]) 
+        selectedSong.set([]) 
         selectedPerformers.set([])
         // als clear any user input text
         songSearchString.set("")

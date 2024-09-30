@@ -2,7 +2,7 @@
     import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
     import { formatYearForDisplay } from "$data/data-utils";
     import { selectedSongsData } from "$stores/dataDerivations";
-    import { selectedSongs, songSearchString } from "$stores/searchAndFilter";
+    import { selectedSong, songSearchString } from "$stores/searchAndFilter";
 
     import SearchBar from "./SearchBar.svelte";
     import SongSearchResult from "./SongSearchResult.svelte";
@@ -14,17 +14,17 @@
         total_weeks_in_top_10: song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10]
     })).sort((a, b) => b.total_weeks_in_top_10 - a.total_weeks_in_top_10);
 
-    $: handleSelectedSong = ({ songName }) => {
-        $selectedSongs = [songName];
+    $: handleSelectedSong = ({ songName, year }) => {
+        $selectedSong = {songName, year};
         $songSearchString = "";
     }
 
     $: handleInputFocused = () => {
-        $selectedSongs = [];
+        $selectedSong = {};
         $songSearchString = "";
     }
 
-    $: placeholder = $selectedSongs[0] || "Search songs...";
+    $: placeholder = $selectedSong.songName || "Search songs...";
 </script>
 
 <SearchBar

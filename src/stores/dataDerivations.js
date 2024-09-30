@@ -10,7 +10,7 @@ import {
 	songInAnnotations
 } from "$data/data-utils.js";
 import {
-	selectedSongs,
+	selectedSong,
 	selectedPerformers,
 	typesTreatedAsNonLoveSongs,
 	songSearchString,
@@ -63,10 +63,10 @@ const performerSelected = derived(
 );
 
 const songSelected = derived(
-	[selectedSongs, songSearchString, playing],
-	([$selectedSongs, $songSearchString, $playing]) => {
-		const selectedSongNames = [...$selectedSongs, $playing?.songName].filter(
-			(name) => !!name
+	[selectedSong, songSearchString, playing],
+	([$selectedSong, $songSearchString, $playing]) => {
+		const selectedSongsWithPlaying = [$selectedSong, $playing].filter(
+			(song) => song?.songName
 		);
 
 		return songsData.map(({ song }) => {
@@ -76,8 +76,14 @@ const songSelected = derived(
 					.includes($songSearchString.toLowerCase());
 			}
 			return (
-				selectedSongNames.includes(song[SONG_DATA_COLUMNS_ENUM.song]) ||
-				selectedSongNames.length === 0
+				selectedSongsWithPlaying.length === 0 ||
+				selectedSongsWithPlaying.some(
+					({ songName, year }) =>
+						song[SONG_DATA_COLUMNS_ENUM.song] === songName &&
+						// just to be safe
+						Math.floor(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]) ===
+							Math.floor(year)
+				)
 			);
 		});
 	}
