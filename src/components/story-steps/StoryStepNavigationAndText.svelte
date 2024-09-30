@@ -4,12 +4,14 @@
     import viewport from "$stores/viewport.js";
 
     import Tap from "../helpers/CustomTap.svelte";
+    import XandAddButton from "$components/helpers/XandAddButton.svelte";
 
     import { selectedSongs, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart, songSearchString, performerSearchString } from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import {STORY_STEP_CONTROLLER_TOP_PADDING} from "$components/viz/viz-utils.js"
 	import DataMethodsModal from "./DataMethodsModal.svelte";
 	import { outermostMargin } from "$stores/canvasPosition.js";
+	
 
     function updateQueryParams() {
         urlParams.set("step", $currentStoryStepIndex);
@@ -27,9 +29,32 @@
         }
     }
 
+    const REMOVE_ICON_CLASS = "remove-love-song-type-icon-within-text";
+    const Y_ADJUSTMENT = 8; // NOTE: careful, this magic number is also set in the copy gdoc
+    const addRemoveButtonComponentToText = () => {
+		const el = document.querySelector(`.${REMOVE_ICON_CLASS}`);
+        if (el && el.children.length > 0) {
+            return;
+        }
+        if (el) {
+            new XandAddButton({
+                target: el,
+                props: {
+                    rotateIntoPlusSign: false,
+                    diameter: $viewport.isLikelyInMobileLandscape ? 24 : 28,
+                    selectionColor: null,
+                    selectionBackgroundColor: null,
+                    isSelected: false,
+                    transformProperties: `translateY(${Y_ADJUSTMENT}px)`
+                }
+            });
+        }
+	};
+
     afterUpdate(() => {
         updateQueryParams();
         addModalOpenButtonListener();
+        addRemoveButtonComponentToText();
     });
     
     onMount(async () => {
@@ -38,6 +63,7 @@
 
        await tick();
        addModalOpenButtonListener();
+       addRemoveButtonComponentToText();
     });
 
     // Buttons
