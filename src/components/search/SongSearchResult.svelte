@@ -23,6 +23,8 @@
     .search-result {
         font-family: var(--sans);
         font-size: 12px;
+        margin-top: 6px;
+        margin-bottom: 6px;
     }
 
     .top-row {
