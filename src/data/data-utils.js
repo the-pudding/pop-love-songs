@@ -1,14 +1,7 @@
-import { scaleLinear } from "d3";
 import { SONG_DATA_COLUMNS_ENUM } from "./data-constants";
-import { MAX_DATE, MIN_DATE } from "./songs-data";
 
 // TODO: replace this with a store (currently not being used in canvasPosition.js, which has its own copy)
 export const Y_MARGIN_SCREEN_PERCENTAGE = 0.05;
-
-export const X_MARGIN = 48; // This margin must accomodate the left/right nav arrows (Tap element)
-const xScaleSansRange = scaleLinear().domain([MIN_DATE, MAX_DATE]);
-export const xScaleJustAddRange = (canvasWidth) =>
-	xScaleSansRange.range([X_MARGIN, canvasWidth - X_MARGIN]);
 
 export const PERFORMER_LIST_DELIMITER = "|";
 export const getArrayOfPerformers = (song) => {

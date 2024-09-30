@@ -1,8 +1,9 @@
 import { derived } from "svelte/store";
 
+import { scaleLinear } from "d3";
 import seedrandom from "seedrandom";
 
-import { currentStoryStep } from "./storySteps";
+import { currentStoryStep, isLastStep, showSearchBars } from "./storySteps";
 import viewport from "./viewport";
 import {
 	getXPositionFromTime,
@@ -12,16 +13,52 @@ import {
 
 import {
 	songInAnnotations,
-	songInManuallySetPositions,
-	xScaleJustAddRange
+	songInManuallySetPositions
 } from "$data/data-utils";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 // TODO: should this be a store, too?
 import { STORY_STEP_CONTROLLER_TOP_PADDING } from "$components/viz/viz-utils";
+import { MAX_DATE, MIN_DATE } from "$data/songs-data";
 
-export const getXPositionForYear = derived([viewport], ([$viewport]) => {
-	return (year) => xScaleJustAddRange($viewport.width)(year);
-});
+const Y_MARGIN_SCREEN_PERCENTAGE = 0.05;
+export const yMarginScreenPercentage = derived(
+	[],
+	() => Y_MARGIN_SCREEN_PERCENTAGE
+);
+const yMarginBottom = derived(
+	[yMarginScreenPercentage, viewport],
+	([$yMarginScreenPercentage, $viewport]) =>
+		$viewport.height * $yMarginScreenPercentage
+);
+
+const SEARCH_BAR_HEIGHT = 50; // TODO: get this right, maybe export to style dictionary
+const yMarginTop = derived(
+	[yMarginScreenPercentage, viewport, isLastStep, showSearchBars],
+	([$yMarginScreenPercentage, $viewport, $isLastStep, $showSearchBars]) =>
+		$viewport.height * $yMarginScreenPercentage +
+		($isLastStep && $showSearchBars ? SEARCH_BAR_HEIGHT : 0)
+);
+const X_MARGIN = 48; // This margin must accomodate the left/right nav arrows (Tap element)
+export const margins = derived(
+	[yMarginTop, yMarginBottom, viewport],
+	([$yMarginTop, $yMarginBottom]) => ({
+		top: $yMarginTop,
+		bottom: $yMarginBottom,
+		right: X_MARGIN,
+		left: X_MARGIN
+	})
+);
+
+const xScaleSansRange = scaleLinear().domain([MIN_DATE, MAX_DATE]);
+const xScaleJustAddRange = (canvasWidth, $margins) =>
+	xScaleSansRange.range([$margins.left, canvasWidth - $margins.right]);
+
+export const getXPositionForYear = derived(
+	[viewport, margins],
+	([$viewport, $margins]) => {
+		return (year) => xScaleJustAddRange($viewport.width, $margins)(year);
+	}
+);
 
 export const calculateXForcePosition = derived(
 	[viewport, currentStoryStep, getXPositionForYear],
@@ -38,8 +75,6 @@ export const calculateXForcePosition = derived(
 	}
 );
 
-// TODO: will be its own, responsive store (delete the one currently being exported elsewhere)
-const Y_MARGIN_SCREEN_PERCENTAGE = 0.05;
 export const getYPositionForPercentage = derived(
 	[viewport],
 	([$viewport]) =>
