@@ -3,7 +3,6 @@ import { area as d3area } from "d3";
 import viewport from "./viewport";
 
 import { getYPosInAggregateSnakeChart } from "./forcePositionOptions-helper";
-import { getXPosForYear } from "$data/data-utils";
 import {
 	LOVE_SONG_TYPES,
 	LOVE_SONG_TYPE_CONSTANTS,
@@ -23,6 +22,7 @@ import {
 	sortLoveSongTypesTopToBottom
 } from "./loveSongsLabeledByTimeRegionPercentageForPosition";
 import { typesTreatedAsNonLoveSongs } from "./searchAndFilter";
+import { getXPositionForYear } from "./canvasPosition";
 
 // 2. ... aggregate the total songs for each time region, then label each with a sumative percentage, append that to the object
 
@@ -133,9 +133,9 @@ export const aggregateSnakeChartPositions = derived(
 	}
 );
 
-const createSVGPathGenerator = ($viewport) => {
+const createSVGPathGenerator = ($viewport, $getXPositionForYear) => {
 	return d3area()
-		.x(({ x }) => getXPosForYear(x, $viewport.width))
+		.x(({ x }) => $getXPositionForYear(x))
 		.y0(({ y0, y1 }) =>
 			getYPosInAggregateSnakeChart({
 				percentage: y0,
@@ -188,6 +188,8 @@ export const svgCoordsForLoveSongTypes = derived(
 		}))
 );
 
-export const svgPathGenerator = derived([viewport], ([$viewport]) =>
-	createSVGPathGenerator($viewport)
+export const svgPathGenerator = derived(
+	[viewport, getXPositionForYear],
+	([$viewport, $getXPositionForYear]) =>
+		createSVGPathGenerator($viewport, $getXPositionForYear)
 );

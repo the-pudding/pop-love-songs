@@ -1,7 +1,7 @@
 <script>
 	import SnakeBubbleToggle from "$components/search/SnakeBubbleToggle.svelte";
-    import { getXPosForYear } from "$data/data-utils";
 	import { MIN_DATE } from "$data/songs-data";
+	import { getXPositionForYear } from "$stores/canvasPosition";
 
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
 	import { isLastStep } from "$stores/storySteps";
@@ -10,7 +10,7 @@
 	import PerformerSearchBar from "./PerformerSearchBar.svelte";
 	import SongSearchBar from "./SongSearchBar.svelte";
 
-    $: left = getXPosForYear(MIN_DATE, $viewport.width);
+    $: left = $getXPositionForYear(MIN_DATE);
     $: top = getYPosForPercentage(0, $viewport.height); 
 </script>
 

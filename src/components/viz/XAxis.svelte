@@ -1,8 +1,9 @@
 <script>
     import viewport from "$stores/viewport.js";
-    import { abbreviateYearForDisplay, getXPosForYear, Y_MARGIN_SCREEN_PERCENTAGE } from '$data/data-utils';
+    import { abbreviateYearForDisplay, Y_MARGIN_SCREEN_PERCENTAGE } from '$data/data-utils';
     import { aSingleLoveSongTypeIsSpotlighted } from "$stores/storySteps";
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
+	import { getXPositionForYear } from "$stores/canvasPosition";
 
     $: tickYears = [1960, 1970, 1980, 1990, 2000, 2010, 2020]
         .filter(year => !$viewport.isLikelyInMobileLandscape || year % 20 === 0);
@@ -10,7 +11,7 @@
     const formatYear = year => `${abbreviateYearForDisplay(year)}s`;
     $: xPositions = tickYears.map(year => ({
         year,
-        x: getXPosForYear(year, $viewport.width)
+        x: $getXPositionForYear(year)
     }))
 
     // Calculations for when a single love song type is spotlighted

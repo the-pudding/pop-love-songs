@@ -1,16 +1,18 @@
 <script>
 	import { LOVE_SONG_TYPE_CONSTANTS } from "$data/data-constants";
 	import { MIN_DATE } from "$data/songs-data";
-    import { getXPosForYear, onlyShowOneDecimalPlaceIfLessThan10 } from "$data/data-utils";
+    import { onlyShowOneDecimalPlaceIfLessThan10 } from "$data/data-utils";
     
     import viewport from "$stores/viewport";
     import { currentStoryStep } from "$stores/storySteps";
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
+    import { getXPositionForYear } from "$stores/canvasPosition";
     import { showAggregateSnakeChart } from "$stores/searchAndFilter";
 
 	import TotalLoveSongPercentageAnnotation from "./TotalLoveSongPercentageAnnotation.svelte";
 	import { svgCoordsForSnakeChartOutline } from "$stores/snakeChartOutlineGenerator";
 	import LoveSongChangeTinyAnnotation from "./LoveSongChangeTinyAnnotation.svelte";
+	
 	
     export let tweenedCoords;
 
@@ -36,7 +38,7 @@
         )
         return {
             y: getYPosForPercentage(coordsAveragedByDecade.y / 2, $viewport.height),
-            x: getXPosForYear(coordsAveragedByDecade.x / 2, $viewport.width),
+            x: $getXPositionForYear(coordsAveragedByDecade.x / 2),
             decade
         }
     })

@@ -5,12 +5,12 @@
     import { songAnnotationsWithPosition } from "$stores/visualEncodings";
     import { getYPosForPercentage } from '$stores/forcePositionOptions-helper';
     import { currentStoryStep } from '$stores/storySteps';
+    import { getXPositionForYear } from '$stores/canvasPosition';
 
 	import SongInfo from "../SongInfo.svelte";
 
     import variables from '$data/variables.json';
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
-	import { getXPosForYear } from '$data/data-utils';
 
     const aNonTrivialSize = (height) => Math.abs(height) > 16;
 	
@@ -26,7 +26,7 @@
             const textY = getYPosForPercentage(offsetFromThisYPercentage, $viewport.height) - yOffset;
             return {
                 bubbleX: x, bubbleY: y - radius, textY, 
-                elbowX: offsetToThisYear && getXPosForYear(offsetToThisYear, $viewport.width),
+                elbowX: offsetToThisYear && $getXPositionForYear(offsetToThisYear),
                 song, xTranslation, placeBelow, 
                 alternateTitle, 
                 audioFile

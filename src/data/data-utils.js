@@ -9,11 +9,6 @@ const xScaleSansRange = scaleLinear().domain([MIN_DATE, MAX_DATE]);
 export const xScaleJustAddRange = (canvasWidth) =>
 	xScaleSansRange.range([X_MARGIN, canvasWidth - X_MARGIN]);
 
-export const getXPosForYear = (year, canvasWidth) => {
-	// set the domain with canvas width
-	return xScaleJustAddRange(canvasWidth)(year);
-};
-
 export const PERFORMER_LIST_DELIMITER = "|";
 export const getArrayOfPerformers = (song) => {
 	const performers_list_str = song[SONG_DATA_COLUMNS_ENUM.performers_list_str];

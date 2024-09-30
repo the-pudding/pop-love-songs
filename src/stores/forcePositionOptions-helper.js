@@ -4,7 +4,6 @@ import songsData from "$data/songs-data.js";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { STORY_STEP_CONTROLLER_TOP_PADDING } from "$components/viz/viz-utils";
 import {
-	getXPosForYear,
 	songInAnnotations,
 	songInManuallySetPositions,
 	Y_MARGIN_SCREEN_PERCENTAGE
@@ -18,8 +17,8 @@ export const DEFAULT_Y_ENTRANCE_POSITION = 0;
 
 // --- xForcePosition options ---
 
-export const getXPositionFromTime = (song, canvasWidth) =>
-	getXPosForYear(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal], canvasWidth);
+export const getXPositionFromTime =
+	"this is just a placeholder, we replace it with a store when we calculate the calculateXForcePosition store";
 
 // --- yForcePosition options ---
 

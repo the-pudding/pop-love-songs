@@ -1,17 +1,17 @@
 <script>
 	import viewport from "$stores/viewport";
 	import { getYPosForPercentage } from "$stores/forcePositionOptions-helper";
+	import { getXPositionForYear } from "$stores/canvasPosition";
 	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep, isLastStep, precedingStepSpotlightedType } from "$stores/storySteps";
 	import { nonLoveSongLabelBottomLeftCoords } from "$stores/labels";
 	import { showAggregateSnakeChart, typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
 
-	import { getXPosForYear } from "$data/data-utils";
 	import { LOVE_SONG_TYPE_CONSTANTS, TEXT_SHADOW_COLOR_MAP } from "$data/data-constants";
 
 	import NonLoveSongLabel from "./NonLoveSongLabel.svelte";
 	import LoveSongTypeLabel from "./LoveSongTypeLabel.svelte";
 	import { textShadow } from "$utils/styling";
-
+	
     export let tweenedCoords;
 
 	const DECADE_TO_PLACE_LABEL_IN = {
@@ -24,9 +24,9 @@
 		[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: 2000,
 	}
 
-	const getX = (x, width, orderInNonLoveSongStack, nonLoveSongX) => {
+	const getX = (x, orderInNonLoveSongStack, nonLoveSongX) => {
 		if (orderInNonLoveSongStack !== -1) return nonLoveSongX;
-		return getXPosForYear(x, width);
+		return $getXPositionForYear(x);
 	}
 
 	const OFFSET_FROM_NON_LOVE_SONG_LABEL = 0;
@@ -59,7 +59,7 @@
 			return [... acc, {
 				loveSongType,
 				labelHeight,
-				x: getX(x, $viewport.width, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.x),
+				x: getX(x, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.x),
 				y: getY(y0, $viewport.height, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.y, labelHeight),
 				// TODO: if we decide to keep this cool flying transition and want it NOT wonky, then we need to either left align, or use elements width to directly add shift to left property
 				translate: `translate(${isTreatedAsNonLoveSong ? -50 : 0}%, -80%)`,
