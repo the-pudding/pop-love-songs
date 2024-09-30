@@ -74,18 +74,16 @@ export const calculateXForcePosition = derived(
 			calculateXForcePosition(song, width, undefined, index);
 	}
 );
-
 export const getYPositionForPercentage = derived(
-	[viewport],
-	([$viewport]) =>
+	[viewport, margins],
+	([$viewport, $margins]) =>
 		(percentage) => {
-			const yStart =
-				$viewport.height * Y_MARGIN_SCREEN_PERCENTAGE +
-				STORY_STEP_CONTROLLER_TOP_PADDING;
+			const yStart = $margins.top + STORY_STEP_CONTROLLER_TOP_PADDING;
 			const yRange =
 				$viewport.height -
 				STORY_STEP_CONTROLLER_TOP_PADDING -
-				2 * $viewport.height * Y_MARGIN_SCREEN_PERCENTAGE;
+				$margins.top -
+				$margins.bottom;
 			return yStart + percentage * yRange;
 		}
 );
