@@ -7,6 +7,8 @@
 
 	import XAxis from "./XAxis.svelte";
 	import LoveSongTypeLabels from "./LoveSongTypeLabels.svelte";
+	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";
+	import LoveSongsSnakeOutline from "./LoveSongsSnakeOutline.svelte";
 
 	import viewport from "$stores/viewport.js";
 	import { songIsSelected, songIsVisible } from "$stores/dataDerivations";
@@ -30,7 +32,7 @@
 	import { currentStoryStep, preventBubbleRestartBecauseTheUserIsMerelySearching } from "$stores/storySteps";
 	import { showAggregateSnakeChart, showAnnotations } from "$stores/searchAndFilter";
 	import { songInAnnotations } from "$data/data-utils";
-	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";
+
 	
 	// Initiate mutable simulation, give bubbles an initial position
 	const forceSimulationData = songsData.map((songObject, songIndex) => ({
@@ -217,8 +219,8 @@
 		<path d={$svgPathGenerator(svgCoords)} fill={getSnakeFill(loveSongType, $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType), $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap)} />
 	{/each}
 	<!-- Outline of all love songs -->
-	 {#if $currentStoryStep.showLoveSongChange}
-		<path d={$svgPathGenerator($svgCoordsForSnakeChartOutline)} fill="none" stroke="black" stroke-width="6" stroke-dasharray="12" />
+	 {#if $currentStoryStep.showLoveSongChange}		
+		<LoveSongsSnakeOutline d={$svgPathGenerator($svgCoordsForSnakeChartOutline)} />
 	{/if}
 </svg>
 
