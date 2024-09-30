@@ -28,6 +28,8 @@
         /* TODO: @michelle it's not working now, but I'd like this to delay and/or fade in */
         transition: opacity calc(var(--chart-transition-opacity-duration) * 1ms) ease;
         transition-delay: 800ms;
+
+        white-space: nowrap;
     }
 
     div.visible {

@@ -9,7 +9,7 @@
 	export let x;
 	export let y;
 	export let translate;
-	export let opacity;
+	export let visibility;
 	export let fontSize;
 	export let fontWeight;
 	export let textShadow;
@@ -32,7 +32,7 @@
 	on:click={toggleLoveSongStatus(loveSongType)}
 	style:left={`${x}px`} style:top={`${y}px`}
 	style:transform={translate}
-	style:opacity={opacity}
+	style:visibility={visibility}
 	style:font-size={fontSize}
 	style:font-weight={fontWeight}
 	style:text-shadow={textShadow}
@@ -59,6 +59,12 @@
 		pointer-events: none;
 
 		background-color: transparent;
+	}
+
+	button:hover {
+		cursor: pointer;
+		opacity: 0.9;
+		border-bottom: 1px solid transparent;
 	}
 
 	button.allow-toggle {

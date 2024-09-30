@@ -63,7 +63,7 @@
 				y: getY(y0, $viewport.height, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.y, labelHeight),
 				// TODO: if we decide to keep this cool flying transition and want it NOT wonky, then we need to either left align, or use elements width to directly add shift to left property
 				translate: `translate(${isTreatedAsNonLoveSong ? -50 : 0}%, -80%)`,
-				opacity: $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType) ? 0 : 1,
+				visibility: $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType) ? 'hidden' : 'visible',
 				fontSize: `${fontSize}px`,
 				fontWeight: wasJustSpotlighted ? "bold" : "normal",
 				textShadow: textShadow(2, 2, TEXT_SHADOW_COLOR_MAP[loveSongType])
@@ -76,10 +76,7 @@
 
 {#if show}
 	<NonLoveSongLabel />
-	{#each labelMetadata as { loveSongType, x, y, translate, opacity, fontSize, fontWeight, textShadow }}
-		<LoveSongTypeLabel {loveSongType} {x} {y} {translate} {opacity} {fontSize} {fontWeight} {textShadow} />
+	{#each labelMetadata as { loveSongType, x, y, translate, visibility, fontSize, fontWeight, textShadow }}
+		<LoveSongTypeLabel {loveSongType} {x} {y} {translate} {visibility} {fontSize} {fontWeight} {textShadow} />
 	{/each}	
 {/if}
-
-<style>
-</style>
