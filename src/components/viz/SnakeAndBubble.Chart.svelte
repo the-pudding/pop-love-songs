@@ -191,6 +191,12 @@
 		easing: cubicInOut
 	});
 
+	const SLOW_FACTOR = 1.3; // by slightly slowing this fade in/out, you can more clearly see the charts morphing into each other
+	const bubbleChartOpacity = tweened(1, {
+		duration: variables.chart['transition-opacity-duration'] * SLOW_FACTOR,
+		easing: cubicInOut
+	});
+
 	const tweenedCoords = tweened($svgCoordsForLoveSongTypes, {
 		duration: variables.chart['transition-opacity-duration'],
 		easing: cubicInOut
@@ -208,8 +214,10 @@
 		tweenedSongColor.set($songColor);
 		if ($showAggregateSnakeChart) {
 			aggregateSnakeChartOpacity.set(1);
+			bubbleChartOpacity.set(0);
 		} else {
 			aggregateSnakeChartOpacity.set(0);
+			bubbleChartOpacity.set(1);
 		}
 	}
 
@@ -245,7 +253,7 @@
 <!-- TODO: if not shown, don't run the simulation (ie for performance) -->
 <canvas
 	id="visible"
-	style:opacity={1 - $aggregateSnakeChartOpacity}
+	style:opacity={$bubbleChartOpacity}
 	bind:this={canvas}
 	on:mousemove={handleMouseMove}
 	on:mouseleave={clearTooltip}
