@@ -2,7 +2,7 @@
 	import { performerSearchString } from "$stores/searchAndFilter";
 	import { isLastStep } from "$stores/storySteps";
 	import SearchResultText from "./SearchResultText.svelte";
-	import SongTypeSparkline from "./SongTypeSparkline.svelte";
+	import SongTypeSparkline from "./SongTypeSparkline.Chart.svelte";
 
     export let result;
 
