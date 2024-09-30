@@ -1,15 +1,21 @@
 <script>
 
-	import { LOVE_SONG_TYPE_CONSTANTS } from "$data/data-constants";
+	import { LOVE_SONG_TYPE_CONSTANTS, TEXT_SHADOW_COLOR_MAP } from "$data/data-constants";
 	import { currentStoryStep, isLastStep } from "$stores/storySteps";
     import viewport from "$stores/viewport";
 	import { typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
 	import { nonLoveSongLabelBottomLeftCoords } from "$stores/labels";
+	import { textShadow } from "$utils/styling";
 
     $: fontSize = $viewport.isLikelyInMobileLandscape ? 12 : 16;
 
     $: visible = $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(LOVE_SONG_TYPE_CONSTANTS.notALoveSong)
-    $: style = `left: ${$nonLoveSongLabelBottomLeftCoords.x}px; top: ${$nonLoveSongLabelBottomLeftCoords.y}px; font-size: ${fontSize}px;`;
+    $: style = `
+        left: ${$nonLoveSongLabelBottomLeftCoords.x}px; 
+        top: ${$nonLoveSongLabelBottomLeftCoords.y}px; 
+        font-size: ${fontSize}px; 
+        text-shadow: ${textShadow(2, 2)};
+    `;
 </script>
 
 <div class:visible={visible} {style}>
