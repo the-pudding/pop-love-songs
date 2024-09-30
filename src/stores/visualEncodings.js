@@ -7,15 +7,12 @@ import { loveSongsLabeledByTimeRegionPercentageForPosition } from "./loveSongsLa
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { nodePositionsInSimulation } from "./simulation.js";
 import previous from "./previous.js";
+import { calculateXForcePosition } from "./canvasPosition.js";
 
 const xForcePositionUnoptimized = derived(
-	[viewport, currentStoryStep],
-	([$viewport, $currentStoryStep]) => {
-		const { width } = $viewport;
-		const { calculateXForcePosition } = $currentStoryStep.visualEncodings;
-		return songsData.map(({ song }, index) =>
-			calculateXForcePosition(song, width, undefined, index)
-		);
+	calculateXForcePosition,
+	($calculateXForcePosition) => {
+		return songsData.map($calculateXForcePosition);
 	}
 );
 
