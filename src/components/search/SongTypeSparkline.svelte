@@ -1,24 +1,31 @@
 <script>
-	import { loveSongTypeColorMap } from "$stores/colorMap";
+    import { loveSongTypeColorMap } from "$stores/colorMap";
 
     export let songCountByLoveSongType;
+    export let totalSongCount;
 </script>
 
-<ul>
+<div class="stacked-bar-chart">
     {#each Object.entries(songCountByLoveSongType) as [type, count]}
-        <li style:background={$loveSongTypeColorMap[type]}>{type}: {count}</li>
+        {@const description = `${count} songs of type ${type}`}
+        <div aria-label={description} title={description} class="bar-segment" style:width="{(count / totalSongCount) * 100}%" style:background={$loveSongTypeColorMap[type]}/>
     {/each}
-</ul>
+</div>
 
 <style>
-    ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
+    .stacked-bar-chart {
+        display: flex;
+        width: 100%;
+        height: 30px; /* Adjust the height as needed */
     }
 
-    li {
-        padding: 0;
-        margin: 0;
+    .bar-segment {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white; /* Adjust text color for better readability */
+        font-size: 0.8em; /* Adjust font size as needed */
+        overflow: hidden;
+        white-space: nowrap;
     }
 </style>

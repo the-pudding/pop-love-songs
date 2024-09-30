@@ -21,7 +21,7 @@
             <p><b>{totalSongCount}</b> songs</p>
         </div>
         {#if $isLastStep}
-            <SongTypeSparkline {songCountByLoveSongType} />
+            <SongTypeSparkline {totalSongCount} {songCountByLoveSongType} />
         {/if}
 </div>
 
