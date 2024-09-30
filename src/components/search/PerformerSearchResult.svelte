@@ -47,13 +47,4 @@
     .top-row p {
         margin: 0;
     }
-
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    li {
-        font-size: 0.9em;
-    }
 </style>
