@@ -33,22 +33,25 @@
     const Y_ADJUSTMENT = 8; // NOTE: careful, this magic number is also set in the copy gdoc
     const addRemoveButtonComponentToText = () => {
 		const el = document.querySelector(`.${REMOVE_ICON_CLASS}`);
-        if (el && el.children.length > 0) {
+        
+        if (!el || el.children.length > 0) {
             return;
         }
-        if (el) {
-            new XandAddButton({
-                target: el,
-                props: {
-                    rotateIntoPlusSign: false,
-                    diameter: $viewport.isLikelyInMobileLandscape ? 24 : 28,
-                    selectionColor: null,
-                    selectionBackgroundColor: null,
-                    isSelected: false,
-                    transformProperties: `translateY(${Y_ADJUSTMENT}px)`
-                }
-            });
-        }
+
+        // NOTE: we adjust the y-margin to offset the translateY (below), to avoid changing the text line-height
+        el.style = `margin-top: -${Y_ADJUSTMENT}px; display: inline-block;`;
+        new XandAddButton({
+            target: el,
+            props: {
+                rotateIntoPlusSign: false,
+                diameter: $viewport.isLikelyInMobileLandscape ? 24 : 28,
+                selectionColor: null,
+                selectionBackgroundColor: null,
+                isSelected: false,
+                transformProperties: `translateY(${Y_ADJUSTMENT}px)`
+            }
+        });
+
 	};
 
     afterUpdate(() => {
