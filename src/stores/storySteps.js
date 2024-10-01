@@ -325,12 +325,16 @@ const stepsWithoutText = {
 				offsetAnnotations: [
 					{ song: "Yesterday", year: 1965, audioFile: "yesterday" },
 					{
-						song: "I Will Always Love You",
-						year: 1992,
-						placeAbove: true,
-						audioFile: "i-will-always-love-you"
+						song: "Without You/Never Forget You",
+						year: 1994,
+						audioFile: "without-you",
+						placeAbove: true
 					},
-					{ song: "Stay", year: 2013, audioFile: "stay" }
+					{
+						song: "You Belong With Me",
+						year: 2009,
+						audioFile: "you-belong-with-me"
+					}
 				]
 			}
 		}

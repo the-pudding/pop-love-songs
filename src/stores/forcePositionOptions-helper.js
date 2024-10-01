@@ -118,21 +118,21 @@ const NON_SERENADE_HIGHLIGHTS_FROM_INTRO = [
 ];
 
 const MORE_EXPANSIVE_VIEW = [
-	// {
-	// 	song: "I Will Always Love You",
-	// 	year: 1992,
-	// 	rightAlign: true,
-	// 	audioFile: "i-will-always-love-you",
-	// 	yPercent: 0.2
-	// },
-	// {
-	// 	song: "Buy U A Drank (Shawty Snappin')",
-	// 	alternateTitle: "Buy U A Drank",
-	// 	year: 2007,
-	// 	rightAlign: true,
-	// 	audioFile: "buy-u-a-drank",
-	// 	yPercent: 0.55
-	// },
+	{
+		song: "I Will Always Love You",
+		year: 1992,
+		audioFile: "i-will-always-love-you",
+		rightAlign: true,
+		yPercent: 0.2
+	},
+	{
+		song: "Buy U A Drank (Shawty Snappin')",
+		alternateTitle: "Buy U A Drank",
+		year: 2007,
+		rightAlign: true,
+		audioFile: "buy-u-a-drank",
+		yPercent: 0.55
+	},
 	{
 		song: "WAP",
 		year: 2020,
@@ -156,17 +156,17 @@ const DEFINING_SERENADES = [
 
 const COLOR_IN_HEARTBREAK = [
 	{
-		song: "Heartbreaker",
-		year: 1983,
+		song: "I Will Always Love You",
+		year: 1992,
+		audioFile: "i-will-always-love-you",
 		rightAlign: true,
-		audioFile: "heartbreaker",
 		yPercent: 0.45
 	},
 	{
-		song: "You Belong With Me",
-		year: 2009,
+		song: "Stay",
+		year: 2013,
+		audioFile: "stay",
 		rightAlign: true,
-		audioFile: "you-belong-with-me",
 		yPercent: 0.25
 	}
 ];
