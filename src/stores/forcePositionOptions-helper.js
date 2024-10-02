@@ -117,13 +117,14 @@ const NON_SERENADE_HIGHLIGHTS_FROM_INTRO = [
 	{ song: "Kiss Me More", year: 2021, xPercent: 0.4, yPercent: 0.85 }
 ];
 
+const I_WILL_ALWAYS_LOVE_YOU_Y_PERCENT = 0.6;
 const MORE_EXPANSIVE_VIEW = [
 	{
 		song: "I Will Always Love You",
 		year: 1992,
 		audioFile: "i-will-always-love-you",
 		rightAlign: true,
-		yPercent: 0.2
+		yPercent: I_WILL_ALWAYS_LOVE_YOU_Y_PERCENT
 	},
 	{
 		song: "Buy U A Drank (Shawty Snappin')",
@@ -131,7 +132,7 @@ const MORE_EXPANSIVE_VIEW = [
 		year: 2007,
 		rightAlign: true,
 		audioFile: "buy-u-a-drank",
-		yPercent: 0.55
+		yPercent: 0.3
 	},
 	{
 		song: "WAP",
@@ -160,7 +161,7 @@ const COLOR_IN_HEARTBREAK = [
 		year: 1992,
 		audioFile: "i-will-always-love-you",
 		rightAlign: true,
-		yPercent: 0.45
+		yPercent: I_WILL_ALWAYS_LOVE_YOU_Y_PERCENT
 	},
 	{
 		song: "Stay",
