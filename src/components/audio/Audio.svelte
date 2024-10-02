@@ -3,6 +3,7 @@
 	import { base } from "$app/paths";
 	import { audioCanPlay } from "$stores/audio.js";
 	import { onMount, tick } from "svelte";
+	import { currentStoryStep } from "$stores/storySteps";
 
 	export let audioFile;
 	export let onComplete;
@@ -19,14 +20,13 @@
 	const pause = () => {
 		if (!audioEl || paused) return;
 		audioEl.pause();
+		onComplete();
 	};
 
 	const updateSource = () => {
 		$audioCanPlay = false;
 		loaded = false;
-		// TEMP: hardcoding to the one file we have
-		const TEMP = "fever";
-		const src = `${base}/assets/audio/${TEMP}.mp3`;
+		const src = `${base}/assets/audio/${audioFile}.mp3`;
 		audioEl.src = src;
 		audioEl.load();
 	};
@@ -52,6 +52,8 @@
 
 	$: if (audioFile) updateSource();
 	$: if (!audioFile) pause();
+	// @michelle: Ok, so this works. But the software nerd in me is like "but but ... seperation of concerns!". Any clever ideas on moving this out?
+	$: $currentStoryStep, pause();
 
 	onMount(async () => {
 		await tick();
