@@ -524,7 +524,13 @@ const stepsWithoutText = {
 					// { song: "Runaround Sue", year: 1961, audioFile: "TODO" },
 					{ song: "I Will Survive", year: 1979, audioFile: "i-will-survive" },
 					{ song: "So What", year: 2008, audioFile: "so-what" },
-					{ song: "Good 4 U", year: 2021, audioFile: "good-4-u" }
+					// { song: "Good 4 U", year: 2021, audioFile: "good-4-u" }
+					{
+						song: "abcdefu",
+						year: 2022,
+						audioFile: "abcdefu",
+						offsetToThisYear: 2018
+					}
 				]
 			}
 		}
@@ -574,8 +580,9 @@ const stepsWithoutText = {
 			songAnnotations: {
 				offsetAnnotations: [
 					{ song: "Physical", year: 1981, audioFile: "physical" },
-					{ song: "WAP", year: 2020, audioFile: "wap", offsetToThisYear: 2010 },
-					{ song: "Way 2 Sexy", year: 2021, audioFile: "way-2-sexy" }
+					// { song: "Way 2 Sexy", year: 2021, audioFile: "way-2-sexy" }
+					{ song: "Work", year: 2016, audioFile: "work" },
+					{ song: "WAP", year: 2020, audioFile: "wap", offsetToThisYear: 2019 }
 				]
 			}
 		}
