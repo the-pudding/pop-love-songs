@@ -151,7 +151,7 @@ const DEFINING_SERENADES = [
 		year: 2010,
 		// rightAlign: true,
 		placeAbove: true,
-		audioFile: "just-the-way-you-are-2010"
+		audioFile: "just-the-way-you-are"
 	}
 ];
 
