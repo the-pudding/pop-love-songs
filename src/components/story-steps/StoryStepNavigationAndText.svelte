@@ -11,6 +11,7 @@
     import {STORY_STEP_CONTROLLER_TOP_PADDING} from "$components/viz/viz-utils.js"
 	import DataMethodsModal from "./DataMethodsModal.svelte";
 	import { outermostMargin } from "$stores/canvasPosition.js";
+	import { tiemposFriendlyTextShadow } from "$utils/styling.js";
 	
 
     function updateQueryParams() {
@@ -23,6 +24,10 @@
     const addModalOpenButtonListener = () => {
         const modalOpenButton = container && container.querySelector('.modalTrigger')
         if (modalOpenButton) {
+            modalOpenButton.style.textShadow = tiemposFriendlyTextShadow();
+            modalOpenButton.style.marginLeft = "2px";
+            modalOpenButton.style.marginRight = "2px";
+
             modalOpenButton.addEventListener('click', () => {
                 showModal = true;
             })
@@ -99,12 +104,11 @@
         ${$currentStoryStep.showOpeningComment ? "" : `height: ${STORY_STEP_CONTROLLER_TOP_PADDING}px;`}
         margin-top: ${$outermostMargin}px;
         ${$currentStoryStep.showOpeningComment ? "bottom: 0" : "top: 0"}px;
+        text-shadow: ${tiemposFriendlyTextShadow()}
     `
     
     $: storyTextStyle = `
         font-size: ${$viewport.isLikelyInMobileLandscape ? '14px' : '16px'};
-        /* cream + transparency so the text stays readable */
-        ${$currentStoryStep.chartOccupiesFullScreen ? "background-color: #fff6dfbf;" : ""}
     `
 </script>
 

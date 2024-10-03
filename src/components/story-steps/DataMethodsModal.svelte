@@ -20,6 +20,10 @@
 </Modal>
 
 <style>
+    * {
+        text-shadow: none;
+    }
+    
     h1 {
         font-size: 35px;
     }
