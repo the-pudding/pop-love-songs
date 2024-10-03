@@ -38,6 +38,7 @@
 
 <svelte:window on:keydown={onKeyDown} bind:innerHeight />
 
+<!-- @michelle: my "use semantic HTML" game feels week. Do you have an intuition why section was used here? When do you use this tag? -->
 <section class:debug style="height: {innerHeight}px;">
 	{#each directions as dir}
 		<button
@@ -70,6 +71,7 @@
 		height: 100%;
 		z-index: var(--z-overlay);
 		pointer-events: none;
+		overflow: hidden;
 	}
 
 	button {
