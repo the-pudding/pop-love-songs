@@ -49,6 +49,8 @@
 
 	let simulation;
 
+	// To look good on high-res (eg retina) displays, we want to increase the pixel density of the canvas. Makes all screens crisper, honestly.
+	const PIXEL_SCALE = 2;
 	const updateVisibleAndInvisibleCanvases = () => {
 		if (!context || !canvas) return;
 
@@ -122,7 +124,8 @@
 	const handleMouseMove = (e) => {
 		if ($showAggregateSnakeChart) return
 		const { offsetX, offsetY } = e;
-		const songIndex = getSongIndexFromClickLocation(invisibleContext, offsetX, offsetY);		
+		// Multiply by PIXEL_SCALE to translate mouse position into the scaled up canvas pixel universe
+		const songIndex = getSongIndexFromClickLocation(invisibleContext, offsetX * PIXEL_SCALE, offsetY * PIXEL_SCALE);		
 		const selectedSong = $songIsSelected[songIndex] && $songIsVisible[songIndex] && forceSimulationData[songIndex]?.song;
 		handleSongHovered(selectedSong, songIndex, offsetX, offsetY);
 	};
@@ -136,10 +139,13 @@
 
 	const resizeCanvases = () => {
 		if (!canvas) return;
-		canvas.width = $viewport.width;
-		canvas.height = $viewport.height;
-		invisibleCanvas.width = $viewport.width;
-		invisibleCanvas.height = $viewport.height;
+		canvas.width = $viewport.width * PIXEL_SCALE;
+		canvas.height = $viewport.height * PIXEL_SCALE;
+		invisibleCanvas.width = $viewport.width * PIXEL_SCALE;
+		invisibleCanvas.height = $viewport.height * PIXEL_SCALE;
+
+		invisibleContext.scale(PIXEL_SCALE, PIXEL_SCALE);
+		context.scale(PIXEL_SCALE, PIXEL_SCALE);
 	};
 	
 	const updateSimulationProperties = () => {
@@ -246,16 +252,20 @@
 	{/if}
 </svg>
 
-<!-- TODO: if not shown, don't run the simulation (ie for performance) -->
 <canvas
 	id="visible"
+	style={`width: ${$viewport.width}px; height: ${$viewport.height}px;`}
 	style:opacity={$bubbleChartOpacity}
 	bind:this={canvas}
 	on:mousemove={handleMouseMove}
 	on:mouseleave={clearTooltip}
 	on:mousedown={handleSongClicked}
 />
-<canvas id="invisible" bind:this={invisibleCanvas} />
+<canvas
+	id="invisible"
+	style={`width: ${$viewport.width}px; height: ${$viewport.height}px;`}
+	bind:this={invisibleCanvas}	
+/>
 
 <LoveSongChangeAnnotation tweenedCoords={$tweenedCoords} />
 
