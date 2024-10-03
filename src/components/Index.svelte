@@ -16,12 +16,17 @@
 
 	import { playing } from "$stores/audio.js";
 	import { currentStoryStep, currentStoryStepIndex, showSearchBars } from "$stores/storySteps";
+	import loadImage from "$utils/loadImage";
+	import { TITLE_CARD_BACKGROUND_IMAGE } from "./story-steps/images";
 	
 	// Wait until after we've mounted (and thus pulled the story step from the URL)
 	// TODO: this doesn't seem to actually work. Instead, just create a store that StoryStepNavigationAndText updates
 	let urlParsed = false
 	onMount(() => {
 	   urlParsed = true;
+	   // @michelle: is this where this should go? also is this the proper use? 
+	   // I want images not to look like they're awkwardly loading in, so why not do this for ALL big-ish images?
+	   loadImage(TITLE_CARD_BACKGROUND_IMAGE.src);
     });
 </script>
 

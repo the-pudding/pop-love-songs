@@ -1,13 +1,8 @@
 <script>
-	import variables from '$data/variables.json';
     import copy from '$data/copy.json';
 	import viewport from '$stores/viewport';
 	import { textShadow } from '$utils/styling';
-
-    const faces = {
-        src: "assets/images/elvis and olivia rodrigo.png",
-        alt: "Elvis Presley, smiling, and Olivia Rodrigo, scowling, side by side."
-    }
+	import { TITLE_CARD_BACKGROUND_IMAGE } from './images';
 
     const DYING_OPACITIES = {
         d: 1,
@@ -27,7 +22,7 @@
 </script>
 
 <section>
-    <div class='background-image' aria-label={faces.alt} role="img" style={`background-image: url(${faces.src.replaceAll(' ', '%20')});`} />
+    <div class='background-image' aria-label={TITLE_CARD_BACKGROUND_IMAGE.alt} role="img" style={`background-image: url(${TITLE_CARD_BACKGROUND_IMAGE.src.replaceAll(' ', '%20')});`} />
 
     <!-- @michelle: I'm overall a bit unsure where best to deploy $viewport vs CSS media query. Does viewport offer an advantage that it's *actual* screen size? -->
     <h1 style={h1Style}>
