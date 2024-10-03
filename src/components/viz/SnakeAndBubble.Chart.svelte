@@ -164,12 +164,8 @@
 	$: $xForcePosition, $yForcePosition, updateSimulationProperties();
 	$: $xForcePosition, $yForcePosition, $viewport.width, $viewport.height, restartSimulation();
 
-	$: $songIsSelected, $viewport.width, $viewport.height, $tweenedSongColor, updateViz();
-	
-	const updateViz = () => {
-		resizeCanvases();
-		updateVisibleAndInvisibleCanvases();
-	};
+	$: $viewport.width, $viewport.height, resizeCanvases();
+	$: $viewport.width, $viewport.height, $songIsSelected, $tweenedSongColor, updateVisibleAndInvisibleCanvases();;
 
 	onMount(() => {
 		invisibleContext = invisibleCanvas.getContext("2d");
