@@ -3,6 +3,9 @@
 	import { currentStoryStep } from "$stores/storySteps";
 	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
 	import { showAggregateSnakeChart } from "$stores/searchAndFilter";
+	import { songAnnotationsWithPosition } from "$stores/visualEncodings";
+	
+	import { songInAnnotations } from "$data/data-utils";
 	
 	import SongInfo from "./SongInfo.svelte";
 	import BubbleOutline from "./BubbleOutline.svelte";
@@ -33,10 +36,14 @@
 			hoveredSongInfo.set({})
 		}
 	})
+
+	songAnnotationsWithPosition
+
+	$: alreadyAnnotated = songInAnnotations(song, $currentStoryStep.visualEncodings.songAnnotations)
 </script>
 
 <!-- @michelle: do you have any strong arguments for why I should use class:visible vs just conditionally rendering? -->
-{#if visible}
+{#if visible && !alreadyAnnotated}
 	<div>
 		<div
 			class="tooltip"
