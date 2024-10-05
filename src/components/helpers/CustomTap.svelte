@@ -96,7 +96,7 @@
 		left: 0;
 	}
 	.left-hint:hover {
-		transform: translate(-40%, -100%);
+		transform: translate(-45%, -100%);
 		opacity: 1;
 		background: var(--color-good-riddance);
 	}
@@ -108,7 +108,7 @@
 		right: 0;
 	}
 	.right-hint:hover {
-		transform: translate(40%, -100%);
+		transform: translate(45%, -100%);
 		opacity: 1;
 		background: var(--color-good-riddance);
 	}
