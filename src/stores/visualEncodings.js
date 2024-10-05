@@ -52,13 +52,26 @@ export const previousXForcePosition = previous(xForcePositionUnoptimized);
 export const previousYForcePosition = previous(yForcePositionUnoptimized);
 
 const EPSILON = 0.01;
-const substantiallyDifferent = (a, b, index) => Math.abs(a - b) > EPSILON;
+const substantiallyDifferent = (a, b) => Math.abs(a - b) > EPSILON;
 
-// TODO: OPTIMIZATION: do we need to check ALL values? or just one? or just the first few?
-// ... or is there like some tricky math-y thing we could do here that's really cheap/fast?
-const arraysDifferMeaningfully = (a, b) =>
-	a.length !== b.length ||
-	a.some((x, index) => substantiallyDifferent(x, b[index], index));
+// Note: when arrays change, the REALLY change, so we're only checking the first chunk of the array
+const LENGTH_TO_CHECK = Math.floor(0.4 * songsData.length);
+const TOLERATED_DIFFERENCES = 4;
+const arraysDifferMeaningfully = (a, b) => {
+	let differencesFound = 0;
+	for (let i = 0; i < LENGTH_TO_CHECK; i++) {
+		if (substantiallyDifferent(a[i], b[i])) {
+			differencesFound++;
+			console.log("found");
+			if (differencesFound > TOLERATED_DIFFERENCES) {
+				console.log(a, b);
+				return true;
+			}
+		}
+	}
+
+	return false;
+};
 
 export const xForcePosition = derived(
 	[xForcePositionUnoptimized, previousXForcePosition],
