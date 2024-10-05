@@ -35,7 +35,7 @@
 </div>
 {#if $currentStoryStep.showTotalWeeksInTop10InSongInfo}
 	<div class='weeks-in-top-10' style={`text-shadow: ${textShadow(1, 0.5)}`}>
-		<b>{song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10]}</b> weeks in the Top 10
+		<b>{song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10]}</b> weeks in Top 10
 	</div>
 {/if}
 
@@ -45,13 +45,14 @@
 		pointer-events: none;
 	}
 
-	.song-and-year {
-		white-space: nowrap;
-	}
-
 	.song {
 		font-weight: bold;
 		text-transform: uppercase;
+	}
+
+	.performer {
+		white-space: nowrap;
+		overflow: hidden;
 	}
 
 	.year, .performer, .weeks-in-top-10 {
