@@ -3,6 +3,7 @@
 	import { ChevronLeft, ChevronRight } from "lucide-svelte";
 	import { createEventDispatcher } from "svelte";
 
+	import viewport from "$stores/viewport";
 	import { currentStoryStepIndex, isLastStep } from "$stores/storySteps";
 	import variables from '$data/variables'
 
@@ -27,7 +28,8 @@
 
 <svelte:window on:keydown={onKeyDown} />
 
-<section class="tapper-overlay">
+<!-- @michelle: my "use semantic HTML" game feels week. Do you have an intuition why section was used here? When do you use this tag? -->
+<section class="tapper-overlay" style={`height: ${$viewport.height}px; width: ${$viewport.width}px;`}>
 	{#each directions as dir}
 		{#if dir == "left"}
 			{#if $currentStoryStepIndex !== 0}
@@ -58,11 +60,9 @@
 <style>
 	.tapper,
 	.tapper-overlay {
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
-		width: 100%;
-		height: 100%;
 		z-index: 1;
 		pointer-events: none;
 	}

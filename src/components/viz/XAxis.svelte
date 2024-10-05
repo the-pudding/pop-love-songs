@@ -26,8 +26,7 @@
     $: belowSnakeChart = $viewport.height - (Y_MARGIN_SCREEN_PERCENTAGE * $viewport.height);
 </script>
 
-<div class="x-axis" >
-    {#each xPositions as { year, x }}
+ {#each xPositions as { year, x }}
         <div 
             class="dashed-line"
             style="left: {x}px;" 
@@ -41,12 +40,11 @@
         >
             {formatYear(year)}
         </div>
-    {/each}
-</div>
+{/each}
 
 <style>
     .tick, .dashed-line {
-        position: absolute;
+        position: fixed;
         transition: top calc(var(--chart-transition-opacity-duration) * 1ms) ease, height calc(var(--chart-transition-opacity-duration) * 1ms) ease;
         z-index: 1000;
         pointer-events: none;

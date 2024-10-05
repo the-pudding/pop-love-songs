@@ -1,9 +1,10 @@
 <script>
+	
     import {afterUpdate, onMount, tick} from "svelte";
     import urlParams from "../../utils/urlParams.js";
     import viewport from "$stores/viewport.js";
 
-    import Tap from "../helpers/CustomTap.svelte";
+    import CustomTap from './../helpers/CustomTap.svelte';
     import XandAddButton from "$components/helpers/XandAddButton.svelte";
 
     import { selectedSong, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart, songSearchString, performerSearchString } from "$stores/searchAndFilter.js"
@@ -122,7 +123,7 @@
     {/if}
 </div>
 
-<Tap on:tap={onTap} enableKeyboard={true} />
+<CustomTap on:tap={onTap} enableKeyboard={true} />
 
 <style>
     .container {
