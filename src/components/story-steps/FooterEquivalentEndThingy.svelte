@@ -7,9 +7,9 @@
 </script>
 
 <div div class="container">
-    <div>
+    <div class="thanks">
         <h2>Thanks for reading!</h2>
-        {@html copy.byline}
+        {@html copy.footer.thanks}
 
         <button on:click={() => showModal = true}> Read the methods here</button>
         <DataMethodsModal bind:showModal />
@@ -24,5 +24,9 @@
         flex-direction: column;
         justify-content: space-between;
         height: 100vh; /* @michelle: what I want is for hte <Footer/> to stay pushed to the bottom of the page */
+    }
+
+    .thanks {
+        padding: 48px;
     }
 </style>
