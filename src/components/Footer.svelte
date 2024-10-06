@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from "svelte";
-	import inView from "$actions/inView.js";
-	import wordmark from "$svg/wordmark.svg";
+	// shadow, plain, line, bubble
+	import wordmark from "$svg/wordmark-shadow.svg";
 
 	let localURL;
 	let stories = [];
@@ -75,8 +75,8 @@
 
 <style>
 	footer {
-		background-color: var(--color-fg);
-		color: var(--color-bg);
+		background-color: var(--color-its-complicated);
+		color: var(--color-cream-background);
 		font-family: var(--sans);
 		padding: 3em 1em;
 		margin-top: 3em;
