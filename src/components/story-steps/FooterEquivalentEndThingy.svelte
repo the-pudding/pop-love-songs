@@ -8,10 +8,12 @@
 
 <div div class="container">
     <div class="thanks">
-        <h2>Thanks for reading!</h2>
-        {@html copy.footer.thanks}
+        <div>
+            <h3>{copy.footer.heading}</h3>
+            {@html copy.footer.thanks}
 
-        <button on:click={() => showModal = true}> Read the methods here</button>
+            <button class="modalTrigger" on:click={() => showModal = true}>{copy.footer.methods}</button>
+        </div>
         <DataMethodsModal bind:showModal />
     </div>
 
@@ -27,6 +29,16 @@
     }
 
     .thanks {
-        padding: 48px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 48px;
+        max-width: 730px;
+    }
+
+    .modalTrigger {
+        display: block;
+        margin-top: 24px;
     }
 </style>

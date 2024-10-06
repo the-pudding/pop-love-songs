@@ -79,7 +79,7 @@
 		color: var(--color-cream-background);
 		font-family: var(--sans);
 		padding: 3em 1em;
-		margin-top: 3em;
+		margin-top: 36px;
 	}
 
 	a,
