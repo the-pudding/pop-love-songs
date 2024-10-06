@@ -62,9 +62,7 @@ const arraysDifferMeaningfully = (a, b) => {
 	for (let i = 0; i < LENGTH_TO_CHECK; i++) {
 		if (substantiallyDifferent(a[i], b[i])) {
 			differencesFound++;
-			console.log("found");
 			if (differencesFound > TOLERATED_DIFFERENCES) {
-				console.log(a, b);
 				return true;
 			}
 		}

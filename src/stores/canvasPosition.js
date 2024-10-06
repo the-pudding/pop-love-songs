@@ -3,7 +3,11 @@ import { derived } from "svelte/store";
 import { scaleLinear } from "d3";
 import seedrandom from "seedrandom";
 
-import { currentStoryStep, isLastStep, showSearchBars } from "./storySteps";
+import {
+	currentStoryStep,
+	isEndingSandboxStep,
+	showSearchBars
+} from "./storySteps";
 import viewport from "./viewport";
 import {
 	getXPositionFromTime,
@@ -35,9 +39,10 @@ export const bottomOfStoryText = derived(
 );
 const SEARCH_BAR_HEIGHT = 70; // TODO: maybe export to style dictionary, we can relate it to --search-bar-height
 const yMarginTop = derived(
-	[outermostMargin, isLastStep, showSearchBars],
-	([$outermostMargin, $isLastStep, $showSearchBars]) =>
-		$outermostMargin + ($isLastStep && $showSearchBars ? SEARCH_BAR_HEIGHT : 0)
+	[outermostMargin, isEndingSandboxStep, showSearchBars],
+	([$outermostMargin, $isEndingSandboxStep, $showSearchBars]) =>
+		$outermostMargin +
+		($isEndingSandboxStep && $showSearchBars ? SEARCH_BAR_HEIGHT : 0)
 );
 const X_MARGIN = 48; // This margin must accommodate the left/right nav arrows (Tap element)
 export const margins = derived(

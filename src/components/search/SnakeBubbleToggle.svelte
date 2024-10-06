@@ -3,7 +3,7 @@
 	import Toggle from "$components/helpers/Toggle.svelte";
 
 	import { aSearchBarIsFocused, performerSearchString, selectedPerformers, selectedSong, showAggregateSnakeChart, songSearchString } from "$stores/searchAndFilter.js";
-	import { isLastStep } from "$stores/storySteps";
+	import { isEndingSandboxStep } from "$stores/storySteps";
 
 	const CHART_OPTIONS = {
 		snake: 'change categories',
@@ -31,7 +31,7 @@
 	// For the final step, if there are search strings or selected search values, we need to be sure we've toggled to individual songs chart
 	// @michelle Is this a random place to put this? Like should this be a derived store or something? What's tricking is that others are writing to showAggregateSnakeChart, too.
 	$: {
-		if ($isLastStep && $showAggregateSnakeChart) {
+		if ($isEndingSandboxStep && $showAggregateSnakeChart) {
 			if ($aSearchBarIsFocused) {
 				showAggregateSnakeChart.set(false);
 			}

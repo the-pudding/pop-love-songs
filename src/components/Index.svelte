@@ -8,6 +8,7 @@
 	import OpeningComment from "./story-steps/OpeningComment.svelte";
 	import TitleCard from "./story-steps/TitleCard.svelte";
 	import StoryStepNavigationAndText from "./story-steps/StoryStepNavigationAndText.svelte";
+	import FooterEquivalentEndThingy from "./story-steps/FooterEquivalentEndThingy.svelte"
 	
 	import Annotations from "./viz/annotations/Annotations.svelte";
 	import SongTooltip from "./viz/SongTooltip.svelte";
@@ -41,13 +42,18 @@
 
 	{#if urlParsed}
 		<!-- TODO: OPTIMIZATION: does it make sense to rip the viz elements on/off the dom, or just leave them there always? -->
-		<SnakeAndBubbleChart />
+		{#if !$currentStoryStep.showFooter}
+			<SnakeAndBubbleChart />
+		{/if}
+			
 		{#if $currentStoryStep.showHeadlinesAboutLoveSongDecline}
 			<HeadlinesAboutLoveSongDecline />
 		{:else if $currentStoryStep.showOpeningComment}
 			<OpeningComment />
 		{:else if $currentStoryStep.showTitleCard}
 			<TitleCard />
+		{:else if $currentStoryStep.showFooter}
+			<FooterEquivalentEndThingy />
 		{/if}
 	{/if}
 

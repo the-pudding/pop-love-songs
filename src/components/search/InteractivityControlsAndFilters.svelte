@@ -3,7 +3,7 @@
 	import { MAX_DATE, MIN_DATE } from "$data/songs-data";
 	import { bottomOfStoryText, getXPositionForYear } from "$stores/canvasPosition";
 
-	import { isLastStep } from "$stores/storySteps";
+	import { isEndingSandboxStep } from "$stores/storySteps";
 
 	import PerformerSearchBar from "./PerformerSearchBar.svelte";
 	import SongSearchBar from "./SongSearchBar.svelte";
@@ -18,7 +18,7 @@
         <PerformerSearchBar />
         <SongSearchBar />
     </div>
-    {#if $isLastStep}
+    {#if $isEndingSandboxStep}
         <SnakeBubbleToggle />
     {/if}
 </div>

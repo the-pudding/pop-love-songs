@@ -1,6 +1,6 @@
 <script>
 	import { performerSearchString } from "$stores/searchAndFilter";
-	import { isLastStep } from "$stores/storySteps";
+	import { isEndingSandboxStep } from "$stores/storySteps";
 	import SearchResultText from "./SearchResultText.svelte";
 	import SongTypeSparkline from "./SongTypeSparkline.Chart.svelte";
 
@@ -20,7 +20,7 @@
             </h2>
             <p><b>{totalSongCount}</b> song credits</p>
         </div>
-        {#if $isLastStep}
+        {#if $isEndingSandboxStep}
             <SongTypeSparkline {totalSongCount} {songCountByLoveSongType} />
         {/if}
 </div>

@@ -1,6 +1,6 @@
 <script>
 	import { songSearchString } from "$stores/searchAndFilter";
-	import { isLastStep } from "$stores/storySteps";
+	import { isEndingSandboxStep } from "$stores/storySteps";
 	import LoveSongTypePill from "./LoveSongTypePill.svelte";
 	import SearchResultText from "./SearchResultText.svelte";
 
@@ -14,7 +14,7 @@
         </h2>
         <span class="year">{result.year}</span>
     </div>
-    {#if $isLastStep}
+    {#if $isEndingSandboxStep}
         <LoveSongTypePill loveSongType={result.loveSongType} />
     {/if}
 </div>

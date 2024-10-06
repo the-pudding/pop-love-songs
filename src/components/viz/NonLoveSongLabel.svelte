@@ -1,7 +1,7 @@
 <script>
 
 	import { LOVE_SONG_TYPE_CONSTANTS, TEXT_SHADOW_COLOR_MAP } from "$data/data-constants";
-	import { currentStoryStep, isLastStep } from "$stores/storySteps";
+	import { currentStoryStep, isEndingSandboxStep } from "$stores/storySteps";
     import viewport from "$stores/viewport";
 	import { typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
 	import { nonLoveSongLabelBottomLeftCoords } from "$stores/labels";
@@ -19,7 +19,7 @@
 </script>
 
 <div class:visible={visible} {style}>
-    NON-LOVE SONGS{$isLastStep && !!$typesTreatedAsNonLoveSongs.length ? ":" : ""}
+    NON-LOVE SONGS{$isEndingSandboxStep && !!$typesTreatedAsNonLoveSongs.length ? ":" : ""}
 </div>
 
 <style>

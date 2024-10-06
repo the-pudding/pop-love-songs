@@ -1,11 +1,11 @@
 <script>
 	import { ACCESSIBLY_CONTRASTING_COLOR_MAP, LOVE_SONG_TYPE_COLOR_MAP, LOVE_SONG_TYPE_CONSTANTS, LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP } from "$data/data-constants";
 	import { typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
-	import { isLastStep } from "$stores/storySteps";
+	import { isEndingSandboxStep } from "$stores/storySteps";
 
     export let loveSongType;
 
-    $: userRejected = $isLastStep && $typesTreatedAsNonLoveSongs.includes(+loveSongType);
+    $: userRejected = $isEndingSandboxStep && $typesTreatedAsNonLoveSongs.includes(+loveSongType);
 </script>
 
 <span class="love-song-type"

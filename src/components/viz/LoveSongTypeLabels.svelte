@@ -1,7 +1,7 @@
 <script>
 	import viewport from "$stores/viewport";
 	import { getXPositionForYear, getYPositionForPercentage } from "$stores/canvasPosition";
-	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep, isLastStep, precedingStepSpotlightedType } from "$stores/storySteps";
+	import { aSingleLoveSongTypeIsSpotlighted, currentStoryStep, isEndingSandboxStep, precedingStepSpotlightedType } from "$stores/storySteps";
 	import { nonLoveSongLabelBottomLeftCoords } from "$stores/labels";
 	import { showAggregateSnakeChart, typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
 
@@ -69,7 +69,7 @@
 			}]
 		}, []);
 
-	$: bubbleViewOnLastStep = $isLastStep && !$showAggregateSnakeChart;
+	$: bubbleViewOnLastStep = $isEndingSandboxStep && !$showAggregateSnakeChart;
 	$: show = $currentStoryStep.showXAxis && !$currentStoryStep.isFinalComparisonStep && !$aSingleLoveSongTypeIsSpotlighted && !bubbleViewOnLastStep;
 </script>
 

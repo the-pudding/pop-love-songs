@@ -671,7 +671,27 @@ const stepsWithoutText = {
 			forceXStrength: 8,
 			forceYStrength: 2
 		},
-		showLoveSongChange: true
+		showLoveSongChange: true,
+		isEndingSandboxStep: true
+	},
+
+	// Footer
+	footer: {
+		searchAndFilterState: {
+			...SEARCH_AND_FILTER_BLANK_STATE,
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES,
+			selectedLoveSongTypes: ["FAAAAKKEEE", "also fake"],
+			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+		},
+
+		visualEncodings: {
+			...VISUAL_ENCODING_BLANK_STATE,
+			// showAggregateSnakeChart: true,
+			// a little extra strenth helps keep the chart a bit clearer
+			forceXStrength: 8,
+			forceYStrength: 2
+		},
+		showFooter: true
 	}
 };
 
@@ -730,7 +750,10 @@ const unprocessedStorySteps = [
 	// Conclusion:
 	steps.theLoveSongIsActuallyRising,
 	// Explore mode
-	steps.youDecide
+	steps.youDecide,
+
+	// Footer, links etc
+	steps.footer
 ];
 
 export const storySteps = unprocessedStorySteps.map((step) => ({
@@ -743,16 +766,20 @@ export const storySteps = unprocessedStorySteps.map((step) => ({
 // console.log(storySteps.map((step, i) => `${i}) ${step.text}`).join("\n"));
 
 export const currentStoryStepIndex = writable(0);
+
 export const isLastStep = derived(
 	[currentStoryStepIndex],
 	([$currentStoryStepIndex]) => $currentStoryStepIndex === storySteps.length - 1
 );
 
-const previousStoryStepIndex = previous(currentStoryStepIndex, null);
-
 export const currentStoryStep = derived(
 	[currentStoryStepIndex],
 	([$currentStoryStepIndex]) => storySteps[$currentStoryStepIndex]
+);
+
+export const isEndingSandboxStep = derived(
+	[currentStoryStep],
+	([$currentStoryStep]) => $currentStoryStep.isEndingSandboxStep
 );
 
 const spotlightedLoveSongType = (storyStep) => {
@@ -778,10 +805,10 @@ export const precedingStepSpotlightedType = derived(
 );
 
 export const showSearchBars = derived(
-	[aSingleLoveSongTypeIsSpotlighted, viewport, isLastStep],
-	([$aSingleLoveSongTypeIsSpotlighted, $viewport, $isLastStep]) =>
+	[aSingleLoveSongTypeIsSpotlighted, viewport, isEndingSandboxStep],
+	([$aSingleLoveSongTypeIsSpotlighted, $viewport, $isEndingSandboxStep]) =>
 		!$viewport.isLikelyInMobileLandscape &&
-		($aSingleLoveSongTypeIsSpotlighted || $isLastStep)
+		($aSingleLoveSongTypeIsSpotlighted || $isEndingSandboxStep)
 );
 
 // TODO: OPTIMIZATION, if we update songIsVisible to a memoized custom store, I think we can remove all this code
