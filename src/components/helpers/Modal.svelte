@@ -28,7 +28,7 @@
 
 <style>
 	dialog {
-		max-width: 32em;
+		max-width: 42em;
 		border-radius: 0.2em;
 		border: none;
 		padding: 0;

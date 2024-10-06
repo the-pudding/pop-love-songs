@@ -14,7 +14,11 @@
     {#each dataMethods as {title, paragraphs}}
         <h2>{title}</h2>
         {#each paragraphs as paragraph}
-            <p>{@html paragraph}</p>
+            {#if paragraph.endsWith('.png')}
+                <img src={`assets/images/${paragraph}`} alt={'A two by two gride laying out all seven love song types using relationship and how traditional they are'} />
+            {:else}
+                <p>{@html paragraph}</p>
+            {/if}
         {/each}
     {/each}
 </Modal>
