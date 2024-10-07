@@ -82,6 +82,7 @@
     .dropdown-wrapper {
         position: absolute;
         top: 100%;
+        
         left: 0;
         width: 100%;
         max-height: 280px;
@@ -90,7 +91,9 @@
         background-color: var(--color-cream-background);
         border: 1px solid var(--color-gray-300);
         border-radius: var(--search-bar-border-radius);
-        margin-top: 4px;
+        
+
+        margin-top: 8px;
 
         padding-left: 6px;
         padding-right: 8px;
