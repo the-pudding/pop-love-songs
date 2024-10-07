@@ -56,6 +56,6 @@
 	}
 
 	.year, .performer, .weeks-in-top-10 {
-		font-weight: 300;
+		font-weight: 400;
 	}
 </style>
