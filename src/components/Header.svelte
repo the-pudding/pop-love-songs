@@ -1,10 +1,12 @@
 <script>
+	import viewport from "$stores/viewport";
+
 	// shadow, plain, line, bubble
 	import wordmark from "$svg/wordmark-shadow.svg";
 </script>
 
 <header>
-	<div class="wordmark">
+	<div class="wordmark" style:max-width={$viewport.isLikelyInMobileLandscape ? '10em' : '14em'}>
 		<a href="https://pudding.cool" aria-label="The Pudding" target="_self"
 			>{@html wordmark}</a
 		>
@@ -13,7 +15,6 @@
 
 <style>
 	.wordmark {
-		max-width: 14em;
 		margin: 0 auto;
 		padding: 32px 0;
 		transform: rotate(-4deg);
