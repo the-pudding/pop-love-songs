@@ -136,6 +136,7 @@
 
         pointer-events: none;
         border: none; /* this fixes the random border that appeared on mobile */
+        
     }
 
     .story-text {
@@ -153,5 +154,15 @@
         border: none; /* this fixes the random border that appeared on mobile */
 
         pointer-events: all;
+
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+        animation-delay: 1s;
+    }
+
+     @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
     }
 </style>

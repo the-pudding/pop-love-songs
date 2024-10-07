@@ -6,20 +6,22 @@
 	
 </script>
 
-<div class="tap" class:visible={$currentStoryStepIndex === 0}>
-	<div class="row">
-		<strong>{$mq.desktop ? "Click" : "Tap"} to continue</strong>
-		{@html pointer}
-	</div>
-
-	{#if $mq.desktop}
-		<div class="row keyboard">
-			<strong>Or use the keyboard</strong>
-			<div class="key"><Icon name="chevron-left" /></div>
-			<div class="key"><Icon name="chevron-right" /></div>
+{#if $currentStoryStepIndex === 0}
+	<div class="tap">
+		<div class="row">
+			<strong>{$mq.desktop ? "Click" : "Tap"} to continue</strong>
+			{@html pointer}
 		</div>
-	{/if}
-</div>
+
+		{#if $mq.desktop}
+			<div class="row keyboard">
+				<strong>Or use the keyboard</strong>
+				<div class="key"><Icon name="chevron-left" /></div>
+				<div class="key"><Icon name="chevron-right" /></div>
+			</div>
+		{/if}
+	</div>
+{/if}
 
 <style>
 	.tap {
@@ -34,11 +36,17 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		opacity: 0;		
-	}
-	.tap.visible {
-		opacity: 1;
-	}
+		opacity: 0;
+        animation: fadeIn 1s forwards;
+        animation-delay: 4s;
+    }
+
+     @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
 	.row {
 		display: flex;
 		align-items: center;
