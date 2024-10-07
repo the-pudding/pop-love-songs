@@ -11,7 +11,7 @@
     `;
 </script>
 
-<div {style} />
+<div {style} title="hi, i'm a bubble. or a song, I guess..." />
 
 <style>
     div {
