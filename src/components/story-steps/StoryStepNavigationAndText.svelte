@@ -5,7 +5,9 @@
     import viewport from "$stores/viewport.js";
 
     import CustomTap from './../helpers/CustomTap.svelte';
+    
     import XandAddButton from "$components/helpers/XandAddButton.svelte";
+    import ExampleBubble from "./ExampleBubble.svelte";
 
     import { selectedSong, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart, songSearchString, performerSearchString } from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
@@ -13,6 +15,7 @@
 	import DataMethodsModal from "./DataMethodsModal.svelte";
 	import { outermostMargin } from "$stores/canvasPosition.js";
 	import { tiemposFriendlyTextShadow } from "$utils/styling.js";
+	
 	
 
     function updateQueryParams() {
@@ -60,10 +63,33 @@
 
 	};
 
-    afterUpdate(() => {
-        updateQueryParams();
+    const EXAMPLE_BUBBLE_CLASS = "in-text-bubble-example";
+    const addBubbleComponentToText = () => {
+        const el = document.querySelector(`.${EXAMPLE_BUBBLE_CLASS}`);
+        
+        if (!el || el.children.length > 0) {
+            return;
+        }
+
+        new ExampleBubble({
+            target: el,
+            props: {
+                diameter: $viewport.isLikelyInMobileLandscape ? 24 : 28,
+                yAdjustment: Y_ADJUSTMENT
+            }
+        });
+
+    }
+
+    const renderInTextComponents = () => {
         addModalOpenButtonListener();
         addRemoveButtonComponentToText();
+        addBubbleComponentToText();
+    }
+
+    afterUpdate(() => {
+        updateQueryParams();
+        renderInTextComponents();
     });
     
     onMount(async () => {
@@ -71,8 +97,7 @@
        $currentStoryStepIndex = urlIndex > storySteps.length - 1 ? 0 : urlIndex;
 
        await tick();
-       addModalOpenButtonListener();
-       addRemoveButtonComponentToText();
+       renderInTextComponents();
     });
 
     // Buttons
@@ -113,7 +138,7 @@
     `
 </script>
 
-<div bind:this={container} class="container" style={style}>
+<div bind:this={container} class="container fade-in" style={style}>
     {#if !!$currentStoryStep.text}
         <h4 class="story-text" style={storyTextStyle}>
             <!-- For styling of love song type spans within the text, see app.css -->
@@ -157,7 +182,9 @@
         border: none; /* this fixes the random border that appeared on mobile */
 
         pointer-events: all;
+    }
 
+    .fade-in {
         opacity: 0;
         animation: fadeIn 1s forwards;
         animation-delay: 1s;
