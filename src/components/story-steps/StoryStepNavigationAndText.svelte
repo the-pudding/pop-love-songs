@@ -5,7 +5,7 @@
     import viewport from "$stores/viewport.js";
 
     import CustomTap from './../helpers/CustomTap.svelte';
-    
+
     import XandAddButton from "$components/helpers/XandAddButton.svelte";
     import ExampleBubble from "./ExampleBubble.svelte";
 
@@ -138,7 +138,7 @@
     `
 </script>
 
-<div bind:this={container} class="container fade-in" style={style}>
+<div bind:this={container} class={`container ${$currentStoryStepIndex === 0 ? 'fade-in' : ''}`} style={style}>
     {#if !!$currentStoryStep.text}
         <h4 class="story-text" style={storyTextStyle}>
             <!-- For styling of love song type spans within the text, see app.css -->
