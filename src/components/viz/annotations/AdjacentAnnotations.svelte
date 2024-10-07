@@ -32,7 +32,7 @@
         role="tooltip"
         style={`top: ${yPos}px; left: ${xPos}px; ${rightAlign ? 'transform: translateX(-100%);' : ''}`}
     >
-        <SongInfo {song} {alternateTitle} {audioFile} />
+        <SongInfo {song} {alternateTitle} {audioFile} {rightAlign} />
     </div>
 {/each}
 
