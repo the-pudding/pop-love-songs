@@ -23,7 +23,6 @@
         transform: translateY(-100%) translateX(-50%);
 
         font-family: 'Atlas Grotesk', sans-serif;
-        font-weight: bold;
-        font-size: 16px;
+        font-size: 12px;
     }
 </style>
