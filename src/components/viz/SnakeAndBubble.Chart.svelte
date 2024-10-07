@@ -8,7 +8,7 @@
 	import XAxis from "./XAxis.svelte";
 	import LoveSongTypeLabels from "./LoveSongTypeLabels.svelte";
 	import LoveSongChangeAnnotation from "./LoveSongChangeAnnotation.svelte";
-	import LoveSongsSnakeOutline from "./LoveSongsSnakeOutline.svelte";
+	import LoveSongsChangeSnakeOutline from "./LoveSongsChangeSnakeOutline.svelte";
 
 	import viewport from "$stores/viewport.js";
 	import { songIsSelected, songIsVisible } from "$stores/dataDerivations";
@@ -248,7 +248,7 @@
 	{/each}
 	<!-- Outline of all love songs -->
 	 {#if $currentStoryStep.showLoveSongChange}		
-		<LoveSongsSnakeOutline d={$svgPathGenerator($svgCoordsForSnakeChartOutline)} />
+		<LoveSongsChangeSnakeOutline d={$svgPathGenerator($svgCoordsForSnakeChartOutline)} />
 	{/if}
 </svg>
 
