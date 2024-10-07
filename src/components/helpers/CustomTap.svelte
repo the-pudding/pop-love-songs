@@ -6,6 +6,8 @@
 	import viewport from "$stores/viewport";
 	import { currentStoryStepIndex, isLastStep } from "$stores/storySteps";
 	import variables from '$data/variables'
+	
+	import Tap from "./Tap.svelte";
 
 	export let enableKeyboard = false;
 	// export let disable = [];
@@ -54,6 +56,7 @@
                 />
 			</button>
 		{/if}
+		<Tap />
 	{/each}
 </section>
 

@@ -104,12 +104,12 @@
     $: style = `
         ${$currentStoryStep.showOpeningComment ? "" : `height: ${STORY_STEP_CONTROLLER_TOP_PADDING}px;`}
         margin-top: ${$outermostMargin}px;
-        ${$currentStoryStep.showOpeningComment ? "bottom: 0" : "top: 0"}px;
+        ${$currentStoryStep.showOpeningComment ? "bottom: 5%;" : "top: 0"};
         text-shadow: ${tiemposFriendlyTextShadow()}
     `
     
     $: storyTextStyle = `
-        font-size: ${$viewport.isLikelyInMobileLandscape ? '14px' : '16px'};
+        font-size: ${$viewport.isLikelyInMobileLandscape ? '14px' : $currentStoryStepIndex === 0 ? '20px' : '16px'};
     `
 </script>
 
