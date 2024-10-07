@@ -14,7 +14,7 @@
         left: ${$nonLoveSongLabelBottomLeftCoords.x}px; 
         top: ${$nonLoveSongLabelBottomLeftCoords.y}px; 
         font-size: ${fontSize}px; 
-        text-shadow: ${textShadow(2, 2)};
+        text-shadow: ${textShadow(0.5, 1)};
     `;
 </script>
 
