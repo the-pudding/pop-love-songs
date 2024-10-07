@@ -105,7 +105,7 @@
         ${$currentStoryStep.showOpeningComment ? "" : `height: ${STORY_STEP_CONTROLLER_TOP_PADDING}px;`}
         margin-top: ${$outermostMargin}px;
         ${$currentStoryStep.showOpeningComment ? "bottom: 5%;" : "top: 0"};
-        text-shadow: ${tiemposFriendlyTextShadow()}
+        text-shadow: ${tiemposFriendlyTextShadow()};
     `
     
     $: storyTextStyle = `
@@ -117,7 +117,10 @@
     {#if !!$currentStoryStep.text}
         <h4 class="story-text" style={storyTextStyle}>
             <!-- For styling of love song type spans within the text, see app.css -->
-            {@html $currentStoryStep.text}
+            <!-- Note: this wonky custom left-padding corrects for a visual fluke wherein left-justified text appears off center.  -->
+            <div style:padding-left={!$viewport.isLikelyInMobileLandscape && $currentStoryStepIndex === 0 ? '42px' : '8px'}>
+                {@html $currentStoryStep.text}
+            </div>
             <DataMethodsModal bind:showModal />
         </h4>
     {/if}
