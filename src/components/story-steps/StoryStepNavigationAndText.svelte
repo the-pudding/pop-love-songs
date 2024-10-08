@@ -2,6 +2,7 @@
 	
     import {afterUpdate, onMount, tick} from "svelte";
     import urlParams from "../../utils/urlParams.js";
+    import { tiemposFriendlyTextShadow } from "$utils/styling.js";
     import viewport from "$stores/viewport.js";
 
     import CustomTap from './../helpers/CustomTap.svelte';
@@ -11,10 +12,8 @@
 
     import { selectedSong, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart, songSearchString, performerSearchString } from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
-    import {STORY_STEP_CONTROLLER_TOP_PADDING} from "$components/viz/viz-utils.js"
-	import DataMethodsModal from "./DataMethodsModal.svelte";
-	import { outermostMargin } from "$stores/canvasPosition.js";
-	import { tiemposFriendlyTextShadow } from "$utils/styling.js";
+    import { getYPositionForPercentage, outermostMargin } from "$stores/canvasPosition.js";
+	import DataMethodsModal from "./DataMethodsModal.svelte";	
 	
 	
 
@@ -126,8 +125,16 @@
 
     $: $currentStoryStepIndex, updateFilterFilterState();
 
-    $: style = `
-        ${$currentStoryStep.showOpeningComment ? "" : `height: ${STORY_STEP_CONTROLLER_TOP_PADDING}px;`}
+    $: backgroundGradientStyle = `
+        position: fixed; top: 0; left: 0; width: 100%; 
+        /* we want it to extend from the top of the page right down to where the chart starts */
+        height: ${$getYPositionForPercentage(0)}px; 
+        background: ${$currentStoryStep.text ? 'linear-gradient(to bottom, var(--color-cream-background), transparent)' : 'none'};
+        pointer-events: none;
+        z-index: 1;
+    `
+    $: containerStyle = `
+        ${$currentStoryStep.showOpeningComment ? "" : "background: linear-gradient(to bottom, var(--color-cream-background), transparent);"}
         margin-top: ${$outermostMargin}px;
         ${$currentStoryStep.showOpeningComment ? "bottom: 5%;" : "top: 0"};
         text-shadow: ${tiemposFriendlyTextShadow()};
@@ -138,17 +145,19 @@
     `
 </script>
 
-<div bind:this={container} class={`container ${$currentStoryStepIndex === 0 ? 'fade-in' : ''}`} style={style}>
-    {#if !!$currentStoryStep.text}
-        <h4 class="story-text" style={storyTextStyle}>
-            <!-- For styling of love song type spans within the text, see app.css -->
-            <!-- Note: this wonky custom left-padding corrects for a visual fluke wherein left-justified text appears off center.  -->
-            <div style:padding-left={!$viewport.isLikelyInMobileLandscape && $currentStoryStepIndex === 0 ? '42px' : '8px'}>
-                {@html $currentStoryStep.text}
-            </div>
-            <DataMethodsModal bind:showModal />
-        </h4>
-    {/if}
+<div style={backgroundGradientStyle}>
+    <div bind:this={container} class={`container ${$currentStoryStepIndex === 0 ? 'fade-in' : ''}`} style={containerStyle}>
+        {#if !!$currentStoryStep.text}
+            <h4 class="story-text" style={storyTextStyle}>
+                <!-- For styling of love song type spans within the text, see app.css -->
+                <!-- Note: this wonky custom left-padding corrects for a visual fluke wherein left-justified text appears off center.  -->
+                <div style:padding-left={!$viewport.isLikelyInMobileLandscape && $currentStoryStepIndex === 0 ? '42px' : '8px'}>
+                    {@html $currentStoryStep.text}
+                </div>
+                <DataMethodsModal bind:showModal />
+            </h4>
+        {/if}
+    </div>
 </div>
 
 <CustomTap on:tap={onTap} enableKeyboard={true} />
@@ -163,8 +172,7 @@
         margin-bottom: 4%;
 
         pointer-events: none;
-        border: none; /* this fixes the random border that appeared on mobile */
-        
+        border: none; /* this fixes the random border that appeared on mobile */        
     }
 
     .story-text {
