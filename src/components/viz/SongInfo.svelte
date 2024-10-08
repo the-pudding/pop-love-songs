@@ -49,10 +49,9 @@
 		font-weight: bold;
 		text-transform: uppercase;
 	}
-
-	.performer {
+	
+	.performer, .song-and-year {
 		white-space: nowrap;
-		overflow: hidden;
 	}
 
 	.year, .performer, .weeks-in-top-10 {
