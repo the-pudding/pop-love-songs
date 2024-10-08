@@ -3,6 +3,7 @@
     import { abbreviateYearForDisplay, Y_MARGIN_SCREEN_PERCENTAGE } from '$data/data-utils';
     import { aSingleLoveSongTypeIsSpotlighted } from "$stores/storySteps";
 	import { getXPositionForYear, getYPositionForPercentage } from "$stores/canvasPosition";
+	import { textShadow } from "$utils/styling";
 
     $: tickYears = [1960, 1970, 1980, 1990, 2000, 2010, 2020]
         .filter(year => !$viewport.isLikelyInMobileLandscape || year % 20 === 0);
@@ -37,6 +38,7 @@
             class="tick" 
             style="left: {x}px;" 
             style:top={`${$aSingleLoveSongTypeIsSpotlighted ? yBottomOfDashedLine : belowSnakeChart}px`}
+            style:text-shadow={textShadow(1, 1)}
         >
             {formatYear(year)}
         </div>
@@ -51,8 +53,6 @@
 
         font-family: var(--sans);
         font-weight: bold;
-
-        opacity: 0.5;
     }
 
     .tick {
