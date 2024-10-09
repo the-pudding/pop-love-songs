@@ -97,6 +97,11 @@ h6 {
 	font-size: var(--20px, 20px);
 }
 
+.story-text b {
+	/* Fixes a weird issue where the text-shadow of punctuation overlaps with this text */
+	margin-right: 1.5px;
+} 
+
 /* Styling the spans highlighting specific love song types in the text (coming from the gdoc), see StoryStepNavigationAndText.svelte */
 .not-a-love-song,
 .serenade,
@@ -106,6 +111,11 @@ h6 {
 .good-riddance,
 .love-song-for-the-self,
 .sexual-confidence {
+	/* Fixes a weird issue where the text-shadow of punctuation overlaps with this background */
+	margin-left: 1.5px;
+	margin-right: 1.5px;
+
+	letter-spacing: default;
 	border-radius: 4px;
 	padding: 1px 5px 2px;
 	font-weight: 600;
