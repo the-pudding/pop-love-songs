@@ -1,8 +1,11 @@
 <script>
+    import { tweened } from 'svelte/motion';
+    import { cubicOut } from 'svelte/easing';
+    import { onMount } from 'svelte';
     import copy from '$data/copy.json';
-	import viewport from '$stores/viewport';
-	import { textShadow } from '$utils/styling';
-	import { TITLE_CARD_BACKGROUND_IMAGE } from './images';
+    import viewport from '$stores/viewport';
+    import { textShadow } from '$utils/styling';
+    import { TITLE_CARD_BACKGROUND_IMAGE } from './images';
 
     const DYING_OPACITIES = {
         d: 1,
@@ -11,7 +14,18 @@
         n: 0.4,
         g: 0.2,
         '?': 0
-    }
+    };
+
+    const characters = Array.from("dying?");
+    const dyingTweenArray =  tweened(
+        characters.map((_, index) => 1), 
+        { duration: 2000, easing: cubicOut }
+    ) ;
+    
+    onMount(() => {
+        const tweenTarget = characters.map((char) => DYING_OPACITIES[char]);
+        dyingTweenArray.set(tweenTarget);
+    });
 
     $: h1Style = `
         font-size: ${$viewport.isLikelyInMobileLandscape ? '64px' : '108px'};
@@ -23,11 +37,10 @@
 <section>
     <div class='background-image' aria-label={TITLE_CARD_BACKGROUND_IMAGE.alt} role="img" style={`background-image: url(${TITLE_CARD_BACKGROUND_IMAGE.src.replaceAll(' ', '%20')});`} />
 
-    <!-- @michelle: I'm overall a bit unsure where best to deploy $viewport vs CSS media query. Does viewport offer an advantage that it's *actual* screen size? -->
     <h1 style={h1Style}>
         Is the<br>love song<br>
-        {#each Array.from("dying?") as character}
-            <span class={character} style={`-webkit-text-fill-color: rgba(0, 0, 0, ${DYING_OPACITIES[character]}); display: inline-block; width: auto;`}>
+        {#each characters as character, index}
+            <span class={character} style={`-webkit-text-fill-color: rgba(0, 0, 0, ${$dyingTweenArray[index]}); display: inline-block; width: auto;`}>
                 {character}
             </span>
         {/each}
