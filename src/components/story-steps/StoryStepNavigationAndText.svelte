@@ -56,7 +56,8 @@
                 selectionColor: null,
                 selectionBackgroundColor: null,
                 isSelected: false,
-                transformProperties: `translateY(${Y_ADJUSTMENT}px)`
+                transformProperties: `translateY(${Y_ADJUSTMENT}px)`,
+                title: "I'm a demo remove button. I don't do anything. They just hired me... for my looks. *sigh*"
             }
         });
 

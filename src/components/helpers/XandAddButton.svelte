@@ -6,6 +6,7 @@
     export let selectionBackgroundColor;
     export let isSelected;
     export let transformProperties = "";
+    export let title = "";
 
     $: backgroundImage = `url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40px' height='40px' viewbox='0 0 40 40'%3E%3Cpath d='M 10,10 L 30,30 M 30,10 L 10,30' stroke='${isSelected ? selectionBackgroundColor : 'black'}' stroke-width='4' stroke-linecap='butt' /%3E%3C/svg%3E\")`;
 
@@ -19,7 +20,7 @@
     `;
 </script>
 
-<div class="x" {style} />
+<div class="x" {style} {title} />
 
 <style>
     .x {
