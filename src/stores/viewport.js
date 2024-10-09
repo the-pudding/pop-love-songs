@@ -4,7 +4,7 @@ import debounce from "lodash.debounce";
 
 // TODO: is this sensible?
 export const MOBILE_LANDSCAPE_WIDTH = 850;
-export const MOBILE_PORTRAIT_WIDTH = 420;
+export const MOBILE_PORTRAIT_WIDTH = 500;
 
 export default readable({ width: 0, height: 0 }, (set) => {
 	const onResize = () =>
