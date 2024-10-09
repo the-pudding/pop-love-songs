@@ -128,7 +128,8 @@ h6 {
 }
 
 .story-text span.longing-and-heartbreak {
-	background: var(--color-longing-and-heartbreak);
+	/* Note we're using a special, more contrasting color to help with readability (a11y was fine before) */
+	background: var(--color-more-contrasting-longing-and-heartbreak);
 	color: var(--color-a11y-contrast-longing-and-heartbreak);
 }
 
@@ -138,7 +139,8 @@ h6 {
 }
 
 .story-text span.its-complicated {
-	background: var(--color-its-complicated);
+	/* Note we're using a special, more contrasting color to help with readability (a11y was fine before) */
+	background: var(--color-more-contrasting-its-complicated);
 	color: var(--color-a11y-contrast-its-complicated);
 }
 

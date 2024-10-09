@@ -107,6 +107,14 @@
 				"value": "black"
 			}
 		},
+		"more-contrasting": {
+			"longing-and-heartbreak": {
+				"value": "#81c1ff"
+			},
+			"its-complicated": {
+				"value": "#ad8745"
+			}
+		},
 		"text-shadow": {
 			"serenade": {
 				"value": "#FAEEFF"
