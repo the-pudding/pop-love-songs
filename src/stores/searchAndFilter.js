@@ -15,7 +15,7 @@ export const aSearchFilterExists = derived(
 	]) => {
 		return (
 			$songSearchString ||
-			$selectedSong ||
+			$selectedSong.song ||
 			$performerSearchString ||
 			$selectedPerformers.length
 		);
