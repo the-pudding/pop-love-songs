@@ -2,7 +2,7 @@
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 	import { getArrayOfPerformers } from "$data/data-utils";
 	import { visibleSongsData } from "$stores/dataDerivations";
-    import { performerSearchString, selectedPerformers } from "$stores/searchAndFilter";
+    import { performerSearchString, selectedPerformers, selectedSong, songSearchString } from "$stores/searchAndFilter";
 	import PerformerSearchResult from "./PerformerSearchResult.svelte";
 
     import SearchBar from "./SearchBar.svelte";
@@ -38,9 +38,13 @@
     $: handleInputFocused = () => {
         $selectedPerformers = [];
         $performerSearchString = "";
+
+        // since we're searching performers again, clear any existing song filter
+        $selectedSong = {};
+        $songSearchString = "";
     }
 
-    $: placeholder = $selectedPerformers[0] || "Search performers...";
+    $: placeholder = $selectedPerformers[0] || "Highlight performers...";
 </script>
 
 <SearchBar
@@ -50,4 +54,5 @@
     onResultSelected={handleSelectedPerformer}
     onInputFocused={handleInputFocused}
     renderComponent={PerformerSearchResult}
+    hasSelection={$selectedPerformers.length > 0}
 />

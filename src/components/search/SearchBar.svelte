@@ -1,11 +1,12 @@
 <script>
-    import { aSearchBarIsFocused } from "$stores/searchAndFilter";
+    import { aSearchBarIsFocused, performerSearchString } from "$stores/searchAndFilter";
     export let placeholder = "Search...";
     export let searchString = "";
     export let searchResults = [];
     export let renderComponent = null;
     export let onResultSelected = () => {};
     export let onInputFocused = () => {};
+    export let hasSelection = false;
 
     const MAX_RESULTS = 30;
 
@@ -19,6 +20,8 @@
         onInputFocused();
         aSearchBarIsFocused.set(true);
         isFocused = true;
+
+        $performerSearchString = "";
     }
 </script>
 
@@ -29,6 +32,7 @@
         bind:value={searchString} 
         on:focus={handleFocus} 
         on:blur={() => { aSearchBarIsFocused.set(false); isFocused = false; }} 
+        class:has-selection={hasSelection}
     />
 
     {#if isFocused}
@@ -56,6 +60,12 @@
 </div>
 
 <style>
+    input.has-selection::placeholder {
+        color: black;
+        font-weight: bold;
+        font-style: normal;
+    }
+
     .search-container {
         height: var(--search-bar-height);
     }
