@@ -6,7 +6,6 @@
 
     const DYING_OPACITIES = {
         d: 1,
-        i: 0.9,
         y: 0.8,
         i: 0.6,
         n: 0.4,
