@@ -22,11 +22,13 @@
 </script>
 
 <div class='song-and-year' style={`text-align: ${rightAlign ? 'right' : 'left'};`}>
+	{#if audioFile && !rightAlign}
+		<SongSnippetPlayer songName={song[SONG_DATA_COLUMNS_ENUM.song]} year={song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]} loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
+	{/if}
 	<strong class='song' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}; text-shadow: ${textShadow(2, 1)};`}>
 		{displaySongName}
 	</strong>
-	
-	{#if audioFile}
+	{#if audioFile && rightAlign}
 		<SongSnippetPlayer songName={song[SONG_DATA_COLUMNS_ENUM.song]} year={song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]} loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
 	{/if}
 </div>
