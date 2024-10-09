@@ -16,7 +16,7 @@
 
     // Calculations for when a single love song type is spotlighted
     const CENTER_PERCENTAGE = 0.5;
-    const OFFSET_PERCENTAGE = 0.25;
+    const OFFSET_PERCENTAGE = 0.23; // got it juuust right :)
     $: yCenter = $getYPositionForPercentage(CENTER_PERCENTAGE);
     $: yBottomOfDashedLine = $getYPositionForPercentage(CENTER_PERCENTAGE + OFFSET_PERCENTAGE);
     $: radiusOutFromCenter = Math.abs(yCenter - yBottomOfDashedLine);
@@ -39,6 +39,7 @@
             style="left: {x}px;" 
             style:top={`${$aSingleLoveSongTypeIsSpotlighted ? yBottomOfDashedLine : belowSnakeChart}px`}
             style:text-shadow={textShadow(1, 1)}
+            style:font-size={$viewport.isLikelyInMobileLandscape ? '12px' : '16px'}
         >
             {formatYear(year)}
         </div>
@@ -65,6 +66,7 @@
     .dashed-line {
         width: 1px;
         border-left: 1px dashed black;
+        opacity: 0.2;
         z-index: 0;
     }
 </style>
