@@ -98,11 +98,19 @@ h6 {
 }
 
 /* Styling the spans highlighting specific love song types in the text (coming from the gdoc), see StoryStepNavigationAndText.svelte */
-.story-text span {
+.not-a-love-song,
+.serenade,
+.longing-and-heartbreak,
+.courtship-and-anticipation,
+.its-complicated,
+.good-riddance,
+.love-song-for-the-self,
+.sexual-confidence {
 	border-radius: 4px;
 	padding: 1px 5px 2px;
 	font-weight: 600;
 	white-space: nowrap;
+	text-shadow: none;
 }
 
 /* Note we manually apply text-shadow: none cuz there are other spans that *do* take it, and I didn't class them specifically enough */
@@ -110,48 +118,41 @@ h6 {
 .story-text span.not-a-love-song {
 	background: var(--color-not-a-love-song);
 	color: var(--color-a11y-contrast-not-a-love-song);
-	text-shadow: none;
+	
 }
 
 
 .story-text span.serenade {
 	background: var(--color-serenade);
 	color: var(--color-a11y-contrast-serenade);
-	text-shadow: none;
 }
 
 .story-text span.longing-and-heartbreak {
 	background: var(--color-longing-and-heartbreak);
 	color: var(--color-a11y-contrast-longing-and-heartbreak);
-	text-shadow: none;
 }
 
 .story-text span.courtship-and-anticipation {
 	background: var(--color-courtship-and-anticipation);
 	color: var(--color-a11y-contrast-courtship-and-anticipation);
-	text-shadow: none;
 }
 
 .story-text span.its-complicated {
 	background: var(--color-its-complicated);
 	color: var(--color-a11y-contrast-its-complicated);
-	text-shadow: none;
 }
 
 .story-text span.good-riddance {
 	background: var(--color-good-riddance);
 	color: var(--color-a11y-contrast-good-riddance);
-	text-shadow: none;
 }
 
 .story-text span.love-song-for-the-self {
 	background: var(--color-love-song-for-the-self);
 	color: var(--color-a11y-contrast-love-song-for-the-self);
-	text-shadow: none;
 }
 
 .story-text span.sexual-confidence {
 	background: var(--color-sexual-confidence);
 	color: var(--color-a11y-contrast-sexual-confidence);
-	text-shadow: none;
 }
