@@ -144,14 +144,20 @@ const MORE_EXPANSIVE_VIEW = [
 ];
 
 const DEFINING_SERENADES = [
-	{ song: "Fever", year: 1958, audioFile: "fever" },
-	{ song: "Like A Virgin", year: 1984, audioFile: "like-a-virgin" },
+	{ song: "Fever", year: 1958, audioFile: "fever", yPercent: 0.9 },
+	{
+		song: "Like A Virgin",
+		year: 1984,
+		audioFile: "like-a-virgin",
+		yPercent: 0.9
+	},
 	{
 		song: "Just The Way You Are",
 		year: 2010,
 		// rightAlign: true,
 		placeAbove: true,
-		audioFile: "just-the-way-you-are"
+		audioFile: "just-the-way-you-are",
+		yPercent: 0.93
 	}
 ];
 
@@ -192,7 +198,7 @@ export const ANNOTATION_METADATA = {
 	serenadeComparisons: {
 		manuallySetPositions: [
 			...MORE_EXPANSIVE_VIEW,
-			// ...DEFINING_SERENADES, // does not contain positions
+			...DEFINING_SERENADES,
 			...COLOR_IN_HEARTBREAK
 		],
 		annotations: {
