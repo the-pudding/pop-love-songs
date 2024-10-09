@@ -1,7 +1,7 @@
 import { writable, derived } from "svelte/store";
 
 export const songSearchString = writable("");
-export const selectedSong = writable({ songName: "", year: undefined });
+export const selectedSong = writable({ song: null, songIndex: null });
 export const performerSearchString = writable("");
 export const selectedPerformers = writable([]);
 
@@ -15,7 +15,7 @@ export const aSearchFilterExists = derived(
 	]) => {
 		return (
 			$songSearchString ||
-			$selectedSong.songName ||
+			$selectedSong ||
 			$performerSearchString ||
 			$selectedPerformers.length
 		);

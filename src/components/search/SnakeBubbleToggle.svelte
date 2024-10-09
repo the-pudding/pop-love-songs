@@ -22,7 +22,7 @@
 
 		if (localValue === CHART_OPTIONS.snake) {
 			songSearchString.set("");
-			selectedSong.set([]);
+			selectedSong.set({});
 			performerSearchString.set("");
 			selectedPerformers.set([]);		
 		}

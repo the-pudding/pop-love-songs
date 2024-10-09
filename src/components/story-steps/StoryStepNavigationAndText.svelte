@@ -114,7 +114,7 @@
 
     const updateFilterFilterState = () => {
         // clear any selections if you navigate to a new story step (story steps don't ever directly set these)
-        selectedSong.set([]) 
+        selectedSong.set({}) 
         selectedPerformers.set([])
         // als clear any user input text
         songSearchString.set("")

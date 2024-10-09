@@ -65,7 +65,12 @@ const performerSelected = derived(
 const songSelected = derived(
 	[selectedSong, songSearchString, playing],
 	([$selectedSong, $songSearchString, $playing]) => {
-		const selectedSongsWithPlaying = [$selectedSong, $playing].filter(
+		const maybeSelectedSong = $selectedSong.song || [];
+		const formattedSelectedSong = {
+			songName: maybeSelectedSong[SONG_DATA_COLUMNS_ENUM.song],
+			year: maybeSelectedSong[SONG_DATA_COLUMNS_ENUM.date_as_decimal]
+		};
+		const selectedSongsWithPlaying = [formattedSelectedSong, $playing].filter(
 			(song) => song?.songName
 		);
 
