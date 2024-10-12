@@ -98,7 +98,7 @@
 		border-radius: 0 3rem 3rem 0;
 		left: 0;
 	}
-	.left-hint:hover {
+	.left-hint:hover, .left-hint:focus {
 		transform: translate(-45%, -100%);
 		opacity: 1;
 		background: var(--color-good-riddance);
@@ -110,7 +110,7 @@
 		border-radius: 3rem 0 0 3rem;
 		right: 0;
 	}
-	.right-hint:hover {
+	.right-hint:hover, .right-hint:focus {
 		transform: translate(45%, -100%);
 		opacity: 1;
 		background: var(--color-good-riddance);
@@ -136,7 +136,6 @@
 		cursor: pointer;
 		background: none;
 		border-radius: 0;
-		outline: none;
 		border: none;
 		box-shadow: none;
 		pointer-events: auto;
