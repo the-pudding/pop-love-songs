@@ -11,6 +11,7 @@ import {
 	calculateXForcePosition,
 	calculateYForcePosition
 } from "./canvasPosition.js";
+import { selectedSong } from "./searchAndFilter.js";
 
 const xForcePositionUnoptimized = derived(
 	calculateXForcePosition,
@@ -150,4 +151,23 @@ export const songAnnotationsWithPosition = derived(
 		}, [])
 );
 
-
+export const selectedSongWithMetadata = derived(
+	[nodePositionsInSimulation, selectedSong, songRadius],
+	([$nodePositionsInSimulation, $selectedSong, $songRadius]) => {
+		const { song, songIndex } = $selectedSong;
+		if (song && $nodePositionsInSimulation) {
+			const x = $nodePositionsInSimulation[songIndex].x;
+			const y = $nodePositionsInSimulation[songIndex].y;
+			return {
+				song,
+				x,
+				y,
+				circleX: x,
+				circleY: y,
+				circleRadius: $songRadius[songIndex]
+			};
+		} else {
+			return {};
+		}
+	}
+);

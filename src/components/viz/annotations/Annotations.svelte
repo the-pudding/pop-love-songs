@@ -10,6 +10,7 @@
     import OffsetAnnotations from "./OffsetAnnotations.svelte";
     import AdjacentAnnotations from "./AdjacentAnnotations.svelte";
     import AnnotatedBubbleOverlay from "./AnnotatedBubbleOverlay.svelte";
+	import SelectedSongAnnotation from './SelectedSongAnnotation.svelte';
 
     const inFadeSettings = {
         duration: variables.chart['transition-opacity-duration'], 
@@ -34,3 +35,5 @@
         <AnnotatedBubbleOverlay />
     </div>
 {/if}
+
+<SelectedSongAnnotation />

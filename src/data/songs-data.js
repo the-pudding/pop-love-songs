@@ -12,6 +12,9 @@ export const MAX_DATE = rawSongsData.reduce(
 );
 
 // Wrap each array in an object (to which force simulation will attach properties)
-const wrappedData = rawSongsData.map((song) => ({ song }));
+const wrappedData = rawSongsData.map((song, songIndex) => ({
+	song,
+	songIndex // for fast lookup, since data derivations are kept in the order of the data
+}));
 
 export default wrappedData;

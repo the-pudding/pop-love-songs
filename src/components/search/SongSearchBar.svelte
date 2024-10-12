@@ -7,7 +7,7 @@
     import SearchBar from "./SearchBar.svelte";
     import SongSearchResult from "./SongSearchResult.svelte";
 
-    $: searchResults = $selectedSongsData.map(({song}, songIndex) => ({
+    $: searchResults = $selectedSongsData.map(({song, songIndex}) => ({
         song,
         songIndex,
         songName: song[SONG_DATA_COLUMNS_ENUM.song],
