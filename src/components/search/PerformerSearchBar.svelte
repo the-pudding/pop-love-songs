@@ -2,7 +2,7 @@
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 	import { getArrayOfPerformers } from "$data/data-utils";
 	import { visibleSongsData } from "$stores/dataDerivations";
-    import { performerSearchString, selectedPerformers, selectedSong, songSearchString } from "$stores/searchAndFilter";
+    import { performerSearchString, previewedSong, selectedPerformers, selectedSong, songSearchString } from "$stores/searchAndFilter";
 	import PerformerSearchResult from "./PerformerSearchResult.svelte";
 
     import SearchBar from "./SearchBar.svelte";
@@ -41,6 +41,7 @@
 
         // since we're searching performers again, clear any existing song filter
         $selectedSong = {};
+        $previewedSong = {};
         $songSearchString = "";
     }
 
