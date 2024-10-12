@@ -23,8 +23,6 @@
         onInputFocused();
         aSearchBarIsFocused.set(true);
         isFocused = true;
-
-        $performerSearchString = "";
     }
 
     $: handleBlur = () => {
