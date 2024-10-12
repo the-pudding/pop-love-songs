@@ -51,6 +51,12 @@
         $songSearchString = "";
     }
 
+    $: handleClearingSelection = () => {
+        $selectedPerformers = [];
+        $previewedPerformer = "";
+        $performerSearchString = "";
+    }
+
     $: placeholder = $selectedPerformers[0] || "Highlight performers...";
 </script>
 
@@ -58,10 +64,11 @@
     {placeholder}
     bind:searchString={$performerSearchString}
     {searchResults}
-    clearSelection={() => $selectedPerformers = []}
+    clearSelection={handleClearingSelection}
     onResultSelected={handleSelectedPerformer}
     onResultPreviewed={handlePreviewedPerformer}
     onInputFocused={handleInputFocused}
+    onInputBlurred={() => $previewedPerformer = ""}
     renderComponent={PerformerSearchResult}
     hasSelection={$selectedPerformers.length > 0}
 />

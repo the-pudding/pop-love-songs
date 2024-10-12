@@ -8,6 +8,7 @@
     export let onResultSelected = () => {};
     export let onResultPreviewed = () => {};
     export let onInputFocused = () => {};
+    export let onInputBlurred = () => {};
     export let hasSelection = false;
 
     const MAX_RESULTS = 50; // TODO: I could just use virtualization here
@@ -30,6 +31,7 @@
     }
 
     $: handleBlur = () => {
+        onInputBlurred();
         aSearchBarIsFocused.set(false);
         showDropdown = false;
         selectedIndex = -1;
