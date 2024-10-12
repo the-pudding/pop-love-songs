@@ -9,9 +9,10 @@ import {
 	ACCESSIBLY_CONTRASTING_COLOR_MAP,
 	LOVE_SONG_TYPE_COLOR_MAP,
 	LOVE_SONG_TYPE_CONSTANTS,
+	LOVE_SONG_TYPES,
 	UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP
 } from "$data/data-constants.js";
-import { getSongColor } from "$components/viz/viz-utils";
+import { getSnakeFill, getSongColor } from "$components/viz/viz-utils";
 
 const updateColorMap = (
 	typesTreatedAsNonLoveSongs,
@@ -89,7 +90,7 @@ const hexToRgbaArray = (hex) => {
 	const b = parseInt(hex.slice(5, 7), 16);
 	const a = hex.length === 9 ? parseInt(hex.slice(7, 9), 16) / 255 : 1;
 	return [r, g, b, a];
-}
+};
 
 export const rgbaArrayToString = (rgbaArray) =>
 	`rgba(${rgbaArray[0]}, ${rgbaArray[1]}, ${rgbaArray[2]}, ${rgbaArray[3]})`;
@@ -108,4 +109,29 @@ export const songColor = derived(
 			return hexToRgbaArray(hex);
 		}),
 	[]
+);
+
+export const snakeFill = derived(
+	[currentStoryStep, loveSongTypeColorMap, unselectedLoveSongTypeColorMap],
+	([
+		$currentStoryStep,
+		$loveSongTypeColorMap,
+		$unselectedLoveSongTypeColorMap
+	]) =>
+		LOVE_SONG_TYPES.reduce(
+			(acc, loveSongType) => ({
+				...acc,
+				[loveSongType]: hexToRgbaArray(
+					getSnakeFill(
+						loveSongType,
+						$currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(
+							loveSongType
+						),
+						$loveSongTypeColorMap,
+						$unselectedLoveSongTypeColorMap
+					)
+				)
+			}),
+			{}
+		)
 );

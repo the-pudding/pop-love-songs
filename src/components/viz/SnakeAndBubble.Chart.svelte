@@ -19,14 +19,13 @@
 	import {
 		BUBBLE_BORDER_THICKNESS,
 		getInvisibleFillFromSongIndex,
-		getSnakeFill,
 		getSongIndexFromClickLocation
 	} from "./viz-utils";
 
 	import { simulationStore } from "$stores/simulation";
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
 	import { songRadius, xForcePosition, yForcePosition } from "$stores/visualEncodings";
-	import { loveSongTypeColorMap, rgbaArrayToString, songColor, unselectedLoveSongTypeColorMap } from "$stores/colorMap";
+	import { rgbaArrayToString, snakeFill, songColor } from "$stores/colorMap";
 	import { svgPathGenerator, svgCoordsForLoveSongTypes } from "$stores/aggregateSnakeChartPositions";
 	import { svgCoordsForSnakeChartOutline } from "$stores/snakeChartOutlineGenerator";
 	import { currentStoryStep, preventBubbleRestartBecauseTheUserIsMerelySearching } from "$stores/storySteps";
@@ -75,7 +74,6 @@
 				invisibleContext.fillStyle = getInvisibleFillFromSongIndex(songIndex);
 				invisibleContext.fill(circle);
 			}
-			// context.fillStyle = $songColor[songIndex];
 			context.fillStyle = rgbaArrayToString($tweenedSongColor[songIndex]);
 			context.fill(circle);
 
@@ -204,6 +202,12 @@
 		easing: cubicInOut
 	});
 
+	// @michelle: is it possible (and then preferable) to move tweens out of this file and into the store?
+	const tweenedSnakeFill = tweened($snakeFill, {
+		duration: variables.chart['transition-opacity-duration'],
+		easing: cubicInOut
+	});
+
 	// Transition color
 	const tweenedSongColor = tweened($songColor, {
 		duration: variables.chart['transition-opacity-duration'],
@@ -212,6 +216,7 @@
 
 	$: {
 		tweenedCoords.set($svgCoordsForLoveSongTypes);
+		tweenedSnakeFill.set($snakeFill);
 		// @michelle: is there a good reason to move this out to its own one line reactive statement?
 		tweenedSongColor.set($songColor);
 		if ($showAggregateSnakeChart) {
@@ -244,7 +249,7 @@
 
 <svg height={$viewport.height} width={$viewport.width} style="opacity: {$aggregateSnakeChartOpacity}">
 	{#each $tweenedCoords as { loveSongType, svgCoords }}
-		<path d={$svgPathGenerator(svgCoords)} fill={getSnakeFill(loveSongType, $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType), $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap)} />
+		<path d={$svgPathGenerator(svgCoords)} fill={rgbaArrayToString($tweenedSnakeFill[loveSongType])} />
 	{/each}
 	<!-- Outline of all love songs -->
 	 {#if $currentStoryStep.showLoveSongChange}		
