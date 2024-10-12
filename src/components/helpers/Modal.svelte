@@ -1,6 +1,7 @@
 <!-- Based on this example: https://svelte.dev/examples/modal -->
 <script>
 	export let showModal; // boolean
+	export let showXButton = true;
 
 	let dialog; // HTMLDialogElement
 
@@ -14,14 +15,19 @@
 	on:click|self={() => dialog.close()}
 >
 	<!-- svelte-ignore a11y-autofocus -->
-	<div class="button-container">
-		<button autofocus on:click={() => dialog.close()} aria-label="Close Modal">X</button>
-	</div>
+	{#if showXButton}
+		<div class="button-container">
+			<button autofocus on:click={() => dialog.close()} aria-label="Close Modal">X</button>
+		</div>
+	{/if}
 	
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
     <div class="content" on:click|stopPropagation>
         <slot name="header" />
-        <hr />
+        {#if $$slots.header}
+			<hr />
+		{/if}
+		
         <slot />
     </div>
 </dialog>
