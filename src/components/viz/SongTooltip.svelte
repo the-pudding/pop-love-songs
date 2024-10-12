@@ -1,8 +1,8 @@
 <script>
 	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
-	import SelectedSongAnnotation from "./annotations/SelectedSongAnnotation.svelte";
+	import IntelligentlyPlacedSongAnnotation from "./annotations/IntelligentlyPlacedSongAnnotation.svelte";
 
 	$: onClear = () => hoveredSongInfo.set({});
 </script>
 
-<SelectedSongAnnotation songInfo={$hoveredSongInfo} {onClear} />
+<IntelligentlyPlacedSongAnnotation songInfo={$hoveredSongInfo} {onClear} />
