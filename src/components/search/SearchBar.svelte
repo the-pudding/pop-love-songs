@@ -14,6 +14,7 @@
 
     $: handleResultClicked = (result) => {
         onResultSelected(result);
+        isFocused = false;
     }
 
     $: handleFocus = () => {
@@ -80,9 +81,6 @@
 </div>
 
 <style>
-    .dropdown li.selected {
-        background-color: #e0e0e0;
-    }
 
     input.has-selection::placeholder {
         color: black;
@@ -129,7 +127,7 @@
 
         margin-top: 8px;
 
-        padding-left: 6px;
+        padding-left: 8px;
         padding-right: 8px;
     }
 
@@ -141,9 +139,14 @@
     .dropdown li {
         padding: 8px;
         cursor: pointer;
-        border-radius: var(--search-bar-border-radius);
+        border-radius: 8px;
+        border: 1px solid transparent;
     }
-
+    .dropdown li.selected {
+        /* Dim this background color slightly, so that the hover is slightly darker (ie you get a hover visual response) */
+        background-color: #f0f0f097;
+        border: 1px solid var(--color-focus)
+    }
     .dropdown li:hover {
         background-color: #f0f0f0;
     }
