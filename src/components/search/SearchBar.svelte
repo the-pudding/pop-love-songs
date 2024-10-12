@@ -11,6 +11,7 @@
     const MAX_RESULTS = 30;
 
     let isFocused = false
+    let selectedIndex = -1;
 
     $: handleResultClicked = (result) => {
         onResultSelected(result);
@@ -24,8 +25,13 @@
 
         $performerSearchString = "";
     }
+
+    $: handleBlur = () => {
+        aSearchBarIsFocused.set(false);
+        isFocused = false;
+        selectedIndex = -1;
+    }
     
-    let selectedIndex = -1;
     const handleKeyDown = (event) => {
         if (event.key === "ArrowDown") {
             selectedIndex = (selectedIndex + 1) % searchResults.length;
@@ -47,7 +53,7 @@
         placeholder={placeholder} 
         bind:value={searchString} 
         on:focus={handleFocus} 
-        on:blur={() => { aSearchBarIsFocused.set(false); isFocused = false; }} 
+        on:blur={handleBlur} 
         on:keydown={handleKeyDown}
         class:has-selection={hasSelection}
     />
