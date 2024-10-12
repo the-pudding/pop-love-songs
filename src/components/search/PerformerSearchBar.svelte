@@ -53,6 +53,7 @@
     {searchResults}
     clearSelection={() => $selectedPerformers = []}
     onResultSelected={handleSelectedPerformer}
+    onResultPreviewed={() => { /* TODO */}}
     onInputFocused={handleInputFocused}
     renderComponent={PerformerSearchResult}
     hasSelection={$selectedPerformers.length > 0}

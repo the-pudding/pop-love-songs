@@ -6,6 +6,7 @@
     export let renderComponent = null;
     export let clearSelection = () => {};
     export let onResultSelected = () => {};
+    export let onResultPreviewed = () => {};
     export let onInputFocused = () => {};
     export let hasSelection = false;
 
@@ -48,6 +49,7 @@
     const handleKeyDown = (event) => {
         if (event.key === "ArrowDown") {
             selectedIndex = (selectedIndex + 1) % searchResults.length;
+            onResultPreviewed(searchResults[selectedIndex]);
             event.preventDefault();
             scrollToSelectedItem();
             if (hasSelection) {
@@ -55,6 +57,7 @@
             }
         } else if (event.key === "ArrowUp") {
             selectedIndex = (selectedIndex - 1 + searchResults.length) % searchResults.length;
+            onResultPreviewed(searchResults[selectedIndex]);
             event.preventDefault();
             scrollToSelectedItem();
         } else if (event.key === "Enter" && selectedIndex >= 0) {

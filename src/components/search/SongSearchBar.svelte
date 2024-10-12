@@ -2,7 +2,7 @@
     import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
     import { formatYearForDisplay } from "$data/data-utils";
     import { selectedSongsData } from "$stores/dataDerivations";
-    import { selectedPerformers, selectedSong, songSearchString } from "$stores/searchAndFilter";
+    import { selectedPerformers, previewedSong, selectedSong, songSearchString } from "$stores/searchAndFilter";
 
     import SearchBar from "./SearchBar.svelte";
     import SongSearchResult from "./SongSearchResult.svelte";
@@ -19,11 +19,15 @@
     $: handleSelectedSong = ({ song, songIndex }) => {
         $selectedSong = { song, songIndex };
         $songSearchString = "";
+    }
 
+    $: handleResultPreviewed = ({ song, songIndex }) => {
+        $previewedSong = { song, songIndex };
     }
 
     $: handleInputFocused = () => {
         $selectedSong = {};
+        $previewedSong = {};
         $songSearchString = "";
     }
 
@@ -45,6 +49,7 @@
     {searchResults}
     clearSelection={() => $selectedSong = {}}
     onResultSelected={handleSelectedSong}
+    onResultPreviewed={handleResultPreviewed}
     onInputFocused={handleInputFocused}
     renderComponent={SongSearchResult}
     hasSelection={!!$selectedSong.song}

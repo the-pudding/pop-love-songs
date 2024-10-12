@@ -1,8 +1,10 @@
 import { writable, derived } from "svelte/store";
 
 export const songSearchString = writable("");
+export const previewedSong = writable({ song: null, songIndex: null });
 export const selectedSong = writable({ song: null, songIndex: null });
 export const performerSearchString = writable("");
+export const previewedPerformers = writable([]);
 export const selectedPerformers = writable([]);
 
 export const aSearchFilterExists = derived(
