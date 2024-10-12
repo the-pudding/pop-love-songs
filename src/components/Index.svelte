@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 
+	import OrientationWarningModal from "./orientation-warning-modal/OrientationWarningModal.svelte";
 	import Header from "./Header.svelte";
 	import InteractivityControlsAndFilters from "./search/InteractivityControlsAndFilters.svelte";
 	import SnakeAndBubbleChart from "./viz/SnakeAndBubble.Chart.svelte";
@@ -30,6 +31,8 @@
 	   loadImage(TITLE_CARD_BACKGROUND_IMAGE.src);
     });
 </script>
+
+<OrientationWarningModal />
 
 {#if $currentStoryStepIndex === 0}
 	<Header />
