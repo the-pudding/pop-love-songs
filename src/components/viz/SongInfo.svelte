@@ -25,7 +25,7 @@
 	{#if audioFile && !rightAlign}
 		<SongSnippetPlayer songName={song[SONG_DATA_COLUMNS_ENUM.song]} year={song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]} loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
 	{/if}
-	<strong class='song' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}; text-shadow: ${textShadow(2, 1)};`}>
+	<strong class='song-title' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}; text-shadow: ${textShadow(2, 1)};`}>
 		{displaySongName}
 	</strong>
 	{#if audioFile && rightAlign}
@@ -43,11 +43,11 @@
 
 <style>
 	div, strong {
-		font-family: var(--sans), sans-serif;
+		font-family: var(--sans);
 		pointer-events: none;
 	}
 
-	.song {
+	.song-title {
 		font-weight: bold;
 		text-transform: uppercase;
 	}

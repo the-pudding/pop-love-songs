@@ -97,10 +97,16 @@ h6 {
 	font-size: var(--20px, 20px);
 }
 
-.story-text b {
+.story-text b, .story-text .song-title {
 	/* Fixes a weird issue where the text-shadow of punctuation overlaps with this text */
-	margin-right: 1.5px;
+	margin-right: 1.8px;
 } 
+
+.story-text .song-title {
+	font-family: var(--sans);
+	font-weight: bold;
+	text-transform: uppercase;
+}
 
 /* Styling the spans highlighting specific love song types in the text (coming from the gdoc), see StoryStepNavigationAndText.svelte */
 .not-a-love-song,
