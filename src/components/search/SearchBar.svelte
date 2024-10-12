@@ -66,6 +66,13 @@
         }
     };
 
+    $: {
+        // When there's just one result, convention says hitting enter should select it, so we'll prep it for that here
+        if (searchResults.length === 1) {
+            selectedIndex = 0;
+        }
+    }
+
     const scrollToSelectedItem = () => {
         if (resultDOMElements[selectedIndex]) {
             resultDOMElements[selectedIndex].scrollIntoView({ block: "nearest" });
@@ -99,6 +106,7 @@
                             class:selected={selectedIndex === index}
                             bind:this={resultDOMElements[index]}
                             on:mousedown={() => handleResultSelected(result)}
+                            on:mouseenter={() => onResultPreviewed(result)}
                         >
                             {#if renderComponent}
                                 <svelte:component this={renderComponent} {result} />
