@@ -2,13 +2,12 @@
 	import viewport from "$stores/viewport.js";
 	import { currentStoryStep } from "$stores/storySteps";
 	import hoveredSongInfo from "$stores/hoveredSongInfo.js";
-	import { showAggregateSnakeChart } from "$stores/searchAndFilter";
+	import { showAggregateSnakeChart, showAnnotations } from "$stores/searchAndFilter";
 	import { songAnnotationsWithPosition } from "$stores/visualEncodings";
-	
-	import { songInAnnotations } from "$data/data-utils";
 	
 	import SongInfo from "./SongInfo.svelte";
 	import BubbleOutline from "./BubbleOutline.svelte";
+	import { songInAnnotations } from "$data/data-utils";
 	
 
 	$: song = $hoveredSongInfo.song || [];
@@ -39,7 +38,7 @@
 
 	songAnnotationsWithPosition
 
-	$: alreadyAnnotated = songInAnnotations(song, $currentStoryStep.visualEncodings.songAnnotations)
+	$: alreadyAnnotated = $showAnnotations && songInAnnotations(song, $currentStoryStep.visualEncodings.songAnnotations)
 </script>
 
 <!-- @michelle: do you have any strong arguments for why I should use class:visible vs just conditionally rendering? -->
