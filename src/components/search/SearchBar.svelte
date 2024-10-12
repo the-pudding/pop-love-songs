@@ -10,8 +10,9 @@
 
     const MAX_RESULTS = 30;
 
-    let isFocused = false
+    let isFocused = false;
     let selectedIndex = -1;
+    let listItems = [];
 
     $: handleResultClicked = (result) => {
         onResultSelected(result);
@@ -36,15 +37,22 @@
         if (event.key === "ArrowDown") {
             selectedIndex = (selectedIndex + 1) % searchResults.length;
             event.preventDefault();
+            scrollToSelectedItem();
         } else if (event.key === "ArrowUp") {
             selectedIndex = (selectedIndex - 1 + searchResults.length) % searchResults.length;
             event.preventDefault();
+            scrollToSelectedItem();
         } else if (event.key === "Enter" && selectedIndex >= 0) {
             handleResultClicked(searchResults[selectedIndex]);
             event.preventDefault();
         }
     };
 
+    const scrollToSelectedItem = () => {
+        if (listItems[selectedIndex]) {
+            listItems[selectedIndex].scrollIntoView({ block: "nearest" });
+        }
+    };
 </script>
 
 <div class="search-container">
@@ -71,6 +79,7 @@
                             role="option"
                             aria-selected={selectedIndex === index} 
                             class:selected={selectedIndex === index}
+                            bind:this={listItems[index]}
                             on:mousedown={() => handleResultClicked(result)}
                         >
                             {#if renderComponent}
@@ -87,7 +96,6 @@
 </div>
 
 <style>
-
     input.has-selection::placeholder {
         color: black;
         font-weight: bold;
@@ -120,19 +128,14 @@
     .dropdown-wrapper {
         position: absolute;
         top: 100%;
-        
         left: 0;
         width: 100%;
         max-height: 280px;
         overflow-y: scroll;
-
         background-color: var(--color-cream-background);
         border: 1px solid var(--color-gray-300);
         border-radius: var(--search-bar-border-radius);
-        
-
         margin-top: 8px;
-
         padding-left: 8px;
         padding-right: 8px;
     }
@@ -149,9 +152,8 @@
         border: 1px solid transparent;
     }
     .dropdown li.selected {
-        /* Dim this background color slightly, so that the hover is slightly darker (ie you get a hover visual response) */
         background-color: #f0f0f097;
-        border: 1px solid var(--color-focus)
+        border: 1px solid var(--color-focus);
     }
     .dropdown li:hover {
         background-color: #f0f0f0;
