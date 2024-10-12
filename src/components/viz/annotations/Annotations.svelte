@@ -10,6 +10,7 @@
     import OffsetAnnotations from "./OffsetAnnotations.svelte";
     import AdjacentAnnotations from "./AdjacentAnnotations.svelte";
     import AnnotatedBubbleOverlay from "./AnnotatedBubbleOverlay.svelte";
+    import SelectedPerformerAnnotations from './SelectedPerformerAnnotations.svelte';
 	import SelectedSongAnnotation from './SelectedSongAnnotation.svelte';
 
     const inFadeSettings = {
@@ -36,4 +37,5 @@
     </div>
 {/if}
 
+<SelectedPerformerAnnotations />
 <SelectedSongAnnotation />

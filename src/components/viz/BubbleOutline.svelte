@@ -5,13 +5,15 @@
     export let circleY;
     export let circleRadius;
     export let color = "black";
+    export let thin = false;
 
-    $: radius = circleRadius + BUBBLE_BORDER_THICKNESS;
+    $: borderThickness = thin ? BUBBLE_BORDER_THICKNESS / 2 : BUBBLE_BORDER_THICKNESS;
+    $: radius = circleRadius + borderThickness;
 </script>
 
 <div
     class="circle-outline"
-    style={`top: ${circleY}px; left: ${circleX}px; height: ${radius * 2}px; width: ${radius * 2}px; border: ${BUBBLE_BORDER_THICKNESS}px solid ${color};`}
+    style={`top: ${circleY}px; left: ${circleX}px; height: ${radius * 2}px; width: ${radius * 2}px; border: ${borderThickness}px solid ${color};`}
 />
 
 <style>

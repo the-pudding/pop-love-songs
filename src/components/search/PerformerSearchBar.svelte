@@ -2,7 +2,7 @@
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 	import { getArrayOfPerformers } from "$data/data-utils";
 	import { visibleSongsData } from "$stores/dataDerivations";
-    import { performerSearchString, previewedSong, selectedPerformers, selectedSong, songSearchString } from "$stores/searchAndFilter";
+    import { performerSearchString, previewedPerformer, previewedSong, selectedPerformers, selectedSong, songSearchString } from "$stores/searchAndFilter";
 	import PerformerSearchResult from "./PerformerSearchResult.svelte";
 
     import SearchBar from "./SearchBar.svelte";
@@ -32,11 +32,17 @@
 
     $: handleSelectedPerformer = ({name}) => {
         $selectedPerformers = [name];
+        $previewedPerformer = "";
         $performerSearchString = "";
+    }
+
+    $: handlePreviewedPerformer = ({name}) => {
+        $previewedPerformer = name;
     }
 
     $: handleInputFocused = () => {
         $selectedPerformers = [];
+        $previewedPerformer = "";
         $performerSearchString = "";
 
         // since we're searching performers again, clear any existing song filter
@@ -54,7 +60,7 @@
     {searchResults}
     clearSelection={() => $selectedPerformers = []}
     onResultSelected={handleSelectedPerformer}
-    onResultPreviewed={() => { /* TODO */}}
+    onResultPreviewed={handlePreviewedPerformer}
     onInputFocused={handleInputFocused}
     renderComponent={PerformerSearchResult}
     hasSelection={$selectedPerformers.length > 0}

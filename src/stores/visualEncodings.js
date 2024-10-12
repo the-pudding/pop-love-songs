@@ -1,7 +1,7 @@
 import { derived } from "svelte/store";
 import viewport from "./viewport.js";
 import songsData from "$data/songs-data.js";
-import { songInAnnotations } from "$data/data-utils.js";
+import { getArrayOfPerformers, songInAnnotations } from "$data/data-utils.js";
 import { currentStoryStep } from "./storySteps.js";
 import { loveSongsLabeledByTimeRegionPercentageForPosition } from "./loveSongsLabeledByTimeRegionPercentageForPosition.js";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
@@ -11,7 +11,13 @@ import {
 	calculateXForcePosition,
 	calculateYForcePosition
 } from "./canvasPosition.js";
-import { previewedSong, selectedSong } from "./searchAndFilter.js";
+import {
+	previewedPerformer,
+	previewedSong,
+	selectedPerformers,
+	selectedSong
+} from "./searchAndFilter.js";
+import { visibleSongsData } from "./dataDerivations.js";
 
 const xForcePositionUnoptimized = derived(
 	calculateXForcePosition,
@@ -175,5 +181,49 @@ export const selectedSongWithMetadata = derived(
 		} else {
 			return {};
 		}
+	}
+);
+
+export const previewedPerformersWithMetadata = derived(
+	[
+		visibleSongsData,
+		nodePositionsInSimulation,
+		selectedPerformers,
+		previewedPerformer,
+		songRadius
+	],
+	([
+		$visibleSongsData,
+		$nodePositionsInSimulation,
+		$selectedPerformers,
+		$previewedPerformer,
+		$songRadius
+	]) => {
+		if (
+			!$nodePositionsInSimulation ||
+			!($previewedPerformer || $selectedPerformers.length)
+		) {
+			return [];
+		}
+
+		const performers = [...$selectedPerformers, $previewedPerformer].filter(
+			(performer) => !!performer
+		);
+
+		return $visibleSongsData.reduce((accum, { song, songIndex }) => {
+			const songPerformers = getArrayOfPerformers(song);
+			const matchingPerformer = songPerformers.some((performer) =>
+				performers.includes(performer)
+			);
+			if (matchingPerformer) {
+				accum.push({
+					song,
+					circleX: $nodePositionsInSimulation[songIndex].x,
+					circleY: $nodePositionsInSimulation[songIndex].y,
+					circleRadius: $songRadius[songIndex]
+				});
+			}
+			return accum;
+		}, []);
 	}
 );
