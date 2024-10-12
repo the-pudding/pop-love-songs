@@ -1,5 +1,5 @@
 <script>
-    import { aSearchBarIsFocused, performerSearchString } from "$stores/searchAndFilter";
+    import { aSearchBarIsFocused } from "$stores/searchAndFilter";
     export let placeholder = "Search...";
     export let searchString = "";
     export let searchResults = [];
@@ -13,7 +13,7 @@
 
     let showDropdown = false;
     let selectedIndex = -1;
-    let listItems = [];
+    let resultDOMElements = [];
 
     $: handleResultSelected = (result) => {
         onResultSelected(result);
@@ -33,15 +33,7 @@
         selectedIndex = -1;
     }
 
-    $: clearSelectionIfNeeded = () => {
-        if (hasSelection) {
-            clearSelection();
-            showDropdown = true;
-        }
-    }
-
     $: handleClearingSelection = () => {
-        console.log('CLEARING')
         clearSelection();
         showDropdown = true;
     }
@@ -72,8 +64,8 @@
     };
 
     const scrollToSelectedItem = () => {
-        if (listItems[selectedIndex]) {
-            listItems[selectedIndex].scrollIntoView({ block: "nearest" });
+        if (resultDOMElements[selectedIndex]) {
+            resultDOMElements[selectedIndex].scrollIntoView({ block: "nearest" });
         }
     };
 </script>
@@ -102,7 +94,7 @@
                             role="option"
                             aria-selected={selectedIndex === index} 
                             class:selected={selectedIndex === index}
-                            bind:this={listItems[index]}
+                            bind:this={resultDOMElements[index]}
                             on:mousedown={() => handleResultSelected(result)}
                         >
                             {#if renderComponent}
