@@ -10,7 +10,8 @@
     export let onInputFocused = () => {};
     export let hasSelection = false;
 
-    const MAX_RESULTS = 30;
+    const MAX_RESULTS = 50; // TODO: I could just use virtualization here
+    $: searchResultsSubsetToRender = searchResults.slice(0, MAX_RESULTS);
 
     let showDropdown = false;
     let selectedIndex = -1;
@@ -48,27 +49,27 @@
     
     const handleKeyDown = (event) => {
         if (event.key === "ArrowDown") {
-            selectedIndex = (selectedIndex + 1) % searchResults.length;
-            onResultPreviewed(searchResults[selectedIndex]);
+            selectedIndex = (selectedIndex + 1) % searchResultsSubsetToRender.length;
+            onResultPreviewed(searchResultsSubsetToRender[selectedIndex]);
             event.preventDefault();
             scrollToSelectedItem();
             if (hasSelection) {
                 handleClearingSelection();
             }
         } else if (event.key === "ArrowUp") {
-            selectedIndex = (selectedIndex - 1 + searchResults.length) % searchResults.length;
-            onResultPreviewed(searchResults[selectedIndex]);
+            selectedIndex = (selectedIndex - 1 + searchResultsSubsetToRender.length) % searchResultsSubsetToRender.length;
+            onResultPreviewed(searchResultsSubsetToRender[selectedIndex]);
             event.preventDefault();
             scrollToSelectedItem();
         } else if (event.key === "Enter" && selectedIndex >= 0) {
-            handleResultSelected(searchResults[selectedIndex]);
+            handleResultSelected(searchResultsSubsetToRender[selectedIndex]);
             event.preventDefault();
         }
     };
 
     $: {
         // When there's just one result, convention says hitting enter should select it, so we'll prep it for that here
-        if (searchResults.length === 1) {
+        if (searchResultsSubsetToRender.length === 1) {
             selectedIndex = 0;
         }
     }
@@ -93,13 +94,13 @@
 
     {#if showDropdown}
         <div class="dropdown-wrapper">
-            {#if searchResults.length === 0}
+            {#if searchResultsSubsetToRender.length === 0}
                 <div class="no-results">
                     Couldn't find anything. Try thinking more <i>mainstream</i>...
                 </div>
             {:else}
                 <ul role="listbox" class="dropdown">
-                    {#each searchResults.slice(0, MAX_RESULTS) as result, index}
+                    {#each searchResultsSubsetToRender as result, index}
                         <li 
                             role="option"
                             aria-selected={selectedIndex === index} 
