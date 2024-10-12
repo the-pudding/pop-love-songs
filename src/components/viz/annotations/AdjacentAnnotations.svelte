@@ -23,6 +23,7 @@
             const yPos = y - (placeBelow ? -40 : (placeAbove ? 60 : Y_OFFSET));
             return {xPos, yPos, song, rightAlign, alternateTitle, audioFile}
         })
+        .sort((a, b) => a.xPos - b.xPos); // sort into from left to right, so tabindex will match visual order
 </script>
 
 {#each layoutData as {xPos, yPos, song, rightAlign, alternateTitle, audioFile}}

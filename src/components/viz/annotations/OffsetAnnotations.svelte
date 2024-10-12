@@ -31,6 +31,7 @@
                 audioFile
             }
         })
+        .sort((a, b) => a.bubbleX - b.bubbleX); // sort into from left to right, so tabindex will match visual order
 </script>
 
 {#each layoutData as {bubbleX, textY, song, xTranslation, elbowX, alternateTitle, audioFile}}
