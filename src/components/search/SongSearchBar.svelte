@@ -43,6 +43,7 @@
     placeholder={getPlaceholder()}
     bind:searchString={$songSearchString}
     {searchResults}
+    clearSelection={() => $selectedSong = {}}
     onResultSelected={handleSelectedSong}
     onInputFocused={handleInputFocused}
     renderComponent={SongSearchResult}

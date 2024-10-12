@@ -4,31 +4,53 @@
     export let searchString = "";
     export let searchResults = [];
     export let renderComponent = null;
+    export let clearSelection = () => {};
     export let onResultSelected = () => {};
     export let onInputFocused = () => {};
     export let hasSelection = false;
 
     const MAX_RESULTS = 30;
 
-    let isFocused = false;
+    let showDropdown = false;
     let selectedIndex = -1;
     let listItems = [];
 
-    $: handleResultClicked = (result) => {
+    $: handleResultSelected = (result) => {
         onResultSelected(result);
-        isFocused = false;
+        showDropdown = false;
+        selectedIndex = -1;
     }
 
     $: handleFocus = () => {
         onInputFocused();
         aSearchBarIsFocused.set(true);
-        isFocused = true;
+        showDropdown = true;
     }
 
     $: handleBlur = () => {
         aSearchBarIsFocused.set(false);
-        isFocused = false;
+        showDropdown = false;
         selectedIndex = -1;
+    }
+
+    $: clearSelectionIfNeeded = () => {
+        if (hasSelection) {
+            clearSelection();
+            showDropdown = true;
+        }
+    }
+
+    $: handleClearingSelection = () => {
+        console.log('CLEARING')
+        clearSelection();
+        showDropdown = true;
+    }
+
+    $: {
+        // Clear the selection if the user starts searching
+        if (!!searchString.length && hasSelection) {
+            handleClearingSelection();
+        }
     }
     
     const handleKeyDown = (event) => {
@@ -36,12 +58,15 @@
             selectedIndex = (selectedIndex + 1) % searchResults.length;
             event.preventDefault();
             scrollToSelectedItem();
+            if (hasSelection) {
+                handleClearingSelection();
+            }
         } else if (event.key === "ArrowUp") {
             selectedIndex = (selectedIndex - 1 + searchResults.length) % searchResults.length;
             event.preventDefault();
             scrollToSelectedItem();
         } else if (event.key === "Enter" && selectedIndex >= 0) {
-            handleResultClicked(searchResults[selectedIndex]);
+            handleResultSelected(searchResults[selectedIndex]);
             event.preventDefault();
         }
     };
@@ -64,7 +89,7 @@
         class:has-selection={hasSelection}
     />
 
-    {#if isFocused}
+    {#if showDropdown}
         <div class="dropdown-wrapper">
             {#if searchResults.length === 0}
                 <div class="no-results">
@@ -78,7 +103,7 @@
                             aria-selected={selectedIndex === index} 
                             class:selected={selectedIndex === index}
                             bind:this={listItems[index]}
-                            on:mousedown={() => handleResultClicked(result)}
+                            on:mousedown={() => handleResultSelected(result)}
                         >
                             {#if renderComponent}
                                 <svelte:component this={renderComponent} {result} />

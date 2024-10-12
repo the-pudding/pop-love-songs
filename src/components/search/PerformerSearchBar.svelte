@@ -51,6 +51,7 @@
     {placeholder}
     bind:searchString={$performerSearchString}
     {searchResults}
+    clearSelection={() => $selectedPerformers = []}
     onResultSelected={handleSelectedPerformer}
     onInputFocused={handleInputFocused}
     renderComponent={PerformerSearchResult}
