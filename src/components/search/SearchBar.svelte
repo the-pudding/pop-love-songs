@@ -23,6 +23,21 @@
 
         $performerSearchString = "";
     }
+    
+    let selectedIndex = -1;
+    const handleKeyDown = (event) => {
+        if (event.key === "ArrowDown") {
+            selectedIndex = (selectedIndex + 1) % searchResults.length;
+            event.preventDefault();
+        } else if (event.key === "ArrowUp") {
+            selectedIndex = (selectedIndex - 1 + searchResults.length) % searchResults.length;
+            event.preventDefault();
+        } else if (event.key === "Enter" && selectedIndex >= 0) {
+            handleResultClicked(searchResults[selectedIndex]);
+            event.preventDefault();
+        }
+    };
+
 </script>
 
 <div class="search-container">
@@ -32,6 +47,7 @@
         bind:value={searchString} 
         on:focus={handleFocus} 
         on:blur={() => { aSearchBarIsFocused.set(false); isFocused = false; }} 
+        on:keydown={handleKeyDown}
         class:has-selection={hasSelection}
     />
 
@@ -42,10 +58,14 @@
                     Couldn't find anything. Try thinking more <i>mainstream</i>...
                 </div>
             {:else}
-                <ul class="dropdown">
-                    {#each searchResults.slice(0, MAX_RESULTS) as result}
-                        <!-- TODO: make this accessibly correct -->
-                        <li on:mousedown={() => handleResultClicked(result)}>
+                <ul role="listbox" class="dropdown">
+                    {#each searchResults.slice(0, MAX_RESULTS) as result, index}
+                        <li 
+                            role="option"
+                            aria-selected={selectedIndex === index} 
+                            class:selected={selectedIndex === index}
+                            on:mousedown={() => handleResultClicked(result)}
+                        >
                             {#if renderComponent}
                                 <svelte:component this={renderComponent} {result} />
                             {:else}
@@ -60,6 +80,10 @@
 </div>
 
 <style>
+    .dropdown li.selected {
+        background-color: #e0e0e0;
+    }
+
     input.has-selection::placeholder {
         color: black;
         font-weight: bold;
