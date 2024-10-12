@@ -15,7 +15,7 @@
     $: showModal = !userDismissed && $showOrientationWarningModal;
 </script>
 
-<Modal bind:showModal bind:dialog showXButton={false}>
+<Modal bind:showModal bind:dialog maxWidth={'95%'} showXButton={false}>
     <div class='container'>
         {#each orientationWarningModal.paragraphs as paragraph}
             <p>{@html paragraph}</p>

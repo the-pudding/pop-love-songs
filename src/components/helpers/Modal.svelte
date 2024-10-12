@@ -2,6 +2,7 @@
 <script>
 	export let showModal; // boolean
 	export let showXButton = true;
+	export let maxWidth = '42em';
 
 	export let dialog; // HTMLDialogElement
 
@@ -13,6 +14,7 @@
 	bind:this={dialog}
 	on:close={() => (showModal = false)}
 	on:click|self={() => dialog.close()}
+	style:max-width={maxWidth}
 >
 	<!-- svelte-ignore a11y-autofocus -->
 	{#if showXButton}
