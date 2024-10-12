@@ -3,7 +3,7 @@
 	export let showModal; // boolean
 	export let showXButton = true;
 
-	let dialog; // HTMLDialogElement
+	export let dialog; // HTMLDialogElement
 
 	$: if (dialog && showModal) dialog.showModal();
 </script>
