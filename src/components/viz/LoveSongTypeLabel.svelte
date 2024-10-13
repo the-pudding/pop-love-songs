@@ -28,6 +28,7 @@
 </script>
 
 <button
+	tabindex={$isEndingSandboxStep ? 0 : -1}
 	class={$isEndingSandboxStep ? 'allow-toggle' : ''}
 	on:click={toggleLoveSongStatus(loveSongType)}
 	style:left={`${x}px`} style:top={`${y}px`}
