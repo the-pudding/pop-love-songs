@@ -9,7 +9,7 @@
 <div div class="container">
     <div class="thanks">
         <div>
-            <h3>{copy.footer.heading}</h3>
+            <h1>{copy.footer.heading}</h1>
             {@html copy.footer.thanks}
 
             <button class="modalTrigger" on:click={() => showModal = true}>{copy.footer.methods}</button>
@@ -26,6 +26,10 @@
         flex-direction: column;
         justify-content: space-between;
         height: 100vh; /* @michelle: what I want is for hte <Footer/> to stay pushed to the bottom of the page */
+    }
+
+    h1 {
+        font-size: 24px;
     }
 
     .thanks {
