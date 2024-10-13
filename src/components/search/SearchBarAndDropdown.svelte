@@ -44,8 +44,12 @@
 
     $: {
         // Clear the selection if the user starts searching
-        if (!!searchString.length && hasSelection) {
-            handleClearingSelection();
+        if (!!searchString.length) {
+            if (hasSelection) {
+                handleClearingSelection();
+            } else if (!showDropdown) {
+                showDropdown = true;
+            }
         }
     }
     
@@ -55,6 +59,7 @@
             onResultPreviewed(searchResultsSubsetToRender[selectedIndex]);
             event.preventDefault();
             scrollToSelectedItem();
+            showDropdown = true;
             if (hasSelection) {
                 handleClearingSelection();
             }
@@ -63,8 +68,15 @@
             onResultPreviewed(searchResultsSubsetToRender[selectedIndex]);
             event.preventDefault();
             scrollToSelectedItem();
+            showDropdown = true;
         } else if (event.key === "Enter" && selectedIndex >= 0) {
             handleResultSelected(searchResultsSubsetToRender[selectedIndex]);
+            event.preventDefault();
+        } else if (event.key === "Escape") {
+            clearSelection();
+            searchString = "";
+            showDropdown = false;
+            selectedIndex = -1;
             event.preventDefault();
         }
     };
