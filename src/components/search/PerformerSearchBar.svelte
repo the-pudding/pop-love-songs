@@ -5,7 +5,7 @@
     import { performerSearchString, previewedPerformer, previewedSong, selectedPerformers, selectedSong, songSearchString } from "$stores/searchAndFilter";
 	import PerformerSearchResult from "./PerformerSearchResult.svelte";
 
-    import SearchBar from "./SearchBar.svelte";
+    import SearchBarAndDropdown from "./SearchBarAndDropdown.svelte";
 
     $: performerSongCountMap = $visibleSongsData.reduce((acc, { song }) => {
         getArrayOfPerformers(song).forEach(performer => {
@@ -60,7 +60,7 @@
     $: placeholder = $selectedPerformers[0] || "Highlight performers...";
 </script>
 
-<SearchBar
+<SearchBarAndDropdown
     {placeholder}
     bind:searchString={$performerSearchString}
     {searchResults}

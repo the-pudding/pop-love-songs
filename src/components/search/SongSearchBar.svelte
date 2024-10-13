@@ -4,7 +4,7 @@
     import { selectedSongsData } from "$stores/dataDerivations";
     import { selectedPerformers, previewedSong, selectedSong, songSearchString } from "$stores/searchAndFilter";
 
-    import SearchBar from "./SearchBar.svelte";
+    import SearchBarAndDropdown from "./SearchBarAndDropdown.svelte";
     import SongSearchResult from "./SongSearchResult.svelte";
 
     $: searchResults = $selectedSongsData.map(({song, songIndex}) => ({
@@ -43,7 +43,7 @@
     }
 </script>
 
-<SearchBar
+<SearchBarAndDropdown
     placeholder={getPlaceholder()}
     bind:searchString={$songSearchString}
     {searchResults}
