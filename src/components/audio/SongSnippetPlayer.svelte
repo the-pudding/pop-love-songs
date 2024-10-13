@@ -16,6 +16,8 @@
 
 	$: playingMe = $playing && $playing.audioFile === audioFile;
 
+	$: ariaLabel = playingMe ? `Pause "${songName}" snippet` : `Play "${songName}" snippet`;
+
 	const onClick = () => {
 		if (playingMe) {
 			$playing = undefined;
@@ -26,7 +28,7 @@
 	};
 </script>
 
-<button on:focus={() => playerFocused = true} on:blur={() => playerFocused = false} on:click={onClick} style:background={backgroundColor}>
+<button aria-label={ariaLabel} on:focus={() => playerFocused = true} on:blur={() => playerFocused = false} on:click={onClick} style:background={backgroundColor}>
 	<PlayAndPauseButton {fillColor} showPauseIcon={playingMe} />
 </button>
 
