@@ -5,7 +5,7 @@
     import { tiemposFriendlyTextShadow } from "$utils/styling.js";
     import viewport from "$stores/viewport.js";
 
-    import CustomTap from './../helpers/CustomTap.svelte';
+    import StoryNavigation from '../helpers/StoryNavigation.svelte';
 
     import XandAddButton from "$components/helpers/XandAddButton.svelte";
     import ExampleBubble from "./ExampleBubble.svelte";
@@ -163,7 +163,7 @@
     </div>
 </div>
 
-<CustomTap on:tap={onTap} enableKeyboard={true} />
+<StoryNavigation on:tap={onTap} enableKeyboard={true} />
 
 <style>
     .container {
