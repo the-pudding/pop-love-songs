@@ -15,21 +15,22 @@
 	export let audioFile = false;
 	export let rightAlign = false;
 
+	let playerFocused = false;
+
 	$: displaySongName = alternateTitle || formatSongTitleForDisplay(song[SONG_DATA_COLUMNS_ENUM.song]);
 	$: rawYear = song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
 	$: year = $viewport.isLikelyInMobileLandscape ? abbreviateYearForDisplay(rawYear) : formatYearForDisplay(rawYear);
-
 </script>
 
-<div class='song-and-year' style={`text-align: ${rightAlign ? 'right' : 'left'};`}>
+<div class='song-and-year' style={`transform: scale(${playerFocused ? 1.1 : 1}); text-align: ${rightAlign ? 'right' : 'left'};`}>
 	{#if audioFile && !rightAlign}
-		<SongSnippetPlayer songName={song[SONG_DATA_COLUMNS_ENUM.song]} year={song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]} loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
+		<SongSnippetPlayer bind:playerFocused songName={song[SONG_DATA_COLUMNS_ENUM.song]} year={song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]} loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
 	{/if}
-	<strong class='song-title' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}; text-shadow: ${textShadow(2, 1)};`}>
+	<div class='song-title' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}; text-shadow: ${textShadow(2, 1)};`}>
 		{displaySongName}
-	</strong>
+	</div>
 	{#if audioFile && rightAlign}
-		<SongSnippetPlayer songName={song[SONG_DATA_COLUMNS_ENUM.song]} year={song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]} loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
+		<SongSnippetPlayer bind:playerFocused songName={song[SONG_DATA_COLUMNS_ENUM.song]} year={song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]} loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} audioFile={audioFile} />
 	{/if}
 </div>
 <div class="performer" style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '14px' : '16px'}; text-shadow: ${textShadow(1, 0.5)}; text-align: ${rightAlign ? 'right' : 'left'};`}>
@@ -42,12 +43,13 @@
 {/if}
 
 <style>
-	div, strong {
+	div {
 		font-family: var(--sans);
 		pointer-events: none;
 	}
 
 	.song-title {
+		display: inline-block;
 		font-weight: bold;
 		text-transform: uppercase;
 	}

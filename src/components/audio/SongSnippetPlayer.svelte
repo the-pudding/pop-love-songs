@@ -8,6 +8,7 @@
 	export let year;
 	export let loveSongType;
 	export let audioFile;
+	export let playerFocused;
 
 	
 	$: backgroundColor = $accessiblyContrastingColorMap[loveSongType];
@@ -25,7 +26,7 @@
 	};
 </script>
 
-<button on:click={onClick} style:background={backgroundColor}>
+<button on:focus={() => playerFocused = true} on:blur={() => playerFocused = false} on:click={onClick} style:background={backgroundColor}>
 	<PlayAndPauseButton {fillColor} showPauseIcon={playingMe} />
 </button>
 
