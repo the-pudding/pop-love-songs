@@ -91,6 +91,7 @@
         on:focus={handleFocus} 
         on:blur={handleBlur} 
         on:keydown={handleKeyDown}
+        on:mousedown={handleFocus}
         class:has-selection={hasSelection}
     />
 
