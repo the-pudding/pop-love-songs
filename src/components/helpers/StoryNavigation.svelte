@@ -35,7 +35,11 @@
 	{#each directions as dir}
 		{#if dir == "left"}
 			{#if $currentStoryStepIndex !== 0}
-				<button class="{dir}-hint" on:click={dispatch("tap", dir)}>
+				<button
+					aria-label={'Previous step'}
+					class="{dir}-hint"
+					on:click={dispatch("tap", dir)}
+				>
 					<ChevronLeft
 						color={arrowStroke}
 						strokeWidth={arrowStrokeWidth}
@@ -45,6 +49,7 @@
 			{/if}
 		{:else if !$isLastStep}
 			<button
+				aria-label={'Next step'}
 				class="{dir}-hint"
 				class:bounceHint={$currentStoryStepIndex == 0}
 				on:click={dispatch("tap", dir)}
