@@ -77,8 +77,9 @@
 
 <style>
 	footer {
-		background-color: var(--color-its-complicated);
-		color: var(--color-cream-background);
+		/* background-color: var(--color-its-complicated); */
+		background-color: #8E6F39; /* meets a11y contrast requirement */
+		color: white;
 		font-family: var(--sans);
 		padding: 3em 1em;
 		margin-top: 36px;
