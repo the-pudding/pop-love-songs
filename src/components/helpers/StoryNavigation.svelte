@@ -60,7 +60,6 @@
 </section>
 
 <style>
-	.tapper,
 	.tapper-overlay {
 		position: fixed;
 		top: 0;
@@ -139,9 +138,6 @@
 		box-shadow: none;
 		pointer-events: auto;
 	}
-	button.haltTap {
-		pointer-events: none;
-	}
 	button:disabled {
 		opacity: 0.2;
 		cursor: not-allowed;
@@ -151,97 +147,8 @@
 		background-color: rgba(255, 255, 255, 0.2);
 	}
 
-	.left {
-		left: 0;
-		top: 0;
-		/* text-align: left; */
-	}
-
-	.right {
-		right: 0;
-		top: 0;
-		/* text-align: right; */
-	}
-
-	.left.start,
-	.right.start {
-		align-items: flex-start;
-	}
-
-	.left.center,
-	.right.center {
-		top: 50%;
-		transform: translateY(-50%);
-	}
-
-	.left.end,
-	.right.end {
-		bottom: 0;
-		top: auto;
-	}
-
-	.up {
-		top: 0;
-		left: 0;
-		/* text-align: center; */
-	}
-
-	.down {
-		bottom: 0;
-		left: 0;
-		/* text-align: center; */
-	}
-
-	.up.center,
-	.down.center {
-		left: 50%;
-		transform: translateX(-50%);
-	}
-
-	.up.end,
-	.down.end {
-		right: 0;
-		left: auto;
-	}
-
-	/* full positions */
-	.full.left.start,
-	.full.right.start {
-		align-items: flex-start;
-	}
-
-	.full.left.center,
-	.full.right.center {
-		align-items: center;
-	}
-
-	.full.left.end,
-	.full.right.end {
-		align-items: flex-end;
-	}
-
-	.full.up.start,
-	.full.down.start {
-		justify-content: flex-start;
-	}
-
-	.full.up.center,
-	.full.down.center {
-		justify-content: center;
-	}
-
-	.full.up.end,
-	.full.down-end {
-		justify-content: flex-end;
-	}
-
-    /* TODO: since we're having people look in landscape, this breakpoint should be bigger (but do we want them to shrink at all?) */
+	/* TODO: since we're having people look in landscape, this breakpoint should be bigger (but do we want them to shrink at all?) */
 	@media (max-width: 600px) {
-		.directions {
-			padding: 0 0 0 1rem;
-			font-size: var(--18px);
-			width: 70%;
-		}
 		.left-hint,
 		.right-hint {
 			height: 4rem;
