@@ -59,7 +59,6 @@
 
 <style>
 	 .tooltip {
-		z-index: 10000;
 		position: absolute;
 		padding: 0.5rem;
 	}

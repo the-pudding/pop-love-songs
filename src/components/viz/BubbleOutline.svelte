@@ -18,7 +18,6 @@
 
 <style>
     .circle-outline {
-		z-index: 10000;
 		position: absolute;
 		border-radius: 100%;
 		transform: translate(-50%, -50%);
