@@ -17,11 +17,23 @@
 		[LOVE_SONG_TYPE_CONSTANTS.serenade]: 1970,
 		[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: 1970,
 		[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: 1980,
-		[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: 2000,
-		[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: 2000,
+
 		[LOVE_SONG_TYPE_CONSTANTS.sexualConfidence]: 2000,
+		[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: 2000,
 		[LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf]: 2000,
+		[LOVE_SONG_TYPE_CONSTANTS.goodRiddance]: 2000,
 	}
+
+	const LOVE_SONG_TYPE_TAB_ORDER = [
+		LOVE_SONG_TYPE_CONSTANTS.serenade,
+		LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+		LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+
+		LOVE_SONG_TYPE_CONSTANTS.sexualConfidence,
+		LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
+		LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf,
+		LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
+	]	
 
 	const getX = (x, orderInNonLoveSongStack, nonLoveSongX) => {
 		if (orderInNonLoveSongStack !== -1) return nonLoveSongX;
@@ -68,12 +80,12 @@
 				textShadow: textShadow(2, 2, TEXT_SHADOW_COLOR_MAP[loveSongType])
 			}]
 		}, [])
+		// so tabindex order matches left to right, top to bottom visual reading order
 		.sort((a, b) => {
-			if (a.x === b.x) {
-				return a.y - b.y;
-			}
-			return a.x - b.x;
-		}); // so tabindex order matches left to right, top to bottom visual reading order
+			const indexA = LOVE_SONG_TYPE_TAB_ORDER.indexOf(a.loveSongType);
+			const indexB = LOVE_SONG_TYPE_TAB_ORDER.indexOf(b.loveSongType);
+			return indexA - indexB;
+		}); 
 
 	$: bubbleViewOnLastStep = $isEndingSandboxStep && !$showAggregateSnakeChart;
 	$: show = $currentStoryStep.showXAxis && !$currentStoryStep.isFinalComparisonStep && !$aSingleLoveSongTypeIsSpotlighted && !bubbleViewOnLastStep;
