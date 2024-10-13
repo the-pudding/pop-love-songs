@@ -20,6 +20,7 @@
 	import { currentStoryStep, currentStoryStepIndex, showSearchBars } from "$stores/storySteps";
 	import loadImage from "$utils/loadImage";
 	import { TITLE_CARD_BACKGROUND_IMAGE } from "./story-steps/images";
+	import Figure from "./figure/Figure.svelte";
 	
 	// Wait until after we've mounted (and thus pulled the story step from the URL)
 	// TODO: this doesn't seem to actually work. Instead, just create a store that StoryStepNavigationAndText updates
@@ -46,7 +47,9 @@
 	{#if urlParsed}
 		<!-- TODO: OPTIMIZATION: does it make sense to rip the viz elements on/off the dom, or just leave them there always? -->
 		{#if !$currentStoryStep.showFooter}
-			<SnakeAndBubbleChart />
+			<Figure figcaption="TODO: create a store that provides this. Could be pre-written, except needs to be dynamic for final, interactive chart.">
+				<SnakeAndBubbleChart />
+			</Figure>
 		{/if}
 			
 		{#if $currentStoryStep.showHeadlinesAboutLoveSongDecline}
