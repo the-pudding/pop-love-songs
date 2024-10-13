@@ -13,6 +13,14 @@ export const getArrayOfPerformers = (song) => {
 		: [];
 };
 
+export const formatPerformersForDisplay = (performers) =>
+	performers
+		.map(
+			(performer, index) =>
+				`${performer}${index < performers.length - 1 ? ", " : ""}`
+		)
+		.join("");
+
 export const onlyShowOneDecimalPlaceIfLessThan10 = (number) => {
 	return number < 10 ? number.toFixed(1) : number.toFixed(0);
 };
