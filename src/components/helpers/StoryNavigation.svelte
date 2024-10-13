@@ -10,17 +10,14 @@
 	import Tap from "./Tap.svelte";
 
 	export let enableKeyboard = false;
-	// export let disable = [];
-	export let directions = ["left", "right"];
-	// export let arrowSize = "36px";
 	const arrowStroke = variables.color['cream-background'];
 	export let arrowStrokeWidth = "2";
-	// export let arrowPosition = "center"; // start, center, end
 
-	const dispatch = createEventDispatcher(); 
+	const dispatch = createEventDispatcher();
+	const DIRECTIONS = ["left", "right"];
 	$: onKeyDown = (e) => {
 		const dir = e.key.replace("Arrow", "").toLowerCase();
-		const hasDir = directions.includes(dir);
+		const hasDir = DIRECTIONS.includes(dir);
 		if (enableKeyboard && hasDir) {
 			e.preventDefault();
 			dispatch("tap", dir);
@@ -32,37 +29,34 @@
 
 <!-- @michelle: my "use semantic HTML" game feels week. Do you have an intuition why section was used here? When do you use this tag? -->
 <section class="tapper-overlay" style={`height: ${$viewport.height}px; width: ${$viewport.width}px;`}>
-	{#each directions as dir}
-		{#if dir == "left"}
-			{#if $currentStoryStepIndex !== 0}
-				<button
-					aria-label={'Previous step'}
-					class="{dir}-hint"
-					on:click={dispatch("tap", dir)}
-				>
-					<ChevronLeft
-						color={arrowStroke}
-						strokeWidth={arrowStrokeWidth}
-						size={"2rem"}
-					/>
-				</button>
-			{/if}
-		{:else if !$isLastStep}
-			<button
-				aria-label={'Next step'}
-				class="{dir}-hint"
-				class:bounceHint={$currentStoryStepIndex == 0}
-				on:click={dispatch("tap", dir)}
-			>
-                <ChevronRight
-                    color={arrowStroke}
-                    strokeWidth={arrowStrokeWidth}
-                    size={"2rem"}
-                />
-			</button>
-		{/if}
-		<Tap />
-	{/each}
+	{#if $currentStoryStepIndex !== 0}
+		<button
+			aria-label="Previous step"
+			class="left-hint"
+			on:click={() => dispatch("tap", "left")}
+		>
+			<ChevronLeft
+				color={arrowStroke}
+				strokeWidth={arrowStrokeWidth}
+				size="2rem"
+			/>
+		</button>
+	{/if}
+	{#if !$isLastStep}
+		<button
+			aria-label="Next step"
+			class="right-hint"
+			class:bounceHint={$currentStoryStepIndex == 0}
+			on:click={() => dispatch("tap", "right")}
+		>
+			<ChevronRight
+				color={arrowStroke}
+				strokeWidth={arrowStrokeWidth}
+				size="2rem"
+			/>
+		</button>
+	{/if}
+	<Tap />
 </section>
 
 <style>
