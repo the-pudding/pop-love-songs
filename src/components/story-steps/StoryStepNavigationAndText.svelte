@@ -151,14 +151,14 @@
 <div style={backgroundGradientStyle}>
     <div bind:this={container} class={`container ${$currentStoryStepIndex === 0 ? 'fade-in' : ''}`} style={containerStyle}>
         {#if !!$currentStoryStep.text}
-            <h4 class="story-text" style={storyTextStyle}>
+            <h1 class="story-text" style={storyTextStyle}>
                 <!-- For styling of love song type spans within the text, see app.css -->
                 <!-- Note: this wonky custom left-padding corrects for a visual fluke wherein left-justified text appears off center.  -->
                 <div style:padding-left={!$viewport.isLikelyInMobileLandscape && $currentStoryStepIndex === 0 ? '42px' : '8px'}>
                     {@html $currentStoryStep.text}
                 </div>
                 <DataMethodsModal bind:showModal />
-            </h4>
+            </h1>
         {/if}
     </div>
 </div>
