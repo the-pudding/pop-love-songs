@@ -61,10 +61,14 @@
 		background-color: transparent;
 	}
 
-	button:hover {
+	button:hover, button:focus {
 		cursor: pointer;
-		opacity: 0.9;
 		border-bottom: 1px solid transparent;
+	}
+
+	button:hover .label,
+	button:focus .label {
+		font-weight: bold;
 	}
 
 	button.allow-toggle {

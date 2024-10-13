@@ -67,7 +67,13 @@
 				fontWeight: wasJustSpotlighted ? "bold" : "normal",
 				textShadow: textShadow(2, 2, TEXT_SHADOW_COLOR_MAP[loveSongType])
 			}]
-		}, []);
+		}, [])
+		.sort((a, b) => {
+			if (a.x === b.x) {
+				return a.y - b.y;
+			}
+			return a.x - b.x;
+		}); // so tabindex order matches left to right, top to bottom visual reading order
 
 	$: bubbleViewOnLastStep = $isEndingSandboxStep && !$showAggregateSnakeChart;
 	$: show = $currentStoryStep.showXAxis && !$currentStoryStep.isFinalComparisonStep && !$aSingleLoveSongTypeIsSpotlighted && !bubbleViewOnLastStep;
