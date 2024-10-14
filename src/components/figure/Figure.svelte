@@ -1,13 +1,14 @@
 <script>
 	import { currentStoryStep } from "$stores/storySteps";
-	export let figcaption;
+	import { figCaption } from "$stores/figCaption";
+	
 </script>
 
 {#if !$currentStoryStep.hideViz}
 	<figure>
 		<slot />
 		<figcaption class="sr-only" aria-live="polite">
-			{figcaption}
+			{$figCaption}
 		</figcaption>
 	</figure>
 {/if}

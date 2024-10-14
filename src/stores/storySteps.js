@@ -1,5 +1,4 @@
 import { derived, writable } from "svelte/store";
-import previous from "./previous";
 import viewport from "./viewport";
 
 import copy from "$data/copy.json";
@@ -608,7 +607,8 @@ const steps = Object.keys(stepsWithoutText).reduce(
 		...acc,
 		[key]: {
 			...stepsWithoutText[key],
-			text: copy.stepText[key].copy
+			text: copy.stepText[key].copy,
+			figCaption: copy.stepText[key].figCaption
 		}
 	}),
 	{}

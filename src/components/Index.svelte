@@ -45,7 +45,7 @@
 	{/if}
 
 	{#if urlParsed}
-		<Figure figcaption="TODO: create a store that provides this. Could be pre-written, except needs to be dynamic for final, interactive chart.">
+		<Figure>
 			<SnakeAndBubbleChart />
 		</Figure>
 			
