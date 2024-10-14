@@ -169,55 +169,6 @@ const stepsWithoutText = {
 			}
 		}
 	},
-	serenadesPeakedInThe90s: {
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
-				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
-			),
-			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
-			timeRange: {
-				startYear: MIN_DATE,
-				endYear: 2000
-			},
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			forceXStrength: 11,
-			forceYStrength: 0.5,
-			songAnnotations: {
-				adjacentAnnotations: [{ song: "I'll Make Love To You", year: 1994 }]
-			}
-		}
-	},
-	aFewArtistsKeepThemAliveToday: {
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
-				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
-			),
-			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.serenade],
-			timeRange: {
-				startYear: 2001,
-				endYear: MAX_DATE
-			},
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: getXPositionFromTime,
-			forceXStrength: 11,
-			forceYStrength: 0.5,
-			songAnnotations: {
-				adjacentAnnotations: [
-					{ song: "Love Story", year: 2008, rightAlign: true },
-					{ song: "Intentions", year: 2020, rightAlign: true, placeBelow: true }
-				]
-			}
-		}
-	},
 	anAggSnakeChartMakesBoomerBobSeemRight: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
@@ -254,19 +205,6 @@ const stepsWithoutText = {
 		}
 	},
 
-	whyWeCare: {
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
-				(t) => t !== LOVE_SONG_TYPE_CONSTANTS.serenade
-			)
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			showAggregateSnakeChart: true
-		},
-		showLoveSongChange: true
-	},
 	definingSerenades: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
@@ -716,13 +654,10 @@ const unprocessedStorySteps = [
 	steps.highlightSerenadesWithinCluster,
 
 	steps.serenadesAreIndeedDying,
-	// steps.serenadesPeakedInThe90s,
-	// steps.aFewArtistsKeepThemAliveToday,
 	steps.anAggSnakeChartMakesBoomerBobSeemRight,
 
 	// What counts as love song?
 	steps.butWeWillTakeAMoreExpansiveView,
-	// steps.whyWeCare,
 
 	// Boomer-Bob-friendly types:
 	steps.definingSerenades,
