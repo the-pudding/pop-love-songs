@@ -7,7 +7,7 @@
 
 <header>
 	<div class="wordmark" style:max-width={$viewport.isLikelyInMobileLandscape ? '10em' : '14em'}>
-		<a href="https://pudding.cool" aria-label="The Pudding" target="_self"
+		<a href="https://pudding.cool" aria-label="The Pudding - home" target="_self"
 			>{@html wordmark}</a
 		>
 	</div>
