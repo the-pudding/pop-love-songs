@@ -6,6 +6,8 @@ import {
 } from "./aggregateSnakeChartPositions";
 import { displayLoveSongPercentage } from "$data/data-utils";
 
+const SIXTIES_PERCENT_PLACEHOLDER = "SIXTIES_PERCENT";
+const MODERN_PERCENT_PLACEHOLDER = "MODERN_PERCENT";
 export const figCaption = derived(
 	[
 		currentStoryStep,
@@ -20,8 +22,15 @@ export const figCaption = derived(
 		$modernYScreenPercentage
 	]) => {
 		if ($isEndingSandboxStep) {
-			const INTRO = `Chart comparing the change of love song types over time, allowing you to interactively add or remove different types of love songs.`;
-			return `${INTRO} The love song percentage changes from ${displayLoveSongPercentage($sixtiesYScreenPercentage)}% in the 1960s to ${displayLoveSongPercentage($modernYScreenPercentage)}% in the modern era.`;
+			return $currentStoryStep.figCaption
+				.replace(
+					SIXTIES_PERCENT_PLACEHOLDER,
+					displayLoveSongPercentage($sixtiesYScreenPercentage)
+				)
+				.replace(
+					MODERN_PERCENT_PLACEHOLDER,
+					displayLoveSongPercentage($modernYScreenPercentage)
+				);
 		}
 		return $currentStoryStep.figCaption;
 	}
