@@ -37,10 +37,10 @@
 <section>
     <div class='background-image' aria-label={TITLE_CARD_BACKGROUND_IMAGE.alt} role="img" style={`background-image: url(${TITLE_CARD_BACKGROUND_IMAGE.src.replaceAll(' ', '%20')});`} />
 
-    <h1 style={h1Style}>
-        Is the<br>love song<br>
+    <h1 style={h1Style} aria-label="Is the love song dying?">
+        <span aria-hidden="true">Is the<br>love song<br></span>
         {#each characters as character, index}
-            <span class={character} style={`-webkit-text-fill-color: rgba(0, 0, 0, ${$dyingTweenArray[index]}); display: inline-block; width: auto;`}>
+            <span class={character} style={`-webkit-text-fill-color: rgba(0, 0, 0, ${$dyingTweenArray[index]}); display: inline-block; width: auto;`} aria-hidden="true">
                 {character}
             </span>
         {/each}

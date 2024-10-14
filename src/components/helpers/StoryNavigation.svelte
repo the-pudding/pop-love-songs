@@ -39,6 +39,8 @@
 				color={arrowStroke}
 				strokeWidth={arrowStrokeWidth}
 				size="2rem"
+				aria-hidden="true"
+				focusable="false"
 			/>
 		</button>
 	{/if}
@@ -53,6 +55,8 @@
 				color={arrowStroke}
 				strokeWidth={arrowStrokeWidth}
 				size="2rem"
+				aria-hidden="true"
+				focusable="false"
 			/>
 		</button>
 	{/if}

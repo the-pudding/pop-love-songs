@@ -7,7 +7,7 @@
 </script>
 
 {#if $currentStoryStepIndex === 0}
-	<div class="tap">
+	<div class="tap" aria-hidden="true">
 		<div class="row">
 			<strong>{$mq.desktop ? "Click" : "Tap"} to continue</strong>
 			{@html pointer}
@@ -21,6 +21,9 @@
 			</div>
 		{/if}
 	</div>
+	<div class="sr-only">
+        Click navigation arrows or use the left and right arrows to navigate through the article.
+    </div>
 {/if}
 
 <style>
