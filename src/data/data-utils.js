@@ -1,4 +1,8 @@
-import { SONG_DATA_COLUMNS_ENUM } from "./data-constants";
+import {
+	LOVE_SONG_TYPE_CONSTANTS,
+	SONG_DATA_COLUMNS_ENUM
+} from "./data-constants";
+import { MIN_DATE } from "./songs-data";
 
 // TODO: replace this with a store (currently not being used in canvasPosition.js, which has its own copy)
 export const Y_MARGIN_SCREEN_PERCENTAGE = 0.05;
@@ -77,3 +81,24 @@ export const songInManuallySetPositions = (song, manuallySetPositions) =>
 			annotationSongName === song[SONG_DATA_COLUMNS_ENUM.song] &&
 			year === Math.floor(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal])
 	);
+
+export const getSixtiesYScreenPercentage = (coordsForLoveTypes) => {
+	return coordsForLoveTypes
+		.find(
+			({ loveSongType }) =>
+				+loveSongType === LOVE_SONG_TYPE_CONSTANTS.notALoveSong
+		)
+		.svgCoords.find(({ x }) => x === MIN_DATE).y0;
+};
+
+export const getModernYScreenPercentage = (coordsForLoveTypes) => {
+	return coordsForLoveTypes
+		.find(
+			({ loveSongType }) =>
+				loveSongType === LOVE_SONG_TYPE_CONSTANTS.notALoveSong
+		)
+		.svgCoords.at(-1).y0;
+};
+
+// export const displayLoveSongPercentage = (percentage) =>
+// 	onlyShowOneDecimalPlaceIfLessThan10(100 * (1 - percentage));

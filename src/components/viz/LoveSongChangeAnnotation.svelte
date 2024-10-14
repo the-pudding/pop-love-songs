@@ -1,7 +1,5 @@
 <script>
-	import { LOVE_SONG_TYPE_CONSTANTS } from "$data/data-constants";
-	import { MIN_DATE } from "$data/songs-data";
-    import { onlyShowOneDecimalPlaceIfLessThan10 } from "$data/data-utils";
+    import { getModernYScreenPercentage, getSixtiesYScreenPercentage, onlyShowOneDecimalPlaceIfLessThan10 } from "$data/data-utils";
     
     import { currentStoryStep } from "$stores/storySteps";
     import { getXPositionForYear, getYPositionForPercentage } from "$stores/canvasPosition";
@@ -14,10 +12,10 @@
 	
     export let tweenedCoords;
 
-    $: sixtiesYScreenPercentage = tweenedCoords.find(({loveSongType}) => +loveSongType === LOVE_SONG_TYPE_CONSTANTS.notALoveSong).svgCoords.find(({x}) => x === MIN_DATE).y0
+    $: sixtiesYScreenPercentage = getSixtiesYScreenPercentage(tweenedCoords)
     $: sixtiesYPos = $getYPositionForPercentage(sixtiesYScreenPercentage)
     
-    $: modernYScreenPercentage = tweenedCoords.find(({loveSongType}) => loveSongType === LOVE_SONG_TYPE_CONSTANTS.notALoveSong).svgCoords.at(-1).y0
+    $: modernYScreenPercentage = getModernYScreenPercentage(tweenedCoords)
     $: modernYPos = $getYPositionForPercentage(modernYScreenPercentage)
 
     // From svgCoordsForSnakeChartOutline, for each y1's
