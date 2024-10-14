@@ -45,12 +45,9 @@
 	{/if}
 
 	{#if urlParsed}
-		<!-- TODO: OPTIMIZATION: does it make sense to rip the viz elements on/off the dom, or just leave them there always? -->
-		{#if !$currentStoryStep.showFooter}
-			<Figure figcaption="TODO: create a store that provides this. Could be pre-written, except needs to be dynamic for final, interactive chart.">
-				<SnakeAndBubbleChart />
-			</Figure>
-		{/if}
+		<Figure figcaption="TODO: create a store that provides this. Could be pre-written, except needs to be dynamic for final, interactive chart.">
+			<SnakeAndBubbleChart />
+		</Figure>
 			
 		{#if $currentStoryStep.showHeadlinesAboutLoveSongDecline}
 			<HeadlinesAboutLoveSongDecline />

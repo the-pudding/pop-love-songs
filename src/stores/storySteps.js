@@ -55,48 +55,28 @@ const VISUAL_ENCODING_BLANK_STATE = {
 const stepsWithoutText = {
 	// Intro: Is Boomer Bob right that the love song is dying?
 	haveYouSeenTheseYouTubeComments: {
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES,
-			selectedLoveSongTypes: ["FAAAAKKEEE", "also fake"],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: randomXDistribution,
-			calculateYForcePosition: randomYDistribution
-		},
-		showOpeningComment: true
+		hideViz: true,
+		showOpeningComment: true,
+
+		searchAndFilterState: SEARCH_AND_FILTER_BLANK_STATE,
+		visualEncodings: VISUAL_ENCODING_BLANK_STATE
 	},
 	boomerBobSaysLoveSongsAreDying: {
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES,
-			selectedLoveSongTypes: ["FAAAAKKEEE", "also fake"],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			calculateXForcePosition: randomXDistribution,
-			calculateYForcePosition: randomXDistribution
-		},
-		showHeadlinesAboutLoveSongDecline: true
+		hideViz: true,
+		showHeadlinesAboutLoveSongDecline: true,
+
+		searchAndFilterState: SEARCH_AND_FILTER_BLANK_STATE,
+		visualEncodings: VISUAL_ENCODING_BLANK_STATE
 	},
 
 	titleCard: {
+		hideViz: true,
+		// Note: we actually have ot set these values so that the bubbles fade in from gray (not their colors), cuz stores run before the viz is rendered
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
-			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES,
-			selectedLoveSongTypes: ["FAAAAKKEEE", "also fake"],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
+			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES
 		},
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			// Note: x (or y) need to be slightly different than the next step to trigger a simulation re-start
-			calculateXForcePosition: (...args) => randomXDistribution(...args) + -10,
-			// calculateXForcePosition: () => 0, // wipe in from left
-			calculateYForcePosition: randomYDistribution
-		},
+		visualEncodings: VISUAL_ENCODING_BLANK_STATE,
 		showTitleCard: true
 	},
 
@@ -615,21 +595,11 @@ const stepsWithoutText = {
 
 	// Footer
 	footer: {
-		searchAndFilterState: {
-			...SEARCH_AND_FILTER_BLANK_STATE,
-			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES,
-			selectedLoveSongTypes: ["FAAAAKKEEE", "also fake"],
-			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
-		},
+		hideViz: true,
+		showFooter: true,
 
-		visualEncodings: {
-			...VISUAL_ENCODING_BLANK_STATE,
-			// showAggregateSnakeChart: true,
-			// a little extra strenth helps keep the chart a bit clearer
-			forceXStrength: 8,
-			forceYStrength: 2
-		},
-		showFooter: true
+		searchAndFilterState: SEARCH_AND_FILTER_BLANK_STATE,
+		visualEncodings: VISUAL_ENCODING_BLANK_STATE
 	}
 };
 
