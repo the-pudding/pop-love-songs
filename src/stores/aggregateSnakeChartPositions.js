@@ -26,6 +26,10 @@ import {
 	getXPositionForYear,
 	getYPositionForPercentage
 } from "./canvasPosition";
+import {
+	getModernYScreenPercentage,
+	getSixtiesYScreenPercentage
+} from "$data/data-utils";
 
 // 2. ... aggregate the total songs for each time region, then label each with a sumative percentage, append that to the object
 
@@ -196,6 +200,18 @@ export const svgCoordsForLoveSongTypes = derived(
 				$aggregateSnakeChartPositions
 			)
 		}))
+);
+
+export const sixtiesYScreenPercentage = derived(
+	[svgCoordsForLoveSongTypes],
+	([$svgCoordsForLoveSongTypes]) =>
+		getSixtiesYScreenPercentage($svgCoordsForLoveSongTypes)
+);
+
+export const modernYScreenPercentage = derived(
+	[svgCoordsForLoveSongTypes],
+	([$svgCoordsForLoveSongTypes]) =>
+		getModernYScreenPercentage($svgCoordsForLoveSongTypes)
 );
 
 export const svgPathGenerator = derived(
