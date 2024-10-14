@@ -100,5 +100,5 @@ export const getModernYScreenPercentage = (coordsForLoveTypes) => {
 		.svgCoords.at(-1).y0;
 };
 
-// export const displayLoveSongPercentage = (percentage) =>
-// 	onlyShowOneDecimalPlaceIfLessThan10(100 * (1 - percentage));
+export const displayLoveSongPercentage = (percentage) =>
+	onlyShowOneDecimalPlaceIfLessThan10(100 * (1 - percentage));

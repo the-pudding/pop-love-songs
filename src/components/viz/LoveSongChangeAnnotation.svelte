@@ -1,5 +1,5 @@
 <script>
-    import { getModernYScreenPercentage, getSixtiesYScreenPercentage, onlyShowOneDecimalPlaceIfLessThan10 } from "$data/data-utils";
+    import { displayLoveSongPercentage, getModernYScreenPercentage, getSixtiesYScreenPercentage, onlyShowOneDecimalPlaceIfLessThan10 } from "$data/data-utils";
     
     import { currentStoryStep } from "$stores/storySteps";
     import { getXPositionForYear, getYPositionForPercentage } from "$stores/canvasPosition";
@@ -42,10 +42,10 @@
 
 {#if $currentStoryStep.showLoveSongChange && $showAggregateSnakeChart}
     <div>
-       <TotalLoveSongPercentageAnnotation topPosition={sixtiesYPos} year="1960s" percentage={onlyShowOneDecimalPlaceIfLessThan10(100 * (1 - sixtiesYScreenPercentage))} isLeftSide={true} />
+       <TotalLoveSongPercentageAnnotation topPosition={sixtiesYPos} year="1960s" percentage={displayLoveSongPercentage(sixtiesYScreenPercentage)} isLeftSide={true} />
         {#each smallLabelYPos as {x, y, decade}, i}
             <LoveSongChangeTinyAnnotation {y} {x} {decade} percentage={onlyShowOneDecimalPlaceIfLessThan10(100 * (1 - $svgCoordsForSnakeChartOutline.find(({x}) => x === decade).y1))}/>
         {/each}
-       <TotalLoveSongPercentageAnnotation topPosition={modernYPos} year="2020s" percentage={onlyShowOneDecimalPlaceIfLessThan10(100 * (1 - modernYScreenPercentage))} />
+       <TotalLoveSongPercentageAnnotation topPosition={modernYPos} year="2020s" percentage={displayLoveSongPercentage(modernYScreenPercentage)} />
     </div>
 {/if}
