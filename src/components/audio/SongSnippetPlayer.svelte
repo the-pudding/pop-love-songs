@@ -5,7 +5,6 @@
 	import PlayAndPauseButton from "./PlayAndPauseButton.svelte";
 
 	export let songName;
-	export let performerNames;
 	export let year;
 	export let loveSongType;
 	export let audioFile;
@@ -17,7 +16,7 @@
 
 	$: playingMe = $playing && $playing.audioFile === audioFile;
 
-	$: ariaLabel = playingMe ? `Pause "${songName}" by ${performerNames} snippet` : `Play "${songName}" by ${performerNames} snippet`;
+	$: ariaLabel = playingMe ? "Pause" : `Play "${songName}"`;
 
 	const onClick = () => {
 		if (playingMe) {

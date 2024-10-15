@@ -22,41 +22,43 @@
 	$: performerNames = formatPerformersForDisplay(
 		getArrayOfPerformers(song)
 	);
+
+	$: areaLabel = `${displaySongName} by ${performerNames} (${Math.floor(rawYear)})${$currentStoryStep.showTotalWeeksInTop10InSongInfo ? `, ${song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10]} weeks in Top 10` : ''}`
 </script>
 
-<div class='song-and-year' style={`transform: scale(${playerFocused ? 1.1 : 1}); text-align: ${rightAlign ? 'right' : 'left'};`}>
-	{#if audioFile && !rightAlign}
-		<SongSnippetPlayer
-			bind:playerFocused
-			songName={song[SONG_DATA_COLUMNS_ENUM.song]}
-			{performerNames}
-			year={song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]}
-			loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]}
-			audioFile={audioFile} 
-		/>
-	{/if}
-	<div class='song-title' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}; text-shadow: ${textShadow(2, 1)};`}>
-		{displaySongName}
+<div aria-label={areaLabel}>
+	<div class='song-and-year' style={`transform: scale(${playerFocused ? 1.05 : 1}); text-align: ${rightAlign ? 'right' : 'left'};`}>
+		{#if audioFile && !rightAlign}
+			<SongSnippetPlayer
+				bind:playerFocused
+				songName={song[SONG_DATA_COLUMNS_ENUM.song]}
+				year={song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]}
+				loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]}
+				audioFile={audioFile}
+			/>
+		{/if}
+		<div aria-hidden="true" class='song-title' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}; text-shadow: ${textShadow(2, 1)};`}>
+			{displaySongName}
+		</div>
+		{#if audioFile && rightAlign}
+			<SongSnippetPlayer
+				bind:playerFocused
+				songName={song[SONG_DATA_COLUMNS_ENUM.song]}
+				year={song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]}
+				loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]}
+				audioFile={audioFile} 
+			/>
+		{/if}
 	</div>
-	{#if audioFile && rightAlign}
-		<SongSnippetPlayer
-			bind:playerFocused
-			songName={song[SONG_DATA_COLUMNS_ENUM.song]}
-			{performerNames}
-			year={song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]}
-			loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]}
-			audioFile={audioFile} 
-		/>
+	<div aria-hidden="true" class="performer" style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '14px' : '16px'}; text-shadow: ${textShadow(1, 0.5)}; text-align: ${rightAlign ? 'right' : 'left'};`}>
+		<span>{performerNames}</span> (<span class='year'>{year}</span>)
+	</div>
+	{#if $currentStoryStep.showTotalWeeksInTop10InSongInfo}
+		<div aria-hidden="true" class='weeks-in-top-10' style={`text-shadow: ${textShadow(1, 0.5)}; text-align: ${rightAlign ? 'right' : 'left'};`}>
+			<b>{song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10]}</b> weeks in Top 10
+		</div>
 	{/if}
 </div>
-<div class="performer" style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '14px' : '16px'}; text-shadow: ${textShadow(1, 0.5)}; text-align: ${rightAlign ? 'right' : 'left'};`}>
-	<span>{performerNames}</span> (<span class='year'>{year}</span>)
-</div>
-{#if $currentStoryStep.showTotalWeeksInTop10InSongInfo}
-	<div class='weeks-in-top-10' style={`text-shadow: ${textShadow(1, 0.5)}; text-align: ${rightAlign ? 'right' : 'left'};`}>
-		<b>{song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10]}</b> weeks in Top 10
-	</div>
-{/if}
 
 <style>
 	div {
