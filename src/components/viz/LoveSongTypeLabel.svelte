@@ -25,6 +25,8 @@
 			}
 		});
 	}
+	$: _ariaLabel = `${isTreatedAsNonLoveSong ? 'Add back' : 'Remove'} "${LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}" ${isTreatedAsNonLoveSong ? 'to' : 'from'} love song categories`
+	$: ariaLabel = $isEndingSandboxStep ? _ariaLabel : ''
 </script>
 
 <button
@@ -38,7 +40,7 @@
 	style:font-weight={fontWeight}
 	style:text-shadow={textShadow}
 >
-	<div class="label">{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}</div>
+	<div class="label" aria-hidden={!$isEndingSandboxStep} aria-label={ariaLabel}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}</div>
 	{#if $isEndingSandboxStep}
 		<XandAddButton
 			rotateIntoPlusSign={isTreatedAsNonLoveSong}
