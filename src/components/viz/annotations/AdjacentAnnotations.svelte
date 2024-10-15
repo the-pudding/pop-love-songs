@@ -49,5 +49,8 @@
         /* Both attempts to get (mostly just WAP) not to become a tower of wrapped text */
         /* white-space: nowrap; */
         min-width: 100px;
+
+        pointer-events: none;
+		user-select: none;
     }
 </style>

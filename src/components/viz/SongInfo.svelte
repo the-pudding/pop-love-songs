@@ -63,7 +63,6 @@
 <style>
 	div {
 		font-family: var(--sans);
-		pointer-events: none;
 	}
 
 	.song-title {
