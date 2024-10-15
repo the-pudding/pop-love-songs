@@ -151,7 +151,7 @@
 <div style={backgroundGradientStyle}>
     <div bind:this={container} class={`container ${$currentStoryStepIndex === 0 ? 'fade-in' : ''}`} style={containerStyle}>
         {#if !!$currentStoryStep.text}
-            <h1 class="story-text" style={storyTextStyle}>
+            <h1 class="story-text" style={storyTextStyle} aria-live="assertive">
                 <!-- For styling of love song type spans within the text, see app.css -->
                 <!-- Note: this wonky custom left-padding corrects for a visual fluke wherein left-justified text appears off center.  -->
                 <div style:padding-left={!$viewport.isLikelyInMobileLandscape && $currentStoryStepIndex === 0 ? '42px' : '8px'}>

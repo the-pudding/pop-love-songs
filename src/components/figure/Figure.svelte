@@ -7,7 +7,7 @@
 {#if !$currentStoryStep.hideViz}
 	<figure>
 		<slot />
-		<figcaption class="sr-only" aria-live="polite">
+		<figcaption class="sr-only">
 			{$figCaption}
 		</figcaption>
 	</figure>

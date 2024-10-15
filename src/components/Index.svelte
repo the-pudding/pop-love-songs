@@ -40,6 +40,8 @@
 {/if}
 
 <article>
+	<StoryStepNavigationAndText />
+	
 	{#if $showSearchBars}
 		<InteractivityControlsAndFilters />
 	{/if}
@@ -60,7 +62,6 @@
 		{/if}
 	{/if}
 
-	<StoryStepNavigationAndText />
 	<Annotations />
 	<SongTooltip />
 
