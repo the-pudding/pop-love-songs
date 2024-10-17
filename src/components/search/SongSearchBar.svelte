@@ -21,14 +21,24 @@
         $songSearchString = "";
     }
 
-    $: handleResultPreviewed = ({ song, songIndex }) => {
-        $previewedSong = { song, songIndex };
+    $: handleResultPreviewed = (result = {}) => {
+        const { song, songIndex } = result;
+        if (!song) {
+            $previewedSong = {};
+        } else {
+            $previewedSong = { song, songIndex };
+        }
+        
     }
 
     $: handleInputFocused = () => {
         $selectedSong = {};
         $previewedSong = {};
         $songSearchString = "";
+    }
+
+    $: handleClearSelection = () => {
+        $selectedSong = {};
     }
 
     $: getPlaceholder = () => {
@@ -47,7 +57,7 @@
     placeholder={getPlaceholder()}
     bind:searchString={$songSearchString}
     {searchResults}
-    clearSelection={() => $selectedSong = {}}
+    clearSelection={handleClearSelection}
     onResultSelected={handleSelectedSong}
     onResultPreviewed={handleResultPreviewed}
     onInputFocused={handleInputFocused}

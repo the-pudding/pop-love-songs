@@ -36,8 +36,13 @@
         $performerSearchString = "";
     }
 
-    $: handlePreviewedPerformer = ({name}) => {
-        $previewedPerformer = name;
+    $: handlePreviewedPerformer = (result = {}) => {
+        const { name } = result;
+        if (!name) {
+            $previewedPerformer = "";
+        } else {
+            $previewedPerformer = name;
+        }
     }
 
     $: handleInputFocused = () => {

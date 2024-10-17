@@ -123,6 +123,7 @@
                             bind:this={resultDOMElements[index]}
                             on:mousedown={() => handleResultSelected(result)}
                             on:mouseenter={() => onResultPreviewed(result)}
+                            on:mouseleave={() => onResultPreviewed()}
                         >
                             {#if renderComponent}
                                 <svelte:component this={renderComponent} {result} />
