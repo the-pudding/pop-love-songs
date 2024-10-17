@@ -11,6 +11,8 @@
     export let onInputBlurred = () => {};
     export let hasSelection = false;
 
+    let ariaLabel = "";
+
     const MAX_RESULTS = 50; // TODO: I could just use virtualization here
     $: searchResultsSubsetToRender = searchResults.slice(0, MAX_RESULTS);
 
@@ -118,7 +120,8 @@
                     {#each searchResultsSubsetToRender as result, index}
                         <li 
                             role="option"
-                            aria-selected={selectedIndex === index} 
+                            aria-label={ariaLabel}
+                            aria-selected={selectedIndex === index}
                             class:selected={selectedIndex === index}
                             bind:this={resultDOMElements[index]}
                             on:mousedown={() => handleResultSelected(result)}
@@ -126,7 +129,7 @@
                             on:mouseleave={() => onResultPreviewed()}
                         >
                             {#if renderComponent}
-                                <svelte:component this={renderComponent} {result} />
+                                <svelte:component this={renderComponent} bind:ariaLabel {result} />
                             {:else}
                                 {result}
                             {/if}
