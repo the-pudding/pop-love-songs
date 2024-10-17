@@ -21,13 +21,14 @@
 	// TODO: probably we'll want to to do something more like place different content if bubble chart is hidden
 	$: visible = x !== undefined && y !== undefined && song.length > 0 && !$showAggregateSnakeChart;
 
-	$: xOffset = 12;
-	$: yOffset = 12;
+	const xOffset = 12;
+	const yOffset = 12;
+	$: rightAlign = x > $viewport.width / 2;
 	$: tooltipPosition = {
 		top: $viewport.height / 2 > y ? `${y + yOffset}px` : 'auto',
 		bottom: $viewport.height / 2 > y ? 'auto' : `${$viewport.height - y + yOffset}px`,
-		left: $viewport.width / 2 > x ? `${x + xOffset}px` : 'auto',
-		right: $viewport.width / 2 > x ? 'auto' : `${$viewport.width - x + xOffset}px`,
+		left: rightAlign ? 'auto' : `${x + xOffset}px`,
+		right: rightAlign ? `${$viewport.width - x + xOffset}px` : 'auto',
 	};
 
 	// When a step changes, you don't want to keep showing the tooltip from the previous step.
@@ -50,7 +51,7 @@
 			role="tooltip"
 			style={`top: ${tooltipPosition.top}; bottom: ${tooltipPosition.bottom}; left: ${tooltipPosition.left}; right: ${tooltipPosition.right}; transform: ${tooltipPosition.transform};`}
 		>
-			<SongInfo {song} />
+			<SongInfo {song} {rightAlign} />
 		</div>
 
 		<BubbleOutline {circleX} {circleY} {circleRadius} />

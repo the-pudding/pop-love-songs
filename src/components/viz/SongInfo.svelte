@@ -55,7 +55,7 @@
 		<span>{performerNames}</span> (<span class='year'>{year}</span>)
 	</div>
 	{#if $isEndingSandboxStep}
-		<div aria-hidden="true" class='love-song-type' style={`text-shadow: ${textShadow(1, 0.5)};`}>
+		<div aria-hidden="true" class='love-song-type' style:justify-content={`${rightAlign ? 'flex-end' : 'flex-start'}`}>
 			<LoveSongTypePill loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} />
 		</div>
 	{/if}
@@ -80,5 +80,9 @@
 
 	.year, .performer, .weeks-in-top-10 {
 		font-weight: 400;
+	}
+
+	.love-song-type {
+		display: flex;
 	}
 </style>
