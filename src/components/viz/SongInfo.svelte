@@ -5,9 +5,10 @@
 	import { abbreviateYearForDisplay, formatPerformersForDisplay, formatSongTitleForDisplay, formatYearForDisplay, getArrayOfPerformers } from "$data/data-utils";
 	import { textShadow } from "$utils/styling";
 	import viewport from "$stores/viewport";
-	import { currentStoryStep } from "$stores/storySteps";
+	import { currentStoryStep, isEndingSandboxStep } from "$stores/storySteps";
 
 	import SongSnippetPlayer from "../audio/SongSnippetPlayer.svelte";
+	import LoveSongTypePill from "$components/search/LoveSongTypePill.svelte";
 	
 	export let song;
 	export let alternateTitle = '';
@@ -53,6 +54,11 @@
 	<div aria-hidden="true" class="performer" style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '14px' : '16px'}; text-shadow: ${textShadow(1, 0.5)}; text-align: ${rightAlign ? 'right' : 'left'};`}>
 		<span>{performerNames}</span> (<span class='year'>{year}</span>)
 	</div>
+	{#if $isEndingSandboxStep}
+		<div aria-hidden="true" class='love-song-type' style={`text-shadow: ${textShadow(1, 0.5)};`}>
+			<LoveSongTypePill loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]} />
+		</div>
+	{/if}
 	{#if $currentStoryStep.showTotalWeeksInTop10InSongInfo}
 		<div aria-hidden="true" class='weeks-in-top-10' style={`text-shadow: ${textShadow(1, 0.5)}; text-align: ${rightAlign ? 'right' : 'left'};`}>
 			<b>{song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10]}</b> weeks in Top 10
