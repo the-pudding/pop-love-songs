@@ -46,7 +46,8 @@
             const songName = $selectedSong.song[SONG_DATA_COLUMNS_ENUM.song];
             return songName
         } else if ($selectedPerformers.length > 0) {
-            return `Songs by ${$selectedPerformers[0]}:`;
+            const songCount = $selectedSongsData.length;
+            return `${songCount} song${songCount > 1 ? 's' : ''} with ${$selectedPerformers[0]}:`;
         } else {
             return "Highlight songs...";
         }
