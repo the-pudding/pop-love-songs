@@ -28,7 +28,7 @@
 </script>
 
 <div aria-label={areaLabel}>
-	<div class='song-and-player-wrapper' style={`transform: scale(${playerFocused ? 1.05 : 1}); text-align: ${rightAlign ? 'right' : 'left'};`}>
+	<div aria-hidden="true" class='song-and-player-wrapper' style={`transform: scale(${playerFocused ? 1.05 : 1}); text-align: ${rightAlign ? 'right' : 'left'};`}>
 		{#if audioFile && !rightAlign}
 			<SongSnippetPlayer
 				bind:playerFocused
