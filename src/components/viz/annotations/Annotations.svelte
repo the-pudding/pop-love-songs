@@ -30,11 +30,13 @@
 
 {#if $showAnnotations && show}
     <!-- For reasons I can't fully guess, having an out:fade as well breaks this, causing children to remain across transitions -->
-    <div class="annotations" in:fade={inFadeSettings}>
+    <!-- Using <ol /> because the annotations are always listed in sorted order from earliest to latest -->
+    <ol aria-label="Example songs" class="annotations" in:fade={inFadeSettings}>
         <OffsetAnnotations />
         <AdjacentAnnotations />
+
         <AnnotatedBubbleOverlay />
-    </div>
+    </ol>
 {/if}
 
 <SelectedPerformerAnnotations />

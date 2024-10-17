@@ -35,7 +35,7 @@
 </script>
 
 {#each layoutData as {bubbleX, textY, song, xTranslation, elbowX, alternateTitle, audioFile}}
-    <div
+    <li
         id={song[SONG_DATA_COLUMNS_ENUM.song]}
         class="annotation-wrapper"
         role="tooltip"
@@ -43,7 +43,7 @@
         style={`top: ${textY}px; left: ${elbowX || bubbleX}px; transform: translateX(${xTranslation}%) translateY(-${'100'}%);`}
     >
         <SongInfo song={song} alternateTitle={alternateTitle} audioFile={audioFile} />
-    </div>
+    </li>
 {/each}
 
 <!-- For each layoutData, use html to draw a line extending from bubbleX/Y up to textY with thickness 3 pixels -->
@@ -66,11 +66,15 @@
 {/each}
 
 <style>
-    div {
+    div, li {
         position: absolute;
         z-index: 10000;
         /* This is mostly so the very long performer names + year don't wrap */
         white-space: nowrap;
+    }
+
+    li {
+        list-style-type: none;
     }
 
     div.annotation-line {

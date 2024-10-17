@@ -27,20 +27,20 @@
 </script>
 
 {#each layoutData as {xPos, yPos, song, rightAlign, alternateTitle, audioFile}}
-    <div
+    <li
         id={song[SONG_DATA_COLUMNS_ENUM.song].replaceAll(' ', '-')}
         class="annotation-wrapper"
         role="tooltip"
         style={`top: ${yPos}px; left: ${xPos}px; ${rightAlign ? 'transform: translateX(-100%);' : ''}`}
     >
         <SongInfo {song} {alternateTitle} {audioFile} {rightAlign} />
-    </div>
+    </li>
 {/each}
 
 
 
 <style>
-	div.annotation-wrapper {
+	.annotation-wrapper {
 		z-index: 10000;
 		position: absolute;
 		max-height: 300px;
@@ -52,5 +52,9 @@
 
         pointer-events: none;
 		user-select: none;
+    }
+
+    li {
+        list-style-type: none;
     }
 </style>
