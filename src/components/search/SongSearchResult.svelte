@@ -1,6 +1,5 @@
 <script>
-	import SongInfo from "$components/viz/SongInfo.svelte";
-import { songSearchString } from "$stores/searchAndFilter";
+    import { songSearchString } from "$stores/searchAndFilter";
 	import { isEndingSandboxStep } from "$stores/storySteps";
 	import LoveSongTypePill from "./LoveSongTypePill.svelte";
 	import SearchResultText from "./SearchResultText.svelte";

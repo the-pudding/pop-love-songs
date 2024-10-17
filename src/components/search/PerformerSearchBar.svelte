@@ -62,6 +62,11 @@
         $performerSearchString = "";
     }
 
+    $: handleInputBlurred = () => {
+        $previewedPerformer = "";
+        $performerSearchString = "";
+    }
+
     $: placeholder = $selectedPerformers[0] || "Highlight performers...";
 </script>
 
@@ -73,7 +78,7 @@
     onResultSelected={handleSelectedPerformer}
     onResultPreviewed={handlePreviewedPerformer}
     onInputFocused={handleInputFocused}
-    onInputBlurred={() => $previewedPerformer = ""}
+    onInputBlurred={handleInputBlurred}
     renderComponent={PerformerSearchResult}
     hasSelection={$selectedPerformers.length > 0}
 />
