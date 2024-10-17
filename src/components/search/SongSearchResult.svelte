@@ -1,5 +1,6 @@
 <script>
-	import { songSearchString } from "$stores/searchAndFilter";
+	import SongInfo from "$components/viz/SongInfo.svelte";
+import { songSearchString } from "$stores/searchAndFilter";
 	import { isEndingSandboxStep } from "$stores/storySteps";
 	import LoveSongTypePill from "./LoveSongTypePill.svelte";
 	import SearchResultText from "./SearchResultText.svelte";
@@ -14,6 +15,7 @@
         </h2>
         <span class="year">{result.year}</span>
     </div>
+    <div class="performer">{result.performerNames}</div>
     {#if $isEndingSandboxStep}
         <LoveSongTypePill loveSongType={result.loveSongType} />
     {/if}

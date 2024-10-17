@@ -1,6 +1,6 @@
 <script>
     import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
-    import { formatYearForDisplay } from "$data/data-utils";
+    import { formatPerformersForDisplay, formatYearForDisplay, getArrayOfPerformers } from "$data/data-utils";
     import { selectedSongsData } from "$stores/dataDerivations";
     import { selectedPerformers, previewedSong, selectedSong, songSearchString } from "$stores/searchAndFilter";
 
@@ -11,6 +11,9 @@
         song,
         songIndex,
         songName: song[SONG_DATA_COLUMNS_ENUM.song],
+        performerNames: formatPerformersForDisplay(
+            getArrayOfPerformers(song)
+        ),
         year: formatYearForDisplay(song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]),
         loveSongType: song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
         total_weeks_in_top_10: song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10]
