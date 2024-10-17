@@ -40,6 +40,9 @@
 {/if}
 
 <article>
+	{#if $currentStoryStep.showOpeningComment}
+			<OpeningComment />
+	{/if}
 	<StoryStepNavigationAndText />
 	
 	{#if $showSearchBars}
@@ -53,8 +56,6 @@
 			
 		{#if $currentStoryStep.showHeadlinesAboutLoveSongDecline}
 			<HeadlinesAboutLoveSongDecline />
-		{:else if $currentStoryStep.showOpeningComment}
-			<OpeningComment />
 		{:else if $currentStoryStep.showTitleCard}
 			<TitleCard />
 		{:else if $currentStoryStep.showFooter}
