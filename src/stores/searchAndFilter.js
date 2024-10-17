@@ -30,8 +30,8 @@ export const typesTreatedAsNonLoveSongs = writable([]);
 export const showAggregateSnakeChart = writable(false);
 
 export const showAnnotations = derived(
-	[aSearchFilterExists, aSearchBarIsFocused],
-	([$aSearchFilterExists, $aSearchBarIsFocused]) => {
-		return !$aSearchBarIsFocused && !$aSearchFilterExists;
+	[aSearchFilterExists],
+	([$aSearchFilterExists]) => {
+		return !$aSearchFilterExists;
 	}
 );

@@ -34,7 +34,8 @@
             style:top={`${$aSingleLoveSongTypeIsSpotlighted ? topOfDashedLine : belowSnakeChart}px`}
             style:height={`${$aSingleLoveSongTypeIsSpotlighted ? yHeight : 0}px`}
         />
-        <div 
+        <div
+            aria-hidden="true"
             class="tick" 
             style="left: {x}px;" 
             style:top={`${$aSingleLoveSongTypeIsSpotlighted ? yBottomOfDashedLine : belowSnakeChart}px`}
