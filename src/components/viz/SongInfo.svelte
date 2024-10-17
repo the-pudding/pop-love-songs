@@ -27,7 +27,7 @@
 </script>
 
 <div aria-label={areaLabel}>
-	<div class='song-and-year' style={`transform: scale(${playerFocused ? 1.05 : 1}); text-align: ${rightAlign ? 'right' : 'left'};`}>
+	<div class='song-and-player-wrapper' style={`transform: scale(${playerFocused ? 1.05 : 1}); text-align: ${rightAlign ? 'right' : 'left'};`}>
 		{#if audioFile && !rightAlign}
 			<SongSnippetPlayer
 				bind:playerFocused
@@ -69,10 +69,7 @@
 		display: inline-block;
 		font-weight: bold;
 		text-transform: uppercase;
-	}
-	
-	.performer, .song-and-year {
-		white-space: nowrap;
+		max-width: 45vw;
 	}
 
 	.year, .performer, .weeks-in-top-10 {

@@ -62,5 +62,7 @@
 		position: absolute;
 		padding: 0.5rem;
 		z-index: 100000;
+
+		pointer-events: none;
 	}
 </style>

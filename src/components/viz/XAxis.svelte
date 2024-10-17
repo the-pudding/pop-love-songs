@@ -54,6 +54,8 @@
 
         font-family: var(--sans);
         font-weight: bold;
+
+        pointer-events: none;
     }
 
     .tick {
