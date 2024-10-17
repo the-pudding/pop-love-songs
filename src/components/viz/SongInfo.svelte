@@ -24,14 +24,16 @@
 		getArrayOfPerformers(song)
 	);
 
-	$: areaLabel = `${displaySongName} by ${performerNames} (${Math.floor(rawYear)})${$currentStoryStep.showTotalWeeksInTop10InSongInfo ? `, ${song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10]} weeks in Top 10` : ''}`
+	$: ariaLabel = `"${displaySongName}" by ${performerNames} (released ${Math.floor(rawYear)})${$currentStoryStep.showTotalWeeksInTop10InSongInfo ? `, ${song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10]} weeks in Top 10` : ''}`
 </script>
 
-<div aria-label={areaLabel}>
-	<div aria-hidden="true" class='song-and-player-wrapper' style={`transform: scale(${playerFocused ? 1.05 : 1}); text-align: ${rightAlign ? 'right' : 'left'};`}>
+<!-- For more efficient screen reading UX, we hve the audio player (when it exists) provide the aria-label, rather than having to land first on the parent with the aria-label, then descend to the button -->
+<div aria-label={audioFile ? '' : ariaLabel}>
+	<div class='song-and-player-wrapper' style={`transform: scale(${playerFocused ? 1.05 : 1}); text-align: ${rightAlign ? 'right' : 'left'};`}>
 		{#if audioFile && !rightAlign}
 			<SongSnippetPlayer
 				bind:playerFocused
+				{ariaLabel}
 				songName={song[SONG_DATA_COLUMNS_ENUM.song]}
 				year={song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]}
 				loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]}
@@ -44,6 +46,7 @@
 		{#if audioFile && rightAlign}
 			<SongSnippetPlayer
 				bind:playerFocused
+				{ariaLabel}
 				songName={song[SONG_DATA_COLUMNS_ENUM.song]}
 				year={song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]}
 				loveSongType={song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type]}

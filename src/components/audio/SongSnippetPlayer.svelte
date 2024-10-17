@@ -4,6 +4,7 @@
 
 	import PlayAndPauseButton from "./PlayAndPauseButton.svelte";
 
+	export let ariaLabel;
 	export let songName;
 	export let year;
 	export let loveSongType;
@@ -16,7 +17,7 @@
 
 	$: playingMe = $playing && $playing.audioFile === audioFile;
 
-	$: ariaLabel = playingMe ? "Pause" : `Play "${songName}"`;
+	$: ariaLabelWithAudioInstructions = playingMe ? "Pause" : `Play sample of ${ariaLabel}`;
 
 	const onClick = () => {
 		if (playingMe) {
@@ -28,7 +29,7 @@
 	};
 </script>
 
-<button aria-label={ariaLabel} on:focus={() => playerFocused = true} on:blur={() => playerFocused = false} on:click={onClick} style:background={backgroundColor}>
+<button aria-label={ariaLabelWithAudioInstructions} on:focus={() => playerFocused = true} on:blur={() => playerFocused = false} on:click={onClick} style:background={backgroundColor}>
 	<PlayAndPauseButton {fillColor} showPauseIcon={playingMe} />
 </button>
 
