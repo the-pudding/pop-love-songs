@@ -30,7 +30,6 @@
     <li
         id={song[SONG_DATA_COLUMNS_ENUM.song].replaceAll(' ', '-')}
         class="annotation-wrapper"
-        role="tooltip"
         style={`top: ${yPos}px; left: ${xPos}px; ${rightAlign ? 'transform: translateX(-100%);' : ''}`}
     >
         <SongInfo {song} {alternateTitle} {audioFile} {rightAlign} />
