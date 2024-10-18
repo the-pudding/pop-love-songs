@@ -1,6 +1,8 @@
 <script>
     import { aSearchBarIsFocused } from "$stores/searchAndFilter";
     export let placeholder = "Search...";
+    export let inputAriaLabel = "Search and select a result...";
+    export let dropdownAriaLabel = "Search results";
     export let searchString = "";
     export let searchResults = [];
     export let renderComponent = null;
@@ -98,6 +100,7 @@
 <div class="search-container">
     <input 
         type="text" 
+        aria-label={inputAriaLabel}
         placeholder={placeholder} 
         bind:value={searchString} 
         on:focus={handleFocus} 
@@ -114,7 +117,7 @@
                     Couldn't find anything. Try thinking more <i>mainstream</i>...
                 </div>
             {:else}
-                <ul role="listbox" class="dropdown">
+                <ul role="listbox" class="dropdown" aria-label={dropdownAriaLabel}>
                     {#each searchResultsSubsetToRender as result, index}
                         <li 
                             role="option"

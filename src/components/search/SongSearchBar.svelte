@@ -59,7 +59,7 @@
         $selectedSong = {};
     }
 
-    $: getPlaceholder = () => {
+    $: getPlaceholder = (forAriaLabel = false) => {
         if ($selectedSong.song) {
             const songName = $selectedSong.song[SONG_DATA_COLUMNS_ENUM.song];
             return songName
@@ -67,15 +67,19 @@
             const songCount = $selectedSongsData.length;
             return `${songCount} song${songCount > 1 ? 's' : ''} with ${$selectedPerformers[0]}:`;
         } else {
-            return "Highlight songs...";
+            return `${forAriaLabel ? 'Search' : 'Highlight'} songs...`;
         }
     }
+
+    $: inputAriaLabel = getPlaceholder(true);
 </script>
 
 <SearchBarAndDropdown
     placeholder={getPlaceholder()}
     bind:searchString={$songSearchString}
     {searchResults}
+    inputAriaLabel={inputAriaLabel}
+    dropdownAriaLabel={"Song search results, sorted by total weeks in the Billboard Top 10"}
     clearSelection={handleClearSelection}
     onResultSelected={handleSelectedSong}
     onResultPreviewed={handleResultPreviewed}

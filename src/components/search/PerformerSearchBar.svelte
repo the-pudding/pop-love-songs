@@ -82,6 +82,8 @@
     {placeholder}
     bind:searchString={$performerSearchString}
     {searchResults}
+    inputAriaLabel={"Search and select a performer. Once selected, you can explore all songs they're credited on in the adjacent songs dropdown"}
+    dropdownAriaLabel={"Performer search results, sorted by total song credits"}
     clearSelection={handleClearingSelection}
     onResultSelected={handleSelectedPerformer}
     onResultPreviewed={handlePreviewedPerformer}
