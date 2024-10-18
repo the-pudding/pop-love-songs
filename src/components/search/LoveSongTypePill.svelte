@@ -5,18 +5,18 @@
 
     export let loveSongType;
 
-    $: userRejected = $isEndingSandboxStep && $typesTreatedAsNonLoveSongs.includes(+loveSongType);
+    $: userRejectedType = $isEndingSandboxStep && $typesTreatedAsNonLoveSongs.includes(+loveSongType);
 </script>
 
 <span class="love-song-type"
     style:background-color={LOVE_SONG_TYPE_COLOR_MAP[loveSongType]}
     style:color={ACCESSIBLY_CONTRASTING_COLOR_MAP[loveSongType]}
-    style:text-decoration={userRejected ? 'line-through' : 'none'}
+    style:text-decoration={userRejectedType ? 'line-through' : 'none'}
 >
     {LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}
 </span>
 
-{#if userRejected}
+{#if userRejectedType}
     <span class="love-song-type"
         style:background-color={LOVE_SONG_TYPE_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]}
         style:color={ACCESSIBLY_CONTRASTING_COLOR_MAP[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]}
