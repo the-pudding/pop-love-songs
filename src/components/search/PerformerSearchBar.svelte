@@ -24,11 +24,19 @@
         return acc;
     }, {});
 
+    const getAriaLabel = ({name, totalSongCount}) => `${name} has ${totalSongCount} song credit${totalSongCount !== 1 ? 's' : ''}`
+
+    // OPTIMIZATION: we could sort first, then compute properties only for the first N. Trivial boost?
     $: searchResults = Object.entries(performerSongCountMap).map(([name, songCountByLoveSongType]) => ({
         name,
         songCountByLoveSongType,
         totalSongCount: Object.values(songCountByLoveSongType).reduce((acc, count) => acc + count, 0)
-    })).sort((a, b) => b.totalSongCount - a.totalSongCount);
+    }))
+    .sort((a, b) => b.totalSongCount - a.totalSongCount)
+    .map(result => ({
+        ...result, 
+        ariaLabel: getAriaLabel(result)
+    }))
 
     $: handleSelectedPerformer = ({name}) => {
         $selectedPerformers = [name];

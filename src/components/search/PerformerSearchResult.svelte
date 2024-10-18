@@ -12,8 +12,7 @@
     $: totalSongCount = result.totalSongCount;
 </script>
 
-<div class="performer-search-result">
-        <!-- @michelle: what is the best html tags to use here? like is it better to wrap the name (primary info) in an h2 vs a div? -->
+<div class="performer-search-result" aria-hidden="true">
         <div class="top-row">
             <h2>
                 <SearchResultText fullText={name} query={$performerSearchString} />
