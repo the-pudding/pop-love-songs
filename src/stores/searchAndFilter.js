@@ -23,6 +23,14 @@ export const aSearchFilterExists = derived(
 		);
 	}
 );
+
+const aPreviewExists = derived(
+	[previewedSong, previewedPerformer],
+	([$previewedSong, $previewedPerformer]) => {
+		return $previewedSong.song || $previewedPerformer;
+	}
+);
+
 export const aSearchBarIsFocused = writable(false);
 
 export const typesTreatedAsNonLoveSongs = writable([]);
@@ -30,8 +38,8 @@ export const typesTreatedAsNonLoveSongs = writable([]);
 export const showAggregateSnakeChart = writable(false);
 
 export const showAnnotations = derived(
-	[aSearchFilterExists],
-	([$aSearchFilterExists]) => {
-		return !$aSearchFilterExists;
+	[aSearchFilterExists, aPreviewExists],
+	([$aSearchFilterExists, $aPreviewExists]) => {
+		return !$aSearchFilterExists && !$aPreviewExists;
 	}
 );
