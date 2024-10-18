@@ -5,10 +5,6 @@
 	import SearchResultText from "./SearchResultText.svelte";
 
     export let result;
-    export let ariaLabel;
-
-    $: loveSongTypeDescription = 'TODO';
-    $: ariaLabel = `"${result.songName}" by ${result.performerNames} of category ${loveSongTypeDescription} (released ${result.year})`;
 </script>
 
 <div class="search-result" aria-hidden="true">
