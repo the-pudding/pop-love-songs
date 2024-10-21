@@ -1,6 +1,7 @@
 <script>
 	import { currentStoryStep } from "$stores/storySteps";
 	import viewport from "$stores/viewport";
+    import { loveSongDecadeChangeAriaLabel } from "$data/data-utils";
 
     export let x = 0;
     export let y = 0;
@@ -12,9 +13,9 @@
 </script>
 
 {#if !$viewport.isLikelyInMobileLandscape && !$currentStoryStep.isFinalComparisonStep}
-    <div class="container" style={style} aria-label={`In the ${`${decade}s`}, love songs made up ${percentage}% of all songs.`}>
-        {percentage}%
-    </div>   
+    <li class="container" style={style} aria-label={loveSongDecadeChangeAriaLabel(decade, percentage)}>
+        <span aria-hidden="true">{percentage}%</span>
+    </li>   
 {/if}
 
 <style>
@@ -24,5 +25,7 @@
 
         font-family: 'Atlas Grotesk', sans-serif;
         font-size: 12px;
+
+        list-style-type: none;
     }
 </style>

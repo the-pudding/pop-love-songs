@@ -43,6 +43,9 @@ export const abbreviateYearForDisplay = (year) => {
 export const formatSongTitleForDisplay = (title = "") =>
 	title.split("(")[0].trim().split("/")[0].trim(); // songs get super long when they're like "San Francisco (Be Sure to Wear Flowers in Your Hair)"
 
+export const loveSongDecadeChangeAriaLabel = (decade, percentage) =>
+	`The ${decade}s were ${percentage}% love songs.`;
+
 export const songInAnnotations = (song, songAnnotations) => {
 	const { offsetAnnotations = [], adjacentAnnotations = [] } =
 		songAnnotations || {};

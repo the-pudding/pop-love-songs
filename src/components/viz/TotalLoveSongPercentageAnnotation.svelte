@@ -1,8 +1,9 @@
 <script>
 	import viewport from "$stores/viewport";
+    import { loveSongDecadeChangeAriaLabel } from "$data/data-utils";
 
     export let topPosition = 0;
-    export let year = "";
+    export let decade = "";
     export let percentage = 0;
     export let isLeftSide = false;
 
@@ -10,9 +11,9 @@
     $: style = `top: ${topPosition}px; ${isLeftSide ? "left: 50px;" : "right: 60px;"} text-align: ${isLeftSide ? "left" : "right"}; font-size: ${$viewport.isLikelyInMobileLandscape ? '40px' : '56px'}`;
 </script>
 
-<div class="container" style={style} aria-label={`In ${year}, love songs made up ${percentage}% of all songs.`}>
-    {percentage}%
-</div>   
+<li class="container" style={style} aria-label={loveSongDecadeChangeAriaLabel(decade, percentage)}>
+    <span aria-hidden="true">{percentage}%</span>
+</li>   
 
 <style>
     .container {
@@ -21,5 +22,7 @@
 
         font-family: 'Atlas Grotesk', sans-serif;
         font-weight: bold;
+
+        list-style-type: none;
     }
 </style>

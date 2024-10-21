@@ -38,14 +38,16 @@
             decade
         }
     })
+
+    $: ariaLabel = "Percentage of love song in the Billboard Top 10, by decade"
 </script>
 
 {#if $currentStoryStep.showLoveSongChange && $showAggregateSnakeChart}
-    <div>
-       <TotalLoveSongPercentageAnnotation topPosition={sixtiesYPos} year="1960s" percentage={displayLoveSongPercentage(sixtiesYScreenPercentage)} isLeftSide={true} />
-        {#each smallLabelYPos as {x, y, decade}, i}
+    <ol aria-label={ariaLabel}>
+       <TotalLoveSongPercentageAnnotation topPosition={sixtiesYPos} decade="1960" percentage={displayLoveSongPercentage(sixtiesYScreenPercentage)} isLeftSide={true} />
+        {#each smallLabelYPos as {x, y, decade}}
             <LoveSongChangeTinyAnnotation {y} {x} {decade} percentage={onlyShowOneDecimalPlaceIfLessThan10(100 * (1 - $svgCoordsForSnakeChartOutline.find(({x}) => x === decade).y1))}/>
         {/each}
-       <TotalLoveSongPercentageAnnotation topPosition={modernYPos} year="2020s" percentage={displayLoveSongPercentage(modernYScreenPercentage)} />
-    </div>
+       <TotalLoveSongPercentageAnnotation topPosition={modernYPos} decade="2020" percentage={displayLoveSongPercentage(modernYScreenPercentage)} />
+    </ol>
 {/if}
