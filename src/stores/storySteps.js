@@ -672,9 +672,11 @@ export const storySteps = unprocessedStorySteps.map((step) => ({
 
 export const currentStoryStepIndex = writable(0);
 
+export const TOTAL_STORY_STEPS = storySteps.length;
+
 export const isLastStep = derived(
 	[currentStoryStepIndex],
-	([$currentStoryStepIndex]) => $currentStoryStepIndex === storySteps.length - 1
+	([$currentStoryStepIndex]) => $currentStoryStepIndex === TOTAL_STORY_STEPS - 1
 );
 
 export const currentStoryStep = derived(

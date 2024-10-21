@@ -22,7 +22,7 @@
 		{/if}
 	</div>
 	<div class="sr-only">
-        Click navigation arrows or use the left and right arrows to navigate through the article.
+        Click navigation arrows or use the left and right keyboard arrows to navigate through the article.
     </div>
 {/if}
 

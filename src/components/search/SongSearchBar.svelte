@@ -62,10 +62,10 @@
     $: getPlaceholder = (forAriaLabel = false) => {
         if ($selectedSong.song) {
             const songName = $selectedSong.song[SONG_DATA_COLUMNS_ENUM.song];
-            return songName
+            return forAriaLabel ? `Selected ${songName}` : songName
         } else if ($selectedPerformers.length > 0) {
             const songCount = $selectedSongsData.length;
-            return `${songCount} song${songCount > 1 ? 's' : ''} with ${$selectedPerformers[0]}:`;
+            return `${songCount} song${songCount !== 1 ? 's' : ''} with ${$selectedPerformers[0]}:`;
         } else {
             return `${forAriaLabel ? 'Search' : 'Highlight'} songs...`;
         }

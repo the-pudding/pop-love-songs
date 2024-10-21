@@ -101,6 +101,7 @@
     <input 
         type="text" 
         aria-label={inputAriaLabel}
+        aria-live="assertive"
         placeholder={placeholder} 
         bind:value={searchString} 
         on:focus={handleFocus} 
@@ -114,7 +115,7 @@
         <div class="dropdown-wrapper">
             {#if searchResultsSubsetToRender.length === 0}
                 <div class="no-results">
-                    Couldn't find anything. Try thinking more <i>mainstream</i>...
+                    No search results. Try thinking more <i>mainstream</i>...
                 </div>
             {:else}
                 <ul role="listbox" class="dropdown" aria-label={dropdownAriaLabel}>

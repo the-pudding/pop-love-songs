@@ -75,6 +75,16 @@
         $performerSearchString = "";
     }
 
+    $: hasSelection = $selectedPerformers.length > 0;
+
+    $: getInputAriaLabel = () => {
+        if (hasSelection) {
+            return `Selected ${$selectedPerformers[0]}. Explore their song credits in the adjacent songs dropdown`;
+        } else {
+            return "Search and select a performer. Once selected, you can explore all songs they're credited on in the adjacent songs dropdown";
+        }
+    }
+
     $: placeholder = $selectedPerformers[0] || "Highlight performers...";
 </script>
 
@@ -82,7 +92,7 @@
     {placeholder}
     bind:searchString={$performerSearchString}
     {searchResults}
-    inputAriaLabel={"Search and select a performer. Once selected, you can explore all songs they're credited on in the adjacent songs dropdown"}
+    inputAriaLabel={getInputAriaLabel()}
     dropdownAriaLabel={"Performer search results, sorted by total song credits"}
     clearSelection={handleClearingSelection}
     onResultSelected={handleSelectedPerformer}
@@ -90,5 +100,5 @@
     onInputFocused={handleInputFocused}
     onInputBlurred={handleInputBlurred}
     renderComponent={PerformerSearchResult}
-    hasSelection={$selectedPerformers.length > 0}
+    {hasSelection}
 />

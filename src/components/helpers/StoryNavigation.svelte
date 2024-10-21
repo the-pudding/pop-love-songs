@@ -4,7 +4,7 @@
 	import { createEventDispatcher } from "svelte";
 
 	import viewport from "$stores/viewport";
-	import { currentStoryStepIndex, isLastStep } from "$stores/storySteps";
+	import { currentStoryStepIndex, isLastStep, TOTAL_STORY_STEPS } from "$stores/storySteps";
 	import variables from '$data/variables'
 	
 	import Tap from "./Tap.svelte";
@@ -29,9 +29,10 @@
 
 <!-- @michelle: my "use semantic HTML" game feels week. Do you have an intuition why section was used here? When do you use this tag? -->
 <section class="tapper-overlay" style={`height: ${$viewport.height}px; width: ${$viewport.width}px;`}>
+	<Tap />
 	{#if $currentStoryStepIndex !== 0}
 		<button
-			aria-label="Previous step"
+			aria-label={`Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_STEPS}`}
 			class="left-hint"
 			on:click={() => dispatch("tap", "left")}
 		>
@@ -46,7 +47,7 @@
 	{/if}
 	{#if !$isLastStep}
 		<button
-			aria-label="Next step"
+			aria-label={`Advance to step ${$currentStoryStepIndex + 2} of ${TOTAL_STORY_STEPS}`}
 			class="right-hint"
 			class:bounceHint={$currentStoryStepIndex == 0}
 			on:click={() => dispatch("tap", "right")}
@@ -60,7 +61,6 @@
 			/>
 		</button>
 	{/if}
-	<Tap />
 </section>
 
 <style>
