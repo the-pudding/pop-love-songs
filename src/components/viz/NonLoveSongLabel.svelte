@@ -18,7 +18,7 @@
     `;
 </script>
 
-<div class:visible={visible} {style}>
+<div class:visible={visible} {style} aria-hidden="true">
     NON-LOVE SONGS{$isEndingSandboxStep && !!$typesTreatedAsNonLoveSongs.length ? ":" : ""}
 </div>
 

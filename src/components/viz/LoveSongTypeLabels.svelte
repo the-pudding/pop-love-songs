@@ -89,11 +89,15 @@
 
 	$: bubbleViewOnLastStep = $isEndingSandboxStep && !$showAggregateSnakeChart;
 	$: show = $currentStoryStep.showXAxis && !$currentStoryStep.isFinalComparisonStep && !$aSingleLoveSongTypeIsSpotlighted && !bubbleViewOnLastStep;
+
+	const ariaLabel = `Love song categories, click each to remove or add it from the love song categories.`;
 </script>
 
 {#if show}
 	<NonLoveSongLabel />
-	{#each labelMetadata as { loveSongType, x, y, translate, visibility, fontSize, fontWeight, textShadow }}
-		<LoveSongTypeLabel {loveSongType} {x} {y} {translate} {visibility} {fontSize} {fontWeight} {textShadow} />
-	{/each}	
+	<ul aria-label={ariaLabel} aria-hidden={$isEndingSandboxStep ? "false" : "true"}>
+		{#each labelMetadata as { loveSongType, x, y, translate, visibility, fontSize, fontWeight, textShadow }}
+			<LoveSongTypeLabel {loveSongType} {x} {y} {translate} {visibility} {fontSize} {fontWeight} {textShadow} />
+		{/each}
+	</ul>
 {/if}

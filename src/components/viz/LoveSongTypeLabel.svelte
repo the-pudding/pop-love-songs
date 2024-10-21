@@ -27,12 +27,22 @@
 	}
 	$: _ariaLabel = `${isTreatedAsNonLoveSong ? 'Add back' : 'Remove'} "${LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}" ${isTreatedAsNonLoveSong ? 'to' : 'from'} love song categories`
 	$: ariaLabel = $isEndingSandboxStep ? _ariaLabel : ''
+
+	const handleKeyDown = (event) => {
+		if (event.key === 'Enter' || event.key === ' ') {
+			toggleLoveSongStatus(loveSongType)();
+		}
+	};
 </script>
 
-<button
+<!-- Note: this element needs to be a li (since its in a list), and for better screen reader UX we don't want to nest an additional button inside it -->
+<!-- svelte-ignore a11y-no-noninteractive-element-to-interactive-role -->
+<li
+	role="button"
 	tabindex={$isEndingSandboxStep ? 0 : -1}
 	class={$isEndingSandboxStep ? 'allow-toggle' : ''}
 	on:click={toggleLoveSongStatus(loveSongType)}
+	on:keydown={handleKeyDown}
 	style:left={`${x}px`} style:top={`${y}px`}
 	style:transform={translate}
 	style:visibility={visibility}
@@ -40,7 +50,7 @@
 	style:font-weight={fontWeight}
 	style:text-shadow={textShadow}
 >
-	<div class="label" aria-hidden={!$isEndingSandboxStep} aria-label={ariaLabel}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}</div>
+	<div class="label" aria-label={ariaLabel}>{LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[loveSongType]}</div>
 	{#if $isEndingSandboxStep}
 		<XandAddButton
 			rotateIntoPlusSign={isTreatedAsNonLoveSong}
@@ -50,11 +60,10 @@
 			isSelected={isTreatedAsNonLoveSong}
 		/>
 	{/if}
-</button>
+</li>
 
 <style>
-
-	button {
+	li {
 		font-family: 'Atlas Grotesk', sans-serif;
 		position: fixed;
 		display: flex;
@@ -64,17 +73,17 @@
 		background-color: transparent;
 	}
 
-	button:hover, button:focus {
+	li:hover, li:focus {
 		cursor: pointer;
 		border-bottom: 1px solid transparent;
 	}
 
-	button:hover .label,
-	button:focus .label {
+	li:hover .label,
+	li:focus .label {
 		font-weight: bold;
 	}
 
-	button.allow-toggle {
+	li.allow-toggle {
 		pointer-events: all;
 		transition: transform calc(var(--chart-transition-opacity-duration) * 1ms), 
 			left calc(var(--chart-transition-opacity-duration) * 1ms),
