@@ -2,7 +2,7 @@
 	import {onDestroy} from "svelte";
 	import Toggle from "$components/helpers/Toggle.svelte";
 
-	import { aSearchBarIsFocused, performerSearchString, selectedPerformers, selectedSong, showAggregateSnakeChart, songSearchString } from "$stores/searchAndFilter.js";
+	import { aSearchFilterExists, aPreviewExists, performerSearchString, selectedPerformers, selectedSong, showAggregateSnakeChart, songSearchString, previewedSong, previewedPerformer } from "$stores/searchAndFilter.js";
 	import { isEndingSandboxStep } from "$stores/storySteps";
 
 	const CHART_OPTIONS = {
@@ -23,8 +23,10 @@
 		if (localValue === CHART_OPTIONS.snake) {
 			songSearchString.set("");
 			selectedSong.set({});
+			previewedSong.set({});
 			performerSearchString.set("");
-			selectedPerformers.set([]);		
+			selectedPerformers.set([]);	
+			previewedPerformer.set("");	
 		}
 	}
 
@@ -32,7 +34,7 @@
 	// @michelle Is this a random place to put this? Like should this be a derived store or something? What's tricking is that others are writing to showAggregateSnakeChart, too.
 	$: {
 		if ($isEndingSandboxStep && $showAggregateSnakeChart) {
-			if ($aSearchBarIsFocused) {
+			if ($aSearchFilterExists || $aPreviewExists) {
 				showAggregateSnakeChart.set(false);
 			}
 		}

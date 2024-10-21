@@ -24,7 +24,7 @@ export const aSearchFilterExists = derived(
 	}
 );
 
-const aPreviewExists = derived(
+export const aPreviewExists = derived(
 	[previewedSong, previewedPerformer],
 	([$previewedSong, $previewedPerformer]) => {
 		return $previewedSong.song || $previewedPerformer;
