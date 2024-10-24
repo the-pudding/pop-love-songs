@@ -38,7 +38,6 @@
     <li
         id={song[SONG_DATA_COLUMNS_ENUM.song]}
         class="annotation-wrapper"
-        role="tooltip"
         in:fade={{delay: variables.chart['transition-opacity-duration'] / 2, duration: variables.chart['transition-opacity-duration'] / 2 }}
         style={`top: ${textY}px; left: ${elbowX || bubbleX}px; transform: translateX(${xTranslation}%) translateY(-${'100'}%);`}
     >
