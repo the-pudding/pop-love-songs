@@ -1,14 +1,12 @@
 <!-- NOTE: David modified this file so the parent would control state, this just displays it and calls a callback when toggled -->
 <script>
-	export let label;
-	export let style = "inner";
+	export let ariaLabel;
+	export let ariaAnnouncementOnChange;
 	export let options = ["on", "off"];
 	export let value = options[0];
 	export let onToggle = () => {};
 
 	$: checked = value === options[0];
-
-	const id = `toggle-${Math.floor(Math.random() * 1000000)}`;
 
 	const handleClick = (event) => {
 		const target = event.target;
@@ -18,17 +16,16 @@
 	};
 </script>
 
-<div class="toggle toggle--{style}">
+<div class="toggle toggle--inner">
 	<button
 		role="switch"
 		aria-checked={checked}
-		aria-label={label}
+		aria-label={ariaLabel}
 		on:click={handleClick}
 	>
-		{#if style === "inner"}
-			<span>{options[0]}</span>
-			<span>{options[1]}</span>
-		{/if}
+		<span>{options[0]}</span>
+		<div class="sr-only" aria-live="assertive" aria-label={ariaAnnouncementOnChange}/>
+		<span>{options[1]}</span>
 	</button>
 </div>
 
@@ -72,45 +69,5 @@
 		/* See app.css, copied from there */
 		outline: 2px solid var(--color-focus);
 		outline-offset: 2px;
-	}
-
-	.toggle--slider {
-		display: flex;
-		align-items: center;
-	}
-
-	.toggle--slider button {
-		width: 3.5em;
-		height: 2em;
-		position: relative;
-		margin-left: 0.5em;
-		background: var(--color-gray-300);
-	}
-
-	.toggle--slider button:focus {
-		box-shadow: 0 0px 4px var(--color-focus);
-	}
-
-	.toggle--slider button::before {
-		content: "";
-		position: absolute;
-		width: 1.5em;
-		height: 1.5em;
-		background: var(--color-white);
-		border-radius: 4px;
-		top: 0.25em;
-		right: 1.75em;
-	}
-
-	.toggle--slider button[aria-checked="true"] {
-		background-color: var(--color-gray-900);
-	}
-
-	.toggle--slider button[aria-checked="true"]::before {
-		transform: translateX(1.5em);
-	}
-
-	.toggle--slider button:focus {
-		box-shadow: 0 0 4px 0 var(--color-focus);
 	}
 </style>

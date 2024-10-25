@@ -42,6 +42,17 @@
 
 	// Cleanup the subscription when the component is destroyed
 	onDestroy(unsubscribe);
+
+	const AGGREGATE_VIEW_ANNOUNCEMENT = "you are in aggregate song view, where you can remove and add love song categories";
+	const INDIVIDUAL_VIEW_ANNOUNCEMENT = "you are in individual song view, where you can explore songs and performers";
+	$: ariaAnnouncementOnChange = localValue === CHART_OPTIONS.snake ? AGGREGATE_VIEW_ANNOUNCEMENT : INDIVIDUAL_VIEW_ANNOUNCEMENT;
+	$: ariaLabel = `Toggle between aggregate song view ${localValue === CHART_OPTIONS.snake ? '(currently selected)' : ''} and individual song view ${localValue === CHART_OPTIONS.bubble ? '(currently selected)' : ''}`
 </script>
 
-<Toggle label="switch between aggregate and individual song view" style="inner" options={Object.values(CHART_OPTIONS)} value={localValue} onToggle={handleToggle} />
+<Toggle
+	{ariaLabel}
+	{ariaAnnouncementOnChange}
+	options={Object.values(CHART_OPTIONS)}
+	value={localValue}
+	onToggle={handleToggle}
+/>
