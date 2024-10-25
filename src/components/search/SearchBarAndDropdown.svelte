@@ -112,7 +112,7 @@
     />
 
     {#if showDropdown}
-        <div class="dropdown-wrapper">
+        <div class="dropdown-wrapper" tabindex="-1">
             {#if searchResultsSubsetToRender.length === 0}
                 <div class="no-results">
                     No search results. Try thinking more <i>mainstream</i>...
