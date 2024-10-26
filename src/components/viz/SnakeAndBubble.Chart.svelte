@@ -258,6 +258,7 @@
 </svg>
 
 <canvas
+	aria-hidden="true"
 	id="visible"
 	style={`width: ${$viewport.width}px; height: ${$viewport.height}px;`}
 	style:opacity={$bubbleChartOpacity}
@@ -267,6 +268,7 @@
 	on:mousedown={handleSongClicked}
 />
 <canvas
+	aria-hidden="true"
 	id="invisible"
 	style={`width: ${$viewport.width}px; height: ${$viewport.height}px;`}
 	bind:this={invisibleCanvas}	
