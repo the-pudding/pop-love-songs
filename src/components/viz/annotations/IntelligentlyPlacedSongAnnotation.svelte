@@ -62,7 +62,7 @@
 	 .tooltip {
 		position: absolute;
 		padding: 0.5rem;
-		z-index: 100000;
+		z-index: 1;
 
 		pointer-events: none;
 	}
