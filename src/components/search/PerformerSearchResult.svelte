@@ -17,7 +17,7 @@
             <h2>
                 <SearchResultText fullText={name} query={$performerSearchString} />
             </h2>
-            <p><b>{totalSongCount}</b> song credits</p>
+            <p><b>{totalSongCount}</b> songs</p>
         </div>
         {#if $isEndingSandboxStep}
             <SongTypeSparkline {totalSongCount} {songCountByLoveSongType} />

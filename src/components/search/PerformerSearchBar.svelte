@@ -89,6 +89,7 @@
 </script>
 
 <SearchBarAndDropdown
+    dropdownId="performer"
     {placeholder}
     bind:searchString={$performerSearchString}
     {searchResults}

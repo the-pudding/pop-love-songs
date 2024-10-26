@@ -75,6 +75,7 @@
 </script>
 
 <SearchBarAndDropdown
+    dropdownId="song"
     placeholder={getPlaceholder()}
     bind:searchString={$songSearchString}
     {searchResults}

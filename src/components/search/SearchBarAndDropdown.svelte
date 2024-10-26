@@ -1,5 +1,6 @@
 <script>
-    import { aSearchBarIsFocused } from "$stores/searchAndFilter";
+    import { aSearchBarIsFocused, openedDropdown } from "$stores/searchAndFilter";
+    export let dropdownId;
     export let placeholder = "Search...";
     export let inputAriaLabel = "Search and select a result...";
     export let dropdownAriaLabel = "Search results";
@@ -16,32 +17,29 @@
     const MAX_RESULTS = 50; // TODO: I could just use virtualization here
     $: searchResultsSubsetToRender = searchResults.slice(0, MAX_RESULTS);
 
-    let showDropdown = false;
     let selectedIndex = -1;
     let resultDOMElements = [];
 
     $: handleResultSelected = (result) => {
         onResultSelected(result);
-        showDropdown = false;
+        openedDropdown.set(null);
         selectedIndex = -1;
     }
 
     $: handleFocus = () => {
         onInputFocused();
         aSearchBarIsFocused.set(true);
-        showDropdown = true;
+        openedDropdown.set(dropdownId);
     }
 
     $: handleBlur = () => {
         onInputBlurred();
         aSearchBarIsFocused.set(false);
-        showDropdown = false;
         selectedIndex = -1;
     }
 
     $: handleClearingSelection = () => {
         clearSelection();
-        showDropdown = true;
     }
 
     $: {
@@ -49,8 +47,6 @@
         if (!!searchString.length) {
             if (hasSelection) {
                 handleClearingSelection();
-            } else if (!showDropdown) {
-                showDropdown = true;
             }
         }
     }
@@ -61,7 +57,7 @@
             onResultPreviewed(searchResultsSubsetToRender[selectedIndex]);
             event.preventDefault();
             scrollToSelectedItem();
-            showDropdown = true;
+            openedDropdown.set(dropdownId);
             if (hasSelection) {
                 handleClearingSelection();
             }
@@ -70,14 +66,14 @@
             onResultPreviewed(searchResultsSubsetToRender[selectedIndex]);
             event.preventDefault();
             scrollToSelectedItem();
-            showDropdown = true;
+            openedDropdown.set(dropdownId);
         } else if (event.key === "Enter" && selectedIndex >= 0) {
             handleResultSelected(searchResultsSubsetToRender[selectedIndex]);
             event.preventDefault();
         } else if (event.key === "Escape") {
             clearSelection();
             searchString = "";
-            showDropdown = false;
+            openedDropdown.set(null);
             selectedIndex = -1;
             event.preventDefault();
         }
@@ -97,6 +93,15 @@
     };
 </script>
 
+<svelte:window on:click={(event) => {
+    if (!$openedDropdown) return;
+    const searchContainers = document.querySelectorAll('.search-container');
+    const clickedOutside = !Array.from(searchContainers).some(container => container.contains(event.target));
+    if (clickedOutside) {
+        openedDropdown.set(null);
+    }
+}} />
+
 <div class="search-container">
     <input 
         type="text" 
@@ -111,7 +116,7 @@
         class:has-selection={hasSelection}
     />
 
-    {#if showDropdown}
+    {#if $openedDropdown === dropdownId}
         <div class="dropdown-wrapper" tabindex="-1">
             {#if searchResultsSubsetToRender.length === 0}
                 <div class="no-results">

@@ -33,6 +33,8 @@ export const aPreviewExists = derived(
 
 export const aSearchBarIsFocused = writable(false);
 
+export const openedDropdown = writable(null);
+
 export const typesTreatedAsNonLoveSongs = writable([]);
 
 export const showAggregateSnakeChart = writable(false);
