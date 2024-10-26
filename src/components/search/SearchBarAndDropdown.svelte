@@ -15,7 +15,8 @@
     export let onInputBlurred = () => {};
     export let hasSelection = false;
 
-    const MAX_RESULTS = 50; // TODO: I could just use virtualization here
+    // Drake, the most featured artist, has 70 songs
+    const MAX_RESULTS = 70; // TODO: I could just use virtualization here
     $: searchResultsSubsetToRender = searchResults.slice(0, MAX_RESULTS);
 
     let selectedIndex = -1;
