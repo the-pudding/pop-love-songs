@@ -59,7 +59,9 @@
     };
 
     const Y_ADJUSTMENT = 8;
-    const addRemoveButtonComponentToText = () => {
+    const renderInTextComponents = () => {
+        addModalOpenButtonListener();
+
         addComponentToText({
             selector: ".remove-love-song-type-icon-within-text",
             svelteComponent: XandAddButton,
@@ -74,9 +76,6 @@
             },
             style: `margin-top: -${Y_ADJUSTMENT}px; display: inline-block;`
         });
-    };
-
-    const addBubbleComponentToText = () => {
         addComponentToText({
             selector: ".in-text-bubble-example",
             svelteComponent: ExampleBubble,
@@ -85,12 +84,6 @@
                 yAdjustment: Y_ADJUSTMENT
             }
         });
-    };
-
-    const renderInTextComponents = () => {
-        addModalOpenButtonListener();
-        addRemoveButtonComponentToText();
-        addBubbleComponentToText();
     }
 
     afterUpdate(() => {
