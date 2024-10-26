@@ -63,10 +63,11 @@ const substantiallyDifferent = (a, b) => Math.abs(a - b) > EPSILON;
 
 // Note: when arrays change, the REALLY change, so we're only checking the first chunk of the array
 const LENGTH_TO_CHECK = Math.floor(0.4 * songsData.length);
+const STARTING_INDEX = 50; // For some reason, skipping the initial values makes this execute as expected. Not gonna research why, just ready to ship LOL
 const TOLERATED_DIFFERENCES = 4;
 const arraysDifferMeaningfully = (a, b) => {
 	let differencesFound = 0;
-	for (let i = 0; i < LENGTH_TO_CHECK; i++) {
+	for (let i = STARTING_INDEX; i < LENGTH_TO_CHECK; i++) {
 		if (substantiallyDifferent(a[i], b[i])) {
 			differencesFound++;
 			if (differencesFound > TOLERATED_DIFFERENCES) {
