@@ -1,5 +1,6 @@
 <script>
     import { aSearchBarIsFocused, openedDropdown } from "$stores/searchAndFilter";
+	import { onMount } from "svelte";
     export let dropdownId;
     export let placeholder = "Search...";
     export let inputAriaLabel = "Search and select a result...";
@@ -91,6 +92,21 @@
             resultDOMElements[selectedIndex].scrollIntoView({ block: "nearest" });
         }
     };
+
+    onMount(() => {
+        // If another element gets focused, close the dropdown
+        const focusableElements = ["a", "button", "input", "textarea", "select", "details", "[tabindex]:not([tabindex='-1'])"];
+        focusableElements.forEach(selector => {
+            document.querySelectorAll(selector).forEach(element => {
+                element.addEventListener('focus', (event) => {
+                    const isInsideSearchContainer = Array.from(document.querySelectorAll('.search-container')).some(container => container.contains(event.target));
+                    if (!isInsideSearchContainer) {
+                        openedDropdown.set(null);
+                    }
+                });
+            });
+        });
+    });
 </script>
 
 <svelte:window on:click={(event) => {
