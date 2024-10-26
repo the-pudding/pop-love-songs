@@ -15,7 +15,12 @@
     import { getYPositionForPercentage, outermostMargin } from "$stores/canvasPosition.js";
 	import DataMethodsModal from "./DataMethodsModal.svelte";	
 	
-	
+	let userHasSeenFirstSlide = false;
+    $: {
+        if (!userHasSeenFirstSlide && $currentStoryStepIndex > 0) {
+            userHasSeenFirstSlide = true;
+        }
+    }
 
     function updateQueryParams() {
         urlParams.set("step", $currentStoryStepIndex);
@@ -149,7 +154,7 @@
 </script>
 
 <div style={backgroundGradientStyle}>
-    <div bind:this={container} class={`container ${$currentStoryStepIndex === 0 ? 'fade-in' : ''}`} style={containerStyle}>
+    <div bind:this={container} class={`container ${$currentStoryStepIndex === 0 && !userHasSeenFirstSlide ? 'fade-in' : ''}`} style={containerStyle}>
         {#if !!$currentStoryStep.text}
             <h1 class="story-text" style={storyTextStyle}>
                 <!-- For styling of love song type spans within the text, see app.css -->

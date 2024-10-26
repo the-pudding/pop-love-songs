@@ -81,7 +81,7 @@
     }
 
     h1 > span {
-        -webkit-text-fill-color: rgba(0, 0, 0, 0.786);
+        -webkit-text-fill-color: black;
         text-shadow: none;
         -webkit-text-stroke: 2px black;
     }
