@@ -1,8 +1,5 @@
 <script>
-    import { fade } from 'svelte/transition';
     import { tick } from 'svelte';
-
-    import variables from '$data/variables.json';
 
     import { showAnnotations } from "$stores/searchAndFilter";
     import { currentStoryStepIndex } from "$stores/storySteps";
@@ -13,12 +10,7 @@
     import SelectedPerformerAnnotations from './SelectedPerformerAnnotations.svelte';
 	import SelectedSongAnnotation from './SelectedSongAnnotation.svelte';
 
-    const inFadeSettings = {
-        duration: variables.chart['transition-opacity-duration'], 
-        delay: variables.chart['transition-opacity-duration']
-    }
-
-    // Re-trigger the "fade in" Svelte animation each time we change steps:
+    // Re-trigger the "fade in" CSS animation each time we change steps:
     let show = false;
     $: restartFadeInAnimation = async () => {
         show = false;
@@ -28,16 +20,31 @@
     $: $currentStoryStepIndex, restartFadeInAnimation();
 </script>
 
-{#if $showAnnotations && show}
-    <!-- For reasons I can't fully guess, having an out:fade as well breaks this, causing children to remain across transitions -->
+<div class="story-annotations {$showAnnotations && show ? 'fade-in' : 'fade-out'}">
     <!-- Using <ol /> because the annotations are always listed in sorted order from earliest to latest -->
-    <ol aria-label="Example songs" class="annotations" in:fade={inFadeSettings}>
+    <ol aria-label="Example songs" class="annotations">
         <OffsetAnnotations />
         <AdjacentAnnotations />
-
-        <AnnotatedBubbleOverlay />
     </ol>
-{/if}
+    <div>
+        <AnnotatedBubbleOverlay />
+    </div>
+ </div>
 
 <SelectedPerformerAnnotations />
 <SelectedSongAnnotation />
+
+<style>
+    .story-annotations {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .story-annotations.fade-in {
+        opacity: 1;
+    }
+
+    .story-annotations.fade-out {
+        opacity: 0;
+    }
+</style>

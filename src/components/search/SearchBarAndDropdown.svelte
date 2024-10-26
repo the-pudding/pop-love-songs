@@ -1,6 +1,6 @@
 <script>
+    import { afterUpdate } from "svelte";
     import { aSearchBarIsFocused, openedDropdown } from "$stores/searchAndFilter";
-	import { onMount } from "svelte";
     export let dropdownId;
     export let placeholder = "Search...";
     export let inputAriaLabel = "Search and select a result...";
@@ -94,9 +94,11 @@
         }
     };
 
-    onMount(() => {
+    // TODO: Should I clean up event listeners here? (especially since I'm running this on update... is that necessary?)
+    afterUpdate(() => {
         // If another element gets focused, close the dropdown
-        const focusableElements = ["a", "button", "input", "textarea", "select", "details", "[tabindex]:not([tabindex='-1'])"];
+        // const focusableElements = ["a", "button", "input", "textarea", "select", "details", "[tabindex]:not([tabindex='-1'])"];
+        const focusableElements = ["button"];
         focusableElements.forEach(selector => {
             document.querySelectorAll(selector).forEach(element => {
                 element.addEventListener('focus', (event) => {
