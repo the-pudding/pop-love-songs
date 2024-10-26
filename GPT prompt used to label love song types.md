@@ -10,7 +10,7 @@ love_song_subtype_label labels comes from these love song subtype definitions (i
 
 "Serenade": A song directed at someone the singer loves, expressing their deep affection, undying love, infatuation, or praising someone as a soulmate.
 
-"Sexual Conquest": Songs that are less about the object of affection and more about the singer's own prowess or success in romantic pursuits.
+"Sexual Confidence": Songs that are less about the object of affection and more about the singer's own prowess or success in romantic pursuits.
 
 "Love Song for the Self": Songs that express self-love and affirmation, whether for one's character or physical qualities, sometimes following a period of growth or learning from past relationships.
 
@@ -21,12 +21,6 @@ love_song_subtype_label labels comes from these love song subtype definitions (i
 "Courtship & Anticipation": the speaker is courting or seeking someone's romantic or sexual love, but they don't have it yet. The love interest does not yet know the speaker well, but the speaker hopes they will want to get to know them better and or please them the way they want.
 
 "It's Complicated": Songs about complicated relationships, often with conflicting emotions like love, hate, frustration, and desire intermingling, whether light-hearted or profound in tone.
-
-"Platonic Love": Songs about non-romantic yet strong and meaningful relationships, such as friendships or familial bonds.
-
-"No Thank You": the speaker is rejecting someone's bid for romance or sex
-
-"Uncategorized Love Song": clearly a love song, but does not fit well with any of the definitions
 
 "NA": song is not a love song at all. This would include any non-love song, but also instrumentals, for example.
 
@@ -52,10 +46,6 @@ Here's an example input:
     ["Rihanna", "Only Girl (In the World)"],
     ["Britney Spears", "Hold It Against Me"],
     ["T-Pain", "Buy U A Drank (Shawty Snappin')"],
-    ["2Pac", "Dear Mama"],
-    ["Saweetie", "Best Friend (feat. Doja Cat)"],
-    ["James Taylor", "You've Got a Friend"],
-    ["Bill Withers", "Lean On Me"],
     ["Little Mix and Jason Derulo", "Secret Love Song"],
     ["Katy Perry", "Hot N Cold"],
     ["Pat Benatar", "Love Is a Battlefield"],
@@ -76,12 +66,6 @@ Here's an example input:
     ["Ariana Grande", "Thank U, Next"],
     ["Lizzo", "Good As Hell"],
     ["Christina Aguilera", "Beautiful"],
-    ["Britney Spears", "Womanizer"],
-    ["TLC", "No Scrubs"],
-    ["Meghan Trainor", "NO"],
-    ["10cc", "I'm Not In Love"],
-    ["Radiohead", "Creep"],
-    ["Rick Springfield", "Jessie's Girl"],
     ["21 Savage & Metro Boomin", "Runnin"],
     ["twenty one pilots", "Heathens"],
     ["will.i.am & Britney Spears", "Scream & Shout"]
@@ -111,10 +95,6 @@ Here's the sample corresponding output:
        ["Rihanna", "Only Girl (In the World)", "telling her new love how she wants him to make her feel"],
        ["Britney Spears", "Hold It Against Me", "she's interested in a stragner and approaches them hoping to see if they might get together"],
        ["T-Pain", "Buy U A Drank (Shawty Snappin')", "he spots a woman at the bar and offers to buy her a drink as a prelude to potentially getting together", "Courtship & Anticipation"],
-       ["2Pac", "Dear Mama", "love and appreciation for his mother", "Platonic Love"],
-       ["Saweetie", "Best Friend (feat. Doja Cat)", "boasts about a close friend who is succesful and strong", "Platonic Love"],
-       ["James Taylor", "You've Got a Friend", "promises a close friend they'll be there thick and thin", "Platonic Love"],
-       ["Bill Withers", "Lean On Me", "invites a friend to rely on him when they are struggling, as everyone needs platonic support at times", "Platonic Love"],
        ["Little Mix and Jason Derulo", "Secret Love Song", "the speakers long to be united with their lover in public, but must remain in secret", "It's Complicated"],
        ["Katy Perry", "Hot N Cold", "about navigating a lover who cannot make up their mind and is inconsistent", "It's Complicated"],
        ["Pat Benatar", "Love Is a Battlefield", "the relationship she is in alternates between being loving and painful and she doesn't feel like she can leave", "It's Complicated"],
@@ -126,21 +106,15 @@ Here's the sample corresponding output:
        ["Selena Gomez", "Look at Her Now", "after being cheated on, she has now moved on and is better than ever", "Good Riddance"],
        ["Taylor Swift", "Picture To Burn", "after realizing how self-centered and unsuitable her ex-lover is, she vents about all of his negative qualities", "Good Riddance"],
        ["Christina Aguilera", "Fighter", "she thanks the lover because his abuse actually ended up making her stronger and wiser", "Good Riddance"],
-       ["Jamie Foxx Featuring T-Pain", "Blame It", "speaker brags about his sexual power & alure, confident his love interest will want to hook up with him", "Sexual Conquest"],
-       ["6ix9ine Featuring Nicki Minaj & Murda Beatz", "FEFE", "about sexual prowess with many sexual references", "Sexual Conquest"],
-       ["The Beach Boys", "I Get Around", "brag about constantly seeking out new women and never being rejected", "Sexual Conquest"],
-       ["Robin Thicke ft. Pharrell & T.I.", "Blurred Lines", "speaker brags about being about to 'get nasty' with a good girl who he claims wants sex", "Sexual Conquest"],
-       ["112", "Peaches & Cream", "about sex & being addicted to a tasty woman", "Sexual Conquest"],
-       ["Lady Gaga", "Poker Face", "brags about a male sex partner who does not know she is sleeping with a women as well", "Sexual Conquest"],
+       ["Jamie Foxx Featuring T-Pain", "Blame It", "speaker brags about his sexual power & alure, confident his love interest will want to hook up with him", "Sexual Confidence"],
+       ["6ix9ine Featuring Nicki Minaj & Murda Beatz", "FEFE", "about sexual prowess with many sexual references", "Sexual Confidence"],
+       ["The Beach Boys", "I Get Around", "brag about constantly seeking out new women and never being rejected", "Sexual Confidence"],
+       ["Robin Thicke ft. Pharrell & T.I.", "Blurred Lines", "speaker brags about being about to 'get nasty' with a good girl who he claims wants sex", "Sexual Confidence"],
+       ["112", "Peaches & Cream", "about sex & being addicted to a tasty woman", "Sexual Confidence"],
+       ["Lady Gaga", "Poker Face", "brags about a male sex partner who does not know she is sleeping with a women as well", "Sexual Confidence"],
        ["Ariana Grande", "Thank U, Next", "brags about being unfased and even improved by past relationships ending, and in fact is now thriving in life", "Love Song for the Self"],
        ["Lizzo", "Good As Hell", "an anthem for leaving behidn negativity or men who don't love you anymore, and instead enjoying who you are with pride", "Love Song for the Self"],
        ["Christina Aguilera", "Beautiful", "an anthem proclaiming ones beauty, even in the face of deragatory words or spiteful ex-lovers", "Love Song for the Self"],
-       ["Britney Spears", "Womanizer", "in her prowess, she recognizes a womanizer and rejects his advances", "No Thank You"],
-       ["TLC", "No Scrubs", "speakers asserts that they will reject so-called scrubs because she wants a higher quality man", "No Thank You"],
-       ["Meghan Trainor", "NO", "an anthem for women to confidently reject unwanted male advances, because the men aren't needed for the women to be in the zone", "No Thank You"],
-       ["10cc", "I'm Not In Love", "the speaker claims he does not love her, but the subtext is that he actually really does, which does not cleanly fit as a Serenade, Longing & Hearbreak, or even It's Complicated", "Uncategorized Love Song"],
-       ["Radiohead", "Creep", "in contrast to his love interest's angelic nature, he feels ugly and invisible, and hates on himself, which does not fit in Longing & Hearbreak or even Good Riddance", "Uncategorized Love Song"],
-       ["Rick Springfield", "Jessie's Girl", "praises his friends lover and expresses he's confused she isn't into him too, and he's jealous: themes to unusual to fit into the given love song subtypes.", "Uncategorized Love Song"],
        ["21 Savage & Metro Boomin", "Runnin", "a gangster rap, not romance", "NA"],
        ["twenty one pilots", "Heathens", "about social outcasts, not romance", "NA"],
        ["will.i.am & Britney Spears", "Scream & Shout", "about dancing in the club, with no real elements of romance directed toward a specific love interest", "NA"]
