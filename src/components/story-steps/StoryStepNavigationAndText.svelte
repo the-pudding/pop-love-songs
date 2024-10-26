@@ -42,20 +42,29 @@
         }
     }
 
-    const REMOVE_ICON_CLASS = "remove-love-song-type-icon-within-text";
     const Y_ADJUSTMENT = 8; // NOTE: careful, this magic number is also set in the copy gdoc
-    const addRemoveButtonComponentToText = () => {
-		const el = document.querySelector(`.${REMOVE_ICON_CLASS}`);
+
+    const addComponentToText = (selector, svelteComponent, props, style = "") => {
+        const el = document.querySelector(selector);
         
         if (!el || el.children.length > 0) {
             return;
         }
 
-        // NOTE: we adjust the y-margin to offset the translateY (below), to avoid changing the text line-height
-        el.style = `margin-top: -${Y_ADJUSTMENT}px; display: inline-block;`;
-        new XandAddButton({
+        if (style) {
+            el.style = style;
+        }
+        new svelteComponent({
             target: el,
-            props: {
+            props
+        });
+    };
+
+    const addRemoveButtonComponentToText = () => {
+        addComponentToText(
+            ".remove-love-song-type-icon-within-text",
+            XandAddButton,
+            {
                 rotateIntoPlusSign: false,
                 diameter: $viewport.isLikelyInMobileLandscape ? 24 : 28,
                 selectionColor: null,
@@ -63,28 +72,21 @@
                 isSelected: false,
                 transformProperties: `translateY(${Y_ADJUSTMENT}px)`,
                 title: "I'm a demo remove button. I don't do anything. They just hired me... for my looks. *sigh*"
-            }
-        });
+            },
+            `margin-top: -${Y_ADJUSTMENT}px; display: inline-block;`
+        );
+    };
 
-	};
-
-    const EXAMPLE_BUBBLE_CLASS = "in-text-bubble-example";
     const addBubbleComponentToText = () => {
-        const el = document.querySelector(`.${EXAMPLE_BUBBLE_CLASS}`);
-        
-        if (!el || el.children.length > 0) {
-            return;
-        }
-
-        new ExampleBubble({
-            target: el,
-            props: {
+        addComponentToText(
+            ".in-text-bubble-example",
+            ExampleBubble,
+            {
                 diameter: $viewport.isLikelyInMobileLandscape ? 24 : 28,
                 yAdjustment: Y_ADJUSTMENT
             }
-        });
-
-    }
+        );
+    };
 
     const renderInTextComponents = () => {
         addModalOpenButtonListener();
