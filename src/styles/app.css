@@ -98,8 +98,10 @@ h6 {
 }
 
 .story-text b, .story-text .song-title {
-	/* Fixes a weird issue where the text-shadow of punctuation overlaps with this text */
-	margin-right: 1.8px;
+	/* Fixes a weird issue where the text-shadow of punctuation overlaps with this text (thanks, Matt!) */
+	/* Just when I thought I had a good grasp of CSS... *sigh* */
+	text-shadow: none;
+    position: relative;
 } 
 
 .story-text .song-title {
@@ -117,16 +119,15 @@ h6 {
 .good-riddance,
 .love-song-for-the-self,
 .sexual-confidence {
-	/* Fixes a weird issue where the text-shadow of punctuation overlaps with this background */
-	margin-left: 1.5px;
-	margin-right: 1.5px;
-
 	letter-spacing: default;
 	border-radius: 4px;
 	padding: 1px 5px 2px;
 	font-weight: 600;
 	white-space: nowrap;
 	text-shadow: none;
+
+	/* Fixes a weird issue where the text-shadow of punctuation overlaps with this background */
+    position: relative;
 }
 
 /* Note we manually apply text-shadow: none cuz there are other spans that *do* take it, and I didn't class them specifically enough */
