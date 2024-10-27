@@ -7,12 +7,21 @@
     let userDismissed = false;
     let dialog;
     $: handleClick = () => {
-        // @michelle: for some reason, setting the userDismissed does *not* re-render close the modal as expected
-        // only dialog.close() works. Why... ?
         userDismissed = true;
         dialog.close()
     }
-    $: showModal = !userDismissed && $showOrientationWarningModal;
+
+    let showModal;
+    $: { 
+        if ($showOrientationWarningModal && !userDismissed) {
+            showModal = true; // necessary
+        }
+        if (showModal && !$showOrientationWarningModal && !userDismissed) {
+            dialog.close();
+            showModal = false; // unnecessary, weirdly
+        }
+    }
+
 </script>
 
 <Modal bind:showModal bind:dialog maxWidth={'95%'} showXButton={false}>
