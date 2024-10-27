@@ -162,7 +162,7 @@
     </div>
 </div>
 
-<StoryNavigationArrows on:tap={onTap} enableKeyboard={true} />
+<StoryNavigationArrows on:tap={onTap} {userHasSeenFirstSlide} enableKeyboard={true} />
 
 <style>
     .container {

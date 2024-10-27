@@ -16,6 +16,6 @@
         transform: translate(-50%, -50%);
 
         max-width: min(50%, 600px);
-        z-index: 10000;
+        z-index: 100;
     }
 </style>

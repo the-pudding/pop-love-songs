@@ -3,11 +3,12 @@
 	import Icon from "./Icon.svelte";
 	import pointer from "$svg/pointer.svg";
 	import { currentStoryStepIndex } from "$stores/storySteps";
+	import { textShadow } from "$utils/styling";
 	
 </script>
 
 {#if $currentStoryStepIndex === 0}
-	<div class="tap" aria-hidden="true">
+	<div class="tap" aria-hidden="true" style:text-shadow={textShadow(2, 1)} style:font-size={$mq.desktop ? '1.3rem' : '1rem'}>
 		<div class="row">
 			<strong>{$mq.desktop ? "Click" : "Tap"} to continue</strong>
 			{@html pointer}
@@ -41,7 +42,9 @@
 		align-items: center;
 		opacity: 0;
         animation: fadeIn 1s forwards;
-        animation-delay: 4s;
+        animation-delay: 3s;
+
+		z-index: 1000;
     }
 
      @keyframes fadeIn {

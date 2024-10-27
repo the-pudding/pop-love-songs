@@ -9,6 +9,8 @@
 	
 	import Tap from "./Tap.svelte";
 
+	export let userHasSeenFirstSlide;
+
 	export let enableKeyboard = false;
 	const arrowStroke = variables.color['cream-background'];
 	export let arrowStrokeWidth = "2";
@@ -29,7 +31,9 @@
 
 <!-- @michelle: my "use semantic HTML" game feels week. Do you have an intuition why section was used here? When do you use this tag? -->
 <section class="tapper-overlay" style={`height: ${$viewport.height}px; width: ${$viewport.width}px;`}>
-	<Tap />
+	{#if !userHasSeenFirstSlide}
+		<Tap />
+	{/if}
 	{#if $currentStoryStepIndex !== 0}
 		<button
 			aria-label={`Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_STEPS}`}
