@@ -170,20 +170,29 @@ const getAggregatePercentageByLoveSongType = (
 		...loveSongsCountedAsNonLoveSongs
 	};
 };
+const POPULARITY_SUM_BY_TIME_REGION_IGNORING_FILTERS =
+	aggregationTimeRegions.reduce((acc, timeRegion) => {
+		const sum = songsData.reduce((regionAcc, { song }) => {
+			const songYear = +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
+			return songYear >= timeRegion.start && songYear <= timeRegion.stop
+				? regionAcc + song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10]
+				: regionAcc;
+		}, 0);
+		return {
+			...acc,
+			[`${timeRegion.start}-${timeRegion.stop}`]: sum
+		};
+	}, {});
 
 export const getPopularitySumIgnoringFilters = (timeRegion) =>
-	songsData.reduce((acc, { song }) => {
-		const songYear = +song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
-		return songYear >= timeRegion.start && songYear <= timeRegion.stop
-			? acc + song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10]
-			: acc;
-	}, 0);
+	POPULARITY_SUM_BY_TIME_REGION_IGNORING_FILTERS[
+		`${timeRegion.start}-${timeRegion.stop}`
+	];
 
 export const loveSongsLabeledByTimeRegionPercentageForPosition = derived(
 	[visibleSongsData, typesTreatedAsNonLoveSongs],
 	([$visibleSongsData, $typesTreatedAsNonLoveSongs]) => {
 		return aggregationTimeRegions.map((timeRegion) => {
-			// TODO OPTIMIZATION: since timeRegions are technically hardcoded, we could derive them all at once, rather than each time
 			const popularitySumIgnoringFilters =
 				getPopularitySumIgnoringFilters(timeRegion);
 			const songsInTimeRegion = $visibleSongsData.filter(({ song }) => {
