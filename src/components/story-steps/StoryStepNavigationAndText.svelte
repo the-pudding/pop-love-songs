@@ -32,7 +32,6 @@
     const addModalOpenButtonListener = () => {
         const modalOpenButton = container && container.querySelector('.modalTrigger')
         if (modalOpenButton) {
-            modalOpenButton.style.textShadow = tiemposFriendlyTextShadow();
             modalOpenButton.style.marginLeft = "2px";
             modalOpenButton.style.marginRight = "2px";
 

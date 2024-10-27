@@ -74,8 +74,11 @@ input[type="button"] {
 button.modalTrigger {
 	background: none;
 	font-weight: bold;
-	/* border-bottom: 3px solid var(--color-good-riddance); */
+	border-bottom: 2px solid var(--color-good-riddance);
 	padding: 0px;
+
+	transform: scale(1);
+	transition: transform 0.2s;
 }
 
 button,
@@ -239,7 +242,8 @@ ol, ul {
 	
 	button.modalTrigger:hover {
 		background: none;
-		border-bottom: 3px solid var(--color-longing-and-heartbreak);
+		border-bottom: 2px solid var(--color-longing-and-heartbreak);
+		transform: scale(1.02);
 	}
 
 	button:disabled:hover,
