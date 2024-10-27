@@ -74,9 +74,7 @@ input[type="button"] {
 button.modalTrigger {
 	background: none;
 	font-weight: bold;
-
-	border-bottom: 3px solid var(--color-good-riddance);
-
+	/* border-bottom: 3px solid var(--color-good-riddance); */
 	padding: 0px;
 }
 
