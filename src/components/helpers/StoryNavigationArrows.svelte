@@ -94,26 +94,30 @@
 		transition: all calc(var(--1s) * 0.25) ease-in-out;
 	}
 	.left-hint {
-		transform: translate(-50%, -100%);
+		position: absolute;
+		top: 50%;
+		transform: translate(-50%, -50%);
 		justify-content: flex-end;
 		padding: 0 0.5rem 0 0;
 		border-radius: 0 3rem 3rem 0;
 		left: 0;
 	}
 	.left-hint:hover, .left-hint:focus {
-		transform: translate(-45%, -100%);
+		transform: translate(-45%, -50%);
 		opacity: 1;
 		background: var(--color-good-riddance);
 	}
 	.right-hint {
-		transform: translate(50%, -100%);
+		position: absolute;
+		top: 50%;
+		transform: translate(50%, -50%);
 		justify-content: flex-start;
 		padding: 0 0 0 0.5rem;
 		border-radius: 3rem 0 0 3rem;
 		right: 0;
 	}
 	.right-hint:hover, .right-hint:focus {
-		transform: translate(45%, -100%);
+		transform: translate(45%, -50%);
 		opacity: 1;
 		background: var(--color-good-riddance);
 	}
@@ -124,13 +128,13 @@
 	}
 	@keyframes bounce {
 		0% {
-			transform: translate(50%, -100%);
+			transform: translate(50%, -50%);
 		}
 		50% {
-			transform: translate(40%, -100%);
+			transform: translate(40%, -50%);
 		}
 		100% {
-			transform: translate(50%, -100%);
+			transform: translate(50%, -50%);
 		}
 	}
 	button {
