@@ -5,6 +5,7 @@
 	export let maxWidth = '42em';
 
 	export let dialog; // HTMLDialogElement
+	export let onBackgroundClick = () => {};
 
 	$: if (dialog && showModal) dialog.showModal();
 </script>
@@ -12,8 +13,13 @@
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 <dialog
 	bind:this={dialog}
-	on:close={() => (showModal = false)}
-	on:click|self={() => dialog.close()}
+	on:close={() => {
+		showModal = false;
+	}}
+	on:click|self={() => {
+		dialog.close();
+		onBackgroundClick();
+	}}
 	style:max-width={maxWidth}
 >
 	<!-- svelte-ignore a11y-autofocus -->

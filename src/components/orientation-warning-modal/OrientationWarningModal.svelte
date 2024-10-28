@@ -2,6 +2,7 @@
 	import copy from "$data/copy.json";
     import Modal from '../helpers/Modal.svelte';
 	import { showOrientationWarningModal } from '$stores/orientationWarningModal';
+	import { tick } from "svelte";
     
     const { orientationWarningModal } = copy;
     let userDismissed = false;
@@ -22,9 +23,13 @@
         }
     }
 
+    $: onBackgroundClick = async () => {
+        userDismissed = true;
+    }
+
 </script>
 
-<Modal bind:showModal bind:dialog maxWidth={'95%'} showXButton={false}>
+<Modal bind:showModal bind:dialog maxWidth={'95%'} showXButton={false} {onBackgroundClick}>
     <div class='container'>
         {#each orientationWarningModal.paragraphs as paragraph}
             <p>{@html paragraph}</p>
