@@ -1,5 +1,6 @@
 import { derived, writable } from "svelte/store";
 import viewport from "./viewport";
+import previous from "./previous";
 
 import copy from "$data/copy.json";
 import {
@@ -718,11 +719,19 @@ export const showSearchBars = derived(
 		($aSingleLoveSongTypeIsSpotlighted || $isEndingSandboxStep)
 );
 
-// TODO: OPTIMIZATION, if we update songIsVisible to a memoized custom store, I think we can remove all this code
+const previousViewport = previous(viewport, { width: null, height: null });
+
 export const preventBubbleRestartBecauseTheUserIsMerelySearching = derived(
-	[aSearchBarIsFocused],
-	([$aSearchBarIsFocused]) => {
-		// TODO: we may need more sophisticated checks when the dropdown selection is added
+	[aSearchBarIsFocused, viewport, previousViewport],
+	([$aSearchBarIsFocused, $viewport, $previousViewport]) => {
+		// Special case: viewport is adjusted without un-focusing the search bar
+		if (
+			$previousViewport.width !== $viewport.width ||
+			$previousViewport.height !== $viewport.height
+		) {
+			return false;
+		}
+		// Otherwise, return the value of $aSearchBarIsFocused
 		return $aSearchBarIsFocused;
 	}
 );
