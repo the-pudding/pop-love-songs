@@ -94,24 +94,8 @@ const songSelected = derived(
 	}
 );
 
-const withinTimeRange = derived(
-	[currentStoryStep],
-	([$currentStoryStep]) =>
-		songsData.map(({ song }) => {
-			const { timeRange } = $currentStoryStep.searchAndFilterState;
-			const startYear = timeRange.startYear;
-			const endYear = timeRange.endYear;
-			const dateAsDecimal = song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
-			return (
-				(!startYear || startYear <= dateAsDecimal) &&
-				(!endYear || endYear >= dateAsDecimal)
-			);
-		}),
-	[]
-);
-
 export const songIsSelected = derived(
-	[loveSongTypeSelected, performerSelected, songSelected, withinTimeRange],
+	[loveSongTypeSelected, performerSelected, songSelected],
 	(subStores) => {
 		return songsData.map((song, index) =>
 			subStores.every((subStore) => subStore[index])
@@ -120,24 +104,12 @@ export const songIsSelected = derived(
 	[]
 );
 
-// TODO: OPTIMIZATION @michelle basically this fires anytime a selection changes (eg loveSongTypeSelected), which triggers a lot of calculations & (most notably) can restart the force layout.
-// However, this store needs ONLY to update if columnsToFilterVisibilityOn contains 1 or more items, or itself changed to have no items.
-// My sense is that this is where we'd want to just implement a custom store
-// ie one that subscribes to all this, but only broadcasts an update to *its* subscribers when the columnsToFilterVisibilityOn changes in the ways described above.
-// Note this would also (likely) remove the need for: preventBubbleRestartBecauseTheUserIsMerelySearching
 export const songIsVisible = derived(
-	[
-		loveSongTypeSelected,
-		performerSelected,
-		songSelected,
-		withinTimeRange,
-		currentStoryStep
-	],
+	[loveSongTypeSelected, performerSelected, songSelected, currentStoryStep],
 	([
 		$loveSongTypeSelected,
 		$performerSelected,
 		$songSelected,
-		$withinTimeRange,
 		$currentStoryStep
 	]) =>
 		songsData.map((song, index) => {
@@ -163,19 +135,8 @@ export const songIsVisible = derived(
 				)
 					? $songSelected[index]
 					: true;
-			const timeRangeVisible =
-				$currentStoryStep.searchAndFilterState.columnsToFilterVisibilityOn.includes(
-					SONG_DATA_COLUMNS_ENUM.date_as_decimal
-				)
-					? $withinTimeRange[index]
-					: true;
 
-			return (
-				loveSongTypeVisible &&
-				performerVisible &&
-				songVisible &&
-				timeRangeVisible
-			);
+			return loveSongTypeVisible && performerVisible && songVisible;
 		}),
 	[]
 );
@@ -188,134 +149,6 @@ export const visibleSongsData = derived(songIsVisible, ($songIsVisible) =>
 	songsData.filter((song, index) => $songIsVisible[index])
 );
 
-function isWithinYearRange(dateAsDecimal, minYear, maxYear) {
-	if (minYear && dateAsDecimal < minYear) {
-		return false;
-	}
-	if (maxYear && dateAsDecimal > maxYear) {
-		return false;
-	}
-	return true;
-}
-
-export function getLoveSongPercentage(
-	typesTreatedAsNonLoveSongs,
-	selectedSongsData,
-	selectedLoveSongTypes,
-	minYear = MIN_DATE,
-	maxYear = MAX_DATE
-) {
-	const selectedLoveSongsPopularityScore = selectedSongsData.reduce(
-		(acc, { song }) => {
-			const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
-			const dateAsDecimal = song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
-
-			const isALoveSong =
-				!typesTreatedAsNonLoveSongs.includes(loveSongType) &&
-				loveSongType !== LOVE_SONG_TYPE_CONSTANTS.notALoveSong;
-			if (
-				(selectedLoveSongTypes.length === 0 && isALoveSong) ||
-				selectedLoveSongTypes.includes(loveSongType)
-			) {
-				if (isWithinYearRange(dateAsDecimal, minYear, maxYear)) {
-					return acc + song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10];
-				}
-			}
-			return acc;
-		},
-		0
-	);
-
-	const allSongsWithinRangePopularityScore = songsData.reduce(
-		(acc, { song }) => {
-			const dateAsDecimal = song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
-			if (isWithinYearRange(dateAsDecimal, minYear, maxYear)) {
-				return acc + song[SONG_DATA_COLUMNS_ENUM.total_weeks_in_top_10];
-			}
-			return acc;
-		},
-		0
-	);
-	return (
-		(100 * selectedLoveSongsPopularityScore) /
-		allSongsWithinRangePopularityScore
-	);
-}
-
-export const percentageOfLoveSongsCurrentlySelected = derived(
-	[selectedSongsData, currentStoryStep, typesTreatedAsNonLoveSongs],
-	([$selectedSongsData, $currentStoryStep, $typesTreatedAsNonLoveSongs]) => {
-		return getLoveSongPercentage(
-			$typesTreatedAsNonLoveSongs,
-			$selectedSongsData,
-			$currentStoryStep.searchAndFilterState.selectedLoveSongTypes,
-			$currentStoryStep.searchAndFilterState.timeRange.startYear,
-			$currentStoryStep.searchAndFilterState.timeRange.endYear
-		);
-	}
-);
-
-export const percentageOfLoveSongsDuring1959To1969 = derived(
-	[songIsSelected, currentStoryStep, typesTreatedAsNonLoveSongs],
-	([$songIsSelected, $currentStoryStep, $typesTreatedAsNonLoveSongs]) => {
-		return getLoveSongPercentage(
-			$typesTreatedAsNonLoveSongs,
-			// Note: we want to be able to *reliably* compare to the 60s and not have it accidentally filtered out
-			// if we happen to look at a selection that doesn't include the 60s.
-			// TODO: OPTIMIZATION: since we're not allowing others to filter by year, we can remove songIsSelected
-			$songIsSelected,
-			$currentStoryStep.searchAndFilterState.selectedLoveSongTypes,
-			MIN_DATE,
-			1969
-		);
-	}
-);
-
-export const maxYearFromSelectedSongs = derived(
-	[selectedSongsData],
-	([$selectedSongsData]) => {
-		return Math.max(
-			...$selectedSongsData.map(
-				({ song }) => song[SONG_DATA_COLUMNS_ENUM.date_as_decimal]
-			)
-		);
-	},
-	0
-);
-
-export const percentageOfLoveSongsDuringThe2020s = derived(
-	[selectedSongsData, currentStoryStep, typesTreatedAsNonLoveSongs],
-	([$selectedSongsData, $currentStoryStep, $typesTreatedAsNonLoveSongs]) => {
-		return getLoveSongPercentage(
-			$typesTreatedAsNonLoveSongs,
-			$selectedSongsData,
-			$currentStoryStep.searchAndFilterState.selectedLoveSongTypes,
-			2020,
-			MAX_DATE
-		);
-	}
-);
-
-export const percentChangeFrom60sToLast10Years = derived(
-	[percentageOfLoveSongsDuring1959To1969, percentageOfLoveSongsDuringThe2020s],
-	([
-		$percentageOfLoveSongsDuring1959To1969,
-		$percentageOfLoveSongsDuringThe2020s
-	]) => {
-		const change =
-			$percentageOfLoveSongsDuringThe2020s -
-			$percentageOfLoveSongsDuring1959To1969;
-		return change / $percentageOfLoveSongsDuring1959To1969;
-	}
-);
-
-export const formattedLoveSongPercentChange = derived(
-	percentChangeFrom60sToLast10Years,
-	($percentChangeFrom60sToLast10Years) => {
-		// debugger;
-		return `${$percentChangeFrom60sToLast10Years > 0 ? "+" : $percentChangeFrom60sToLast10Years < 0 ? "-" : ""}${onlyShowOneDecimalPlaceIfLessThan10(Math.abs(100 * $percentChangeFrom60sToLast10Years))}`;
-	}
-);
 
 // Annotations
 

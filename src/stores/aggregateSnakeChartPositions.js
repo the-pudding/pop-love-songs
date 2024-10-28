@@ -120,7 +120,6 @@ export const aggregateSnakeChartPositions = derived(
 	[visibleSongsData, typesTreatedAsNonLoveSongs],
 	([$visibleSongsData, $typesTreatedAsNonLoveSongs]) => {
 		return aggregationTimeRegions.map((timeRegion) => {
-			// TODO OPTIMIZATION: since timeRegions are technically hardcoded, we could derive them all at once, rather than each time
 			const popularitySumIgnoringFilters =
 				getPopularitySumIgnoringFilters(timeRegion);
 			const songsInTimeRegion = $visibleSongsData.filter(({ song }) => {

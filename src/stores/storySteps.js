@@ -20,10 +20,6 @@ import { aSearchBarIsFocused } from "./searchAndFilter";
 
 const SEARCH_AND_FILTER_BLANK_STATE = {
 	selectedLoveSongTypes: [],
-	timeRange: {
-		startYear: MIN_DATE,
-		endYear: MAX_DATE
-	},
 
 	columnsToFilterVisibilityOn: [],
 	visibleButNotSelectedLoveSongTypes: [],
