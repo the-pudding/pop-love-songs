@@ -95,6 +95,10 @@ const hexToRgbaArray = (hex) => {
 export const rgbaArrayToString = (rgbaArray) =>
 	`rgba(${rgbaArray[0]}, ${rgbaArray[1]}, ${rgbaArray[2]}, ${rgbaArray[3]})`;
 
+// OPTIMIZATION: Currently, we're creating a a 5k-length array matching the every individual song.
+// However, there are only 8 colors * 2 (selected/unselected) = 16 unique colors.
+// So we could optimize this by creating a 16-length length array, then provide a lookup dictionary where the key is `${loveSongType}-${isSelected}` 
+// and the value is the index in the 16 - length color array. Interpolating 16 values should be much faster than 5k values.
 export const songColor = derived(
 	[songIsSelected, loveSongTypeColorMap, unselectedLoveSongTypeColorMap],
 	([$songIsSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap]) =>
@@ -105,7 +109,6 @@ export const songColor = derived(
 				$loveSongTypeColorMap,
 				$unselectedLoveSongTypeColorMap
 			);
-			// TODO: OPTIMIZATION: create an rgba array version of the color maps, so we don't have to recalculate this every time
 			return hexToRgbaArray(hex);
 		}),
 	[]
