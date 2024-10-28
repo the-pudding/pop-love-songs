@@ -10,8 +10,10 @@
 {#if $currentStoryStepIndex === 0}
 	<div class="tap" aria-hidden="true" style:text-shadow={textShadow(2, 1)} style:font-size={$mq.desktop ? '1.3rem' : '1rem'}>
 		<div class="row">
-			<strong>{$mq.desktop ? "Click" : "Tap"} to continue</strong>
 			{@html pointer}
+		</div>
+		<div class="row">
+			<strong>{$mq.desktop ? "Click" : "Tap"} to continue</strong>
 		</div>
 
 		{#if $mq.desktop}
@@ -33,13 +35,13 @@
 		position: fixed;		
 		top: 50%;
 		right: 0px;
-		transform: translate(0%, 30px);
+		transform: translate(0%, -8px);
 		margin-right: 12px;
     	height: 80px;
 
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		align-items: end;
 		opacity: 0;
         animation: fadeIn 1s forwards;
         animation-delay: 3s;
