@@ -1,11 +1,13 @@
 <script>
+    import { tick } from "svelte";
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 	import { getArrayOfPerformers } from "$data/data-utils";
+    import { SONG_SEARCH_INPUT_ID } from "$utils/searchBar";
 	import { visibleSongsData } from "$stores/dataDerivations";
     import { performerSearchString, previewedPerformer, previewedSong, selectedPerformers, selectedSong, songSearchString } from "$stores/searchAndFilter";
-	import PerformerSearchResult from "./PerformerSearchResult.svelte";
-
+	
     import SearchBarAndDropdown from "./SearchBarAndDropdown.svelte";
+    import PerformerSearchResult from "./PerformerSearchResult.svelte";
 
     $: performerSongCountMap = $visibleSongsData.reduce((acc, { song }) => {
         getArrayOfPerformers(song).forEach(performer => {
@@ -35,11 +37,18 @@
             ariaLabel: getAriaLabel({ name, totalSongCount })
         };
     }).sort((a, b) => b.totalSongCount - a.totalSongCount);
-
+    
     $: handleSelectedPerformer = ({name}) => {
         $selectedPerformers = [name];
         $previewedPerformer = "";
         $performerSearchString = "";
+
+        // For accessibility (and general UX), focus on the song search input after selecting a performer.
+        // Svelte smell: Svelte's tick() doesn't work here, since we actually want the entire call stack to complete,
+        // otherwise, in the event of a click event, that event will actually blur the input again
+        setTimeout(() => {
+            document.getElementById(SONG_SEARCH_INPUT_ID).focus();
+        }, 0);
     }
 
     $: handlePreviewedPerformer = (result = {}) => {
@@ -87,6 +96,7 @@
 </script>
 
 <SearchBarAndDropdown
+    inputId="performer-search"
     dropdownId="performer"
     {placeholder}
     bind:searchString={$performerSearchString}

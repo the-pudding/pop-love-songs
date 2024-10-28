@@ -1,6 +1,8 @@
 <script>
     import { LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP, SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
     import { formatPerformersForDisplay, formatYearForDisplay, getArrayOfPerformers } from "$data/data-utils";
+    import { SONG_SEARCH_INPUT_ID } from "$utils/searchBar";
+
     import { selectedSongsData } from "$stores/dataDerivations";
     import { selectedPerformers, previewedSong, selectedSong, songSearchString, typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
 	import { nodePositionsInSimulation } from "$stores/simulation";
@@ -87,7 +89,8 @@
 </script>
 
 <SearchBarAndDropdown
-    dropdownId="song"
+    inputId={SONG_SEARCH_INPUT_ID}
+    dropdownId={'song'}
     placeholder={getPlaceholder()}
     bind:searchString={$songSearchString}
     {searchResults}

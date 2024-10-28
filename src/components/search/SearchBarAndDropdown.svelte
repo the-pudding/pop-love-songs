@@ -1,6 +1,7 @@
 <script>
     import { afterUpdate } from "svelte";
     import { aSearchBarIsFocused, openedDropdown } from "$stores/searchAndFilter";
+    export let inputId;
     export let dropdownId;
     export let placeholder = "Search...";
     export let inputAriaLabel = "Search and select a result...";
@@ -124,6 +125,7 @@
 <div class="search-container">
     <input 
         type="text" 
+        id={inputId}
         aria-label={inputAriaLabel}
         aria-live="assertive"
         placeholder={placeholder} 
