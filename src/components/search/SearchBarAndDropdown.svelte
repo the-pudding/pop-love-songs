@@ -7,7 +7,7 @@
     export let dropdownAriaLabel = "Search results";
     export let searchString = "";
     export let searchResults = [];
-    export let renderComponent = null;
+    export let renderComponent;
     export let clearSelection = () => {};
     export let onResultSelected = () => {};
     export let onResultPreviewed = () => {};
@@ -154,11 +154,7 @@
                             on:mouseenter={() => onResultPreviewed(result)}
                             on:mouseleave={() => onResultPreviewed()}
                         >
-                            {#if renderComponent}
-                                <svelte:component this={renderComponent} {result} />
-                            {:else}
-                                {result}
-                            {/if}
+                            <svelte:component this={renderComponent} {result} />
                         </li>
                     {/each}
                 </ul>
