@@ -142,7 +142,7 @@
                     No search results. Try thinking more <i>mainstream</i>...
                 </div>
             {:else}
-                <ul role="listbox" class="dropdown" aria-label={dropdownAriaLabel}>
+                <ul role="listbox" tabindex="-1" class="dropdown" aria-label={dropdownAriaLabel}>
                     {#each searchResultsSubsetToRender as result, index}
                         <li 
                             role="option"

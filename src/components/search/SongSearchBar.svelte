@@ -1,5 +1,5 @@
 <script>
-    import { LOVE_SONG_TYPE_CONSTANTS, LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP, SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
+    import { LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP, SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
     import { formatPerformersForDisplay, formatYearForDisplay, getArrayOfPerformers } from "$data/data-utils";
     import { selectedSongsData } from "$stores/dataDerivations";
     import { selectedPerformers, previewedSong, selectedSong, songSearchString, typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
@@ -12,7 +12,7 @@
     const getAriaLabel = (result) => {
         const userRejectedType = $isEndingSandboxStep && $typesTreatedAsNonLoveSongs.includes(+result.loveSongType);
         const songDescription = `"${result.songName}" by ${result.performerNames} (released ${result.year})`;
-        const loveSongTypeDescription = ` of category ${LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[result.loveSongType]}${userRejectedType ? ` originally but now dubbed ${LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]}` : ''}`;
+        const loveSongTypeDescription = ` of category ${LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP[result.loveSongType]}${userRejectedType ? ` originally but now you've removed it from the love song category` : ''}`;
         return `${songDescription}${$isEndingSandboxStep ? loveSongTypeDescription : ''}`;
     }
 
@@ -75,7 +75,7 @@
         if ($selectedSong.song) {
             const songName = $selectedSong.song[SONG_DATA_COLUMNS_ENUM.song];
             return forAriaLabel ? `Selected ${songName}` : songName
-        } else if ($selectedPerformers.length > 0) {
+        } else if ($selectedPerformers.length) {
             const songCount = $selectedSongsData.length;
             return `${songCount} song${songCount !== 1 ? 's' : ''} with ${$selectedPerformers[0]}:`;
         } else {
@@ -92,7 +92,7 @@
     bind:searchString={$songSearchString}
     {searchResults}
     inputAriaLabel={inputAriaLabel}
-    dropdownAriaLabel={"Song search results, sorted by total weeks in the Billboard Top 10"}
+    dropdownAriaLabel={`Song search results, sorted by ${$selectedPerformers.length ? 'love song type' : 'total weeks in top 10'}`}
     clearSelection={handleClearSelection}
     onResultSelected={handleSelectedSong}
     onResultPreviewed={handleResultPreviewed}
