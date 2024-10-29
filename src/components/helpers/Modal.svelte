@@ -1,5 +1,7 @@
 <!-- Based on this example: https://svelte.dev/examples/modal -->
 <script>
+	import mq from "$stores/mq";
+
 	export let showModal; // boolean
 	export let showXButton = true;
 	export let maxWidth = '42em';
@@ -20,6 +22,7 @@
 		dialog.close();
 		onBackgroundClick();
 	}}
+	class:desktop={$mq.desktop}
 	style:max-width={maxWidth}
 >
 	<!-- svelte-ignore a11y-autofocus -->
@@ -48,7 +51,7 @@
 		padding: 0;
 		margin: auto;
 	}
-	dialog::backdrop {
+	dialog.desktop::backdrop {
 		background: rgba(0, 0, 0, 0.5);
 	}
 	dialog > div.content {

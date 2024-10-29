@@ -71,6 +71,8 @@
 		pointer-events: none;
 
 		background-color: transparent;
+
+		z-index: 100000;
 	}
 
 	li:hover, li:focus {

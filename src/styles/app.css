@@ -97,7 +97,7 @@ h6 {
 	font-size: var(--20px, 20px);
 }
 
-.story-text b, .story-text .song-title {
+.story-text > * {
 	/* Fixes a weird issue where the text-shadow of punctuation overlaps with this text (thanks, Matt!) */
 	/* Just when I thought I had a good grasp of CSS... *sigh* */
 	text-shadow: none;
