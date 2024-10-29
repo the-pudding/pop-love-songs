@@ -41,7 +41,7 @@ $: leftAriaLabel = `Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_ST
 		{#if $mq.desktop}
 			<button
 				aria-label={leftAriaLabel}
-				class="left-hint"
+				class="left-hint arrow"
 				on:click={() => dispatch("tap", "left")}
 			>
 				<ChevronLeft
@@ -64,7 +64,7 @@ $: leftAriaLabel = `Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_ST
 		{#if $mq.desktop}
 			<button
 				aria-label={rightAriaLabel}
-				class="right-hint"
+				class="right-hint arrow"
 				class:bounceHint={$currentStoryStepIndex == 0}
 				on:click={() => dispatch("tap", "right")}
 			>
@@ -167,14 +167,7 @@ $: leftAriaLabel = `Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_ST
 		box-shadow: none;
 		pointer-events: auto;
 	}
-	button:disabled {
-		opacity: 0.2;
-		cursor: not-allowed;
-	}
 
-	button:hover {
-		background-color: rgba(255, 255, 255, 0.2);
-	}
 
 	/* TODO: since we're having people look in landscape, this breakpoint should be bigger (but do we want them to shrink at all?) */
 	@media (max-width: 600px) {
@@ -196,19 +189,29 @@ $: leftAriaLabel = `Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_ST
 		position: absolute;
 		top: 0;
 		height: 100%;
-		width: 20%;
 		background: transparent;
+		border: none;
+
+		/* We extend the tap regions off screen because on (at least) iPhone, there is a big margins on either side in landscape */
+		width: calc(2 * 40%);
 		
 		pointer-events: auto;
-
-		border: 2px solid black; /* tEMPORARY */
 	}
 
 	.left-tap-region {
 		left: 0;
+		transform: translateX(-50%);
 	}
 
 	.right-tap-region {
 		right: 0;
+		transform: translateX(50%);
 	}
+
+	.left-tap-region:focus,
+	.right-tap-region:focus {
+		background: rgba(211, 211, 211, 0.3); light gray with 30% opacity
+	}
+
+	/* TODO: the hint arrow icon should also be shown when focused */
 </style>

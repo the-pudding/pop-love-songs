@@ -18,21 +18,21 @@
     }
     $: layoutData = $songAnnotationsWithPosition
         .filter(({adjacentAnnotation}) => adjacentAnnotation) 
-        .map(({song, x, y, radius, rightAlign, placeBelow, placeAbove, alternateTitle, audioFile}) => {
+        .map(({song, x, y, radius, rightAlign, placeBelow, placeAbove, alternateTitle, noWrapTitle, audioFile}) => {
             const xPos = getX(x, radius, rightAlign, placeBelow, placeAbove);
             const yPos = y - (placeBelow ? -40 : (placeAbove ? 60 : Y_OFFSET));
-            return {xPos, yPos, song, rightAlign, alternateTitle, audioFile}
+            return {xPos, yPos, song, rightAlign, alternateTitle, noWrapTitle, audioFile}
         })
         .sort((a, b) => a.xPos - b.xPos); // sort into from left to right, so tabindex will match visual order
 </script>
 
-{#each layoutData as {xPos, yPos, song, rightAlign, alternateTitle, audioFile}}
+{#each layoutData as {xPos, yPos, song, rightAlign, alternateTitle, noWrapTitle, audioFile}}
     <li
         id={song[SONG_DATA_COLUMNS_ENUM.song].replaceAll(' ', '-')}
         class="annotation-wrapper"
         style={`top: ${yPos}px; left: ${xPos}px; ${rightAlign ? 'transform: translateX(-100%);' : ''}`}
     >
-        <SongInfo {song} {alternateTitle} {audioFile} {rightAlign} />
+        <SongInfo {song} {alternateTitle} {noWrapTitle} {audioFile} {rightAlign} />
     </li>
 {/each}
 

@@ -22,6 +22,7 @@
 		getSongIndexFromClickLocation
 	} from "./viz-utils";
 
+	import mq from "$stores/mq";
 	import { simulationStore } from "$stores/simulation";
 	import { DEFAULT_Y_ENTRANCE_POSITION } from "$stores/forcePositionOptions-helper";
 	import { songRadius, xForcePosition, yForcePosition } from "$stores/visualEncodings";
@@ -120,7 +121,8 @@
 	};
 
 	const handleMouseMove = (e) => {
-		if ($showAggregateSnakeChart) return
+		// Tapping to see song info is not allowed on mobile
+		if ($showAggregateSnakeChart || !$mq.desktop) return
 		const { offsetX, offsetY } = e;
 		// Multiply by PIXEL_SCALE to translate mouse position into the scaled up canvas pixel universe
 		const songIndex = getSongIndexFromClickLocation(invisibleContext, offsetX * PIXEL_SCALE, offsetY * PIXEL_SCALE);		

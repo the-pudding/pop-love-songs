@@ -276,6 +276,7 @@ const stepsWithoutText = {
 						song: "Blinding Lights",
 						year: 2020,
 						rightAlign: true,
+						noWrapTitle: true,
 						audioFile: "blinding-lights"
 					}
 				]

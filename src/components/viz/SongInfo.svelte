@@ -12,6 +12,7 @@
 	
 	export let song;
 	export let alternateTitle = '';
+	export let noWrapTitle = false;
 	export let audioFile = false;
 	export let rightAlign = false;
 
@@ -40,7 +41,7 @@
 				audioFile={audioFile}
 			/>
 		{/if}
-		<div aria-hidden="true" class='song-title' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}; text-shadow: ${textShadow(2, 1)};`}>
+		<div aria-hidden="true" class='song-title' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}; text-shadow: ${textShadow(2, 1)}; ${noWrapTitle ? 'white-space: nowrap;' : ''}`}>
 			{displaySongName}
 		</div>
 		{#if audioFile && rightAlign}
@@ -74,7 +75,15 @@
 		font-family: var(--sans);
 	}
 
+	.song-and-player-wrapper {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+	}
+
 	.song-title {
+		margin-left: 6px;
+		margin-right: 6px;
 		display: inline-block;
 		font-weight: bold;
 		text-transform: uppercase;
