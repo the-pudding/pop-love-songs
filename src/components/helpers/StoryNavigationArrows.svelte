@@ -26,11 +26,13 @@
 			dispatch("tap", dir);
 		}
 	};
+$: rightAriaLabel = `Advance to step ${$currentStoryStepIndex + 2} of ${TOTAL_STORY_STEPS}`;
+$: leftAriaLabel = `Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_STEPS}`;
+
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
 
-<!-- @michelle: my "use semantic HTML" game feels week. Do you have an intuition why section was used here? When do you use this tag? -->
 <section class="tapper-overlay" style={`height: ${$viewport.height}px; width: ${$viewport.width}px;`}>
 	{#if !userHasSeenFirstSlide}
 		<Tap />
@@ -38,7 +40,7 @@
 	{#if $currentStoryStepIndex !== 0}
 		{#if $mq.desktop}
 			<button
-				aria-label={`Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_STEPS}`}
+				aria-label={leftAriaLabel}
 				class="left-hint"
 				on:click={() => dispatch("tap", "left")}
 			>
@@ -52,7 +54,7 @@
 			</button>
 		{:else}
 			<button
-				aria-label={`Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_STEPS}`}
+				aria-label={leftAriaLabel}
 				class="left-tap-region"
 				on:click={() => dispatch("tap", "left")}
 			></button>
@@ -61,7 +63,7 @@
 	{#if !$isLastStep}
 		{#if $mq.desktop}
 			<button
-				aria-label={`Advance to step ${$currentStoryStepIndex + 2} of ${TOTAL_STORY_STEPS}`}
+				aria-label={rightAriaLabel}
 				class="right-hint"
 				class:bounceHint={$currentStoryStepIndex == 0}
 				on:click={() => dispatch("tap", "right")}
@@ -76,7 +78,7 @@
 			</button>
 		{:else}
 			<button
-				aria-label={`Advance to step ${$currentStoryStepIndex + 2} of ${TOTAL_STORY_STEPS}`}
+				aria-label={rightAriaLabel}
 				class="right-tap-region"
 				on:click={() => dispatch("tap", "right")}
 			></button>
