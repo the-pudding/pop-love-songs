@@ -91,14 +91,14 @@ $: leftAriaLabel = `Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_ST
 		position: fixed;
 		top: 0;
 		left: 0;
-		z-index: 1;
+
 		pointer-events: none;
-	}
-	.tapper-overlay {
+
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+		
 		z-index: 999;
 	}
 	.left-hint,
