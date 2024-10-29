@@ -5,7 +5,7 @@
     import { tiemposFriendlyTextShadow } from "$utils/styling.js";
     import viewport from "$stores/viewport.js";
 
-    import StoryNavigationArrows from '../helpers/StoryNavigationArrows.svelte';
+    import StoryNavigationArrowsAndTapRegion from '../helpers/StoryNavigationArrowsAndTapRegion.svelte';
 
     import XandAddButton from "$components/helpers/XandAddButton.svelte";
     import ExampleBubble from "./ExampleBubble.svelte";
@@ -161,7 +161,7 @@
     </div>
 </div>
 
-<StoryNavigationArrows on:tap={onTap} {userHasSeenFirstSlide} enableKeyboard={true} />
+<StoryNavigationArrowsAndTapRegion on:tap={onTap} {userHasSeenFirstSlide} enableKeyboard={true} />
 
 <style>
     .container {
