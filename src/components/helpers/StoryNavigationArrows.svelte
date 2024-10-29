@@ -3,6 +3,7 @@
 	import { ChevronLeft, ChevronRight } from "lucide-svelte";
 	import { createEventDispatcher } from "svelte";
 
+	import mq from "$stores/mq";
 	import viewport from "$stores/viewport";
 	import { currentStoryStepIndex, isLastStep, TOTAL_STORY_STEPS } from "$stores/storySteps";
 	import variables from '$data/variables'
@@ -35,35 +36,51 @@
 		<Tap />
 	{/if}
 	{#if $currentStoryStepIndex !== 0}
-		<button
-			aria-label={`Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_STEPS}`}
-			class="left-hint"
-			on:click={() => dispatch("tap", "left")}
-		>
-			<ChevronLeft
-				color={arrowStroke}
-				strokeWidth={arrowStrokeWidth}
-				size="2rem"
-				aria-hidden="true"
-				focusable="false"
-			/>
-		</button>
+		{#if $mq.desktop}
+			<button
+				aria-label={`Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_STEPS}`}
+				class="left-hint"
+				on:click={() => dispatch("tap", "left")}
+			>
+				<ChevronLeft
+					color={arrowStroke}
+					strokeWidth={arrowStrokeWidth}
+					size="2rem"
+					aria-hidden="true"
+					focusable="false"
+				/>
+			</button>
+		{:else}
+			<button
+				aria-label={`Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_STEPS}`}
+				class="left-tap-region"
+				on:click={() => dispatch("tap", "left")}
+			></button>
+		{/if}
 	{/if}
 	{#if !$isLastStep}
-		<button
-			aria-label={`Advance to step ${$currentStoryStepIndex + 2} of ${TOTAL_STORY_STEPS}`}
-			class="right-hint"
-			class:bounceHint={$currentStoryStepIndex == 0}
-			on:click={() => dispatch("tap", "right")}
-		>
-			<ChevronRight
-				color={arrowStroke}
-				strokeWidth={arrowStrokeWidth}
-				size="2rem"
-				aria-hidden="true"
-				focusable="false"
-			/>
-		</button>
+		{#if $mq.desktop}
+			<button
+				aria-label={`Advance to step ${$currentStoryStepIndex + 2} of ${TOTAL_STORY_STEPS}`}
+				class="right-hint"
+				class:bounceHint={$currentStoryStepIndex == 0}
+				on:click={() => dispatch("tap", "right")}
+			>
+				<ChevronRight
+					color={arrowStroke}
+					strokeWidth={arrowStrokeWidth}
+					size="2rem"
+					aria-hidden="true"
+					focusable="false"
+				/>
+			</button>
+		{:else}
+			<button
+				aria-label={`Advance to step ${$currentStoryStepIndex + 2} of ${TOTAL_STORY_STEPS}`}
+				class="right-tap-region"
+				on:click={() => dispatch("tap", "right")}
+			></button>
+		{/if}
 	{/if}
 </section>
 
@@ -93,8 +110,6 @@
 		z-index: 999;
 		pointer-events: auto;
 		position: absolute;
-        /* TODO: this feels too high on the screen on mobile */
-		top: 55%;
 		transition: all calc(var(--1s) * 0.25) ease-in-out;
 	}
 	.left-hint {
@@ -172,5 +187,26 @@
 		.right-hint {
 			padding: 0 0 0 0.25rem;
 		}
+	}
+
+	.left-tap-region,
+	.right-tap-region {
+		position: absolute;
+		top: 0;
+		height: 100%;
+		width: 20%;
+		background: transparent;
+		
+		pointer-events: auto;
+
+		border: 2px solid black; /* tEMPORARY */
+	}
+
+	.left-tap-region {
+		left: 0;
+	}
+
+	.right-tap-region {
+		right: 0;
 	}
 </style>
