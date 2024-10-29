@@ -4,6 +4,7 @@
     import urlParams from "../../utils/urlParams.js";
     import { tiemposFriendlyTextShadow } from "$utils/styling.js";
     import viewport from "$stores/viewport.js";
+    import mq from "$stores/mq.js";
 
     import StoryNavigationArrowsAndTapRegion from '../helpers/StoryNavigationArrowsAndTapRegion.svelte';
 
@@ -13,7 +14,7 @@
     import { selectedSong, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart, songSearchString, performerSearchString, previewedPerformer, previewedSong } from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import { getYPositionForPercentage, outermostMargin } from "$stores/canvasPosition.js";
-	import DataMethodsModal from "./DataMethodsModal.svelte";	
+	import DataMethodsModal from "./DataMethodsModal.svelte";
 	
 	let userHasSeenFirstSlide = false;
     $: {
@@ -30,16 +31,20 @@
     let showModal = false;
     let container;
     const addModalOpenButtonListener = () => {
-        const modalOpenButton = container && container.querySelector('.modalTrigger')
+        const modalOpenButton = container && container.querySelector('.modalTrigger');
         if (modalOpenButton) {
+            if (!$mq.desktop) {
+                modalOpenButton.remove();
+                return;
+            }
             modalOpenButton.style.marginLeft = "2px";
             modalOpenButton.style.marginRight = "2px";
 
             modalOpenButton.addEventListener('click', () => {
                 showModal = true;
-            })
+            });
         }
-    }
+    };
 
     const addComponentToText = ({ selector, svelteComponent, props, style = "" }) => {
         const el = document.querySelector(selector);
