@@ -210,7 +210,7 @@ $: leftAriaLabel = `Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_ST
 
 	.left-tap-region:focus,
 	.right-tap-region:focus {
-		background: rgba(211, 211, 211, 0.3); light gray with 30% opacity
+		background: rgba(211, 211, 211, 0.3);
 	}
 
 	/* TODO: the hint arrow icon should also be shown when focused */
