@@ -68,7 +68,7 @@
         top: 0;
         left: 0;
         width: 100%;
-        padding: 16px; /* TODO */
+        padding: 12px; /* TODO */
 
         display: flex;
         gap: 4px;
@@ -83,7 +83,7 @@
 
     button.dash {
         flex: 1;
-        height: 8px;
+        height: 4px;
 
         border-radius: 4px;
         cursor: pointer;
