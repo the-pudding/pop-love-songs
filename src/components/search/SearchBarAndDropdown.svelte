@@ -48,6 +48,9 @@
     $: {
         // Clear the selection if the user starts searching
         if (!!searchString.length) {
+            if ($openedDropdown !== dropdownId) {
+                openedDropdown.set(dropdownId);
+            }
             if (hasSelection) {
                 handleClearingSelection();
             }
