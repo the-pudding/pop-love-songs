@@ -1,4 +1,5 @@
 <script>
+	import mq from "$stores/mq";
 	import viewport from "$stores/viewport";
 
 	// shadow, plain, line, bubble
@@ -6,7 +7,11 @@
 </script>
 
 <header>
-	<div class="wordmark" style:max-width={$viewport.isLikelyInMobileLandscape ? '10em' : '14em'}>
+	<div
+		class="wordmark" 
+		style:padding-top={$mq.desktop ? '32px' : '6px'}
+		style:max-width={$viewport.isLikelyInMobileLandscape ? '10em' : '14em'}
+	>
 		<a href="https://pudding.cool" aria-label="The Pudding - home" target="_self"
 			>{@html wordmark}</a
 		>
@@ -16,7 +21,7 @@
 <style>
 	.wordmark {
 		margin: 0 auto;
-		padding: 32px 0;
+		padding-top: 32px 0;
 		transform: rotate(-4deg);
 		/* Apparently its getting position static, which is preventing z-index from working. Not sure why... */
 		position: relative;

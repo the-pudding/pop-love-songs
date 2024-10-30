@@ -6,9 +6,10 @@ import debounce from "lodash.debounce";
 export const MOBILE_LANDSCAPE_WIDTH = 850;
 export const MOBILE_PORTRAIT_WIDTH = 500;
 
-export default readable({ width: 0, height: 0 }, (set) => {
+export default readable({ width: 0, height: 0, ready: false }, (set) => {
 	const onResize = () =>
 		set({
+			ready: true,
 			width: window.innerWidth,
 			height: window.innerHeight,
 			isLikelyInMobileLandscape:

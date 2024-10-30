@@ -16,6 +16,7 @@
 
 	import Audio from "./audio/Audio.svelte";
 
+	import viewport from "$stores/viewport";
 	import { playing } from "$stores/audio.js";
 	import { currentStoryStep, currentStoryStepIndex, showSearchBars } from "$stores/storySteps";
 	import loadImage from "$utils/loadImage";
@@ -40,34 +41,36 @@
 	<Header />
 {/if}
 
-<article>
-	<StoryStepProgressDashes />
+{#if $viewport.ready}
+	<article>
+		<StoryStepProgressDashes />
 
-	{#if $currentStoryStep.showOpeningComment}
-			<OpeningComment />
-	{/if}
-	<StoryStepNavigationAndText />
-	
-	{#if $showSearchBars}
-		<InteractivityControlsAndFilters />
-	{/if}
-
-	{#if urlParsed}
-		<Figure>
-			<SnakeAndBubbleChart />
-		</Figure>
-			
-		{#if $currentStoryStep.showHeadlinesAboutLoveSongDecline}
-			<HeadlinesAboutLoveSongDecline />
-		{:else if $currentStoryStep.showTitleCard}
-			<TitleCard />
-		{:else if $currentStoryStep.showFooter}
-			<FooterEquivalentEndThingy />
+		{#if $currentStoryStep.showOpeningComment}
+				<OpeningComment />
 		{/if}
-	{/if}
+		<StoryStepNavigationAndText />
+		
+		{#if $showSearchBars}
+			<InteractivityControlsAndFilters />
+		{/if}
 
-	<Annotations />
-	<SongTooltip />
+		{#if urlParsed}
+			<Figure>
+				<SnakeAndBubbleChart />
+			</Figure>
+				
+			{#if $currentStoryStep.showHeadlinesAboutLoveSongDecline}
+				<HeadlinesAboutLoveSongDecline />
+			{:else if $currentStoryStep.showTitleCard}
+				<TitleCard />
+			{:else if $currentStoryStep.showFooter}
+				<FooterEquivalentEndThingy />
+			{/if}
+		{/if}
 
-	<Audio audioFile={$playing?.audioFile} onComplete={() => $playing = undefined} />
-</article>
+		<Annotations />
+		<SongTooltip />
+
+		<Audio audioFile={$playing?.audioFile} onComplete={() => $playing = undefined} />
+	</article>
+{/if}
