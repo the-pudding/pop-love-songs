@@ -1,6 +1,7 @@
 <script>
     import { LOVE_SONG_TYPE_COLOR_MAP } from "$data/data-constants";
     import { storySteps, currentStoryStepIndex, spotlightedTypeByIndex } from "$stores/storySteps";
+	import { get } from "svelte/store";
 
     const UNVIEWED_OPACITY = 0.1;
     $: getBackgroundColor = (index) => {
@@ -16,9 +17,16 @@
     const BORDER_THICKNESS = 4;
     $: getBorderColor = (index) => {
         if (index === $currentStoryStepIndex) {
-            return `${BORDER_THICKNESS}px solid ${LOVE_SONG_TYPE_COLOR_MAP[spotlightedTypeByIndex[index]]}`;
+            return `${BORDER_THICKNESS}px solid ${getBackgroundColor(index)}`;
         }
         return '0px solid transparent';
+    }
+
+    $: getTransform = (index) => {
+        if (index === $currentStoryStepIndex) {
+            return `translateY(-${BORDER_THICKNESS / 2}px)`;
+        }
+        return 'translateY(0px)';
     }
 </script>
 
@@ -29,6 +37,7 @@
             style={`
                 background-color: ${getBackgroundColor(index)};
                 border: ${getBorderColor(index)};
+                transform: ${getTransform(index)};
             `}
         />
     {/each}
