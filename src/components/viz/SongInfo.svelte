@@ -97,6 +97,10 @@
 		font-weight: 400;
 	}
 
+	.performer {
+		white-space: nowrap;
+	}
+
 	.love-song-type {
 		display: flex;
 	}
