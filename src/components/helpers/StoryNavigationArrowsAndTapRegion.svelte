@@ -8,9 +8,7 @@
 	import variables from '$data/variables'
 	
 	import Tap from "./Tap.svelte";
-
-	export let userHasSeenFirstSlide;
-
+	
 	export let enableKeyboard = false;
 	const arrowStroke = variables.color['cream-background'];
 	export let arrowStrokeWidth = "2";
@@ -37,9 +35,8 @@
 <svelte:window on:keydown={onKeyDown} />
 
 <section class="tapper-overlay" style={`height: ${$viewport.height}px; width: ${$viewport.width}px;`}>
-	{#if !userHasSeenFirstSlide}
-		<Tap />
-	{/if}
+	<Tap />
+
 	{#if $currentStoryStepIndex !== 0}
 		{#if $mq.desktop}
 			<button

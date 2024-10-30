@@ -8,13 +8,25 @@
 </script>
 
 {#if $currentStoryStepIndex === 0}
-	<div class="tap" aria-hidden="true" style:text-shadow={textShadow(2, 1)} style:font-size={$mq.desktop ? '1.3rem' : '1rem'}>
+	<div
+		class="tap"
+		aria-hidden="true"
+		style:text-shadow={textShadow(2, 1)} 
+		style:font-size={$mq.desktop ? '1.3rem' : '1rem'}
+		style:top={$mq.desktop ? '50%' : '20%'}
+	>
 		<div class="row">
 			{@html pointer}
 		</div>
-		<div class="row">
-			<strong>{$mq.desktop ? "Click" : "Tap"} to continue</strong>
-		</div>
+		{#if $mq.desktop}
+			<div class="row">
+				<strong>Click to continue</strong>
+			</div>
+		{:else}
+			<div class="">
+				<strong>Tap right & left<br/> half of screen to<br/> navigate story</strong>
+			</div>
+		{/if}
 
 		{#if $mq.desktop}
 			<div class="row keyboard">
@@ -25,7 +37,7 @@
 		{/if}
 	</div>
 	<div class="sr-only">
-        Click navigation arrows or use the left and right keyboard arrows to navigate through the article.
+		{$mq.desktop ? 'Click navigation arrows or use the left and right keyboard arrows to navigate through the article.' : 'Tap the left and right half of the screen to navigate through the article.'}
     </div>
 {/if}
 
@@ -33,7 +45,6 @@
 	.tap {
 		font-size: 1.3rem;
 		position: fixed;		
-		top: 50%;
 		right: 0px;
 		transform: translate(0%, -8px);
 		margin-right: 12px;
@@ -44,7 +55,7 @@
 		align-items: end;
 		opacity: 0;
         animation: fadeIn 1s forwards;
-        animation-delay: 3s;
+        animation-delay: 2s;
 
 		z-index: 1000;
     }

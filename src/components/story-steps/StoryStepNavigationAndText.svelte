@@ -166,7 +166,7 @@
     </div>
 </div>
 
-<StoryNavigationArrowsAndTapRegion on:tap={onTap} {userHasSeenFirstSlide} enableKeyboard={true} />
+<StoryNavigationArrowsAndTapRegion on:tap={onTap} enableKeyboard={true} />
 
 <style>
     .container {
