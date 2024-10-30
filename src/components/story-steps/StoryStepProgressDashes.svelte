@@ -24,15 +24,15 @@
     }
 
     const BORDER_THICKNESS = 2;
-    $: getBorderColor = (index) => {
-        if (index === $currentStoryStepIndex) {
+    $: getBorder = (index) => {
+        if ($mq.desktop && index === $currentStoryStepIndex) {
             return `${BORDER_THICKNESS}px solid ${getBackgroundColor(index)}`;
         }
         return '0px solid transparent';
     }
 
     $: getMarginTop = (index) => {
-        if (index === $currentStoryStepIndex) {
+        if ($mq.desktop && index === $currentStoryStepIndex) {
             return `-${BORDER_THICKNESS}px`;
         }
         return '0px';
@@ -43,24 +43,23 @@
     }
 </script>
 
-<!-- Note that this progress bar is hidden from tab/screen readers. It's likely just to hamper navigation, not improve it, cuz it's so long -->
-{#if $mq.desktop}
-    <div class="progress-bar" aria-hidden="true">
-        {#each storySteps as _, index}
-            <button
-                class="dash"
-                tabindex="-1"
-                style={`
-                    background-color: ${getBackgroundColor(index)};
-                    border: ${getBorderColor(index)};
-                    margin-top: ${getMarginTop(index)};
-                    opacity: ${getOpacity(index)};
-                `}
-                on:click={() => handleClick(index)}
-            />
-        {/each}
-    </div>
-{/if}
+<!-- Note that this progress bar is hidden from tab/screen readers. It'd likely just hamper navigation, not improve it. -->
+<div class="progress-bar" aria-hidden="true" style={`gap: ${$mq.desktop ? 3 : 0 }px; padding: ${$mq.desktop ? 12 : 0 }px;`}>
+    {#each storySteps as _, index}
+        <button
+            class="dash"
+            tabindex="-1"
+            style={`
+                background-color: ${getBackgroundColor(index)};
+                border: ${getBorder(index)};
+                margin-top: ${getMarginTop(index)};
+                opacity: ${getOpacity(index)};
+                border-radius: ${$mq.desktop ? 4 : 0}px;
+            `}
+            on:click={() => handleClick(index)}
+        />
+    {/each}
+</div>
 
 <style>
     .progress-bar {
@@ -68,10 +67,8 @@
         top: 0;
         left: 0;
         width: 100%;
-        padding: 12px; /* TODO */
 
         display: flex;
-        gap: 4px;
 
         z-index: 1000;
     }
@@ -85,7 +82,6 @@
         flex: 1;
         height: 4px;
 
-        border-radius: 4px;
         cursor: pointer;
 
         transition: transform 0.2s ease-in-out;
