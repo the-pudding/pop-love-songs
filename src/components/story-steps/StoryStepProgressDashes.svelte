@@ -2,15 +2,23 @@
     import { LOVE_SONG_TYPE_COLOR_MAP } from "$data/data-constants";
     import { storySteps, currentStoryStepIndex, spotlightedTypeByIndex } from "$stores/storySteps";
 
+    const UNVIEWED_OPACITY = 0.1;
     $: getBackgroundColor = (index) => {
         if (index <= $currentStoryStepIndex) {
-            if (index === $currentStoryStepIndex) {
-                return 'black';
-            } else if (spotlightedTypeByIndex[index]) {
-                return LOVE_SONG_TYPE_COLOR_MAP[spotlightedTypeByIndex[index]];
+            if (spotlightedTypeByIndex[index]) {
+                return `${LOVE_SONG_TYPE_COLOR_MAP[spotlightedTypeByIndex[index]]}`;
             } 
+            return 'gray';
         }
-        return 'rgba(0, 0, 0, 0.2)';
+        return `rgba(0, 0, 0, ${UNVIEWED_OPACITY})`;
+    }
+
+    const BORDER_THICKNESS = 4;
+    $: getBorderColor = (index) => {
+        if (index === $currentStoryStepIndex) {
+            return `${BORDER_THICKNESS}px solid ${LOVE_SONG_TYPE_COLOR_MAP[spotlightedTypeByIndex[index]]}`;
+        }
+        return '0px solid transparent';
     }
 </script>
 
@@ -18,8 +26,11 @@
     {#each storySteps as _, index}
         <div 
             class="dash" 
-            style="background-color: {getBackgroundColor(index)}">
-        </div>
+            style={`
+                background-color: ${getBackgroundColor(index)};
+                border: ${getBorderColor(index)};
+            `}
+        />
     {/each}
 </div>
 
