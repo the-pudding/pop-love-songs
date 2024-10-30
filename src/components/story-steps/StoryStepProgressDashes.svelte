@@ -3,18 +3,27 @@
 	import mq from "$stores/mq";
     import { storySteps, currentStoryStepIndex, spotlightedTypeByIndex } from "$stores/storySteps";
 
-    const UNVIEWED_OPACITY = 0.05;
-    $: getBackgroundColor = (index) => {
-        if (index <= $currentStoryStepIndex) {
-            if (spotlightedTypeByIndex[index]) {
-                return `${LOVE_SONG_TYPE_COLOR_MAP[spotlightedTypeByIndex[index]]}`;
-            } 
-            return '#d3d3d3';
+    const UNVIEWED_OPACITY = 0.2;
+    const VIEWED_OPACITY = 0.7;
+    const CURRENT_OPACITY = 1;
+    $: getOpacity = (index) => {
+        if (index === $currentStoryStepIndex) {
+            return CURRENT_OPACITY;
+        } else if (index < $currentStoryStepIndex) {
+            return VIEWED_OPACITY;
+        } else {
+            return UNVIEWED_OPACITY;
         }
-        return `rgba(0, 0, 0, ${UNVIEWED_OPACITY})`;
     }
 
-    const BORDER_THICKNESS = 4;
+    $: getBackgroundColor = (index) => {
+        if (index <= $currentStoryStepIndex && spotlightedTypeByIndex[index]) {
+            return LOVE_SONG_TYPE_COLOR_MAP[spotlightedTypeByIndex[index]];
+        }
+        return '#d3d3d3';
+    }
+
+    const BORDER_THICKNESS = 2;
     $: getBorderColor = (index) => {
         if (index === $currentStoryStepIndex) {
             return `${BORDER_THICKNESS}px solid ${getBackgroundColor(index)}`;
@@ -45,6 +54,7 @@
                     background-color: ${getBackgroundColor(index)};
                     border: ${getBorderColor(index)};
                     margin-top: ${getMarginTop(index)};
+                    opacity: ${getOpacity(index)};
                 `}
                 on:click={() => handleClick(index)}
             />
@@ -74,10 +84,14 @@
     button.dash {
         flex: 1;
         height: 8px;
+
+        border-radius: 4px;
+        cursor: pointer;
+
         transition: transform 0.2s ease-in-out;
     }
 
     button.dash:hover {
-        transform: scaleY(2);
+        transform: scaleY(1.6);
     }
 </style>
