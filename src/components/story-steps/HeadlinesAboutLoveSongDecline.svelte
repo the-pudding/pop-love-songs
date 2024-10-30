@@ -1,14 +1,13 @@
 <script>
-	import { Y_MARGIN_SCREEN_PERCENTAGE } from "$data/data-utils";
+	import { bottomOfStoryText } from "$stores/canvasPosition";
 	import viewport from "$stores/viewport";
-	import { STORY_STEP_CONTROLLER_TOP_PADDING } from "../viz/viz-utils";
 
     const headlines = {
         src: "assets/images/love song decline headlines.png",
         alt: "Screenshots of article headlines relating to the decline of love songs, such as: 'A generation without love songs', 'RIP love songs', 'love songs are in decline', 'love songs are harder to find' and 'they no longer write love songs like they used to'."
     }
 
-    $: topMargin = STORY_STEP_CONTROLLER_TOP_PADDING + ($viewport.height * Y_MARGIN_SCREEN_PERCENTAGE)
+    $: topMargin = $bottomOfStoryText
     $: style = `
         top: ${topMargin}px;
         width: 100%;

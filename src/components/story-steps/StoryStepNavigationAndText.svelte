@@ -13,7 +13,7 @@
 
     import { selectedSong, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart, songSearchString, performerSearchString, previewedPerformer, previewedSong } from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
-    import { getYPositionForPercentage, outermostMargin } from "$stores/canvasPosition.js";
+    import { getYPositionForPercentage, baseYTopMargin } from "$stores/canvasPosition.js";
 	import DataMethodsModal from "./DataMethodsModal.svelte";
 	
 	let userHasSeenFirstSlide = false;
@@ -141,7 +141,7 @@
     `
     $: containerStyle = `
         ${$currentStoryStep.showOpeningComment ? "" : "background: linear-gradient(to bottom, var(--color-cream-background), transparent);"}
-        margin-top: ${$outermostMargin}px;
+        margin-top: ${$baseYTopMargin}px;
         ${$currentStoryStep.showOpeningComment ? "bottom: 5%;" : "top: 0"};
         text-shadow: ${tiemposFriendlyTextShadow()};
     `

@@ -1,8 +1,8 @@
 <script>
     import viewport from "$stores/viewport.js";
-    import { abbreviateYearForDisplay, Y_MARGIN_SCREEN_PERCENTAGE } from '$data/data-utils';
+    import { abbreviateYearForDisplay } from '$data/data-utils';
     import { aSingleLoveSongTypeIsSpotlighted } from "$stores/storySteps";
-	import { getXPositionForYear, getYPositionForPercentage } from "$stores/canvasPosition";
+	import { getXPositionForYear, getYPositionForPercentage, margins } from "$stores/canvasPosition";
 	import { textShadow } from "$utils/styling";
 
     $: tickYears = [1960, 1970, 1980, 1990, 2000, 2010, 2020]
@@ -24,7 +24,7 @@
     $: topOfDashedLine = yCenter - radiusOutFromCenter;
 
     // Where to place axis during normal, snake chart view
-    $: belowSnakeChart = $viewport.height - (Y_MARGIN_SCREEN_PERCENTAGE * $viewport.height);
+    $: belowSnakeChart = $viewport.height - $margins.bottom;
 </script>
 
  {#each xPositions as { year, x }}

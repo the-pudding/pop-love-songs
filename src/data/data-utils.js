@@ -4,9 +4,6 @@ import {
 } from "./data-constants";
 import { MIN_DATE } from "./songs-data";
 
-// TODO: replace this with a store (currently not being used in canvasPosition.js, which has its own copy)
-export const Y_MARGIN_SCREEN_PERCENTAGE = 0.05;
-
 export const PERFORMER_LIST_DELIMITER = "|";
 export const getArrayOfPerformers = (song) => {
 	const performers_list_str = song[SONG_DATA_COLUMNS_ENUM.performers_list_str];

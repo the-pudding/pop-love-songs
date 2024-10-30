@@ -27,23 +27,23 @@ import { STORY_STEP_CONTROLLER_TOP_PADDING } from "$components/viz/viz-utils";
 import { MAX_DATE, MIN_DATE } from "$data/songs-data";
 
 const Y_MARGIN_SCREEN_PERCENTAGE = 0.05;
-export const outermostMargin = derived(
+export const baseYTopMargin = derived(
 	[viewport],
 	([$viewport]) => $viewport.height * Y_MARGIN_SCREEN_PERCENTAGE
 );
 const yMarginBottom = derived(
-	[outermostMargin],
-	([$outermostMargin]) => $outermostMargin
+	[baseYTopMargin],
+	([$baseYTopMargin]) => $baseYTopMargin * 1.2 // needs a little extra space
 );
 export const bottomOfStoryText = derived(
-	[outermostMargin],
-	([$outermostMargin]) => $outermostMargin + STORY_STEP_CONTROLLER_TOP_PADDING
+	[baseYTopMargin],
+	([$baseYTopMargin]) => $baseYTopMargin + STORY_STEP_CONTROLLER_TOP_PADDING
 );
 const SEARCH_BAR_HEIGHT = 70; // TODO: maybe export to style dictionary, we can relate it to --search-bar-height
 const yMarginTop = derived(
-	[outermostMargin, isEndingSandboxStep, showSearchBars],
-	([$outermostMargin, $isEndingSandboxStep, $showSearchBars]) =>
-		$outermostMargin +
+	[baseYTopMargin, isEndingSandboxStep, showSearchBars],
+	([$baseYTopMargin, $isEndingSandboxStep, $showSearchBars]) =>
+		$baseYTopMargin +
 		($isEndingSandboxStep && $showSearchBars ? SEARCH_BAR_HEIGHT : 0)
 );
 const X_MARGIN = 48; // This margin must accommodate the left/right nav arrows (Tap element)
