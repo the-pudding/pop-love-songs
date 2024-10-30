@@ -121,7 +121,8 @@ const stepsWithoutText = {
 				adjacentAnnotations:
 					ANNOTATION_METADATA.intro.annotations.serenadeHighlights
 			}
-		}
+		},
+		typeToShowInProgressBar: LOVE_SONG_TYPE_CONSTANTS.serenade
 	},
 	serenadesAreIndeedDying: {
 		searchAndFilterState: {
@@ -159,7 +160,8 @@ const stepsWithoutText = {
 			manuallySetPositions:
 				ANNOTATION_METADATA.serenadeComparisons.manuallySetPositions
 		},
-		showLoveSongChange: true
+		showLoveSongChange: true,
+		typeToShowInProgressBar: LOVE_SONG_TYPE_CONSTANTS.serenade
 	},
 
 	butWeWillTakeAMoreExpansiveView: {
@@ -178,7 +180,8 @@ const stepsWithoutText = {
 					ANNOTATION_METADATA.serenadeComparisons.annotations
 						.butWeWillTakeAMoreExpansiveView
 			}
-		}
+		},
+		typeToShowInProgressBar: LOVE_SONG_TYPE_CONSTANTS.serenade
 	},
 
 	definingSerenades: {
@@ -197,7 +200,8 @@ const stepsWithoutText = {
 				offsetAnnotations:
 					ANNOTATION_METADATA.serenadeComparisons.annotations.definingSerenades
 			}
-		}
+		},
+		typeToShowInProgressBar: LOVE_SONG_TYPE_CONSTANTS.serenade
 	},
 	colorInHeartbreak: {
 		searchAndFilterState: {
@@ -216,7 +220,8 @@ const stepsWithoutText = {
 				adjacentAnnotations:
 					ANNOTATION_METADATA.serenadeComparisons.annotations.colorInHeartbreak
 			}
-		}
+		},
+		typeToShowInProgressBar: LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
 	},
 
 	// Remaining Boomer-Bob-friendly types:
@@ -281,7 +286,8 @@ const stepsWithoutText = {
 					}
 				]
 			}
-		}
+		},
+		typeToShowInProgressBar: LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
 	},
 
 	longingAndHeartbreakDoNotTipTheScales: {
@@ -299,7 +305,8 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			showAggregateSnakeChart: true
 		},
-		showLoveSongChange: true
+		showLoveSongChange: true,
+		typeToShowInProgressBar: LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
 	},
 	// Courtship
 	introducingCourtship: {
@@ -703,8 +710,11 @@ export const aSingleLoveSongTypeIsSpotlighted = derived(
 	([$currentStoryStep]) => !!spotlightedLoveSongType($currentStoryStep)
 );
 
-export const spotlightedTypeByIndex = storySteps.map((step) =>
-	spotlightedLoveSongType(step)
+export const loveSongTypeToShowInProgressBar = storySteps.map(
+	(step, stepIndex) =>
+		step.typeToShowInProgressBar ||
+		spotlightedLoveSongType(step) ||
+		spotlightedLoveSongType(storySteps[Math.abs(stepIndex - 1)])
 );
 
 export const precedingStepSpotlightedType = derived(

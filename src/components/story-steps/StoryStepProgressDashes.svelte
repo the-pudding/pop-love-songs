@@ -1,15 +1,12 @@
 <script>
     import { LOVE_SONG_TYPE_COLOR_MAP } from "$data/data-constants";
 	import mq from "$stores/mq";
-    import { storySteps, currentStoryStepIndex, spotlightedTypeByIndex } from "$stores/storySteps";
+    import { storySteps, currentStoryStepIndex, loveSongTypeToShowInProgressBar } from "$stores/storySteps";
 
     const UNVIEWED_OPACITY = 0.2;
     const VIEWED_OPACITY = 0.7;
-    const CURRENT_OPACITY = 1;
     $: getOpacity = (index) => {
-        if (index === $currentStoryStepIndex) {
-            return CURRENT_OPACITY;
-        } else if (index < $currentStoryStepIndex) {
+        if (index <= $currentStoryStepIndex) {
             return VIEWED_OPACITY;
         } else {
             return UNVIEWED_OPACITY;
@@ -17,25 +14,10 @@
     }
 
     $: getBackgroundColor = (index) => {
-        if (index <= $currentStoryStepIndex && spotlightedTypeByIndex[index]) {
-            return LOVE_SONG_TYPE_COLOR_MAP[spotlightedTypeByIndex[index]];
+        if (index <= $currentStoryStepIndex && loveSongTypeToShowInProgressBar[index]) {
+            return LOVE_SONG_TYPE_COLOR_MAP[loveSongTypeToShowInProgressBar[index]];
         }
         return '#d3d3d3';
-    }
-
-    const BORDER_THICKNESS = 2;
-    $: getBorder = (index) => {
-        if ($mq.desktop && index === $currentStoryStepIndex) {
-            return `${BORDER_THICKNESS}px solid ${getBackgroundColor(index)}`;
-        }
-        return '0px solid transparent';
-    }
-
-    $: getMarginTop = (index) => {
-        if ($mq.desktop && index === $currentStoryStepIndex) {
-            return `-${BORDER_THICKNESS}px`;
-        }
-        return '0px';
     }
 
     function handleClick(index) {
@@ -51,8 +33,6 @@
             tabindex="-1"
             style={`
                 background-color: ${getBackgroundColor(index)};
-                border: ${getBorder(index)};
-                margin-top: ${getMarginTop(index)};
                 opacity: ${getOpacity(index)};
                 border-radius: ${$mq.desktop ? 4 : 0}px;
             `}
@@ -88,6 +68,6 @@
     }
 
     button.dash:hover {
-        transform: scaleY(1.6);
+        transform: scaleY(2);
     }
 </style>
