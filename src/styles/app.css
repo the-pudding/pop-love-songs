@@ -104,7 +104,7 @@ h6 {
     position: relative;
 } 
 
-.story-text .song-title {
+.story-text .song-title, dialog .song-title {
 	font-family: var(--sans);
 	font-weight: bold;
 	text-transform: uppercase;
@@ -171,7 +171,7 @@ h6 {
 	color: var(--color-a11y-contrast-love-song-for-the-self);
 }
 
-.story-text span.sexual-confidence {
+.story-text span.sexual-confidence, dialog span.sexual-confidence {
 	background: var(--color-sexual-confidence);
 	color: var(--color-a11y-contrast-sexual-confidence);
 }

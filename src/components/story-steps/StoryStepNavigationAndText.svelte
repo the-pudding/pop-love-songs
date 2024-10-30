@@ -46,6 +46,13 @@
         }
     };
 
+    const removeDesktopOnlyElements = () => {
+        if (!$mq.desktop) {
+            const desktopOnlyElements = document.querySelectorAll('.desktop-only');
+            desktopOnlyElements.forEach(el => el.remove());
+        }
+    }
+
     const addComponentToText = ({ selector, svelteComponent, props, style = "" }) => {
         const el = document.querySelector(selector);
         
@@ -64,6 +71,7 @@
 
     const Y_ADJUSTMENT = 8;
     const renderInTextComponents = () => {
+        removeDesktopOnlyElements();
         addModalOpenButtonListener();
 
         addComponentToText({
