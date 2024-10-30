@@ -3,13 +3,13 @@
     import { storySteps, currentStoryStepIndex, spotlightedTypeByIndex } from "$stores/storySteps";
 	import { get } from "svelte/store";
 
-    const UNVIEWED_OPACITY = 0.1;
+    const UNVIEWED_OPACITY = 0.05;
     $: getBackgroundColor = (index) => {
         if (index <= $currentStoryStepIndex) {
             if (spotlightedTypeByIndex[index]) {
                 return `${LOVE_SONG_TYPE_COLOR_MAP[spotlightedTypeByIndex[index]]}`;
             } 
-            return 'gray';
+            return '#d3d3d3';
         }
         return `rgba(0, 0, 0, ${UNVIEWED_OPACITY})`;
     }
