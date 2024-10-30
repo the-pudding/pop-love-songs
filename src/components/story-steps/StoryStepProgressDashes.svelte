@@ -1,7 +1,6 @@
 <script>
     import { LOVE_SONG_TYPE_COLOR_MAP } from "$data/data-constants";
     import { storySteps, currentStoryStepIndex, spotlightedTypeByIndex } from "$stores/storySteps";
-	import { get } from "svelte/store";
 
     const UNVIEWED_OPACITY = 0.05;
     $: getBackgroundColor = (index) => {
@@ -22,23 +21,30 @@
         return '0px solid transparent';
     }
 
-    $: getTransform = (index) => {
+    $: getMarginTop = (index) => {
         if (index === $currentStoryStepIndex) {
-            return `translateY(-${BORDER_THICKNESS / 2}px)`;
+            return `-${BORDER_THICKNESS}px`;
         }
-        return 'translateY(0px)';
+        return '0px';
+    }
+
+    function handleClick(index) {
+        currentStoryStepIndex.set(index);
     }
 </script>
 
-<div class="progress-bar">
+<!-- Note that this progress bar is hidden from tab/screen readers. It's likely just to hamper navigation, not improve it, cuz it's so long -->
+<div class="progress-bar" aria-hidden="true">
     {#each storySteps as _, index}
-        <div 
-            class="dash" 
+        <button
+            class="dash"
+            tabindex="-1"
             style={`
                 background-color: ${getBackgroundColor(index)};
                 border: ${getBorderColor(index)};
-                transform: ${getTransform(index)};
+                margin-top: ${getMarginTop(index)};
             `}
+            on:click={() => handleClick(index)}
         />
     {/each}
 </div>
@@ -57,8 +63,18 @@
         z-index: 1000;
     }
 
-    .dash {
+    /* Don't want default style */
+    button {
+        all: unset;
+    }
+
+    button.dash {
         flex: 1;
-        height: 4px;
+        height: 8px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    button.dash:hover {
+        transform: scaleY(2);
     }
 </style>
