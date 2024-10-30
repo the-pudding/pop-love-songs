@@ -1,11 +1,10 @@
-<!-- Component largely stolen from Michelle's anthem piece -->
 <script>
 	import { ChevronLeft, ChevronRight } from "lucide-svelte";
 	import { createEventDispatcher } from "svelte";
 
 	import mq from "$stores/mq";
 	import viewport from "$stores/viewport";
-	import { currentStoryStepIndex, isLastStep, TOTAL_STORY_STEPS } from "$stores/storySteps";
+	import { currentStoryStepIndex, isEndingSandboxStep, isLastStep, TOTAL_STORY_STEPS } from "$stores/storySteps";
 	import variables from '$data/variables'
 	
 	import Tap from "./Tap.svelte";
@@ -26,9 +25,13 @@
 			dispatch("tap", dir);
 		}
 	};
-$: rightAriaLabel = `Advance to step ${$currentStoryStepIndex + 2} of ${TOTAL_STORY_STEPS}`;
-$: leftAriaLabel = `Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_STEPS}`;
+	$: rightAriaLabel = `Advance to step ${$currentStoryStepIndex + 2} of ${TOTAL_STORY_STEPS}`;
+	$: leftAriaLabel = `Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_STEPS}`;
 
+	// Reduce risk of missing love song target and changing step
+	$: tapRegionPercentageOfScreen = $isEndingSandboxStep || $isLastStep  ? 18 : 35; 
+	$: leftTapRegionStyle = `left: 0; width: calc(2 * ${tapRegionPercentageOfScreen}%); transform: translateX(-50%);`;
+	$: rightTapRegionStyle = `right: 0; width: calc(2 * ${tapRegionPercentageOfScreen}%); transform: translateX(50%);`;
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
@@ -56,6 +59,7 @@ $: leftAriaLabel = `Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_ST
 			<button
 				aria-label={leftAriaLabel}
 				class="left-tap-region"
+				style={leftTapRegionStyle}
 				on:click={() => dispatch("tap", "left")}
 			></button>
 		{/if}
@@ -80,6 +84,7 @@ $: leftAriaLabel = `Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_ST
 			<button
 				aria-label={rightAriaLabel}
 				class="right-tap-region"
+				style={rightTapRegionStyle}
 				on:click={() => dispatch("tap", "right")}
 			></button>
 		{/if}
@@ -190,22 +195,10 @@ $: leftAriaLabel = `Return to step ${$currentStoryStepIndex} of ${TOTAL_STORY_ST
 		top: 0;
 		height: 100%;
 		background: transparent;
-		border: none;
+		/* border: 4px solid black; */
 
 		/* We extend the tap regions off screen because on (at least) iPhone, there is a big margins on either side in landscape */
-		width: calc(2 * 40%);
-		
 		pointer-events: auto;
-	}
-
-	.left-tap-region {
-		left: 0;
-		transform: translateX(-50%);
-	}
-
-	.right-tap-region {
-		right: 0;
-		transform: translateX(50%);
 	}
 
 	.left-tap-region:focus,
