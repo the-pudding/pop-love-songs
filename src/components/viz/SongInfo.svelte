@@ -30,7 +30,7 @@
 
 <!-- For more efficient screen reading UX, we hve the audio player (when it exists) provide the aria-label, rather than having to land first on the parent with the aria-label, then descend to the button -->
 <div aria-label={audioFile ? '' : ariaLabel}>
-	<div class='song-and-player-wrapper' style={`transform: scale(${playerFocused ? 1.05 : 1}); text-align: ${rightAlign ? 'right' : 'left'};`}>
+	<div class='song-and-player-wrapper' style={`transform: scale(${playerFocused ? 1.05 : 1}); justify-content: ${rightAlign ? 'end' : 'start'};`}>
 		{#if audioFile && !rightAlign}
 			<SongSnippetPlayer
 				bind:playerFocused
@@ -41,7 +41,12 @@
 				audioFile={audioFile}
 			/>
 		{/if}
-		<div aria-hidden="true" class='song-title' style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}; text-shadow: ${textShadow(2, 1)}; ${noWrapTitle ? 'white-space: nowrap;' : ''}`}>
+		<div aria-hidden="true" class='song-title' style={`
+			font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}; 
+			text-shadow: ${textShadow(2, 1)}; 
+			${noWrapTitle ? 'white-space: nowrap; ' : ''} 
+			margin-${rightAlign ? 'right' : 'left'}: 6px;
+		`}>
 			{displaySongName}
 		</div>
 		{#if audioFile && rightAlign}
@@ -82,8 +87,6 @@
 	}
 
 	.song-title {
-		margin-left: 6px;
-		margin-right: 6px;
 		display: inline-block;
 		font-weight: bold;
 		text-transform: uppercase;
