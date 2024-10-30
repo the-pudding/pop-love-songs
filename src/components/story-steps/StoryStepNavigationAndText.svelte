@@ -78,7 +78,7 @@
                 transformProperties: `translateY(${Y_ADJUSTMENT}px)`,
                 title: "I'm a demo remove button. I don't do anything. They just hired me... for my looks. *sigh*"
             },
-            style: `margin-top: -${Y_ADJUSTMENT}px; display: inline-block;`
+            style: `margin-top: -${Y_ADJUSTMENT}px; padding-left: 3px; padding-right: 4px; display: inline-block;`
         });
         addComponentToText({
             selector: ".in-text-bubble-example",
