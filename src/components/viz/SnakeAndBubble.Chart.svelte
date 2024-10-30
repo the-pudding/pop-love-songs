@@ -193,7 +193,7 @@
 		easing: cubicInOut
 	});
 
-	const SLOW_FACTOR = 1.3; // by slightly slowing this fade in/out, you can more clearly see the charts morphing into each other
+	const SLOW_FACTOR = 1.4; // by slightly slowing this fade in/out, you can more clearly see the charts morphing into each other
 	const bubbleChartOpacity = tweened(1, {
 		duration: variables.chart['transition-opacity-duration'] * SLOW_FACTOR,
 		easing: cubicInOut
@@ -204,7 +204,6 @@
 		easing: cubicInOut
 	});
 
-	// @michelle: is it possible (and then preferable) to move tweens out of this file and into the store?
 	const tweenedSnakeFill = tweened($snakeFill, {
 		duration: variables.chart['transition-opacity-duration'],
 		easing: cubicInOut
