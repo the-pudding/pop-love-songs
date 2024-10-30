@@ -21,6 +21,7 @@
 	import loadImage from "$utils/loadImage";
 	import { TITLE_CARD_BACKGROUND_IMAGE } from "./story-steps/images";
 	import Figure from "./figure/Figure.svelte";
+	import StoryStepProgressDashes from "./story-steps/StoryStepProgressDashes.svelte";
 	
 	// Wait until after we've mounted (and thus pulled the story step from the URL)
 	// TODO: this doesn't seem to actually work. Instead, just create a store that StoryStepNavigationAndText updates
@@ -40,6 +41,8 @@
 {/if}
 
 <article>
+	<StoryStepProgressDashes />
+
 	{#if $currentStoryStep.showOpeningComment}
 			<OpeningComment />
 	{/if}

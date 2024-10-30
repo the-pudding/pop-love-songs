@@ -703,6 +703,10 @@ export const aSingleLoveSongTypeIsSpotlighted = derived(
 	([$currentStoryStep]) => !!spotlightedLoveSongType($currentStoryStep)
 );
 
+export const spotlightedTypeByIndex = storySteps.map((step) =>
+	spotlightedLoveSongType(step)
+);
+
 export const precedingStepSpotlightedType = derived(
 	[currentStoryStepIndex],
 	([$currentStoryStepIndex]) =>
