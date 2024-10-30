@@ -1,5 +1,6 @@
 <script>
     import { LOVE_SONG_TYPE_COLOR_MAP } from "$data/data-constants";
+	import mq from "$stores/mq";
     import { storySteps, currentStoryStepIndex, spotlightedTypeByIndex } from "$stores/storySteps";
 
     const UNVIEWED_OPACITY = 0.05;
@@ -34,20 +35,22 @@
 </script>
 
 <!-- Note that this progress bar is hidden from tab/screen readers. It's likely just to hamper navigation, not improve it, cuz it's so long -->
-<div class="progress-bar" aria-hidden="true">
-    {#each storySteps as _, index}
-        <button
-            class="dash"
-            tabindex="-1"
-            style={`
-                background-color: ${getBackgroundColor(index)};
-                border: ${getBorderColor(index)};
-                margin-top: ${getMarginTop(index)};
-            `}
-            on:click={() => handleClick(index)}
-        />
-    {/each}
-</div>
+{#if $mq.desktop}
+    <div class="progress-bar" aria-hidden="true">
+        {#each storySteps as _, index}
+            <button
+                class="dash"
+                tabindex="-1"
+                style={`
+                    background-color: ${getBackgroundColor(index)};
+                    border: ${getBorderColor(index)};
+                    margin-top: ${getMarginTop(index)};
+                `}
+                on:click={() => handleClick(index)}
+            />
+        {/each}
+    </div>
+{/if}
 
 <style>
     .progress-bar {
