@@ -16,10 +16,10 @@
     const DEFAULT_OFFSET_REFERENCE = 0.5;
     $: offsetFromThisYPercentage = $currentStoryStep.visualEncodings.songAnnotations.offsetFromThisYPercentage || DEFAULT_OFFSET_REFERENCE;
     $: layoutData = $songAnnotationsWithPosition
-        .filter(({offsetAnnotation}) => offsetAnnotation) 
-        .map(({x, y, radius, song, alternateTitle, audioFile, offsetToThisYear}, index, fullArray) => {
+        .filter(({offsetAnnotation}) => offsetAnnotation)
+        .map(({x, y, radius, song, alternateTitle, rightAlign, audioFile, offsetToThisYear}, index, fullArray) => {
             const threeSongs = fullArray.length === 3;
-            const xTranslation = x > (0.8 * $viewport.width) ? '-100' : x < (0.2 * $viewport.width) ? '0' : '-50';
+            const xTranslation = x > (0.81 * $viewport.width) ? '-100' : x < (0.2 * $viewport.width) ? '0' : '-50';
             const placeBelow = threeSongs && index === 1;
             const yOffset = (placeBelow ? 0.1 : 0.25) * $viewport.height;
             const textY = $getYPositionForPercentage(offsetFromThisYPercentage) - yOffset;
@@ -27,6 +27,8 @@
                 bubbleX: x, bubbleY: y - radius, textY, 
                 elbowX: offsetToThisYear && $getXPositionForYear(offsetToThisYear),
                 song, xTranslation, placeBelow, 
+                // Note of caution: rightAlign is really just for specific, manually set cases (could clash with programatic xTranslation)
+                rightAlign,
                 alternateTitle, 
                 audioFile
             }
@@ -34,14 +36,14 @@
         .sort((a, b) => a.bubbleX - b.bubbleX); // sort into from left to right, so tabindex will match visual order
 </script>
 
-{#each layoutData as {bubbleX, textY, song, xTranslation, elbowX, alternateTitle, audioFile}}
+{#each layoutData as {bubbleX, textY, song, xTranslation, elbowX, rightAlign, alternateTitle, audioFile}}
     <li
         id={song[SONG_DATA_COLUMNS_ENUM.song]}
         class="annotation-wrapper"
         in:fade={{delay: variables.chart['transition-opacity-duration'] / 2, duration: variables.chart['transition-opacity-duration'] / 2 }}
         style={`top: ${textY}px; left: ${elbowX || bubbleX}px; transform: translateX(${xTranslation}%) translateY(-${'100'}%);`}
     >
-        <SongInfo song={song} alternateTitle={alternateTitle} audioFile={audioFile} />
+        <SongInfo {song} {alternateTitle} {audioFile} {rightAlign} />
     </li>
 {/each}
 

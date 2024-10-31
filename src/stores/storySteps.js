@@ -450,6 +450,7 @@ const stepsWithoutText = {
 					{
 						song: "abcdefu",
 						year: 2022,
+						rightAlign: true,
 						audioFile: "abcdefu",
 						offsetToThisYear: 2018
 					}
@@ -503,8 +504,14 @@ const stepsWithoutText = {
 				offsetAnnotations: [
 					{ song: "Physical", year: 1981, audioFile: "physical" },
 					// { song: "Way 2 Sexy", year: 2021, audioFile: "way-2-sexy" }
-					{ song: "Work", year: 2016, audioFile: "work" },
-					{ song: "WAP", year: 2020, audioFile: "wap", offsetToThisYear: 2019 }
+					{ song: "Work", year: 2016, audioFile: "work", rightAlign: true },
+					{
+						song: "WAP",
+						year: 2020,
+						audioFile: "wap",
+						offsetToThisYear: 2019,
+						rightAlign: true
+					}
 				]
 			}
 		}
