@@ -48,8 +48,8 @@ const yMarginTop = derived(
 );
 const X_MARGIN = 48; // This margin must accommodate the left/right nav arrows (Tap element)
 const X_MARGIN_MOBILE = {
-	left: 36, // For some reason, the viz seems to extend slightly further on the left side, so this gives it space (ie to avoid an iPhone camera occluding it)
-	right: 32
+	left: 42, // For some reason, the viz seems to extend slightly further on the left side, so this gives it space (ie to avoid an iPhone camera occluding it)
+	right: 40
 };
 export const margins = derived(
 	[yMarginTop, yMarginBottom, mq],
