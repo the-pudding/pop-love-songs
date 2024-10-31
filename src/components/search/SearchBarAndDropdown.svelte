@@ -128,6 +128,7 @@
 <div class="search-container">
     <input 
         type="text" 
+        autocomplete="off"
         id={inputId}
         aria-label={inputAriaLabel}
         aria-live="assertive"
