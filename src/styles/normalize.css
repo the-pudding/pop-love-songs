@@ -11,6 +11,8 @@
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
+  /* This lets us expand into the safe area on iOS (left/right margins on mobile), which is fine cuz we have our own margins & not a lot space */
+  padding: env(safe-area-inset); 
 }
 
 /* Sections

@@ -47,14 +47,17 @@ const yMarginTop = derived(
 		($isEndingSandboxStep && $showSearchBars ? SEARCH_BAR_HEIGHT : 0)
 );
 const X_MARGIN = 48; // This margin must accommodate the left/right nav arrows (Tap element)
-const X_MARGIN_MOBILE = 12; // We have big tap regions for navigation, so margin is less important (and also more of a sacred resource on mobile)
+const X_MARGIN_MOBILE = {
+	left: 36, // For some reason, the viz seems to extend slightly further on the left side, so this gives it space (ie to avoid an iPhone camera occluding it)
+	right: 32
+};
 export const margins = derived(
 	[yMarginTop, yMarginBottom, mq],
 	([$yMarginTop, $yMarginBottom, $mq]) => ({
 		top: $yMarginTop,
 		bottom: $yMarginBottom,
-		right: $mq.desktop ? X_MARGIN : X_MARGIN_MOBILE,
-		left: $mq.desktop ? X_MARGIN : X_MARGIN_MOBILE
+		right: $mq.desktop ? X_MARGIN : X_MARGIN_MOBILE.right,
+		left: $mq.desktop ? X_MARGIN : X_MARGIN_MOBILE.left
 	})
 );
 
