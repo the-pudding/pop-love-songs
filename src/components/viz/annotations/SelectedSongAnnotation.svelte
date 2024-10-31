@@ -6,4 +6,4 @@
     $: onClear = () => selectedSong.set({});
 </script>
 
-<IntelligentlyPlacedSongAnnotation songInfo={$selectedSongWithMetadata} {onClear} />
+<IntelligentlyPlacedSongAnnotation songInfo={$selectedSongWithMetadata} {onClear} xOffset={1} yOffset={1} />

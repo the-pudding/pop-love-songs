@@ -10,6 +10,8 @@
 	
     export let songInfo = {}
     export let onClear = () => {}
+	export let xOffset = 4;
+	export let yOffset = 4;
 
 	$: song = songInfo.song || [];
 	$: x = songInfo.x;
@@ -21,14 +23,12 @@
 	// TODO: probably we'll want to to do something more like place different content if bubble chart is hidden
 	$: visible = x !== undefined && y !== undefined && song.length > 0 && !$showAggregateSnakeChart;
 
-	const xOffset = 12;
-	const yOffset = 12;
 	$: rightAlign = x > $viewport.width / 2;
 	$: tooltipPosition = {
-		top: $viewport.height / 2 > y ? `${y + yOffset}px` : 'auto',
-		bottom: $viewport.height / 2 > y ? 'auto' : `${$viewport.height - y + yOffset}px`,
-		left: rightAlign ? 'auto' : `${x + xOffset}px`,
-		right: rightAlign ? `${$viewport.width - x + xOffset}px` : 'auto',
+		top: $viewport.height / 2 > (y + circleRadius) ? `${y + circleRadius + yOffset}px` : 'auto',
+		bottom: $viewport.height / 2 > (y + circleRadius) ? 'auto' : `${$viewport.height - (y + circleRadius) + yOffset}px`,
+		left: rightAlign ? 'auto' : `${x + circleRadius + xOffset}px`,
+		right: rightAlign ? `${$viewport.width - (x + circleRadius) + xOffset}px` : 'auto',
 	};
 
 	// When a step changes, you don't want to keep showing the tooltip from the previous step.
@@ -62,7 +62,7 @@
 	 .tooltip {
 		position: absolute;
 		padding: 0.5rem;
-		z-index: 1;
+		z-index: 100000000;
 
 		pointer-events: none;
 	}
