@@ -11,7 +11,7 @@
     import XandAddButton from "$components/helpers/XandAddButton.svelte";
     import ExampleBubble from "./ExampleBubble.svelte";
 
-    import { selectedSong, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart, songSearchString, performerSearchString, previewedPerformer, previewedSong } from "$stores/searchAndFilter.js"
+    import { selectedSong, selectedPerformers, typesTreatedAsNonLoveSongs, showAggregateSnakeChart, songSearchString, performerSearchString, previewedPerformer, previewedSong, openedDropdown } from "$stores/searchAndFilter.js"
     import {storySteps, currentStoryStepIndex, currentStoryStep} from "$stores/storySteps.js"
     import { getYPositionForPercentage, baseYTopMargin } from "$stores/canvasPosition.js";
 	import DataMethodsModal from "./DataMethodsModal.svelte";
@@ -123,7 +123,7 @@
 		detail === "right" ? onNextButtonClick() : onPreviousButtonClick();
 	};
 
-    const updateFilterFilterState = () => {
+    const updateFilterState = () => {
         // clear any selections if you navigate to a new story step (story steps don't ever directly set these)
         previewedSong.set({})
         selectedSong.set({})
@@ -132,12 +132,14 @@
         // als clear any user input text
         songSearchString.set("")
         performerSearchString.set("")
+        // finally, close the search dropdown
+        openedDropdown.set(null)
         
         typesTreatedAsNonLoveSongs.set([...$currentStoryStep.searchAndFilterState.typesTreatedAsNonLoveSongs])
         showAggregateSnakeChart.set($currentStoryStep.visualEncodings.showAggregateSnakeChart)
     }
 
-    $: $currentStoryStepIndex, updateFilterFilterState();
+    $: $currentStoryStepIndex, updateFilterState();
 
     $: backgroundGradientStyle = `
         position: fixed; top: 0; left: 0; width: 100%; 

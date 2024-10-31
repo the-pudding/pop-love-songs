@@ -34,5 +34,7 @@
         white-space: nowrap;
         font-size: 10px;
         margin-top: 5px;
+
+        box-shadow: 0 1px 2px rgb(84, 84, 84);
     }
 </style>

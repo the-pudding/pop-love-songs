@@ -45,7 +45,7 @@
 			font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}; 
 			text-shadow: ${textShadow(2, 1)}; 
 			${noWrapTitle ? 'white-space: nowrap; ' : ''} 
-			margin-${rightAlign ? 'right' : 'left'}: 6px;
+			margin-${rightAlign ? 'right' : 'left'}: ${audioFile ? 6 : 0}px;
 		`}>
 			{displaySongName}
 		</div>
