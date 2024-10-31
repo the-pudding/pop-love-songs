@@ -88,11 +88,11 @@
         if (hasSelection) {
             return `Selected ${$selectedPerformers[0]}. Explore their song credits in the adjacent songs dropdown`;
         } else {
-            return "Search and select a performer. Once selected, you can explore all songs they're credited on in the adjacent songs dropdown";
+            return "Search and select an artist. Once selected, you can explore all songs on which they appear in the adjacent songs dropdown";
         }
     }
 
-    $: placeholder = $selectedPerformers[0] || "Highlight performers...";
+    $: placeholder = $selectedPerformers[0] || "Highlight artists...";
 </script>
 
 <SearchBarAndDropdown
@@ -102,7 +102,7 @@
     bind:searchString={$performerSearchString}
     {searchResults}
     inputAriaLabel={getInputAriaLabel()}
-    dropdownAriaLabel={"Performer search results, sorted by total song credits"}
+    dropdownAriaLabel={"Artist search results, sorted by total song credits"}
     clearSelection={handleClearingSelection}
     onResultSelected={handleSelectedPerformer}
     onResultPreviewed={handlePreviewedPerformer}
