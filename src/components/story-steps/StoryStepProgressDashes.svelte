@@ -3,8 +3,8 @@
 	import mq from "$stores/mq";
     import { storySteps, currentStoryStepIndex, loveSongTypeToShowInProgressBar } from "$stores/storySteps";
 
-    const UNVIEWED_OPACITY = 0.2;
-    const VIEWED_OPACITY = 0.7;
+    const UNVIEWED_OPACITY = 0.4;
+    const VIEWED_OPACITY = 1;
     $: getOpacity = (index) => {
         if (index <= $currentStoryStepIndex) {
             return VIEWED_OPACITY;
