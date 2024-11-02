@@ -9,7 +9,7 @@
 
 {#if $currentStoryStepIndex === 0}
 	<div
-		class="tap"
+		class="tap fade-in"
 		aria-hidden="true"
 		style:text-shadow={textShadow(2, 1)} 
 		style:font-size={$mq.desktop ? '1.3rem' : '1rem'}
@@ -24,7 +24,7 @@
 			</div>
 		{:else}
 			<div class="">
-				<strong>Tap right & left<br/> half of screen to<br/> navigate story</strong>
+				<strong>Tap right <br/> side of screen to<br/> advance story</strong>
 			</div>
 		{/if}
 
@@ -41,30 +41,46 @@
     </div>
 {/if}
 
+{#if $currentStoryStepIndex === 1 && !$mq.desktop}
+	<div class="fade-in" aria-hidden="true" style:text-shadow={textShadow(2, 1)} style:font-size="1rem">
+		<div class="second-step-right-hint">
+			<span>{@html pointer}</span>
+			<strong>Advance</strong>
+		</div>
+		<div class="second-step-left-hint">
+			<span class="pointer">{@html pointer}</span>
+			<strong>Return</strong>
+		</div>
+	</div>
+	<!-- No sr-only here since the instructions are given fully on the previous step -->
+{/if}
+
 <style>
 	.tap {
-		font-size: 1.3rem;
 		position: fixed;		
 		right: 0px;
 		transform: translate(0%, -8px);
 		margin-right: 12px;
-    	height: 80px;
+		height: 80px;
 
 		display: flex;
 		flex-direction: column;
 		align-items: end;
-		opacity: 0;
-        animation: fadeIn 1s forwards;
-        animation-delay: 2s;
 
 		z-index: 1000;
-    }
+	}
 
-     @keyframes fadeIn {
-        to {
-            opacity: 1;
-        }
-    }
+	.fade-in {
+		opacity: 0;
+		animation: fadeIn 1s forwards;
+		animation-delay: 2s;
+	}
+
+	@keyframes fadeIn {
+		to {
+			opacity: 1;
+		}
+	}
 
 	.row {
 		display: flex;
@@ -86,5 +102,27 @@
 	}
 	.key:first-of-type {
 		margin-left: 10px;
+	}
+
+	.second-step-right-hint {
+		position: fixed;
+		top: 30%;
+		right: 10%;
+		display: flex;
+		flex-direction: column;
+
+		transform: translateX(50%);
+	}
+
+	.second-step-left-hint {
+		position: fixed;
+		top: 30%;
+		left: 5%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.second-step-left-hint > .pointer {
+		transform: scaleX(-1);
 	}
 </style>
