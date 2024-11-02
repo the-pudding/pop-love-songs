@@ -12,10 +12,16 @@
         <div>
             <h1>{copy.footer.heading}</h1>
             {@html copy.footer.thanks}
+            
+            <br>
 
             <button class="modalTrigger" on:click={() => showModal = true}>{copy.footer.methods}</button>
+            {#if !$mq.desktop}
+                {@html copy.footer.mobileOnly}
+            {/if}
         </div>
         <DataMethodsModal bind:showModal />
+        
     </div>
 
     <Footer />
@@ -48,7 +54,7 @@
     }
 
     .modalTrigger {
-        display: block;
+        display: inline-block;
         margin-top: 8px;
         padding-top: 16px;
     }
