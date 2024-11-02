@@ -339,7 +339,8 @@ const stepsWithoutText = {
 						song: "Buy U A Drank (Shawty Snappin')",
 						alternateTitle: "Buy U A Drank",
 						year: 2007,
-						offsetToThisYear: 2000,
+						offsetToThisYear: 1994,
+						rightAlign: true,
 						audioFile: "buy-u-a-drank"
 					},
 					{ song: "Call Me Maybe", year: 2012, audioFile: "call-me-maybe" }
