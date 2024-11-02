@@ -4,6 +4,7 @@
 	import { audioCanPlay } from "$stores/audio.js";
 	import { onMount, tick } from "svelte";
 	import { currentStoryStep } from "$stores/storySteps";
+	import { showAnnotations } from "$stores/searchAndFilter";
 
 	export let audioFile;
 	export let onComplete;
@@ -52,8 +53,8 @@
 
 	$: if (audioFile) updateSource();
 	$: if (!audioFile) pause();
-	// @michelle: Ok, so this works. But the software nerd in me is like "but but ... seperation of concerns!". Any clever ideas on moving this out?
-	$: $currentStoryStep, pause();
+	
+	$: $currentStoryStep, $showAnnotations, pause();
 
 	onMount(async () => {
 		await tick();
