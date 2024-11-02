@@ -446,13 +446,11 @@ const stepsWithoutText = {
 					// { song: "Runaround Sue", year: 1961, audioFile: "TODO" },
 					{ song: "I Will Survive", year: 1979, audioFile: "i-will-survive" },
 					{ song: "So What", year: 2008, audioFile: "so-what" },
-					// { song: "Good 4 U", year: 2021, audioFile: "good-4-u" }
 					{
-						song: "abcdefu",
-						year: 2022,
-						rightAlign: true,
-						audioFile: "abcdefu",
-						offsetToThisYear: 2018
+						song: "Good 4 U",
+						year: 2021,
+						audioFile: "good-4-u",
+						rightAlign: true
 					}
 				]
 			}

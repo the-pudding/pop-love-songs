@@ -64,19 +64,20 @@ export const getYPositionInSnakeChart =
 // I know... weird place to put this, but trust me: it was the simplest solution
 const SERENADE_HIGHLIGHTS_FROM_INTRO = [
 	{
+		song: "Can't Help Falling In Love",
+		year: 1961,
+		xPercent: 0.1,
+		yPercent: 0.85,
+		audioFile: "cant-help-falling-in-love"
+	},
+	{
 		song: "Happy Together",
 		year: 1967,
 		xPercent: 0.8,
 		yPercent: 0.35,
 		rightAlign: true,
-		audioFile: "happy-together"
-	},
-	{
-		song: "Love Song",
-		year: 1989,
-		xPercent: 0.1,
-		yPercent: 0.85,
-		audioFile: "love-song"
+		audioFile: "happy-together",
+		noWrapTitle: true
 	},
 	{
 		song: "No One",
@@ -94,15 +95,13 @@ const SERENADE_HIGHLIGHTS_FROM_INTRO = [
 	}
 ];
 const SERENADE_HIGHLIGHTS_FOR_TIMELINE_SPREAD = [
-	{
-		song: "Happy Together",
-		audioFile: "happy-together",
-		year: 1967,
-		xPercent: 0.9,
-		leftAlign: true
-	},
-	{ song: "Love Song", audioFile: "love-song", year: 1989, xPercent: 0.1 },
-	{ song: "No One", audioFile: "no-one", year: 2007, xPercent: 0.5 }
+	// {
+	// 	song: "Can't Help Falling In Love",
+	// 	audioFile: "cant-help-falling-in-love",
+	// 	year: 1961,
+	// 	xPercent: 0.1
+	// },
+	// { song: "No One", audioFile: "no-one", year: 2007, xPercent: 0.5 }
 	// { song: "Perfect", year: 2017, xPercent: 0.4, yPercent: 0.6 }
 ];
 const NON_SERENADE_HIGHLIGHTS_FROM_INTRO = [
