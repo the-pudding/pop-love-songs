@@ -1,6 +1,4 @@
 <script>
-    import { fade } from 'svelte/transition'
-
     import viewport from '$stores/viewport';
     import { songAnnotationsWithPosition } from "$stores/visualEncodings";
     import { currentStoryStep } from '$stores/storySteps';
@@ -8,7 +6,6 @@
 
 	import SongInfo from "../SongInfo.svelte";
 
-    import variables from '$data/variables.json';
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 
     const aNonTrivialSize = (height) => Math.abs(height) > 16;
@@ -40,7 +37,6 @@
     <li
         id={song[SONG_DATA_COLUMNS_ENUM.song]}
         class="annotation-wrapper"
-        in:fade={{delay: variables.chart['transition-opacity-duration'] / 2, duration: variables.chart['transition-opacity-duration'] / 2 }}
         style={`top: ${textY}px; left: ${elbowX || bubbleX}px; transform: translateX(${xTranslation}%) translateY(-${'100'}%);`}
     >
         <SongInfo {song} {alternateTitle} {audioFile} {rightAlign} />
@@ -53,14 +49,12 @@
     {#if aNonTrivialSize(bubbleY - textY)}
         <div
             class="annotation-line"
-            in:fade={{delay: variables.chart['transition-opacity-duration'] / 2, duration: variables.chart['transition-opacity-duration'] / 2 }}
             style={`top: ${textY}px; left: ${bubbleX}px; height: ${bubbleY - textY}px;`}
         />
     {/if}
     {#if elbowX && aNonTrivialSize(bubbleX - elbowX)}
         <div
             class="annotation-line"
-            in:fade={{delay: variables.chart['transition-opacity-duration'] / 2, duration: variables.chart['transition-opacity-duration'] / 2 }}
             style={`top: ${textY}px; left: ${elbowX}px; width: ${bubbleX - elbowX}px; height: 2px;`}
         />
     {/if}
