@@ -117,29 +117,31 @@ const NON_SERENADE_HIGHLIGHTS_FROM_INTRO = [
 	{ song: "Kiss Me More", year: 2021, xPercent: 0.4, yPercent: 0.85 }
 ];
 
-const I_WILL_ALWAYS_LOVE_YOU_Y_PERCENT = 0.6;
+const SOMEONE_LIKE_YOU_Y_PERCENT = 0.5;
 const MORE_EXPANSIVE_VIEW = [
 	{
-		song: "I Will Always Love You",
-		year: 1992,
-		audioFile: "i-will-always-love-you",
+		song: "Someone Like You",
+		year: 2011,
+		audioFile: "someone-like-you",
 		rightAlign: true,
-		yPercent: I_WILL_ALWAYS_LOVE_YOU_Y_PERCENT
+		noWrapTitle: true,
+		yPercent: SOMEONE_LIKE_YOU_Y_PERCENT
 	},
 	{
 		song: "Buy U A Drank (Shawty Snappin')",
 		alternateTitle: "Buy U A Drank",
 		year: 2007,
-		rightAlign: true,
+		// rightAlign: true,
+		// placeAbove: true,
 		audioFile: "buy-u-a-drank",
-		yPercent: 0.3
+		yPercent: 0.1
 	},
 	{
 		song: "WAP",
 		year: 2020,
 		rightAlign: true,
 		audioFile: "wap",
-		yPercent: 0.7
+		yPercent: 0.8
 	}
 ];
 
@@ -163,18 +165,25 @@ const DEFINING_SERENADES = [
 
 const COLOR_IN_HEARTBREAK = [
 	{
-		song: "I Will Always Love You",
-		year: 1992,
-		audioFile: "i-will-always-love-you",
+		song: "Smoke Gets In Your Eyes",
+		year: 1958,
+		audioFile: "smoke-gets-in-your-eyes",
+		yPercent: 0.7
+	},
+	{
+		song: "Someone Like You",
+		year: 2011,
+		audioFile: "someone-like-you",
 		rightAlign: true,
-		yPercent: I_WILL_ALWAYS_LOVE_YOU_Y_PERCENT
+		noWrapTitle: true,
+		yPercent: SOMEONE_LIKE_YOU_Y_PERCENT
 	},
 	{
 		song: "Stay",
 		year: 2013,
 		audioFile: "stay",
 		rightAlign: true,
-		yPercent: 0.25
+		yPercent: 0.15
 	}
 ];
 
