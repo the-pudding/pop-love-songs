@@ -3,10 +3,12 @@
 	import viewport from "$stores/viewport";
 
     export let center = false;
-    export let top = false;
+    export let top = false; 
     export let bottom = false;
     export let left = false;
     export let right = false;
+
+    export let pushUpABit = false;
 
     export let tiltLeft = false;
     export let tiltRight = false;
@@ -20,7 +22,7 @@
     $: style = `
         position: absolute;
         ${center ? 'top: 50%; left: 50%; transform: translate(-50%, -50%);' : ''}
-        ${top ? `top: ${MARGIN_PERCENT}%;` : ''}
+        ${top ? `top: ${MARGIN_PERCENT - (pushUpABit ? 7 : 0)}%;` : ''}
         ${bottom ? `bottom: ${MARGIN_PERCENT}%;` : ''}
         ${left ? `left: ${MARGIN_PERCENT}%;` : ''}
         ${right ? `right: ${MARGIN_PERCENT}%;` : ''}

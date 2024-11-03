@@ -16,8 +16,8 @@
     <ClickableHeadline center big headline={HEADLINES.rip} />
 
     <ClickableHeadline bottom right tiltLeft headline={HEADLINES.harderToFind} />
-    <ClickableHeadline top left tiltLeft headline={HEADLINES.dontWriteThemLikeTheyUsedTo} />
-    <ClickableHeadline bottom left tiltRight headline={HEADLINES.generationWithoutLove} />
+    <ClickableHeadline bottom left tiltRight headline={HEADLINES.dontWriteThemLikeTheyUsedTo} />
+    <ClickableHeadline top left tiltLeft pushUpABit headline={HEADLINES.generationWithoutLove} />
     <ClickableHeadline top right tiltRight headline={HEADLINES.inDecline} />
 </ul>
 

@@ -106,8 +106,8 @@
 
 	.second-step-right-hint {
 		position: fixed;
-		top: 30%;
-		right: 10%;
+		top: 25%;
+		right: 7%;
 		display: flex;
 		flex-direction: column;
 
@@ -116,8 +116,8 @@
 
 	.second-step-left-hint {
 		position: fixed;
-		top: 30%;
-		left: 5%;
+		top: 25%;
+		left: 3%;
 		display: flex;
 		flex-direction: column;
 	}
