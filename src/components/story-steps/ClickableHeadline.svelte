@@ -1,4 +1,6 @@
 <script>
+	import mq from "$stores/mq";
+
     export let center = false;
     export let top = false;
     export let bottom = false;
@@ -25,13 +27,18 @@
         z-index: ${center ? 1 : 0};
     `;
 
+    
 </script>
 
 <!-- TODO: test with screen reader -->
  <li>
-    <a href={headline.url} target="_blank" style={style}>
-        <img src={headline.src} alt={headline.alt} />
-    </a>
+    {#if $mq.desktop}
+        <a href={headline.url} target="_blank" style={style}>
+            <img src={headline.src} alt={headline.alt} />
+        </a>
+    {:else}
+        <img src={headline.src} alt={headline.alt} style={style} />
+    {/if}
 </li>
 
 <style>
@@ -46,5 +53,9 @@
 
     img {
         object-fit: contain;
+    }
+    img:hover {
+        transform: perspective(1000px) rotateX(1.5deg) rotateY(1.5deg) scale(1.01);
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.575);
     }
 </style>
