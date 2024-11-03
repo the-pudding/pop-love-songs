@@ -13,14 +13,16 @@
 </script>
 
 <div class="container" {style}>
-    <ClickableHeadline headline={HEADLINES.rip} />
+    <ClickableHeadline center headline={HEADLINES.rip} />
 
-    <ClickableHeadline headline={HEADLINES.harderToFind} />
-    <ClickableHeadline headline={HEADLINES.dontWriteThemLikeTheyUsedTo} />
-    <ClickableHeadline headline={HEADLINES.generationWithoutLove} />
-    <ClickableHeadline headline={HEADLINES.inDecline} />
+    <ClickableHeadline top left headline={HEADLINES.harderToFind} />
+    <ClickableHeadline top right headline={HEADLINES.dontWriteThemLikeTheyUsedTo} />
+    <ClickableHeadline bottom left headline={HEADLINES.generationWithoutLove} />
+    <ClickableHeadline bottom right headline={HEADLINES.inDecline} />
 </div>
 
 <style>
-    
+    .container {
+        position: fixed;
+    }
 </style>
