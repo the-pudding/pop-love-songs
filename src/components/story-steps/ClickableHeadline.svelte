@@ -1,6 +1,7 @@
 <script>
 	import mq from "$stores/mq";
 	import viewport from "$stores/viewport";
+	import { slide } from "svelte/transition";
 
     export let center = false;
     export let top = false; 
@@ -12,8 +13,6 @@
 
     export let tiltLeft = false;
     export let tiltRight = false;
-
-    export let big = false;
 
     export let headline;
 
@@ -32,11 +31,12 @@
         z-index: ${center ? 1 : 0};
     `;
 
-    
+    $: slideInLeft = true;
+    $: slideInRight = true;
 </script>
 
 <!-- TODO: test with screen reader -->
- <li {style}>
+ <li class:slideInLeft={left} class:slideInRight={right} class:slideUp={center} {style}>
     {#if $mq.desktop}
         <a href={headline.url} target="_blank">
             <img src={headline.src} alt={headline.alt} />
@@ -61,5 +61,45 @@
     img:hover {
         transform: perspective(1000px) rotateX(1.5deg) rotateY(1.5deg) scale(1.01);
         transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.575);
+    }
+
+
+    .slideInLeft {
+        animation: slide-in-left 1s ease;
+    }
+
+    .slideInRight {
+        animation: slide-in-right 1s ease;
+    }
+
+    .slideUp {
+        animation: slide-up 1s ease;
+    }
+
+    @keyframes slide-up {
+        0% {
+            margin-top: 10%;
+        }
+        100% {
+            margin-top: 0;
+        }
+    }
+
+    @keyframes slide-in-right {
+        0% {
+            margin-right: -10%;
+        }
+        100% {
+            margin-right: 0;
+        }
+    }
+
+    @keyframes slide-in-left {
+        0% {
+           margin-left: -10%;
+        }
+        100% {
+            margin-left: 0;
+        }
     }
 </style>

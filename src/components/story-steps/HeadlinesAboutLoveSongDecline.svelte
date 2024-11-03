@@ -13,7 +13,7 @@
 </script>
 
 <ul class="container" {style}>
-    <ClickableHeadline center big headline={HEADLINES.rip} />
+    <ClickableHeadline center headline={HEADLINES.rip} />
 
     <ClickableHeadline bottom right tiltLeft headline={HEADLINES.harderToFind} />
     <ClickableHeadline bottom left tiltRight headline={HEADLINES.dontWriteThemLikeTheyUsedTo} />
