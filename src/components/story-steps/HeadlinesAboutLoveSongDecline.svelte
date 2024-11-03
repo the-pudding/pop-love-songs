@@ -1,11 +1,8 @@
 <script>
 	import { bottomOfStoryText } from "$stores/canvasPosition";
 	import viewport from "$stores/viewport";
-
-    const headlines = {
-        src: "assets/images/love song decline headlines.png",
-        alt: "Screenshots of article headlines relating to the decline of love songs, such as: 'A generation without love songs', 'RIP love songs', 'love songs are in decline', 'love songs are harder to find' and 'they no longer write love songs like they used to'."
-    }
+	import ClickableHeadline from "./ClickableHeadline.svelte";
+	import { HEADLINES } from "./images";
 
     $: topMargin = $bottomOfStoryText
     $: style = `
@@ -16,29 +13,14 @@
 </script>
 
 <div class="container" {style}>
-    <img {style} src={headlines.src} alt={headlines.alt} />
+    <ClickableHeadline headline={HEADLINES.rip} />
+
+    <ClickableHeadline headline={HEADLINES.harderToFind} />
+    <ClickableHeadline headline={HEADLINES.dontWriteThemLikeTheyUsedTo} />
+    <ClickableHeadline headline={HEADLINES.generationWithoutLove} />
+    <ClickableHeadline headline={HEADLINES.inDecline} />
 </div>
 
 <style>
-    div.container {
-        position: fixed;
-        top: 0;
-        left: 0;
-
-        padding: 24px;
-    }
-
-    img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-        opacity: 0;
-        animation: fadeIn 1s forwards;
-    }
-
-    @keyframes fadeIn {
-        to {
-            opacity: 1;
-        }
-    }
+    
 </style>
