@@ -27,14 +27,20 @@
 
 </script>
 
-<a href={headline.url} target="_blank" style={style}>
-    <img src={headline.src} alt={headline.alt} />
-</a>
+<!-- TODO: test with screen reader -->
+ <li>
+    <a href={headline.url} target="_blank" style={style}>
+        <img src={headline.src} alt={headline.alt} />
+    </a>
+</li>
 
 <style>
+    li {
+        list-style: none;
+    }
+
     a {
         max-width: 50%;
-        /* max-height: 60%; */
         border: none;
     }
 
