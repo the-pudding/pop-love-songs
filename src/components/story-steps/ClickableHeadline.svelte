@@ -11,17 +11,17 @@
     export let big = false;
 
     export let headline;
-
+    const MARGIN_PERCENT = 3;
     $: style = `
         position: absolute;
         ${center ? 'top: 50%; left: 50%; transform: translate(-50%, -50%);' : ''}
-        ${top ? 'top: 0;' : ''}
-        ${bottom ? 'bottom: 0;' : ''}
-        ${left ? 'left: 0;' : ''}
-        ${right ? 'right: 0;' : ''}
-        ${tiltLeft ? 'transform: rotate(-10deg);' : ''}
-        ${tiltRight ? 'transform: rotate(10deg);' : ''}
-        max-width: ${big ? '90%' : '45%'};
+        ${top ? `top: ${MARGIN_PERCENT}%;` : ''}
+        ${bottom ? `bottom: ${MARGIN_PERCENT}%;` : ''}
+        ${left ? `left: ${MARGIN_PERCENT}%;` : ''}
+        ${right ? `right: ${MARGIN_PERCENT}%;` : ''}
+        ${tiltLeft ? 'transform: rotate(-8deg);' : ''}
+        ${tiltRight ? 'transform: rotate(8deg);' : ''}
+        max-width: ${big ? '40%' : '40%'};
         z-index: ${center ? 1 : 0};
     `;
 
