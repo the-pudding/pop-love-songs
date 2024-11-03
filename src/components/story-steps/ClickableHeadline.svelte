@@ -36,13 +36,13 @@
 </script>
 
 <!-- TODO: test with screen reader -->
- <li>
+ <li {style}>
     {#if $mq.desktop}
-        <a href={headline.url} target="_blank" style={style}>
+        <a href={headline.url} target="_blank">
             <img src={headline.src} alt={headline.alt} />
         </a>
     {:else}
-        <img src={headline.src} alt={headline.alt} style={style} />
+        <img src={headline.src} alt={headline.alt} />
     {/if}
 </li>
 
