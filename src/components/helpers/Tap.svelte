@@ -73,7 +73,7 @@
 	.fade-in {
 		opacity: 0;
 		animation: fadeIn 1s forwards;
-		animation-delay: 2s;
+		animation-delay: 3s;
 	}
 
 	@keyframes fadeIn {
