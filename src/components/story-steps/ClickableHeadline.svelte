@@ -1,5 +1,6 @@
 <script>
 	import mq from "$stores/mq";
+	import viewport from "$stores/viewport";
 
     export let center = false;
     export let top = false;
@@ -13,7 +14,9 @@
     export let big = false;
 
     export let headline;
+
     const MARGIN_PERCENT = 3;
+    $: viewportIsNarrow = 0.7 * $viewport.width < $viewport.height;
     $: style = `
         position: absolute;
         ${center ? 'top: 50%; left: 50%; transform: translate(-50%, -50%);' : ''}
@@ -23,7 +26,7 @@
         ${right ? `right: ${MARGIN_PERCENT}%;` : ''}
         ${tiltLeft ? 'transform: rotate(-8deg);' : ''}
         ${tiltRight ? 'transform: rotate(8deg);' : ''}
-        max-width: ${big ? '40%' : '40%'};
+        ${viewportIsNarrow && center ? 'width: 80%;' : 'max-width: 42%;'}
         z-index: ${center ? 1 : 0};
     `;
 
@@ -47,7 +50,6 @@
     }
 
     a {
-        max-width: 50%;
         border: none;
     }
 
