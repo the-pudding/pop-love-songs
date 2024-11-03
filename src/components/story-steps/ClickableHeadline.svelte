@@ -17,15 +17,15 @@
 
     export let headline;
 
-    const MARGIN_PERCENT = 3;
+    $: marginPercent = $mq.desktop ? 5 : 3;
     $: viewportIsNarrow = 0.7 * $viewport.width < $viewport.height;
     $: style = `
         position: absolute;
         ${center ? 'top: 50%; left: 50%; transform: translate(-50%, -50%);' : ''}
-        ${top ? `top: ${MARGIN_PERCENT - (pushUpABit ? 7 : 0)}%;` : ''}
-        ${bottom ? `bottom: ${MARGIN_PERCENT}%;` : ''}
-        ${left ? `left: ${MARGIN_PERCENT}%;` : ''}
-        ${right ? `right: ${MARGIN_PERCENT}%;` : ''}
+        ${top ? `top: ${marginPercent - (pushUpABit ? 7 : 0)}%;` : ''}
+        ${bottom ? `bottom: ${marginPercent}%;` : ''}
+        ${left ? `left: ${marginPercent}%;` : ''}
+        ${right ? `right: ${marginPercent}%;` : ''}
         ${tiltLeft ? 'transform: rotate(-8deg);' : ''}
         ${tiltRight ? 'transform: rotate(8deg);' : ''}
         ${viewportIsNarrow && center ? 'width: 80%;' : 'max-width: 42%;'}
