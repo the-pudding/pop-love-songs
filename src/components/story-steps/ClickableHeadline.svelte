@@ -21,7 +21,7 @@
         ${right ? 'right: 0;' : ''}
         ${tiltLeft ? 'transform: rotate(-10deg);' : ''}
         ${tiltRight ? 'transform: rotate(10deg);' : ''}
-        max-width: ${big ? '100%' : '50%'};
+        max-width: ${big ? '90%' : '45%'};
         z-index: ${center ? 1 : 0};
     `;
 

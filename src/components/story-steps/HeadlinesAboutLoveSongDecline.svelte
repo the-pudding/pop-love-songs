@@ -15,10 +15,10 @@
 <div class="container" {style}>
     <ClickableHeadline center big headline={HEADLINES.rip} />
 
-    <ClickableHeadline top left tiltLeft headline={HEADLINES.harderToFind} />
-    <ClickableHeadline top right tiltRight headline={HEADLINES.dontWriteThemLikeTheyUsedTo} />
+    <ClickableHeadline bottom right tiltLeft headline={HEADLINES.harderToFind} />
+    <ClickableHeadline top left tiltLeft headline={HEADLINES.dontWriteThemLikeTheyUsedTo} />
     <ClickableHeadline bottom left tiltRight headline={HEADLINES.generationWithoutLove} />
-    <ClickableHeadline bottom right tiltLeft headline={HEADLINES.inDecline} />
+    <ClickableHeadline top right tiltRight headline={HEADLINES.inDecline} />
 </div>
 
 <style>
