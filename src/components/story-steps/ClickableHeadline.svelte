@@ -1,8 +1,9 @@
 <script>
+    import { onMount } from "svelte";
+
 	import mq from "$stores/mq";
 	import viewport from "$stores/viewport";
-	import { slide } from "svelte/transition";
-
+	
     export let center = false;
     export let top = false; 
     export let bottom = false;
@@ -15,6 +16,14 @@
     export let tiltRight = false;
 
     export let headline;
+
+    export let enterOrder = 0;
+    let show = false;
+    onMount(() => {
+        setTimeout(() => {
+            show = true;
+        }, enterOrder * 50);
+    });
 
     $: marginPercent = $mq.desktop ? 5 : 3;
     $: viewportIsNarrow = 0.7 * $viewport.width < $viewport.height;
@@ -30,21 +39,20 @@
         ${viewportIsNarrow && center ? 'width: 80%;' : 'max-width: 42%;'}
         z-index: ${center ? 1 : 0};
     `;
-
-    $: slideInLeft = true;
-    $: slideInRight = true;
 </script>
 
 <!-- TODO: test with screen reader -->
- <li class:slideInLeft={left} class:slideInRight={right} class:slideUp={center} {style}>
-    {#if $mq.desktop}
-        <a href={headline.url} target="_blank">
+{#if show}
+    <li class:slideInLeft={left} class:slideInRight={right} class:slideUp={center} {style}>
+        {#if $mq.desktop}
+            <a href={headline.url} target="_blank">
+                <img src={headline.src} alt={headline.alt} />
+            </a>
+        {:else}
             <img src={headline.src} alt={headline.alt} />
-        </a>
-    {:else}
-        <img src={headline.src} alt={headline.alt} />
-    {/if}
-</li>
+        {/if}
+    </li>
+{/if}
 
 <style>
     li {
@@ -57,6 +65,9 @@
 
     img {
         object-fit: contain;
+        /* TODO, with better cropped images */
+        /* border-radius: 36px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
     }
     img:hover {
         transform: perspective(1000px) rotateX(1.5deg) rotateY(1.5deg) scale(1.01);
@@ -65,41 +76,47 @@
 
 
     .slideInLeft {
-        animation: slide-in-left 0.4s ease-out;
+        animation: slide-in-left 0.8s ease-out;
     }
 
     .slideInRight {
-        animation: slide-in-right 0.4s ease-out;
+        animation: slide-in-right 0.8s ease-out;
     }
 
     .slideUp {
-        animation: slide-up 0.4s ease-out;
+        animation: slide-up 0.8s ease-out;
     }
 
     @keyframes slide-up {
         0% {
-            margin-top: 10%;
+            margin-top: 5%;
+            opacity: 0;
         }
-        100% {
+        50% {
             margin-top: 0;
+            opacity: 1;
         }
     }
 
     @keyframes slide-in-right {
         0% {
-            margin-right: -10%;
+            margin-right: -5%;
+            opacity: 0;
         }
         100% {
             margin-right: 0;
+            opacity: 1;
         }
     }
 
     @keyframes slide-in-left {
         0% {
-           margin-left: -10%;
+           margin-left: -5%;
+           opacity: 0;
         }
         100% {
             margin-left: 0;
+            opacity: 1;
         }
     }
 </style>

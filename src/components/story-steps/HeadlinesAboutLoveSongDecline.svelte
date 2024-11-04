@@ -13,12 +13,13 @@
 </script>
 
 <ul class="container" {style}>
-    <ClickableHeadline center headline={HEADLINES.rip} />
 
-    <ClickableHeadline bottom right tiltLeft headline={HEADLINES.harderToFind} />
-    <ClickableHeadline bottom left tiltRight headline={HEADLINES.dontWriteThemLikeTheyUsedTo} />
-    <ClickableHeadline top left tiltLeft pushUpABit headline={HEADLINES.generationWithoutLove} />
-    <ClickableHeadline top right tiltRight headline={HEADLINES.inDecline} />
+    <ClickableHeadline bottom right tiltLeft enterOrder={0} headline={HEADLINES.harderToFind} />
+    <ClickableHeadline bottom left tiltRight enterOrder={1} headline={HEADLINES.dontWriteThemLikeTheyUsedTo} />
+    <ClickableHeadline top left tiltLeft pushUpABit enterOrder={2} headline={HEADLINES.generationWithoutLove} />
+    <ClickableHeadline top right tiltRight enterOrder={3} headline={HEADLINES.inDecline} />
+
+    <ClickableHeadline center enterOrder={4} headline={HEADLINES.rip} />
 </ul>
 
 <style>
