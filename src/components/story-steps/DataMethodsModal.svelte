@@ -12,14 +12,18 @@
     
     <!-- Iterate over dataMethods -->
     {#each dataMethods as {title, paragraphs}}
-        <h2>{title}</h2>
-        {#each paragraphs as paragraph}
-            {#if paragraph.endsWith('.png')}
-                <img src={`assets/images/${paragraph}`} alt={'A two by two gride laying out all seven love song types using relationship and how traditional they are'} />
-            {:else}
-                <p>{@html paragraph}</p>
-            {/if}
-        {/each}
+        <details>
+            <summary>
+                <h2>{title}</h2>
+            </summary>
+            {#each paragraphs as paragraph}
+                {#if paragraph.endsWith('.png')}
+                    <img src={`assets/images/${paragraph}`} alt={'A two by two gride laying out all seven love song types using relationship and how traditional they are'} />
+                {:else}
+                    <p>{@html paragraph}</p>
+                {/if}
+            {/each}
+        </details>
     {/each}
 </Modal>
 
@@ -33,6 +37,7 @@
     }
 
     h2 {
+        display: inline;
         font-size: 24px;
         margin-top: 24px;
         margin-bottom: 0px;

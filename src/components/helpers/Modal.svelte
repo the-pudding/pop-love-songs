@@ -49,7 +49,7 @@
 		border-radius: 0.2em;
 		border: none;
 		padding: 0;
-		margin: auto;
+		margin: 12px auto;
 	}
 	dialog.desktop::backdrop {
 		background: rgba(0, 0, 0, 0.5);
