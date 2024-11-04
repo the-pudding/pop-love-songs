@@ -113,8 +113,8 @@ h6 {
 /* Styling the spans highlighting specific love song types in the text (coming from the gdoc), see StoryStepNavigationAndText.svelte */
 .not-a-love-song,
 .serenade,
-.longing-and-heartbreak,
-.courtship-and-anticipation,
+.heartache,
+.pursuit,
 .its-complicated,
 .good-riddance,
 .love-song-for-the-self,
@@ -144,15 +144,15 @@ h6 {
 	color: var(--color-a11y-contrast-serenade);
 }
 
-.story-text span.longing-and-heartbreak {
+.story-text span.heartache {
 	/* Note we're using a special, more contrasting color to help with readability (a11y was fine before) */
-	background: var(--color-more-contrasting-longing-and-heartbreak);
-	color: var(--color-a11y-contrast-longing-and-heartbreak);
+	background: var(--color-more-contrasting-heartache);
+	color: var(--color-a11y-contrast-heartache);
 }
 
-.story-text span.courtship-and-anticipation {
-	background: var(--color-courtship-and-anticipation);
-	color: var(--color-a11y-contrast-courtship-and-anticipation);
+.story-text span.pursuit {
+	background: var(--color-pursuit);
+	color: var(--color-a11y-contrast-pursuit);
 }
 
 .story-text span.its-complicated {

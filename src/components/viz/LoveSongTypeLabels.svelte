@@ -15,8 +15,8 @@
 
 	const DECADE_TO_PLACE_LABEL_IN = {
 		[LOVE_SONG_TYPE_CONSTANTS.serenade]: 1970,
-		[LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak]: 1970,
-		[LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation]: 1980,
+		[LOVE_SONG_TYPE_CONSTANTS.heartache]: 1970,
+		[LOVE_SONG_TYPE_CONSTANTS.pursuit]: 1980,
 
 		[LOVE_SONG_TYPE_CONSTANTS.sexualConfidence]: 2000,
 		[LOVE_SONG_TYPE_CONSTANTS.itsComplicated]: 2000,
@@ -26,8 +26,8 @@
 
 	const LOVE_SONG_TYPE_TAB_ORDER = [
 		LOVE_SONG_TYPE_CONSTANTS.serenade,
-		LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-		LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+		LOVE_SONG_TYPE_CONSTANTS.heartache,
+		LOVE_SONG_TYPE_CONSTANTS.pursuit,
 
 		LOVE_SONG_TYPE_CONSTANTS.sexualConfidence,
 		LOVE_SONG_TYPE_CONSTANTS.itsComplicated,

@@ -242,7 +242,7 @@ ol, ul {
 	
 	button.modalTrigger:hover {
 		background: none;
-		border-bottom: 2px solid var(--color-longing-and-heartbreak);
+		border-bottom: 2px solid var(--color-heartache);
 		transform: scale(1.02);
 	}
 

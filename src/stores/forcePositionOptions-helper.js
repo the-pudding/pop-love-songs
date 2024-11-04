@@ -163,7 +163,7 @@ const DEFINING_SERENADES = [
 	}
 ];
 
-const COLOR_IN_HEARTBREAK = [
+const COLOR_IN_HEARTACHE = [
 	{
 		song: "Smoke Gets In Your Eyes",
 		year: 1958,
@@ -208,12 +208,12 @@ export const ANNOTATION_METADATA = {
 		manuallySetPositions: [
 			...MORE_EXPANSIVE_VIEW,
 			...DEFINING_SERENADES,
-			...COLOR_IN_HEARTBREAK
+			...COLOR_IN_HEARTACHE
 		],
 		annotations: {
 			butWeWillTakeAMoreExpansiveView: MORE_EXPANSIVE_VIEW,
 			definingSerenades: DEFINING_SERENADES,
-			colorInHeartbreak: COLOR_IN_HEARTBREAK
+			colorInHeartache: COLOR_IN_HEARTACHE
 		}
 	}
 };

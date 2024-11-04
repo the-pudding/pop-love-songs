@@ -16,9 +16,9 @@ love_song_subtype_label labels comes from these love song subtype definitions (i
 
 "Good Riddance": typically after a breakup with someone who now seems unsuitable. songs about having had someone's love, but being glad now you've moved on (or realizing you should), often involving self-empowerment, anger, revenge, relief, or bitterness, often because of betrayal or potentially cheating.
 
-"Longing & Heartbreak": songs where you love or miss someone, but they are unable to return your love. Either because you broke up and the relationship is over, or because you were never together and the love was unrequited. COuld be full of regret, longing, frustration, sadness, hopelessness, even grief.
+"Heartache": songs where you love or miss someone, but they are unable to return your love. Either because you broke up and the relationship is over, or because you were never together and the love was unrequited. COuld be full of regret, longing, frustration, sadness, hopelessness, even grief.
 
-"Courtship & Anticipation": the speaker is courting or seeking someone's romantic or sexual love, but they don't have it yet. The love interest does not yet know the speaker well, but the speaker hopes they will want to get to know them better and or please them the way they want.
+"Pursuit": the speaker is courting or seeking someone's romantic or sexual love, but they don't have it yet. The love interest does not yet know the speaker well, but the speaker hopes they will want to get to know them better and or please them the way they want.
 
 "It's Complicated": Songs about complicated relationships, often with conflicting emotions like love, hate, frustration, and desire intermingling, whether light-hearted or profound in tone.
 
@@ -81,20 +81,20 @@ Here's the sample corresponding output:
        ["John Legend", "All of Me", "praises lover, who's affection makes any struggle worth it, promises to give all of them", "Serenade"],
        ["Beyonce", "Halo", "celebrates the angelic quality of a lover and testifies to the positive changes as a result of this love", "Serenade"],
        ["T-Pain Featuring Lil Wayne", "Can't Believe It", "praises love interest, telling her of all the things he'll do for her", "Serenade"],
-       ["Adele", "Someone Like You", "bemoans that a lover has moved on to a happy life with another partner while the speaker struggles to move on", "Longing & Heartbreak"],
-       ["Mariah Carey", "Without You", "at the moment of a breakup, she expresses despair over everything she will lose", "Longing & Heartbreak"],
-       ["Dolly Parton", "Jolene", "her heart is breaking because she fears her male lover will be easily stolen by another woman", "Longing & Heartbreak"],
-       ["Bill Withers", "Ain't No Sunshine", "when a lover is away, he expresses that his world seems to become darker", "Longing & Heartbreak"],
-       ["The Rolling Stones", "Miss You", "expresses how deeply he misses the lover, and wishes he didn't have to wait", "Longing & Heartbreak"],
-       ["Whitney Houston", "I Will Always Love You", "wishes her now gone lover well, reminisces, will never forget", "Longing & Heartbreak"],
-       ["Taylor Swift", "Teardrops on My Guitar", "she's in love with a friend who's in love with someone else, she has to pretend she doesn't love him but secretly she's suffering", "Longing & Heartbreak"],
-       ["Lesley Gore", "She's A Fool", "her love is with another woman who doesn't appreciate his virtues, longs to some day be noticed by him", "Longing & Heartbreak"],
-       ["Taylor Swift", "You Belong With Me", "she's making an empassioned argument that her love object should be with her instead of who he's currently with", "Courtship & Anticipation"],
-       ["Justin Timberlake", "Suit & Tie", "looking forward to a night of dancing with his beloved", "Courtship & Anticipation"],
-       ["T-Pain Featuring Mike Jones", "I'm N Luv (Wit A Stripper)", "he has strong romantic and sexual feelings for a stripper who doesn't yet know him personally", "Courtship & Anticipation"],
+       ["Adele", "Someone Like You", "bemoans that a lover has moved on to a happy life with another partner while the speaker struggles to move on", "Heartache"],
+       ["Mariah Carey", "Without You", "at the moment of a breakup, she expresses despair over everything she will lose", "Heartache"],
+       ["Dolly Parton", "Jolene", "her heart is breaking because she fears her male lover will be easily stolen by another woman", "Heartache"],
+       ["Bill Withers", "Ain't No Sunshine", "when a lover is away, he expresses that his world seems to become darker", "Heartache"],
+       ["The Rolling Stones", "Miss You", "expresses how deeply he misses the lover, and wishes he didn't have to wait", "Heartache"],
+       ["Whitney Houston", "I Will Always Love You", "wishes her now gone lover well, reminisces, will never forget", "Heartache"],
+       ["Taylor Swift", "Teardrops on My Guitar", "she's in love with a friend who's in love with someone else, she has to pretend she doesn't love him but secretly she's suffering", "Heartache"],
+       ["Lesley Gore", "She's A Fool", "her love is with another woman who doesn't appreciate his virtues, longs to some day be noticed by him", "Heartache"],
+       ["Taylor Swift", "You Belong With Me", "she's making an empassioned argument that her love object should be with her instead of who he's currently with", "Pursuit"],
+       ["Justin Timberlake", "Suit & Tie", "looking forward to a night of dancing with his beloved", "Pursuit"],
+       ["T-Pain Featuring Mike Jones", "I'm N Luv (Wit A Stripper)", "he has strong romantic and sexual feelings for a stripper who doesn't yet know him personally", "Pursuit"],
        ["Rihanna", "Only Girl (In the World)", "telling her new love how she wants him to make her feel"],
        ["Britney Spears", "Hold It Against Me", "she's interested in a stragner and approaches them hoping to see if they might get together"],
-       ["T-Pain", "Buy U A Drank (Shawty Snappin')", "he spots a woman at the bar and offers to buy her a drink as a prelude to potentially getting together", "Courtship & Anticipation"],
+       ["T-Pain", "Buy U A Drank (Shawty Snappin')", "he spots a woman at the bar and offers to buy her a drink as a prelude to potentially getting together", "Pursuit"],
        ["Little Mix and Jason Derulo", "Secret Love Song", "the speakers long to be united with their lover in public, but must remain in secret", "It's Complicated"],
        ["Katy Perry", "Hot N Cold", "about navigating a lover who cannot make up their mind and is inconsistent", "It's Complicated"],
        ["Pat Benatar", "Love Is a Battlefield", "the relationship she is in alternates between being loving and painful and she doesn't feel like she can leave", "It's Complicated"],

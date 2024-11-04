@@ -54,7 +54,7 @@ const getAggregatePercentageByLoveSongType = (
 	const loveSongTypesSortedGreatestToLeast =
 		sortLoveSongTypesTopToBottom(popularitySumByType);
 
-	// Note, the percentages are summative, meaning that if the largest (first) value is "Serenade" at 50%, then the next value will be "Serenade" + "Longing & Heartbreak" at 75%.
+	// Note, the percentages are summative, meaning that if the largest (first) value is "Serenade" at 50%, then the next value will be "Serenade" + "Heartache" at 75%.
 	const popularityScoreSumsInTimeRegion = Object.keys(
 		popularitySumByType
 	).reduce((acc, loveSongType) => acc + popularitySumByType[loveSongType], 0);

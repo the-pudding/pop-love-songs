@@ -63,7 +63,7 @@
 		"serenade": {
 			"value": "#F2C3FF"
 		},
-		"longing-and-heartbreak": {
+		"heartache": {
 			"value": "#5CAFFF"
 		},
 		"sexual-confidence": {
@@ -78,7 +78,7 @@
 		"love-song-for-the-self": {
 			"value": "#FFD700"
 		},
-		"courtship-and-anticipation": {
+		"pursuit": {
 			"value": "#02D098"
 		},
 		"a11y-contrast": {
@@ -88,7 +88,7 @@
 			"serenade": {
 				"value": "black"
 			},
-			"longing-and-heartbreak": {
+			"heartache": {
 				"value": "black"
 			},
 			"sexual-confidence": {
@@ -103,12 +103,12 @@
 			"love-song-for-the-self": {
 				"value": "black"
 			},
-			"courtship-and-anticipation": {
+			"pursuit": {
 				"value": "black"
 			}
 		},
 		"more-contrasting": {
-			"longing-and-heartbreak": {
+			"heartache": {
 				"value": "#81c1ff"
 			},
 			"its-complicated": {
@@ -119,10 +119,10 @@
 			"serenade": {
 				"value": "#FAEEFF"
 			},
-			"longing-and-heartbreak": {
+			"heartache": {
 				"value": "#AFD8FF"
 			},
-			"courtship-and-anticipation": {
+			"pursuit": {
 				"value": "#5EEBC4"
 			},
 			"sexual-confidence": {

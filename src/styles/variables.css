@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 09 Oct 2024 01:03:39 GMT
+ * Generated on Mon, 04 Nov 2024 18:05:21 GMT
  */
 
 :root {
@@ -33,25 +33,25 @@
   --color-cream-background: #fff6df;
   --color-not-a-love-song: #d1d1d1;
   --color-serenade: #f2c3ff;
-  --color-longing-and-heartbreak: #5cafff;
+  --color-heartache: #5cafff;
   --color-sexual-confidence: #ff5c00;
   --color-its-complicated: #96753c;
   --color-good-riddance: #a290e9;
   --color-love-song-for-the-self: #ffd700;
-  --color-courtship-and-anticipation: #02d098;
+  --color-pursuit: #02d098;
   --color-a11y-contrast-not-a-love-song: #000000;
   --color-a11y-contrast-serenade: #000000;
-  --color-a11y-contrast-longing-and-heartbreak: #000000;
+  --color-a11y-contrast-heartache: #000000;
   --color-a11y-contrast-sexual-confidence: #000000;
   --color-a11y-contrast-its-complicated: #000000;
   --color-a11y-contrast-good-riddance: #000000;
   --color-a11y-contrast-love-song-for-the-self: #000000;
-  --color-a11y-contrast-courtship-and-anticipation: #000000;
-  --color-more-contrasting-longing-and-heartbreak: #81c1ff;
+  --color-a11y-contrast-pursuit: #000000;
+  --color-more-contrasting-heartache: #81c1ff;
   --color-more-contrasting-its-complicated: #ad8745;
   --color-text-shadow-serenade: #faeeff;
-  --color-text-shadow-longing-and-heartbreak: #afd8ff;
-  --color-text-shadow-courtship-and-anticipation: #5eebc4;
+  --color-text-shadow-heartache: #afd8ff;
+  --color-text-shadow-pursuit: #5eebc4;
   --color-text-shadow-sexual-confidence: #ff833c;
   --color-text-shadow-its-complicated: #a69880;
   --color-text-shadow-good-riddance: #c9bffc;

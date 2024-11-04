@@ -33,30 +33,30 @@
     "cream-background": "#fff6df",
     "not-a-love-song": "#D1D1D1",
     "serenade": "#F2C3FF",
-    "longing-and-heartbreak": "#5CAFFF",
+    "heartache": "#5CAFFF",
     "sexual-confidence": "#FF5C00",
     "its-complicated": "#96753C",
     "good-riddance": "#A290E9",
     "love-song-for-the-self": "#FFD700",
-    "courtship-and-anticipation": "#02D098",
+    "pursuit": "#02D098",
     "a11y-contrast": {
       "not-a-love-song": "black",
       "serenade": "black",
-      "longing-and-heartbreak": "black",
+      "heartache": "black",
       "sexual-confidence": "black",
       "its-complicated": "black",
       "good-riddance": "black",
       "love-song-for-the-self": "black",
-      "courtship-and-anticipation": "black"
+      "pursuit": "black"
     },
     "more-contrasting": {
-      "longing-and-heartbreak": "#81c1ff",
+      "heartache": "#81c1ff",
       "its-complicated": "#ad8745"
     },
     "text-shadow": {
       "serenade": "#FAEEFF",
-      "longing-and-heartbreak": "#AFD8FF",
-      "courtship-and-anticipation": "#5EEBC4",
+      "heartache": "#AFD8FF",
+      "pursuit": "#5EEBC4",
       "sexual-confidence": "#FF833C",
       "its-complicated": "#A69880",
       "good-riddance": "#C9BFFC",

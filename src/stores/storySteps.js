@@ -202,7 +202,7 @@ const stepsWithoutText = {
 		},
 		typeToShowInProgressBar: LOVE_SONG_TYPE_CONSTANTS.serenade
 	},
-	colorInHeartbreak: {
+	colorInHeartache: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -211,30 +211,29 @@ const stepsWithoutText = {
 		},
 		visualEncodings: {
 			...VISUAL_ENCODING_BLANK_STATE,
-			colorButDontSeperateThisLoveSongType:
-				LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
+			colorButDontSeperateThisLoveSongType: LOVE_SONG_TYPE_CONSTANTS.heartache,
 			manuallySetPositions:
 				ANNOTATION_METADATA.serenadeComparisons.manuallySetPositions,
 			songAnnotations: {
 				adjacentAnnotations:
-					ANNOTATION_METADATA.serenadeComparisons.annotations.colorInHeartbreak
+					ANNOTATION_METADATA.serenadeComparisons.annotations.colorInHeartache
 			}
 		},
-		typeToShowInProgressBar: LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+		typeToShowInProgressBar: LOVE_SONG_TYPE_CONSTANTS.heartache
 	},
 
 	// Remaining Boomer-Bob-friendly types:
-	introducingLongingAndHeartbreak: {
+	introducingHeartache: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
 				(t) =>
 					![
 						LOVE_SONG_TYPE_CONSTANTS.serenade,
-						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+						LOVE_SONG_TYPE_CONSTANTS.heartache
 					].includes(t)
 			),
-			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak],
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.heartache],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
@@ -258,14 +257,14 @@ const stepsWithoutText = {
 		}
 	},
 
-	longingAndHeartbreakComparedToSerenade: {
+	heartacheComparedToSerenade: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
 				(t) =>
 					![
 						LOVE_SONG_TYPE_CONSTANTS.serenade,
-						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+						LOVE_SONG_TYPE_CONSTANTS.heartache
 					].includes(t)
 			)
 		},
@@ -286,17 +285,17 @@ const stepsWithoutText = {
 				]
 			}
 		},
-		typeToShowInProgressBar: LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+		typeToShowInProgressBar: LOVE_SONG_TYPE_CONSTANTS.heartache
 	},
 
-	longingAndHeartbreakDoNotTipTheScales: {
+	heartacheDoNotTipTheScales: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
 				(t) =>
 					![
 						LOVE_SONG_TYPE_CONSTANTS.serenade,
-						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+						LOVE_SONG_TYPE_CONSTANTS.heartache
 					].includes(t)
 			)
 		},
@@ -305,23 +304,21 @@ const stepsWithoutText = {
 			showAggregateSnakeChart: true
 		},
 		showLoveSongChange: true,
-		typeToShowInProgressBar: LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak
+		typeToShowInProgressBar: LOVE_SONG_TYPE_CONSTANTS.heartache
 	},
-	// Courtship
-	introducingCourtship: {
+
+	introducingPursuit: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
 				(t) =>
 					![
 						LOVE_SONG_TYPE_CONSTANTS.serenade,
-						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+						LOVE_SONG_TYPE_CONSTANTS.heartache,
+						LOVE_SONG_TYPE_CONSTANTS.pursuit
 					].includes(t)
 			),
-			selectedLoveSongTypes: [
-				LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
-			],
+			selectedLoveSongTypes: [LOVE_SONG_TYPE_CONSTANTS.pursuit],
 			columnsToFilterVisibilityOn: [SONG_DATA_COLUMNS_ENUM.love_song_sub_type]
 		},
 		visualEncodings: {
@@ -347,15 +344,15 @@ const stepsWithoutText = {
 			}
 		}
 	},
-	courtshipHasNoEffect: {
+	pursuitHasNoEffect: {
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
 				(t) =>
 					![
 						LOVE_SONG_TYPE_CONSTANTS.serenade,
-						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation
+						LOVE_SONG_TYPE_CONSTANTS.heartache,
+						LOVE_SONG_TYPE_CONSTANTS.pursuit
 					].includes(t)
 			)
 		},
@@ -376,8 +373,8 @@ const stepsWithoutText = {
 				(t) =>
 					![
 						LOVE_SONG_TYPE_CONSTANTS.serenade,
-						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+						LOVE_SONG_TYPE_CONSTANTS.heartache,
+						LOVE_SONG_TYPE_CONSTANTS.pursuit,
 						LOVE_SONG_TYPE_CONSTANTS.itsComplicated
 					].includes(t)
 			),
@@ -410,8 +407,8 @@ const stepsWithoutText = {
 				(t) =>
 					![
 						LOVE_SONG_TYPE_CONSTANTS.serenade,
-						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+						LOVE_SONG_TYPE_CONSTANTS.heartache,
+						LOVE_SONG_TYPE_CONSTANTS.pursuit,
 						LOVE_SONG_TYPE_CONSTANTS.itsComplicated
 					].includes(t)
 			)
@@ -430,8 +427,8 @@ const stepsWithoutText = {
 				(t) =>
 					![
 						LOVE_SONG_TYPE_CONSTANTS.serenade,
-						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+						LOVE_SONG_TYPE_CONSTANTS.heartache,
+						LOVE_SONG_TYPE_CONSTANTS.pursuit,
 						LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
 						LOVE_SONG_TYPE_CONSTANTS.goodRiddance
 					].includes(t)
@@ -463,8 +460,8 @@ const stepsWithoutText = {
 				(t) =>
 					![
 						LOVE_SONG_TYPE_CONSTANTS.serenade,
-						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+						LOVE_SONG_TYPE_CONSTANTS.heartache,
+						LOVE_SONG_TYPE_CONSTANTS.pursuit,
 						LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
 						LOVE_SONG_TYPE_CONSTANTS.goodRiddance
 					].includes(t)
@@ -486,8 +483,8 @@ const stepsWithoutText = {
 				(t) =>
 					![
 						LOVE_SONG_TYPE_CONSTANTS.serenade,
-						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+						LOVE_SONG_TYPE_CONSTANTS.heartache,
+						LOVE_SONG_TYPE_CONSTANTS.pursuit,
 						LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
 						LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
 						LOVE_SONG_TYPE_CONSTANTS.sexualConfidence
@@ -523,8 +520,8 @@ const stepsWithoutText = {
 				(t) =>
 					![
 						LOVE_SONG_TYPE_CONSTANTS.serenade,
-						LOVE_SONG_TYPE_CONSTANTS.longingAndHeartbreak,
-						LOVE_SONG_TYPE_CONSTANTS.courtshipAndAnticipation,
+						LOVE_SONG_TYPE_CONSTANTS.heartache,
+						LOVE_SONG_TYPE_CONSTANTS.pursuit,
 						LOVE_SONG_TYPE_CONSTANTS.itsComplicated,
 						LOVE_SONG_TYPE_CONSTANTS.goodRiddance,
 						LOVE_SONG_TYPE_CONSTANTS.sexualConfidence
@@ -641,13 +638,13 @@ const unprocessedStorySteps = [
 
 	// Boomer-Bob-friendly types:
 	steps.definingSerenades,
-	steps.colorInHeartbreak,
-	steps.introducingLongingAndHeartbreak,
-	steps.longingAndHeartbreakComparedToSerenade,
-	steps.longingAndHeartbreakDoNotTipTheScales,
+	steps.colorInHeartache,
+	steps.introducingHeartache,
+	steps.heartacheComparedToSerenade,
+	steps.heartacheDoNotTipTheScales,
 
-	steps.introducingCourtship,
-	steps.courtshipHasNoEffect,
+	steps.introducingPursuit,
+	steps.pursuitHasNoEffect,
 
 	// Expansive-mode
 	steps.introducingItsComplicated,
