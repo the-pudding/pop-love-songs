@@ -205,7 +205,7 @@
         left: 0;
         width: 100%;
         max-height: 280px;
-        overflow-y: scroll;
+        overflow-y: auto;
         background-color: var(--color-cream-background);
         border: 1px solid var(--color-gray-300);
         border-radius: var(--search-bar-border-radius);
