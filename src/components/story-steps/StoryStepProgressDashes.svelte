@@ -1,7 +1,7 @@
 <script>
     import { LOVE_SONG_TYPE_COLOR_MAP } from "$data/data-constants";
 	import mq from "$stores/mq";
-    import { storySteps, currentStoryStepIndex, loveSongTypeToShowInProgressBar } from "$stores/storySteps";
+    import { storySteps, currentStoryStepIndex, loveSongTypeToShowInProgressBar, navigationJustOccurredViaProgressBar } from "$stores/storySteps";
 
     const UNVIEWED_OPACITY = 0.4;
     const VIEWED_OPACITY = 1;
@@ -21,8 +21,17 @@
     }
 
     function handleClick(index) {
+        if (index === $currentStoryStepIndex) return;
+
         currentStoryStepIndex.set(index);
+        navigationJustOccurredViaProgressBar.set(true);
+        setTimeout(() => {
+            // For some reason, yForcePosition doesn't properly break cache (ie update) when progress button is clicked on spotlight views
+            // so we created this to help give a signal that it should update
+            navigationJustOccurredViaProgressBar.set(false);
+        }, 0);
     }
+    
 </script>
 
 <!-- Note that this progress bar is hidden from tab/screen readers. It'd likely just hamper navigation, not improve it. -->

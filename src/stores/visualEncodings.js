@@ -2,7 +2,10 @@ import { derived } from "svelte/store";
 import viewport from "./viewport.js";
 import songsData from "$data/songs-data.js";
 import { getArrayOfPerformers, songInAnnotations } from "$data/data-utils.js";
-import { currentStoryStep } from "./storySteps.js";
+import {
+	currentStoryStep,
+	navigationJustOccurredViaProgressBar
+} from "./storySteps.js";
 import { loveSongsLabeledByTimeRegionPercentageForPosition } from "./loveSongsLabeledByTimeRegionPercentageForPosition.js";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
 import { nodePositionsInSimulation } from "./simulation.js";
@@ -99,9 +102,21 @@ export const xForcePosition = derived(
 );
 
 export const yForcePosition = derived(
-	[yForcePositionUnoptimized, previousYForcePosition],
-	([$yForcePositionUnoptimized, $previousYForcePosition], set) => {
-		if (!$previousYForcePosition) {
+	[
+		yForcePositionUnoptimized,
+		previousYForcePosition,
+		// Just a signal that it should be updated
+		navigationJustOccurredViaProgressBar
+	],
+	(
+		[
+			$yForcePositionUnoptimized,
+			$previousYForcePosition,
+			$navigationJustOccurredViaProgressBar
+		],
+		set
+	) => {
+		if (!$previousYForcePosition || $navigationJustOccurredViaProgressBar) {
 			set($yForcePositionUnoptimized);
 			return;
 		}

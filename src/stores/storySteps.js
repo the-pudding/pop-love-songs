@@ -8,7 +8,6 @@ import {
 	LOVE_SONG_TYPE_CONSTANTS,
 	LOVE_SONG_TYPES
 } from "$data/data-constants.js";
-import { MAX_DATE, MIN_DATE } from "$data/songs-data.js";
 import {
 	ANNOTATION_METADATA,
 	getXPositionFromTime,
@@ -752,3 +751,5 @@ export const preventBubbleRestartBecauseTheUserIsMerelySearching = derived(
 		return $aSearchBarIsFocused;
 	}
 );
+
+export const navigationJustOccurredViaProgressBar = writable(false);
