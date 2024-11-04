@@ -65,15 +65,15 @@
 
 
     .slideInLeft {
-        animation: slide-in-left 1s ease;
+        animation: slide-in-left 0.4s ease-out;
     }
 
     .slideInRight {
-        animation: slide-in-right 1s ease;
+        animation: slide-in-right 0.4s ease-out;
     }
 
     .slideUp {
-        animation: slide-up 1s ease;
+        animation: slide-up 0.4s ease-out;
     }
 
     @keyframes slide-up {
