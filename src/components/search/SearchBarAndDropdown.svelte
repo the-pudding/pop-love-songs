@@ -178,6 +178,7 @@
 
     .search-container {
         height: var(--search-bar-height);
+        z-index: 1000000001; /* always must be top most element */
     }
 
     .no-results {
@@ -213,7 +214,7 @@
         padding-left: 8px;
         padding-right: 8px;
 
-        z-index: 100000;
+        z-index: 1000000001; /* always must be top most element */
     }
 
     .dropdown {

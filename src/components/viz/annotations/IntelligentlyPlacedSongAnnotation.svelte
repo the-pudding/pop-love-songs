@@ -12,6 +12,7 @@
     export let onClear = () => {}
 	export let xOffset = 4;
 	export let yOffset = 4;
+	export let zIndex = 1;
 
 	$: song = songInfo.song || [];
 	$: x = songInfo.x;
@@ -45,24 +46,26 @@
 
 <!-- @michelle: do you have any strong arguments for why I should use class:visible vs just conditionally rendering? -->
 {#if visible && !alreadyAnnotated}
-	<div>
-		<div
-			class="tooltip"
-			role="tooltip"
-			style={`top: ${tooltipPosition.top}; bottom: ${tooltipPosition.bottom}; left: ${tooltipPosition.left}; right: ${tooltipPosition.right}; transform: ${tooltipPosition.transform};`}
-		>
-			<SongInfo {song} {rightAlign} />
-		</div>
-
-		<BubbleOutline {circleX} {circleY} {circleRadius} />
+	<div
+		class="tooltip"
+		role="tooltip"
+		style={`
+			top: ${tooltipPosition.top}; bottom: ${tooltipPosition.bottom}; left: ${tooltipPosition.left}; right: ${tooltipPosition.right}; 
+			transform: ${tooltipPosition.transform};
+			z-index: ${zIndex};
+		`}
+	>
+		<SongInfo {song} {rightAlign} />
 	</div>
+
+	<BubbleOutline {circleX} {circleY} {circleRadius} />
 {/if}
 
 <style>
 	 .tooltip {
 		position: absolute;
 		padding: 0.5rem;
-		z-index: 100000000;
+		z-index: 1;
 
 		pointer-events: none;
 	}

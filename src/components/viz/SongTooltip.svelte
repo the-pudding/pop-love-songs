@@ -10,5 +10,5 @@
 </script>
 
 {#if !alreadySelected}
-	<IntelligentlyPlacedSongAnnotation songInfo={$hoveredSongInfo} {onClear} xOffset={8} yOffset={8} />
+	<IntelligentlyPlacedSongAnnotation songInfo={$hoveredSongInfo} {onClear} xOffset={8} yOffset={8} zIndex={1000000000} />
 {/if}
