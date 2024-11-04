@@ -46,10 +46,10 @@
     <li class:slideInLeft={left} class:slideInRight={right} class:slideUp={center} {style}>
         {#if $mq.desktop}
             <a href={headline.url} target="_blank">
-                <img src={headline.src} alt={headline.alt} />
+                <img src={headline.src} alt={headline.alt} style:border-radius={'16px'} />
             </a>
         {:else}
-            <img src={headline.src} alt={headline.alt} />
+            <img src={headline.src} alt={headline.alt} style:border-radius={'8px'} />
         {/if}
     </li>
 {/if}
@@ -65,9 +65,7 @@
 
     img {
         object-fit: contain;
-        /* TODO, with better cropped images */
-        /* border-radius: 36px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+        box-shadow: 0 4px 8px rgba(75, 75, 75, 0.8);
     }
     img:hover {
         transform: perspective(1000px) rotateX(1.5deg) rotateY(1.5deg) scale(1.01);
