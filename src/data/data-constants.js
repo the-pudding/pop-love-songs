@@ -8,20 +8,13 @@ export const SONG_DATA_COLUMNS_ENUM = {
 	total_weeks_in_top_10: 4
 };
 
-export const PERFORMER_TYPE_ABBREVIATIONS = {
-	i: "individual",
-	g: "group"
-};
-
-// TODO: choose better name
-// Note: originally Sexual Confidence was originally called "Sexual Conquest"
 export const LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP = {
 	0: "Non-love song",
 	1: "It's Complicated",
 	2: "Serenade",
 	3: "Heartache", // changed from "Longing & Heartbreak"
 	4: "Pursuit", // changed from "Courtship & Anticipation"
-	5: "Sexual Confidence",
+	5: "Sexual Confidence", // changed from "Sexual Conquest"
 	6: "Love Song for the Self",
 	7: "Good Riddance"
 };
