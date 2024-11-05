@@ -4,6 +4,8 @@
 	export let url = "https://pudding.cool";
 	export let keywords = "";
 	export let preloadFont = [];
+
+	const socialImageURL = `${url}/assets/images/social-facebook.png`;
 </script>
 
 <svelte:head>
@@ -19,7 +21,7 @@
 	<meta property="og:type" content="article" />
 	<meta property="og:locale" content="en_US" />
 
-	<meta property="og:image" content="{url}/assets/images/social-facebook.png" />
+	<meta property="og:image" content={socialImageURL} />
 	<meta property="og:image:type" content="image/png" />
 	<meta property="og:image:width" content="2400" />
 	<meta property="og:image:height" content="1260" />
@@ -29,7 +31,7 @@
 	<meta name="twitter:creator" content="@puddingviz" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
-	<meta name="twitter:image:src" content="{url}/assets/social-twitter.jpg" />
+	<meta name="twitter:image:src" content={socialImageURL} />
 
 	<meta name="robots" content="max-image-preview:large" />
 
