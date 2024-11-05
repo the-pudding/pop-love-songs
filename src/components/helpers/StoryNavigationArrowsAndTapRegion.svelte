@@ -49,7 +49,6 @@
 					strokeWidth={arrowStrokeWidth}
 					size="2rem"
 					aria-hidden="true"
-					focusable="false"
 				/>
 			</button>
 		{:else}
@@ -74,7 +73,6 @@
 					strokeWidth={arrowStrokeWidth}
 					size="2rem"
 					aria-hidden="true"
-					focusable="false"
 				/>
 			</button>
 		{:else}
