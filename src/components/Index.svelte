@@ -35,13 +35,13 @@
     });
 </script>
 
-<OrientationWarningModal />
-
-{#if $currentStoryStepIndex === 0}
-	<Header />
-{/if}
-
 {#if $viewport.ready}
+	<OrientationWarningModal />
+
+	{#if $currentStoryStepIndex === 0}
+		<Header />
+	{/if}
+
 	<article>
 		<StoryStepProgressDashes />
 
