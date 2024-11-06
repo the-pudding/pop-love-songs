@@ -248,9 +248,11 @@ const stepsWithoutText = {
 						placeAbove: true
 					},
 					{
-						song: "You Belong With Me",
-						year: 2009,
-						audioFile: "you-belong-with-me"
+						song: "All Too Well (Taylor's Version)",
+						alternateTitle: "All Too Well (Taylor's Version)",
+						year: 2021,
+						rightAlign: true,
+						audioFile: "all-too-well"
 					}
 				]
 			}
