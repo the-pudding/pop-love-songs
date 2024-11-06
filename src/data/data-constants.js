@@ -10,23 +10,23 @@ export const SONG_DATA_COLUMNS_ENUM = {
 
 export const LOVE_SONG_TYPE_TO_DISPLAY_TEXT_MAP = {
 	0: "Non-love song",
-	1: "It's Complicated",
-	2: "Serenade",
-	3: "Heartache", // changed from "Longing & Heartbreak"
+	1: "Serenade",
+	2: "Heartache", // changed from "Longing & Heartbreak"
+	3: "It's Complicated",
 	4: "Pursuit", // changed from "Courtship & Anticipation"
-	5: "Sexual Confidence", // changed from "Sexual Conquest"
-	6: "Love Song for the Self",
-	7: "Good Riddance"
+	5: "Good Riddance",
+	6: "Sexual Confidence", // changed from "Sexual Conquest"
+	7: "Love Song for the Self"
 };
 export const LOVE_SONG_TYPE_CONSTANTS = {
 	notALoveSong: 0,
-	itsComplicated: 1,
-	serenade: 2,
-	heartache: 3,
+	serenade: 1,
+	heartache: 2,
+	itsComplicated: 3,
 	pursuit: 4,
-	sexualConfidence: 5,
-	loveSongForTheSelf: 6,
-	goodRiddance: 7
+	goodRiddance: 5,
+	sexualConfidence: 6,
+	loveSongForTheSelf: 7
 };
 
 // TODO: bug-central: when you set an integer as a key, it gets converted to a string.
