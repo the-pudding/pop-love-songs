@@ -25,7 +25,7 @@
     };
 
     let sortedSongTypes = [];
-    $: typesMarkedAsNonLoveSongs = Object.entries(songCountByLoveSongType).reduce(
+    $: typesMarkedAsNonLoveSongsAccountedFor = Object.entries(songCountByLoveSongType).reduce(
             (acc, [loveSongType, count]) => {
                 if ($typesTreatedAsNonLoveSongs.includes(+loveSongType)) {
                     const existingNonLoveSongCount = acc[LOVE_SONG_TYPE_CONSTANTS.notALoveSong] || 0;
@@ -38,7 +38,7 @@
             {}
         );
 
-    $: sortedSongTypes = Object.entries(typesMarkedAsNonLoveSongs).sort((a, b) => b[1] - a[1]);
+    $: sortedSongTypes = Object.entries(typesMarkedAsNonLoveSongsAccountedFor).sort((a, b) => b[1] - a[1]);
 </script>
 
 <ul class="stacked-bar-chart">
