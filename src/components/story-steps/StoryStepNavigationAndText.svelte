@@ -79,7 +79,7 @@
             svelteComponent: XandAddButton,
             props: {
                 rotateIntoPlusSign: false,
-                diameter: $viewport.isLikelyInMobileLandscape ? 24 : 28,
+                diameter: $viewport.isSmallish ? 24 : 28,
                 selectionColor: null,
                 selectionBackgroundColor: null,
                 isSelected: false,
@@ -92,7 +92,7 @@
             selector: ".in-text-bubble-example",
             svelteComponent: ExampleBubble,
             props: {
-                diameter: $viewport.isLikelyInMobileLandscape ? 24 : 28,
+                diameter: $viewport.isSmallish ? 24 : 28,
                 yAdjustment: Y_ADJUSTMENT
             }
         });
@@ -157,7 +157,7 @@
     `
     
     $: storyTextStyle = `
-        font-size: ${$viewport.isLikelyInMobileLandscape ? '14px' : $currentStoryStepIndex === 0 ? '20px' : '16px'};
+        font-size: ${$viewport.isSmallish ? '14px' : $currentStoryStepIndex === 0 ? '20px' : '16px'};
     `
 </script>
 
@@ -167,7 +167,7 @@
             <h1 class="story-text" style={storyTextStyle}>
                 <!-- For styling of love song type spans within the text, see app.css -->
                 <!-- Note: this wonky custom left-padding corrects for a visual fluke wherein left-justified text appears off center.  -->
-                <div style:padding-left={!$viewport.isLikelyInMobileLandscape && $currentStoryStepIndex === 0 ? '42px' : '8px'}>
+                <div style:padding-left={!$viewport.isSmallish && $currentStoryStepIndex === 0 ? '42px' : '8px'}>
                     {@html $currentStoryStep.text}
                 </div>
                 <DataMethodsModal bind:showModal />

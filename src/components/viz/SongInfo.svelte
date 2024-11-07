@@ -20,7 +20,7 @@
 
 	$: displaySongName = alternateTitle || formatSongTitleForDisplay(song[SONG_DATA_COLUMNS_ENUM.song]);
 	$: rawYear = song[SONG_DATA_COLUMNS_ENUM.date_as_decimal];
-	$: year = $viewport.isLikelyInMobileLandscape ? abbreviateYearForDisplay(rawYear) : formatYearForDisplay(rawYear);
+	$: year = $viewport.isSmallish ? abbreviateYearForDisplay(rawYear) : formatYearForDisplay(rawYear);
 	$: performerNames = formatPerformersForDisplay(
 		getArrayOfPerformers(song)
 	);
@@ -42,7 +42,7 @@
 			/>
 		{/if}
 		<div aria-hidden="true" class='song-title' style={`
-			font-size: ${$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}; 
+			font-size: ${$viewport.isSmallish ? '16px' : '24px'}; 
 			text-shadow: ${textShadow(2, 1)}; 
 			${noWrapTitle ? 'white-space: nowrap; ' : ''} 
 			margin-${rightAlign ? 'right' : 'left'}: ${audioFile ? 6 : 0}px;
@@ -60,7 +60,7 @@
 			/>
 		{/if}
 	</div>
-	<div aria-hidden="true" class="performer" style={`font-size: ${$viewport.isLikelyInMobileLandscape ? '14px' : '16px'}; text-shadow: ${textShadow(1, 0.5)}; text-align: ${rightAlign ? 'right' : 'left'};`}>
+	<div aria-hidden="true" class="performer" style={`font-size: ${$viewport.isSmallish ? '14px' : '16px'}; text-shadow: ${textShadow(1, 0.5)}; text-align: ${rightAlign ? 'right' : 'left'};`}>
 		<span>{performerNames}</span> (<span class='year'>{year}</span>)
 	</div>
 	{#if $isEndingSandboxStep}

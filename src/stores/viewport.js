@@ -12,7 +12,7 @@ export default readable({ width: 0, height: 0, ready: false }, (set) => {
 			ready: true,
 			width: window.innerWidth,
 			height: window.innerHeight,
-			isLikelyInMobileLandscape:
+			isSmallish:
 				window.innerWidth < MOBILE_LANDSCAPE_WIDTH ||
 				window.innerHeight < MOBILE_PORTRAIT_WIDTH
 		});

@@ -12,7 +12,7 @@
     $: style = `top: ${y}px; left: ${x}px;`;
 </script>
 
-{#if !$viewport.isLikelyInMobileLandscape && !$currentStoryStep.isFinalComparisonStep}
+{#if !$viewport.isSmallish && !$currentStoryStep.isFinalComparisonStep}
     <li class="container" style={style} aria-label={loveSongDecadeChangeAriaLabel(decade, percentage)}>
         <span aria-hidden="true">{percentage}%</span>
     </li>   

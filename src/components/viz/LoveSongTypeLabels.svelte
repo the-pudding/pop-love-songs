@@ -64,7 +64,7 @@
 			const isTreatedAsNonLoveSong = orderInNonLoveSongStack !== -1;
 
 			const baseFontSize = 16;
-			const fontAdjustment = (wasJustSpotlighted && !$viewport.isLikelyInMobileLandscape ? 8 : 0) + ($viewport.isLikelyInMobileLandscape ? -4 : 0);
+			const fontAdjustment = (wasJustSpotlighted && !$viewport.isSmallish ? 8 : 0) + ($viewport.isSmallish ? -4 : 0);
 			const fontSize = baseFontSize + fontAdjustment;
 			const labelHeight = fontSize * 2;
 			return [... acc, {

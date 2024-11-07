@@ -54,7 +54,7 @@
 	{#if $isEndingSandboxStep}
 		<XandAddButton
 			rotateIntoPlusSign={isTreatedAsNonLoveSong}
-			diameter={$viewport.isLikelyInMobileLandscape ? 24 : 28} 
+			diameter={$viewport.isSmallish ? 24 : 28} 
 			selectionColor={LOVE_SONG_TYPE_COLOR_MAP[loveSongType]}
 			selectionBackgroundColor={ACCESSIBLY_CONTRASTING_COLOR_MAP[loveSongType]}
 			isSelected={isTreatedAsNonLoveSong}

@@ -10,7 +10,7 @@
 	<div
 		class="wordmark" 
 		style:padding-top={$mq.desktop ? '32px' : '6px'}
-		style:max-width={$viewport.isLikelyInMobileLandscape ? '10em' : '14em'}
+		style:max-width={$viewport.isSmallish ? '10em' : '14em'}
 	>
 		<a href="https://pudding.cool" aria-label="The Pudding - home" target="_self"
 			>{@html wordmark}</a

@@ -7,7 +7,7 @@
 	import { nonLoveSongLabelBottomLeftCoords } from "$stores/labels";
 	import { textShadow } from "$utils/styling";
 
-    $: fontSize = $viewport.isLikelyInMobileLandscape ? 12 : 16;
+    $: fontSize = $viewport.isSmallish ? 12 : 16;
 
     $: visible = $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(LOVE_SONG_TYPE_CONSTANTS.notALoveSong)
     $: style = `

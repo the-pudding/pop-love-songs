@@ -6,7 +6,7 @@
 	import { textShadow } from "$utils/styling";
 
     $: tickYears = [1960, 1970, 1980, 1990, 2000, 2010, 2020]
-        .filter(year => !$viewport.isLikelyInMobileLandscape || year % 20 === 0);
+        .filter(year => !$viewport.isSmallish || year % 20 === 0);
 
     const formatYear = year => `${abbreviateYearForDisplay(year)}s`;
     $: xPositions = tickYears.map(year => ({
@@ -40,7 +40,7 @@
             style="left: {x}px;" 
             style:top={`${$aSingleLoveSongTypeIsSpotlighted ? yBottomOfDashedLine : belowSnakeChart}px`}
             style:text-shadow={textShadow(1, 1)}
-            style:font-size={$viewport.isLikelyInMobileLandscape ? '12px' : '16px'}
+            style:font-size={$viewport.isSmallish ? '12px' : '16px'}
         >
             {formatYear(year)}
         </div>

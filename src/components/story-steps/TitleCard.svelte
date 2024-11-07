@@ -31,8 +31,8 @@
     });
 
     $: h1Style = `
-        font-size: ${$viewport.isLikelyInMobileLandscape ? '56px' : '108px'};
-        line-height: ${$viewport.isLikelyInMobileLandscape ? '56px' : '116px'};
+        font-size: ${$viewport.isSmallish ? '56px' : '108px'};
+        line-height: ${$viewport.isSmallish ? '56px' : '116px'};
         text-shadow: ${textShadow(4, 0.5)};
     `;
 </script>
@@ -51,7 +51,7 @@
         {/each}
     </h1>
 
-    <p class="by-line" style:font-size={$viewport.isLikelyInMobileLandscape ? '16px' : '24px'}>
+    <p class="by-line" style:font-size={$viewport.isSmallish ? '16px' : '24px'}>
         {@html copy.byline}
     </p>
 </section>

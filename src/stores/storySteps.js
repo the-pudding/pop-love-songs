@@ -730,7 +730,7 @@ export const precedingStepSpotlightedType = derived(
 export const showSearchBars = derived(
 	[aSingleLoveSongTypeIsSpotlighted, viewport, isEndingSandboxStep],
 	([$aSingleLoveSongTypeIsSpotlighted, $viewport, $isEndingSandboxStep]) =>
-		!$viewport.isLikelyInMobileLandscape &&
+		!$viewport.isSmallish &&
 		($aSingleLoveSongTypeIsSpotlighted || $isEndingSandboxStep)
 );
 
