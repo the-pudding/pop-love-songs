@@ -1,13 +1,13 @@
 <!-- Based on this example: https://svelte.dev/examples/modal -->
 <script>
-	import mq from "$stores/mq";
-
 	export let showModal; // boolean
 	export let showXButton = true;
 	export let maxWidth = '42em';
 
 	export let dialog; // HTMLDialogElement
 	export let onBackgroundClick = () => {};
+
+	export let center = false;
 
 	$: if (dialog && showModal) dialog.showModal();
 </script>
@@ -22,8 +22,8 @@
 		dialog.close();
 		onBackgroundClick();
 	}}
-	class:desktop={$mq.desktop}
 	style:max-width={maxWidth}
+	style:margin={center ? 'auto' : '12px auto'}
 >
 	<!-- svelte-ignore a11y-autofocus -->
 	{#if showXButton}
@@ -49,9 +49,8 @@
 		border-radius: 0.2em;
 		border: none;
 		padding: 0;
-		margin: 12px auto;
 	}
-	dialog.desktop::backdrop {
+	dialog::backdrop {
 		background: rgba(0, 0, 0, 0.5);
 	}
 	dialog > div.content {

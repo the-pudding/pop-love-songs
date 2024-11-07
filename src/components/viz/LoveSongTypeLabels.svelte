@@ -48,10 +48,10 @@
 
 		// Special case: on small screens, Love Song for the Self label is too close to Good Riddance without shifting one of them
 		if ($isEndingSandboxStep && +loveSongType === +LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf && $viewport.isSmallish) {
-			return $getYPositionForPercentage(y0) - 6;
+			return $getYPositionForPercentage(y0) - 10;
 		}
 		
-		return $getYPositionForPercentage(y0);
+		return $getYPositionForPercentage(y0) - 3;
 	}
 
 	const findPoint = ({svgCoords, loveSongType}) => {

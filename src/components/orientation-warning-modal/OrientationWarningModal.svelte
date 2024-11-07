@@ -28,7 +28,7 @@
 
 </script>
 
-<Modal bind:showModal bind:dialog maxWidth={'95%'} showXButton={false} {onBackgroundClick}>
+<Modal bind:showModal bind:dialog maxWidth={'95%'} showXButton={false} {onBackgroundClick} center>
     <div class='container'>
         {#each orientationWarningModal.paragraphs as paragraph}
             <p>{@html paragraph}</p>

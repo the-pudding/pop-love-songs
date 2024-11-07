@@ -4,7 +4,7 @@ import viewport from "./viewport";
 import { svgCoordsForLoveSongTypes } from "./aggregateSnakeChartPositions";
 import { LOVE_SONG_TYPE_CONSTANTS } from "$data/data-constants";
 
-const BASE_OF_CHART = 1;
+const BASE_OF_CHART = 1.001;
 const UPPER_PADDING = -0.005;
 const createPoint = ({ x, y1 }) => ({
 	x,
