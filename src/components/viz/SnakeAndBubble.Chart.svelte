@@ -75,7 +75,9 @@
 				invisibleContext.fillStyle = getInvisibleFillFromSongIndex(songIndex);
 				invisibleContext.fill(circle);
 			}
-			context.fillStyle = rgbaArrayToString($tweenedSongColor[songIndex]);
+			context.fillStyle = rgbaArrayToString(
+				$songColor.getColor(song, isSelected, $tweenedSongColor)
+			);
 			context.fill(circle);
 
 			// Draw a border around annotated songs
@@ -205,7 +207,7 @@
 	});
 
 	// Transition color
-	const tweenedSongColor = tweened($songColor, {
+	const tweenedSongColor = tweened($songColor.songColorArrayToInterpolate, {
 		duration: variables.chart['transition-opacity-duration'],
 		easing: cubicInOut
 	});
@@ -214,7 +216,7 @@
 		tweenedCoords.set($svgCoordsForLoveSongTypes);
 		tweenedSnakeFill.set($snakeFill);
 		// @michelle: is there a good reason to move this out to its own one line reactive statement?
-		tweenedSongColor.set($songColor);
+		tweenedSongColor.set($songColor.songColorArrayToInterpolate);
 		if ($showAggregateSnakeChart) {
 			aggregateSnakeChartOpacity.set(1);
 			bubbleChartOpacity.set(0);

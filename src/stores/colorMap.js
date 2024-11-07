@@ -10,6 +10,7 @@ import {
 	LOVE_SONG_TYPE_COLOR_MAP,
 	LOVE_SONG_TYPE_CONSTANTS,
 	LOVE_SONG_TYPES,
+	SONG_DATA_COLUMNS_ENUM,
 	UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP
 } from "$data/data-constants.js";
 import { getSnakeFill, getSongColor } from "$components/viz/viz-utils";
@@ -95,24 +96,60 @@ const hexToRgbaArray = (hex) => {
 export const rgbaArrayToString = (rgbaArray) =>
 	`rgba(${rgbaArray[0]}, ${rgbaArray[1]}, ${rgbaArray[2]}, ${rgbaArray[3]})`;
 
-// OPTIMIZATION: Currently, we're creating a a 5k-length array matching the every individual song.
-// However, there are only 8 colors * 2 (selected/unselected) = 16 unique colors.
-// So we could optimize this by creating a 16-length length array, then provide a lookup dictionary where the key is `${loveSongType}-${isSelected}` 
-// and the value is the index in the 16 - length color array. Interpolating 16 values should be much faster than 5k values.
-export const songColor = derived(
-	[songIsSelected, loveSongTypeColorMap, unselectedLoveSongTypeColorMap],
-	([$songIsSelected, $loveSongTypeColorMap, $unselectedLoveSongTypeColorMap]) =>
-		songsData.map(({ song }, index) => {
-			const hex = getSongColor(
-				song,
-				$songIsSelected[index],
-				$loveSongTypeColorMap,
-				$unselectedLoveSongTypeColorMap
-			);
-			return hexToRgbaArray(hex);
+// All this: produces an store for calculating all possible song colors and returning a tween-able (and accessible) version of them
+
+const getColorKey = (loveSongType, isSelected) =>
+	`${loveSongType}-${isSelected}`;
+
+const convertColorMapToDictionary = (colorMap, isSelected) =>
+	Object.keys(colorMap).reduce(
+		(accum, loveSongType) => ({
+			...accum,
+			[getColorKey(loveSongType, isSelected)]: hexToRgbaArray(
+				colorMap[loveSongType]
+			)
 		}),
+		{}
+	);
+
+export const songColor = derived(
+	[loveSongTypeColorMap, unselectedLoveSongTypeColorMap],
+	([$loveSongTypeColorMap, $unselectedLoveSongTypeColorMap]) => {
+		// Step 1: create a master dictionary, songKey -> rgbaColor, using both selected and non-selected color maps
+		const songColorDict = {
+			...convertColorMapToDictionary($loveSongTypeColorMap, true),
+			...convertColorMapToDictionary($unselectedLoveSongTypeColorMap, false)
+		};
+		// Step 2: from songColorDict, create both an array of all the songColorDict values and a dictionary of colorKey => index for that array
+		const { songColorArrayToInterpolate, colorKeyToIndex } = Object.entries(
+			songColorDict
+		).reduce(
+			(accum, [colorKey, colorValue], index) => {
+				accum.songColorArrayToInterpolate.push(colorValue);
+				accum.colorKeyToIndex[colorKey] = index;
+				return accum;
+			},
+			{ songColorArrayToInterpolate: [], colorKeyToIndex: {} }
+		);
+		const getColor = (song, isSelected, interpolatedSongColors) =>
+			interpolatedSongColors[
+				colorKeyToIndex[
+					getColorKey(
+						song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type],
+						isSelected
+					)
+				]
+			];
+
+		return {
+			songColorArrayToInterpolate,
+			getColor
+		};
+	},
 	[]
 );
+
+// end of songColor
 
 export const snakeFill = derived(
 	[currentStoryStep, loveSongTypeColorMap, unselectedLoveSongTypeColorMap],
