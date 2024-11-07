@@ -1,7 +1,5 @@
 <script>
-
-	import { LOVE_SONG_TYPE_CONSTANTS, TEXT_SHADOW_COLOR_MAP } from "$data/data-constants";
-	import { currentStoryStep, isEndingSandboxStep } from "$stores/storySteps";
+	import { isEndingSandboxStep } from "$stores/storySteps";
     import viewport from "$stores/viewport";
 	import { typesTreatedAsNonLoveSongs } from "$stores/searchAndFilter";
 	import { nonLoveSongLabelBottomLeftCoords } from "$stores/labels";
@@ -9,7 +7,6 @@
 
     $: fontSize = $viewport.isSmallish ? 12 : 16;
 
-    $: visible = $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(LOVE_SONG_TYPE_CONSTANTS.notALoveSong)
     $: style = `
         left: ${$nonLoveSongLabelBottomLeftCoords.x}px; 
         top: ${$nonLoveSongLabelBottomLeftCoords.y}px; 
@@ -18,7 +15,7 @@
     `;
 </script>
 
-<div class:visible={visible} {style} aria-hidden="true">
+<div {style} aria-hidden="true">
     NON-LOVE SONGS{$isEndingSandboxStep && !!$typesTreatedAsNonLoveSongs.length ? ":" : ""}
 </div>
 
@@ -31,15 +28,7 @@
         font-weight: 600;
         color: gray;
         letter-spacing: 6px;
-        
-        /* Note: not working. */
-        transition: opacity calc(var(--chart-transition-opacity-duration) * 1ms) ease;
-        transition-delay: 800ms;
 
         white-space: nowrap;
-    }
-
-    div.visible {
-        opacity: 1;
     }
 </style>
