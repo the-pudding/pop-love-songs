@@ -15,7 +15,9 @@
 
 	const play = () => {
 		if (!audioEl || !audioFile) return;
-		audioEl.currentTime = 0; // TODO: assuming we always want to restart?
+		audioEl.currentTime = 0; 
+		audioEl.volume = 0.4; // at Matt's suggestion: "THINK OF THE EARS! SAVE THE EARS!"
+
 		audioEl.play();
 	};
 	const pause = () => {
