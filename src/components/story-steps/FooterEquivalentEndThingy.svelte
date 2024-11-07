@@ -27,6 +27,7 @@
     <Footer />
 </div>
 
+<!-- svelte-ignore css-unused-selector -->
 <style>
     .container {
         display: flex;
@@ -34,8 +35,10 @@
         justify-content: space-between;
         height: 100vh; /* @michelle: what I want is for hte <Footer/> to stay pushed to the bottom of the page */        
     }
-
-    .thanks a, .modalTrigger {
+    
+    /* there are a-tags in copy */
+    .thanks a, 
+    .modalTrigger {
         /* So it sits on top of the nav tap regions */
         position: relative;
         z-index: 10000000;
