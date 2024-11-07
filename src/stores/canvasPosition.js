@@ -22,9 +22,9 @@ import {
 	songInManuallySetPositions
 } from "$data/data-utils";
 import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
-// TODO: should this be a store, too?
-import { STORY_STEP_CONTROLLER_TOP_PADDING } from "$components/viz/viz-utils";
 import { MAX_DATE, MIN_DATE } from "$data/songs-data";
+
+const STORY_STEP_CONTROLLER_TOP_PADDING = 100;
 
 const Y_MARGIN_SCREEN_PERCENTAGE = 0.05;
 export const baseYTopMargin = derived(
