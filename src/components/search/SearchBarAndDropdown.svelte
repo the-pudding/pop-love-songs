@@ -177,8 +177,13 @@
                         >
                             <svelte:component this={renderComponent} {result} />
                         </li>
-                    {/each}
+                    {/each} 
                 </ul>
+                {#if searchResults.length > searchResultsSubsetToRender.length}
+                    <div class="more-results">
+                        <b>{searchResultsSubsetToRender.length}</b> out of <b>{searchResults.length}</b> results wasn't enough for you? Ok, data fiend, try another filter to explore more. :)
+                    </div>
+                {/if}
             {/if}
         </div>
     {/if}
@@ -196,7 +201,7 @@
         z-index: 1000000001; /* always must be top most element */
     }
 
-    .no-results {
+    .no-results, .more-results {
         padding: 8px;
     }
 
