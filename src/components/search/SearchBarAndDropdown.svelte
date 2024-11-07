@@ -17,7 +17,7 @@
     export let hasSelection = false;
 
     
-    const MAX_RESULTS = 70; // Drake, the most featured artist, has 70 songs
+    const MAX_RESULTS = 75; // Drake, the most featured artist, has 70 songs, so we want at least that much
     $: searchResultsSubsetToRender = searchResults.slice(0, MAX_RESULTS);
 
     let selectedIndex = -1;
@@ -180,7 +180,7 @@
                     {/each} 
                 </ul>
                 {#if searchResults.length > searchResultsSubsetToRender.length}
-                    <div class="more-results">
+                    <div aria-hidden="true" class="more-results">
                         <b>{searchResultsSubsetToRender.length}</b> out of <b>{searchResults.length}</b> results wasn't enough for you? Ok, data fiend, try another filter to explore more. :)
                     </div>
                 {/if}
