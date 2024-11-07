@@ -41,10 +41,16 @@
 	}
 
 	const OFFSET_FROM_NON_LOVE_SONG_LABEL = 0;
-	const getY = (y0, orderInNonLoveSongStack, nonLoveSongY, labelHeight) => {
+	const getY = (y0, orderInNonLoveSongStack, nonLoveSongY, labelHeight, loveSongType) => {
 		if (orderInNonLoveSongStack !== -1) {
 			return OFFSET_FROM_NON_LOVE_SONG_LABEL + nonLoveSongY + labelHeight * (2 + orderInNonLoveSongStack);
 		}
+
+		// Special case: on small screens, Love Song for the Self label is too close to Good Riddance without shifting one of them
+		if ($isEndingSandboxStep && +loveSongType === +LOVE_SONG_TYPE_CONSTANTS.loveSongForTheSelf && $viewport.isSmallish) {
+			return $getYPositionForPercentage(y0) - 6;
+		}
+		
 		return $getYPositionForPercentage(y0);
 	}
 
@@ -71,7 +77,7 @@
 				loveSongType,
 				labelHeight,
 				x: getX(x, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.x),
-				y: getY(y0, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.y, labelHeight),
+				y: getY(y0, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.y, labelHeight, loveSongType),
 				// TODO: if we decide to keep this cool flying transition and want it NOT wonky, then we need to either left align, or use elements width to directly add shift to left property
 				translate: `translate(${isTreatedAsNonLoveSong ? -50 : 0}%, -80%)`,
 				visibility: $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType) ? 'hidden' : 'visible',
