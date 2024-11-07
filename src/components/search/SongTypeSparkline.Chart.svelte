@@ -13,14 +13,10 @@
     let tooltipY = 0;
 
     const description = (count, loveSongType) => `${count} ${$loveSongTypeToDisplayTextMap[loveSongType]}`;
-
     $: handleMouseEnter = (loveSongType, count, event) => {
         tooltipContent = description(count, loveSongType);
-        const rect = event.target.getBoundingClientRect();
-        tooltipX = rect.left + (rect.width / 2);
-        // @michelle: ok, so it looks like the y position is off because it's taking it as if the dropdown were the page
-        // How could I get the rect.top to be relative to the page?
-        tooltipY = rect.top - 170; // Adjust the offset as needed
+        tooltipX = event.clientX;
+        tooltipY = event.clientY + 4; // Adjust the offset as needed
         tooltipVisible = true;
     };
 

@@ -31,7 +31,6 @@
 	}
 
 	// For the final step, if there are search strings or selected search values, we need to be sure we've toggled to individual songs chart
-	// @michelle Is this a random place to put this? Like should this be a derived store or something? What's tricking is that others are writing to showAggregateSnakeChart, too.
 	$: {
 		if ($isEndingSandboxStep && $showAggregateSnakeChart) {
 			if ($aSearchFilterExists || $aPreviewExists) {
