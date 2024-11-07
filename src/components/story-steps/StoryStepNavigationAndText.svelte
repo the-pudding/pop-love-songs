@@ -152,7 +152,7 @@
     $: containerStyle = `
         ${$currentStoryStep.showOpeningComment ? "" : "background: linear-gradient(to bottom, var(--color-cream-background), transparent);"}
         margin-top: ${$baseYTopMargin}px;
-        ${$currentStoryStep.showOpeningComment ? "bottom: 5%;" : "top: 0"};
+        ${$currentStoryStep.showOpeningComment ? `bottom: ${$mq.desktop ? 6 : 0 }%;` : "top: 0"};
         text-shadow: ${tiemposFriendlyTextShadow()};
     `
     

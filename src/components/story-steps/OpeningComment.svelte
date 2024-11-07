@@ -26,6 +26,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         max-width: min(50%, 600px);
+        max-height: 45%;
         z-index: 100;
         animation: fadeInSlideUp 1s ease-out;
 
