@@ -15,7 +15,6 @@ export const textShadow = (
     0px ${-offset}px ${blur}px ${color}
 `;
 
-
 export const tiemposFriendlyTextShadow = (
 	color = variables.color["cream-background"]
 ) => `

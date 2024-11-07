@@ -101,10 +101,11 @@ h6 {
 	/* Fixes a weird issue where the text-shadow of punctuation overlaps with this text (thanks, Matt!) */
 	/* Just when I thought I had a good grasp of CSS... *sigh* */
 	text-shadow: none;
-    position: relative;
-} 
+	position: relative;
+}
 
-.story-text .song-title, dialog .song-title {
+.story-text .song-title,
+dialog .song-title {
 	font-family: var(--sans);
 	font-weight: bold;
 	text-transform: uppercase;
@@ -127,7 +128,7 @@ h6 {
 	text-shadow: none;
 
 	/* Fixes a weird issue where the text-shadow of punctuation overlaps with this background */
-    position: relative;
+	position: relative;
 }
 
 /* Note we manually apply text-shadow: none cuz there are other spans that *do* take it, and I didn't class them specifically enough */
@@ -135,9 +136,7 @@ h6 {
 .story-text span.not-a-love-song {
 	background: var(--color-not-a-love-song);
 	color: var(--color-a11y-contrast-not-a-love-song);
-	
 }
-
 
 .story-text span.serenade {
 	background: var(--color-serenade);
@@ -171,7 +170,8 @@ h6 {
 	color: var(--color-a11y-contrast-love-song-for-the-self);
 }
 
-.story-text span.sexual-confidence, dialog span.sexual-confidence {
+.story-text span.sexual-confidence,
+dialog span.sexual-confidence {
 	background: var(--color-sexual-confidence);
 	color: var(--color-a11y-contrast-sexual-confidence);
 }

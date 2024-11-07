@@ -149,7 +149,6 @@ export const visibleSongsData = derived(songIsVisible, ($songIsVisible) =>
 	songsData.filter((song, index) => $songIsVisible[index])
 );
 
-
 // Annotations
 
 export const annotatedSongsData = derived(
