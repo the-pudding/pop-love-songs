@@ -21,7 +21,7 @@
         position: fixed;
         transform: translateY(-100%);
 
-        font-family: 'Atlas Grotesk', sans-serif;
+        font-family: var(--sans);
         font-weight: bold;
 
         list-style-type: none;

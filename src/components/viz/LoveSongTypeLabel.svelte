@@ -64,7 +64,7 @@
 
 <style>
 	li {
-		font-family: 'Atlas Grotesk', sans-serif;
+		font-family: var(--sans);
 		position: fixed;
 		display: flex;
 		align-items: center;
