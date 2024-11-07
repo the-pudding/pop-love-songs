@@ -14,6 +14,7 @@
 		style:text-shadow={textShadow(2, 1)} 
 		style:font-size={$mq.desktop ? '1.3rem' : '1rem'}
 		style:top={$mq.desktop ? '50%' : '20%'}
+		style:right={$mq.desktop ? '0' : '4%'}
 	>
 		<div class="row">
 			{@html pointer}
@@ -58,7 +59,6 @@
 <style>
 	.tap {
 		position: fixed;		
-		right: 0px;
 		transform: translate(0%, -8px);
 		margin-right: 12px;
 		height: 80px;
@@ -107,7 +107,7 @@
 	.second-step-right-hint {
 		position: fixed;
 		top: 25%;
-		right: 7%;
+		right: 9%;
 		display: flex;
 		flex-direction: column;
 
@@ -117,7 +117,7 @@
 	.second-step-left-hint {
 		position: fixed;
 		top: 25%;
-		left: 3%;
+		left: 9%;
 		display: flex;
 		flex-direction: column;
 	}
