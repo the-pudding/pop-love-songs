@@ -2,9 +2,10 @@ import { browser } from "$app/environment";
 import { readable } from "svelte/store";
 import debounce from "lodash.debounce";
 
-// TODO: is this sensible?
-export const MOBILE_LANDSCAPE_WIDTH = 850;
-export const MOBILE_PORTRAIT_WIDTH = 500;
+const small = {
+	width: 850,
+	height: 600
+};
 
 export default readable({ width: 0, height: 0, ready: false }, (set) => {
 	const onResize = () =>
@@ -13,8 +14,7 @@ export default readable({ width: 0, height: 0, ready: false }, (set) => {
 			width: window.innerWidth,
 			height: window.innerHeight,
 			isSmallish:
-				window.innerWidth < MOBILE_LANDSCAPE_WIDTH ||
-				window.innerHeight < MOBILE_PORTRAIT_WIDTH
+				window.innerWidth < small.width || window.innerHeight < small.height
 		});
 
 	if (browser) {
