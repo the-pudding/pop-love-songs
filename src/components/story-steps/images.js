@@ -1,8 +1,15 @@
+import copy from "$data/copy.json";
+import loadImage from "$utils/loadImage";
+
+export const BOOMER_BOB_COMMENT_IMAGE = {
+	src: "assets/images/Boomer Bob comment.png",
+	alt: `A screenshot of a comment from a user named Boomer Bob reading: ${copy.commentText.boomerBobComment}`
+};
+
 export const TITLE_CARD_BACKGROUND_IMAGE = {
 	src: "assets/images/elvis and olivia rodrigo.png",
 	alt: "Elvis Presley, smiling, and Olivia Rodrigo, scowling, side by side."
 };
-
 
 export const HEADLINES = {
 	generationWithoutLove: {
@@ -30,4 +37,16 @@ export const HEADLINES = {
 		alt: "A title from a Quora post that reads 'How come they no longer write love songs like they used to?'",
 		url: "https://www.quora.com/How-come-they-no-longer-write-love-songs-like-they-used-to"
 	}
+};
+
+export const loadFirstImage = async () => {
+	await loadImage(BOOMER_BOB_COMMENT_IMAGE.src);
+};
+
+export const loadRemainingImages = async () => {
+	const images = [
+		...Object.values(HEADLINES).map(({ src }) => src),
+		TITLE_CARD_BACKGROUND_IMAGE.src
+	];
+	await Promise.all(images.map(loadImage));
 };

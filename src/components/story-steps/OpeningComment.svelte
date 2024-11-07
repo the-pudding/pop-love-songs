@@ -1,12 +1,8 @@
 <script>
-    import copy from "$data/copy.json"
-    const COMMENT = {
-        src: "assets/images/Boomer Bob comment.png",
-        alt: `A screenshot of a comment from a user named Boomer Bob reading: ${copy.commentText.boomerBobComment}`    
-    }
+	import { BOOMER_BOB_COMMENT_IMAGE } from "./images";
 </script>
 
-<img src={COMMENT.src} alt={COMMENT.alt} class="fade-in-slide-up" />
+<img src={BOOMER_BOB_COMMENT_IMAGE.src} alt={BOOMER_BOB_COMMENT_IMAGE.alt} class="fade-in-slide-up" />
 
 <style>
     @keyframes fadeInSlideUp {

@@ -19,23 +19,21 @@
 	import viewport from "$stores/viewport";
 	import { playing } from "$stores/audio.js";
 	import { currentStoryStep, currentStoryStepIndex, showSearchBars } from "$stores/storySteps";
-	import loadImage from "$utils/loadImage";
-	import { TITLE_CARD_BACKGROUND_IMAGE } from "./story-steps/images";
+	import { loadRemainingImages, loadFirstImage } from "./story-steps/images";
 	import Figure from "./figure/Figure.svelte";
 	import StoryStepProgressDashes from "./story-steps/StoryStepProgressDashes.svelte";
 	
-	// Wait until after we've mounted (and thus pulled the story step from the URL)
 	// TODO: this doesn't seem to actually work. Instead, just create a store that StoryStepNavigationAndText updates
-	let urlParsed = false
-	onMount(() => {
-	   urlParsed = true;
-	   // @michelle: is this where this should go? also is this the proper use? 
-	   // I want images not to look like they're awkwardly loading in, so why not do this for ALL big-ish images?
-	   loadImage(TITLE_CARD_BACKGROUND_IMAGE.src);
-    });
+	let ready = false
+	onMount(async () => {
+		await loadFirstImage();
+		
+		ready = true;
+		loadRemainingImages();
+	});
 </script>
 
-{#if $viewport.ready}
+{#if $viewport.ready && ready}
 	<OrientationWarningModal />
 
 	{#if $currentStoryStepIndex === 0}
@@ -54,18 +52,16 @@
 			<InteractivityControlsAndFilters />
 		{/if}
 
-		{#if urlParsed}
-			<Figure>
-				<SnakeAndBubbleChart />
-			</Figure>
-				
-			{#if $currentStoryStep.showHeadlinesAboutLoveSongDecline}
-				<HeadlinesAboutLoveSongDecline />
-			{:else if $currentStoryStep.showTitleCard}
-				<TitleCard />
-			{:else if $currentStoryStep.showFooter}
-				<FooterEquivalentEndThingy />
-			{/if}
+		<Figure>
+			<SnakeAndBubbleChart />
+		</Figure>
+			
+		{#if $currentStoryStep.showHeadlinesAboutLoveSongDecline}
+			<HeadlinesAboutLoveSongDecline />
+		{:else if $currentStoryStep.showTitleCard}
+			<TitleCard />
+		{:else if $currentStoryStep.showFooter}
+			<FooterEquivalentEndThingy />
 		{/if}
 
 		<Annotations />
