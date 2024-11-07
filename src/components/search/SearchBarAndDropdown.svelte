@@ -181,7 +181,7 @@
                 </ul>
                 {#if searchResults.length > searchResultsSubsetToRender.length}
                     <div aria-hidden="true" class="more-results">
-                        <b>{searchResultsSubsetToRender.length}</b> out of <b>{searchResults.length}</b> results wasn't enough for you? Ok, data fiend, try another filter to explore more. :)
+                        <b>{searchResultsSubsetToRender.length}</b> out of <b>{searchResults.length}</b> results wasn't enough for you? Ok, you data-holic, try another filter to explore more...
                     </div>
                 {/if}
             {/if}
