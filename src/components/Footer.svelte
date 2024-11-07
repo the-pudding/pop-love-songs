@@ -1,13 +1,9 @@
 <script>
-	import { onMount } from "svelte";
-	// shadow, plain, line, bubble
 	import wordmark from "$svg/wordmark-shadow.svg";
 	import fetchedPuddingStories from "$stores/fetchedPuddingStories";
 
-	let localURL;
-
-	const v = Date.now();
-	const url = `https://pudding.cool/assets/data/stories.json?v=${v}`;
+	const localURL = window.location.href;
+	$: filteredStories = $fetchedPuddingStories.filter((d) => !localURL.includes(d.url)).slice(0, 4);
 
 	const links = [
 		{ name: "about", url: "https://pudding.cool/about" },
@@ -23,19 +19,11 @@
 		{ name: "rss", url: "https://pudding.cool/feed/index.xml" }
 	];
 
-	onMount(async () => {
-		if (fetchedPuddingStories.length) return;
-		
-		localURL = window.location.href;
-		const response = await fetch(url);
-		const data = await response.json();
-		$fetchedPuddingStories = data.filter((d) => !localURL.includes(d.url)).slice(0, 4);
-	});
 </script>
 
 <footer>
 	<section class="stories">
-		{#each $fetchedPuddingStories as { hed, url, image }}
+		{#each filteredStories as { hed, url, image }}
 			{@const href = url.startsWith("http")
 				? url
 				: `https://pudding.cool/${url}`}
