@@ -31,7 +31,8 @@
         font-weight: 600;
         color: gray;
         letter-spacing: 6px;
-        /* TODO: @michelle it's not working now, but I'd like this to delay and/or fade in */
+        
+        /* Note: not working. */
         transition: opacity calc(var(--chart-transition-opacity-duration) * 1ms) ease;
         transition-delay: 800ms;
 

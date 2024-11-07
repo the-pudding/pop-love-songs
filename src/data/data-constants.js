@@ -29,7 +29,7 @@ export const LOVE_SONG_TYPE_CONSTANTS = {
 	loveSongForTheSelf: 7
 };
 
-// TODO: bug-central: when you set an integer as a key, it gets converted to a string.
+// Note: This is bug-central: when you set an integer as a key, it gets converted to a string.
 // Oddly, JS also converts an attempt to access with obj[0] to obj["0"] LOL, so it kinda works.
 // ... except when you try to do things like Object.keys to get the keys, which will return strings.
 // I'll try and pre-empt this by doing any such conversion here, carefully.
@@ -47,7 +47,6 @@ export const LOVE_SONG_TYPE_COLOR_MAP = {
 	[LOVE_SONG_TYPE_CONSTANTS.pursuit]: variables.color["pursuit"]
 };
 
-// TODO: actually fill this in with verified values
 export const ACCESSIBLY_CONTRASTING_COLOR_MAP = {
 	[LOVE_SONG_TYPE_CONSTANTS.notALoveSong]:
 		variables.color["a11y-contrast"]["not-a-love-song"],

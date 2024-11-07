@@ -21,7 +21,6 @@
 	$: circleY = songInfo.circleY;
 	$: circleRadius = songInfo.circleRadius;
 
-	// TODO: probably we'll want to to do something more like place different content if bubble chart is hidden
 	$: visible = x !== undefined && y !== undefined && song.length > 0 && !$showAggregateSnakeChart;
 
 	$: rightAlign = x > $viewport.width / 2;

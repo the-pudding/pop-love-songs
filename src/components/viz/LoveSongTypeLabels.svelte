@@ -78,7 +78,6 @@
 				labelHeight,
 				x: getX(x, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.x),
 				y: getY(y0, orderInNonLoveSongStack, $nonLoveSongLabelBottomLeftCoords.y, labelHeight, loveSongType),
-				// TODO: if we decide to keep this cool flying transition and want it NOT wonky, then we need to either left align, or use elements width to directly add shift to left property
 				translate: `translate(${isTreatedAsNonLoveSong ? -50 : 0}%, -80%)`,
 				visibility: $currentStoryStep.searchAndFilterState.visibleButNotSelectedLoveSongTypes.includes(loveSongType) ? 'hidden' : 'visible',
 				fontSize: `${fontSize}px`,

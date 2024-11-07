@@ -23,7 +23,6 @@
 	import Figure from "./figure/Figure.svelte";
 	import StoryStepProgressDashes from "./story-steps/StoryStepProgressDashes.svelte";
 	
-	// TODO: this doesn't seem to actually work. Instead, just create a store that StoryStepNavigationAndText updates
 	let ready = false
 	onMount(async () => {
 		await loadFirstImage();

@@ -1,5 +1,5 @@
 <script>
-    import { afterUpdate } from "svelte";
+    import { afterUpdate, onDestroy } from "svelte";
     import { aSearchBarIsFocused, openedDropdown } from "$stores/searchAndFilter";
     export let inputId;
     export let dropdownId;
@@ -16,8 +16,8 @@
     export let onInputBlurred = () => {};
     export let hasSelection = false;
 
-    // Drake, the most featured artist, has 70 songs
-    const MAX_RESULTS = 70; // TODO: I could just use virtualization here
+    
+    const MAX_RESULTS = 70; // Drake, the most featured artist, has 70 songs
     $: searchResultsSubsetToRender = searchResults.slice(0, MAX_RESULTS);
 
     let selectedIndex = -1;
@@ -98,20 +98,35 @@
         }
     };
 
-    // TODO: Should I clean up event listeners here? (especially since I'm running this on update... is that necessary?)
+    const focusableElements = ["a", "button", "input", "textarea", "select", "details", "[tabindex]:not([tabindex='-1'])"];
+    let focusEventListeners = [];
+
+    // If any other element is focused, close the dropdown
     afterUpdate(() => {
-        // If another element gets focused, close the dropdown
-        // const focusableElements = ["a", "button", "input", "textarea", "select", "details", "[tabindex]:not([tabindex='-1'])"];
-        const focusableElements = ["button"];
+        // Clean up previous event listeners
+        focusEventListeners.forEach(({ element, listener }) => {
+            element.removeEventListener('focus', listener);
+        });
+        focusEventListeners = [];
+
+        // Add new event listeners
         focusableElements.forEach(selector => {
             document.querySelectorAll(selector).forEach(element => {
-                element.addEventListener('focus', (event) => {
+                const listener = (event) => {
                     const isInsideSearchContainer = Array.from(document.querySelectorAll('.search-container')).some(container => container.contains(event.target));
                     if (!isInsideSearchContainer) {
                         openedDropdown.set(null);
                     }
-                });
+                };
+                element.addEventListener('focus', listener);
+                focusEventListeners.push({ element, listener });
             });
+        });
+    });
+
+    onDestroy(() => {
+        focusEventListeners.forEach(({ element, listener }) => {
+            element.removeEventListener('focus', listener);
         });
     });
 </script>

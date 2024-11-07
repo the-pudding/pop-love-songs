@@ -1,7 +1,6 @@
 <script>
 	import _ from "lodash";
 	import { base } from "$app/paths";
-	import { audioCanPlay } from "$stores/audio.js";
 	import { onMount, tick } from "svelte";
 	import { currentStoryStep } from "$stores/storySteps";
 	import { showAnnotations } from "$stores/searchAndFilter";
@@ -27,7 +26,6 @@
 	};
 
 	const updateSource = () => {
-		$audioCanPlay = false;
 		loaded = false;
 		const src = `${base}/assets/audio/${audioFile}.mp3`;
 		audioEl.src = src;
@@ -41,7 +39,6 @@
 	const setupEvents = () => {
 		audioEl.addEventListener("canplay", () => {
 			if (!loaded) {
-				$audioCanPlay = true;
 				loaded = true;
 				play();
 			}

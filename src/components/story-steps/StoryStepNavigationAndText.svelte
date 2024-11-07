@@ -152,7 +152,7 @@
     $: containerStyle = `
         ${$currentStoryStep.showOpeningComment ? "" : "background: linear-gradient(to bottom, var(--color-cream-background), transparent);"}
         margin-top: ${$baseYTopMargin}px;
-        ${$currentStoryStep.showOpeningComment ? `bottom: ${$mq.desktop ? 6 : 0 }%;` : "top: 0"};
+        ${$currentStoryStep.showOpeningComment ? `bottom: ${$mq.desktop ? 16 : 8 }%;` : "top: 0"};
         text-shadow: ${tiemposFriendlyTextShadow()};
     `
     
@@ -167,7 +167,7 @@
             <h1 class="story-text" style={storyTextStyle}>
                 <!-- For styling of love song type spans within the text, see app.css -->
                 <!-- Note: this wonky custom left-padding corrects for a visual fluke wherein left-justified text appears off center.  -->
-                <div style:padding-left={!$viewport.isSmallish && $currentStoryStepIndex === 0 ? '42px' : '8px'}>
+                <div style:padding-left={!$viewport.isSmallish && $currentStoryStepIndex === 0 ? '16px' : '8px'}>
                     {@html $currentStoryStep.text}
                 </div>
                 <DataMethodsModal bind:showModal />
@@ -184,8 +184,6 @@
         width: 100%;
         padding-left: 5%; 
         padding-right: 5%;
-        /* TODO: there's probably a better way to place this with the correct margin (only matters on the first screen) */
-        margin-bottom: 4%;
 
         pointer-events: none;
         border: none; /* this fixes the random border that appeared on mobile */        

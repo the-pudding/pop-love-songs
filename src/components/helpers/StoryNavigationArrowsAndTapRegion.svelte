@@ -168,22 +168,6 @@
 		pointer-events: auto;
 	}
 
-
-	/* TODO: since we're having people look in landscape, this breakpoint should be bigger (but do we want them to shrink at all?) */
-	@media (max-width: 600px) {
-		.left-hint,
-		.right-hint {
-			height: 4rem;
-			width: 4rem;
-		}
-		.left-hint {
-			padding: 0 0.25rem 0 0;
-		}
-		.right-hint {
-			padding: 0 0 0 0.25rem;
-		}
-	}
-
 	.left-tap-region,
 	.right-tap-region {
 		position: absolute;
@@ -200,6 +184,4 @@
 	.right-tap-region:focus {
 		background: rgba(211, 211, 211, 0.3);
 	}
-
-	/* TODO: the hint arrow icon should also be shown when focused */
 </style>

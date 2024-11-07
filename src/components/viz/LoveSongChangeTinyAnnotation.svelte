@@ -8,7 +8,6 @@
     export let decade = "";
     export let percentage = 0;
 
-    // TODO: decide left/right margins more intelligently
     $: style = `top: ${y}px; left: ${x}px;`;
 </script>
 

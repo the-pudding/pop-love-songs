@@ -5,7 +5,6 @@ function getXY(node) {
 		.map((d) => +d.replace(/[^0-9.]/g, ""));
 }
 
-// TODO top and bottom
 export default function keepWithinBox(node, params = {}) {
 	function check({ width }) {
 		const { top, left, right, bottom } = node.getBoundingClientRect();

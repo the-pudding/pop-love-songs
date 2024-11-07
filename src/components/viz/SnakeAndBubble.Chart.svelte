@@ -132,11 +132,6 @@
 
 	const clearTooltip = () => $hoveredSongInfo = {}
 
-	// TODO: do we want to do anything here? if not delete.
-	const handleSongClicked = (e) => {
-		// const { offsetX, offsetY } = e;
-	};
-
 	const resizeCanvases = () => {
 		if (!canvas) return;
 		canvas.width = $viewport.width * PIXEL_SCALE;
@@ -266,7 +261,6 @@
 	bind:this={canvas}
 	on:mousemove={handleMouseMove}
 	on:mouseleave={clearTooltip}
-	on:mousedown={handleSongClicked}
 />
 <canvas
 	aria-hidden="true"

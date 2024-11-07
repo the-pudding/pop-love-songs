@@ -39,12 +39,12 @@ export const bottomOfStoryText = derived(
 	[baseYTopMargin],
 	([$baseYTopMargin]) => $baseYTopMargin + STORY_STEP_CONTROLLER_TOP_PADDING
 );
-const SEARCH_BAR_HEIGHT = 70; // TODO: maybe export to style dictionary, we can relate it to --search-bar-height
+const HEIGHT_FOR_SEARCH_BAR_REGION = 70;
 const yMarginTop = derived(
 	[baseYTopMargin, isEndingSandboxStep, showSearchBars],
 	([$baseYTopMargin, $isEndingSandboxStep, $showSearchBars]) =>
 		$baseYTopMargin +
-		($isEndingSandboxStep && $showSearchBars ? SEARCH_BAR_HEIGHT : 0)
+		($isEndingSandboxStep && $showSearchBars ? HEIGHT_FOR_SEARCH_BAR_REGION : 0)
 );
 const X_MARGIN = 48; // This margin must accommodate the left/right nav arrows (Tap element)
 const X_MARGIN_MOBILE = {

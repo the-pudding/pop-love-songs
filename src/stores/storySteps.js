@@ -442,7 +442,6 @@ const stepsWithoutText = {
 			...VISUAL_ENCODING_BLANK_STATE,
 			songAnnotations: {
 				offsetAnnotations: [
-					// { song: "Runaround Sue", year: 1961, audioFile: "TODO" },
 					{ song: "I Will Survive", year: 1979, audioFile: "i-will-survive" },
 					{ song: "So What", year: 2008, audioFile: "so-what" },
 					{
@@ -514,8 +513,6 @@ const stepsWithoutText = {
 		}
 	},
 	sexualConfidenceInContext: {
-		// TODO: this could be a tooltip for those wanting to engage a bit more:
-		// "Has lust replaced love? Maybe. But, as theorists point out, perhaps the younger generation sees sex as a *gateway* to love. (or maybe it's just more socially acceptable to be horny!)"
 		searchAndFilterState: {
 			...SEARCH_AND_FILTER_BLANK_STATE,
 			typesTreatedAsNonLoveSongs: LOVE_SONG_TYPES.filter(
@@ -551,7 +548,6 @@ const stepsWithoutText = {
 				offsetAnnotations: [
 					{ song: "I Am Woman", year: 1972, audioFile: "i-am-woman" },
 					{ song: "Unpretty", year: 1999, audioFile: "unpretty" },
-					// { song: "Thank U, Next", year: 2018, audioFile: "TODO" },
 					{ song: "Flowers", year: 2023, audioFile: "flowers" }
 				]
 			}

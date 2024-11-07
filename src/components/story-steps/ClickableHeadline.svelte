@@ -41,7 +41,6 @@
     `;
 </script>
 
-<!-- TODO: test with screen reader -->
 {#if show}
     <li class:slideInLeft={left} class:slideInRight={right} class:slideUp={center} {style}>
         {#if $mq.desktop}

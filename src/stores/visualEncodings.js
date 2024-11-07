@@ -135,7 +135,7 @@ export const yForcePosition = derived(
 export const songRadius = derived([viewport], ([$viewport]) => {
 	const { width, height, isSmallish } = $viewport;
 	const roughArea = width * height;
-	// TODO: there may be a better or more sophisticated way of doing this
+	// There may be a better or more sophisticated way of doing this but...
 	// Basically, smaller screens need slightly smaller circles to fit everything, it seems
 	const ADJUSTER = isSmallish ? 0.023 : 0.03; // for "total weeks in top 10 (regardless of rank)"
 	const scalingFactor = (1 / songsData.length) * roughArea * ADJUSTER;
