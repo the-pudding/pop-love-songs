@@ -31,8 +31,8 @@
     });
 
     $: h1Style = `
-        font-size: ${$viewport.isLikelyInMobileLandscape ? '64px' : '108px'};
-        line-height: ${$viewport.isLikelyInMobileLandscape ? '72px' : '116px'};
+        font-size: ${$viewport.isLikelyInMobileLandscape ? '56px' : '108px'};
+        line-height: ${$viewport.isLikelyInMobileLandscape ? '56px' : '116px'};
         text-shadow: ${textShadow(4, 0.5)};
     `;
 </script>
