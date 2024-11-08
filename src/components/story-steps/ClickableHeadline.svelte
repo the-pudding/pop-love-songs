@@ -36,7 +36,7 @@
         ${right ? `right: ${marginPercent}%;` : ''}
         ${tiltLeft ? 'transform: rotate(-8deg);' : ''}
         ${tiltRight ? 'transform: rotate(8deg);' : ''}
-        ${viewportIsNarrow && center ? 'width: 80%;' : 'max-width: 42%;'}
+        ${viewportIsNarrow && center ? 'width: 80%;' : 'max-width: 35%;'}
         z-index: ${center ? 1 : 0};
     `;
 </script>
