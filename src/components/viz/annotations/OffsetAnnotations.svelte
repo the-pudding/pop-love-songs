@@ -63,7 +63,7 @@
 <style>
     div, li {
         position: absolute;
-        z-index: 10000;
+        z-index: 1;
         /* This is mostly so the very long performer names + year don't wrap */
         white-space: nowrap;
     }

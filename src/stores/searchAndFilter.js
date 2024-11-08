@@ -40,8 +40,10 @@ export const typesTreatedAsNonLoveSongs = writable([]);
 export const showAggregateSnakeChart = writable(false);
 
 export const showAnnotations = derived(
-	[aSearchFilterExists, openedDropdown],
-	([$aSearchFilterExists, $openedDropdown]) => {
-		return !$aSearchFilterExists && !$openedDropdown;
+	[aSearchFilterExists, previewedSong, previewedPerformer],
+	([$aSearchFilterExists, $previewedSong, $previewedPerformer]) => {
+		return (
+			!$aSearchFilterExists && !$previewedSong.song && !$previewedPerformer
+		);
 	}
 );

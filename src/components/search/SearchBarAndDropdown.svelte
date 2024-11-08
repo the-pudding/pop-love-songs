@@ -11,6 +11,8 @@
     export let renderComponent;
     export let clearSelection = () => {};
     export let onResultSelected = () => {};
+    // Note preview is triggered on mousemove, not on mouseenter, so that a user can tab through on their way to annotations, 
+    // have the dropdown open with their mouse coincidentally over an option, but not accidentally trigger a hiding of the annotations due to a preview existing.
     export let onResultPreviewed = () => {};
     export let onInputFocused = () => {};
     export let onInputBlurred = () => {};
@@ -172,7 +174,7 @@
                             class:selected={selectedIndex === index}
                             bind:this={resultDOMElements[index]}
                             on:mousedown={() => handleResultSelected(result)}
-                            on:mouseenter={() => onResultPreviewed(result)}
+                            on:mousemove={() => onResultPreviewed(result)}
                             on:mouseleave={() => onResultPreviewed()}
                         >
                             <svelte:component this={renderComponent} {result} />

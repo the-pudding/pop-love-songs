@@ -38,6 +38,7 @@
 <div class="progress-bar" aria-hidden="true" style={`gap: ${$mq.desktop ? 3 : 0 }px; padding: ${$mq.desktop ? 12 : 0 }px;`}>
     {#each storySteps as _, index}
         <button
+            aria-hidden="true"
             class="dash"
             tabindex="-1"
             style={`

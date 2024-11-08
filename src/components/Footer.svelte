@@ -40,7 +40,7 @@
 	</section>
 
 	<section class="about">
-		<div class="wordmark">
+		<div aria-hidden="true" class="wordmark">
 			{@html wordmark}
 		</div>
 		<p>

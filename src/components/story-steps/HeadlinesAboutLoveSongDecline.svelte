@@ -12,7 +12,7 @@
     `
 </script>
 
-<ul class="container" {style}>
+<ul aria-label="Headlines discussing the decline of love songs" class="container" {style}>
 
     <ClickableHeadline bottom right tiltLeft enterOrder={0} headline={HEADLINES.harderToFind} />
     <ClickableHeadline bottom left tiltRight enterOrder={1} headline={HEADLINES.dontWriteThemLikeTheyUsedTo} />

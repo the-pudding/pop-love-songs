@@ -63,7 +63,7 @@
         
     }
 
-    $: handleInputFocused = () => {
+    $: clearAllSongFilters = () => {
         $selectedSong = {};
         $previewedSong = {};
         $songSearchString = "";
@@ -95,11 +95,11 @@
     bind:searchString={$songSearchString}
     {searchResults}
     inputAriaLabel={inputAriaLabel}
-    dropdownAriaLabel={`Song search results, sorted by ${$selectedPerformers.length ? 'love song type' : 'total weeks in top 10'}`}
+    dropdownAriaLabel={`Song search results${$selectedPerformers.length ? ($isEndingSandboxStep ? ' sorted by love song type' : '') : ' sorted by total weeks in top 10'}`}
     clearSelection={handleClearSelection}
     onResultSelected={handleSelectedSong}
     onResultPreviewed={handleResultPreviewed}
-    onInputFocused={handleInputFocused}
+    onInputFocused={clearAllSongFilters}
     renderComponent={SongSearchResult}
     hasSelection={!!$selectedSong.song}
 />
