@@ -33,7 +33,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 100vh; /* @michelle: what I want is for hte <Footer/> to stay pushed to the bottom of the page */        
+        height: 100vh;
     }
     
     /* there are a-tags in copy */

@@ -215,7 +215,6 @@
 	$: {
 		tweenedCoords.set($svgCoordsForLoveSongTypes);
 		tweenedSnakeFill.set($snakeFill);
-		// @michelle: is there a good reason to move this out to its own one line reactive statement?
 		tweenedSongColor.set($songColor.songColorArrayToInterpolate);
 		if ($showAggregateSnakeChart) {
 			aggregateSnakeChartOpacity.set(1);

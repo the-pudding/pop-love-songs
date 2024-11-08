@@ -43,7 +43,6 @@
 	$: alreadyAnnotated = $showAnnotations && songInAnnotations(song, $currentStoryStep.visualEncodings.songAnnotations)
 </script>
 
-<!-- @michelle: do you have any strong arguments for why I should use class:visible vs just conditionally rendering? -->
 {#if visible && !alreadyAnnotated}
 	<div
 		class="tooltip"
