@@ -1,7 +1,7 @@
 <script>
 	
     import {afterUpdate, onMount, tick} from "svelte";
-    import urlParams from "../../utils/urlParams.js";
+    // import urlParams from "../../utils/urlParams.js";
     import { tiemposFriendlyTextShadow } from "$utils/styling.js";
     import viewport from "$stores/viewport.js";
     import mq from "$stores/mq.js";
@@ -21,10 +21,6 @@
         if (!userHasSeenFirstSlide && $currentStoryStepIndex > 0) {
             userHasSeenFirstSlide = true;
         }
-    }
-
-    function updateQueryParams() {
-        urlParams.set("step", $currentStoryStepIndex);
     }
 
     // Find button in gDoc text that opens modal
@@ -98,14 +94,20 @@
         });
     }
 
+    // FOR DEVELOPMENT: it's useful to remain on the same step through page refreshes
+    // function updateQueryParams() {
+    //     urlParams.set("step", $currentStoryStepIndex);
+    // }
+
     afterUpdate(() => {
-        updateQueryParams();
+        // updateQueryParams();
         renderInTextComponents();
     });
     
     onMount(async () => {
-       const urlIndex = parseInt(urlParams.get("step")?.toString() || "0");
-       $currentStoryStepIndex = urlIndex > storySteps.length - 1 ? 0 : urlIndex;
+        // FOR DEVELOPMENT
+        //    const urlIndex = parseInt(urlParams.get("step")?.toString() || "0");
+        //    $currentStoryStepIndex = urlIndex > storySteps.length - 1 ? 0 : urlIndex;
 
        await tick();
        renderInTextComponents();
