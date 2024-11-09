@@ -63,7 +63,10 @@ export const unselectedLoveSongTypeColorMap = derived(
 	([$typesTreatedAsNonLoveSongs, $currentStoryStep]) =>
 		updateColorMap(
 			$typesTreatedAsNonLoveSongs,
-			UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP,
+			// Slight hack: In order to get a smooth interpolation to un-selected in next slide, we use un-selected (regular) color map the slide before we fade out non-love songs (while fading in Serenade)
+			$currentStoryStep.showTotalWeeksInTop10InSongInfo
+				? LOVE_SONG_TYPE_COLOR_MAP
+				: UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP,
 			$currentStoryStep.visualEncodings.colorButDontSeperateThisLoveSongType,
 			$currentStoryStep.isFinalComparisonStep
 		)
