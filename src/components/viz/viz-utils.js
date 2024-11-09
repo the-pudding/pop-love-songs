@@ -1,5 +1,3 @@
-import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants.js";
-
 export const BUBBLE_BORDER_THICKNESS = 4;
 
 const NEXT_COLOR_STEP = 1; // keep this as 1
@@ -75,18 +73,6 @@ export const getSongIndexFromClickLocation = (
 		(key) => songIndex[key] === maxSongIndexCount
 	);
 	return songIndexWithMaxCount;
-};
-
-export const getSongColor = (
-	song,
-	songIsSelected,
-	$loveSongTypeColorMap,
-	$unselectedLoveSongTypeColorMap
-) => {
-	const loveSongType = song[SONG_DATA_COLUMNS_ENUM.love_song_sub_type];
-	return songIsSelected
-		? $loveSongTypeColorMap[loveSongType]
-		: $unselectedLoveSongTypeColorMap[loveSongType];
 };
 
 export const getSnakeFill = (

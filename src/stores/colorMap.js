@@ -1,9 +1,7 @@
 import { derived } from "svelte/store";
-import songsData from "$data/songs-data.js";
 
 import { typesTreatedAsNonLoveSongs } from "./searchAndFilter";
 import { currentStoryStep } from "./storySteps";
-import { songIsSelected } from "./dataDerivations";
 
 import {
 	ACCESSIBLY_CONTRASTING_COLOR_MAP,
@@ -13,7 +11,7 @@ import {
 	SONG_DATA_COLUMNS_ENUM,
 	UNSELECTED_LOVE_SONG_TYPE_COLOR_MAP
 } from "$data/data-constants.js";
-import { getSnakeFill, getSongColor } from "$components/viz/viz-utils";
+import { getSnakeFill } from "$components/viz/viz-utils";
 
 const updateColorMap = (
 	typesTreatedAsNonLoveSongs,
