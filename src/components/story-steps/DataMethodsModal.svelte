@@ -45,6 +45,10 @@
         margin-top: 12px;
     }
 
+    summary {
+        cursor: pointer;
+    }
+
     h2 {
         display: inline;
         font-size: 24px;

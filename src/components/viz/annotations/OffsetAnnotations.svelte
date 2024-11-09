@@ -8,7 +8,7 @@
 
 	import { SONG_DATA_COLUMNS_ENUM } from "$data/data-constants";
 
-    const aNonTrivialSize = (height) => Math.abs(height) > 16;
+    const aNonTrivialSize = (height) => Math.abs(height) > 12;
 	
     const DEFAULT_OFFSET_REFERENCE = 0.5;
     $: offsetFromThisYPercentage = $currentStoryStep.visualEncodings.songAnnotations.offsetFromThisYPercentage || DEFAULT_OFFSET_REFERENCE;
