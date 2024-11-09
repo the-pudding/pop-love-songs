@@ -48,7 +48,7 @@
 		max-width: 42em;
 		border-radius: 0.2em;
 		border: none;
-		padding: 0;
+		padding: 8px;
 	}
 	dialog::backdrop {
 		background: rgba(0, 0, 0, 0.5);

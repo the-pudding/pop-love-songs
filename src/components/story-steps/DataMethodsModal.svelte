@@ -41,11 +41,13 @@
         font-size: 35px;
     }
 
+    details {
+        margin-top: 12px;
+    }
+
     h2 {
         display: inline;
         font-size: 24px;
-        margin-top: 24px;
-        margin-bottom: 0px;
     }
 
     p {
