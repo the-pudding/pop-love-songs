@@ -39,7 +39,7 @@ const lookForSongIndexFromInvisibleFill = (
 	return songIndex < 0 ? null : songIndex;
 };
 
-export const getSongIndexFromClickLocation = (
+export const getSongIndexFromMouseLocation = (
 	invisibleContext,
 	offsetX,
 	offsetY

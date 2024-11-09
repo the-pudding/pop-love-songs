@@ -68,7 +68,8 @@ const xScaleJustAddRange = (canvasWidth, $margins) =>
 export const getXPositionForYear = derived(
 	[viewport, margins],
 	([$viewport, $margins]) => {
-		return (year) => xScaleJustAddRange($viewport.width, $margins)(year);
+		return (year) =>
+			Math.round(xScaleJustAddRange($viewport.width, $margins)(year)); // Rounding is good for Canvas performance
 	}
 );
 

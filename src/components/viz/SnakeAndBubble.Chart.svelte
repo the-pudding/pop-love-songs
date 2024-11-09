@@ -19,7 +19,7 @@
 	import {
 		BUBBLE_BORDER_THICKNESS,
 		getInvisibleFillFromSongIndex,
-		getSongIndexFromClickLocation
+		getSongIndexFromMouseLocation
 	} from "./viz-utils";
 
 	import mq from "$stores/mq";
@@ -127,7 +127,7 @@
 		if ($showAggregateSnakeChart || !$mq.desktop) return
 		const { offsetX, offsetY } = e;
 		// Multiply by PIXEL_SCALE to translate mouse position into the scaled up canvas pixel universe
-		const songIndex = getSongIndexFromClickLocation(invisibleContext, offsetX * PIXEL_SCALE, offsetY * PIXEL_SCALE);		
+		const songIndex = getSongIndexFromMouseLocation(invisibleContext, offsetX * PIXEL_SCALE, offsetY * PIXEL_SCALE);		
 		const selectedSong = $songIsSelected[songIndex] && $songIsVisible[songIndex] && forceSimulationData[songIndex]?.song;
 		handleSongHovered(selectedSong, songIndex, offsetX, offsetY);
 	};
@@ -171,7 +171,7 @@
 	$: $viewport.width, $viewport.height, $songIsSelected, $tweenedSongColor, updateVisibleAndInvisibleCanvases();;
 
 	onMount(() => {
-		invisibleContext = invisibleCanvas.getContext("2d");
+		invisibleContext = invisibleCanvas.getContext("2d", { alpha: false, willReadFrequently: true  });
 		context = canvas.getContext("2d");
 
 		simulation = forceSimulation(forceSimulationData).on("tick", () => {
