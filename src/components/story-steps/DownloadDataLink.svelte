@@ -26,7 +26,7 @@
 
     const stringifyDatum = ({song}) => ([
         escapeCsvField(song[SONG_DATA_COLUMNS_ENUM.song]),
-        escapeCsvField(song[SONG_DATA_COLUMNS_ENUM.performers_list_str]),
+        escapeCsvField(song[SONG_DATA_COLUMNS_ENUM.performers_list_str].replace(/\|$/, '')),
         loveSongType(song),
         
         song[SONG_DATA_COLUMNS_ENUM.date_as_decimal],
