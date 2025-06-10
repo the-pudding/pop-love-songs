@@ -591,7 +591,22 @@ const stepsWithoutText = {
 			showAggregateSnakeChart: true,
 			// a little extra strenth helps keep the chart a bit clearer
 			forceXStrength: 8,
-			forceYStrength: 2
+			forceYStrength: 2,
+			songAnnotations: {
+				offsetAnnotations: [
+					{ song: "Lean On Me", year: 1972, offsetToThisYear: 1975 },
+					{
+						song: "You've Got A Friend",
+						year: 1971
+						// rightAlign: true
+					},
+					{
+						song: "That's What Friends Are For",
+						year: 1985,
+						offsetToThisYear: 1990
+					}
+				]
+			}
 		},
 		showLoveSongChange: true,
 		isEndingSandboxStep: true
@@ -675,7 +690,7 @@ export const storySteps = unprocessedStorySteps.map((step) => ({
 // Export steps as a CSV for easy editing in Excel
 // console.log(storySteps.map((step, i) => `${i}) ${step.text}`).join("\n"));
 
-export const currentStoryStepIndex = writable(0);
+export const currentStoryStepIndex = writable(24);
 
 export const TOTAL_STORY_STEPS = storySteps.length;
 
