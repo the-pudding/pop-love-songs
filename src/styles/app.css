@@ -119,7 +119,8 @@ dialog .song-title {
 .its-complicated,
 .good-riddance,
 .love-song-for-the-self,
-.sexual-confidence {
+.sexual-confidence,
+.platonic-love {
 	letter-spacing: default;
 	border-radius: 4px;
 	padding: 1px 5px 2px;
@@ -174,4 +175,9 @@ dialog .song-title {
 dialog span.sexual-confidence {
 	background: var(--color-sexual-confidence);
 	color: var(--color-a11y-contrast-sexual-confidence);
+}
+
+.story-text span.platonic-love {
+	background: var(--color-platonic-love);
+	color: var(--color-a11y-contrast-platonic-love);
 }
